@@ -111,6 +111,8 @@ class Schemas:
         self.body_plans = json.loads((schema_dir / "body-plans.json").read_text())
         self.licenses = json.loads((schema_dir / "licenses.json").read_text())
         self.locale_schema = json.loads((schema_dir / "locale.schema.json").read_text())
+        self.flora_catalog_schema = json.loads((schema_dir / "flora-catalog.schema.json").read_text())
+        self.flora_taxa = json.loads((schema_dir / "flora-taxa.json").read_text())
         self._validators: dict[int, jsonschema.protocols.Validator] = {}
 
     def validator_for(self, schema: dict) -> jsonschema.protocols.Validator:
@@ -1708,6 +1710,15 @@ def run_self_check(root: Path, include_untracked: bool = True) -> tuple[int, lis
 # ---------------------------------------------------------------------------
 
 LOCALE_MIN_SPECIES = 8
+# Richness targets (docs/locale-richness.md). Below them a locale still
+# passes, with a warning: it will look sparse on the stream.
+LOCALE_RECOMMENDED_SPECIES = 12
+FLORA_CATALOG = "flora-catalog.json"
+FLORA_RECOMMENDED_TAXA = 8
+FLORA_RECOMMENDED_EVERGREEN = 2
+# A catalog size more than this far from the drawn model's is flagged:
+# plants are spaced by `crown_width_m` but drawn at the model's size.
+FLORA_SIZE_TOLERANCE = 0.25
 LOCALE_ID_RE = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
 
 
@@ -1728,6 +1739,13 @@ class LocaleReport:
     manifest: dict | None
     findings: list[Finding] = field(default_factory=list)
     species_rows: list[LocaleSpeciesRow] = field(default_factory=list)
+    flora: "FloraSummary | None" = None
+
+
+@dataclass
+class FloraSummary:
+    taxa: int = 0  # distinct drawable taxa
+    evergreen: int = 0
 
 
 def more_than_two_decimals(value: Any) -> bool:
@@ -1735,7 +1753,6 @@ def more_than_two_decimals(value: Any) -> bool:
 
 
 def check_locale_fact_sources(manifest: dict, policy: dict, findings: list[Finding]) -> None:
-    attribution_not_required = set(policy.get("attribution_not_required", []))
     facts = manifest.get("facts")
     sourced = [
         (f"facts[{i}].source", fact.get("source"))
@@ -1744,7 +1761,14 @@ def check_locale_fact_sources(manifest: dict, policy: dict, findings: list[Findi
     ]
     if "place_source" in manifest:
         sourced.append(("place_source", manifest["place_source"]))
-    for path, src in sourced:
+    check_source_licenses(sourced, policy, findings, "attribution")
+
+
+def check_source_licenses(sources: list[tuple[str, Any]], policy: dict, findings: list[Finding], attribution_key: str) -> None:
+    """Allow-listed licence on every source; an attribution line (in
+    `attribution_key`) unless the licence is CC0 or public domain."""
+    attribution_not_required = set(policy.get("attribution_not_required", []))
+    for path, src in sources:
         if not isinstance(src, dict):
             continue
         lic = src.get("license")
@@ -1754,8 +1778,109 @@ def check_locale_fact_sources(manifest: dict, policy: dict, findings: list[Findi
             continue
         if tier.get("warning"):
             findings.append(Finding("warning", "NonCommercialLicense", f"{path}.license", f"license '{lic}' is tier 4 (non-commercial)"))
-        if lic not in attribution_not_required and not src.get("attribution"):
-            findings.append(Finding("error", "MissingAttribution", f"{path}.attribution", f"license '{lic}' requires an attribution line"))
+        if lic not in attribution_not_required and not src.get(attribution_key):
+            findings.append(Finding("error", "MissingAttribution", f"{path}.{attribution_key}", f"license '{lic}' requires an attribution line"))
+
+
+def size_off(value: Any, drawn: Any) -> bool:
+    return is_number(value) and is_number(drawn) and drawn > 0 and abs(value - drawn) / drawn > FLORA_SIZE_TOLERANCE
+
+
+def check_locale_flora(locale_id: str, locale_dir: Path, schemas: Schemas, findings: list[Finding]) -> FloraSummary | None:
+    """Checks `locales/<id>/flora-catalog.json`, the plants the simulation
+    shows in place of its generic biome catalog: every taxon drawable and
+    placeable, sizes matching the drawn model, a weight for this locale,
+    licensed sources, and enough taxa and evergreens not to look bare."""
+    rel = f"locales/{locale_id}/{FLORA_CATALOG}"
+    path = locale_dir / FLORA_CATALOG
+    if not path.is_file():
+        findings.append(
+            Finding(
+                "warning",
+                "LocaleNoFloraCatalog",
+                rel,
+                "no flora catalog: the simulation falls back to a generic biome catalog of a few large trees, "
+                "which looks bare; see docs/locale-richness.md",
+            )
+        )
+        return None
+    catalog = load_json(path, findings)
+    if not isinstance(catalog, dict):
+        return None
+    findings.extend(schema_findings(catalog, schemas.flora_catalog_schema, schemas, "flora"))
+    drawable = {t["taxon"]: t for t in schemas.flora_taxa.get("taxa", [])}
+    placeable = set(schemas.flora_taxa.get("placeable_archetypes", []))
+    entries = catalog.get("entries")
+    entries = [e for e in entries if isinstance(e, dict)] if isinstance(entries, list) else []
+    summary = FloraSummary()
+    # Distinct drawn models: two entries standing in for two local species
+    # with one taxon still draw one kind of plant.
+    drawn: set[str] = set()
+    sources = []
+    for i, entry in enumerate(entries):
+        at = f"flora.entries[{i}]"
+        taxon = entry.get("taxon")
+        model = drawable.get(taxon)
+        if model is None:
+            findings.append(
+                Finding(
+                    "error",
+                    "FloraUnknownTaxon",
+                    f"{at}.taxon",
+                    f"the simulation cannot draw '{taxon}'; use a taxon from schema/v0.1/flora-taxa.json "
+                    "and name the local species in stand_in_for",
+                )
+            )
+        else:
+            if entry.get("archetype") != model["archetype"]:
+                findings.append(
+                    Finding("error", "FloraArchetypeMismatch", f"{at}.archetype", f"'{taxon}' is drawn as {model['archetype']}, not {entry.get('archetype')}")
+                )
+            elif model["archetype"] not in placeable:
+                findings.append(
+                    Finding(
+                        "error",
+                        "FloraNotPlaceable",
+                        f"{at}.archetype",
+                        f"the import cannot place {model['archetype']} plants yet ('{taxon}'); "
+                        f"use one of {', '.join(sorted(placeable))}",
+                    )
+                )
+            if entry.get("evergreen") is not model["evergreen"]:
+                findings.append(
+                    Finding("warning", "FloraEvergreenMismatch", f"{at}.evergreen", f"'{taxon}' is drawn {'evergreen' if model['evergreen'] else 'deciduous'}")
+                )
+            for key in ("height_m", "crown_width_m"):
+                if size_off(entry.get(key), model[key]):
+                    findings.append(
+                        Finding("warning", "FloraSizeMismatch", f"{at}.{key}", f"{entry.get(key)} m; '{taxon}' is drawn at {model[key]} m")
+                    )
+            drawn.add(taxon)
+        weight = entry.get("community_weight", {}).get(locale_id) if isinstance(entry.get("community_weight"), dict) else None
+        if not (is_number(weight) and weight > 0):
+            findings.append(
+                Finding("error", "FloraNoWeight", f"{at}.community_weight", f"no positive weight for '{locale_id}', so the import never places it")
+            )
+        provenance = entry.get("provenance")
+        srcs = provenance.get("sources") if isinstance(provenance, dict) else None
+        sources += [(f"{at}.provenance.sources[{j}]", s) for j, s in enumerate(srcs if isinstance(srcs, list) else [])]
+    check_source_licenses(sources, schemas.licenses, findings, "title")
+    summary.taxa = len(drawn)
+    summary.evergreen = sum(1 for t in drawn if drawable[t]["evergreen"])
+    if summary.taxa < FLORA_RECOMMENDED_TAXA:
+        findings.append(
+            Finding("warning", "LocaleSparseFlora", rel, f"{summary.taxa} taxa; aim for at least {FLORA_RECOMMENDED_TAXA} so the garden does not look bare")
+        )
+    if summary.evergreen < FLORA_RECOMMENDED_EVERGREEN:
+        findings.append(
+            Finding(
+                "warning",
+                "LocaleFewEvergreens",
+                rel,
+                f"{summary.evergreen} evergreen taxa; aim for at least {FLORA_RECOMMENDED_EVERGREEN} so winter scenes are not bare",
+            )
+        )
+    return summary
 
 
 def check_locale_species(
@@ -1868,6 +1993,17 @@ def validate_locale(
         findings.append(
             Finding("error", "LocaleTooFewSpecies", "locale.species", f"{len(existing)} valid species listed; a locale needs at least {LOCALE_MIN_SPECIES}")
         )
+    elif len(existing) < LOCALE_RECOMMENDED_SPECIES:
+        findings.append(
+            Finding(
+                "warning",
+                "LocaleFewSpecies",
+                "locale.species",
+                f"{len(existing)} species; aim for at least {LOCALE_RECOMMENDED_SPECIES} so the garden is not sparse "
+                "(see docs/locale-richness.md)",
+            )
+        )
+    report.flora = check_locale_flora(locale_id, locale_dir, schemas, findings)
 
     for p in sorted(locale_dir.rglob("*")):
         if p.is_file():
@@ -1989,7 +2125,8 @@ def render_locale_markdown(lr: LocaleReport) -> list[str]:
         lines.append(
             f"{manifest.get('name', '?')}: {manifest.get('country', '?')}, activity region "
             f"`{manifest.get('activity_region', '?')}`, plot `{manifest.get('plot_template', '?')}`, "
-            f"Köppen `{manifest.get('koppen', '?')}`, {len(lr.species_rows)} species."
+            f"Köppen `{manifest.get('koppen', '?')}`, {len(lr.species_rows)} species, "
+            + (f"flora catalog of {lr.flora.taxa} taxa ({lr.flora.evergreen} evergreen)." if lr.flora else "no flora catalog.")
         )
         lines.append("")
     if lr.species_rows:

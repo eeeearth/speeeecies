@@ -272,3 +272,166 @@ def test_repo_london_uk_locale_passes(validate_module):
     assert [f.line() for f in lr.findings if f.level == "error"] == []
     assert len(lr.species_rows) >= 8
     assert not result.has_errors(strict=False)
+
+
+# --- flora catalog and richness (SPEEEECIES-LONDON) ---------------------------
+
+FLORA_TAXA = json.loads((REPO_ROOT / "schema" / "v0.1" / "flora-taxa.json").read_text())
+DRAWN = {t["taxon"]: t for t in FLORA_TAXA["taxa"]}
+EVERGREEN_TREES = ["Ilex opaca", "Thuja occidentalis"]
+DECIDUOUS_TREES = ["Malus coronaria", "Betula papyrifera", "Cercis canadensis", "Amelanchier arborea", "Morus rubra", "Tilia americana"]
+
+
+def flora_entry(taxon: str, locale_id: str = "test-town", **overrides) -> dict:
+    model = DRAWN[taxon]
+    entry = {
+        "taxon": taxon,
+        "stand_in_for": None,
+        "common_name": model["common_name"],
+        "family": model["family"],
+        "archetype": model["archetype"],
+        "crown_width_m": model["crown_width_m"],
+        "height_m": model["height_m"],
+        "seasonal": not model["evergreen"],
+        "evergreen": model["evergreen"],
+        "stages": ["mature"],
+        "resource_tags": ["perch"],
+        "community_weight": {locale_id: 1.0},
+        "native_status": {locale_id: "Native"},
+        "invasive": False,
+        "provenance": {
+            "sources": [{"url": "https://example.org/plant", "title": "Example plant", "license": "CC0-1.0"}],
+            "confidence": "Low",
+        },
+    }
+    entry.update(copy.deepcopy(overrides))
+    return entry
+
+
+def write_flora(root: Path, entries: list[dict], locale_id: str = "test-town") -> None:
+    catalog = {"schema_version": 1, "source": {"repo": "speeeecies", "rev": f"locales/{locale_id}"}, "entries": entries}
+    (root / "locales" / locale_id / "flora-catalog.json").write_text(json.dumps(catalog, indent=2), encoding="utf-8")
+
+
+def rich_flora() -> list[dict]:
+    return [flora_entry(t) for t in EVERGREEN_TREES + DECIDUOUS_TREES]
+
+
+def all_codes(report) -> set[str]:
+    return {f.code for f in report.findings}
+
+
+def test_locale_without_flora_catalog_warns_but_passes(validate_module, fake_root):
+    setup_locale(fake_root, minimal_locale([]))
+    result, lr = run_locale(validate_module, fake_root)
+    assert {"LocaleNoFloraCatalog", "LocaleFewSpecies"} <= all_codes(lr)
+    assert lr.flora is None
+    assert not result.has_errors(strict=False)
+    assert result.has_errors(strict=True)
+
+
+def test_rich_flora_catalog_is_clean(validate_module, fake_root):
+    setup_locale(fake_root, minimal_locale([]))
+    write_flora(fake_root, rich_flora())
+    result, lr = run_locale(validate_module, fake_root)
+    flora_findings = [f for f in lr.findings if f.path.startswith("flora") or "flora" in f.path]
+    assert flora_findings == [], [f.line() for f in flora_findings]
+    assert (lr.flora.taxa, lr.flora.evergreen) == (8, 2)
+    assert "flora catalog of 8 taxa (2 evergreen)" in validate_module.render_markdown(result)
+
+
+def test_sparse_flora_warns(validate_module, fake_root):
+    setup_locale(fake_root, minimal_locale([]))
+    write_flora(fake_root, [flora_entry("Malus coronaria")])
+    result, lr = run_locale(validate_module, fake_root)
+    assert {"LocaleSparseFlora", "LocaleFewEvergreens"} <= all_codes(lr)
+    assert not result.has_errors(strict=False)
+
+
+def test_flora_counts_distinct_drawable_taxa(validate_module, fake_root):
+    # Two hollies drawn with one model count as one evergreen; an undrawable
+    # taxon counts toward nothing.
+    setup_locale(fake_root, minimal_locale([]))
+    undrawable = flora_entry("Malus coronaria")
+    undrawable["taxon"] = "Ilex aquifolium"
+    write_flora(fake_root, [flora_entry("Ilex opaca"), flora_entry("Ilex opaca", stand_in_for="Ilex aquifolium"), undrawable])
+    _, lr = run_locale(validate_module, fake_root)
+    assert (lr.flora.taxa, lr.flora.evergreen) == (1, 1)
+    assert {"LocaleSparseFlora", "LocaleFewEvergreens"} <= all_codes(lr)
+
+
+def test_flora_taxon_must_be_drawable(validate_module, fake_root):
+    setup_locale(fake_root, minimal_locale([]))
+    undrawable = flora_entry("Malus coronaria")
+    undrawable["taxon"] = "Ilex aquifolium"
+    write_flora(fake_root, rich_flora() + [undrawable])
+    _, lr = run_locale(validate_module, fake_root)
+    assert "FloraUnknownTaxon" in codes(lr)
+
+
+def test_flora_understory_not_placeable_yet(validate_module, fake_root):
+    setup_locale(fake_root, minimal_locale([]))
+    write_flora(fake_root, rich_flora() + [flora_entry("Syringa vulgaris")])
+    _, lr = run_locale(validate_module, fake_root)
+    assert "FloraNotPlaceable" in codes(lr)
+
+
+def test_flora_archetype_must_match_model(validate_module, fake_root):
+    setup_locale(fake_root, minimal_locale([]))
+    write_flora(fake_root, rich_flora() + [flora_entry("Pinus strobus", archetype="Decurrent")])
+    _, lr = run_locale(validate_module, fake_root)
+    assert "FloraArchetypeMismatch" in codes(lr)
+
+
+def test_flora_size_and_evergreen_mismatch_warn(validate_module, fake_root):
+    setup_locale(fake_root, minimal_locale([]))
+    write_flora(fake_root, rich_flora() + [flora_entry("Malus coronaria", crown_width_m=20.0, evergreen=True, seasonal=False)])
+    result, lr = run_locale(validate_module, fake_root)
+    assert {"FloraSizeMismatch", "FloraEvergreenMismatch"} <= all_codes(lr)
+    assert not result.has_errors(strict=False)
+
+
+def test_flora_needs_weight_for_this_locale(validate_module, fake_root):
+    setup_locale(fake_root, minimal_locale([]))
+    write_flora(fake_root, rich_flora() + [flora_entry("Malus coronaria", community_weight={"other-town": 1.0})])
+    _, lr = run_locale(validate_module, fake_root)
+    assert "FloraNoWeight" in codes(lr)
+
+
+def test_flora_sources_licensed_and_attributed(validate_module, fake_root):
+    setup_locale(fake_root, minimal_locale([]))
+    unlicensed = {"sources": [{"url": "https://example.org/a", "license": "All-rights-reserved"}], "confidence": "Low"}
+    untitled = {"sources": [{"url": "https://example.org/b", "license": "CC-BY-SA-4.0"}], "confidence": "Low"}
+    write_flora(
+        fake_root,
+        rich_flora() + [flora_entry("Malus coronaria", provenance=unlicensed), flora_entry("Morus rubra", provenance=untitled)],
+    )
+    _, lr = run_locale(validate_module, fake_root)
+    assert {"RejectedLicense", "MissingAttribution"} <= codes(lr)
+
+
+def test_flora_catalog_schema_enforced(validate_module, fake_root):
+    setup_locale(fake_root, minimal_locale([]))
+    bad = flora_entry("Malus coronaria")
+    del bad["provenance"]["sources"][0]["license"]
+    write_flora(fake_root, rich_flora() + [bad])
+    _, lr = run_locale(validate_module, fake_root)
+    assert "Schema" in codes(lr)
+
+
+def test_flora_taxa_snapshot_is_consistent():
+    placeable = set(FLORA_TAXA["placeable_archetypes"])
+    assert placeable < {t["archetype"] for t in FLORA_TAXA["taxa"]}
+    assert len(DRAWN) == len(FLORA_TAXA["taxa"]) >= 70
+    for t in FLORA_TAXA["taxa"]:
+        assert t["height_m"] > 0 and t["crown_width_m"] > 0, t["taxon"]
+
+
+def test_repo_london_uk_is_rich(validate_module):
+    result = validate_module.run_locales(["london-uk"], REPO_ROOT)
+    lr = result.locale_reports[0]
+    assert len(lr.species_rows) >= validate_module.LOCALE_RECOMMENDED_SPECIES
+    assert lr.flora is not None
+    assert lr.flora.taxa >= validate_module.FLORA_RECOMMENDED_TAXA
+    assert lr.flora.evergreen >= validate_module.FLORA_RECOMMENDED_EVERGREEN
+    assert [f.line() for f in lr.findings if f.code.startswith(("Locale", "Flora"))] == []
