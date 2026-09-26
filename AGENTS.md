@@ -114,6 +114,107 @@ Title: `species: <common name> (<Scientific name>)`. Body: paste the
 validate report, write `Closes #<issue number>`, and follow the pull
 request template's checklist.
 
+## Contribute a locale
+
+A locale is a place the live simulation
+(https://www.youtube.com/@jt55401/live) can show: a public city or district
+centroid, its climate, a generic plot, and at least 8 animal species that
+live there. It is one file, `locales/<id>/locale.json`, checked against
+`schema/v0.1/locale.schema.json`. The worked example is
+`locales/london-uk/`.
+
+### The flow
+
+1. **Pick and claim** an open issue labelled **locale-request**, exactly as
+   for species (comment `Claiming this: <agent/person>, ETA <date>`).
+2. **Choose the place and its public centroid.** Take the latitude and
+   longitude of the city or district from a public page (Wikidata is
+   CC0) and round both to **at most 2 decimals** (about 1 km). Record the
+   page in `place_source`. Only public centroid coordinates are accepted:
+   never a house, a garden, a yard or a street address, even your own.
+3. **Fill in the manifest**: `id` (equal to the directory name, e.g.
+   `london-uk`), `name`, `country` (ISO 3166-1), `activity_region` (the
+   ISO 3166-2 subdivision, or the country code, whose activity curves the
+   species carry; e.g. `GB-ENG`), `tz` (IANA, e.g. `Europe/London`),
+   `koppen`, `elevation_m`, `plot_template` (one of `suburban-lot`,
+   `rural-lot`, `rowhouse-garden`, `street-block`, `courtyard`), `species`,
+   `blurb`, `facts` (each with a `source` and an allow-listed licence,
+   plus `attribution` unless it is CC0 or public domain), and optionally
+   `flora_wishlist` and `contributors`.
+4. **List at least 8 species** that exist under `species/`. Add any that
+   are missing by following the species flow above; a locale PR may carry
+   the new species it needs.
+5. **Fetch an activity curve for the locale's region** for every listed
+   species that lacks one. For a subdivision, pass the iNaturalist place id
+   and the GADM id:
+
+   ```
+   uv run tools/fetch_activity.py <slug> --region GB-ENG --inat-place-id 6858 --gbif-gadm-gid GBR.1_1 --write
+   uv run tools/validate.py species/<slug> --write-attribution
+   ```
+
+6. **Validate** the locale and the repository:
+
+   ```
+   uv run tools/validate.py --locale <id> --report > report.md
+   uv run tools/validate.py --self-check
+   ```
+
+7. **Open the PR** titled `locale: <place> (<id>)` with the report,
+   `Closes #<issue number>`, and the locale rows of the PR template
+   checked. Check the new page at `locales.html` in the previewed site.
+
+### What the locale check enforces
+
+`validate.py --locale <id>` fails unless:
+
+- the manifest matches `schema/v0.1/locale.schema.json`, its `id` equals
+  the directory name, and `activity_region` lies inside `country`;
+- it lists at least 8 species, each of which exists under `species/`,
+  passes its own validation (so every datum has provenance with an
+  allow-listed licence), has 12 monthly activity values for
+  `activity_region`, resolves at least one behaviour program, and has a
+  block mesh with an `idle` pose and at least one move pose (`walk`,
+  `hop`, `fly`, ...);
+- `public_lat` and `public_lon` have at most 2 decimals;
+- every fact's source has an allow-listed licence and, unless CC0 or
+  public domain, an attribution;
+- no file in the locale's directory contains text shaped like a street
+  address (a number, a capitalised name and `St`, `Ave`, `Rd`, `Ln`, `Dr`,
+  `Street`, `Avenue` or `Road`), an absolute home-directory path, a
+  hostname ending in `.local`, or an SSH git remote.
+
+`validate.py --self-check` runs the same text lint over the whole
+repository (except `tools/tests/fixtures/`, where the lint's deliberately
+bad test strings live). CI runs both on every PR.
+
+### What "validated" means
+
+A locale is validated when all of these have happened, in this order:
+
+1. **A maintainer merges the PR to `main`.** This is the human review;
+   nothing downstream starts before it.
+2. **CI is green at the merge commit**, including the locale check and
+   the self-check above.
+3. **The maintainers' private import succeeds.** The simulation converts
+   the species and their activity curves for the locale's region, derives
+   a weather profile from climate normals at the public centroid, builds
+   the plot from `plot_template` and a plant catalog for the Köppen
+   climate, and checks that a summer scene contains at least one animal.
+   This runs on the maintainers' machine; its output is not published.
+
+Only then does the locale enter the live rotation. A maintainer (or the
+import itself) comments on the merged PR to say it is in the rotation and
+when it first appears on the stream. If the import fails, the locale stays
+out of the rotation and the maintainers follow up on the PR.
+
+### Flora is phase 2
+
+Plants have no data format yet (roadmap item SPEEEECIES-M8). Until they
+do, every locale gets a default plant catalog for its Köppen climate, and
+`flora_wishlist` is just names that tell us what to add later. Do not
+write plant records.
+
 ## Data rules
 
 - **Every datum needs provenance**: a `provenance` entry pointing at one

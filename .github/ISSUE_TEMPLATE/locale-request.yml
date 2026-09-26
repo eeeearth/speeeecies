@@ -1,0 +1,100 @@
+name: Locale request
+description: Ask for a place to be added to the live simulation's rotation.
+title: "locale: <place> (<id>)"
+labels: ["locale-request"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        A locale is a public place (a city or district, never a street
+        address or your own garden) plus at least 8 species that live
+        there. Whoever picks this up (often a coding agent) writes
+        `locales/<id>/locale.json` and any missing species. See "Contribute
+        a locale" in `AGENTS.md` and `CONTRIBUTING.md`.
+
+        **Only public centroid coordinates are accepted**, rounded to 2
+        decimals (about 1 km). Do not post an address, a house or yard
+        location, or anything that identifies a private home.
+  - type: input
+    id: place
+    attributes:
+      label: Place
+      description: City, district or park, and country.
+      placeholder: A London garden, United Kingdom
+    validations:
+      required: true
+  - type: input
+    id: locale-id
+    attributes:
+      label: Suggested locale id
+      description: Lowercase, hyphenated, place then country hint.
+      placeholder: london-uk
+    validations:
+      required: false
+  - type: input
+    id: region
+    attributes:
+      label: Activity region
+      description: >-
+        ISO 3166-2 subdivision (or ISO 3166-1 country) code the species'
+        monthly activity curves should come from.
+      placeholder: GB-ENG
+    validations:
+      required: true
+  - type: input
+    id: centroid
+    attributes:
+      label: Public centroid
+      description: >-
+        Latitude and longitude of the city or district centre, 2 decimals at
+        most, with a public source (Wikidata or Wikipedia is fine).
+      placeholder: "51.51, -0.13 (https://www.wikidata.org/wiki/Q84)"
+    validations:
+      required: false
+  - type: dropdown
+    id: plot-template
+    attributes:
+      label: Plot template
+      description: The generic plot the scene is built from. No real footprints are used.
+      options:
+        - suburban-lot
+        - rural-lot
+        - rowhouse-garden
+        - street-block
+        - courtyard
+    validations:
+      required: true
+  - type: textarea
+    id: species
+    attributes:
+      label: Candidate species
+      description: >-
+        8 to 12 animals commonly seen there, by scientific name. Ones
+        already under `species/` save work; the rest become species PRs or
+        part of the locale PR.
+      placeholder: |
+        Vulpes vulpes
+        Erithacus rubecula
+        Turdus merula
+    validations:
+      required: true
+  - type: textarea
+    id: pointers
+    attributes:
+      label: Data pointers
+      description: iNaturalist place id, GBIF/GADM area id, climate normals, Köppen class.
+      placeholder: |
+        iNaturalist place: https://www.inaturalist.org/places/...
+        GADM: GBR.1_1
+        Köppen: Cfb
+    validations:
+      required: false
+  - type: textarea
+    id: flora
+    attributes:
+      label: Flora wishlist (optional)
+      description: >-
+        Plants you'd like to see, by name. Plants are phase 2; until then the
+        simulation uses a default plant catalog for the climate.
+    validations:
+      required: false

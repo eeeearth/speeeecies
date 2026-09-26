@@ -1,6 +1,7 @@
 # Contributing
 
-speeeecies takes contributions as pull requests, one species per PR.
+speeeecies takes contributions as pull requests: one species per PR, or
+one locale (a place and its species) per PR.
 Coding agents should read [`AGENTS.md`](AGENTS.md) instead of this file —
 it has the same flow with more detail. This page is for people.
 
@@ -48,6 +49,41 @@ often a coding agent — will pick it up.
   optional) or mark it `derived: true` with a note on how you derived it.
   Authored judgement calls (like `wariness` or behaviour parameters) are
   fine — say so honestly in the `note`.
+
+## Contribute a locale
+
+A locale is a place for the live simulation
+(https://www.youtube.com/@jt55401/live) to show: a city or district, its
+climate, a generic garden or street plot, and at least 8 animals that live
+there. It is one file, `locales/<id>/locale.json`; `locales/london-uk/` is
+the worked example and `AGENTS.md` has the step-by-step.
+
+1. Open (or pick up) a **locale-request** issue and comment that you're
+   claiming it.
+2. Copy `locales/london-uk/locale.json` to `locales/<id>/locale.json` and
+   change it. Use the **public centroid** of the city or district, from a
+   public page such as Wikidata, rounded to 2 decimals. We only accept
+   public centroid coordinates: never your house, your garden or a street
+   address.
+3. List at least 8 species from `species/`. Add missing ones first, and
+   fetch an activity curve for your locale's `activity_region` for each
+   species that lacks one (`tools/fetch_activity.py`).
+4. Run `uv run tools/validate.py --locale <id> --report` and
+   `uv run tools/validate.py --self-check` until both pass, then open a PR
+   titled `locale: <place> (<id>)` with the report.
+
+**What "validated" means.** A locale counts as validated only when three
+things have happened, in order: a maintainer merged the PR to `main`; CI
+was green at that commit, including the locale check and the self-check;
+and the maintainers' private import of the locale into the simulation
+succeeded (it builds the scene from your species, the climate at the
+centroid and the plot template). Then the locale joins the live rotation,
+and a comment on your merged PR says so and when it first appears on the
+stream.
+
+**Flora is phase 2.** There is no plant format yet, so each locale uses a
+default plant catalog for its climate. Put plants you'd like to see in
+`flora_wishlist`, by name only.
 
 ## Report a data error
 
