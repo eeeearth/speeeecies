@@ -467,7 +467,14 @@ def check_look(species: dict, body_plans: dict, findings: list[Finding]) -> None
 
     generated = generated_part_names(look, body_plans) or []
     all_parts = set(generated)
+    # Bare names of earlier extra parts that exist as-is (non-mirrored) and so
+    # are valid parents / names for later extra parts.
     prior_extra_bare = set()
+    # Bare names of earlier *mirrored* extra parts. buildModel() in
+    # site/js/blockmesh.js only ever registers "<name>_left"/"<name>_right"
+    # for a mirrored extra part -- the bare name is never a real part -- so
+    # this is tracked separately and must never be treated as eligible.
+    mirrored_bare_names = set()
 
     for i, ep in enumerate(look.get("extra_parts", [])):
         path = f"look.extra_parts[{i}]"
@@ -479,10 +486,13 @@ def check_look(species: dict, body_plans: dict, findings: list[Finding]) -> None
                 Finding("error", "UnknownParentPart", f"{path}.parent", f"parent '{parent}' is not a generated part or an earlier extra part")
             )
         result_names = extra_part_result_names(ep)
-        if any(n in all_parts for n in result_names) or name in prior_extra_bare:
+        if any(n in all_parts for n in result_names) or name in prior_extra_bare or name in mirrored_bare_names:
             findings.append(Finding("error", "DuplicateExtraPartName", f"{path}.name", f"part name '{name}' clashes with an existing part"))
         all_parts.update(result_names)
-        prior_extra_bare.add(name)
+        if ep.get("mirror"):
+            mirrored_bare_names.add(name)
+        else:
+            prior_extra_bare.add(name)
 
     poses = look.get("poses", {})
     for pose_name, pose in poses.items():
@@ -499,6 +509,16 @@ def check_look(species: dict, body_plans: dict, findings: list[Finding]) -> None
                     )
 
     for key in look.get("part_colors", {}):
+        if key in mirrored_bare_names:
+            findings.append(
+                Finding(
+                    "error",
+                    "PartColorsMirroredBareName",
+                    f"look.part_colors.{key}",
+                    f"'{key}' is a mirrored extra part; only '{key}_left'/'{key}_right' exist, not the bare name",
+                )
+            )
+            continue
         if not any(fnmatch.fnmatch(part, key) for part in all_parts):
             findings.append(
                 Finding("warning", "UnmatchedPartColorGlob", f"look.part_colors.{key}", f"'{key}' matches no part of body plan '{plan_name}'")
@@ -638,6 +658,48 @@ def check_param_overrides(
 # ---------------------------------------------------------------------------
 # Param substitution
 # ---------------------------------------------------------------------------
+
+
+def collect_referenced_param_names(value: Any, names: set[str]) -> None:
+    """Collect every `${name}` reference in `value` (a program's own raw body,
+    pre-substitution) into `names`. Does not descend into subtree bodies --
+    a `{"subtree": "some-id"}` node's string value never matches
+    PARAM_REF_RE, so subtrees are never accidentally credited with using a
+    param they don't declare themselves."""
+    if isinstance(value, str):
+        m = PARAM_REF_RE.match(value)
+        if m:
+            names.add(m.group(1))
+        return
+    if isinstance(value, list):
+        for v in value:
+            collect_referenced_param_names(v, names)
+        return
+    if isinstance(value, dict):
+        for v in value.values():
+            collect_referenced_param_names(v, names)
+
+
+def check_unused_params(program: dict, prefix: str, findings: list[Finding]) -> None:
+    """Warn about params a program declares in its own `params` block but
+    never references anywhere in its own body (subtrees it reaches don't
+    count as using them)."""
+    declared = program.get("params", {})
+    if not declared:
+        return
+    referenced: set[str] = set()
+    if program.get("kind") == "fsm":
+        collect_referenced_param_names(program.get("states", {}), referenced)
+        collect_referenced_param_names(program.get("transitions", []), referenced)
+    elif program.get("kind") == "bt":
+        collect_referenced_param_names(program.get("root", {}), referenced)
+    else:
+        return
+    for name in declared:
+        if name not in referenced:
+            findings.append(
+                Finding("warning", "UnusedParam", f"{prefix}.params.{name}", f"param '{name}' is declared but never referenced in this program's own body")
+            )
 
 
 def substitute(value: Any, params: dict[str, Any], path: str, findings: list[Finding]) -> Any:
@@ -837,6 +899,45 @@ def is_bare_durative_act(node: dict) -> bool:
     return "act" in node and node["act"].get("do") in DURATIVE_ACTS
 
 
+def check_bt_value_ranges(node: dict, path: str, findings: list[Finding]) -> None:
+    """Re-check the numeric-range findings embedded in the BT tree shape
+    (`repeat`, `cooldown_s`, `timeout_s`, a `parallel`'s `succeed_on`) against
+    substituted values, without re-emitting the structural findings from
+    `lint_bt_node` (those don't depend on param values, so are only linted
+    once per program file -- see `lint_program`). Does not descend into
+    `subtree` nodes: a subtree's own value ranges are checked when that
+    program is linted in its own right."""
+    if "selector" in node or "sequence" in node:
+        key = "selector" if "selector" in node else "sequence"
+        for i, c in enumerate(node[key]):
+            check_bt_value_ranges(c, f"{path}.{key}[{i}]", findings)
+        return
+    if "parallel" in node:
+        check_parallel(node, path, findings)
+        for i, c in enumerate(node["parallel"]):
+            check_bt_value_ranges(c, f"{path}.parallel[{i}]", findings)
+        return
+    if "inverter" in node:
+        check_bt_value_ranges(node["inverter"], f"{path}.inverter", findings)
+        return
+    if "succeeder" in node:
+        check_bt_value_ranges(node["succeeder"], f"{path}.succeeder", findings)
+        return
+    if "repeat" in node:
+        check_repeat(node.get("repeat"), f"{path}.repeat", findings)
+        check_bt_value_ranges(node["child"], f"{path}.child", findings)
+        return
+    if "cooldown_s" in node:
+        check_duration(node.get("cooldown_s"), f"{path}.cooldown_s", findings, "cooldown_s")
+        check_bt_value_ranges(node["child"], f"{path}.child", findings)
+        return
+    if "timeout_s" in node:
+        check_duration(node.get("timeout_s"), f"{path}.timeout_s", findings, "timeout_s")
+        check_bt_value_ranges(node["child"], f"{path}.child", findings)
+        return
+    # subtree / cond / act: leaves for this purpose.
+
+
 def lint_bt_structure(
     program: dict,
     prefix: str,
@@ -972,35 +1073,54 @@ def lint_program(
     root: Path,
     cache: dict[str, Any | None],
     species: dict | None = None,
+    *,
+    structural: bool = True,
 ) -> None:
     """Static lint of one program instantiated with `params`.
 
-    Called once per program with its own declared defaults (`species=None`),
-    and again for a species' specific instantiation with its param overrides
-    applied (`species` given, enabling call-id / food-tag checks).
+    Called once per program *file*, with its own declared defaults
+    (`species=None`, `structural=True`) -- this is the only pass that emits
+    the structural findings (FSM reachability/dead-end/no-explicit-exit, BT
+    selector/sequence/subtree shape, unused params, param-ref shape, the
+    `emote` action check): none of those depend on param *values*, so
+    running them again per species would just duplicate the same findings.
+
+    Called again per species instantiation, with that species' effective
+    params (its overrides applied) and `species` given (`structural=False`):
+    this pass only re-checks what genuinely depends on the instantiation --
+    numeric ranges after substitution, call ids, and food tags.
     """
     sub_findings: list[Finding] = []
     program = copy.deepcopy(program)
 
     if program.get("kind") == "fsm":
+        if structural:
+            check_unused_params(program, prefix, findings)
         program["states"] = substitute(program.get("states", {}), params, f"{prefix}.states", sub_findings)
         program["transitions"] = substitute(program.get("transitions", []), params, f"{prefix}.transitions", sub_findings)
-        findings.extend(sub_findings)
-        lint_fsm_structure(program, prefix, findings)
+        if structural:
+            findings.extend(sub_findings)
+            lint_fsm_structure(program, prefix, findings)
         for name, st in program.get("states", {}).items():
             if "min_dwell_s" in st:
                 check_duration(st["min_dwell_s"], f"{prefix}.states.{name}.min_dwell_s", findings, "min_dwell_s")
         actions, predicates = iter_fsm_actions_and_predicates(program, prefix)
     elif program.get("kind") == "bt":
+        if structural:
+            check_unused_params(program, prefix, findings)
         program["root"] = substitute(program.get("root", {}), params, f"{prefix}.root", sub_findings)
-        findings.extend(sub_findings)
-        lint_bt_structure(program, prefix, findings, root, cache)
+        if structural:
+            findings.extend(sub_findings)
+            lint_bt_structure(program, prefix, findings, root, cache)
+        else:
+            check_bt_value_ranges(program.get("root", {}), f"{prefix}.root", findings)
         actions, predicates = iter_bt_actions_and_predicates(program, prefix)
     else:
         return
 
     for action, apath in actions:
-        check_action(action, apath, findings)
+        if structural:
+            check_action(action, apath, findings)
         if species is not None:
             check_call_and_food(action, apath, species, findings)
     for pred, ppath in predicates:
@@ -1366,7 +1486,15 @@ def resolve_species_program(
     return None, "missing"
 
 
-def validate_species(species_dir: Path, root: Path, schemas: Schemas, cache: dict[str, Any | None]) -> SpeciesReport:
+def validate_species(
+    species_dir: Path,
+    root: Path,
+    schemas: Schemas,
+    cache: dict[str, Any | None],
+    structural_done: set[str] | None = None,
+) -> SpeciesReport:
+    if structural_done is None:
+        structural_done = set()
     slug = species_dir.name
     species_path = species_dir / "species.json"
     findings: list[Finding] = []
@@ -1395,14 +1523,30 @@ def validate_species(species_dir: Path, root: Path, schemas: Schemas, cache: dic
             if phase_overrides:
                 check_param_overrides(phase_overrides, declared_types, f"seasonal.phases[{i}].behavior_params", prog_findings)
 
-        # standalone lint, program's own declared defaults
+        # Full (structural) lint, program's own declared defaults -- run at
+        # most once per program id across the whole `run()`, however many
+        # species/standalone passes reference it (see `structural_done`).
+        program_id = program.get("id", "?")
         own_defaults = collect_declared_param_values(program, root, cache)
-        lint_program(program, prog_prefix, own_defaults, prog_findings, root, cache, species=None)
+        if program_id not in structural_done:
+            lint_program(program, prog_prefix, own_defaults, prog_findings, root, cache, species=None, structural=True)
+            structural_done.add(program_id)
 
-        # species instantiation lint, with overrides applied
+        # Species instantiation lint, with overrides applied: only the
+        # species-dependent checks (ranges after substitution, call ids,
+        # food tags) -- never the structural findings again.
         effective_params = dict(own_defaults)
         effective_params.update(overrides)
-        lint_program(program, f"{prog_prefix} (instantiated)", effective_params, prog_findings, root, cache, species=species)
+        lint_program(
+            program,
+            f"{prog_prefix} (instantiated)",
+            effective_params,
+            prog_findings,
+            root,
+            cache,
+            species=species,
+            structural=False,
+        )
 
         report.program_reports.append(
             ProgramReport(program_id=program.get("id", "?"), kind=program.get("kind", "?"), source=source, node_count=count_program_nodes(program), findings=prog_findings)
@@ -1422,7 +1566,15 @@ def validate_species(species_dir: Path, root: Path, schemas: Schemas, cache: dic
     return report
 
 
-def validate_standalone_program(path: Path, root: Path, schemas: Schemas, cache: dict[str, Any | None]) -> StandaloneProgramReport:
+def validate_standalone_program(
+    path: Path,
+    root: Path,
+    schemas: Schemas,
+    cache: dict[str, Any | None],
+    structural_done: set[str] | None = None,
+) -> StandaloneProgramReport:
+    if structural_done is None:
+        structural_done = set()
     findings: list[Finding] = []
     program = load_json(path, findings)
     report = StandaloneProgramReport(path=path, program_id=None, findings=findings)
@@ -1433,8 +1585,11 @@ def validate_standalone_program(path: Path, root: Path, schemas: Schemas, cache:
     if path.stem != program.get("id"):
         findings.append(Finding("error", "ProgramFileIdMismatch", str(path), f"file name '{path.stem}' != id '{program.get('id')}'"))
     cache.setdefault(program.get("id"), program)
-    own_defaults = collect_declared_param_values(program, root, cache)
-    lint_program(program, str(path), own_defaults, findings, root, cache, species=None)
+    program_id = program.get("id")
+    if program_id not in structural_done:
+        own_defaults = collect_declared_param_values(program, root, cache)
+        lint_program(program, str(path), own_defaults, findings, root, cache, species=None, structural=True)
+        structural_done.add(program_id)
     return report
 
 
@@ -1466,10 +1621,22 @@ def discover_targets(paths: list[str], root: Path) -> tuple[list[Path], list[Pat
                 species_dirs.append(candidate)
             elif candidate.name == "species.json":
                 species_dirs.append(candidate.parent)
+            elif candidate.name == "behavior.json" and (candidate.parent / "species.json").is_file():
+                # A species' own behavior.json (species/<slug>/behavior.json)
+                # is validated as part of that species, never as a standalone
+                # shared program -- otherwise its id (which need not be
+                # "behavior") gets compared against the filename "behavior"
+                # and falsely flagged as ProgramFileIdMismatch.
+                species_dirs.append(candidate.parent)
             elif candidate.suffix == ".json":
                 programs.append(candidate)
             else:
                 findings.append(Finding("error", "UsageError", raw, f"don't know how to validate '{raw}'"))
+
+    # De-duplicate while preserving order, in case a species dir and its own
+    # species.json/behavior.json were both named explicitly.
+    species_dirs = list(dict.fromkeys(species_dirs))
+    programs = list(dict.fromkeys(programs))
     return species_dirs, programs, findings
 
 
@@ -1507,6 +1674,21 @@ def render_plain(result: Result, strict: bool) -> str:
     n_targets = len(result.species_reports) + len(result.program_reports)
     lines.append(f"--- {n_targets} target(s): {total_errors} error(s), {total_warnings} warning(s) ---")
     return "\n".join(lines)
+
+
+def render_visual_check_table(images: list[dict], target_label: str) -> list[str]:
+    """Render the `images` array of a `visual-check.json` report (the exact
+    shape `tools/visual_check.py`'s `build_report()` produces) as Markdown
+    table lines: pose, yaw, top label, top score, target probability."""
+    lines = ["| pose | yaw | top label | top score | target probability |", "|---|---|---|---|---|"]
+    for img in images:
+        probs = img.get("probabilities", {})
+        target_prob = probs.get(target_label, 0.0)
+        lines.append(
+            f"| {img.get('pose', '?')} | {img.get('yaw', '?')} | {img.get('top_label', '?')} | "
+            f"{img.get('top_score', 0.0):.3f} | {target_prob:.3f} |"
+        )
+    return lines
 
 
 def render_markdown(result: Result) -> str:
@@ -1556,14 +1738,13 @@ def render_markdown(result: Result) -> str:
             vc = sr.visual_check
             lines.append("### Visual check (advisory)")
             summary = vc.get("summary", {})
+            target_label = vc.get("target_label", "?")
             lines.append(f"model: {vc.get('model', '?')} ({vc.get('model_license', '?')})")
             lines.append(
-                f"target: {summary.get('target_label', '?')}, mean prob: {summary.get('mean_target_prob', '?')}, rank-1 rate: {summary.get('rank1_rate', '?')}"
+                f"target: {target_label}, mean target probability: {summary.get('mean_target_probability', '?')}, "
+                f"rank-1 rate: {summary.get('rank1_rate', '?')} (n={summary.get('n_images', '?')})"
             )
-            lines.append("| image | pose | yaw | top label |")
-            lines.append("|---|---|---|---|")
-            for r in vc.get("results", []):
-                lines.append(f"| {r.get('image', '?')} | {r.get('pose', '?')} | {r.get('yaw', '?')} | {r.get('top_label', '?')} |")
+            lines.extend(render_visual_check_table(vc.get("images", []), target_label))
         lines.append("")
 
     if result.program_reports:
@@ -1621,13 +1802,14 @@ def render_json(result: Result) -> dict:
 def run(paths: list[str], root: Path) -> tuple[Result, list[Finding]]:
     schemas = Schemas(root)
     cache: dict[str, Any | None] = {}
+    structural_done: set[str] = set()
     species_dirs, programs, usage_findings = discover_targets(paths, root)
 
     result = Result()
     for sd in species_dirs:
-        result.species_reports.append(validate_species(sd, root, schemas, cache))
+        result.species_reports.append(validate_species(sd, root, schemas, cache, structural_done))
     for p in programs:
-        result.program_reports.append(validate_standalone_program(p, root, schemas, cache))
+        result.program_reports.append(validate_standalone_program(p, root, schemas, cache, structural_done))
     return result, usage_findings
 
 

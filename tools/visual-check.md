@@ -68,6 +68,22 @@ on a usage error.
    `bioclip.CustomLabelsClassifier` (CPU, 4 threads).
 6. Prints a Markdown table (pose, yaw, top label, top score, target
    probability) and a summary (mean target probability, rank-1 rate).
+
+### Previewer URL contract
+
+`site/preview.html` (see its top-level script) accepts these query
+parameters, all optional:
+
+| Param | Meaning |
+|---|---|
+| `species` | A species slug (`species/<slug>/species.json`); loaded via `fetch`. |
+| `pose` | Pose name from the species' `look.poses` (default `idle`). |
+| `yaw`, `pitch` | Camera angles in degrees (defaults `35`, `15`). |
+| `phase` | Freezes the pose's animation cycle at this fraction in [0,1) instead of playing it, for a stable screenshot. |
+| `shot` | `1` hides the header/side panel and sets `window.__previewReady = true` once the model has rendered, or `window.__previewError` (a string) if it failed -- the two globals headless callers (this script) poll for. |
+
+This is the whole contract any headless caller needs; there is no separate
+spec file for it.
 7. With `--write`, writes `species/<slug>/visual-check.json`:
 
 ```json
@@ -110,8 +126,7 @@ Default confusables (dropped if they'd equal the target) by
 - **Amphibia**: *Rana temporaria*, *Lissotriton vulgaris*, *Epidalea
   calamita*
 - **Reptilia**: *Podarcis muralis*, *Natrix natrix*, *Anguis fragilis* --
-  not enumerated in PLAN.md; chosen here as reasonable defaults (this
-  implementer's own picks, not the lead's)
+  not enumerated in PLAN.md; chosen here as reasonable, common defaults
 - **Insecta**: *Apis mellifera*, *Vespula vulgaris*, *Coccinella
   septempunctata*, *Pieris rapae* -- also not enumerated in PLAN.md, same
   caveat

@@ -34,6 +34,36 @@ def copy_tree(src: Path, dst: Path) -> None:
     shutil.copytree(src, dst)
 
 
+def _is_same_or_ancestor(ancestor: Path, other: Path) -> bool:
+    """True if `other` is `ancestor` itself, or is nested inside it."""
+    try:
+        other.relative_to(ancestor)
+        return True
+    except ValueError:
+        return False
+
+
+def unsafe_out_dir_reason(out_dir: Path, repo_root: Path) -> str | None:
+    """Returns a reason string if `out_dir` is unsafe to build into (because
+    `build_site()` rmtree's parts of it before copying), else None.
+
+    copy_tree() deletes `dst` (if it already exists) before copying `src`
+    into it. `build_site()` calls it with `dst` set to the repo's own
+    `schema/`, `behaviors/` and `species/` dirs and every top-level item
+    under `site/` -- so an `--out` that resolves to the repo root (or an
+    ancestor of it), or to (or inside) any of those source dirs, would
+    delete the very sources it is about to copy from."""
+    out_dir = out_dir.resolve()
+    repo_root = repo_root.resolve()
+    if _is_same_or_ancestor(out_dir, repo_root):
+        return f"--out resolves to {out_dir}, which is the repo root or an ancestor of it"
+    for name in ("site", "schema", "behaviors", "species"):
+        src = repo_root / name
+        if _is_same_or_ancestor(src, out_dir):
+            return f"--out resolves to {out_dir}, which is (or is inside) {src}"
+    return None
+
+
 def build_species_index(species_dir: Path) -> list[dict]:
     entries = []
     if not species_dir.is_dir():
@@ -58,6 +88,31 @@ def build_species_index(species_dir: Path) -> list[dict]:
                 "class": ((data.get("taxonomy") or {}).get("class", "")),
                 "body_plan": ((data.get("look") or {}).get("body_plan", "")),
                 "path": f"species/{slug}/species.json",
+            }
+        )
+    return entries
+
+
+def build_behaviors_index(behaviors_dir: Path) -> list[dict]:
+    """A summary of every shared program in behaviors/*.json: id, kind,
+    description, params -- so site/behaviors.html can list the real shared
+    programs instead of a hard-coded file list."""
+    entries = []
+    if not behaviors_dir.is_dir():
+        return entries
+    for child in sorted(behaviors_dir.glob("*.json")):
+        try:
+            data = json.loads(child.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, OSError) as err:
+            print(f"warning: skipping {child}: {err}", file=sys.stderr)
+            continue
+        entries.append(
+            {
+                "id": data.get("id", child.stem),
+                "kind": data.get("kind", ""),
+                "description": data.get("description", ""),
+                "params": data.get("params", {}),
+                "path": f"behaviors/{child.name}",
             }
         )
     return entries
@@ -96,6 +151,13 @@ def build_site(repo_root: Path, out_dir: Path) -> None:
     copy_tree(repo_root / "behaviors", out_dir / "behaviors")
     copy_tree(repo_root / "species", out_dir / "species")
 
+    behaviors_dir = out_dir / "behaviors"
+    behaviors_dir.mkdir(parents=True, exist_ok=True)
+    behaviors_index = build_behaviors_index(repo_root / "behaviors")
+    (behaviors_dir / "index.json").write_text(
+        json.dumps(behaviors_index, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
+    )
+
     species_dir = out_dir / "species"
     species_dir.mkdir(parents=True, exist_ok=True)
     index = build_species_index(repo_root / "species")
@@ -128,6 +190,11 @@ def main(argv: list[str] | None = None) -> int:
     out_dir = Path(args.out)
     if not out_dir.is_absolute():
         out_dir = repo_root / out_dir
+
+    reason = unsafe_out_dir_reason(out_dir, repo_root)
+    if reason is not None:
+        print(f"error: refusing to build into an unsafe --out ({reason}); this would delete repo sources", file=sys.stderr)
+        return 2
 
     build_site(repo_root, out_dir)
     print(f"built site into {out_dir}")

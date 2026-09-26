@@ -11,8 +11,8 @@ observer-effort seasonality; for ectotherms, raw counts, because their class
 totals collapse in winter), and combines the two into one curve. Licence tiers widen from the
 most permissive (CC0 + CC BY) only when a source's total count is too thin.
 
-See CONTRACTS.md and PLAN.md ("Monthly activity") in the kit-v0 worktree for the
-full method. This module is stdlib-only so it runs as a PEP 723 `uv run` script.
+See PLAN.md ("Monthly activity") for the full method. This module is
+stdlib-only so it runs as a PEP 723 `uv run` script.
 """
 
 from __future__ import annotations
@@ -827,7 +827,7 @@ def main(argv: Optional[list] = None) -> int:
                 )
             )
         merge_into_species(data, region, entry, source_records)
-        species_path.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
+        species_path.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
         print(f"\nWrote {species_path}")
 
     return 0

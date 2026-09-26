@@ -94,14 +94,81 @@
   </p>
 
   <h2 id="lint">Lint rules</h2>
-  <p>The validator statically checks every program:</p>
+  <p>
+    The validator statically checks every program once for its own shape
+    (with its declared defaults), then again for each species that uses it,
+    with that species' <code>behavior.params</code> overrides substituted
+    in:
+  </p>
   <ul>
     <li>Every node and action type is one the schema knows.</li>
-    <li>Every <code>${param}</code> reference names a param the program actually declares.</li>
-    <li>Every declared param is used somewhere, and every <code>ParamOrNumber</code> value is within any range the field implies.</li>
-    <li>FSM: every state is reachable from <code>initial</code>, and every state has at least one way out (a transition whose <code>from</code> matches it, or <code>from: "*"</code>).</li>
-    <li>No unknown <code>call</code> id — every <code>sing</code>/<code>alarm</code> action's <code>call</code> must name a <code>call_id</code> the species actually declares in <code>vocalizations</code>.</li>
-    <li><code>subtree</code> references resolve to a real <code>bt</code> program id, with no cycles.</li>
+    <li>
+      Every <code>${param}</code> reference names a param the program
+      actually declares (<code>UndeclaredParamRef</code>), and is written
+      exactly as <code>${name}</code>, not embedded in a longer string
+      (<code>BadParamRef</code>).
+    </li>
+    <li>
+      Every param a program declares in its own <code>params</code> block is
+      referenced somewhere in that same program's own body, or it's a
+      warning (<code>UnusedParam</code>); a <code>subtree</code> using the
+      name doesn't count.
+    </li>
+    <li>
+      Numeric fields are range-checked <em>after</em> substitution:
+      durations (<code>min_dwell_s</code>, <code>cooldown_s</code>,
+      <code>timeout_s</code>) in (0, 86400] seconds, <code>chance</code> and
+      a <code>need</code>'s <code>gt</code>/<code>lt</code> in [0, 1], every
+      <code>*_within_m</code> distance in (0, 1000], <code>month_in</code>
+      entries in 1..12, <code>sun_elevation_between_deg</code> in [-90, 90]
+      (low &le; high), <code>temperature_between_c</code> in [-60, 60] (low
+      &le; high), a <code>repeat</code> count a positive integer, and a
+      <code>parallel</code>'s <code>succeed_on</code> within 1..(number of
+      children).
+    </li>
+    <li>
+      FSM: <code>initial</code> must name a real state
+      (<code>FsmInitialMissing</code>); a transition's <code>from</code>
+      (or the wildcard <code>"*"</code>, which matches every state) and
+      <code>to</code> must name a real state
+      (<code>FsmUnknownState</code>); <code>from</code> == <code>to</code>
+      never changes state (<code>FsmNoOpTransition</code>, warning). Every
+      state must be reachable from <code>initial</code>
+      (<code>FsmUnreachableState</code>) and must have some path — through
+      its own transitions or a <code>from: "*"</code> one — back to
+      <code>initial</code> (<code>FsmDeadEnd</code>, error: a true dead end,
+      since nothing can ever return the machine to its start). A state
+      with no transition of its own (only reachable escape routes are
+      wildcard ones defined elsewhere) is a warning, not an error
+      (<code>FsmNoExplicitExit</code>) — a global rule such as fleeing a
+      threat may still be enough to move it on.
+    </li>
+    <li>
+      BT: a selector child placed after an unconditional durative act (like
+      <code>idle</code> or <code>wander</code>, which never yields) is
+      unreachable (<code>BtUnreachableAfterDurative</code>, warning); the
+      root selector should end in such an always-available fallback
+      (<code>BtMissingFallback</code>, warning); a durative act must be the
+      <em>last</em> child of its <code>sequence</code>, since nothing after
+      it would ever run (<code>BtDurativeNotLast</code>, warning).
+    </li>
+    <li>
+      <code>subtree</code> references must resolve to a real <code>bt</code>
+      program id (<code>BtUnresolvedSubtree</code>,
+      <code>BtSubtreeNotBt</code>), with no cycles
+      (<code>BtSubtreeCycle</code>).
+    </li>
+    <li>An <code>emote</code> action needs a <code>kind</code> (<code>EmoteMissingKind</code>).</li>
+    <li>
+      No unknown <code>call</code> id — a species-instantiated
+      <code>sing</code>/<code>alarm</code> action's <code>call</code> must
+      name a <code>call_id</code> the species actually declares in
+      <code>vocalizations</code> (<code>UnknownCallId</code>, warning).
+      Likewise an <code>eat_nearest</code> action's <code>tag</code>, and any
+      <code>food_within_m</code> predicate's <code>tag</code>, should name a
+      resource tag the species declares in <code>habitat.resources</code>
+      (<code>UnknownFoodTag</code>, warning).
+    </li>
   </ul>
 
   <h2 id="vocabulary">Predicate vocabulary</h2>
@@ -208,15 +275,17 @@ async function main() {
       .replaceChildren(el("p", { class: "notice warn" }, `Could not load the behaviour schema: ${err.message}`));
   }
 
-  const programFiles = [
-    "fsm-ground-forager-v1.json",
-    "bt-perching-songbird-v1.json",
-    "fsm-anuran-nocturnal-v1.json",
-  ];
   const out = document.getElementById("programs-out");
-  for (const file of programFiles) {
+  let index;
+  try {
+    index = await fetch("behaviors/index.json").then((r) => r.json());
+  } catch (err) {
+    out.appendChild(el("p", { class: "notice warn" }, `Could not load behaviors/index.json: ${err.message}`));
+    return;
+  }
+  for (const entry of index) {
     try {
-      const prog = await fetch(`behaviors/${file}`).then((r) => r.json());
+      const prog = await fetch(entry.path || `behaviors/${entry.id}.json`).then((r) => r.json());
       const paramEntries = Object.entries(prog.params || {});
       const params =
         paramEntries.length === 0
@@ -235,7 +304,7 @@ async function main() {
       );
       out.appendChild(section);
     } catch (err) {
-      out.appendChild(el("p", { class: "notice warn" }, `Could not load ${file}: ${err.message}`));
+      out.appendChild(el("p", { class: "notice warn" }, `Could not load ${entry.id}: ${err.message}`));
     }
   }
 }

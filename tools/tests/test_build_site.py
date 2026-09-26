@@ -142,3 +142,102 @@ def test_build_site_is_idempotent_when_rerun(tmp_path):
 
     index = json.loads((out / "species" / "index.json").read_text(encoding="utf-8"))
     assert [e["slug"] for e in index] == ["vulpes-vulpes"]
+
+
+def test_behaviors_index_lists_every_shared_program(tmp_path):
+    repo = make_repo(tmp_path)
+    (repo / "behaviors" / "bt-other-v1.json").write_text(
+        json.dumps(
+            {
+                "id": "bt-other-v1",
+                "kind": "bt",
+                "description": "Another shared program.",
+                "params": {"flee_m": 6},
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    out = tmp_path / "_site"
+    build_site.build_site(repo, out)
+
+    index = json.loads((out / "behaviors" / "index.json").read_text(encoding="utf-8"))
+    ids = {e["id"] for e in index}
+    assert ids == {"fsm-test-v1", "bt-other-v1"}
+
+    other = next(e for e in index if e["id"] == "bt-other-v1")
+    assert other["kind"] == "bt"
+    assert other["description"] == "Another shared program."
+    assert other["params"] == {"flee_m": 6}
+    assert other["path"] == "behaviors/bt-other-v1.json"
+    assert (out / "behaviors" / "bt-other-v1.json").is_file()
+
+
+def test_refuses_out_dir_equal_to_repo_root(tmp_path, capsys):
+    repo = make_repo(tmp_path)
+    rc = build_site.main(["--out", str(repo), "--repo-root", str(repo)])
+    assert rc == 2
+    assert "unsafe" in capsys.readouterr().err
+    # The would-be-deleted sources must still be intact.
+    assert (repo / "schema" / "v0.1" / "species.schema.json").is_file()
+    assert (repo / "behaviors" / "fsm-test-v1.json").is_file()
+
+
+def test_refuses_out_dir_that_is_repo_root_via_dot(tmp_path, capsys):
+    repo = make_repo(tmp_path)
+    rc = build_site.main(["--out", ".", "--repo-root", str(repo)])
+    assert rc == 2
+    assert (repo / "schema" / "v0.1" / "species.schema.json").is_file()
+
+
+def test_refuses_out_dir_that_is_an_ancestor_of_repo_root(tmp_path, capsys):
+    repo = make_repo(tmp_path)
+    rc = build_site.main(["--out", str(tmp_path), "--repo-root", str(repo)])
+    assert rc == 2
+    assert (repo / "site" / "index.html").is_file()
+
+
+def test_refuses_out_dir_equal_to_a_source_dir(tmp_path, capsys):
+    repo = make_repo(tmp_path)
+    rc = build_site.main(["--out", str(repo / "species"), "--repo-root", str(repo)])
+    assert rc == 2
+
+
+def test_refuses_out_dir_inside_a_source_dir(tmp_path, capsys):
+    repo = make_repo(tmp_path)
+    rc = build_site.main(["--out", str(repo / "schema" / "nested"), "--repo-root", str(repo)])
+    assert rc == 2
+    assert (repo / "schema" / "v0.1" / "species.schema.json").is_file()
+
+
+def test_allows_normal_out_dir_next_to_repo(tmp_path):
+    repo = make_repo(tmp_path)
+    out = tmp_path / "_site"
+    rc = build_site.main(["--out", str(out), "--repo-root", str(repo)])
+    assert rc == 0
+    assert (out / "index.html").is_file()
+
+
+def test_unsafe_out_dir_reason_helper_directly():
+    repo_root = Path("/repo")
+    assert build_site.unsafe_out_dir_reason(Path("/repo"), repo_root) is not None
+    assert build_site.unsafe_out_dir_reason(Path("/"), repo_root) is not None
+    assert build_site.unsafe_out_dir_reason(Path("/repo/schema"), repo_root) is not None
+    assert build_site.unsafe_out_dir_reason(Path("/repo/schema/nested"), repo_root) is not None
+    assert build_site.unsafe_out_dir_reason(Path("/repo/species"), repo_root) is not None
+    assert build_site.unsafe_out_dir_reason(Path("/repo/behaviors"), repo_root) is not None
+    assert build_site.unsafe_out_dir_reason(Path("/repo/site"), repo_root) is not None
+    assert build_site.unsafe_out_dir_reason(Path("/somewhere/_site"), repo_root) is None
+    assert build_site.unsafe_out_dir_reason(Path("/repo_other"), repo_root) is None
+
+
+def test_behaviors_index_skips_malformed_program(tmp_path, capsys):
+    repo = make_repo(tmp_path)
+    (repo / "behaviors" / "broken.json").write_text("{not valid json", encoding="utf-8")
+
+    out = tmp_path / "_site"
+    build_site.build_site(repo, out)
+
+    index = json.loads((out / "behaviors" / "index.json").read_text(encoding="utf-8"))
+    assert [e["id"] for e in index] == ["fsm-test-v1"]
+    assert "broken" in capsys.readouterr().err

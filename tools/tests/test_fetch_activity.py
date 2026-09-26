@@ -433,6 +433,57 @@ def test_offline_end_to_end_gbif_only(tmp_path):
     assert written["sources"][0]["license"] == "CC-BY-4.0"
 
 
+def test_write_round_trips_non_ascii_common_name(tmp_path):
+    """species.json must keep non-ASCII characters literal (UTF-8), not
+    \\u-escaped, and the written file must end with a newline."""
+    root = tmp_path / "repo"
+    species_dir = root / "species" / "bufo-bufo"
+    species_dir.mkdir(parents=True)
+    species_json = {
+        "format": "speeeecies/v0.1",
+        "id": "Bufo bufo",
+        "common_names": {"en": "Common toad", "de": "Erdkröte"},
+        "taxonomy": {"class": "Amphibia"},
+        "external": {"gbif_usage_key": 5219243, "inat_taxon_id": 42069},
+        "sources": [],
+        "activity": {"regions": []},
+    }
+    (species_dir / "species.json").write_text(json.dumps(species_json, indent=2), encoding="utf-8")
+
+    cache_dir = tmp_path / "cache"
+    area = ("country", "GB")
+    url_a = fa.build_gbif_url(5219243, area, "A")
+    _install_fixture(cache_dir, url_a, "gbif_occurrence_gb_tier_a.json")
+    baseline_url_a = fa.build_gbif_url(359, area, "A")
+    _install_fixture(cache_dir, baseline_url_a, "gbif_occurrence_gb_class_baseline_tier_a.json")
+    _install_fixture(cache_dir, "https://api.gbif.org/v1/species/5219243", "gbif_species_5219243.json")
+
+    rc = fa.main(
+        [
+            "bufo-bufo",
+            "--region",
+            "GB",
+            "--min-obs",
+            "300",
+            "--cache-dir",
+            str(cache_dir),
+            "--offline",
+            "--root",
+            str(root),
+            "--write",
+        ]
+    )
+    assert rc == 0
+
+    raw_text = (species_dir / "species.json").read_text(encoding="utf-8")
+    assert "Erdkröte" in raw_text
+    assert "\\u" not in raw_text
+    assert raw_text.endswith("\n")
+
+    written = json.loads(raw_text)
+    assert written["common_names"]["de"] == "Erdkröte"
+
+
 # --- curve kind (share for endotherms, raw for ectotherms) ---
 
 

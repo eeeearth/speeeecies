@@ -9,8 +9,12 @@ No network access; nothing here depends on the real `species/` directory.
 from __future__ import annotations
 
 import json
+import sys
+from pathlib import Path
 
 from conftest import write_species
+
+TOOLS_DIR = Path(__file__).resolve().parents[1]
 
 
 def codes(findings):
@@ -567,3 +571,206 @@ def test_strict_promotes_warning_to_error_exit_code(validate_module, fake_root, 
     rc_strict = validate_module.main(["--root", str(fake_root), "--strict"])
     assert rc_normal == 0
     assert rc_strict == 1
+
+
+# ---------------------------------------------------------------------------
+# Mirrored extra parts (only <name>_left/<name>_right exist, never the bare
+# name -- see site/js/blockmesh.js buildModel())
+# ---------------------------------------------------------------------------
+
+
+def test_later_extra_part_parenting_mirrored_bare_name_is_error(validate_module, fake_root, make_species):
+    species = make_species()
+    species["look"]["extra_parts"] = [
+        {"name": "wing", "parent": "body", "mirror": True, "offset": [0, 0, 0], "size": [0.2, 0.1, 0.4], "color": "accent"},
+        {"name": "feather", "parent": "wing", "offset": [0, 0, 0], "size": [0.05, 0.05, 0.05], "color": "accent"},
+    ]
+    sr = run_one(validate_module, fake_root, species)
+    findings = [f for f in sr.findings if f.code == "UnknownParentPart"]
+    assert findings, sr.findings
+    assert "extra_parts[1]" in findings[0].path
+    assert "wing" in findings[0].message
+
+
+def test_part_colors_naming_mirrored_bare_name_is_error(validate_module, fake_root, make_species):
+    species = make_species()
+    species["look"]["extra_parts"] = [
+        {"name": "wing", "parent": "body", "mirror": True, "offset": [0, 0, 0], "size": [0.2, 0.1, 0.4], "color": "accent"},
+    ]
+    species["look"]["part_colors"] = {"wing": "accent"}
+    sr = run_one(validate_module, fake_root, species)
+    assert "PartColorsMirroredBareName" in codes(sr.findings)
+    assert not any(f.code == "UnmatchedPartColorGlob" for f in sr.findings)
+
+
+def test_non_mirrored_extra_part_bare_name_still_usable_as_parent(validate_module, fake_root, make_species):
+    # Sanity check the fix doesn't over-tighten: a non-mirrored extra part's
+    # bare name is a real part and remains a valid parent for a later one.
+    species = make_species()
+    species["look"]["extra_parts"] = [
+        {"name": "crest", "parent": "body", "offset": [0, 0, 0], "size": [0.2, 0.1, 0.1], "color": "accent"},
+        {"name": "crest_tip", "parent": "crest", "offset": [0, 0, 0], "size": [0.05, 0.05, 0.05], "color": "accent"},
+    ]
+    sr = run_one(validate_module, fake_root, species)
+    assert "UnknownParentPart" not in codes(sr.findings)
+
+
+# ---------------------------------------------------------------------------
+# Visual-check Markdown rendering (matches the shape build_report() writes)
+# ---------------------------------------------------------------------------
+
+
+def _visual_check_module():
+    if str(TOOLS_DIR) not in sys.path:
+        sys.path.insert(0, str(TOOLS_DIR))
+    import visual_check as vc
+
+    return vc
+
+
+def test_render_markdown_renders_real_visual_check_shape(validate_module, fake_root, make_species):
+    vc = _visual_check_module()
+    species = make_species()
+    species_dir = write_species(fake_root, "vulpes-vulpes", species)
+    target = "Vulpes vulpes (red fox)"
+    report = vc.build_report(
+        slug="vulpes-vulpes",
+        model="hf-hub:imageomics/bioclip",
+        target_label=target,
+        labels=[target, "Canis lupus familiaris (domestic dog)"],
+        images=[
+            {
+                "image": "idle-35.png",
+                "pose": "idle",
+                "yaw": 35,
+                "top_label": target,
+                "top_score": 0.6,
+                "probabilities": {target: 0.6, "Canis lupus familiaris (domestic dog)": 0.4},
+            }
+        ],
+        date="2026-09-25",
+    )
+    (species_dir / "visual-check.json").write_text(json.dumps(report), encoding="utf-8")
+
+    result, usage = validate_module.run([], fake_root)
+    assert usage == []
+    md = validate_module.render_markdown(result)
+
+    assert "Visual check (advisory)" in md
+    assert target in md
+    assert "| idle | 35 |" in md
+    assert "0.600" in md  # target probability in the per-image table row
+    assert "mean target probability: 0.6" in md
+    assert "rank-1 rate: 1.0" in md
+
+
+# ---------------------------------------------------------------------------
+# UnusedParam
+# ---------------------------------------------------------------------------
+
+
+def test_unused_param_warns(validate_module, fake_root):
+    program = make_fsm(params={"p": 0.5, "unused_one": 3})
+    program["transitions"][0]["when"] = {"chance": "${p}"}
+    findings = []
+    validate_module.lint_program(program, "test", {"p": 0.5, "unused_one": 3}, findings, fake_root, {})
+    unused = [f for f in findings if f.code == "UnusedParam"]
+    assert len(unused) == 1
+    assert "unused_one" in unused[0].path
+
+
+def test_unused_param_not_triggered_by_own_body_reference(validate_module, fake_root):
+    program = make_fsm()
+    program["transitions"][0]["when"] = {"chance": "${p}"}
+    findings = []
+    validate_module.lint_program(program, "test", {"p": 5}, findings, fake_root, {})
+    assert "UnusedParam" not in codes(findings)
+
+
+def test_repo_shared_programs_have_no_unused_params(validate_module):
+    root = validate_module.default_root()
+    result, usage = validate_module.run(
+        [str(p) for p in sorted((root / "behaviors").glob("*.json"))], root
+    )
+    assert usage == []
+    unused = [
+        f for pr in result.program_reports for f in pr.findings if f.code == "UnusedParam"
+    ]
+    assert unused == [], unused
+
+
+def test_unused_param_not_double_reported_across_species_and_standalone_pass(validate_module, fake_root, make_species):
+    # A shared program used by a species must not have its structural
+    # (once-per-program-file) findings duplicated between the species'
+    # program report and the standalone behaviors/*.json report.
+    shared = make_fsm(id="fsm-shared-unused-v1", params={"p": 0.5, "spare": 1})
+    shared["transitions"][0]["when"] = {"chance": "${p}"}
+    (fake_root / "behaviors" / "fsm-shared-unused-v1.json").write_text(
+        json.dumps(shared),
+        encoding="utf-8",
+    )
+    species = make_species()
+    species["behavior"] = {"program": "fsm-shared-unused-v1", "params": {}}
+    write_species(fake_root, "vulpes-vulpes", species)
+
+    result, usage = validate_module.run([], fake_root)
+    assert usage == []
+    species_unused = [f for f in result.species_reports[0].all_findings() if f.code == "UnusedParam"]
+    standalone_unused = [f for pr in result.program_reports for f in pr.findings if f.code == "UnusedParam"]
+    total_unused = species_unused + standalone_unused
+    assert len(total_unused) == 1, total_unused
+
+
+# ---------------------------------------------------------------------------
+# Structural lint runs once per program file; species/<slug>/behavior.json is
+# routed through species validation, not treated as a shared program.
+# ---------------------------------------------------------------------------
+
+
+def test_structural_lint_not_duplicated_when_program_has_no_overrides(validate_module, fake_root, make_species):
+    # fsm-ground-forager-v1 (a real shared program) has an unreachable state
+    # bug injected so it produces a structural finding; two species sharing
+    # it, with no overrides, must not each carry a duplicate copy of it.
+    shared_path = fake_root / "behaviors" / "fsm-ground-forager-v1.json"
+    program = json.loads(shared_path.read_text(encoding="utf-8"))
+    program["states"]["orphan"] = {"action": {"do": "rest"}}
+    shared_path.write_text(json.dumps(program), encoding="utf-8")
+
+    species_a = make_species("vulpes-vulpes")
+    species_b = make_species("erithacus-rubecula")
+    species_b["id"] = "Erithacus rubecula"
+    species_b["taxonomy"]["genus"] = "Erithacus"
+    write_species(fake_root, "vulpes-vulpes", species_a)
+    write_species(fake_root, "erithacus-rubecula", species_b)
+
+    result, usage = validate_module.run([], fake_root)
+    assert usage == []
+    all_unreachable = [
+        f
+        for sr in result.species_reports
+        for f in sr.all_findings()
+        if f.code == "FsmUnreachableState"
+    ]
+    all_unreachable += [
+        f for pr in result.program_reports for f in pr.findings if f.code == "FsmUnreachableState"
+    ]
+    assert len(all_unreachable) == 1, all_unreachable
+
+
+def test_species_own_behavior_json_with_nonstandard_id_passes_and_is_not_duplicated(
+    validate_module, fake_root, make_species
+):
+    species = make_species()
+    species["behavior"] = {"program": "fsm-only-mine-v1"}
+    species_dir = write_species(fake_root, "vulpes-vulpes", species)
+    own_program = make_fsm(id="fsm-only-mine-v1")
+    (species_dir / "behavior.json").write_text(json.dumps(own_program), encoding="utf-8")
+
+    result, usage = validate_module.run([str(species_dir / "behavior.json")], fake_root)
+    assert usage == []
+    assert len(result.species_reports) == 1
+    assert result.program_reports == []
+    sr = result.species_reports[0]
+    errors = [f for f in sr.all_findings() if f.level == "error"]
+    assert errors == [], errors
+    assert sr.program_reports and sr.program_reports[0].source == "species"
