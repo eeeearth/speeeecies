@@ -1,0 +1,49 @@
+name: validate
+
+on:
+  pull_request:
+    paths:
+      - "species/**"
+      - "behaviors/**"
+      - "schema/**"
+      - "tools/**"
+  push:
+    branches: [main]
+    paths:
+      - "species/**"
+      - "behaviors/**"
+      - "schema/**"
+      - "tools/**"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+
+      - name: Validate species and behaviour records
+        run: uv run tools/validate.py --report --report-file validate-report.md
+
+      - name: Add validate report to job summary
+        if: always()
+        run: |
+          if [ -f validate-report.md ]; then
+            cat validate-report.md >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "No validate-report.md was produced." >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Run test suite
+        run: uv run --with pytest --with jsonschema pytest tools/tests -q
+
+      - name: Check ATTRIBUTION.md files are up to date
+        run: |
+          uv run tools/validate.py --write-attribution
+          git diff --exit-code -- species

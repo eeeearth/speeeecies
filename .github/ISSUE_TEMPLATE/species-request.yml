@@ -1,0 +1,82 @@
+name: Species request
+description: Ask for a species to be added to speeeecies.
+title: "species: <common name> (<Scientific name>)"
+labels: ["species-request"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Fill in what you know. You don't need to write the record yourself —
+        this just gives whoever picks it up (often a coding agent) a
+        starting point. See `AGENTS.md` and `CONTRIBUTING.md` for how
+        species get added.
+  - type: input
+    id: scientific-name
+    attributes:
+      label: Scientific name
+      description: Binomial, as GBIF or iNaturalist would recognise it.
+      placeholder: Vulpes vulpes
+    validations:
+      required: true
+  - type: input
+    id: common-name
+    attributes:
+      label: Common name
+      placeholder: Red fox
+    validations:
+      required: true
+  - type: dropdown
+    id: kingdom-group
+    attributes:
+      label: Kingdom group
+      description: >-
+        Plant issues are labelled phase-2 and aren't open for work yet —
+        the plant preset format hasn't landed (see ROADMAP.md,
+        SPEEEECIES-M8).
+      options:
+        - animal
+        - plant (phase 2)
+    validations:
+      required: true
+  - type: dropdown
+    id: continent
+    attributes:
+      label: Continent
+      description: Where this species is native or most relevant.
+      options:
+        - Europe
+        - Asia
+        - Africa
+        - South America
+        - Oceania
+        - Antarctica
+        - North America
+    validations:
+      required: false
+  - type: input
+    id: regions
+    attributes:
+      label: Suggested regions
+      description: >-
+        ISO 3166-1 or 3166-2 codes to fetch activity data for, comma
+        separated.
+      placeholder: GB, US-CA, AU-NSW
+    validations:
+      required: false
+  - type: textarea
+    id: data-pointers
+    attributes:
+      label: Data pointers
+      description: Links that help — GBIF, iNaturalist, Wikipedia, Wikidata.
+      placeholder: |
+        GBIF: https://www.gbif.org/species/...
+        iNaturalist: https://www.inaturalist.org/taxa/...
+    validations:
+      required: false
+  - type: textarea
+    id: why
+    attributes:
+      label: Why this species
+      description: Optional context on why it would be a good addition.
+    validations:
+      required: false
