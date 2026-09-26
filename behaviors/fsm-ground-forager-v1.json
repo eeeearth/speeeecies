@@ -1,0 +1,254 @@
+{
+  "schema_version": 1,
+  "format": "speeeecies/behavior",
+  "id": "fsm-ground-forager-v1",
+  "kind": "fsm",
+  "description": "Ground-dwelling mammal (fox, hedgehog, badger): forages when hungry, wanders, drinks, flees from threats, and rests in shelter while the sun is between `rest_sun_lo_deg` and `rest_sun_hi_deg` (default: daytime, for nocturnal and crepuscular species; set -90 and -6 for a diurnal one).",
+  "params": {
+    "flee_m": 20,
+    "calm_m": 40,
+    "food_tag": "invertebrate",
+    "food_m": 40,
+    "flee_gait": "gallop",
+    "forage_gait": "walk",
+    "rest_sun_lo_deg": 10,
+    "rest_sun_hi_deg": 90
+  },
+  "initial": "idle",
+  "states": {
+    "idle": {
+      "action": {
+        "do": "idle"
+      },
+      "min_dwell_s": 2
+    },
+    "wander": {
+      "action": {
+        "do": "wander",
+        "gait": "${forage_gait}"
+      }
+    },
+    "forage": {
+      "action": {
+        "do": "eat_nearest",
+        "tag": "${food_tag}",
+        "gait": "${forage_gait}"
+      }
+    },
+    "drink": {
+      "action": {
+        "do": "drink_nearest",
+        "gait": "${forage_gait}"
+      }
+    },
+    "flee": {
+      "action": {
+        "do": "flee",
+        "gait": "${flee_gait}"
+      },
+      "min_dwell_s": 3
+    },
+    "rest": {
+      "action": {
+        "do": "rest",
+        "at": "shelter"
+      },
+      "min_dwell_s": 30
+    },
+    "touched": {
+      "action": {
+        "do": "tolerate_touch"
+      }
+    },
+    "accept": {
+      "action": {
+        "do": "accept_offer"
+      }
+    }
+  },
+  "transitions": [
+    {
+      "from": "*",
+      "to": "flee",
+      "when": {
+        "threat_within_m": "${flee_m}"
+      },
+      "priority": 100
+    },
+    {
+      "from": "*",
+      "to": "flee",
+      "when": {
+        "need": "fear",
+        "gt": 0.2
+      },
+      "priority": 90
+    },
+    {
+      "from": "*",
+      "to": "touched",
+      "when": {
+        "all": [
+          {
+            "player_touch": true
+          },
+          {
+            "need": "fear",
+            "lt": 0.2
+          },
+          {
+            "not": {
+              "threat_within_m": "${flee_m}"
+            }
+          }
+        ]
+      },
+      "priority": 60
+    },
+    {
+      "from": "*",
+      "to": "accept",
+      "when": {
+        "all": [
+          {
+            "player_offer": "food"
+          },
+          {
+            "need": "fear",
+            "lt": 0.2
+          },
+          {
+            "not": {
+              "threat_within_m": "${flee_m}"
+            }
+          }
+        ]
+      },
+      "priority": 40
+    },
+    {
+      "from": "touched",
+      "to": "idle",
+      "when": {
+        "player_touch": false
+      }
+    },
+    {
+      "from": "accept",
+      "to": "idle",
+      "when": {
+        "not": {
+          "player_offer": "food"
+        }
+      }
+    },
+    {
+      "from": "flee",
+      "to": "idle",
+      "when": {
+        "not": {
+          "threat_within_m": "${calm_m}"
+        }
+      }
+    },
+    {
+      "from": "idle",
+      "to": "forage",
+      "when": {
+        "all": [
+          {
+            "need": "hunger",
+            "gt": 0.5
+          },
+          {
+            "food_within_m": "${food_m}",
+            "tag": "${food_tag}"
+          }
+        ]
+      }
+    },
+    {
+      "from": "idle",
+      "to": "drink",
+      "when": {
+        "all": [
+          {
+            "need": "thirst",
+            "gt": 0.6
+          },
+          {
+            "water_within_m": 60
+          }
+        ]
+      }
+    },
+    {
+      "from": "idle",
+      "to": "rest",
+      "when": {
+        "any": [
+          {
+            "need": "energy",
+            "gt": 0.7
+          },
+          {
+            "sun_elevation_between_deg": [
+              "${rest_sun_lo_deg}",
+              "${rest_sun_hi_deg}"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "from": "idle",
+      "to": "wander",
+      "when": {
+        "chance": 0.25
+      }
+    },
+    {
+      "from": "wander",
+      "to": "idle",
+      "when": {
+        "chance": 0.15
+      }
+    },
+    {
+      "from": "forage",
+      "to": "idle",
+      "when": {
+        "need": "hunger",
+        "lt": 0.2
+      }
+    },
+    {
+      "from": "drink",
+      "to": "idle",
+      "when": {
+        "need": "thirst",
+        "lt": 0.1
+      }
+    },
+    {
+      "from": "rest",
+      "to": "idle",
+      "when": {
+        "all": [
+          {
+            "need": "energy",
+            "lt": 0.2
+          },
+          {
+            "not": {
+              "sun_elevation_between_deg": [
+                "${rest_sun_lo_deg}",
+                "${rest_sun_hi_deg}"
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
