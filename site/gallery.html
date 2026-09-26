@@ -26,6 +26,7 @@
       <a href="preview.html">Previewer</a>
       <a href="schema.html">Schema</a>
       <a href="behaviors.html">Behaviour guide</a>
+      <a class="live-link" href="https://www.youtube.com/@jt55401/live">Watch the live simulation</a>
     </nav>
   </div>
 </header>
@@ -92,12 +93,33 @@ function buildGroups(model) {
     else root.add(group);
     groups[part.name] = group;
   }
-  return root;
+  return { root, groups };
+}
+
+// Pose the thumbnail like the previewer does: perched birds and insects
+// perch, everything else idles. The rest-pose build has wings spread and
+// legs straight, which does not look like the animal at rest.
+function applyThumbnailPose(model, groups, species) {
+  const poses = (species.look && species.look.poses) || {};
+  const poseName = "perched" in poses ? "perched" : "idle";
+  const transforms = poseModel(model, species, poseName, 0);
+  for (const [name, group] of Object.entries(groups)) {
+    const t = transforms[name];
+    if (!t) continue;
+    if (t.pos) group.position.set(group.position.x + t.pos[0], group.position.y + t.pos[1], group.position.z + t.pos[2]);
+    const rot = t.rot || [0, 0, 0];
+    group.rotation.set(
+      THREE.MathUtils.degToRad(rot[0]),
+      THREE.MathUtils.degToRad(rot[1]),
+      THREE.MathUtils.degToRad(rot[2])
+    );
+  }
 }
 
 function renderThumbnail(species, bodyPlans) {
   const model = buildModel(species, bodyPlans);
-  const root = buildGroups(model);
+  const { root, groups } = buildGroups(model);
+  applyThumbnailPose(model, groups, species);
   scene.add(root);
 
   const b = model.bounds;

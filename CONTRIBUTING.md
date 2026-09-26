@@ -40,6 +40,8 @@ often a coding agent — will pick it up.
   domain, then CC BY, then CC BY-SA. Non-commercial (NC) sources are a
   last resort — mark them and justify them in the PR body. ND and unknown
   licences are rejected outright.
+- Write licence ids exactly as listed in `schema/v0.1/licenses.json`
+  (SPDX-style, case-sensitive: `CC-BY-4.0`, not `cc-by-4.0`).
 - Never strip attribution, even from sources that don't legally require
   it.
 - Never invent a number. If you can't source a value, leave it out (if

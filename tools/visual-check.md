@@ -39,13 +39,11 @@ Options:
 | `--write` | off | write `species/<slug>/visual-check.json` |
 | `--images-dir` | `$SPEEEECIES_SCRATCH/<slug>` or `~/tmp/speeeecies-visual-check/<slug>` | where rendered PNGs go |
 | `--root` | repo root (two directories up from this script) | |
-| `--port` | `18171` | local preview server port; must be 18170-18179 |
+| `--port` | `18171` | local preview server port; binds 127.0.0.1 only |
 
-Rendered PNGs are scratch: never written under `/tmp` and never inside the
-repo, per this repo's machine rules. The default above is deliberately
-generic (no machine-specific path is hardcoded in this public repo file);
-point `--images-dir` or `$SPEEEECIES_SCRATCH` at wherever your own setup
-keeps scratch files.
+Rendered PNGs are scratch files and are never written inside the repo.
+Point `--images-dir` or `$SPEEEECIES_SCRATCH` at wherever you keep scratch
+files.
 
 Exit codes: 0 on a completed run (including a run with poor scores), 1 on a
 real error (bad species record, previewer failed, browser or model error), 2
@@ -144,7 +142,7 @@ any heavy import, every classifier call passes `device="cpu"`, and
 default Hugging Face cache (`~/.cache/huggingface`), not under this repo or
 `/tmp`.
 
-Measured on this machine with `/usr/bin/time -v`, `hf-hub:imageomics/bioclip`,
+Measured on a desktop CPU with `/usr/bin/time -v`, `hf-hub:imageomics/bioclip`,
 4 threads, no GPU:
 
 | Run | wall clock | peak RSS |
@@ -156,10 +154,9 @@ Measured on this machine with `/usr/bin/time -v`, `hf-hub:imageomics/bioclip`,
 The fixed cost is almost entirely model load (a few seconds) plus browser
 startup; scoring itself runs at roughly 5 images/s once the model is loaded,
 and rendering each frame in headless Chromium adds roughly 0.1-0.3s per
-image on top. Peak RSS stays flat around 1.6 GiB regardless of image count,
-well under the machine's headroom.
+image on top. Peak RSS stays flat around 1.6 GiB regardless of image count.
 
-Downloads, one-time (well under the 2 GiB budget):
+Downloads, one-time:
 
 | | size |
 |---|---|
@@ -170,10 +167,9 @@ Downloads, one-time (well under the 2 GiB budget):
 
 `--model hf-hub:imageomics/bioclip-2` is also MIT-licensed and slightly newer
 (trained on the larger TreeOfLife-200M), but its checkpoint alone is ~1.7 GB
--- combined with the CPU PyTorch wheel that would leave little headroom
-under the 2 GiB budget, so `bioclip` (the smaller, original model) is the
-default. Pass `--model hf-hub:imageomics/bioclip-2` explicitly if you want
-it and have the budget.
+-- about three times the download of `bioclip`, so the smaller, original
+model is the default. Pass `--model hf-hub:imageomics/bioclip-2` explicitly
+if you want it.
 
 Chromium: reuses whatever build is already cached under
 `~/.cache/ms-playwright` for Playwright 1.62.0 (pinned in this script's PEP

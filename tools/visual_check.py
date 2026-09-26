@@ -23,13 +23,13 @@ browser and score the images zero-shot with BioCLIP on CPU.
 
 See tools/visual-check.md for usage, resource notes and licences.
 
-Hard machine rules (see tools/visual-check.md for why):
+Resource rules (see tools/visual-check.md for why):
   - Never touch a GPU: CUDA_VISIBLE_DEVICES is forced to "" below, before any
     heavy import, and every model call passes device="cpu".
   - At most 4 CPU threads (torch.set_num_threads(4)).
   - Model weights cache in the default Hugging Face cache (~/.cache/huggingface).
   - Scratch images never go in /tmp and never inside the repo; see --images-dir.
-  - The local preview server binds 127.0.0.1 only, on a port in 18170-18179.
+  - The local preview server binds 127.0.0.1 only (default port 18171).
 
 Only stdlib is imported at module scope so this file can be imported (for its
 pure-Python helpers) without torch, playwright or pybioclip installed -- see
@@ -65,7 +65,7 @@ VIEWPORT_SIZE = 512
 PREVIEW_PITCH = 15
 PREVIEW_PHASE = 0.25
 PREVIEW_READY_TIMEOUT_MS = 30_000
-PORT_RANGE = range(18170, 18180)  # 18170-18179 inclusive; see tools/visual-check.md
+PORT_RANGE = range(1024, 65536)  # unprivileged ports; the server binds 127.0.0.1 only
 DEFAULT_PORT = 18171
 DEFAULT_YAWS = [35, 90, 200]
 
@@ -315,7 +315,7 @@ def run_build_site(root: Path, out_dir: Path) -> None:
 def served_site(directory: Path, port: int):
     if port not in PORT_RANGE:
         raise VisualCheckError(
-            f"port {port} is outside the allowed range 18170-18179 for local servers"
+            f"port {port} must be an unprivileged port (1024-65535)"
         )
     handler = functools.partial(http.server.SimpleHTTPRequestHandler, directory=str(directory))
     httpd = http.server.ThreadingHTTPServer(("127.0.0.1", port), handler)
@@ -465,7 +465,7 @@ def build_arg_parser() -> argparse.ArgumentParser:
         "--port",
         type=int,
         default=DEFAULT_PORT,
-        help=f"local preview server port, 18170-18179 (default: {DEFAULT_PORT})",
+        help=f"local preview server port on 127.0.0.1 (default: {DEFAULT_PORT})",
     )
     return parser
 

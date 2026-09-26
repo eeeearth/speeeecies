@@ -218,11 +218,11 @@ def test_default_images_dir_honours_env_override(monkeypatch, tmp_path):
     assert path == tmp_path / "bufo-bufo"
 
 
-def test_served_site_rejects_port_outside_range():
+def test_served_site_rejects_privileged_port():
     import pytest
 
     with pytest.raises(vc.VisualCheckError):
-        with vc.served_site(Path("."), 8080):
+        with vc.served_site(Path("."), 80):
             pass
 
 
