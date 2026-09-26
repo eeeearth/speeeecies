@@ -1,17 +1,15 @@
 name: validate
 
 on:
+  # Every PR: the self-check scans the whole repository, so a leak in any
+  # file (docs, site, templates) must be caught, not just data changes.
   pull_request:
-    paths:
-      - "species/**"
-      - "behaviors/**"
-      - "schema/**"
-      - "tools/**"
   push:
     branches: [main]
     paths:
       - "species/**"
       - "behaviors/**"
+      - "locales/**"
       - "schema/**"
       - "tools/**"
 
@@ -28,17 +26,25 @@ jobs:
       - name: Install uv
         uses: astral-sh/setup-uv@v5
 
+      - name: Public-safety self-check (addresses, home paths, hostnames, SSH remotes)
+        run: uv run tools/validate.py --self-check
+
       - name: Validate species and behaviour records
         run: uv run tools/validate.py --report --report-file validate-report.md
 
-      - name: Add validate report to job summary
+      - name: Validate every locale
+        run: uv run tools/validate.py --locale all --report --report-file locale-report.md
+
+      - name: Add validate reports to job summary
         if: always()
         run: |
-          if [ -f validate-report.md ]; then
-            cat validate-report.md >> "$GITHUB_STEP_SUMMARY"
-          else
-            echo "No validate-report.md was produced." >> "$GITHUB_STEP_SUMMARY"
-          fi
+          for f in validate-report.md locale-report.md; do
+            if [ -f "$f" ]; then
+              cat "$f" >> "$GITHUB_STEP_SUMMARY"
+            else
+              echo "No $f was produced." >> "$GITHUB_STEP_SUMMARY"
+            fi
+          done
 
       - name: Run test suite
         run: uv run --with pytest --with jsonschema pytest tools/tests -q
