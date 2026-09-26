@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Schema docs — speeeecies</title>
+<meta name="description" content="Field-by-field documentation of the species and behaviour-program schemas, generated from the JSON Schema." />
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="css/site.css" />
+</head>
+<body>
+<header class="site-header">
+  <div class="bar">
+    <a class="brand" href="index.html">speeeecies</a>
+    <nav>
+      <a href="index.html">About</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="preview.html">Previewer</a>
+      <a href="schema.html" aria-current="page">Schema</a>
+      <a href="behaviors.html">Behaviour guide</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <h1>Schema docs</h1>
+  <p>
+    This page is rendered client-side from the JSON Schema files in
+    <code>schema/v0.1/</code>, so it always matches the format the validator
+    enforces. Conventions: snake_case keys; SI units are named in the key
+    (<code>_m</code> metres, <code>_kg</code> kilograms, <code>_ms</code>
+    metres per second, <code>_ha</code> hectares, <code>_c</code> °C,
+    <code>_s</code> seconds, <code>_hz</code> hertz, <code>_y</code> years);
+    fractions are <code>0..1</code>; months are <code>1..12</code>; dates are
+    <code>YYYY-MM-DD</code>; month-day windows are <code>MM-DD</code>.
+    Unknown keys are rejected everywhere except inside <code>extensions</code>.
+    A <a href="#species-root"><code>$ref</code></a> in a type column links to
+    that type's own section below.
+  </p>
+  <p id="status" class="notice">Loading schema…</p>
+
+  <h2 id="species-schema">Species record</h2>
+  <div id="species-out"></div>
+
+  <h2 id="behavior-schema">Behaviour program</h2>
+  <div id="behavior-out"></div>
+
+  <h2 id="body-plans">Body plans</h2>
+  <p>
+    Each <code>look.body_plan</code> generates a fixed set of named parts.
+    <code>look.proportions</code> may override any default below; omitted
+    values use the default shown. Poses listed have a built-in procedural
+    animation in <code>site/js/blockmesh.js</code>; a species may still
+    declare other poses with just <code>keyframes</code>.
+  </p>
+  <div id="body-plans-out"></div>
+</main>
+
+<script type="module">
+import { el } from "./js/dom.js";
+
+// Everything rendered on this page comes from schema/v0.1/*.json — files in
+// the public repo, editable by contributor PRs — so it is treated as
+// untrusted: every value below is placed with el()/textContent/DOM
+// properties (text nodes and attribute values only), never innerHTML.
+const statusEl = document.getElementById("status");
+
+function refName(ref) {
+  return ref.split("/").pop();
+}
+
+function joinNodes(groups, sep) {
+  const out = [];
+  groups.forEach((g, i) => {
+    if (i > 0) out.push(sep);
+    out.push(...g);
+  });
+  return out;
+}
+
+function typeLabelNodes(node, prefix) {
+  if (!node) return [""];
+  if (node.$ref) {
+    const name = refName(node.$ref);
+    return [el("a", { href: `#${prefix}-${name}` }, name)];
+  }
+  if (node.const !== undefined) {
+    return ["const ", el("code", null, JSON.stringify(node.const))];
+  }
+  if (node.enum) return ["enum"];
+  if (node.oneOf) return joinNodes(node.oneOf.map((n) => typeLabelNodes(n, prefix)), " | ");
+  if (node.type === "array") {
+    if (node.items) return ["array of ", ...typeLabelNodes(node.items, prefix)];
+    if (node.prefixItems) {
+      return ["tuple [", ...joinNodes(node.prefixItems.map((n) => typeLabelNodes(n, prefix)), ", "), "]"];
+    }
+    return ["array"];
+  }
+  if (Array.isArray(node.type)) return [node.type.join(" | ")];
+  return [node.type || "any"];
+}
+
+function boundsLabelNodes(node) {
+  const parts = [];
+  if (node.minimum !== undefined) parts.push([`≥ ${node.minimum}`]);
+  if (node.exclusiveMinimum !== undefined) parts.push([`> ${node.exclusiveMinimum}`]);
+  if (node.maximum !== undefined) parts.push([`≤ ${node.maximum}`]);
+  if (node.exclusiveMaximum !== undefined) parts.push([`< ${node.exclusiveMaximum}`]);
+  if (node.minItems !== undefined || node.maxItems !== undefined) {
+    parts.push([`${node.minItems ?? 0}–${node.maxItems ?? "∞"} items`]);
+  }
+  if (node.minLength !== undefined) parts.push([`min length ${node.minLength}`]);
+  if (node.pattern) parts.push(["pattern ", el("code", null, node.pattern)]);
+  if (node.enum) parts.push(joinNodes(node.enum.map((v) => [el("code", null, String(v))]), ", "));
+  return joinNodes(parts, "; ");
+}
+
+function propertiesTable(node, prefix) {
+  const required = new Set(node.required || []);
+  const props = node.properties || {};
+  const rows = Object.entries(props).map(([name, def]) =>
+    el(
+      "tr",
+      null,
+      el("td", { class: "field-name" }, name),
+      el("td", null, typeLabelNodes(def, prefix)),
+      el("td", null, required.has(name) ? el("span", { class: "req" }, "required") : ""),
+      el("td", null, boundsLabelNodes(def)),
+      el("td", null, def.description || "")
+    )
+  );
+  return el(
+    "table",
+    null,
+    el(
+      "thead",
+      null,
+      el(
+        "tr",
+        null,
+        el("th", null, "Field"),
+        el("th", null, "Type"),
+        el("th", null, "Required"),
+        el("th", null, "Bounds / values"),
+        el("th", null, "Description")
+      )
+    ),
+    el("tbody", null, rows)
+  );
+}
+
+function renderNode(id, title, node, prefix) {
+  const body = [];
+  if (node.description) body.push(el("p", null, node.description));
+  if (node.properties) {
+    body.push(propertiesTable(node, prefix));
+  } else if (node.oneOf && node.oneOf.some((n) => n.$ref)) {
+    body.push(el("p", null, "One of: ", joinNodes(node.oneOf.map((n) => typeLabelNodes(n, prefix)), ", ")));
+  } else if (node.oneOf) {
+    for (const n of node.oneOf) body.push(el("div", { class: "def-block" }, propertiesTable(n, prefix)));
+  } else if (node.enum) {
+    body.push(el("p", null, "Enum: ", joinNodes(node.enum.map((v) => [el("code", null, String(v))]), ", ")));
+  } else {
+    body.push(el("p", null, "Type: ", typeLabelNodes(node, prefix), ". ", boundsLabelNodes(node)));
+  }
+  return el("section", { class: "def-block", id }, el("h3", null, title), body);
+}
+
+function renderSchema(schema, prefix, outEl, rootBranches) {
+  const sections = [];
+  if (rootBranches) {
+    for (const [name, node] of rootBranches) {
+      sections.push(renderNode(`${prefix}-${name}`, name, node, prefix));
+    }
+  } else {
+    sections.push(renderNode(`${prefix}-root`, "Root object", schema, prefix));
+  }
+  const defs = schema.$defs || {};
+  for (const [name, node] of Object.entries(defs)) {
+    sections.push(renderNode(`${prefix}-${name}`, name, node, prefix));
+  }
+  outEl.replaceChildren(...sections);
+}
+
+function bodyPlansTable(data) {
+  const rows = Object.entries(data.plans).map(([name, plan]) => {
+    const defaults = Object.entries(plan.defaults || {})
+      .map(([k, v]) => `${k}=${v}`)
+      .join(", ");
+    const partsCell = el(
+      "td",
+      null,
+      (plan.parts || []).join(", "),
+      plan.segment_parts ? el("br") : null,
+      plan.segment_parts ? el("em", null, plan.segment_parts) : null
+    );
+    return el(
+      "tr",
+      null,
+      el("td", { class: "field-name" }, name),
+      partsCell,
+      el("td", null, defaults),
+      el("td", null, (plan.poses || []).join(", "))
+    );
+  });
+  return el(
+    "table",
+    null,
+    el(
+      "thead",
+      null,
+      el(
+        "tr",
+        null,
+        el("th", null, "Body plan"),
+        el("th", null, "Parts"),
+        el("th", null, "Default proportions"),
+        el("th", null, "Built-in poses")
+      )
+    ),
+    el("tbody", null, rows)
+  );
+}
+
+async function main() {
+  try {
+    const [speciesSchema, behaviorSchema, bodyPlans] = await Promise.all([
+      fetch("schema/v0.1/species.schema.json").then((r) => r.json()),
+      fetch("schema/v0.1/behavior-program.schema.json").then((r) => r.json()),
+      fetch("schema/v0.1/body-plans.json").then((r) => r.json()),
+    ]);
+    statusEl.remove();
+
+    renderSchema(speciesSchema, "species", document.getElementById("species-out"));
+
+    const branches = (behaviorSchema.oneOf || []).map((n) => [n.properties.kind.const, n]);
+    renderSchema(behaviorSchema, "behavior", document.getElementById("behavior-out"), branches);
+
+    document.getElementById("body-plans-out").replaceChildren(bodyPlansTable(bodyPlans));
+  } catch (err) {
+    statusEl.className = "notice warn";
+    statusEl.textContent = `Could not load schema files: ${err.message}`;
+  }
+}
+
+main();
+</script>
+</body>
+</html>

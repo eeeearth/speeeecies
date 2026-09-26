@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Previewer — speeeecies</title>
+<meta name="description" content="Render and pose a species' block-mesh model in the browser." />
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="css/site.css" />
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+</head>
+<body>
+<header class="site-header" id="site-header">
+  <div class="bar">
+    <a class="brand" href="index.html">speeeecies</a>
+    <nav>
+      <a href="index.html">About</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="preview.html" aria-current="page">Previewer</a>
+      <a href="schema.html">Schema</a>
+      <a href="behaviors.html">Behaviour guide</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="preview-layout">
+  <div class="preview-canvas-wrap" id="canvas-wrap"></div>
+
+  <div class="preview-panel" id="side-panel">
+    <div class="card">
+      <h3>Species</h3>
+      <div class="field-row">
+        <label for="species-select">Species</label>
+        <select id="species-select"></select>
+      </div>
+      <div class="field-row">
+        <label for="paste-toggle">Or paste JSON</label>
+        <button id="paste-toggle" class="btn" type="button" aria-expanded="false">Show paste box</button>
+      </div>
+      <div id="paste-wrap" hidden>
+        <textarea id="paste-box" class="paste-box" placeholder="Paste a species.json here"></textarea>
+        <div class="field-row">
+          <button id="paste-render" class="btn primary" type="button">Render</button>
+        </div>
+      </div>
+      <div id="error-box" class="error-box" hidden></div>
+    </div>
+
+    <div class="card">
+      <h3>Pose</h3>
+      <div class="pose-buttons" id="pose-buttons"></div>
+      <div class="field-row">
+        <button id="play-pause" class="btn" type="button">Pause</button>
+        <label for="speed">Speed</label>
+        <input id="speed" type="range" min="0.1" max="3" step="0.1" value="1" />
+        <span id="speed-label">1.0x</span>
+      </div>
+      <div class="field-row">
+        <label for="ground-toggle">Ground grid</label>
+        <input id="ground-toggle" type="checkbox" checked />
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Parts</h3>
+      <div class="parts-list" id="parts-list"></div>
+    </div>
+  </div>
+</main>
+
+<script type="module">
+import * as THREE from "three";
+import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+import { buildModel, poseModel } from "./js/blockmesh.js";
+
+const params = new URLSearchParams(location.search);
+const shotMode = params.get("shot") === "1";
+const initialSpecies = params.get("species") || "";
+const initialPose = params.get("pose") || "idle";
+const yawDeg = params.has("yaw") ? Number(params.get("yaw")) : 35;
+const pitchDeg = params.has("pitch") ? Number(params.get("pitch")) : 15;
+const frozenPhase = params.has("phase") ? Number(params.get("phase")) : null;
+
+const canvasWrap = document.getElementById("canvas-wrap");
+const errorBox = document.getElementById("error-box");
+const partsList = document.getElementById("parts-list");
+const speciesSelect = document.getElementById("species-select");
+const poseButtons = document.getElementById("pose-buttons");
+const playPauseBtn = document.getElementById("play-pause");
+const speedInput = document.getElementById("speed");
+const speedLabel = document.getElementById("speed-label");
+const groundToggle = document.getElementById("ground-toggle");
+const pasteToggle = document.getElementById("paste-toggle");
+const pasteWrap = document.getElementById("paste-wrap");
+const pasteBox = document.getElementById("paste-box");
+const pasteRender = document.getElementById("paste-render");
+
+if (shotMode) {
+  document.body.classList.add("preview-shot");
+  document.getElementById("site-header").hidden = true;
+  document.getElementById("side-panel").hidden = true;
+  document.getElementById("main").classList.add("shot-mode");
+}
+
+window.__previewReady = false;
+window.__previewError = null;
+
+function fail(msg) {
+  window.__previewError = msg;
+  errorBox.hidden = false;
+  errorBox.textContent = msg;
+  // eslint-disable-next-line no-console
+  console.error("[preview]", msg);
+}
+
+function clearError() {
+  window.__previewError = null;
+  errorBox.hidden = true;
+  errorBox.textContent = "";
+}
+
+// ---------- three.js scene ----------
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xcfd8dc);
+
+const camera = new THREE.PerspectiveCamera(45, 1, 0.01, 1000);
+const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
+renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+canvasWrap.appendChild(renderer.domElement);
+
+// Bright, mostly-neutral lighting so light palette colours (cream, white
+// markings) read true instead of grey: a strong hemisphere fill plus a soft
+// ambient to lift shadowed faces, and a directional light for shape.
+const hemi = new THREE.HemisphereLight(0xffffff, 0x8a8a8a, 1.3);
+scene.add(hemi);
+const ambient = new THREE.AmbientLight(0xffffff, 0.55);
+scene.add(ambient);
+const sun = new THREE.DirectionalLight(0xffffff, 1.3);
+sun.position.set(3, 6, 4);
+scene.add(sun);
+
+let grid = new THREE.GridHelper(4, 16, 0x557755, 0x99a3a6);
+scene.add(grid);
+
+let controls = null;
+if (!shotMode) {
+  controls = new OrbitControls(camera, renderer.domElement);
+  controls.target.set(0, 0.1, 0);
+  controls.enableDamping = true;
+}
+
+function resize() {
+  const w = canvasWrap.clientWidth || 1;
+  const h = canvasWrap.clientHeight || 1;
+  renderer.setSize(w, h, false);
+  camera.aspect = w / h;
+  camera.updateProjectionMatrix();
+}
+window.addEventListener("resize", resize);
+
+// ---------- model state ----------
+
+let bodyPlans = null;
+let speciesIndex = [];
+let currentSpecies = null;
+let currentModel = null;
+let currentGroups = null;
+let currentPose = initialPose;
+let playing = frozenPhase === null;
+let speed = 1;
+let clock = new THREE.Clock();
+let elapsed = frozenPhase !== null ? frozenPhase : 0;
+let modelRoot = null;
+
+const boxGeom = new THREE.BoxGeometry(1, 1, 1);
+
+function disposeModel() {
+  if (modelRoot) {
+    scene.remove(modelRoot);
+    modelRoot.traverse((o) => {
+      if (o.isMesh) {
+        o.geometry.dispose && o.geometry === boxGeom ? null : o.geometry.dispose();
+        o.material.dispose();
+      }
+    });
+  }
+  modelRoot = null;
+  currentGroups = null;
+}
+
+function buildScene(model) {
+  disposeModel();
+  const groups = {};
+  modelRoot = new THREE.Group();
+  for (const part of model.parts) {
+    const group = new THREE.Group();
+    group.name = part.name;
+    const parentPivot = part.parent ? groups[part.parent].userData.worldPivot : [0, 0, 0];
+    group.position.set(
+      part.pivot[0] - parentPivot[0],
+      part.pivot[1] - parentPivot[1],
+      part.pivot[2] - parentPivot[2]
+    );
+    group.userData.worldPivot = part.pivot;
+    group.userData.restPosition = group.position.clone();
+
+    const mat = new THREE.MeshStandardMaterial({ color: part.color, roughness: 0.85, metalness: 0.02 });
+    const mesh = new THREE.Mesh(boxGeom, mat);
+    mesh.scale.set(Math.max(part.size[0], 1e-4), Math.max(part.size[1], 1e-4), Math.max(part.size[2], 1e-4));
+    mesh.position.set(
+      part.center[0] - part.pivot[0],
+      part.center[1] - part.pivot[1],
+      part.center[2] - part.pivot[2]
+    );
+    group.add(mesh);
+
+    if (part.parent && groups[part.parent]) {
+      groups[part.parent].add(group);
+    } else {
+      modelRoot.add(group);
+    }
+    groups[part.name] = group;
+  }
+  scene.add(modelRoot);
+  currentGroups = groups;
+}
+
+function applyPose(model, species, poseName, phase) {
+  if (!currentGroups) return;
+  let transforms;
+  try {
+    transforms = poseModel(model, species, poseName, phase);
+  } catch (err) {
+    fail(`Failed to pose model: ${err.message}`);
+    return;
+  }
+  for (const [name, group] of Object.entries(currentGroups)) {
+    const t = transforms[name] || { rot: [0, 0, 0], pos: [0, 0, 0] };
+    const rest = group.userData.restPosition;
+    group.position.set(rest.x + (t.pos ? t.pos[0] : 0), rest.y + (t.pos ? t.pos[1] : 0), rest.z + (t.pos ? t.pos[2] : 0));
+    const rot = t.rot || [0, 0, 0];
+    group.rotation.set(
+      THREE.MathUtils.degToRad(rot[0]),
+      THREE.MathUtils.degToRad(rot[1]),
+      THREE.MathUtils.degToRad(rot[2])
+    );
+  }
+}
+
+function frameCamera(bounds) {
+  const center = [
+    (bounds.min[0] + bounds.max[0]) / 2,
+    (bounds.min[1] + bounds.max[1]) / 2,
+    (bounds.min[2] + bounds.max[2]) / 2,
+  ];
+  const size = [
+    bounds.max[0] - bounds.min[0],
+    bounds.max[1] - bounds.min[1],
+    bounds.max[2] - bounds.min[2],
+  ];
+  const radius = Math.max(0.05, Math.hypot(size[0], size[1], size[2]) / 2);
+  const dist = radius / Math.sin((camera.fov * Math.PI) / 360) * 1.15;
+  const yaw = THREE.MathUtils.degToRad(yawDeg);
+  const pitch = THREE.MathUtils.degToRad(pitchDeg);
+  // yaw=0 is a broadside view (camera on +z, looking along the creature's
+  // flank); positive yaw rotates the camera toward the nose (+x).
+  const dir = new THREE.Vector3(
+    Math.cos(pitch) * Math.sin(yaw),
+    Math.sin(pitch),
+    Math.cos(pitch) * Math.cos(yaw)
+  );
+  camera.position.set(center[0] + dir.x * dist, center[1] + dir.y * dist, center[2] + dir.z * dist);
+  camera.near = Math.max(radius / 100, 0.001);
+  camera.far = dist + radius * 10;
+  camera.updateProjectionMatrix();
+  camera.lookAt(center[0], center[1], center[2]);
+  if (controls) {
+    controls.target.set(center[0], center[1], center[2]);
+    controls.update();
+  }
+  grid.position.set(center[0], 0, center[2]);
+  const gridSize = Math.max(2, radius * 6);
+  grid.scale.set(gridSize / 4, 1, gridSize / 4);
+}
+
+function renderPartsList(model) {
+  partsList.replaceChildren();
+  for (const part of model.parts) {
+    const row = document.createElement("div");
+    const left = document.createElement("span");
+    const swatch = document.createElement("span");
+    swatch.className = "swatch";
+    // part.color/part.name come from species data (species/, or the paste
+    // box) — untrusted, so set the colour as a style property (not parsed as
+    // CSS/HTML text) and the name as a text node, never via innerHTML.
+    swatch.style.backgroundColor = String(part.color);
+    left.appendChild(swatch);
+    left.appendChild(document.createTextNode(String(part.name)));
+    const right = document.createElement("span");
+    right.textContent = part.slot;
+    row.appendChild(left);
+    row.appendChild(right);
+    partsList.appendChild(row);
+  }
+}
+
+function renderPoseButtons(species) {
+  poseButtons.replaceChildren();
+  const poses = Object.keys((species.look && species.look.poses) || { idle: {} });
+  if (!poses.includes(currentPose)) currentPose = poses[0] || "idle";
+  for (const pose of poses) {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.textContent = pose;
+    btn.setAttribute("aria-pressed", String(pose === currentPose));
+    btn.addEventListener("click", () => {
+      currentPose = pose;
+      for (const b of poseButtons.children) b.setAttribute("aria-pressed", String(b === btn));
+    });
+    poseButtons.appendChild(btn);
+  }
+}
+
+function loadModel(species) {
+  clearError();
+  currentSpecies = species;
+  let model;
+  try {
+    model = buildModel(species, bodyPlans);
+  } catch (err) {
+    fail(err.message);
+    return;
+  }
+  currentModel = model;
+  buildScene(model);
+  renderPartsList(model);
+  renderPoseButtons(species);
+  frameCamera(model.bounds);
+  applyPose(model, species, currentPose, frozenPhase !== null ? frozenPhase : elapsed);
+  window.__previewReady = true;
+}
+
+async function fetchJson(url) {
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`${url}: HTTP ${res.status}`);
+  return res.json();
+}
+
+async function loadSpeciesBySlug(slug) {
+  const species = await fetchJson(`species/${slug}/species.json`);
+  loadModel(species);
+}
+
+async function init() {
+  resize();
+  try {
+    bodyPlans = await fetchJson("schema/v0.1/body-plans.json");
+  } catch (err) {
+    fail(`Could not load body-plans.json: ${err.message}`);
+    return;
+  }
+
+  try {
+    speciesIndex = await fetchJson("species/index.json");
+  } catch (err) {
+    speciesIndex = [];
+  }
+  speciesSelect.replaceChildren();
+  for (const entry of speciesIndex) {
+    const opt = document.createElement("option");
+    opt.value = entry.slug;
+    opt.textContent = `${entry.common_name_en || entry.slug} (${entry.id || entry.slug})`;
+    speciesSelect.appendChild(opt);
+  }
+  speciesSelect.addEventListener("change", () => {
+    loadSpeciesBySlug(speciesSelect.value).catch((err) => fail(err.message));
+  });
+
+  if (initialSpecies) {
+    speciesSelect.value = initialSpecies;
+    try {
+      await loadSpeciesBySlug(initialSpecies);
+    } catch (err) {
+      fail(`Could not load species "${initialSpecies}": ${err.message}`);
+    }
+  } else if (speciesIndex.length > 0) {
+    speciesSelect.value = speciesIndex[0].slug;
+    await loadSpeciesBySlug(speciesIndex[0].slug).catch((err) => fail(err.message));
+  } else {
+    fail("No species available (species/index.json is empty). Paste a species.json to preview one.");
+  }
+
+  animate();
+}
+
+pasteToggle.addEventListener("click", () => {
+  const showing = !pasteWrap.hidden;
+  pasteWrap.hidden = showing;
+  pasteToggle.setAttribute("aria-expanded", String(!showing));
+  pasteToggle.textContent = showing ? "Show paste box" : "Hide paste box";
+});
+
+pasteRender.addEventListener("click", () => {
+  let species;
+  try {
+    species = JSON.parse(pasteBox.value);
+  } catch (err) {
+    fail(`JSON parse error: ${err.message}`);
+    return;
+  }
+  loadModel(species);
+});
+
+playPauseBtn.addEventListener("click", () => {
+  playing = !playing;
+  playPauseBtn.textContent = playing ? "Pause" : "Play";
+});
+
+speedInput.addEventListener("input", () => {
+  speed = Number(speedInput.value);
+  speedLabel.textContent = `${speed.toFixed(1)}x`;
+});
+
+groundToggle.addEventListener("change", () => {
+  grid.visible = groundToggle.checked;
+});
+
+function animate() {
+  requestAnimationFrame(animate);
+  const dt = clock.getDelta();
+  if (playing && frozenPhase === null) {
+    elapsed += dt * speed;
+  }
+  if (currentModel && currentSpecies) {
+    const poseSpec = (currentSpecies.look.poses && currentSpecies.look.poses[currentPose]) || {};
+    const cycle = poseSpec.cycle_s || 2;
+    const phase = frozenPhase !== null ? frozenPhase : (elapsed / cycle) % 1;
+    applyPose(currentModel, currentSpecies, currentPose, phase);
+  }
+  if (controls) controls.update();
+  resize();
+  renderer.render(scene, camera);
+  // exposed for headless verification tooling only; harmless in normal use.
+  window.__previewDebug = { groups: currentGroups, scene, camera, THREE };
+}
+
+init().catch((err) => fail(err.message));
+</script>
+</body>
+</html>

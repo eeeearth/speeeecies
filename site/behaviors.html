@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Behaviour guide — speeeecies</title>
+<meta name="description" content="How to write an FSM or behaviour-tree program for a species, and the shared programs in full." />
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="css/site.css" />
+</head>
+<body>
+<header class="site-header">
+  <div class="bar">
+    <a class="brand" href="index.html">speeeecies</a>
+    <nav>
+      <a href="index.html">About</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="preview.html">Previewer</a>
+      <a href="schema.html">Schema</a>
+      <a href="behaviors.html" aria-current="page">Behaviour guide</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <h1>Behaviour guide</h1>
+  <p>
+    A species is driven by one behaviour <em>program</em>: either a state
+    machine (<code>kind: "fsm"</code>) or a behaviour tree
+    (<code>kind: "bt"</code>). Both share one vocabulary of predicates
+    (conditions) and actions, defined in
+    <code>schema/v0.1/behavior-program.schema.json</code>. Most species should
+    reach for one of the three shared programs in <code>behaviors/</code>
+    (shown in full below) and override its <code>params</code>; write a
+    species-local <code>behavior.json</code> only when none of them fit.
+  </p>
+
+  <h2 id="fsm">Finite state machines</h2>
+  <p>
+    One state is active at a time. Each tick:
+  </p>
+  <ol>
+    <li>
+      Every transition is checked in priority order, highest first; ties keep
+      the order they appear in the file. <code>from: "*"</code> matches any
+      current state. The <strong>first</strong> transition whose
+      <code>when</code> predicate holds fires — at most one transition per
+      tick — and the machine moves to its <code>to</code> state.
+    </li>
+    <li>
+      A state's <code>min_dwell_s</code> blocks any transition out of it
+      whose <code>priority</code> is <code>&le; 0</code> (the default, when a
+      transition has no <code>priority</code>) until that many seconds have
+      passed in the state. Transitions with <code>priority &gt; 0</code> (for
+      example, fleeing a threat) can always interrupt, dwell time or not.
+    </li>
+    <li>
+      Then the now-active state's <code>action</code> runs for this tick. If
+      an action fails (its target vanishes, its resource is gone), the
+      machine returns to <code>initial</code> rather than staying stuck.
+    </li>
+  </ol>
+
+  <h2 id="bt">Behaviour trees</h2>
+  <p>
+    The whole tree is ticked from the <code>root</code> every tick — there is
+    no persistent "current node" — so a higher branch can always interrupt a
+    lower one the moment its condition becomes true.
+  </p>
+  <ul>
+    <li><code>selector</code>: ticks children in order until one succeeds or is still running; used to pick the highest-priority applicable branch.</li>
+    <li><code>sequence</code>: ticks children in order until one fails. A <code>cond</code> child is <strong>re-checked every tick</strong>, not just once on entry, so a sequence aborts immediately if an earlier condition stops holding.</li>
+    <li><code>parallel</code>: ticks every child every tick; succeeds once <code>succeed_on</code> of them have succeeded.</li>
+    <li><code>inverter</code>: succeeds if its child fails, and vice versa.</li>
+    <li><code>succeeder</code>: always succeeds, whatever its child does.</li>
+    <li><code>repeat</code>: runs its child up to <code>repeat</code> times.</li>
+    <li><code>cooldown_s</code>: lets its child start at most once per that many seconds.</li>
+    <li><code>timeout_s</code>: fails its child if it has been running longer than that many seconds.</li>
+    <li><code>cond</code>: succeeds if its predicate holds, else fails; carries no action.</li>
+    <li><code>act</code>: runs one action.</li>
+    <li><code>subtree</code>: inlines another <code>bt</code> program's <code>root</code> by id.</li>
+  </ul>
+
+  <h2 id="params">Parameters and <code>${param}</code></h2>
+  <p>
+    A program's <code>params</code> block declares named values. Anywhere
+    else in the program, a string that is <strong>exactly</strong>
+    <code>${name}</code> — the whole string, not a substring inside a longer
+    one — is replaced by that param's value at load time. A species'
+    <code>behavior.params</code> may override a value for any param the
+    program declares; it cannot introduce new params the program doesn't
+    know about. A <code>seasonal.phases[].behavior_params</code> entry can
+    further override params only while that phase is active.
+  </p>
+
+  <h2 id="lint">Lint rules</h2>
+  <p>The validator statically checks every program:</p>
+  <ul>
+    <li>Every node and action type is one the schema knows.</li>
+    <li>Every <code>${param}</code> reference names a param the program actually declares.</li>
+    <li>Every declared param is used somewhere, and every <code>ParamOrNumber</code> value is within any range the field implies.</li>
+    <li>FSM: every state is reachable from <code>initial</code>, and every state has at least one way out (a transition whose <code>from</code> matches it, or <code>from: "*"</code>).</li>
+    <li>No unknown <code>call</code> id — every <code>sing</code>/<code>alarm</code> action's <code>call</code> must name a <code>call_id</code> the species actually declares in <code>vocalizations</code>.</li>
+    <li><code>subtree</code> references resolve to a real <code>bt</code> program id, with no cycles.</li>
+  </ul>
+
+  <h2 id="vocabulary">Predicate vocabulary</h2>
+  <div id="predicates-out"><p class="notice">Loading…</p></div>
+
+  <h2 id="actions">Action vocabulary</h2>
+  <div id="actions-out"></div>
+
+  <h2 id="programs">Shared programs</h2>
+  <div id="programs-out"></div>
+</main>
+
+<script type="module">
+import { el } from "./js/dom.js";
+
+// Everything below comes from schema/v0.1/behavior-program.schema.json and
+// behaviors/*.json — files in the public repo, editable by contributor PRs —
+// so it is treated as untrusted: rendered with el()/textContent only, never
+// innerHTML.
+
+const PREDICATE_DEFS = [
+  "NeedPredicate", "ThreatWithin", "FoodWithin", "WaterWithin", "ShelterWithin",
+  "PerchWithin", "NestSiteWithin", "ConspecificsWithin", "IsDay", "SunElevation",
+  "MonthIn", "TemperatureBetween", "PlayerOffer", "PlayerTouch", "PlayerWithin",
+  "Blackboard", "Chance", "AllPredicate", "AnyPredicate", "NotPredicate",
+];
+
+function fieldsOf(def) {
+  return Object.keys(def.properties || {});
+}
+
+function renderPredicates(schema) {
+  const defs = schema.$defs;
+  const rows = PREDICATE_DEFS.filter((n) => defs[n]).map((name) => {
+    const def = defs[name];
+    const fields = fieldsOf(def).join(", ");
+    return el(
+      "tr",
+      null,
+      el("td", { class: "field-name" }, name),
+      el("td", null, el("code", null, `{${fields}}`)),
+      el("td", null, def.description || "")
+    );
+  });
+  return el(
+    "table",
+    null,
+    el(
+      "thead",
+      null,
+      el("tr", null, el("th", null, "Predicate"), el("th", null, "Shape"), el("th", null, "Meaning"))
+    ),
+    el("tbody", null, rows)
+  );
+}
+
+function renderActions(schema) {
+  const actionName = schema.$defs.ActionName;
+  const rows = actionName.enum.map((n) => el("tr", null, el("td", { class: "field-name" }, n)));
+  return [
+    el("p", null, actionName.description || ""),
+    el(
+      "table",
+      null,
+      el("thead", null, el("tr", null, el("th", null, "Action (", el("code", null, "do"), ")"))),
+      el("tbody", null, rows)
+    ),
+    el(
+      "p",
+      null,
+      "An ",
+      el("code", null, "ActionSpec"),
+      " is ",
+      el("code", null, "{do, tag?, gait?, at?, call?, kind?}"),
+      " — which extra fields apply depends on the action, e.g. ",
+      el("code", null, "eat_nearest"),
+      " takes ",
+      el("code", null, "tag"),
+      " and ",
+      el("code", null, "gait"),
+      ", ",
+      el("code", null, "sing"),
+      "/",
+      el("code", null, "alarm"),
+      " take ",
+      el("code", null, "call"),
+      ", ",
+      el("code", null, "emote"),
+      " takes ",
+      el("code", null, "kind"),
+      "."
+    ),
+  ];
+}
+
+async function main() {
+  try {
+    const schema = await fetch("schema/v0.1/behavior-program.schema.json").then((r) => r.json());
+    document.getElementById("predicates-out").replaceChildren(renderPredicates(schema));
+    document.getElementById("actions-out").replaceChildren(...renderActions(schema));
+  } catch (err) {
+    document
+      .getElementById("predicates-out")
+      .replaceChildren(el("p", { class: "notice warn" }, `Could not load the behaviour schema: ${err.message}`));
+  }
+
+  const programFiles = [
+    "fsm-ground-forager-v1.json",
+    "bt-perching-songbird-v1.json",
+    "fsm-anuran-nocturnal-v1.json",
+  ];
+  const out = document.getElementById("programs-out");
+  for (const file of programFiles) {
+    try {
+      const prog = await fetch(`behaviors/${file}`).then((r) => r.json());
+      const paramEntries = Object.entries(prog.params || {});
+      const params =
+        paramEntries.length === 0
+          ? "none"
+          : paramEntries.flatMap(([k, v], i) => {
+              const pair = [el("code", null, k), `=${v}`];
+              return i === 0 ? pair : [", ", ...pair];
+            });
+      const section = el(
+        "section",
+        { class: "def-block", id: prog.id },
+        el("h3", null, prog.id, " ", el("span", { class: "badge" }, prog.kind)),
+        el("p", null, prog.description || ""),
+        el("p", null, el("strong", null, "Params:"), " ", params),
+        el("pre", null, el("code", null, JSON.stringify(prog, null, 2)))
+      );
+      out.appendChild(section);
+    } catch (err) {
+      out.appendChild(el("p", { class: "notice warn" }, `Could not load ${file}: ${err.message}`));
+    }
+  }
+}
+
+main();
+</script>
+</body>
+</html>

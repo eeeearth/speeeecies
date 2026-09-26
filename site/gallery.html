@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Gallery — speeeecies</title>
+<meta name="description" content="Every species contributed to speeeecies so far, with a rendered thumbnail." />
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="css/site.css" />
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="bar">
+    <a class="brand" href="index.html">speeeecies</a>
+    <nav>
+      <a href="index.html">About</a>
+      <a href="gallery.html" aria-current="page">Gallery</a>
+      <a href="preview.html">Previewer</a>
+      <a href="schema.html">Schema</a>
+      <a href="behaviors.html">Behaviour guide</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <h1>Gallery</h1>
+  <p>Every species contributed so far. Click a card's links to open it in the previewer or read the raw record on GitHub.</p>
+  <p id="status" class="notice">Loading species…</p>
+  <div class="grid" id="grid"></div>
+</main>
+
+<footer class="site-footer">
+  <p>Species data is contributed under CC BY-SA 4.0 unless a record says otherwise; see each species' attribution.</p>
+</footer>
+
+<script type="module">
+import * as THREE from "three";
+import { buildModel, poseModel } from "./js/blockmesh.js";
+import { el, safeHref } from "./js/dom.js";
+
+const REPO_BLOB = "https://github.com/jt55401/speeeecies/blob/main";
+const grid = document.getElementById("grid");
+const statusEl = document.getElementById("status");
+
+// One shared offscreen renderer draws every thumbnail to a data URL.
+const SIZE = 320;
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false, preserveDrawingBuffer: true });
+renderer.setSize(SIZE, SIZE);
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xcfd8dc);
+const camera = new THREE.PerspectiveCamera(40, 1, 0.01, 1000);
+// Bright, mostly-neutral lighting so light palette colours (cream, white
+// markings) read true instead of grey.
+scene.add(new THREE.HemisphereLight(0xffffff, 0x8a8a8a, 1.3));
+scene.add(new THREE.AmbientLight(0xffffff, 0.55));
+const sun = new THREE.DirectionalLight(0xffffff, 1.3);
+sun.position.set(3, 6, 4);
+scene.add(sun);
+const boxGeom = new THREE.BoxGeometry(1, 1, 1);
+
+function buildGroups(model) {
+  const groups = {};
+  const root = new THREE.Group();
+  for (const part of model.parts) {
+    const group = new THREE.Group();
+    const parentPivot = part.parent ? groups[part.parent].userData.worldPivot : [0, 0, 0];
+    group.position.set(
+      part.pivot[0] - parentPivot[0],
+      part.pivot[1] - parentPivot[1],
+      part.pivot[2] - parentPivot[2]
+    );
+    group.userData.worldPivot = part.pivot;
+    const mat = new THREE.MeshStandardMaterial({ color: part.color, roughness: 0.85 });
+    const mesh = new THREE.Mesh(boxGeom, mat);
+    mesh.scale.set(Math.max(part.size[0], 1e-4), Math.max(part.size[1], 1e-4), Math.max(part.size[2], 1e-4));
+    mesh.position.set(
+      part.center[0] - part.pivot[0],
+      part.center[1] - part.pivot[1],
+      part.center[2] - part.pivot[2]
+    );
+    group.add(mesh);
+    if (part.parent && groups[part.parent]) groups[part.parent].add(group);
+    else root.add(group);
+    groups[part.name] = group;
+  }
+  return root;
+}
+
+function renderThumbnail(species, bodyPlans) {
+  const model = buildModel(species, bodyPlans);
+  const root = buildGroups(model);
+  scene.add(root);
+
+  const b = model.bounds;
+  const center = [(b.min[0] + b.max[0]) / 2, (b.min[1] + b.max[1]) / 2, (b.min[2] + b.max[2]) / 2];
+  const size = [b.max[0] - b.min[0], b.max[1] - b.min[1], b.max[2] - b.min[2]];
+  const radius = Math.max(0.05, Math.hypot(size[0], size[1], size[2]) / 2);
+  const dist = (radius / Math.sin((camera.fov * Math.PI) / 360)) * 1.2;
+  const yaw = THREE.MathUtils.degToRad(35);
+  const pitch = THREE.MathUtils.degToRad(18);
+  camera.position.set(
+    center[0] + Math.cos(pitch) * Math.sin(yaw) * dist,
+    center[1] + Math.sin(pitch) * dist,
+    center[2] + Math.cos(pitch) * Math.cos(yaw) * dist
+  );
+  camera.near = Math.max(radius / 100, 0.001);
+  camera.far = dist + radius * 10;
+  camera.updateProjectionMatrix();
+  camera.lookAt(center[0], center[1], center[2]);
+
+  renderer.render(scene, camera);
+  const url = renderer.domElement.toDataURL("image/png");
+  scene.remove(root);
+  return url;
+}
+
+async function main() {
+  let bodyPlans;
+  let index;
+  try {
+    [bodyPlans, index] = await Promise.all([
+      fetch("schema/v0.1/body-plans.json").then((r) => r.json()),
+      fetch("species/index.json").then((r) => r.json()),
+    ]);
+  } catch (err) {
+    statusEl.textContent = `Could not load the species index: ${err.message}`;
+    return;
+  }
+
+  if (index.length === 0) {
+    statusEl.textContent = "No species yet — the gallery fills in as contributions land.";
+    return;
+  }
+  statusEl.remove();
+
+  for (const entry of index) {
+    // Every field below comes from species/index.json, built from
+    // contributor-authored species.json files — untrusted strings, so the
+    // card is built entirely with el()/DOM APIs (text nodes and attribute
+    // values only), never innerHTML.
+    const img = el("img", { alt: `${entry.common_name_en || entry.slug} block-mesh model` });
+    const card = el(
+      "div",
+      { class: "card species-card" },
+      el("h3", null, entry.common_name_en || entry.slug),
+      el("div", { class: "sci" }, entry.id || ""),
+      el(
+        "div",
+        { class: "badges" },
+        el("span", { class: "badge" }, entry.class || ""),
+        el("span", { class: "badge" }, entry.body_plan || "")
+      ),
+      img,
+      el(
+        "div",
+        { class: "links" },
+        el("a", { href: safeHref("preview.html?species=", entry.slug) }, "Previewer"),
+        el("a", { href: safeHref(`${REPO_BLOB}/species/`, entry.slug, "/species.json") }, "species.json")
+      )
+    );
+    grid.appendChild(card);
+
+    try {
+      const species = await fetch(entry.path || `species/${entry.slug}/species.json`).then((r) => r.json());
+      img.src = renderThumbnail(species, bodyPlans);
+    } catch (err) {
+      img.remove();
+      const warn = document.createElement("p");
+      warn.className = "notice warn";
+      warn.textContent = `Could not render a thumbnail: ${err.message}`;
+      card.appendChild(warn);
+    }
+  }
+}
+
+main();
+</script>
+</body>
+</html>

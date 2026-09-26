@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>speeeecies</title>
+<meta name="description" content="A public kit for adding animal species to a live ecological simulation." />
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="css/site.css" />
+</head>
+<body>
+<header class="site-header">
+  <div class="bar">
+    <a class="brand" href="index.html">speeeecies</a>
+    <nav>
+      <a href="index.html" aria-current="page">About</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="preview.html">Previewer</a>
+      <a href="schema.html">Schema</a>
+      <a href="behaviors.html">Behaviour guide</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <h1>speeeecies</h1>
+  <p>
+    speeeecies is a public kit for adding animal species to a live ecological
+    simulation. You, or your coding agent, write one JSON record per species —
+    what it is, how big it is, what it eats, when it is active, how it
+    behaves, what it sounds like and what its blocky 3D model looks like. A
+    validator checks the record, a browser previewer shows the model, and a
+    pull request delivers it. The simulation that imports accepted records is
+    not part of this repository and is not needed to contribute.
+  </p>
+  <p>
+    Watch the simulation live:
+    <a href="https://www.youtube.com/@jt55401/live">youtube.com/@jt55401/live</a>.
+  </p>
+
+  <div class="notice">
+    <strong>Plants are phase 2.</strong> v0 covers animals only. Plants need a
+    data-driven preset format first (roadmap item <code>SPEEEECIES-M8</code>);
+    plant <code>species-request</code> issues open once that lands.
+  </div>
+
+  <h2>How a coding agent contributes</h2>
+  <ol>
+    <li>Pick an open <code>species-request</code> issue in the repository and claim it with a comment.</li>
+    <li>Create <code>species/&lt;slug&gt;/species.json</code>, where <code>slug</code> is the lowercase, hyphenated scientific name (<code>vulpes-vulpes</code>).</li>
+    <li>Run <code>tools/fetch_activity.py &lt;slug&gt; --region &lt;ISO&gt; --write</code> to fill in the monthly activity curve for each region the species covers.</li>
+    <li>Run <code>tools/validate.py species/&lt;slug&gt; --report</code> until it passes with no errors (warnings are fine, but explain them).</li>
+    <li>Open the <a href="preview.html">previewer</a> and check the model's pose, proportions and colours actually look like the animal.</li>
+    <li>Open a pull request that includes the validator's report.</li>
+  </ol>
+  <p>
+    Full details are in <a href="docs/AGENTS.md">AGENTS.md</a> (for agents) and
+    <a href="docs/CONTRIBUTING.md">CONTRIBUTING.md</a> (for people).
+  </p>
+
+  <h2>Licence preference</h2>
+  <p>
+    Prefer unencumbered sources, in order: <strong>CC0 / public domain</strong>
+    first, then <strong>CC BY</strong>, then <strong>CC BY-SA</strong> and
+    similar share-alike licences. Non-commercial licences
+    (<strong>CC BY-NC</strong>) are accepted only as a last resort, and are
+    always flagged with a warning in the validator's report so they can be
+    replaced or removed later. Every non-CC0 source needs an attribution line;
+    the validator writes it into <code>species/&lt;slug&gt;/ATTRIBUTION.md</code>.
+  </p>
+
+  <h2>Explore</h2>
+  <ul>
+    <li><a href="gallery.html">Gallery</a> — every species contributed so far, with a rendered thumbnail.</li>
+    <li><a href="preview.html">Previewer</a> — render, pose and orbit any species' model in the browser, or paste a draft <code>species.json</code>.</li>
+    <li><a href="schema.html">Schema docs</a> — every field of the species and behaviour-program records, generated from the JSON Schema.</li>
+    <li><a href="behaviors.html">Behaviour guide</a> — how to write an FSM or behaviour tree program, with the shared programs shown in full.</li>
+  </ul>
+
+  <h2>More on GitHub</h2>
+  <ul>
+    <li><a href="https://github.com/jt55401/speeeecies/blob/main/AGENTS.md">AGENTS.md</a> — the agent's step-by-step guide.</li>
+    <li><a href="https://github.com/jt55401/speeeecies/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a> — the human's guide.</li>
+    <li><a href="https://github.com/jt55401/speeeecies/blob/main/ROADMAP.md">ROADMAP.md</a> — what's built and what's next.</li>
+  </ul>
+</main>
+
+<footer class="site-footer">
+  <p>Code is MIT licensed. Species and behaviour data is CC BY-SA 4.0 unless a record says otherwise.</p>
+</footer>
+</body>
+</html>
