@@ -17,8 +17,14 @@ Usage:
     uv run tools/validate.py [PATH ...]
     uv run tools/validate.py --report
     uv run tools/validate.py species/vulpes-vulpes --write-attribution
+    uv run tools/validate.py --locale london-uk --report
+    uv run tools/validate.py --self-check
 
 With no PATH, every `species/*/` and `behaviors/*.json` is checked.
+`--locale <id>` checks `locales/<id>/locale.json` and every species it
+lists (see "Contribute a locale" in AGENTS.md). `--self-check` scans the
+repository for text shaped like a street address, a home-directory path,
+a `.local` hostname or an SSH git remote.
 """
 
 from __future__ import annotations
@@ -28,6 +34,7 @@ import copy
 import fnmatch
 import json
 import re
+import subprocess
 import sys
 from collections import Counter
 from dataclasses import dataclass, field
@@ -103,6 +110,7 @@ class Schemas:
         )
         self.body_plans = json.loads((schema_dir / "body-plans.json").read_text())
         self.licenses = json.loads((schema_dir / "licenses.json").read_text())
+        self.locale_schema = json.loads((schema_dir / "locale.schema.json").read_text())
         self._validators: dict[int, jsonschema.protocols.Validator] = {}
 
     def validator_for(self, schema: dict) -> jsonschema.protocols.Validator:
@@ -1448,8 +1456,12 @@ class StandaloneProgramReport:
 class Result:
     species_reports: list[SpeciesReport] = field(default_factory=list)
     program_reports: list[StandaloneProgramReport] = field(default_factory=list)
+    locale_reports: list[LocaleReport] = field(default_factory=list)
 
     def has_errors(self, strict: bool) -> bool:
+        for lr in self.locale_reports:
+            if has_blocking_errors(lr.findings, strict):
+                return True
         for sr in self.species_reports:
             if has_blocking_errors(sr.all_findings(), strict):
                 return True
@@ -1594,6 +1606,260 @@ def validate_standalone_program(
 
 
 # ---------------------------------------------------------------------------
+# Public-safety text lint (locales and --self-check)
+# ---------------------------------------------------------------------------
+
+# Generic shapes only. This repository is public, so it must never carry a
+# list of specific private words; each pattern describes a *kind* of leak.
+TEXT_LINT_RULES: list[tuple[str, re.Pattern[str], str]] = [
+    (
+        "StreetAddress",
+        re.compile(r"\b\d+ [A-Z][a-z]+ (?:St|Ave|Rd|Ln|Dr|Street|Avenue|Road)\b"),
+        "looks like a street address; name a city or district and use its public centroid instead",
+    ),
+    (
+        "HomePath",
+        re.compile(r"/(?:home|Users)/[A-Za-z0-9._-]+/"),
+        "looks like an absolute home-directory path; use a repo-relative path",
+    ),
+    (
+        "LocalHostname",
+        re.compile(r"\b[A-Za-z0-9][A-Za-z0-9-]*\.local\b"),
+        "looks like a local-network hostname (*.local); leave machine names out",
+    ),
+    (
+        "SshRemote",
+        re.compile(r"git@github\.com:"),
+        "looks like an SSH git remote; link public repositories by https URL",
+    ),
+]
+
+# Paths --self-check never scans: the lint's own test fixtures, which hold
+# deliberately bad strings, and generated or vendored output.
+SELF_CHECK_EXCLUDED_PREFIXES = ("tools/tests/fixtures/",)
+SELF_CHECK_SKIPPED_DIRS = {".git", "_site", ".venv", "venv", "__pycache__", ".pytest_cache", "node_modules"}
+
+
+def lint_text(text: str, path: str) -> list[Finding]:
+    findings = []
+    for lineno, line in enumerate(text.splitlines(), start=1):
+        for code, pattern, message in TEXT_LINT_RULES:
+            match = pattern.search(line)
+            if match:
+                findings.append(Finding("error", code, f"{path}:{lineno}", f"{message} (matched '{match.group(0)}')"))
+    return findings
+
+
+def lint_file(path: Path, rel: str) -> list[Finding]:
+    try:
+        text = path.read_text(encoding="utf-8")
+    except (OSError, UnicodeDecodeError):
+        return []  # binary or unreadable: nothing textual to leak
+    return lint_text(text, rel)
+
+
+def self_check_files(root: Path) -> list[str]:
+    """Repo-relative paths --self-check scans: tracked plus untracked,
+    non-ignored files when `root` is a git checkout, else a directory walk."""
+    try:
+        out = subprocess.run(
+            ["git", "-C", str(root), "ls-files", "-z", "--cached", "--others", "--exclude-standard"],
+            capture_output=True,
+            check=True,
+        ).stdout.decode("utf-8")
+        rels = [p for p in out.split("\0") if p]
+        # ls-files is relative to the repository top level, which is `root`
+        # unless `root` is nested inside some other checkout.
+        top = subprocess.run(
+            ["git", "-C", str(root), "rev-parse", "--show-toplevel"], capture_output=True, check=True, text=True
+        ).stdout.strip()
+        if Path(top).resolve() != root.resolve():
+            raise subprocess.CalledProcessError(1, "git")
+    except (OSError, subprocess.CalledProcessError):
+        rels = []
+        for p in sorted(root.rglob("*")):
+            rel_parts = p.relative_to(root).parts
+            if p.is_file() and not any(part in SELF_CHECK_SKIPPED_DIRS for part in rel_parts):
+                rels.append("/".join(rel_parts))
+    return sorted(
+        r
+        for r in rels
+        if not r.startswith(SELF_CHECK_EXCLUDED_PREFIXES)
+        and not any(part in SELF_CHECK_SKIPPED_DIRS for part in r.split("/"))
+        and (root / r).is_file()
+    )
+
+
+def run_self_check(root: Path) -> tuple[int, list[Finding]]:
+    files = self_check_files(root)
+    findings: list[Finding] = []
+    for rel in files:
+        findings.extend(lint_file(root / rel, rel))
+    return len(files), findings
+
+
+# ---------------------------------------------------------------------------
+# Locale manifests (locales/<id>/locale.json)
+# ---------------------------------------------------------------------------
+
+LOCALE_MIN_SPECIES = 8
+LOCALE_ID_RE = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
+
+
+@dataclass
+class LocaleSpeciesRow:
+    slug: str
+    activity: bool = False
+    program: str | None = None
+    move_poses: list[str] = field(default_factory=list)
+    cleanliness: float | None = None
+    errors: int = 0
+
+
+@dataclass
+class LocaleReport:
+    locale_id: str
+    path: Path
+    manifest: dict | None
+    findings: list[Finding] = field(default_factory=list)
+    species_rows: list[LocaleSpeciesRow] = field(default_factory=list)
+
+
+def more_than_two_decimals(value: Any) -> bool:
+    return is_number(value) and abs(value - round(value, 2)) > 1e-9
+
+
+def check_locale_fact_sources(manifest: dict, policy: dict, findings: list[Finding]) -> None:
+    attribution_not_required = set(policy.get("attribution_not_required", []))
+    sourced = [(f"facts[{i}].source", fact.get("source")) for i, fact in enumerate(manifest.get("facts", []))]
+    if "place_source" in manifest:
+        sourced.append(("place_source", manifest["place_source"]))
+    for path, src in sourced:
+        if not isinstance(src, dict):
+            continue
+        lic = src.get("license")
+        tier = license_tier(lic, policy)
+        if tier is None:
+            findings.append(Finding("error", "RejectedLicense", f"{path}.license", f"license '{lic}' is rejected or unknown"))
+            continue
+        if tier.get("warning"):
+            findings.append(Finding("warning", "NonCommercialLicense", f"{path}.license", f"license '{lic}' is tier 4 (non-commercial)"))
+        if lic not in attribution_not_required and not src.get("attribution"):
+            findings.append(Finding("error", "MissingAttribution", f"{path}.attribution", f"license '{lic}' requires an attribution line"))
+
+
+def check_locale_species(
+    slug: str,
+    region: str | None,
+    species_report: SpeciesReport,
+    body_plans: dict,
+    findings: list[Finding],
+) -> LocaleSpeciesRow:
+    """The per-species conditions a locale adds on top of the species' own
+    validation: an activity curve for the locale's region, a behaviour
+    program, and a block mesh with an idle pose and at least one move pose."""
+    row = LocaleSpeciesRow(slug=slug, cleanliness=species_report.cleanliness)
+    row.errors = sum(1 for f in species_report.all_findings() if f.level == "error")
+    path = f"species[{slug}]"
+    if row.errors:
+        findings.append(Finding("error", "LocaleSpeciesInvalid", path, f"species/{slug} has {row.errors} validation error(s); see its section of the report"))
+    species = species_report.species
+    if not isinstance(species, dict):
+        return row
+
+    regions = {r.get("region"): r for r in species.get("activity", {}).get("regions", []) if isinstance(r, dict)}
+    entry = regions.get(region)
+    monthly = entry.get("monthly") if entry else None
+    if entry is None:
+        findings.append(
+            Finding(
+                "error",
+                "LocaleMissingActivity",
+                path,
+                f"no activity curve for '{region}'; run tools/fetch_activity.py {slug} --region {region} --write",
+            )
+        )
+    elif not (isinstance(monthly, list) and len(monthly) == 12 and all(is_number(v) for v in monthly)):
+        findings.append(Finding("error", "LocaleBadActivity", path, f"activity curve for '{region}' needs 12 monthly values"))
+    else:
+        row.activity = True
+
+    if species_report.program_reports:
+        row.program = species_report.program_reports[0].program_id
+    else:
+        findings.append(Finding("error", "LocaleMissingBehavior", path, "no behaviour program resolves for this species"))
+
+    poses = species.get("look", {}).get("poses", {}) or {}
+    move_pose_names = set(body_plans.get("locomotion_to_pose", {}).values())
+    row.move_poses = sorted(p for p in poses if p in move_pose_names)
+    if "idle" not in poses:
+        findings.append(Finding("error", "LocaleMissingIdlePose", path, "block mesh has no 'idle' pose"))
+    if not row.move_poses:
+        findings.append(
+            Finding("error", "LocaleMissingMovePose", path, f"block mesh has no move pose (one of {', '.join(sorted(move_pose_names))})")
+        )
+    return row
+
+
+def validate_locale(
+    locale_id: str,
+    root: Path,
+    schemas: Schemas,
+    cache: dict[str, Any | None],
+    structural_done: set[str],
+    species_reports: dict[str, SpeciesReport],
+) -> LocaleReport:
+    """Checks one locale. Species it lists are validated once and cached in
+    `species_reports` so several locales sharing a species cost one pass."""
+    locale_dir = root / "locales" / locale_id
+    manifest_path = locale_dir / "locale.json"
+    findings: list[Finding] = []
+    report = LocaleReport(locale_id=locale_id, path=locale_dir, manifest=None, findings=findings)
+    if not LOCALE_ID_RE.match(locale_id) or not manifest_path.is_file():
+        findings.append(Finding("error", "LocaleNotFound", f"locales/{locale_id}", f"no locales/{locale_id}/locale.json"))
+        return report
+    manifest = load_json(manifest_path, findings)
+    report.manifest = manifest
+    if not isinstance(manifest, dict):
+        return report
+
+    findings.extend(schema_findings(manifest, schemas.locale_schema, schemas, "locale"))
+    if manifest.get("id") != locale_id:
+        findings.append(Finding("error", "LocaleIdMismatch", "locale.id", f"id '{manifest.get('id')}' != directory name '{locale_id}'"))
+    country = manifest.get("country")
+    region = manifest.get("activity_region")
+    if isinstance(region, str) and isinstance(country, str) and region_country(region) != country:
+        findings.append(Finding("error", "LocaleRegionCountry", "locale.activity_region", f"'{region}' is not in country '{country}'"))
+    for key in ("public_lat", "public_lon"):
+        if more_than_two_decimals(manifest.get(key)):
+            findings.append(
+                Finding("error", "LocaleCoordinatePrecision", f"locale.{key}", f"{manifest.get(key)} has more than 2 decimals; give a public centroid rounded to 0.01 degrees")
+            )
+    check_locale_fact_sources(manifest, schemas.licenses, findings)
+
+    slugs = [s for s in manifest.get("species", []) if isinstance(s, str)]
+    existing = []
+    for slug in dict.fromkeys(slugs):
+        species_dir = root / "species" / slug
+        if not (species_dir / "species.json").is_file():
+            findings.append(Finding("error", "LocaleUnknownSpecies", f"species[{slug}]", f"species/{slug}/species.json does not exist"))
+            continue
+        existing.append(slug)
+        if slug not in species_reports:
+            species_reports[slug] = validate_species(species_dir, root, schemas, cache, structural_done)
+        report.species_rows.append(check_locale_species(slug, region, species_reports[slug], schemas.body_plans, findings))
+    if len(existing) < LOCALE_MIN_SPECIES:
+        findings.append(
+            Finding("error", "LocaleTooFewSpecies", "locale.species", f"{len(existing)} valid species listed; a locale needs at least {LOCALE_MIN_SPECIES}")
+        )
+
+    for p in sorted(locale_dir.rglob("*")):
+        if p.is_file():
+            findings.extend(lint_file(p, str(p.relative_to(root))))
+    return report
+
+
+# ---------------------------------------------------------------------------
 # Target discovery
 # ---------------------------------------------------------------------------
 
@@ -1671,7 +1937,14 @@ def render_plain(result: Result, strict: bool) -> str:
                 total_errors += 1
             elif f.level == "warning":
                 total_warnings += 1
-    n_targets = len(result.species_reports) + len(result.program_reports)
+    for lr in result.locale_reports:
+        for f in lr.findings:
+            lines.append(f.line())
+            if f.level == "error":
+                total_errors += 1
+            elif f.level == "warning":
+                total_warnings += 1
+    n_targets = len(result.species_reports) + len(result.program_reports) + len(result.locale_reports)
     lines.append(f"--- {n_targets} target(s): {total_errors} error(s), {total_warnings} warning(s) ---")
     return "\n".join(lines)
 
@@ -1691,8 +1964,42 @@ def render_visual_check_table(images: list[dict], target_label: str) -> list[str
     return lines
 
 
+def render_locale_markdown(lr: LocaleReport) -> list[str]:
+    errors = [x for x in lr.findings if x.level == "error"]
+    warnings_ = [x for x in lr.findings if x.level == "warning"]
+    lines = [f"## Locale `{lr.locale_id}` {status_icon(lr.findings)}", ""]
+    manifest = lr.manifest if isinstance(lr.manifest, dict) else {}
+    if manifest:
+        lines.append(
+            f"{manifest.get('name', '?')}: {manifest.get('country', '?')}, activity region "
+            f"`{manifest.get('activity_region', '?')}`, plot `{manifest.get('plot_template', '?')}`, "
+            f"Köppen `{manifest.get('koppen', '?')}`, {len(lr.species_rows)} species."
+        )
+        lines.append("")
+    if lr.species_rows:
+        lines.append("| species | activity | behaviour | move poses | cleanliness | errors |")
+        lines.append("|---|---|---|---|---|---|")
+        for row in lr.species_rows:
+            clean = row.cleanliness if row.cleanliness is not None else "-"
+            lines.append(
+                f"| {row.slug} | {'yes' if row.activity else 'no'} | {row.program or '-'} | "
+                f"{', '.join(row.move_poses) or '-'} | {clean} | {row.errors} |"
+            )
+        lines.append("")
+    if errors:
+        lines.append("### Errors")
+        lines.extend(f"- `{e.code}` {e.path}: {e.message}" for e in errors)
+    if warnings_:
+        lines.append("### Warnings")
+        lines.extend(f"- `{w.code}` {w.path}: {w.message}" for w in warnings_)
+    lines.append("")
+    return lines
+
+
 def render_markdown(result: Result) -> str:
     lines = ["# speeeecies validation report", ""]
+    for lr in result.locale_reports:
+        lines.extend(render_locale_markdown(lr))
     lines.append("| species | status | errors | warnings | cleanliness | provenance |")
     lines.append("|---|---|---|---|---|---|")
     for sr in result.species_reports:
@@ -1783,6 +2090,17 @@ def render_json(result: Result) -> dict:
             }
             for sr in result.species_reports
         ],
+        "locales": [
+            {
+                "id": lr.locale_id,
+                "findings": [finding_dict(f) for f in lr.findings],
+                "species": [
+                    {"slug": row.slug, "activity": row.activity, "program": row.program, "move_poses": row.move_poses, "errors": row.errors}
+                    for row in lr.species_rows
+                ],
+            }
+            for lr in result.locale_reports
+        ],
         "programs": [
             {
                 "path": str(pr.path),
@@ -1797,6 +2115,25 @@ def render_json(result: Result) -> dict:
 # ---------------------------------------------------------------------------
 # CLI
 # ---------------------------------------------------------------------------
+
+
+def run_locales(locale_ids: list[str], root: Path) -> Result:
+    schemas = Schemas(root)
+    cache: dict[str, Any | None] = {}
+    structural_done: set[str] = set()
+    species_reports: dict[str, SpeciesReport] = {}
+    result = Result()
+    for locale_id in locale_ids:
+        result.locale_reports.append(validate_locale(locale_id, root, schemas, cache, structural_done, species_reports))
+    result.species_reports = list(species_reports.values())
+    return result
+
+
+def all_locale_ids(root: Path) -> list[str]:
+    locales_dir = root / "locales"
+    if not locales_dir.is_dir():
+        return []
+    return sorted(p.name for p in locales_dir.iterdir() if (p / "locale.json").is_file())
 
 
 def run(paths: list[str], root: Path) -> tuple[Result, list[Finding]]:
@@ -1821,6 +2158,17 @@ def build_arg_parser() -> argparse.ArgumentParser:
     parser.add_argument("--write-attribution", action="store_true", help="write species/<slug>/ATTRIBUTION.md")
     parser.add_argument("--json", action="store_true", help="print a machine-readable JSON result")
     parser.add_argument("--strict", action="store_true", help="treat warnings as errors for the exit code")
+    parser.add_argument(
+        "--locale",
+        action="append",
+        metavar="ID",
+        help="validate locales/<ID>/locale.json and the species it lists (repeatable; 'all' checks every locale)",
+    )
+    parser.add_argument(
+        "--self-check",
+        action="store_true",
+        help="scan the repository for street addresses, home paths, .local hostnames and SSH remotes",
+    )
     parser.add_argument("--root", help="repository root override (for tests)")
     return parser
 
@@ -1830,8 +2178,25 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
     root = Path(args.root).resolve() if args.root else default_root()
 
+    if args.self_check:
+        n_files, lint_findings = run_self_check(root)
+        for f in lint_findings:
+            print(f.line())
+        print(f"--- self-check: {n_files} file(s) scanned, {len(lint_findings)} finding(s) ---")
+        if lint_findings:
+            return 1
+        if not args.locale and not args.paths:
+            return 0
+
     try:
-        result, usage_findings = run(args.paths, root)
+        if args.locale:
+            if args.paths:
+                print("error: give either species paths or --locale, not both", file=sys.stderr)
+                return 2
+            locale_ids = all_locale_ids(root) if args.locale == ["all"] else args.locale
+            result, usage_findings = run_locales(locale_ids, root), []
+        else:
+            result, usage_findings = run(args.paths, root)
     except FileNotFoundError as exc:
         print(f"error: {exc}", file=sys.stderr)
         return 2
