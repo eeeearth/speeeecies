@@ -341,6 +341,55 @@
             "gbif"
           ]
         }
+      },
+      {
+        "region": "GB-ENG",
+        "monthly": [
+          0.03,
+          0.3,
+          1.0,
+          0.81,
+          0.71,
+          0.76,
+          0.75,
+          0.71,
+          0.52,
+          0.24,
+          0.06,
+          0.02
+        ],
+        "method": "mean(inat_raw, gbif_raw)",
+        "observations": 25106,
+        "sources": [
+          "inat-activity-gb-eng",
+          "gbif-activity-gb-eng"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 6858,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=326296&place_id=6858&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": null,
+            "total": 2367,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "GBR.1_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5217160&gadmGid=GBR.1_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": null,
+            "total": 22739,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
       }
     ]
   },
@@ -539,6 +588,24 @@
       "license": "CC-BY-4.0",
       "attribution": "GBIF.org (2026-09-25) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
       "accessed": "2026-09-25",
+      "kind": "api"
+    },
+    {
+      "id": "inat-activity-gb-eng",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=326296&place_id=6858&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Bufo bufo in GB-ENG",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-09-26",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-gb-eng",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5217160&gadmGid=GBR.1_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Bufo bufo in GB-ENG",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-09-26) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-09-26",
       "kind": "api"
     }
   ],
