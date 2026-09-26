@@ -28,10 +28,11 @@
   <h1>Locales</h1>
   <p>
     A locale is a public place the live simulation can show: a city or district centroid, its climate,
-    a generic plot and at least 8 species from the gallery. A locale joins the live rotation after its
-    pull request is merged, CI passes, and the maintainers' import succeeds; see
-    <a href="docs/AGENTS.md">AGENTS.md</a> ("Contribute a locale") to add one.
-    Plants are phase 2, so every locale uses a default plant catalog for its climate for now.
+    a generic plot, the plants its garden shows, and at least 8 species from the gallery (aim for 12 or
+    more). A locale joins the live rotation after its pull request is merged, CI passes, and the
+    maintainers' import succeeds; see <a href="docs/AGENTS.md">AGENTS.md</a> ("Contribute a locale") to
+    add one, and <a href="docs/locale-richness.md">locale-richness.md</a> for why these targets matter.
+    A locale without a <code>flora-catalog.json</code> gets a default plant catalog for its climate.
   </p>
   <p>
     Want a place that isn't here? Take an open
@@ -82,8 +83,12 @@ async function main() {
         el("li", null, el("a", { href: safeHref("preview.html?species=", s.slug) }, s.common_name_en || s.slug))
       )
     );
-    const flora = (loc.flora_wishlist || []).length
-      ? el("p", { class: "locale-flora" }, `Flora wishlist (phase 2): ${loc.flora_wishlist.join(", ")}`)
+    const floraPlants = (loc.flora || []).filter((f) => f && f.common_name);
+    const flora = floraPlants.length
+      ? el("p", { class: "locale-flora" }, `Plants: ${floraPlants.map((f) => f.common_name).join(", ")}`)
+      : null;
+    const wishlist = (loc.flora_wishlist || []).length
+      ? el("p", { class: "locale-flora" }, `${floraPlants.length ? "Also wanted" : "Flora wishlist"}: ${loc.flora_wishlist.join(", ")}`)
       : null;
     const credits = (loc.contributors || []).filter(Boolean).length
       ? el("p", { class: "locale-credits" }, `Contributed by ${loc.contributors.filter(Boolean).join(", ")}`)
@@ -106,6 +111,7 @@ async function main() {
         el("h4", null, `${(loc.species || []).length} species`),
         species,
         flora,
+        wishlist,
         credits,
         el(
           "div",
