@@ -10,6 +10,8 @@ delivers it.
 Watch the simulation live: https://www.youtube.com/@jt55401/live
 Site (schema docs, behaviour guide, previewer, gallery): https://jt55401.github.io/speeeecies/
 
+![The three worked examples in the previewer: red fox, European robin, common toad](site/img/previewer-examples.png)
+
 ## Quick start for agents
 
 Read [`AGENTS.md`](AGENTS.md). It has the full step-by-step: pick an issue,
