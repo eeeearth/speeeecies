@@ -8,7 +8,7 @@
 Every issue body comes from one template (`render_body`) filled from the
 PLACES and TAXA tables below, so the set is reproducible: rerun the script
 and the Markdown under `tools/issues/out/` comes out the same unless the
-tables or `species/` changed.
+tables change.
 
 The table values were looked up once from public APIs and pages:
 
@@ -299,7 +299,7 @@ PLACES: list[Place] = [
          "Raccoons (Procyon lotor) are introduced here; say so in the species record's notes."),
     ),
     Place(
-        "setagaya-jp", "A Tokyo suburb (Setagaya)", "asia", "JP", "JP-13", "Tokyo",
+        "setagaya-jp", "A Tokyo suburb", "asia", "JP", "JP-13", "Tokyo",
         35.65, 139.65, "Asia/Tokyo", "Cfa", None, "Q231645", "Setagaya", "suburban-lot", 10935, 34917,
         "JPN.41_1",
         ("Passer montanus", "Hypsipetes amaurotis", "Spodiopsar cineraceus", "Streptopelia orientalis",
@@ -475,18 +475,24 @@ def slug_of(scientific_name: str) -> str:
     return scientific_name.lower().replace(" ", "-")
 
 
-def species_exists(root: Path, scientific_name: str) -> bool:
-    return (root / "species" / slug_of(scientific_name) / "species.json").is_file()
+# Which species existed under `species/` when the issues were written. The
+# bodies use this snapshot, not the live directory, so a later species PR
+# does not make the committed bodies stale. Refresh both together.
+SPECIES_SNAPSHOT_DATE = "2026-09-26"
+SPECIES_SNAPSHOT = frozenset({
+    "bufo-bufo", "cyanistes-caeruleus", "erinaceus-europaeus", "erithacus-rubecula",
+    "passer-domesticus", "sciurus-carolinensis", "turdus-merula", "vulpes-vulpes",
+})
 
 
 def fmt_coord(value: float) -> str:
     return f"{value:.2f}"
 
 
-def render_body(place: Place, root: Path = REPO_ROOT) -> str:
+def render_body(place: Place) -> str:
     """The issue body for one place. Pure: depends only on `place`, TAXA and
-    which `species/<slug>/` directories exist under `root`."""
-    existing = [n for n in place.species if species_exists(root, n)]
+    SPECIES_SNAPSHOT."""
+    existing = [n for n in place.species if slug_of(n) in SPECIES_SNAPSHOT]
     wikidata_url = f"https://www.wikidata.org/wiki/{place.wikidata}"
     wikipedia_url = f"https://en.wikipedia.org/wiki/{place.wikipedia}"
     inat_region = f"https://www.inaturalist.org/places/{place.inat_region_place}"
@@ -549,13 +555,14 @@ def render_body(place: Place, root: Path = REPO_ROOT) -> str:
         "",
         f"### Candidate species ({len(place.species)}; list at least 8)",
         "",
-        f"{len(existing)} of these already exist under `species/`"
+        f"On {SPECIES_SNAPSHOT_DATE}, {len(existing)} of these existed under `species/`"
         + (f" ({', '.join(f'`{slug_of(n)}`' for n in existing)}); they still need a curve for "
-           f"`{place.region}`." if existing else "."),
+           f"`{place.region}`." if existing else ".")
+        + " Check `species/` for any added since.",
         "Add the rest by the species flow in AGENTS.md; a locale PR may carry the species it needs. "
         "Search open `species-request` issues first, and claim any you take.",
         "",
-        "| Species | Common name | In `species/` | GBIF | iNaturalist | Note |",
+        f"| Species | Common name | In `species/` on {SPECIES_SNAPSHOT_DATE} | GBIF | iNaturalist | Note |",
         "|---|---|---|---|---|---|",
     ]
     for name in place.species:
@@ -577,7 +584,8 @@ def render_body(place: Place, root: Path = REPO_ROOT) -> str:
         "(allow-listed licences, attribution unless CC0 or public domain)",
         f"- [ ] At least 8 species, each under `species/` with a 12-month activity curve for `{place.region}`",
         f"- [ ] `uv run tools/validate.py --locale {place.id} --report > report.md` passes",
-        "- [ ] `uv run tools/validate.py --self-check` passes",
+        "- [ ] `uv run tools/validate.py --self-check` passes; any warning (for example an activity curve "
+        "`fetch_activity.py` recorded under CC BY-NC) is justified in the PR body",
         "- [ ] The `validate` CI workflow is green on the PR",
         f"- [ ] PR titled `locale: {place.name} ({place.id})`, with the report and `Closes #<this issue>`",
         "",
@@ -606,10 +614,10 @@ def lint_bodies(bodies: dict[str, str]) -> list[str]:
     return problems
 
 
-def render_all(root: Path = REPO_ROOT) -> dict[str, str]:
+def render_all() -> dict[str, str]:
     """`tools/issues/out/<id>.md` (repo-relative) -> issue Markdown, title first."""
     return {
-        f"tools/issues/out/{p.id}.md": f"<!-- title: {p.title} -->\n{render_body(p, root)}" for p in PLACES
+        f"tools/issues/out/{p.id}.md": f"<!-- title: {p.title} -->\n{render_body(p)}" for p in PLACES
     }
 
 
@@ -620,11 +628,12 @@ def gh(args: list[str]) -> str:
     return subprocess.run(["gh", *args], capture_output=True, text=True, check=True).stdout
 
 
-def post(runner: Runner, dry_run: bool, root: Path = REPO_ROOT) -> list[str]:
+def post(runner: Runner, dry_run: bool) -> list[str]:
     """Create each missing issue. Idempotent: any issue (open or closed)
     whose title already exists is skipped. Returns a log of actions."""
     log = []
-    labels = {row["name"] for row in json.loads(runner(["label", "list", "--limit", "200", "--json", "name"]))}
+    # GitHub label names are case-insensitive.
+    labels = {row["name"].lower() for row in json.loads(runner(["label", "list", "--limit", "200", "--json", "name"]))}
     wanted = {LABEL: (LABEL_COLOR, LABEL_DESCRIPTION)}
     wanted.update({p.continent: CONTINENT_LABELS[p.continent] for p in PLACES})
     for name, (color, description) in wanted.items():
@@ -643,7 +652,7 @@ def post(runner: Runner, dry_run: bool, root: Path = REPO_ROOT) -> list[str]:
         log.append(f"create: {place.title}")
         if not dry_run:
             runner([
-                "issue", "create", "--title", place.title, "--body", render_body(place, root),
+                "issue", "create", "--title", place.title, "--body", render_body(place),
                 "--label", LABEL, "--label", place.continent,
             ])
     return log

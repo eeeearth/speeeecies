@@ -33,10 +33,10 @@ uv run tools/fetch_activity.py <slug> --region KR-11 --inat-place-id 11005 --gbi
 
 ### Candidate species (12; list at least 8)
 
-0 of these already exist under `species/`.
+On 2026-09-26, 0 of these existed under `species/`. Check `species/` for any added since.
 Add the rest by the species flow in AGENTS.md; a locale PR may carry the species it needs. Search open `species-request` issues first, and claim any you take.
 
-| Species | Common name | In `species/` | GBIF | iNaturalist | Note |
+| Species | Common name | In `species/` on 2026-09-26 | GBIF | iNaturalist | Note |
 |---|---|---|---|---|---|
 | *Pica serica* | Oriental Magpie | no | [10704098](https://www.gbif.org/species/10704098) | [827401](https://www.inaturalist.org/taxa/827401) |  |
 | *Hypsipetes amaurotis* | Brown-eared Bulbul | no | [7342055](https://www.gbif.org/species/7342055) | [144910](https://www.inaturalist.org/taxa/144910) |  |
@@ -61,7 +61,7 @@ Add the rest by the species flow in AGENTS.md; a locale PR may carry the species
 - [ ] `locales/seoul-kr/locale.json` with a sourced centroid, climate, `blurb` and `facts` (allow-listed licences, attribution unless CC0 or public domain)
 - [ ] At least 8 species, each under `species/` with a 12-month activity curve for `KR-11`
 - [ ] `uv run tools/validate.py --locale seoul-kr --report > report.md` passes
-- [ ] `uv run tools/validate.py --self-check` passes
+- [ ] `uv run tools/validate.py --self-check` passes; any warning (for example an activity curve `fetch_activity.py` recorded under CC BY-NC) is justified in the PR body
 - [ ] The `validate` CI workflow is green on the PR
 - [ ] PR titled `locale: A Seoul apartment green (seoul-kr)`, with the report and `Closes #<this issue>`
 

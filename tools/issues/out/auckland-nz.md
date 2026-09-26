@@ -33,10 +33,10 @@ uv run tools/fetch_activity.py <slug> --region NZ-AUK --inat-place-id 8345 --gbi
 
 ### Candidate species (12; list at least 8)
 
-3 of these already exist under `species/` (`turdus-merula`, `passer-domesticus`, `erinaceus-europaeus`); they still need a curve for `NZ-AUK`.
+On 2026-09-26, 3 of these existed under `species/` (`turdus-merula`, `passer-domesticus`, `erinaceus-europaeus`); they still need a curve for `NZ-AUK`. Check `species/` for any added since.
 Add the rest by the species flow in AGENTS.md; a locale PR may carry the species it needs. Search open `species-request` issues first, and claim any you take.
 
-| Species | Common name | In `species/` | GBIF | iNaturalist | Note |
+| Species | Common name | In `species/` on 2026-09-26 | GBIF | iNaturalist | Note |
 |---|---|---|---|---|---|
 | *Prosthemadera novaeseelandiae* | Tūī | no | [2487029](https://www.gbif.org/species/2487029) | [12580](https://www.inaturalist.org/taxa/12580) |  |
 | *Hemiphaga novaeseelandiae* | New Zealand Pigeon | no | [2495905](https://www.gbif.org/species/2495905) | [204520](https://www.inaturalist.org/taxa/204520) |  |
@@ -62,7 +62,7 @@ Add the rest by the species flow in AGENTS.md; a locale PR may carry the species
 - [ ] `locales/auckland-nz/locale.json` with a sourced centroid, climate, `blurb` and `facts` (allow-listed licences, attribution unless CC0 or public domain)
 - [ ] At least 8 species, each under `species/` with a 12-month activity curve for `NZ-AUK`
 - [ ] `uv run tools/validate.py --locale auckland-nz --report > report.md` passes
-- [ ] `uv run tools/validate.py --self-check` passes
+- [ ] `uv run tools/validate.py --self-check` passes; any warning (for example an activity curve `fetch_activity.py` recorded under CC BY-NC) is justified in the PR body
 - [ ] The `validate` CI workflow is green on the PR
 - [ ] PR titled `locale: An Auckland garden (auckland-nz)`, with the report and `Closes #<this issue>`
 

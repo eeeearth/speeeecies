@@ -87,13 +87,12 @@ def test_body_without_elevation_says_to_confirm(lr):
     assert "to confirm" in lr.render_body(setagaya)
 
 
-def test_existing_species_follow_the_repo(lr, tmp_path):
-    dublin = next(p for p in lr.PLACES if p.id == "dublin-ie")
-    (tmp_path / "species" / "pica-pica").mkdir(parents=True)
-    (tmp_path / "species" / "pica-pica" / "species.json").write_text("{}", encoding="utf-8")
-    body = lr.render_body(dublin, tmp_path)
-    assert "| *Pica pica* | Eurasian Magpie | yes (`pica-pica`) |" in body
-    assert "| *Turdus merula* | Eurasian Blackbird | no |" in body
+def test_species_snapshot_is_real_and_bodies_ignore_later_species(lr, tmp_path):
+    # Species are never removed, so the snapshot stays a subset of species/.
+    for slug in lr.SPECIES_SNAPSHOT:
+        assert (REPO_ROOT / "species" / slug / "species.json").is_file(), slug
+    # Rendering reads only the snapshot: the live directory cannot make out/ stale.
+    assert "REPO_ROOT" not in lr.render_body.__code__.co_names
 
 
 def test_committed_bodies_are_current_and_lint_clean(lr):
@@ -130,7 +129,7 @@ class FakeGh:
 
 def test_post_is_idempotent_and_creates_missing_labels(lr):
     first = lr.PLACES[0]
-    fake = FakeGh(labels=["europe", "asia", "africa", "oceania", "south-america"], titles=[first.title])
+    fake = FakeGh(labels=["Europe", "asia", "africa", "oceania", "south-america"], titles=[first.title])
     log = lr.post(fake, dry_run=False)
     created = [c for c in fake.calls if c[:2] == ["issue", "create"]]
     assert len(created) == len(lr.PLACES) - 1

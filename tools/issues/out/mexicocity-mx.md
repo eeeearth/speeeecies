@@ -34,10 +34,10 @@ uv run tools/fetch_activity.py <slug> --region MX-CMX --inat-place-id 59014 --gb
 
 ### Candidate species (12; list at least 8)
 
-1 of these already exist under `species/` (`passer-domesticus`); they still need a curve for `MX-CMX`.
+On 2026-09-26, 1 of these existed under `species/` (`passer-domesticus`); they still need a curve for `MX-CMX`. Check `species/` for any added since.
 Add the rest by the species flow in AGENTS.md; a locale PR may carry the species it needs. Search open `species-request` issues first, and claim any you take.
 
-| Species | Common name | In `species/` | GBIF | iNaturalist | Note |
+| Species | Common name | In `species/` on 2026-09-26 | GBIF | iNaturalist | Note |
 |---|---|---|---|---|---|
 | *Passer domesticus* | House Sparrow | yes (`passer-domesticus`) | [5231190](https://www.gbif.org/species/5231190) | [13858](https://www.inaturalist.org/taxa/13858) |  |
 | *Columbina inca* | Inca Dove | no | [2495863](https://www.gbif.org/species/2495863) | [3544](https://www.inaturalist.org/taxa/3544) |  |
@@ -64,7 +64,7 @@ Add the rest by the species flow in AGENTS.md; a locale PR may carry the species
 - [ ] `locales/mexicocity-mx/locale.json` with a sourced centroid, climate, `blurb` and `facts` (allow-listed licences, attribution unless CC0 or public domain)
 - [ ] At least 8 species, each under `species/` with a 12-month activity curve for `MX-CMX`
 - [ ] `uv run tools/validate.py --locale mexicocity-mx --report > report.md` passes
-- [ ] `uv run tools/validate.py --self-check` passes
+- [ ] `uv run tools/validate.py --self-check` passes; any warning (for example an activity curve `fetch_activity.py` recorded under CC BY-NC) is justified in the PR body
 - [ ] The `validate` CI workflow is green on the PR
 - [ ] PR titled `locale: A Mexico City rooftop garden (mexicocity-mx)`, with the report and `Closes #<this issue>`
 

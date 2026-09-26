@@ -34,10 +34,10 @@ uv run tools/fetch_activity.py <slug> --region FR-IDF --inat-place-id 10577 --gb
 
 ### Candidate species (12; list at least 8)
 
-6 of these already exist under `species/` (`turdus-merula`, `passer-domesticus`, `cyanistes-caeruleus`, `erithacus-rubecula`, `erinaceus-europaeus`, `bufo-bufo`); they still need a curve for `FR-IDF`.
+On 2026-09-26, 6 of these existed under `species/` (`turdus-merula`, `passer-domesticus`, `cyanistes-caeruleus`, `erithacus-rubecula`, `erinaceus-europaeus`, `bufo-bufo`); they still need a curve for `FR-IDF`. Check `species/` for any added since.
 Add the rest by the species flow in AGENTS.md; a locale PR may carry the species it needs. Search open `species-request` issues first, and claim any you take.
 
-| Species | Common name | In `species/` | GBIF | iNaturalist | Note |
+| Species | Common name | In `species/` on 2026-09-26 | GBIF | iNaturalist | Note |
 |---|---|---|---|---|---|
 | *Columba palumbus* | Common Wood-Pigeon | no | [2495455](https://www.gbif.org/species/2495455) | [3048](https://www.inaturalist.org/taxa/3048) |  |
 | *Corvus corone* | Carrion Crow | no | [9409796](https://www.gbif.org/species/9409796) | [204496](https://www.inaturalist.org/taxa/204496) |  |
@@ -58,7 +58,7 @@ Add the rest by the species flow in AGENTS.md; a locale PR may carry the species
 - [ ] `locales/paris-fr/locale.json` with a sourced centroid, climate, `blurb` and `facts` (allow-listed licences, attribution unless CC0 or public domain)
 - [ ] At least 8 species, each under `species/` with a 12-month activity curve for `FR-IDF`
 - [ ] `uv run tools/validate.py --locale paris-fr --report > report.md` passes
-- [ ] `uv run tools/validate.py --self-check` passes
+- [ ] `uv run tools/validate.py --self-check` passes; any warning (for example an activity curve `fetch_activity.py` recorded under CC BY-NC) is justified in the PR body
 - [ ] The `validate` CI workflow is green on the PR
 - [ ] PR titled `locale: A Paris courtyard (paris-fr)`, with the report and `Closes #<this issue>`
 

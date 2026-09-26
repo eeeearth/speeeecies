@@ -33,10 +33,10 @@ uv run tools/fetch_activity.py <slug> --region CL-RM --inat-place-id 12691 --gbi
 
 ### Candidate species (12; list at least 8)
 
-1 of these already exist under `species/` (`passer-domesticus`); they still need a curve for `CL-RM`.
+On 2026-09-26, 1 of these existed under `species/` (`passer-domesticus`); they still need a curve for `CL-RM`. Check `species/` for any added since.
 Add the rest by the species flow in AGENTS.md; a locale PR may carry the species it needs. Search open `species-request` issues first, and claim any you take.
 
-| Species | Common name | In `species/` | GBIF | iNaturalist | Note |
+| Species | Common name | In `species/` on 2026-09-26 | GBIF | iNaturalist | Note |
 |---|---|---|---|---|---|
 | *Turdus falcklandii* | Austral Thrush | no | [2490775](https://www.gbif.org/species/2490775) | [12751](https://www.inaturalist.org/taxa/12751) |  |
 | *Zenaida auriculata* | Eared Dove | no | [2495358](https://www.gbif.org/species/2495358) | [3439](https://www.inaturalist.org/taxa/3439) |  |
@@ -57,7 +57,7 @@ Add the rest by the species flow in AGENTS.md; a locale PR may carry the species
 - [ ] `locales/santiago-cl/locale.json` with a sourced centroid, climate, `blurb` and `facts` (allow-listed licences, attribution unless CC0 or public domain)
 - [ ] At least 8 species, each under `species/` with a 12-month activity curve for `CL-RM`
 - [ ] `uv run tools/validate.py --locale santiago-cl --report > report.md` passes
-- [ ] `uv run tools/validate.py --self-check` passes
+- [ ] `uv run tools/validate.py --self-check` passes; any warning (for example an activity curve `fetch_activity.py` recorded under CC BY-NC) is justified in the PR body
 - [ ] The `validate` CI workflow is green on the PR
 - [ ] PR titled `locale: A Santiago garden (santiago-cl)`, with the report and `Closes #<this issue>`
 

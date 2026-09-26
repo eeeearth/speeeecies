@@ -1,12 +1,12 @@
-<!-- title: Locale: A Tokyo suburb (Setagaya) (setagaya-jp) -->
-**A Tokyo suburb (Setagaya)**: a locale for the [live ecological simulation](https://www.youtube.com/@jt55401/live)'s rotation. Whoever takes this (often a coding agent) writes `locales/setagaya-jp/locale.json` and any missing species, following "Contribute a locale" in [AGENTS.md](https://github.com/jt55401/speeeecies/blob/main/AGENTS.md). The worked example is [`locales/london-uk/`](https://github.com/jt55401/speeeecies/tree/main/locales/london-uk).
+<!-- title: Locale: A Tokyo suburb (setagaya-jp) -->
+**A Tokyo suburb**: a locale for the [live ecological simulation](https://www.youtube.com/@jt55401/live)'s rotation. Whoever takes this (often a coding agent) writes `locales/setagaya-jp/locale.json` and any missing species, following "Contribute a locale" in [AGENTS.md](https://github.com/jt55401/speeeecies/blob/main/AGENTS.md). The worked example is [`locales/london-uk/`](https://github.com/jt55401/speeeecies/tree/main/locales/london-uk).
 
 ### Suggested manifest values
 
 | Field | Suggestion |
 |---|---|
 | `id` | `setagaya-jp` |
-| `name` | A Tokyo suburb (Setagaya) |
+| `name` | A Tokyo suburb |
 | `country` | `JP` |
 | `activity_region` | `JP-13` (Tokyo) |
 | `public_lat`, `public_lon` | 35.65, 139.65: the public city centroid from Wikidata [Q231645](https://www.wikidata.org/wiki/Q231645) `P625` (CC0), rounded to 2 decimals |
@@ -33,10 +33,10 @@ uv run tools/fetch_activity.py <slug> --region JP-13 --inat-place-id 10935 --gbi
 
 ### Candidate species (12; list at least 8)
 
-0 of these already exist under `species/`.
+On 2026-09-26, 0 of these existed under `species/`. Check `species/` for any added since.
 Add the rest by the species flow in AGENTS.md; a locale PR may carry the species it needs. Search open `species-request` issues first, and claim any you take.
 
-| Species | Common name | In `species/` | GBIF | iNaturalist | Note |
+| Species | Common name | In `species/` on 2026-09-26 | GBIF | iNaturalist | Note |
 |---|---|---|---|---|---|
 | *Passer montanus* | Eurasian Tree Sparrow | no | [5231198](https://www.gbif.org/species/5231198) | [13851](https://www.inaturalist.org/taxa/13851) |  |
 | *Hypsipetes amaurotis* | Brown-eared Bulbul | no | [7342055](https://www.gbif.org/species/7342055) | [144910](https://www.inaturalist.org/taxa/144910) |  |
@@ -61,8 +61,8 @@ Add the rest by the species flow in AGENTS.md; a locale PR may carry the species
 - [ ] `locales/setagaya-jp/locale.json` with a sourced centroid, climate, `blurb` and `facts` (allow-listed licences, attribution unless CC0 or public domain)
 - [ ] At least 8 species, each under `species/` with a 12-month activity curve for `JP-13`
 - [ ] `uv run tools/validate.py --locale setagaya-jp --report > report.md` passes
-- [ ] `uv run tools/validate.py --self-check` passes
+- [ ] `uv run tools/validate.py --self-check` passes; any warning (for example an activity curve `fetch_activity.py` recorded under CC BY-NC) is justified in the PR body
 - [ ] The `validate` CI workflow is green on the PR
-- [ ] PR titled `locale: A Tokyo suburb (Setagaya) (setagaya-jp)`, with the report and `Closes #<this issue>`
+- [ ] PR titled `locale: A Tokyo suburb (setagaya-jp)`, with the report and `Closes #<this issue>`
 
 Once a maintainer merges it and the maintainers' import succeeds, the locale enters the live rotation automatically, and the PR gets a comment saying when it first appears on the [stream](https://www.youtube.com/@jt55401/live). See the locales page: https://jt55401.github.io/speeeecies/locales.html

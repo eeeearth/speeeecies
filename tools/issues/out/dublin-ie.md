@@ -33,10 +33,10 @@ uv run tools/fetch_activity.py <slug> --region IE-D --inat-place-id 6719 --gbif-
 
 ### Candidate species (12; list at least 8)
 
-7 of these already exist under `species/` (`turdus-merula`, `erithacus-rubecula`, `passer-domesticus`, `cyanistes-caeruleus`, `vulpes-vulpes`, `sciurus-carolinensis`, `erinaceus-europaeus`); they still need a curve for `IE-D`.
+On 2026-09-26, 7 of these existed under `species/` (`turdus-merula`, `erithacus-rubecula`, `passer-domesticus`, `cyanistes-caeruleus`, `vulpes-vulpes`, `sciurus-carolinensis`, `erinaceus-europaeus`); they still need a curve for `IE-D`. Check `species/` for any added since.
 Add the rest by the species flow in AGENTS.md; a locale PR may carry the species it needs. Search open `species-request` issues first, and claim any you take.
 
-| Species | Common name | In `species/` | GBIF | iNaturalist | Note |
+| Species | Common name | In `species/` on 2026-09-26 | GBIF | iNaturalist | Note |
 |---|---|---|---|---|---|
 | *Turdus merula* | Eurasian Blackbird | yes (`turdus-merula`) | [2490719](https://www.gbif.org/species/2490719) | [12716](https://www.inaturalist.org/taxa/12716) |  |
 | *Erithacus rubecula* | European Robin | yes (`erithacus-rubecula`) | [2492462](https://www.gbif.org/species/2492462) | [13094](https://www.inaturalist.org/taxa/13094) |  |
@@ -62,7 +62,7 @@ Add the rest by the species flow in AGENTS.md; a locale PR may carry the species
 - [ ] `locales/dublin-ie/locale.json` with a sourced centroid, climate, `blurb` and `facts` (allow-listed licences, attribution unless CC0 or public domain)
 - [ ] At least 8 species, each under `species/` with a 12-month activity curve for `IE-D`
 - [ ] `uv run tools/validate.py --locale dublin-ie --report > report.md` passes
-- [ ] `uv run tools/validate.py --self-check` passes
+- [ ] `uv run tools/validate.py --self-check` passes; any warning (for example an activity curve `fetch_activity.py` recorded under CC BY-NC) is justified in the PR body
 - [ ] The `validate` CI workflow is green on the PR
 - [ ] PR titled `locale: A Dublin garden (dublin-ie)`, with the report and `Closes #<this issue>`
 

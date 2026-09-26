@@ -34,10 +34,10 @@ uv run tools/fetch_activity.py <slug> --region IN-KA --inat-place-id 7043 --gbif
 
 ### Candidate species (12; list at least 8)
 
-0 of these already exist under `species/`.
+On 2026-09-26, 0 of these existed under `species/`. Check `species/` for any added since.
 Add the rest by the species flow in AGENTS.md; a locale PR may carry the species it needs. Search open `species-request` issues first, and claim any you take.
 
-| Species | Common name | In `species/` | GBIF | iNaturalist | Note |
+| Species | Common name | In `species/` on 2026-09-26 | GBIF | iNaturalist | Note |
 |---|---|---|---|---|---|
 | *Milvus migrans* | Black Kite | no | [5229167](https://www.gbif.org/species/5229167) | [5268](https://www.inaturalist.org/taxa/5268) |  |
 | *Pycnonotus jocosus* | Red-whiskered Bulbul | no | [2486151](https://www.gbif.org/species/2486151) | [14591](https://www.inaturalist.org/taxa/14591) |  |
@@ -62,7 +62,7 @@ Add the rest by the species flow in AGENTS.md; a locale PR may carry the species
 - [ ] `locales/bangalore-in/locale.json` with a sourced centroid, climate, `blurb` and `facts` (allow-listed licences, attribution unless CC0 or public domain)
 - [ ] At least 8 species, each under `species/` with a 12-month activity curve for `IN-KA`
 - [ ] `uv run tools/validate.py --locale bangalore-in --report > report.md` passes
-- [ ] `uv run tools/validate.py --self-check` passes
+- [ ] `uv run tools/validate.py --self-check` passes; any warning (for example an activity curve `fetch_activity.py` recorded under CC BY-NC) is justified in the PR body
 - [ ] The `validate` CI workflow is green on the PR
 - [ ] PR titled `locale: A Bangalore terrace (bangalore-in)`, with the report and `Closes #<this issue>`
 
