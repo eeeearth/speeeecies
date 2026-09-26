@@ -1,0 +1,1768 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "title": "speeeecies species record v0.1",
+  "description": "One animal species, contributed as `species/<slug>/species.json`. Conventions: snake_case keys; SI units named in the key (`_m`, `_kg`, `_ms` for metres per second, `_ha`, `_c`, `_s`, `_hz`, `_y` for years); fractions are 0..1; months are 1..12; dates are `YYYY-MM-DD`; month-day windows are `MM-DD`. Unknown keys are rejected everywhere except inside `extensions`. Every datum you state must be covered by `provenance`, which points at `sources` with an open licence.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "format",
+    "format_version",
+    "id",
+    "slug",
+    "common_names",
+    "taxonomy",
+    "external",
+    "range",
+    "traits",
+    "habitat",
+    "seasonal",
+    "activity",
+    "behavior",
+    "vocalizations",
+    "look",
+    "sources",
+    "provenance"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "Optional pointer to this schema, for editors."
+    },
+    "format": {
+      "const": "speeeecies/species",
+      "description": "Record type marker."
+    },
+    "format_version": {
+      "const": "0.1",
+      "description": "Format version. Breaking changes bump it; the validator rejects versions it does not know."
+    },
+    "id": {
+      "$ref": "#/$defs/TaxonId"
+    },
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z]+(-[a-z]+){1,2}$",
+      "description": "Lowercased `id` with spaces as hyphens, e.g. `vulpes-vulpes`. Must equal the directory name under `species/`."
+    },
+    "common_names": {
+      "type": "object",
+      "description": "Common names keyed by BCP 47 language tag. `en` is required.",
+      "required": [
+        "en"
+      ],
+      "propertyNames": {
+        "pattern": "^[a-z]{2,3}(-[A-Za-z0-9]{2,8})*$"
+      },
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "taxonomy": {
+      "$ref": "#/$defs/Taxonomy"
+    },
+    "external": {
+      "$ref": "#/$defs/ExternalKeys"
+    },
+    "conservation": {
+      "$ref": "#/$defs/Conservation"
+    },
+    "range": {
+      "$ref": "#/$defs/Range"
+    },
+    "traits": {
+      "$ref": "#/$defs/Traits"
+    },
+    "habitat": {
+      "$ref": "#/$defs/Habitat"
+    },
+    "seasonal": {
+      "$ref": "#/$defs/Seasonal"
+    },
+    "activity": {
+      "$ref": "#/$defs/Activity"
+    },
+    "behavior": {
+      "$ref": "#/$defs/BehaviorRef"
+    },
+    "vocalizations": {
+      "type": "array",
+      "description": "Calls the species makes. May be empty for silent species.",
+      "items": {
+        "$ref": "#/$defs/Vocalization"
+      }
+    },
+    "look": {
+      "$ref": "#/$defs/Look"
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Every source the record draws on, with its licence. Prefer CC0 and public domain, then CC BY, then share-alike (CC BY-SA, ODbL). NC licences are accepted with a warning and must carry `attribution` so the data can be isolated later. ND and unknown licences are rejected.",
+      "items": {
+        "$ref": "#/$defs/Source"
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "description": "Which sources back which datum. Keys are dotted paths into this record (`traits.mass_kg`, `habitat.human_tolerance`, `seasonal.phases`, `vocalizations.song`, `activity.GB`); an entry covers its path and everything below it. The validator lists every datum that no entry covers.",
+      "propertyNames": {
+        "pattern": "^[a-z_]+(\\.[A-Za-z0-9_:-]+)*$"
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/ProvenanceEntry"
+      }
+    },
+    "contributors": {
+      "type": "array",
+      "description": "Who wrote the record. Optional; git history is the authority.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "github": {
+            "type": "string"
+          },
+          "agent": {
+            "type": "string",
+            "description": "The coding agent used, if any (e.g. `claude-code`)."
+          }
+        }
+      }
+    },
+    "extensions": {
+      "type": "object",
+      "description": "Free-form. Ignored by the importer; use it for data the format cannot hold yet and say so in the PR."
+    }
+  },
+  "$defs": {
+    "TaxonId": {
+      "type": "string",
+      "pattern": "^[A-Z][a-z]+ [a-z]+( [a-z]+)?$",
+      "description": "Scientific name without authority, exactly as the GBIF backbone accepts it: `Vulpes vulpes`. A trinomial for a subspecies."
+    },
+    "Fraction": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "Month": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 12
+    },
+    "MonthDay": {
+      "type": "string",
+      "pattern": "^(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$",
+      "description": "`MM-DD`. A window whose end is before its start wraps over New Year."
+    },
+    "RegionCode": {
+      "type": "string",
+      "pattern": "^[A-Z]{2}(-[A-Z0-9]{1,3})?$",
+      "description": "ISO 3166-1 alpha-2 country (`GB`, `AU`) or ISO 3166-2 subdivision (`GB-ENG`, `AU-NSW`, `US-MN`)."
+    },
+    "Range2": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      },
+      "minItems": 2,
+      "maxItems": 2,
+      "description": "`[low, high]`, low <= high."
+    },
+    "IntRange2": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "minimum": 0
+      },
+      "minItems": 2,
+      "maxItems": 2,
+      "description": "`[min, max]`, min <= max."
+    },
+    "Rgb": {
+      "type": "string",
+      "pattern": "^#[0-9a-fA-F]{6}$",
+      "description": "sRGB colour as `#rrggbb`."
+    },
+    "ResourceTag": {
+      "type": "string",
+      "pattern": "^(mast|browse|graze|seed|fruit|berry|nectar|invertebrate|small_vertebrate|carrion|water|shelter|shrub_thicket|cavity|burrow|leaf_litter|perch|nest_cup|nest_platform|nest_ground|pond|log_pile|compost|host:[a-z0-9-]+)$",
+      "description": "A resource the landscape provides. Known tags: `mast browse graze seed fruit berry nectar invertebrate small_vertebrate carrion water shelter shrub_thicket cavity burrow leaf_litter perch nest_cup nest_platform nest_ground pond log_pile compost`, plus `host:<plant-slug>` for a host plant (e.g. `host:urtica-dioica`)."
+    },
+    "Taxonomy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kingdom",
+        "phylum",
+        "class",
+        "order",
+        "family",
+        "genus"
+      ],
+      "description": "Classification above the species, as the GBIF backbone gives it. v0.1 accepts kingdom Animalia only.",
+      "properties": {
+        "kingdom": {
+          "const": "Animalia"
+        },
+        "phylum": {
+          "type": "string",
+          "pattern": "^[A-Z][a-z]+$"
+        },
+        "class": {
+          "type": "string",
+          "pattern": "^[A-Z][a-z]+$"
+        },
+        "order": {
+          "type": "string",
+          "pattern": "^[A-Z][a-z]+$"
+        },
+        "family": {
+          "type": "string",
+          "pattern": "^[A-Z][a-z]+$"
+        },
+        "genus": {
+          "type": "string",
+          "pattern": "^[A-Z][a-z]+$",
+          "description": "Must equal the first word of `id`."
+        },
+        "authority": {
+          "type": "string",
+          "description": "Author and year, e.g. `(Linnaeus, 1758)`."
+        },
+        "status": {
+          "enum": [
+            "Accepted",
+            "Synonym",
+            "Doubtful"
+          ],
+          "default": "Accepted"
+        },
+        "accepted_id": {
+          "$ref": "#/$defs/TaxonId",
+          "description": "Required when `status` is `Synonym`."
+        }
+      }
+    },
+    "ExternalKeys": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "gbif_usage_key",
+        "inat_taxon_id"
+      ],
+      "description": "Identifiers in public databases. GBIF and iNaturalist are required: the activity tool and the importer key on them.",
+      "properties": {
+        "gbif_usage_key": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "`usageKey` from `https://api.gbif.org/v1/species/match?name=<id>`."
+        },
+        "inat_taxon_id": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "itis_tsn": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "wikidata": {
+          "type": "string",
+          "pattern": "^Q[0-9]+$"
+        },
+        "ncbi_taxon_id": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "ebird_code": {
+          "type": "string",
+          "pattern": "^[a-z0-9]{4,8}$"
+        },
+        "mdd_id": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "amphibiaweb_id": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "reptile_db_id": {
+          "type": "string"
+        }
+      }
+    },
+    "Conservation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "iucn": {
+          "enum": [
+            "LC",
+            "NT",
+            "VU",
+            "EN",
+            "CR",
+            "EW",
+            "EX",
+            "DD",
+            "NE"
+          ],
+          "description": "IUCN Red List category as reported by an openly licensed source (Wikidata P141 works)."
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    },
+    "Range": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "native"
+      ],
+      "description": "Where the species lives. Country-level is enough for v0.1.",
+      "properties": {
+        "native": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/RegionCode"
+          }
+        },
+        "introduced": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/RegionCode"
+          }
+        },
+        "invasive_in": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/RegionCode"
+          }
+        },
+        "koppen": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^(Af|Am|Aw|As|BWh|BWk|BSh|BSk|Csa|Csb|Csc|Cwa|Cwb|Cwc|Cfa|Cfb|Cfc|Dsa|Dsb|Dsc|Dsd|Dwa|Dwb|Dwc|Dwd|Dfa|Dfb|Dfc|Dfd|ET|EF)$"
+          },
+          "description": "Köppen climate classes the species occupies."
+        },
+        "elevation_m": {
+          "$ref": "#/$defs/Range2"
+        }
+      }
+    },
+    "Traits": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Body, movement and life-history traits of a typical adult.",
+      "required": [
+        "body_plan",
+        "limb_count",
+        "locomotion_modes",
+        "thermoregulation",
+        "skin",
+        "flight",
+        "mass_kg",
+        "length_m",
+        "lifespan_y",
+        "diet",
+        "social",
+        "activity_pattern",
+        "defense",
+        "wariness"
+      ],
+      "properties": {
+        "body_plan": {
+          "enum": [
+            "Vertebrate",
+            "Arthropod",
+            "Mollusc",
+            "Annelid"
+          ]
+        },
+        "limb_count": {
+          "type": "integer",
+          "enum": [
+            0,
+            2,
+            4,
+            6,
+            8
+          ],
+          "description": "Walking limbs plus wings for birds (a bird is 2: wings are not counted as limbs here, legs are)."
+        },
+        "locomotion_modes": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/Locomotion"
+          }
+        },
+        "thermoregulation": {
+          "enum": [
+            "Endotherm",
+            "Ectotherm"
+          ]
+        },
+        "skin": {
+          "enum": [
+            "Fur",
+            "Feathers",
+            "Scales",
+            "Moist",
+            "Chitin",
+            "Shell"
+          ]
+        },
+        "flight": {
+          "enum": [
+            "None",
+            "Powered",
+            "Glide"
+          ]
+        },
+        "respiration": {
+          "enum": [
+            "Lungs",
+            "Skin",
+            "Spiracles",
+            "Gills"
+          ]
+        },
+        "metamorphosis": {
+          "enum": [
+            "None",
+            "Incomplete",
+            "Complete"
+          ]
+        },
+        "nest_type": {
+          "enum": [
+            "Cup",
+            "Cavity",
+            "Platform",
+            "Ground",
+            "Burrow",
+            "None"
+          ]
+        },
+        "perching": {
+          "type": "boolean",
+          "description": "Perches on branches or structures (most birds, some insects)."
+        },
+        "senses": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "vision_color": {
+              "type": "boolean"
+            },
+            "night_vision": {
+              "type": "boolean"
+            },
+            "uv": {
+              "type": "boolean"
+            },
+            "olfaction": {
+              "enum": [
+                "Low",
+                "Med",
+                "High"
+              ]
+            },
+            "hearing": {
+              "enum": [
+                "Low",
+                "Med",
+                "High"
+              ]
+            },
+            "vibration": {
+              "type": "boolean"
+            }
+          }
+        },
+        "size_class": {
+          "enum": [
+            "Tiny",
+            "Small",
+            "Medium",
+            "Large"
+          ],
+          "description": "Tiny < 0.05 kg, Small < 1 kg, Medium < 50 kg, Large otherwise. The validator checks it against `mass_kg`."
+        },
+        "mass_kg": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 7000,
+          "description": "Typical adult mass."
+        },
+        "mass_range_kg": {
+          "$ref": "#/$defs/Range2"
+        },
+        "length_m": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 35,
+          "description": "Nose or beak tip to tail tip; snout-vent length for frogs and toads."
+        },
+        "shoulder_height_m": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "description": "Four-legged animals."
+        },
+        "wingspan_m": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "description": "Flying animals."
+        },
+        "speed_ms": {
+          "type": "object",
+          "description": "Typical speed per gait in m/s. Keys are gait names (see `Gait`); each needs a matching locomotion mode (e.g. `trot` needs `Trot`). Optional: omit gaits you cannot source; the importer uses body-plan defaults.",
+          "propertyNames": {
+            "$ref": "#/$defs/Gait"
+          },
+          "additionalProperties": {
+            "type": "number",
+            "exclusiveMinimum": 0,
+            "maximum": 120
+          }
+        },
+        "flight_height_m": {
+          "type": "number",
+          "minimum": 0
+        },
+        "lifespan_y": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 250,
+          "description": "Typical lifespan in the wild, years."
+        },
+        "home_range_ha": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "diet": {
+          "$ref": "#/$defs/Diet"
+        },
+        "social": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "structure",
+            "group_size"
+          ],
+          "properties": {
+            "structure": {
+              "enum": [
+                "Solitary",
+                "Pair",
+                "Group",
+                "Flock",
+                "Colony"
+              ]
+            },
+            "group_size": {
+              "$ref": "#/$defs/IntRange2"
+            }
+          }
+        },
+        "activity_pattern": {
+          "$ref": "#/$defs/ActivityPattern"
+        },
+        "defense": {
+          "enum": [
+            "Flee",
+            "Freeze",
+            "Hide",
+            "Venom",
+            "Mob",
+            "Spray",
+            "Toxin"
+          ],
+          "description": "Main response to a threat. `Toxin` covers skin toxins (toads)."
+        },
+        "wariness": {
+          "$ref": "#/$defs/Fraction",
+          "description": "0 = ignores people, 1 = flees at 30 m. A judgement: give a source sentence or mark it derived."
+        }
+      }
+    },
+    "Locomotion": {
+      "enum": [
+        "Walk",
+        "Trot",
+        "Gallop",
+        "Hop",
+        "Climb",
+        "Slither",
+        "Swim",
+        "Fly",
+        "Glide",
+        "Hover",
+        "Burrow"
+      ]
+    },
+    "Gait": {
+      "enum": [
+        "walk",
+        "trot",
+        "gallop",
+        "hop",
+        "climb",
+        "slither",
+        "swim",
+        "fly",
+        "glide",
+        "hover",
+        "burrow"
+      ]
+    },
+    "ActivityPattern": {
+      "enum": [
+        "Diurnal",
+        "Nocturnal",
+        "Crepuscular",
+        "Cathemeral"
+      ]
+    },
+    "Diet": {
+      "type": "object",
+      "additionalProperties": false,
+      "minProperties": 1,
+      "description": "Share of the diet by food type. Values must sum to 1 ± 0.05. Omitted keys are 0.",
+      "properties": {
+        "browse": {
+          "$ref": "#/$defs/Fraction"
+        },
+        "graze": {
+          "$ref": "#/$defs/Fraction"
+        },
+        "mast": {
+          "$ref": "#/$defs/Fraction"
+        },
+        "seed": {
+          "$ref": "#/$defs/Fraction"
+        },
+        "fruit": {
+          "$ref": "#/$defs/Fraction"
+        },
+        "nectar": {
+          "$ref": "#/$defs/Fraction"
+        },
+        "invertebrate": {
+          "$ref": "#/$defs/Fraction"
+        },
+        "vertebrate": {
+          "$ref": "#/$defs/Fraction"
+        },
+        "carrion": {
+          "$ref": "#/$defs/Fraction"
+        },
+        "fish": {
+          "$ref": "#/$defs/Fraction"
+        }
+      }
+    },
+    "Habitat": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "use",
+        "resources",
+        "human_tolerance"
+      ],
+      "description": "Where in a landscape the species is placed and what it uses there.",
+      "properties": {
+        "use": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "Share of time by stratum. Must sum to 1 ± 0.05.",
+          "properties": {
+            "ground": {
+              "$ref": "#/$defs/Fraction"
+            },
+            "arboreal": {
+              "$ref": "#/$defs/Fraction"
+            },
+            "fossorial": {
+              "$ref": "#/$defs/Fraction"
+            },
+            "aquatic": {
+              "$ref": "#/$defs/Fraction"
+            },
+            "aerial": {
+              "$ref": "#/$defs/Fraction"
+            }
+          }
+        },
+        "shelter_tag": {
+          "$ref": "#/$defs/ResourceTag",
+          "description": "Where it rests or sleeps."
+        },
+        "resources": {
+          "type": "array",
+          "minItems": 1,
+          "description": "Resources the species takes from the landscape (food, shelter, nest sites, water). The importer turns these into trophic links.",
+          "items": {
+            "$ref": "#/$defs/ResourceUse"
+          }
+        },
+        "requires": {
+          "type": "array",
+          "description": "Hard placement rules: the species is not placed where any fails.",
+          "items": {
+            "$ref": "#/$defs/HardPredicate"
+          }
+        },
+        "suitability": {
+          "$ref": "#/$defs/Suitability"
+        },
+        "human_tolerance": {
+          "$ref": "#/$defs/HumanTolerance"
+        },
+        "density_per_ha": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "min",
+            "typical",
+            "max"
+          ],
+          "description": "Adults per hectare in suitable habitat; min <= typical <= max. Optional: omit it when no open source gives one; the importer then estimates density from body mass.",
+          "properties": {
+            "min": {
+              "type": "number",
+              "minimum": 0
+            },
+            "typical": {
+              "type": "number",
+              "minimum": 0
+            },
+            "max": {
+              "type": "number",
+              "minimum": 0
+            }
+          }
+        }
+      }
+    },
+    "ResourceUse": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "tag",
+        "kind",
+        "weight"
+      ],
+      "properties": {
+        "tag": {
+          "$ref": "#/$defs/ResourceTag"
+        },
+        "kind": {
+          "enum": [
+            "Herbivory",
+            "Predation",
+            "Nectarivory",
+            "HostPlant",
+            "Shelter",
+            "Nesting",
+            "Scavenging",
+            "Water"
+          ]
+        },
+        "weight": {
+          "$ref": "#/$defs/Fraction",
+          "description": "Importance among resources of the same kind."
+        },
+        "months": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/Month"
+          },
+          "description": "Months it is used; omit for all year."
+        },
+        "life_stage": {
+          "type": "string",
+          "description": "A `seasonal.life_stages[].stage` name, if only one stage uses it."
+        }
+      }
+    },
+    "Covariate": {
+      "type": "string",
+      "pattern": "^(dist_building_m|dist_road_m|dist_water_m|impervious|light|canopy|human_modification|noise|resource:.+)$",
+      "description": "A landscape layer: `dist_building_m`, `dist_road_m`, `dist_water_m` (metres); `impervious`, `canopy`, `light`, `human_modification`, `noise` (0..1); `resource:<tag>` (resource strength, typically 0..5)."
+    },
+    "HardPredicate": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "resource_within_m",
+            "tag"
+          ],
+          "properties": {
+            "resource_within_m": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "tag": {
+              "$ref": "#/$defs/ResourceTag"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "covariate_between"
+          ],
+          "properties": {
+            "covariate_between": {
+              "type": "array",
+              "prefixItems": [
+                {
+                  "$ref": "#/$defs/Covariate"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                }
+              ],
+              "items": false,
+              "minItems": 3
+            }
+          }
+        }
+      ]
+    },
+    "Suitability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "curves",
+        "combine"
+      ],
+      "description": "Habitat suitability index: each curve maps a covariate to 0..1 (piecewise linear, x ascending), then the curves are combined.",
+      "properties": {
+        "curves": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "covariate",
+              "curve"
+            ],
+            "properties": {
+              "covariate": {
+                "$ref": "#/$defs/Covariate"
+              },
+              "curve": {
+                "type": "array",
+                "minItems": 2,
+                "items": {
+                  "type": "array",
+                  "prefixItems": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "$ref": "#/$defs/Fraction"
+                    }
+                  ],
+                  "items": false,
+                  "minItems": 2
+                }
+              },
+              "weight": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              }
+            }
+          }
+        },
+        "combine": {
+          "enum": [
+            "GeometricMean",
+            "Min",
+            "WeightedMean"
+          ]
+        }
+      }
+    },
+    "HumanTolerance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "urban_affinity"
+      ],
+      "description": "How the species copes with people and built-up land. The importer turns these into suitability curves; give explicit `suitability` curves if you need finer control.",
+      "properties": {
+        "urban_affinity": {
+          "enum": [
+            "Avoider",
+            "Adapter",
+            "Exploiter"
+          ],
+          "description": "Avoider: needs natural habitat. Adapter: uses suburbs and gardens. Exploiter: thrives in cities."
+        },
+        "impervious_max": {
+          "$ref": "#/$defs/Fraction",
+          "description": "Largest share of paved or built surface it tolerates around its home."
+        },
+        "dist_building_min_m": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Closest it usually nests or dens to a building."
+        },
+        "light_max": {
+          "$ref": "#/$defs/Fraction",
+          "description": "Largest night-light level (0 dark .. 1 city centre) it tolerates."
+        },
+        "noise_max": {
+          "$ref": "#/$defs/Fraction"
+        },
+        "flight_distance_m": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Typical distance at which it flees an approaching person."
+        },
+        "road_mortality": {
+          "enum": [
+            "Low",
+            "Medium",
+            "High"
+          ]
+        },
+        "uses_gardens": {
+          "type": "boolean"
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    },
+    "Seasonal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "strategy",
+        "phases",
+        "life_stages"
+      ],
+      "description": "The yearly cycle: dormancy or migration, named phases, and life stages.",
+      "properties": {
+        "strategy": {
+          "enum": [
+            "ActiveYearRound",
+            "Hibernation",
+            "Brumation",
+            "Torpor",
+            "Diapause",
+            "Migration",
+            "PartialMigration",
+            "Aestivation"
+          ]
+        },
+        "triggers": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "enter",
+            "exit"
+          ],
+          "description": "Weather that starts and ends dormancy. Required for Hibernation, Brumation, Torpor, Diapause and Aestivation.",
+          "properties": {
+            "enter": {
+              "$ref": "#/$defs/Trigger"
+            },
+            "exit": {
+              "$ref": "#/$defs/Trigger"
+            }
+          }
+        },
+        "winter_fraction": {
+          "$ref": "#/$defs/Fraction",
+          "description": "PartialMigration: share of the population that stays for winter."
+        },
+        "phases": {
+          "type": "array",
+          "minItems": 1,
+          "description": "Named parts of the year. A phase with a `region` applies there only; one without applies everywhere in the range.",
+          "items": {
+            "$ref": "#/$defs/Phase"
+          }
+        },
+        "life_stages": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "stage"
+            ],
+            "properties": {
+              "stage": {
+                "enum": [
+                  "Egg",
+                  "Larva",
+                  "Tadpole",
+                  "Pupa",
+                  "Nymph",
+                  "Juvenile",
+                  "Adult"
+                ]
+              },
+              "duration_days": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "requires_tag": {
+                "$ref": "#/$defs/ResourceTag"
+              },
+              "scale": {
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "maximum": 1,
+                "description": "Size relative to the adult model, for the previewer and the host."
+              }
+            }
+          }
+        }
+      }
+    },
+    "Phase": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "start",
+        "end"
+      ],
+      "properties": {
+        "name": {
+          "enum": [
+            "mating",
+            "breeding",
+            "nesting",
+            "young",
+            "dispersal",
+            "moult",
+            "territorial",
+            "dormancy",
+            "absent",
+            "spawning_migration",
+            "flocking",
+            "caching"
+          ],
+          "description": "`dormancy` = hibernation or brumation; `absent` = away on migration; `spawning_migration` = moving to breeding water."
+        },
+        "start": {
+          "$ref": "#/$defs/MonthDay"
+        },
+        "end": {
+          "$ref": "#/$defs/MonthDay"
+        },
+        "region": {
+          "$ref": "#/$defs/RegionCode"
+        },
+        "fraction": {
+          "$ref": "#/$defs/Fraction",
+          "description": "Share of the population in this phase (e.g. 0.3 of robins migrate)."
+        },
+        "behavior_params": {
+          "type": "object",
+          "description": "Overrides of `behavior.params` during this phase.",
+          "additionalProperties": {
+            "$ref": "#/$defs/ParamValue"
+          }
+        },
+        "note": {
+          "type": "string"
+        }
+      }
+    },
+    "Trigger": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "temperature_below_c",
+            "days"
+          ],
+          "properties": {
+            "temperature_below_c": {
+              "type": "number"
+            },
+            "days": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "temperature_above_c",
+            "days"
+          ],
+          "properties": {
+            "temperature_above_c": {
+              "type": "number"
+            },
+            "days": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "day_length_below_h"
+          ],
+          "properties": {
+            "day_length_below_h": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 24
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "day_length_above_h"
+          ],
+          "properties": {
+            "day_length_above_h": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 24
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "all"
+          ],
+          "properties": {
+            "all": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/Trigger"
+              }
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "any"
+          ],
+          "properties": {
+            "any": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/Trigger"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "Activity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "regions"
+      ],
+      "description": "How active or detectable the species is in each month, per region. Generate it with `tools/fetch-activity`.",
+      "properties": {
+        "regions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/MonthlyActivity"
+          }
+        }
+      }
+    },
+    "MonthlyActivity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "region",
+        "monthly",
+        "method",
+        "sources"
+      ],
+      "properties": {
+        "region": {
+          "$ref": "#/$defs/RegionCode"
+        },
+        "monthly": {
+          "type": "array",
+          "minItems": 12,
+          "maxItems": 12,
+          "items": {
+            "$ref": "#/$defs/Fraction"
+          },
+          "description": "January to December, normalised so the peak month is 1."
+        },
+        "method": {
+          "type": "string",
+          "description": "How the curve was made, e.g. `mean(gbif_share, inat_share)`."
+        },
+        "observations": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Records behind the curve."
+        },
+        "sources": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          },
+          "description": "Ids from the top-level `sources`."
+        },
+        "query": {
+          "type": "object",
+          "description": "The exact API parameters, so anyone can rerun the query."
+        }
+      }
+    },
+    "BehaviorRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "program"
+      ],
+      "description": "The behaviour program that drives the animal. Either the id of a shared program in `behaviors/`, or the id of a program in this species' own `behavior.json`.",
+      "properties": {
+        "program": {
+          "$ref": "#/$defs/ProgramId"
+        },
+        "params": {
+          "type": "object",
+          "description": "Overrides for params the program declares. You cannot add new params here.",
+          "additionalProperties": {
+            "$ref": "#/$defs/ParamValue"
+          }
+        }
+      }
+    },
+    "ProgramId": {
+      "type": "string",
+      "pattern": "^(fsm|bt)-[a-z0-9]+(-[a-z0-9]+)*-v[0-9]+$",
+      "description": "`fsm-<name>-vN` or `bt-<name>-vN`."
+    },
+    "ParamValue": {
+      "type": [
+        "number",
+        "string"
+      ]
+    },
+    "Vocalization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "call_id",
+        "context",
+        "season_months",
+        "time_windows",
+        "cooldown_s",
+        "description"
+      ],
+      "properties": {
+        "call_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$",
+          "description": "Unique within the species; behaviour programs refer to it (`sing`/`alarm` actions)."
+        },
+        "context": {
+          "enum": [
+            "Song",
+            "Alarm",
+            "Contact",
+            "Hoot",
+            "Drum",
+            "Chirp",
+            "Croak",
+            "Buzz",
+            "Bark",
+            "Scream",
+            "Stridulation"
+          ]
+        },
+        "season_months": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/Month"
+          },
+          "description": "Months it is heard; empty = all year."
+        },
+        "time_windows": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "DawnChorus",
+              "Day",
+              "Dusk",
+              "Night"
+            ]
+          },
+          "description": "When it is heard; empty = any time."
+        },
+        "cooldown_s": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Minimum gap between calls of this type."
+        },
+        "description": {
+          "type": "string",
+          "minLength": 10,
+          "description": "What it sounds like, in words."
+        },
+        "freq_hz": {
+          "$ref": "#/$defs/Range2",
+          "description": "Dominant frequency band."
+        },
+        "duration_s": {
+          "$ref": "#/$defs/Range2"
+        },
+        "loudness": {
+          "enum": [
+            "Quiet",
+            "Moderate",
+            "Loud"
+          ]
+        },
+        "recordings": {
+          "type": "array",
+          "description": "Links to openly licensed recordings (e.g. an xeno-canto recording under CC BY-SA). Each must also be listed in `sources`.",
+          "items": {
+            "type": "string",
+            "description": "A source id."
+          }
+        }
+      }
+    },
+    "Look": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "body_plan",
+        "proportions",
+        "palette",
+        "poses"
+      ],
+      "description": "A blocky, low-poly model built from boxes. The body plan generates named parts; proportions shape them; palette slots colour them; `extra_parts` adds boxes; `poses` lists the animations. Try it in the previewer.",
+      "properties": {
+        "body_plan": {
+          "$ref": "#/$defs/MeshBodyPlan"
+        },
+        "proportions": {
+          "$ref": "#/$defs/Proportions"
+        },
+        "palette": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "body"
+          ],
+          "description": "Colour slots. `belly`, `markings` and `accent` fall back to `body`.",
+          "properties": {
+            "body": {
+              "$ref": "#/$defs/Rgb"
+            },
+            "belly": {
+              "$ref": "#/$defs/Rgb"
+            },
+            "markings": {
+              "$ref": "#/$defs/Rgb"
+            },
+            "accent": {
+              "$ref": "#/$defs/Rgb"
+            },
+            "eye": {
+              "$ref": "#/$defs/Rgb"
+            }
+          }
+        },
+        "part_colors": {
+          "type": "object",
+          "description": "Which palette slot colours a part. Keys are part names or globs (`leg_*`, `ear_*`); later keys win.",
+          "propertyNames": {
+            "pattern": "^[a-z0-9_*]+$"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/ColorSlot"
+          }
+        },
+        "extra_parts": {
+          "type": "array",
+          "description": "Boxes added on top of the generated body (a crest, a ruff, a pale tail tip).",
+          "items": {
+            "$ref": "#/$defs/ExtraPart"
+          }
+        },
+        "poses": {
+          "type": "object",
+          "required": [
+            "idle"
+          ],
+          "description": "Animations the species needs, keyed by pose name. `idle` is required, plus one per locomotion mode the host animates (walk, trot, gallop, hop, slither, swim, fly, glide), plus `perched` for perching species. An empty object uses the body plan's built-in animation.",
+          "propertyNames": {
+            "$ref": "#/$defs/PoseName"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/Pose"
+          }
+        }
+      }
+    },
+    "MeshBodyPlan": {
+      "enum": [
+        "quadruped",
+        "hopper",
+        "anuran",
+        "biped_winged",
+        "serpentine",
+        "hexapod",
+        "hexapod_winged"
+      ],
+      "description": "quadruped: four-legged mammal or lizard. hopper: rabbit-like, long hind legs. anuran: frog or toad. biped_winged: bird. serpentine: snake or legless lizard. hexapod: walking insect. hexapod_winged: flying insect."
+    },
+    "Proportions": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Shape ratios. Omitted values use the body plan's default. Overall size comes from `traits.length_m` (and `shoulder_height_m`, `wingspan_m`).",
+      "properties": {
+        "torso_aspect": {
+          "type": "number",
+          "minimum": 0.5,
+          "maximum": 6,
+          "description": "Torso length / torso height."
+        },
+        "leg_length_ratio": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1.5,
+          "description": "Leg length / torso length."
+        },
+        "head_scale": {
+          "type": "number",
+          "minimum": 0.1,
+          "maximum": 1.5,
+          "description": "Head size / torso height."
+        },
+        "neck_angle_deg": {
+          "type": "number",
+          "minimum": -30,
+          "maximum": 90,
+          "description": "How far the neck rises above horizontal."
+        },
+        "tail_ratio": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 3,
+          "description": "Tail length / torso length."
+        },
+        "ear_ratio": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1.5,
+          "description": "Ear height / head size."
+        },
+        "wing_aspect": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 12,
+          "description": "Half-wingspan / wing chord."
+        },
+        "beak_ratio": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 2,
+          "description": "Beak or snout length / head size."
+        },
+        "segments": {
+          "type": "integer",
+          "minimum": 3,
+          "maximum": 32,
+          "description": "serpentine only: body segments."
+        },
+        "girth_ratio": {
+          "type": "number",
+          "minimum": 0.3,
+          "maximum": 2,
+          "description": "Torso width / torso height."
+        }
+      }
+    },
+    "ColorSlot": {
+      "enum": [
+        "body",
+        "belly",
+        "markings",
+        "accent",
+        "eye"
+      ]
+    },
+    "ExtraPart": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "parent",
+        "offset",
+        "size",
+        "color"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "parent": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$",
+          "description": "A generated part (see the body plan's part list) or an earlier extra part."
+        },
+        "offset": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "minimum": -2,
+            "maximum": 2
+          },
+          "minItems": 3,
+          "maxItems": 3,
+          "description": "Box centre relative to the parent box centre, in units of the parent's size along x (forward), y (up), z (right)."
+        },
+        "size": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "exclusiveMinimum": 0,
+            "maximum": 3
+          },
+          "minItems": 3,
+          "maxItems": 3,
+          "description": "Box size relative to the parent's size along x, y, z."
+        },
+        "color": {
+          "$ref": "#/$defs/ColorSlot"
+        },
+        "mirror": {
+          "type": "boolean",
+          "description": "Also add a copy mirrored across the body's midline (names get `_left`/`_right`)."
+        }
+      }
+    },
+    "PoseName": {
+      "enum": [
+        "idle",
+        "walk",
+        "trot",
+        "gallop",
+        "hop",
+        "slither",
+        "swim",
+        "fly",
+        "glide",
+        "perched",
+        "rest"
+      ]
+    },
+    "Pose": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Tuning for one animation. Empty uses the body plan's built-in cycle.",
+      "properties": {
+        "cycle_s": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 30,
+          "description": "Seconds per cycle at the gait's speed."
+        },
+        "amplitude": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 2,
+          "description": "Scale on the built-in swing angles."
+        },
+        "keyframes": {
+          "type": "array",
+          "description": "Extra rotations layered on the built-in cycle, interpolated linearly and looped.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "t",
+              "parts"
+            ],
+            "properties": {
+              "t": {
+                "$ref": "#/$defs/Fraction",
+                "description": "Phase in the cycle."
+              },
+              "parts": {
+                "type": "object",
+                "propertyNames": {
+                  "pattern": "^[a-z][a-z0-9_]*$"
+                },
+                "additionalProperties": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "rot_deg"
+                  ],
+                  "properties": {
+                    "rot_deg": {
+                      "type": "array",
+                      "items": {
+                        "type": "number",
+                        "minimum": -180,
+                        "maximum": 180
+                      },
+                      "minItems": 3,
+                      "maxItems": 3
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "Source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "url",
+        "title",
+        "license",
+        "accessed"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9_-]*$"
+        },
+        "url": {
+          "type": "string",
+          "pattern": "^https?://"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 3
+        },
+        "license": {
+          "type": "string",
+          "description": "SPDX-style id. Accepted: `CC0-1.0`, `public-domain`, `CC-BY-4.0` (and 2.0/2.5/3.0), `CC-BY-SA-4.0` (and 2.0/2.5/3.0), `ODbL-1.0`. Accepted with a warning: `CC-BY-NC-4.0`, `CC-BY-NC-SA-4.0` (and older versions). Rejected: any `-ND-` licence, anything else, or missing."
+        },
+        "license_url": {
+          "type": "string",
+          "pattern": "^https?://"
+        },
+        "attribution": {
+          "type": "string",
+          "description": "Credit line. Required for every licence except CC0-1.0 and public-domain; it is copied into the species' ATTRIBUTION.md and never stripped."
+        },
+        "accessed": {
+          "type": "string",
+          "format": "date",
+          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+        },
+        "note": {
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "literature",
+            "database",
+            "api",
+            "dataset",
+            "webpage",
+            "recording",
+            "image",
+            "model"
+          ],
+          "description": "What the source is."
+        }
+      }
+    },
+    "ProvenanceEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sources",
+        "confidence"
+      ],
+      "properties": {
+        "sources": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Source ids. Empty only for authored values (`derived: true` and a `note`), such as the look or behaviour params."
+        },
+        "confidence": {
+          "enum": [
+            "Low",
+            "Medium",
+            "High"
+          ]
+        },
+        "derived": {
+          "type": "boolean",
+          "default": false,
+          "description": "True when the value is computed, converted or judged from the sources rather than stated in them."
+        },
+        "note": {
+          "type": "string",
+          "description": "How it was derived, or the quote it rests on."
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,805 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jt55401.github.io/speeeecies/schema/v0.1/behavior-program.schema.json",
+  "title": "speeeecies behaviour program v0.1",
+  "description": "A behaviour program: a finite state machine (`kind: fsm`) or a behaviour tree (`kind: bt`). Both share one vocabulary of predicates (conditions) and actions. Shared programs live in `behaviors/<id>.json`; a species can ship its own as `species/<slug>/behavior.json`. See the behaviour guide on the site for semantics.",
+  "oneOf": [
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "id",
+        "kind",
+        "initial",
+        "states",
+        "transitions"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": 1
+        },
+        "format": {
+          "const": "speeeecies/behavior",
+          "description": "Optional record marker."
+        },
+        "id": {
+          "$ref": "#/$defs/ProgramId"
+        },
+        "description": {
+          "type": "string"
+        },
+        "params": {
+          "type": "object",
+          "additionalProperties": {
+            "type": [
+              "number",
+              "string"
+            ]
+          },
+          "description": "Named values. A string that is exactly `${name}` anywhere else in the program is replaced by the param's value."
+        },
+        "kind": {
+          "const": "fsm"
+        },
+        "initial": {
+          "type": "string"
+        },
+        "states": {
+          "type": "object",
+          "minProperties": 1,
+          "propertyNames": {
+            "pattern": "^[a-z][a-z0-9_]*$"
+          },
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "action"
+            ],
+            "properties": {
+              "action": {
+                "$ref": "#/$defs/ActionSpec"
+              },
+              "min_dwell_s": {
+                "$ref": "#/$defs/ParamOrNumber"
+              }
+            }
+          }
+        },
+        "transitions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "from",
+              "to",
+              "when"
+            ],
+            "properties": {
+              "from": {
+                "type": "string",
+                "description": "A state name or `*` for any state."
+              },
+              "to": {
+                "type": "string"
+              },
+              "when": {
+                "$ref": "#/$defs/Predicate"
+              },
+              "priority": {
+                "type": "integer",
+                "description": "Higher first; ties keep file order. Only priority > 0 can interrupt a state's `min_dwell_s`."
+              }
+            }
+          }
+        }
+      },
+      "description": "State machine: one state is active; each tick the highest-priority transition whose `when` holds fires (at most one), then the active state's action runs. A failed action returns the machine to `initial`."
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "id",
+        "kind",
+        "root"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": 1
+        },
+        "format": {
+          "const": "speeeecies/behavior",
+          "description": "Optional record marker."
+        },
+        "id": {
+          "$ref": "#/$defs/ProgramId"
+        },
+        "description": {
+          "type": "string"
+        },
+        "params": {
+          "type": "object",
+          "additionalProperties": {
+            "type": [
+              "number",
+              "string"
+            ]
+          },
+          "description": "Named values. A string that is exactly `${name}` anywhere else in the program is replaced by the param's value."
+        },
+        "kind": {
+          "const": "bt"
+        },
+        "root": {
+          "$ref": "#/$defs/Node"
+        }
+      },
+      "description": "Behaviour tree: the whole tree is ticked from the root every tick, so higher branches can always interrupt lower ones."
+    }
+  ],
+  "$defs": {
+    "ProgramId": {
+      "type": "string",
+      "pattern": "^(fsm|bt)-[a-z0-9]+(-[a-z0-9]+)*-v[0-9]+$"
+    },
+    "ParamRef": {
+      "type": "string",
+      "pattern": "^\\$\\{[a-z_][a-z0-9_]*\\}$",
+      "description": "`${name}`: replaced by a param value at load time."
+    },
+    "ParamOrNumber": {
+      "oneOf": [
+        {
+          "type": "number"
+        },
+        {
+          "$ref": "#/$defs/ParamRef"
+        }
+      ]
+    },
+    "NeedName": {
+      "enum": [
+        "hunger",
+        "thirst",
+        "energy",
+        "fear",
+        "social",
+        "warmth",
+        "nest"
+      ]
+    },
+    "ActionName": {
+      "enum": [
+        "idle",
+        "wander",
+        "move_to_home",
+        "eat_nearest",
+        "drink_nearest",
+        "rest",
+        "hide_nearest",
+        "flee",
+        "take_off",
+        "land",
+        "fly_to_nearest",
+        "perch_nearest",
+        "build_nest",
+        "incubate",
+        "sing",
+        "alarm",
+        "emote",
+        "accept_offer",
+        "tolerate_touch",
+        "follow_flock"
+      ],
+      "description": "idle, wander, rest, incubate, build_nest, eat_nearest, drink_nearest, hide_nearest and flee keep running until interrupted; move_to_home and fly_to_nearest finish on arrival; take_off, land, perch_nearest, sing, alarm, emote, accept_offer and tolerate_touch are instant."
+    },
+    "ActionSpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "do"
+      ],
+      "properties": {
+        "do": {
+          "$ref": "#/$defs/ActionName"
+        },
+        "tag": {
+          "type": "string",
+          "description": "Resource tag (eat_nearest, fly_to_nearest, perch_nearest, accept_offer)."
+        },
+        "gait": {
+          "type": "string",
+          "description": "Gait name, e.g. `walk`, `gallop`, `hop`, `fly`."
+        },
+        "at": {
+          "enum": [
+            "home",
+            "shelter",
+            "nest"
+          ]
+        },
+        "call": {
+          "type": "string",
+          "description": "A `call_id` from the species' vocalizations (sing, alarm)."
+        },
+        "kind": {
+          "type": "string",
+          "description": "emote only: e.g. `freeze`, `groom`, `stretch`."
+        }
+      }
+    },
+    "Predicate": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/NeedPredicate"
+        },
+        {
+          "$ref": "#/$defs/ThreatWithin"
+        },
+        {
+          "$ref": "#/$defs/FoodWithin"
+        },
+        {
+          "$ref": "#/$defs/WaterWithin"
+        },
+        {
+          "$ref": "#/$defs/ShelterWithin"
+        },
+        {
+          "$ref": "#/$defs/PerchWithin"
+        },
+        {
+          "$ref": "#/$defs/NestSiteWithin"
+        },
+        {
+          "$ref": "#/$defs/ConspecificsWithin"
+        },
+        {
+          "$ref": "#/$defs/IsDay"
+        },
+        {
+          "$ref": "#/$defs/SunElevation"
+        },
+        {
+          "$ref": "#/$defs/MonthIn"
+        },
+        {
+          "$ref": "#/$defs/TemperatureBetween"
+        },
+        {
+          "$ref": "#/$defs/PlayerOffer"
+        },
+        {
+          "$ref": "#/$defs/PlayerTouch"
+        },
+        {
+          "$ref": "#/$defs/PlayerWithin"
+        },
+        {
+          "$ref": "#/$defs/Blackboard"
+        },
+        {
+          "$ref": "#/$defs/Chance"
+        },
+        {
+          "$ref": "#/$defs/AllPredicate"
+        },
+        {
+          "$ref": "#/$defs/AnyPredicate"
+        },
+        {
+          "$ref": "#/$defs/NotPredicate"
+        }
+      ]
+    },
+    "Node": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/SelectorNode"
+        },
+        {
+          "$ref": "#/$defs/SequenceNode"
+        },
+        {
+          "$ref": "#/$defs/ParallelNode"
+        },
+        {
+          "$ref": "#/$defs/InverterNode"
+        },
+        {
+          "$ref": "#/$defs/SucceederNode"
+        },
+        {
+          "$ref": "#/$defs/RepeatNode"
+        },
+        {
+          "$ref": "#/$defs/CooldownNode"
+        },
+        {
+          "$ref": "#/$defs/TimeoutNode"
+        },
+        {
+          "$ref": "#/$defs/CondNode"
+        },
+        {
+          "$ref": "#/$defs/ActNode"
+        },
+        {
+          "$ref": "#/$defs/SubtreeNode"
+        }
+      ]
+    },
+    "NeedPredicate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "need"
+      ],
+      "properties": {
+        "need": {
+          "$ref": "#/$defs/NeedName"
+        },
+        "gt": {
+          "$ref": "#/$defs/ParamOrNumber"
+        },
+        "lt": {
+          "$ref": "#/$defs/ParamOrNumber"
+        }
+      },
+      "description": "`{need, gt?, lt?}`: compare a need (0..1) with strict > / <."
+    },
+    "ThreatWithin": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "threat_within_m"
+      ],
+      "properties": {
+        "threat_within_m": {
+          "$ref": "#/$defs/ParamOrNumber"
+        }
+      },
+      "description": "True when the nearest threat is within m metres."
+    },
+    "FoodWithin": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "food_within_m",
+        "tag"
+      ],
+      "properties": {
+        "food_within_m": {
+          "$ref": "#/$defs/ParamOrNumber"
+        },
+        "tag": {
+          "type": "string"
+        }
+      },
+      "description": "True when the nearest food tagged exactly `tag` is within m."
+    },
+    "WaterWithin": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "water_within_m"
+      ],
+      "properties": {
+        "water_within_m": {
+          "$ref": "#/$defs/ParamOrNumber"
+        }
+      }
+    },
+    "ShelterWithin": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "shelter_within_m"
+      ],
+      "properties": {
+        "shelter_within_m": {
+          "$ref": "#/$defs/ParamOrNumber"
+        }
+      }
+    },
+    "PerchWithin": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "perch_within_m"
+      ],
+      "properties": {
+        "perch_within_m": {
+          "$ref": "#/$defs/ParamOrNumber"
+        }
+      }
+    },
+    "NestSiteWithin": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "nest_site_within_m"
+      ],
+      "properties": {
+        "nest_site_within_m": {
+          "$ref": "#/$defs/ParamOrNumber"
+        }
+      }
+    },
+    "ConspecificsWithin": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "conspecifics_within_m",
+        "gte"
+      ],
+      "properties": {
+        "conspecifics_within_m": {
+          "$ref": "#/$defs/ParamOrNumber"
+        },
+        "gte": {
+          "$ref": "#/$defs/ParamOrNumber"
+        }
+      },
+      "description": "At least `gte` of the same species within m."
+    },
+    "IsDay": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "is_day"
+      ],
+      "properties": {
+        "is_day": {
+          "type": "boolean"
+        }
+      }
+    },
+    "SunElevation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sun_elevation_between_deg"
+      ],
+      "properties": {
+        "sun_elevation_between_deg": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ParamOrNumber"
+          },
+          "minItems": 2,
+          "maxItems": 2
+        }
+      },
+      "description": "lo <= sun elevation (degrees) <= hi."
+    },
+    "MonthIn": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "month_in"
+      ],
+      "properties": {
+        "month_in": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/ParamOrNumber"
+          }
+        }
+      }
+    },
+    "TemperatureBetween": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "temperature_between_c"
+      ],
+      "properties": {
+        "temperature_between_c": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ParamOrNumber"
+          },
+          "minItems": 2,
+          "maxItems": 2
+        }
+      }
+    },
+    "PlayerOffer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "player_offer"
+      ],
+      "properties": {
+        "player_offer": {
+          "type": "string"
+        }
+      },
+      "description": "A viewer is offering something (e.g. `food`)."
+    },
+    "PlayerTouch": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "player_touch"
+      ],
+      "properties": {
+        "player_touch": {
+          "type": "boolean"
+        }
+      },
+      "description": "A viewer is petting the animal."
+    },
+    "PlayerWithin": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "player_within_m"
+      ],
+      "properties": {
+        "player_within_m": {
+          "$ref": "#/$defs/ParamOrNumber"
+        }
+      }
+    },
+    "Blackboard": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "bb"
+      ],
+      "properties": {
+        "bb": {
+          "type": "string"
+        },
+        "gt": {
+          "$ref": "#/$defs/ParamOrNumber"
+        },
+        "lt": {
+          "$ref": "#/$defs/ParamOrNumber"
+        },
+        "eq": {
+          "type": [
+            "number",
+            "string"
+          ]
+        }
+      },
+      "description": "Compare a value on the agent's blackboard."
+    },
+    "Chance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "chance"
+      ],
+      "properties": {
+        "chance": {
+          "$ref": "#/$defs/ParamOrNumber"
+        }
+      },
+      "description": "True with probability p, rolled on every evaluation."
+    },
+    "AllPredicate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "all"
+      ],
+      "properties": {
+        "all": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/Predicate"
+          }
+        }
+      }
+    },
+    "AnyPredicate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "any"
+      ],
+      "properties": {
+        "any": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/Predicate"
+          }
+        }
+      }
+    },
+    "NotPredicate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "not"
+      ],
+      "properties": {
+        "not": {
+          "$ref": "#/$defs/Predicate"
+        }
+      }
+    },
+    "SelectorNode": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "selector"
+      ],
+      "properties": {
+        "selector": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/Node"
+          }
+        }
+      },
+      "description": "Tick children in order until one succeeds or is running."
+    },
+    "SequenceNode": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sequence"
+      ],
+      "properties": {
+        "sequence": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/Node"
+          }
+        }
+      },
+      "description": "Tick children in order until one fails; `cond` children are re-checked every tick."
+    },
+    "ParallelNode": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "parallel",
+        "succeed_on"
+      ],
+      "properties": {
+        "parallel": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 64,
+          "items": {
+            "$ref": "#/$defs/Node"
+          }
+        },
+        "succeed_on": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "description": "Tick all children; succeed once `succeed_on` have succeeded."
+    },
+    "InverterNode": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "inverter"
+      ],
+      "properties": {
+        "inverter": {
+          "$ref": "#/$defs/Node"
+        }
+      }
+    },
+    "SucceederNode": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "succeeder"
+      ],
+      "properties": {
+        "succeeder": {
+          "$ref": "#/$defs/Node"
+        }
+      }
+    },
+    "RepeatNode": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "repeat",
+        "child"
+      ],
+      "properties": {
+        "repeat": {
+          "$ref": "#/$defs/ParamOrNumber"
+        },
+        "child": {
+          "$ref": "#/$defs/Node"
+        }
+      }
+    },
+    "CooldownNode": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "cooldown_s",
+        "child"
+      ],
+      "properties": {
+        "cooldown_s": {
+          "$ref": "#/$defs/ParamOrNumber"
+        },
+        "child": {
+          "$ref": "#/$defs/Node"
+        }
+      },
+      "description": "Let the child start at most once per s seconds."
+    },
+    "TimeoutNode": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "timeout_s",
+        "child"
+      ],
+      "properties": {
+        "timeout_s": {
+          "$ref": "#/$defs/ParamOrNumber"
+        },
+        "child": {
+          "$ref": "#/$defs/Node"
+        }
+      },
+      "description": "Fail the child after it has run for s seconds."
+    },
+    "CondNode": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "cond"
+      ],
+      "properties": {
+        "cond": {
+          "$ref": "#/$defs/Predicate"
+        }
+      },
+      "description": "Success if the predicate holds, else failure."
+    },
+    "ActNode": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "act"
+      ],
+      "properties": {
+        "act": {
+          "$ref": "#/$defs/ActionSpec"
+        }
+      },
+      "description": "Run an action."
+    },
+    "SubtreeNode": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "subtree"
+      ],
+      "properties": {
+        "subtree": {
+          "$ref": "#/$defs/ProgramId"
+        }
+      },
+      "description": "Inline another `bt` program's root."
+    }
+  }
+}

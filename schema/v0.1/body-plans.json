@@ -1,0 +1,270 @@
+{
+  "description": "Body plans for the block-mesh look (format v0.1). `parts` are the boxes the previewer and the host generate for each plan, parent first; `extra_parts`, `part_colors` and pose keyframes may name them. `defaults` are used for omitted proportions. `poses` lists the poses with a built-in animation. `default_colors` gives each part's palette slot.",
+  "locomotion_to_pose": {
+    "Walk": "walk",
+    "Trot": "trot",
+    "Gallop": "gallop",
+    "Hop": "hop",
+    "Slither": "slither",
+    "Swim": "swim",
+    "Fly": "fly",
+    "Glide": "glide"
+  },
+  "plans": {
+    "quadruped": {
+      "parts": [
+        "body",
+        "neck",
+        "head",
+        "snout",
+        "ear_left",
+        "ear_right",
+        "leg_front_left",
+        "leg_front_right",
+        "leg_rear_left",
+        "leg_rear_right",
+        "tail"
+      ],
+      "defaults": {
+        "torso_aspect": 2.0,
+        "leg_length_ratio": 0.45,
+        "head_scale": 0.7,
+        "neck_angle_deg": 30,
+        "tail_ratio": 0.5,
+        "ear_ratio": 0.3,
+        "beak_ratio": 0.5,
+        "girth_ratio": 0.8
+      },
+      "poses": [
+        "idle",
+        "walk",
+        "trot",
+        "gallop",
+        "rest",
+        "swim"
+      ],
+      "default_colors": {
+        "body": "body",
+        "neck": "body",
+        "head": "body",
+        "snout": "belly",
+        "ear_*": "body",
+        "leg_*": "body",
+        "tail": "body"
+      }
+    },
+    "hopper": {
+      "parts": [
+        "body",
+        "neck",
+        "head",
+        "snout",
+        "ear_left",
+        "ear_right",
+        "leg_front_left",
+        "leg_front_right",
+        "leg_rear_left",
+        "leg_rear_right",
+        "tail"
+      ],
+      "defaults": {
+        "torso_aspect": 1.6,
+        "leg_length_ratio": 0.35,
+        "head_scale": 0.75,
+        "neck_angle_deg": 35,
+        "tail_ratio": 0.15,
+        "ear_ratio": 0.9,
+        "beak_ratio": 0.4,
+        "girth_ratio": 0.9
+      },
+      "poses": [
+        "idle",
+        "hop",
+        "walk",
+        "rest"
+      ],
+      "default_colors": {
+        "body": "body",
+        "neck": "body",
+        "head": "body",
+        "snout": "belly",
+        "ear_*": "body",
+        "leg_*": "body",
+        "tail": "belly"
+      }
+    },
+    "anuran": {
+      "parts": [
+        "body",
+        "head",
+        "eye_left",
+        "eye_right",
+        "leg_front_left",
+        "leg_front_right",
+        "leg_rear_left",
+        "leg_rear_right"
+      ],
+      "defaults": {
+        "torso_aspect": 1.3,
+        "leg_length_ratio": 0.6,
+        "head_scale": 0.8,
+        "neck_angle_deg": 10,
+        "girth_ratio": 1.1
+      },
+      "poses": [
+        "idle",
+        "hop",
+        "walk",
+        "swim",
+        "rest"
+      ],
+      "default_colors": {
+        "body": "body",
+        "head": "body",
+        "eye_*": "eye",
+        "leg_*": "body"
+      }
+    },
+    "biped_winged": {
+      "parts": [
+        "body",
+        "breast",
+        "head",
+        "beak",
+        "eye_left",
+        "eye_right",
+        "wing_left",
+        "wing_right",
+        "tail",
+        "leg_left",
+        "leg_right"
+      ],
+      "defaults": {
+        "torso_aspect": 1.8,
+        "leg_length_ratio": 0.3,
+        "head_scale": 0.75,
+        "neck_angle_deg": 20,
+        "tail_ratio": 0.5,
+        "wing_aspect": 3.0,
+        "beak_ratio": 0.5,
+        "girth_ratio": 0.9
+      },
+      "poses": [
+        "idle",
+        "walk",
+        "hop",
+        "fly",
+        "glide",
+        "perched",
+        "swim",
+        "rest"
+      ],
+      "default_colors": {
+        "body": "body",
+        "breast": "belly",
+        "head": "body",
+        "beak": "accent",
+        "eye_*": "eye",
+        "wing_*": "body",
+        "tail": "body",
+        "leg_*": "accent"
+      }
+    },
+    "serpentine": {
+      "parts": [
+        "head"
+      ],
+      "segment_parts": "segment{i} for i in 0..segments-1, segment0 behind the head",
+      "defaults": {
+        "torso_aspect": 20,
+        "head_scale": 1.3,
+        "segments": 10,
+        "girth_ratio": 1.0
+      },
+      "poses": [
+        "idle",
+        "slither",
+        "swim",
+        "rest"
+      ],
+      "default_colors": {
+        "head": "body",
+        "segment*": "body"
+      }
+    },
+    "hexapod": {
+      "parts": [
+        "thorax",
+        "head",
+        "abdomen",
+        "antenna_left",
+        "antenna_right",
+        "leg_front_left",
+        "leg_front_right",
+        "leg_mid_left",
+        "leg_mid_right",
+        "leg_rear_left",
+        "leg_rear_right"
+      ],
+      "defaults": {
+        "torso_aspect": 2.5,
+        "leg_length_ratio": 0.6,
+        "head_scale": 0.8,
+        "tail_ratio": 1.0,
+        "girth_ratio": 0.8
+      },
+      "poses": [
+        "idle",
+        "walk",
+        "rest"
+      ],
+      "default_colors": {
+        "thorax": "body",
+        "head": "markings",
+        "abdomen": "body",
+        "antenna_*": "markings",
+        "leg_*": "markings"
+      }
+    },
+    "hexapod_winged": {
+      "parts": [
+        "thorax",
+        "head",
+        "abdomen",
+        "antenna_left",
+        "antenna_right",
+        "leg_front_left",
+        "leg_front_right",
+        "leg_mid_left",
+        "leg_mid_right",
+        "leg_rear_left",
+        "leg_rear_right",
+        "wing_left",
+        "wing_right"
+      ],
+      "defaults": {
+        "torso_aspect": 2.5,
+        "leg_length_ratio": 0.5,
+        "head_scale": 0.8,
+        "tail_ratio": 1.0,
+        "wing_aspect": 1.6,
+        "girth_ratio": 0.8
+      },
+      "poses": [
+        "idle",
+        "walk",
+        "fly",
+        "perched",
+        "rest"
+      ],
+      "default_colors": {
+        "thorax": "body",
+        "head": "markings",
+        "abdomen": "body",
+        "antenna_*": "markings",
+        "leg_*": "markings",
+        "wing_*": "accent"
+      }
+    }
+  }
+}
