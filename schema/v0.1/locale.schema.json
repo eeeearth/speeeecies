@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://jt55401.github.io/speeeecies/schema/v0.1/locale.schema.json",
   "title": "speeeecies locale manifest v0.1",
-  "description": "One place the live simulation can show, contributed as `locales/<id>/locale.json`. A locale names a public centroid (never a street address or a private yard), its climate, a generic plot template, and at least 8 species that already exist under `species/`. Flora is phase 2: `flora_wishlist` holds names only, and the simulation uses a biome default catalog until a plant format exists. Unknown keys are rejected.",
+  "description": "One place the live simulation can show, contributed as `locales/<id>/locale.json`. A locale names a public centroid (never a street address or a private yard), its climate, a generic plot template, and at least 8 species that already exist under `species/` (aim for 12 or more). A locale may also ship `locales/<id>/flora-catalog.json`, the plants its garden shows; without one the simulation uses a biome default catalog. `flora_wishlist` holds names only, for local plants no drawable taxon resembles. Unknown keys are rejected.",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -75,7 +75,7 @@
     },
     "koppen": {
       "type": "string",
-      "description": "Köppen-Geiger climate class at the centroid. Picks the simulation's biome default flora until plants are supported.",
+      "description": "Köppen-Geiger climate class at the centroid. Picks the simulation's biome default flora when the locale has no `flora-catalog.json`.",
       "enum": [
         "Af",
         "Am",
@@ -160,7 +160,7 @@
     },
     "species": {
       "type": "array",
-      "description": "Slugs of species under `species/<slug>/`, at least 8. Each must carry an activity curve for `activity_region`.",
+      "description": "Slugs of species under `species/<slug>/`, at least 8 (aim for 12 or more). Each must carry an activity curve for `activity_region`.",
       "minItems": 8,
       "uniqueItems": true,
       "items": {
@@ -170,7 +170,7 @@
     },
     "flora_wishlist": {
       "type": "array",
-      "description": "Plants you would like to see here, by name only (scientific or common). Flora is phase 2; these are not validated or imported yet.",
+      "description": "Plants you would like to see here, by name only (scientific or common), especially ones no taxon in `flora-catalog.json` can stand in for. These names are not validated or imported; ship `locales/<id>/flora-catalog.json` for plants the garden actually shows.",
       "uniqueItems": true,
       "items": {
         "type": "string",

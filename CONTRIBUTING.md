@@ -54,9 +54,13 @@ often a coding agent — will pick it up.
 
 A locale is a place for the live simulation
 (https://www.youtube.com/@jt55401/live) to show: a city or district, its
-climate, a generic garden or street plot, and at least 8 animals that live
-there. It is one file, `locales/<id>/locale.json`; `locales/london-uk/` is
-the worked example and `AGENTS.md` has the step-by-step.
+climate, a generic garden or street plot, the plants its garden shows, and
+at least 8 animals that live there (aim for 12 or more). It is
+`locales/<id>/locale.json` plus `locales/<id>/flora-catalog.json`, which is
+optional but expected (the validator warns without it);
+`locales/london-uk/` is the worked example and `AGENTS.md` has the
+step-by-step. A locale with the bare minimum passes validation but looks
+empty on the stream: read `docs/locale-richness.md` before you start.
 
 1. Open (or pick up) a **locale-request** issue and comment that you're
    claiming it.
@@ -65,10 +69,18 @@ the worked example and `AGENTS.md` has the step-by-step.
    public page such as Wikidata, rounded to 2 decimals. We only accept
    public centroid coordinates: never your house, your garden or a street
    address.
-3. List at least 8 species from `species/`. Add missing ones first, and
-   fetch an activity curve for your locale's `activity_region` for each
-   species that lacks one (`tools/fetch_activity.py`).
-4. Run `uv run tools/validate.py --locale <id> --report` and
+3. List at least 8 species from `species/`, aiming for 12 or more. Add
+   missing ones first, and fetch an activity curve for your locale's
+   `activity_region` for each species that lacks one
+   (`tools/fetch_activity.py`).
+4. Copy `locales/london-uk/flora-catalog.json` to
+   `locales/<id>/flora-catalog.json` and change it: at least 8 plant taxa,
+   at least 2 of them evergreen, chosen from `schema/v0.1/flora-taxa.json`
+   (the plants the simulation can draw), each naming the local species it
+   stands in for. See "Writing `flora-catalog.json`" in
+   `docs/locale-richness.md`. Without a catalog the garden gets a generic
+   set of a few large trees for its climate.
+5. Run `uv run tools/validate.py --locale <id> --report` and
    `uv run tools/validate.py --self-check` until both pass, then open a PR
    titled `locale: <place> (<id>)` with the report.
 
@@ -81,9 +93,14 @@ centroid and the plot template). Then the locale joins the live rotation,
 and a comment on your merged PR says so and when it first appears on the
 stream.
 
-**Flora is phase 2.** There is no plant format yet, so each locale uses a
-default plant catalog for its climate. Put plants you'd like to see in
-`flora_wishlist`, by name only.
+**Plants: a flora catalog, not plant records.** A locale's
+`flora-catalog.json` says which plants its garden shows, drawn with the
+models in `schema/v0.1/flora-taxa.json` and standing in for the local
+species. Plant *species records* are still phase 2: they need a plant
+format first (roadmap item SPEEEECIES-M8), so do not write
+`species/<slug>/` records for plants or work `phase-2` issues.
+`flora_wishlist` lists local plants by name for that later work,
+especially ones no drawable taxon resembles.
 
 ## Report a data error
 
