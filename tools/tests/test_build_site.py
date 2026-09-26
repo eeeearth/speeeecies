@@ -241,3 +241,50 @@ def test_behaviors_index_skips_malformed_program(tmp_path, capsys):
     index = json.loads((out / "behaviors" / "index.json").read_text(encoding="utf-8"))
     assert [e["id"] for e in index] == ["fsm-test-v1"]
     assert "broken" in capsys.readouterr().err
+
+
+def test_locales_index_lists_every_locale_with_common_names(tmp_path):
+    repo = make_repo(tmp_path)
+    write_species(repo, "vulpes-vulpes", "red fox", "Mammalia", "quadruped")
+    locale_dir = repo / "locales" / "test-town"
+    locale_dir.mkdir(parents=True)
+    (locale_dir / "locale.json").write_text(
+        json.dumps(
+            {
+                "id": "test-town",
+                "name": "A test garden",
+                "country": "GB",
+                "activity_region": "GB-ENG",
+                "plot_template": "rowhouse-garden",
+                "koppen": "Cfb",
+                "public_lat": 51.51,
+                "public_lon": -0.13,
+                "blurb": "A small garden.",
+                "species": ["vulpes-vulpes", "bufo-bufo"],
+                "flora_wishlist": ["Hedera helix"],
+                "contributors": [{"name": "someone"}],
+            }
+        ),
+        encoding="utf-8",
+    )
+    (repo / "locales" / "not-a-locale").mkdir()
+    out = tmp_path / "_site"
+    build_site.build_site(repo, out)
+
+    index = json.loads((out / "locales" / "index.json").read_text(encoding="utf-8"))
+    assert [e["id"] for e in index] == ["test-town"]
+    entry = index[0]
+    assert entry["species"] == [
+        {"slug": "vulpes-vulpes", "common_name_en": "red fox"},
+        {"slug": "bufo-bufo", "common_name_en": ""},
+    ]
+    assert entry["contributors"] == ["someone"]
+    assert entry["path"] == "locales/test-town/locale.json"
+    assert (out / "locales" / "test-town" / "locale.json").is_file()
+
+
+def test_locales_index_empty_without_locales_dir(tmp_path):
+    repo = make_repo(tmp_path)
+    out = tmp_path / "_site"
+    build_site.build_site(repo, out)
+    assert json.loads((out / "locales" / "index.json").read_text(encoding="utf-8")) == []

@@ -5,8 +5,9 @@
 # ///
 """Assemble the speeeecies GitHub Pages site into _site/.
 
-Copies site/*, schema/, behaviors/, species/ into the output directory,
-writes <out>/species/index.json (a summary of every species/<slug>/species.json)
+Copies site/*, schema/, behaviors/, species/, locales/ into the output directory,
+writes <out>/species/index.json (a summary of every species/<slug>/species.json),
+<out>/locales/index.json (a summary of every locales/<id>/locale.json)
 and <out>/ATTRIBUTION.md (a concatenation of every species/*/ATTRIBUTION.md,
 with a header). Also copies AGENTS.md, CONTRIBUTING.md, ROADMAP.md, PLAN.md into
 <out>/docs/ when present. Stdlib only.
@@ -57,7 +58,7 @@ def unsafe_out_dir_reason(out_dir: Path, repo_root: Path) -> str | None:
     repo_root = repo_root.resolve()
     if _is_same_or_ancestor(out_dir, repo_root):
         return f"--out resolves to {out_dir}, which is the repo root or an ancestor of it"
-    for name in ("site", "schema", "behaviors", "species"):
+    for name in ("site", "schema", "behaviors", "species", "locales"):
         src = repo_root / name
         if _is_same_or_ancestor(src, out_dir):
             return f"--out resolves to {out_dir}, which is (or is inside) {src}"
@@ -88,6 +89,48 @@ def build_species_index(species_dir: Path) -> list[dict]:
                 "class": ((data.get("taxonomy") or {}).get("class", "")),
                 "body_plan": ((data.get("look") or {}).get("body_plan", "")),
                 "path": f"species/{slug}/species.json",
+            }
+        )
+    return entries
+
+
+def build_locales_index(locales_dir: Path, species_index: list[dict]) -> list[dict]:
+    """A summary of every locales/<id>/locale.json for site/locales.html,
+    with each listed species' common name resolved from the species index."""
+    common_names = {e["slug"]: e["common_name_en"] for e in species_index}
+    entries = []
+    if not locales_dir.is_dir():
+        return entries
+    for child in sorted(locales_dir.iterdir()):
+        locale_json = child / "locale.json"
+        if not locale_json.is_file():
+            continue
+        try:
+            data = json.loads(locale_json.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, OSError) as err:
+            print(f"warning: skipping {locale_json}: {err}", file=sys.stderr)
+            continue
+        entries.append(
+            {
+                "id": data.get("id", child.name),
+                "name": data.get("name", ""),
+                "country": data.get("country", ""),
+                "activity_region": data.get("activity_region", ""),
+                "plot_template": data.get("plot_template", ""),
+                "koppen": data.get("koppen", ""),
+                "public_lat": data.get("public_lat"),
+                "public_lon": data.get("public_lon"),
+                "blurb": data.get("blurb", ""),
+                "species": [
+                    {"slug": slug, "common_name_en": common_names.get(slug, "")}
+                    for slug in data.get("species", [])
+                    if isinstance(slug, str)
+                ],
+                "flora_wishlist": [f for f in data.get("flora_wishlist", []) if isinstance(f, str)],
+                "contributors": [
+                    c.get("name", "") for c in data.get("contributors", []) if isinstance(c, dict)
+                ],
+                "path": f"locales/{child.name}/locale.json",
             }
         )
     return entries
@@ -150,6 +193,7 @@ def build_site(repo_root: Path, out_dir: Path) -> None:
     copy_tree(repo_root / "schema", out_dir / "schema")
     copy_tree(repo_root / "behaviors", out_dir / "behaviors")
     copy_tree(repo_root / "species", out_dir / "species")
+    copy_tree(repo_root / "locales", out_dir / "locales")
 
     behaviors_dir = out_dir / "behaviors"
     behaviors_dir.mkdir(parents=True, exist_ok=True)
@@ -163,6 +207,13 @@ def build_site(repo_root: Path, out_dir: Path) -> None:
     index = build_species_index(repo_root / "species")
     (species_dir / "index.json").write_text(
         json.dumps(index, indent=2) + "\n", encoding="utf-8"
+    )
+
+    locales_dir = out_dir / "locales"
+    locales_dir.mkdir(parents=True, exist_ok=True)
+    locales_index = build_locales_index(repo_root / "locales", index)
+    (locales_dir / "index.json").write_text(
+        json.dumps(locales_index, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
     )
 
     attribution = build_attribution(repo_root / "species")
