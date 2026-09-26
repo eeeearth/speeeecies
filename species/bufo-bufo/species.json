@@ -1,0 +1,800 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Bufo bufo",
+  "slug": "bufo-bufo",
+  "common_names": {
+    "en": "common toad",
+    "fr": "crapaud commun",
+    "de": "Erdkr\u00f6te",
+    "nl": "gewone pad"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Amphibia",
+    "order": "Anura",
+    "family": "Bufonidae",
+    "genus": "Bufo",
+    "authority": "(Linnaeus, 1758)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 5217160,
+    "inat_taxon_id": 326296,
+    "itis_tsn": 173480,
+    "wikidata": "Q146375",
+    "ncbi_taxon_id": 8384,
+    "amphibiaweb_id": 127
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "GB",
+      "PT",
+      "ES",
+      "FR",
+      "BE",
+      "NL",
+      "LU",
+      "DE",
+      "DK",
+      "NO",
+      "SE",
+      "FI",
+      "PL",
+      "CZ",
+      "SK",
+      "AT",
+      "CH",
+      "IT",
+      "SI",
+      "HR",
+      "HU",
+      "RO",
+      "BG",
+      "GR",
+      "UA",
+      "BY",
+      "RU",
+      "TR",
+      "MA",
+      "DZ",
+      "TN"
+    ],
+    "introduced": [
+      "IE"
+    ],
+    "elevation_m": [
+      0,
+      2500
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk",
+      "Hop",
+      "Swim"
+    ],
+    "thermoregulation": "Ectotherm",
+    "skin": "Moist",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "Complete",
+    "nest_type": "None",
+    "perching": false,
+    "size_class": "Small",
+    "mass_kg": 0.165,
+    "length_m": 0.15,
+    "lifespan_y": 11,
+    "diet": {
+      "invertebrate": 0.95,
+      "vertebrate": 0.05
+    },
+    "social": {
+      "structure": "Solitary",
+      "group_size": [
+        1,
+        1
+      ]
+    },
+    "activity_pattern": "Nocturnal",
+    "defense": "Toxin",
+    "wariness": 0.3
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.8,
+      "fossorial": 0.1,
+      "aquatic": 0.1
+    },
+    "shelter_tag": "leaf_litter",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 1.0
+      },
+      {
+        "tag": "pond",
+        "kind": "Nesting",
+        "weight": 1.0,
+        "months": [
+          3,
+          4
+        ]
+      },
+      {
+        "tag": "leaf_litter",
+        "kind": "Shelter",
+        "weight": 0.7
+      },
+      {
+        "tag": "log_pile",
+        "kind": "Shelter",
+        "weight": 0.6
+      },
+      {
+        "tag": "burrow",
+        "kind": "Shelter",
+        "weight": 0.5,
+        "months": [
+          11,
+          12,
+          1,
+          2
+        ]
+      }
+    ],
+    "requires": [
+      {
+        "resource_within_m": 3621,
+        "tag": "pond"
+      }
+    ],
+    "suitability": {
+      "combine": "GeometricMean",
+      "curves": [
+        {
+          "covariate": "dist_water_m",
+          "curve": [
+            [
+              0,
+              1.0
+            ],
+            [
+              550,
+              0.1
+            ],
+            [
+              3621,
+              0.0
+            ]
+          ]
+        }
+      ]
+    },
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "road_mortality": "High",
+      "notes": "Lives in gardens and parks; has the highest roadkill mortality of Europe's amphibians during migration to breeding ponds, which local groups reduce with toad patrols and tunnels."
+    }
+  },
+  "seasonal": {
+    "strategy": "Hibernation",
+    "triggers": {
+      "enter": {
+        "temperature_below_c": 5,
+        "days": 5
+      },
+      "exit": {
+        "temperature_above_c": 6,
+        "days": 3
+      }
+    },
+    "phases": [
+      {
+        "name": "dormancy",
+        "start": "11-01",
+        "end": "02-28",
+        "note": "Winters in holes in the ground, sometimes in basements, often with other amphibians."
+      },
+      {
+        "name": "spawning_migration",
+        "start": "03-01",
+        "end": "04-15",
+        "region": "GB",
+        "note": "Emerges in spring and migrates en masse to favoured ponds; breeding lasted about 2-3 weeks from early March or early April in an Oxfordshire study."
+      },
+      {
+        "name": "breeding",
+        "start": "03-01",
+        "end": "04-30",
+        "region": "GB"
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg",
+        "duration_days": 10,
+        "requires_tag": "pond",
+        "scale": 0.02
+      },
+      {
+        "stage": "Tadpole",
+        "duration_days": 74,
+        "requires_tag": "pond",
+        "scale": 0.1
+      },
+      {
+        "stage": "Juvenile",
+        "duration_days": 1100,
+        "scale": 0.3
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "GB",
+        "monthly": [
+          0.03,
+          0.29,
+          1.0,
+          0.77,
+          0.68,
+          0.84,
+          0.87,
+          0.77,
+          0.57,
+          0.23,
+          0.05,
+          0.01
+        ],
+        "method": "mean(inat_raw, gbif_raw)",
+        "observations": 35463,
+        "sources": [
+          "inat-activity-gb",
+          "gbif-activity-gb"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 6857,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=326296&place_id=6857&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": null,
+            "total": 3383,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "country",
+              "GB"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5217160&country=GB&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": null,
+            "total": 32080,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "DE",
+        "monthly": [
+          0.01,
+          0.26,
+          1.0,
+          0.58,
+          0.27,
+          0.34,
+          0.29,
+          0.29,
+          0.14,
+          0.06,
+          0.01,
+          0.0
+        ],
+        "method": "mean(inat_raw, gbif_raw)",
+        "observations": 30091,
+        "sources": [
+          "inat-activity-de",
+          "gbif-activity-de"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 7207,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=326296&place_id=7207&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": null,
+            "total": 2399,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "country",
+              "DE"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5217160&country=DE&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": null,
+            "total": 27692,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-anuran-nocturnal-v1",
+    "params": {
+      "flee_m": 1.5,
+      "freeze_m": 4,
+      "call": "croak",
+      "min_temp_c": 4,
+      "max_temp_c": 25,
+      "call_m1": 3,
+      "call_m2": 4
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "croak",
+      "context": "Croak",
+      "season_months": [
+        3,
+        4
+      ],
+      "time_windows": [
+        "Dusk",
+        "Night"
+      ],
+      "cooldown_s": 15,
+      "loudness": "Quiet",
+      "description": "Males croak at breeding ponds; the pitch signals body size, and rivals settle disputes over females by it instead of fighting."
+    }
+  ],
+  "look": {
+    "body_plan": "anuran",
+    "proportions": {
+      "torso_aspect": 1.25,
+      "leg_length_ratio": 0.45,
+      "head_scale": 0.85,
+      "neck_angle_deg": 5,
+      "girth_ratio": 1.2
+    },
+    "palette": {
+      "body": "#7a6344",
+      "belly": "#d8d0bd",
+      "markings": "#54432d",
+      "accent": "#8a7550",
+      "eye": "#b8732a"
+    },
+    "extra_parts": [
+      {
+        "name": "paratoid",
+        "parent": "head",
+        "offset": [
+          -0.3,
+          0.45,
+          0.3
+        ],
+        "size": [
+          0.35,
+          0.25,
+          0.25
+        ],
+        "color": "accent",
+        "mirror": true
+      },
+      {
+        "name": "wart_band",
+        "parent": "body",
+        "offset": [
+          0,
+          0.48,
+          0
+        ],
+        "size": [
+          0.7,
+          0.08,
+          0.8
+        ],
+        "color": "markings"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "hop": {},
+      "swim": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/5217160",
+      "title": "GBIF Backbone Taxonomy: Bufo bufo",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-09-25",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q146375",
+      "title": "Wikidata: common toad (Q146375)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-09-25",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Common_toad",
+      "title": "Wikipedia: Common toad",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-09-25",
+      "attribution": "Wikipedia contributors, \"Common toad\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=173480",
+      "title": "ITIS: Bufo bufo, TSN 173480",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-09-25",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "amphibio",
+      "url": "https://doi.org/10.6084/m9.figshare.4644424",
+      "title": "AmphiBIO v1: a global database for amphibian ecological traits",
+      "license": "CC-BY-4.0",
+      "kind": "dataset",
+      "accessed": "2026-09-25",
+      "attribution": "Oliveira, B. F. et al. (2017) AmphiBIO. Scientific Data 4:170123",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "plos-oxfordshire",
+      "url": "https://doi.org/10.1371/journal.pone.0148269",
+      "title": "Mapping the relative probability of common toad occurrence in terrestrial lowland farm habitat in the United Kingdom",
+      "license": "CC-BY-4.0",
+      "kind": "literature",
+      "accessed": "2026-09-25",
+      "attribution": "Salazar, R. D. et al. (2016) PLOS ONE 11(2): e0148269",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "inat-activity-gb",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=326296&place_id=6857&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Bufo bufo in GB",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-09-25",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-gb",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5217160&country=GB&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Bufo bufo in GB",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-09-25) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-09-25",
+      "kind": "api"
+    },
+    {
+      "id": "inat-activity-de",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=326296&place_id=7207&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Bufo bufo in DE",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-09-25",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-de",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5217160&country=DE&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Bufo bufo in DE",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-09-25) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-09-25",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "itis"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "iNaturalist, NCBI and AmphibiaWeb ids via Wikidata (P3151, P685, P5036)."
+    },
+    "common_names": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "Wikidata P141 = least concern (Q211005)."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Country list derived from 'found throughout the continent except Iceland, the cold northern parts of Scandinavia, and a number of Mediterranean islands', east into Siberia and parts of northwestern Africa; introduced in Ireland; up to 2500 m."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Usually walks, makes short jumps with all four legs, swims at breeding ponds."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Dry, warty skin; 'Moist' is the format's amphibian skin class."
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Eggs laid in strings in ponds; no nest."
+    },
+    "traits.size_class": {
+      "sources": [
+        "amphibio"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "amphibio"
+      ],
+      "confidence": "Medium",
+      "note": "AmphiBIO Body_mass_g 164.75 (a large adult; many adults are smaller)."
+    },
+    "traits.length_m": {
+      "sources": [
+        "amphibio",
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Snout-vent length up to about 15 cm (AmphiBIO Body_size_mm 150)."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Midpoint of 'about ten to twelve years' in the wild."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia",
+        "amphibio"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Prey list (woodlice, slugs, beetles, caterpillars, flies, ants, spiders, earthworms and even small mice) mapped to shares by judgement."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Solitary outside the breeding season."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "amphibio",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "AmphiBIO Noc 1, Crepu 1; emerges at dusk."
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Paratoid glands secrete bufotoxin."
+    },
+    "traits.wariness": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored judgement."
+    },
+    "habitat.use": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored: terrestrial outside the breeding weeks."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Spends the day in a hollow under foliage, a root or a stone."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Prey, breeding ponds and day and winter shelters from Wikipedia; weights authored."
+    },
+    "habitat.requires": {
+      "sources": [
+        "plos-oxfordshire"
+      ],
+      "confidence": "Medium",
+      "note": "Reported maximum migration 3621 m."
+    },
+    "habitat.suitability": {
+      "sources": [
+        "plos-oxfordshire"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Occurrence probability about 10% at 550 m from a pond; zero at the reported maximum migration distance."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "seasonal.triggers": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored temperatures; no open source gives thresholds."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia",
+        "plos-oxfordshire"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Dormancy window derived from 'winters in holes ... emerges in spring' and the April-October terrestrial season in the Oxfordshire study."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia",
+        "amphibio"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Tadpoles hatch after 10 days and are miniature toads by twelve weeks; maturity at 2-5 years (AmphiBIO); scales authored."
+    },
+    "vocalizations.croak": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Months and windows derived from the breeding season; no open source gives frequencies."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Brown to olive-brown warty back, dirty-white underside, copper irises, bulging paratoid glands; proportions authored."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared nocturnal anuran program."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies maintainers",
+      "agent": "claude-code"
+    }
+  ]
+}
