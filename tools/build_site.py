@@ -9,7 +9,7 @@ Copies site/*, schema/, behaviors/, species/, locales/ into the output directory
 writes <out>/species/index.json (a summary of every species/<slug>/species.json),
 <out>/locales/index.json (a summary of every locales/<id>/locale.json)
 and <out>/ATTRIBUTION.md (a concatenation of every species/*/ATTRIBUTION.md,
-with a header). Also copies AGENTS.md, CONTRIBUTING.md, ROADMAP.md, PLAN.md into
+with a header). Also copies README.md, AGENTS.md, CONTRIBUTING.md, ROADMAP.md, PLAN.md into
 <out>/docs/ when present. Stdlib only.
 
 Usage: python3 tools/build_site.py [--out _site] [--repo-root DIR]
@@ -221,7 +221,7 @@ def build_site(repo_root: Path, out_dir: Path) -> None:
 
     docs_dir = out_dir / "docs"
     docs_dir.mkdir(parents=True, exist_ok=True)
-    for name in ("AGENTS.md", "CONTRIBUTING.md", "ROADMAP.md", "PLAN.md"):
+    for name in ("README.md", "AGENTS.md", "CONTRIBUTING.md", "ROADMAP.md", "PLAN.md"):
         src = repo_root / name
         if src.is_file():
             shutil.copy2(src, docs_dir / name)
