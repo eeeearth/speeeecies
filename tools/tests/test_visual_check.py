@@ -178,13 +178,13 @@ def test_build_report_shape():
     assert "summary" in report and report["summary"]["n_images"] == 1
 
 
-def test_build_report_never_embeds_absolute_paths():
+def test_build_report_never_embeds_absolute_paths(tmp_path):
     # Guards the PUBLIC SAFETY rule: visual-check.json must carry image
     # *names* only, never absolute local filesystem paths.
     target = "Vulpes vulpes (red fox)"
     images = [
         {
-            "image": "/home/someone/tmp/speeeecies-visual-check/vulpes-vulpes/idle-35.png",
+            "image": str(tmp_path / "speeeecies-visual-check" / "vulpes-vulpes" / "idle-35.png"),
             "pose": "idle",
             "yaw": 35,
             "top_label": target,
@@ -201,8 +201,8 @@ def test_build_report_never_embeds_absolute_paths():
     )
     assert report["images"][0]["image"] == "idle-35.png"
     dumped = str(report)
-    assert "/home/" not in dumped
-    assert "someone" not in dumped
+    assert str(tmp_path) not in dumped
+    assert "speeeecies-visual-check" not in dumped
 
 
 def test_default_images_dir_has_no_hardcoded_home(monkeypatch):
