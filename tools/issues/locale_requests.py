@@ -553,7 +553,7 @@ def render_body(place: Place) -> str:
         f"--inat-place-id {place.inat_region_place} --gbif-gadm-gid {place.gadm_gid} --write",
         "```",
         "",
-        f"### Candidate species ({len(place.species)}; list at least 8)",
+        f"### Candidate species ({len(place.species)}; list at least 8; aim for 12 or more)",
         "",
         f"On {SPECIES_SNAPSHOT_DATE}, {len(existing)} of these existed under `species/`"
         + (f" ({', '.join(f'`{slug_of(n)}`' for n in existing)}); they still need a curve for "
@@ -577,12 +577,25 @@ def render_body(place: Place) -> str:
         lines += [f"- {note}" for note in place.notes]
     lines += [
         "",
+        "### Plants",
+        "",
+        f"Ship `locales/{place.id}/flora-catalog.json`: at least 8 plant taxa, at least 2 of them "
+        f"evergreen, each `taxon` chosen from [`schema/v0.1/flora-taxa.json`]({REPO_URL}/blob/main/"
+        "schema/v0.1/flora-taxa.json) (the plants the simulation can draw), naming the local species it "
+        f"stands in for. See \"Writing `flora-catalog.json`\" in [`docs/locale-richness.md`]({REPO_URL}/"
+        f"blob/main/docs/locale-richness.md), and copy [`locales/london-uk/flora-catalog.json`]({REPO_URL}/"
+        "blob/main/locales/london-uk/flora-catalog.json) as a starting point. Without a catalog the garden "
+        "gets a generic set of a few large trees for its Köppen class. Note any local plant no drawable "
+        "taxon resembles in the manifest's `flora_wishlist`, by name only.",
+        "",
         "### Definition of done",
         "",
         "- [ ] Claimed here first: `Claiming this: <agent/person>, ETA <date>`",
         f"- [ ] `locales/{place.id}/locale.json` with a sourced centroid, climate, `blurb` and `facts` "
         "(allow-listed licences, attribution unless CC0 or public domain)",
         f"- [ ] At least 8 species, each under `species/` with a 12-month activity curve for `{place.region}`",
+        f"- [ ] `locales/{place.id}/flora-catalog.json` with at least 8 plant taxa, at least 2 evergreen, "
+        "each `taxon` from `schema/v0.1/flora-taxa.json`",
         f"- [ ] `uv run tools/validate.py --locale {place.id} --report > report.md` passes",
         "- [ ] `uv run tools/validate.py --self-check` passes; any warning (for example an activity curve "
         "`fetch_activity.py` recorded under CC BY-NC) is justified in the PR body",

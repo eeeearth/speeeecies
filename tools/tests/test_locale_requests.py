@@ -78,6 +78,9 @@ def test_body_marks_existing_species_and_has_the_essentials(lr):
         "--region IE-D --inat-place-id 6719 --gbif-gadm-gid IRL.6_1",
         "uv run tools/validate.py --locale dublin-ie --report",
         "Definition of done", "https://www.youtube.com/@jt55401/live",
+        "### Plants", "locales/dublin-ie/flora-catalog.json", "flora-taxa.json",
+        "docs/locale-richness.md", "locales/london-uk/flora-catalog.json",
+        "aim for 12 or more",
     ):
         assert needle in body, needle
 
