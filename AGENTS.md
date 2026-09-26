@@ -118,10 +118,15 @@ request template's checklist.
 
 A locale is a place the live simulation
 (https://www.youtube.com/@jt55401/live) can show: a public city or district
-centroid, its climate, a generic plot, and at least 8 animal species that
-live there. It is one file, `locales/<id>/locale.json`, checked against
-`schema/v0.1/locale.schema.json`. The worked example is
-`locales/london-uk/`.
+centroid, its climate, a generic plot, the plants its garden shows, and
+at least 8 (better 12 or more) animal species that live there. It is
+`locales/<id>/locale.json`, checked against
+`schema/v0.1/locale.schema.json`, plus `locales/<id>/flora-catalog.json`,
+checked against `schema/v0.1/flora-catalog.schema.json` (optional, but the
+validator warns without it). The worked
+example is `locales/london-uk/`; copy both files and adapt them. A locale
+with the bare minimum passes validation but looks empty on the stream:
+read `docs/locale-richness.md` before you start.
 
 ### The flow
 
@@ -141,10 +146,20 @@ live there. It is one file, `locales/<id>/locale.json`, checked against
    `blurb`, `facts` (each with a `source` and an allow-listed licence,
    plus `attribution` unless it is CC0 or public domain), and optionally
    `flora_wishlist` and `contributors`.
-4. **List at least 8 species** that exist under `species/`. Add any that
-   are missing by following the species flow above; a locale PR may carry
-   the new species it needs.
-5. **Fetch an activity curve for the locale's region** for every listed
+4. **List at least 8 species, and aim for 12 or more**, that exist under
+   `species/`: several garden birds (one of them large and conspicuous),
+   a few mammals including a nocturnal one, and an amphibian or reptile
+   if the plot suits one. Add any that are missing by following the
+   species flow above; a locale PR may carry the new species it needs.
+   The validator warns (`LocaleFewSpecies`) below 12.
+5. **Write `flora-catalog.json`**: at least 8 plant taxa, at least 2 of
+   them evergreen, chosen from `schema/v0.1/flora-taxa.json` (the plants
+   the simulation can draw), each naming the local species it stands in
+   for. Copy `locales/london-uk/flora-catalog.json` and follow
+   "Writing `flora-catalog.json`" in `docs/locale-richness.md`. Without a
+   catalog the garden gets a generic set of a few large trees for its
+   Köppen class.
+6. **Fetch an activity curve for the locale's region** for every listed
    species that lacks one. For a subdivision, pass the iNaturalist place id
    and the GADM id:
 
@@ -153,14 +168,14 @@ live there. It is one file, `locales/<id>/locale.json`, checked against
    uv run tools/validate.py species/<slug> --write-attribution
    ```
 
-6. **Validate** the locale and the repository:
+7. **Validate** the locale and the repository:
 
    ```
    uv run tools/validate.py --locale <id> --report > report.md
    uv run tools/validate.py --self-check
    ```
 
-7. **Open the PR** titled `locale: <place> (<id>)` with the report,
+8. **Open the PR** titled `locale: <place> (<id>)` with the report,
    `Closes #<issue number>`, and the locale rows of the PR template
    checked. Check the new page at `locales.html` in the previewed site.
 
@@ -179,10 +194,25 @@ live there. It is one file, `locales/<id>/locale.json`, checked against
 - `public_lat` and `public_lon` have at most 2 decimals;
 - every fact's source has an allow-listed licence and, unless CC0 or
   public domain, an attribution;
+- if `flora-catalog.json` exists: it matches
+  `schema/v0.1/flora-catalog.schema.json`; every `taxon` is in
+  `schema/v0.1/flora-taxa.json` with the same `archetype`, and that
+  archetype is one the import can place (not `Shrub`, `Forb`, `Graminoid`
+  or `Fern` yet); every entry has a positive `community_weight` for the
+  locale id; every source has an allow-listed licence and, unless CC0 or
+  public domain, a `title` that serves as the attribution;
 - no file in the locale's directory contains text shaped like a street
   address (a number, a capitalised name and `St`, `Ave`, `Rd`, `Ln`, `Dr`,
   `Street`, `Avenue` or `Road`), an absolute home-directory path, a
   hostname ending in `.local`, or an SSH git remote.
+
+It also warns, without failing, when a locale will look sparse: fewer
+than 12 species (`LocaleFewSpecies`), no flora catalog
+(`LocaleNoFloraCatalog`), fewer than 8 plant taxa (`LocaleSparseFlora`) or
+fewer than 2 evergreens (`LocaleFewEvergreens`), and when a catalog
+entry's size or evergreen flag differs from the model that is drawn
+(`FloraSizeMismatch`, `FloraEvergreenMismatch`). Fix these or explain them
+in the PR.
 
 `validate.py --self-check` runs the same text lint over the whole
 repository (except `tools/tests/fixtures/`, where the lint's deliberately
@@ -199,8 +229,8 @@ A locale is validated when all of these have happened, in this order:
 3. **The maintainers' private import succeeds.** The simulation converts
    the species and their activity curves for the locale's region, derives
    a weather profile from climate normals at the public centroid, builds
-   the plot from `plot_template` and a plant catalog for the Köppen
-   climate, and checks that a summer scene contains at least one animal.
+   the plot from `plot_template`, takes the locale's `flora-catalog.json`
+   (or a default plant catalog for the Köppen climate), and checks that a summer scene contains at least one animal.
    This runs on the maintainers' machine; its output is not published.
 
 Only then does the locale enter the live rotation. A maintainer (or the
@@ -208,12 +238,15 @@ import itself) comments on the merged PR to say it is in the rotation and
 when it first appears on the stream. If the import fails, the locale stays
 out of the rotation and the maintainers follow up on the PR.
 
-### Flora is phase 2
+### Plants: a flora catalog, not plant records
 
-Plants have no data format yet (roadmap item SPEEEECIES-M8). Until they
-do, every locale gets a default plant catalog for its Köppen climate, and
-`flora_wishlist` is just names that tell us what to add later. Do not
-write plant records.
+A locale's `flora-catalog.json` says which plants its garden shows, drawn
+with the models in `schema/v0.1/flora-taxa.json` and standing in for the
+local species. Plant *species records* are still phase 2: they need a
+plant format first (roadmap item SPEEEECIES-M8), so do not write
+`species/<slug>/` records for plants or work `phase-2` issues.
+`flora_wishlist` lists local plants by name for that later work,
+especially ones no drawable taxon resembles.
 
 ## Data rules
 

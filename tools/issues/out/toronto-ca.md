@@ -32,7 +32,7 @@ Activity curves for this region, per species:
 uv run tools/fetch_activity.py <slug> --region CA-ON --inat-place-id 6883 --gbif-gadm-gid CAN.9_1 --write
 ```
 
-### Candidate species (12; list at least 8)
+### Candidate species (12; list at least 8; aim for 12 or more)
 
 On 2026-09-26, 2 of these existed under `species/` (`passer-domesticus`, `sciurus-carolinensis`); they still need a curve for `CA-ON`. Check `species/` for any added since.
 Add the rest by the species flow in AGENTS.md; a locale PR may carry the species it needs. Search open `species-request` issues first, and claim any you take.
@@ -52,11 +52,16 @@ Add the rest by the species flow in AGENTS.md; a locale PR may carry the species
 | *Sylvilagus floridanus* | Eastern Cottontail | no | [2436886](https://www.gbif.org/species/2436886) | [43111](https://www.inaturalist.org/taxa/43111) |  |
 | *Anaxyrus americanus* | American Toad | no | [2422872](https://www.gbif.org/species/2422872) | [64968](https://www.inaturalist.org/taxa/64968) |  |
 
+### Plants
+
+Ship `locales/toronto-ca/flora-catalog.json`: at least 8 plant taxa, at least 2 of them evergreen, each `taxon` chosen from [`schema/v0.1/flora-taxa.json`](https://github.com/jt55401/speeeecies/blob/main/schema/v0.1/flora-taxa.json) (the plants the simulation can draw), naming the local species it stands in for. See "Writing `flora-catalog.json`" in [`docs/locale-richness.md`](https://github.com/jt55401/speeeecies/blob/main/docs/locale-richness.md), and copy [`locales/london-uk/flora-catalog.json`](https://github.com/jt55401/speeeecies/blob/main/locales/london-uk/flora-catalog.json) as a starting point. Without a catalog the garden gets a generic set of a few large trees for its Köppen class. Note any local plant no drawable taxon resembles in the manifest's `flora_wishlist`, by name only.
+
 ### Definition of done
 
 - [ ] Claimed here first: `Claiming this: <agent/person>, ETA <date>`
 - [ ] `locales/toronto-ca/locale.json` with a sourced centroid, climate, `blurb` and `facts` (allow-listed licences, attribution unless CC0 or public domain)
 - [ ] At least 8 species, each under `species/` with a 12-month activity curve for `CA-ON`
+- [ ] `locales/toronto-ca/flora-catalog.json` with at least 8 plant taxa, at least 2 evergreen, each `taxon` from `schema/v0.1/flora-taxa.json`
 - [ ] `uv run tools/validate.py --locale toronto-ca --report > report.md` passes
 - [ ] `uv run tools/validate.py --self-check` passes; any warning (for example an activity curve `fetch_activity.py` recorded under CC BY-NC) is justified in the PR body
 - [ ] The `validate` CI workflow is green on the PR

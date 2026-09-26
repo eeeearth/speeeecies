@@ -9,8 +9,8 @@ Copies site/*, schema/, behaviors/, species/, locales/ into the output directory
 writes <out>/species/index.json (a summary of every species/<slug>/species.json),
 <out>/locales/index.json (a summary of every locales/<id>/locale.json)
 and <out>/ATTRIBUTION.md (a concatenation of every species/*/ATTRIBUTION.md,
-with a header). Also copies README.md, AGENTS.md, CONTRIBUTING.md, ROADMAP.md, PLAN.md into
-<out>/docs/ when present. Stdlib only.
+with a header). Also copies README.md, AGENTS.md, CONTRIBUTING.md, ROADMAP.md, PLAN.md and
+docs/locale-richness.md into <out>/docs/ when present. Stdlib only.
 
 Usage: python3 tools/build_site.py [--out _site] [--repo-root DIR]
 """
@@ -94,6 +94,39 @@ def build_species_index(species_dir: Path) -> list[dict]:
     return entries
 
 
+def build_flora_summary(flora_catalog_json: Path) -> list[dict]:
+    """A short summary of a locale's flora-catalog.json entries for
+    site/locales.html: common name, the local species it stands in for,
+    and whether it's evergreen. Returns [] if the file is missing,
+    unreadable, or not shaped as expected -- the site falls back to
+    flora_wishlist in that case."""
+    if not flora_catalog_json.is_file():
+        return []
+    try:
+        data = json.loads(flora_catalog_json.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, OSError) as err:
+        print(f"warning: skipping {flora_catalog_json}: {err}", file=sys.stderr)
+        return []
+    entries = data.get("entries") if isinstance(data, dict) else None
+    if not isinstance(entries, list):
+        return []
+    summary = []
+    for entry in entries:
+        if not isinstance(entry, dict):
+            continue
+        common_name = entry.get("common_name")
+        if not isinstance(common_name, str) or not common_name:
+            continue
+        summary.append(
+            {
+                "common_name": common_name,
+                "stand_in_for": entry.get("stand_in_for") if isinstance(entry.get("stand_in_for"), str) else "",
+                "evergreen": bool(entry.get("evergreen")),
+            }
+        )
+    return summary
+
+
 def build_locales_index(locales_dir: Path, species_index: list[dict]) -> list[dict]:
     """A summary of every locales/<id>/locale.json for site/locales.html,
     with each listed species' common name resolved from the species index."""
@@ -127,6 +160,7 @@ def build_locales_index(locales_dir: Path, species_index: list[dict]) -> list[di
                     if isinstance(slug, str)
                 ],
                 "flora_wishlist": [f for f in data.get("flora_wishlist") or [] if isinstance(f, str)],
+                "flora": build_flora_summary(child / "flora-catalog.json"),
                 "contributors": [
                     c.get("name", "") for c in data.get("contributors") or [] if isinstance(c, dict)
                 ],
@@ -225,6 +259,9 @@ def build_site(repo_root: Path, out_dir: Path) -> None:
         src = repo_root / name
         if src.is_file():
             shutil.copy2(src, docs_dir / name)
+    locale_richness_src = repo_root / "docs" / "locale-richness.md"
+    if locale_richness_src.is_file():
+        shutil.copy2(locale_richness_src, docs_dir / "locale-richness.md")
 
 
 def main(argv: list[str] | None = None) -> int:

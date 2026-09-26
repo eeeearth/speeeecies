@@ -8,9 +8,11 @@ body:
       value: |
         A locale is a public place (a city or district, never a street
         address or your own garden) plus at least 8 species that live
-        there. Whoever picks this up (often a coding agent) writes
-        `locales/<id>/locale.json` and any missing species. See "Contribute
-        a locale" in `AGENTS.md` and `CONTRIBUTING.md`.
+        there (aim for 12 or more) and a flora catalog for its garden.
+        Whoever picks this up (often a coding agent) writes
+        `locales/<id>/locale.json`, `locales/<id>/flora-catalog.json`, and
+        any missing species. See "Contribute a locale" in `AGENTS.md` and
+        `CONTRIBUTING.md`.
 
         **Only public centroid coordinates are accepted**, rounded to 2
         decimals (about 1 km). Do not post an address, a house or yard
@@ -94,7 +96,11 @@ body:
     attributes:
       label: Flora wishlist (optional)
       description: >-
-        Plants you'd like to see, by name. Plants are phase 2; until then the
-        simulation uses a default plant catalog for the climate.
+        Contributors ship `locales/<id>/flora-catalog.json`, the plants the
+        garden shows, chosen from the drawable taxa in
+        `schema/v0.1/flora-taxa.json` (see `docs/locale-richness.md`). Use
+        this field only for local plants no drawable taxon resembles, by
+        name; without a catalog the simulation falls back to a default
+        plant list for the climate.
     validations:
       required: false

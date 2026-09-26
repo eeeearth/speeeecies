@@ -304,3 +304,52 @@ def test_locales_index_tolerates_null_lists(tmp_path):
     build_site.build_site(repo, out)
     entry = json.loads((out / "locales" / "index.json").read_text(encoding="utf-8"))[0]
     assert entry["species"] == [] and entry["flora_wishlist"] == [] and entry["contributors"] == []
+    assert entry["flora"] == []
+
+
+def test_locales_index_includes_flora_catalog_summary(tmp_path):
+    repo = make_repo(tmp_path)
+    locale_dir = repo / "locales" / "flora-town"
+    locale_dir.mkdir(parents=True)
+    (locale_dir / "locale.json").write_text(
+        json.dumps({"id": "flora-town", "species": [], "flora_wishlist": ["ignored when a catalog exists"]}),
+        encoding="utf-8",
+    )
+    (locale_dir / "flora-catalog.json").write_text(
+        json.dumps(
+            {
+                "entries": [
+                    {"common_name": "common hawthorn", "stand_in_for": "Crataegus monogyna", "evergreen": False},
+                    {"common_name": "English holly", "stand_in_for": "Ilex aquifolium", "evergreen": True},
+                    {"stand_in_for": "no common name, skipped"},
+                ]
+            }
+        ),
+        encoding="utf-8",
+    )
+    out = tmp_path / "_site"
+    build_site.build_site(repo, out)
+    entry = json.loads((out / "locales" / "index.json").read_text(encoding="utf-8"))[0]
+    assert entry["flora"] == [
+        {"common_name": "common hawthorn", "stand_in_for": "Crataegus monogyna", "evergreen": False},
+        {"common_name": "English holly", "stand_in_for": "Ilex aquifolium", "evergreen": True},
+    ]
+
+
+def test_locales_index_flora_falls_back_when_catalog_is_missing_or_invalid(tmp_path, capsys):
+    repo = make_repo(tmp_path)
+    no_catalog = repo / "locales" / "no-catalog"
+    no_catalog.mkdir(parents=True)
+    (no_catalog / "locale.json").write_text(json.dumps({"id": "no-catalog"}), encoding="utf-8")
+
+    bad_catalog = repo / "locales" / "bad-catalog"
+    bad_catalog.mkdir(parents=True)
+    (bad_catalog / "locale.json").write_text(json.dumps({"id": "bad-catalog"}), encoding="utf-8")
+    (bad_catalog / "flora-catalog.json").write_text("not valid json", encoding="utf-8")
+
+    out = tmp_path / "_site"
+    build_site.build_site(repo, out)
+    index = {e["id"]: e for e in json.loads((out / "locales" / "index.json").read_text(encoding="utf-8"))}
+    assert index["no-catalog"]["flora"] == []
+    assert index["bad-catalog"]["flora"] == []
+    assert "flora-catalog.json" in capsys.readouterr().err

@@ -1,0 +1,756 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Troglodytes troglodytes",
+  "slug": "troglodytes-troglodytes",
+  "common_names": {
+    "en": "Eurasian wren",
+    "fr": "troglodyte mignon",
+    "de": "Zaunkönig",
+    "nl": "winterkoning"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Passeriformes",
+    "family": "Troglodytidae",
+    "genus": "Troglodytes",
+    "authority": "(Linnaeus, 1758)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 5231438,
+    "inat_taxon_id": 145363,
+    "itis_tsn": 178547,
+    "wikidata": "Q25740"
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "GB",
+      "IE",
+      "IS",
+      "FO",
+      "NO",
+      "SE",
+      "FI",
+      "RU",
+      "PL",
+      "DE",
+      "NL",
+      "BE",
+      "DK",
+      "FR",
+      "ES",
+      "PT",
+      "IT",
+      "CH",
+      "AT",
+      "CZ",
+      "GR",
+      "CY",
+      "TR",
+      "SY",
+      "IR",
+      "AF",
+      "PK",
+      "IN",
+      "NP",
+      "CN",
+      "JP",
+      "KR",
+      "MA",
+      "DZ",
+      "TN",
+      "LY"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Hop",
+      "Fly"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Cavity",
+    "perching": true,
+    "size_class": "Tiny",
+    "mass_kg": 0.01,
+    "length_m": 0.095,
+    "wingspan_m": 0.15,
+    "lifespan_y": 2.0,
+    "diet": {
+      "invertebrate": 0.92,
+      "seed": 0.08
+    },
+    "social": {
+      "structure": "Solitary",
+      "group_size": [
+        1,
+        2
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Hide",
+    "wariness": 0.4
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.75,
+      "arboreal": 0.25
+    },
+    "shelter_tag": "shrub_thicket",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.85
+      },
+      {
+        "tag": "leaf_litter",
+        "kind": "Predation",
+        "weight": 0.3
+      },
+      {
+        "tag": "seed",
+        "kind": "Herbivory",
+        "weight": 0.15,
+        "months": [
+          10,
+          11,
+          12,
+          1,
+          2
+        ]
+      },
+      {
+        "tag": "cavity",
+        "kind": "Nesting",
+        "weight": 1.0
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.5
+      },
+      {
+        "tag": "shrub_thicket",
+        "kind": "Shelter",
+        "weight": 0.9
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "light_max": 0.5,
+      "notes": "Occupies gardens, hedgerows, thickets, plantations, woodland and reed beds as well as more open habitat with brambles or gorse; more skulking and ground-hugging than a garden exploiter species, foraging low in cover and among leaf litter and fallen logs."
+    }
+  },
+  "seasonal": {
+    "strategy": "PartialMigration",
+    "winter_fraction": 0.95,
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "04-01",
+        "end": "07-31",
+        "region": "GB",
+        "note": "Clutch of five or six eggs laid from April onward; usually two broods; male builds several unlined 'cock nests' for the female to choose from."
+      },
+      {
+        "name": "territorial",
+        "start": "08-01",
+        "end": "03-31",
+        "note": "Song may be heard at any time of year, though most noticeable in spring; British and Irish birds are largely resident and hold territory year-round."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg"
+      },
+      {
+        "stage": "Juvenile",
+        "duration_days": 16,
+        "scale": 0.85
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "GB",
+        "monthly": [
+          0.55,
+          0.64,
+          0.87,
+          1.0,
+          0.76,
+          0.85,
+          0.68,
+          0.53,
+          0.46,
+          0.61,
+          0.67,
+          0.66
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 931341,
+        "sources": [
+          "inat-activity-gb",
+          "gbif-activity-gb"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 6857,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=145363&place_id=6857&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=6857&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "total": 4197,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "country",
+              "GB"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5231438&country=GB&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&country=GB&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 927144,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "GB-ENG",
+        "monthly": [
+          0.54,
+          0.63,
+          0.85,
+          1.0,
+          0.76,
+          0.88,
+          0.68,
+          0.54,
+          0.45,
+          0.58,
+          0.64,
+          0.63
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 791439,
+        "sources": [
+          "inat-activity-gb-eng",
+          "gbif-activity-gb-eng"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 6858,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=145363&place_id=6858&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=6858&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "total": 3423,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "GBR.1_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5231438&gadmGid=GBR.1_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=GBR.1_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 788016,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "bt-perching-songbird-v1",
+    "params": {
+      "flee_m": 5,
+      "food_tag": "invertebrate",
+      "song": "song",
+      "alarm": "alarm",
+      "nest_m1": 2,
+      "nest_m2": 4
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "song",
+      "context": "Song",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day",
+        "Dusk"
+      ],
+      "cooldown_s": 20,
+      "loudness": "Loud",
+      "description": "A gushing burst of sweet, clear, shrill and emphatic music: a few preliminary notes run into a slightly ascending trill and end in full clear notes or another trill; remarkably loud for the bird's size. Given from an exposed low perch, the male's whole body quivering with effort, most often in spring but audible year-round.",
+      "recordings": [
+        "xc-song"
+      ]
+    },
+    {
+      "call_id": "alarm",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day",
+        "Dusk"
+      ],
+      "cooldown_s": 5,
+      "loudness": "Moderate",
+      "description": "A sharp, repeated 'tic-tic-tic', faster and less isolated than a robin's; when the bird is annoyed or excited it runs into an emphatic churr, like clockwork running down.",
+      "recordings": [
+        "xc-call"
+      ]
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.2,
+      "leg_length_ratio": 0.3,
+      "head_scale": 0.85,
+      "neck_angle_deg": 10,
+      "tail_ratio": 0.22,
+      "wing_aspect": 2.0,
+      "beak_ratio": 0.4,
+      "girth_ratio": 1.1
+    },
+    "palette": {
+      "body": "#8a5a35",
+      "belly": "#cba576",
+      "markings": "#4a3320",
+      "accent": "#e8d4a0",
+      "eye": "#1a1208"
+    },
+    "part_colors": {
+      "wing_*": "markings",
+      "tail": "markings",
+      "beak": "eye"
+    },
+    "extra_parts": [
+      {
+        "name": "supercilium",
+        "parent": "head",
+        "offset": [
+          0.15,
+          0.05,
+          0
+        ],
+        "size": [
+          0.7,
+          0.12,
+          1.05
+        ],
+        "color": "accent"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "hop": {},
+      "fly": {},
+      "perched": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/5231438",
+      "title": "GBIF Backbone Taxonomy: Troglodytes troglodytes",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-09-26",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q25740",
+      "title": "Wikidata: Troglodytes troglodytes (Q25740)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-09-26",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Eurasian_wren",
+      "title": "Wikipedia: Eurasian wren",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-09-26",
+      "attribution": "Wikipedia contributors, \"Eurasian wren\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=178547",
+      "title": "ITIS: Troglodytes troglodytes, TSN 178547",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-09-26",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "xc-song",
+      "url": "https://commons.wikimedia.org/wiki/File:Eurasian_Wren_(Troglodytes_troglodytes)_(W1CDR0001461_BD5).ogg",
+      "title": "Eurasian wren song, Loch Garten, Speyside, Scotland (British Library)",
+      "license": "CC-BY-SA-4.0",
+      "kind": "recording",
+      "accessed": "2026-09-26",
+      "attribution": "Lawrence Shove, via the British Library sound archive and Wikimedia Commons, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "xc-call",
+      "url": "https://commons.wikimedia.org/wiki/File:Eurasian_Wren_(Troglodytes_troglodytes)_(W1CDR0001470_BD11).ogg",
+      "title": "Eurasian wren calls, Old Dean Common, Surrey, England (British Library)",
+      "license": "CC-BY-SA-4.0",
+      "kind": "recording",
+      "accessed": "2026-09-26",
+      "attribution": "British Library sound archive, via Wikimedia Commons, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "inat-activity-gb",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=145363&place_id=6857&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Troglodytes troglodytes in GB",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-09-26",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-gb",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5231438&country=GB&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Troglodytes troglodytes in GB",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-09-26) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-09-26",
+      "kind": "api"
+    },
+    {
+      "id": "inat-activity-gb-eng",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=145363&place_id=6858&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Troglodytes troglodytes in GB-ENG",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-09-26",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-gb-eng",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5231438&gadmGid=GBR.1_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Troglodytes troglodytes in GB-ENG",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-09-26) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-09-26",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "itis"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "common_names": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "Wikidata P141 = least concern (Q211005)."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Country list derived from the distribution and subspecies-range text: breeds across Europe and Western Asia to Syria, north to 67N in Norway, south to northern Spain/Italy/Sicily/southern Russia; separate subspecies in Iceland, Faroes, NW Africa, the Balearics, Corsica, Sardinia, Crete, Cyprus, and across southern Russia and eastern Asia to Japan, plus Himalayan and Chinese ranges listed under subspecies."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Moves by quick hops and jerks on the ground and among vegetation; short, direct, whirring flights, not usually sustained (except on migration)."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Domed nest with a side entrance, tucked into a hole in a wall or tree trunk, a crack in a rock, or dense cover such as brambles, hedges or ivy; mapped to the closest enum value, Cavity."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Male sings from an exposed low perch."
+    },
+    "traits.size_class": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg (Tiny, < 0.05 kg)."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "'It weighs around 10 g (0.35 oz).'"
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of 9-10 cm ('9 to 10 cm (3.5 to 3.9 in) in length')."
+    },
+    "traits.wingspan_m": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "Wikidata P2050 (wingspan) = 15 cm, consistent with Wikipedia's 13-17 cm range."
+    },
+    "traits.lifespan_y": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "No sourced typical-lifespan figure was found for T. troglodytes specifically (Wikipedia and Wikidata do not give one, and ADW/IUCN/field-guide sites were avoided per the licence policy). 2.0 years is a judgement based on the short lifespans typical of small, heavily-predated insectivorous passerines of similar mass (cf. European robin ~1.1y) and known high overwinter mortality in wrens during hard winters; a reviewer should replace this if a better open source turns up."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "'Insects form the bulk of their diet' (moth/butterfly larvae, beetle larvae, fly larvae, caddisfly larvae, aphids, spiders); 'some seeds are also taken'. Fractions are a judgement apportioning the qualitative description; spiders folded into invertebrate."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Solitary/territorial outside pairing; highly polygynous (a male may hold several breeding females on his territory, up to four recorded), but group_size here reflects a foraging/roaming individual, not the mating system."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Mouse-like, easily lost from sight when hunting, disappears into cavities and crevices ('troglodytes' = hole-dweller); mapped to Hide."
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: skulking and easily lost to view among cover, more so than a confiding garden species like the robin, but not extremely flighty; no explicit flight-distance figure sourced."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "'For the most part stays near the ground... sometimes moves higher in the canopy'; judgement split 75/25."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Roosts in dark retreats, snug holes and old nests, often in dense cover; mapped to shrub_thicket."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Invertebrate foraging year-round, including probing leaf litter, old masonry and fallen logs; minor seed-taking (weighted toward autumn/winter as a judgement, since Wikipedia does not give months); cavity nest sites; perch used for song; shrub/thicket cover for roosting and skulking."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Occupies gardens, hedgerows, thickets, plantations, woodland and reed beds as well as open moorland and coasts; light_max is authored judgement (no night-singing behaviour reported, unlike the robin)."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'Migratory in the northern (particularly northeastern) parts of its range, and sedentary in the west and south of its range,' which includes Britain and Ireland."
+    },
+    "seasonal.winter_fraction": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: British/Irish wrens fall in the sedentary part of the range, so a high resident fraction is assumed; no numeric figure sourced."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Breeding timing ('eggs...during April and onward', two broods) from Wikipedia; end date and the territorial window are judgement."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Eggs hatch after 14-15 days and young fledge after about 16 days; duration_days approximates the nestling period since no distinct juvenile-plumage duration is sourced. scale is a judgement."
+    },
+    "vocalizations.song": {
+      "sources": [
+        "wikipedia",
+        "xc-song"
+      ],
+      "confidence": "High"
+    },
+    "vocalizations.alarm": {
+      "sources": [
+        "wikipedia",
+        "xc-call"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Description follows Wikipedia's account of the tic-tic-tic call and churr; the linked recording documents a call but is not labelled by context."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Rufous brown above, greyer/paler buff-brown below, finely barred darker, cream-buff supercilium, dark bill and legs, short cocked tail, rounded wings; proportions authored judgement."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared perching-songbird program: smaller nest radius and shorter flee distance than the robin example reflect the wren's small territories and skulking habits (judgement)."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies maintainers",
+      "agent": "claude-code"
+    }
+  ]
+}

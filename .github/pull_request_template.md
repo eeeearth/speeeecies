@@ -31,11 +31,11 @@ It must show no errors. -->
 
 - [ ] Closes the linked locale-request issue
 - [ ] `locales/<id>/locale.json` passes `uv run tools/validate.py --locale <id> --report`, pasted above
-- [ ] Lists at least 8 species under `species/`, each with an activity curve for the locale's `activity_region`
+- [ ] Lists at least 8 species under `species/` (aim for 12 or more), each with an activity curve for the locale's `activity_region`
 - [ ] `public_lat`/`public_lon` are a public city or district centroid with at most 2 decimals, not a home, yard or street
 - [ ] No street address, home path, hostname or private repository anywhere; `uv run tools/validate.py --self-check` passes
 - [ ] Every fact has a source with an allow-listed licence (and an attribution unless CC0/public domain)
-- [ ] Flora left to `flora_wishlist` (names only; plants are phase 2)
+- [ ] `locales/<id>/flora-catalog.json` with at least 8 plant taxa, at least 2 evergreen, each `taxon` from `schema/v0.1/flora-taxa.json` (optional but expected: the validator warns without it; plant *species records* are still phase 2, and a flora catalog is not one)
 
 ## Non-CC0/CC-BY sources (if any)
 

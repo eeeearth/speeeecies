@@ -1,0 +1,120 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jt55401.github.io/speeeecies/schema/v0.1/flora-catalog.schema.json",
+  "title": "speeeecies locale flora catalog v0.1",
+  "description": "The plants a locale's garden shows, contributed as `locales/<id>/flora-catalog.json` next to `locale.json`. The simulation imports it as it is, in place of its generic biome catalog. It has the simulation's flora-catalog shape, with stricter sources: every source carries an allow-listed licence. Each `taxon` must be one the simulation can draw (`schema/v0.1/flora-taxa.json`); the local species it represents goes in `stand_in_for`. See docs/locale-richness.md.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "source", "entries"],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "source": {
+      "description": "Where the catalog came from. For a contributed catalog: `{\"repo\": \"speeeecies\", \"rev\": \"locales/<id>\"}`.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["repo", "rev"],
+      "properties": {
+        "repo": { "type": "string", "minLength": 1 },
+        "rev": { "type": "string", "minLength": 1 }
+      }
+    },
+    "declared_tags": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/ResourceTag" }
+    },
+    "entries": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/FloraEntry" }
+    }
+  },
+  "$defs": {
+    "TaxonId": {
+      "type": "string",
+      "pattern": "^[A-Z][a-z]+( [a-z-]+){0,2}$"
+    },
+    "ResourceTag": {
+      "description": "What the plant offers animals, matched against the `habitat.resources[].tag` values species use (`berry`, `seed`, `nectar`, `perch`, `shrub_thicket`, `cavity`, `nest_cup`, `invertebrate`, `leaf_litter`, ...), or `host:<name>`.",
+      "type": "string",
+      "pattern": "^(host:[a-z0-9-]+|[a-z][a-z0-9_]{2,31})$"
+    },
+    "Archetype": {
+      "type": "string",
+      "enum": ["Monocaul", "Excurrent", "Decurrent", "Dichotomous", "Cactus", "Rosette", "Shrub", "Forb", "Graminoid", "Fern"]
+    },
+    "NativeStatus": {
+      "type": "string",
+      "enum": ["Native", "Introduced", "NativeAndIntroduced", "Invasive", "Unknown"]
+    },
+    "Source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["url", "license"],
+      "properties": {
+        "url": { "type": "string", "format": "uri" },
+        "title": {
+          "description": "Also the attribution line: required unless the licence is CC0 or public domain, e.g. `Wikipedia contributors, \"Ilex aquifolium\", English Wikipedia, CC BY-SA 4.0`.",
+          "type": ["string", "null"]
+        },
+        "license": { "type": "string" },
+        "accessed": { "type": ["string", "null"], "format": "date" }
+      }
+    },
+    "Provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sources", "confidence"],
+      "properties": {
+        "sources": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/Source" } },
+        "confidence": { "enum": ["Low", "Medium", "High"] },
+        "derived": { "type": "boolean" },
+        "note": { "type": ["string", "null"] }
+      }
+    },
+    "FloraEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["taxon", "common_name", "family", "archetype", "crown_width_m", "height_m", "seasonal", "evergreen", "stages", "resource_tags", "invasive", "provenance", "community_weight"],
+      "properties": {
+        "taxon": {
+          "description": "A taxon from `schema/v0.1/flora-taxa.json`: the model the simulation draws.",
+          "$ref": "#/$defs/TaxonId"
+        },
+        "stand_in_for": {
+          "description": "The local species this entry represents when `taxon` is a stand-in, e.g. `Ilex aquifolium` for `Ilex opaca`. Hybrid signs are dropped (`Tilia europaea`).",
+          "anyOf": [{ "$ref": "#/$defs/TaxonId" }, { "type": "null" }]
+        },
+        "common_name": { "type": "string", "minLength": 1, "description": "The local species' common name." },
+        "family": { "type": "string", "minLength": 1 },
+        "archetype": { "$ref": "#/$defs/Archetype" },
+        "crown_width_m": { "type": "number", "exclusiveMinimum": 0 },
+        "height_m": { "type": "number", "exclusiveMinimum": 0 },
+        "seasonal": { "type": "boolean" },
+        "evergreen": { "type": "boolean" },
+        "stages": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "enum": ["sapling", "mature"] }
+        },
+        "resource_tags": { "type": "array", "items": { "$ref": "#/$defs/ResourceTag" } },
+        "biomass_kg_per_crown_m2": { "type": ["number", "null"] },
+        "community_weight": {
+          "description": "Relative share of this plant, keyed by the locale id. An entry without a positive weight for its locale is never placed.",
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": { "type": "number", "minimum": 0 }
+        },
+        "native_status": {
+          "description": "Keyed by the locale id. The import weights Native and NativeAndIntroduced plants 1.0 and the rest 0.3, on top of `community_weight`.",
+          "type": "object",
+          "additionalProperties": { "$ref": "#/$defs/NativeStatus" }
+        },
+        "invasive": { "type": "boolean" },
+        "range": { "type": "null" },
+        "external": { "type": "object" },
+        "provenance": { "$ref": "#/$defs/Provenance" }
+      }
+    }
+  }
+}
