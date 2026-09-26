@@ -123,12 +123,12 @@ def build_locales_index(locales_dir: Path, species_index: list[dict]) -> list[di
                 "blurb": data.get("blurb", ""),
                 "species": [
                     {"slug": slug, "common_name_en": common_names.get(slug, "")}
-                    for slug in data.get("species", [])
+                    for slug in data.get("species") or []
                     if isinstance(slug, str)
                 ],
-                "flora_wishlist": [f for f in data.get("flora_wishlist", []) if isinstance(f, str)],
+                "flora_wishlist": [f for f in data.get("flora_wishlist") or [] if isinstance(f, str)],
                 "contributors": [
-                    c.get("name", "") for c in data.get("contributors", []) if isinstance(c, dict)
+                    c.get("name", "") for c in data.get("contributors") or [] if isinstance(c, dict)
                 ],
                 "path": f"locales/{child.name}/locale.json",
             }

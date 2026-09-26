@@ -1619,17 +1619,18 @@ TEXT_LINT_RULES: list[tuple[str, re.Pattern[str], str]] = [
     ),
     (
         "HomePath",
-        re.compile(r"/(?:home|Users)/[A-Za-z0-9._-]+/"),
+        re.compile(r"/(?:home|Users)/[A-Za-z0-9._-]+/|\b[A-Za-z]:\\Users\\"),
         "looks like an absolute home-directory path; use a repo-relative path",
     ),
     (
         "LocalHostname",
-        re.compile(r"\b[A-Za-z0-9][A-Za-z0-9-]*\.local\b"),
+        # Not followed by another extension, so `settings.local.json` passes.
+        re.compile(r"\b[A-Za-z0-9][A-Za-z0-9-]*\.local\b(?!\.[A-Za-z])"),
         "looks like a local-network hostname (*.local); leave machine names out",
     ),
     (
         "SshRemote",
-        re.compile(r"git@github\.com:"),
+        re.compile(r"\bgit@[A-Za-z0-9.-]+:|ssh://git[@]"),
         "looks like an SSH git remote; link public repositories by https URL",
     ),
 ]
@@ -1658,12 +1659,16 @@ def lint_file(path: Path, rel: str) -> list[Finding]:
     return lint_text(text, rel)
 
 
-def self_check_files(root: Path) -> list[str]:
-    """Repo-relative paths --self-check scans: tracked plus untracked,
-    non-ignored files when `root` is a git checkout, else a directory walk."""
+def self_check_files(root: Path, include_untracked: bool = True) -> list[str]:
+    """Repo-relative paths --self-check scans: tracked (plus, by default,
+    untracked non-ignored) files when `root` is a git checkout, else a
+    directory walk."""
+    ls_files = ["git", "-C", str(root), "ls-files", "-z", "--cached"]
+    if include_untracked:
+        ls_files += ["--others", "--exclude-standard"]
     try:
         out = subprocess.run(
-            ["git", "-C", str(root), "ls-files", "-z", "--cached", "--others", "--exclude-standard"],
+            ls_files,
             capture_output=True,
             check=True,
         ).stdout.decode("utf-8")
@@ -1690,8 +1695,8 @@ def self_check_files(root: Path) -> list[str]:
     )
 
 
-def run_self_check(root: Path) -> tuple[int, list[Finding]]:
-    files = self_check_files(root)
+def run_self_check(root: Path, include_untracked: bool = True) -> tuple[int, list[Finding]]:
+    files = self_check_files(root, include_untracked)
     findings: list[Finding] = []
     for rel in files:
         findings.extend(lint_file(root / rel, rel))
@@ -1731,7 +1736,12 @@ def more_than_two_decimals(value: Any) -> bool:
 
 def check_locale_fact_sources(manifest: dict, policy: dict, findings: list[Finding]) -> None:
     attribution_not_required = set(policy.get("attribution_not_required", []))
-    sourced = [(f"facts[{i}].source", fact.get("source")) for i, fact in enumerate(manifest.get("facts", []))]
+    facts = manifest.get("facts")
+    sourced = [
+        (f"facts[{i}].source", fact.get("source"))
+        for i, fact in enumerate(facts if isinstance(facts, list) else [])
+        if isinstance(fact, dict)
+    ]
     if "place_source" in manifest:
         sourced.append(("place_source", manifest["place_source"]))
     for path, src in sourced:
@@ -1770,7 +1780,9 @@ def check_locale_species(
     regions = {r.get("region"): r for r in species.get("activity", {}).get("regions", []) if isinstance(r, dict)}
     entry = regions.get(region)
     monthly = entry.get("monthly") if entry else None
-    if entry is None:
+    if region is None:
+        pass  # the manifest's missing activity_region is already a schema error
+    elif entry is None:
         findings.append(
             Finding(
                 "error",
@@ -1815,7 +1827,10 @@ def validate_locale(
     manifest_path = locale_dir / "locale.json"
     findings: list[Finding] = []
     report = LocaleReport(locale_id=locale_id, path=locale_dir, manifest=None, findings=findings)
-    if not LOCALE_ID_RE.match(locale_id) or not manifest_path.is_file():
+    if not LOCALE_ID_RE.match(locale_id):
+        findings.append(Finding("error", "LocaleBadId", f"locales/{locale_id}", f"'{locale_id}' is not a lowercase, hyphenated locale id"))
+        return report
+    if not manifest_path.is_file():
         findings.append(Finding("error", "LocaleNotFound", f"locales/{locale_id}", f"no locales/{locale_id}/locale.json"))
         return report
     manifest = load_json(manifest_path, findings)
@@ -1837,7 +1852,8 @@ def validate_locale(
             )
     check_locale_fact_sources(manifest, schemas.licenses, findings)
 
-    slugs = [s for s in manifest.get("species", []) if isinstance(s, str)]
+    species_list = manifest.get("species")
+    slugs = [s for s in species_list if isinstance(s, str)] if isinstance(species_list, list) else []
     existing = []
     for slug in dict.fromkeys(slugs):
         species_dir = root / "species" / slug

@@ -183,6 +183,26 @@ def test_id_must_match_directory(validate_module, fake_root):
     assert "LocaleIdMismatch" in codes(lr)
 
 
+def test_non_dict_facts_reported_not_crashing(validate_module, fake_root):
+    setup_locale(fake_root, minimal_locale([], facts=["just a string"]))
+    _, lr = run_locale(validate_module, fake_root)
+    assert "Schema" in codes(lr)
+
+
+def test_missing_activity_region_gives_no_bogus_fetch_hint(validate_module, fake_root):
+    locale = minimal_locale([])
+    del locale["activity_region"]
+    setup_locale(fake_root, locale)
+    _, lr = run_locale(validate_module, fake_root)
+    assert "Schema" in codes(lr)
+    assert not any("--region None" in f.message for f in lr.findings)
+
+
+def test_bad_locale_id(validate_module, fake_root):
+    _, lr = run_locale(validate_module, fake_root, "London_UK")
+    assert codes(lr) == {"LocaleBadId"}
+
+
 def test_unknown_locale(validate_module, fake_root):
     _, lr = run_locale(validate_module, fake_root, "nowhere")
     assert codes(lr) == {"LocaleNotFound"}
@@ -204,7 +224,7 @@ def test_lint_fixture_trips_every_rule_once(validate_module):
     text = (FIXTURES / "lint" / "leaky.txt").read_text(encoding="utf-8")
     findings = validate_module.lint_text(text, "leaky.txt")
     assert sorted(f.code for f in findings) == sorted(
-        ["StreetAddress", "HomePath", "LocalHostname", "SshRemote"]
+        ["StreetAddress", "HomePath", "HomePath", "LocalHostname", "SshRemote", "SshRemote"]
     )
 
 
@@ -214,6 +234,7 @@ def test_lint_ignores_harmless_text(validate_module):
             "Open http://127.0.0.1:18160/preview.html and see ~/.local/share for caches.",
             "The robin sings from 3 Main perches; see species/erithacus-rubecula.",
             "Clone https://github.com/jt55401/speeeecies over https, not over SSH.",
+            "Keep machine settings in settings.local.json, which git ignores.",
         ]
     )
     assert validate_module.lint_text(harmless, "ok.txt") == []
@@ -239,7 +260,8 @@ def test_self_check_flags_a_leak_and_skips_fixtures(validate_module, fake_root):
 
 
 def test_repo_self_check_passes(validate_module):
-    n_files, findings = validate_module.run_self_check(REPO_ROOT)
+    # Tracked files only, so a developer's untracked notes can't fail the suite.
+    n_files, findings = validate_module.run_self_check(REPO_ROOT, include_untracked=False)
     assert n_files > 20
     assert findings == [], [f.line() for f in findings]
 

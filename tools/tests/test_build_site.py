@@ -288,3 +288,17 @@ def test_locales_index_empty_without_locales_dir(tmp_path):
     out = tmp_path / "_site"
     build_site.build_site(repo, out)
     assert json.loads((out / "locales" / "index.json").read_text(encoding="utf-8")) == []
+
+
+def test_locales_index_tolerates_null_lists(tmp_path):
+    repo = make_repo(tmp_path)
+    locale_dir = repo / "locales" / "odd-town"
+    locale_dir.mkdir(parents=True)
+    (locale_dir / "locale.json").write_text(
+        json.dumps({"id": "odd-town", "species": None, "flora_wishlist": None, "contributors": None}),
+        encoding="utf-8",
+    )
+    out = tmp_path / "_site"
+    build_site.build_site(repo, out)
+    entry = json.loads((out / "locales" / "index.json").read_text(encoding="utf-8"))[0]
+    assert entry["species"] == [] and entry["flora_wishlist"] == [] and entry["contributors"] == []
