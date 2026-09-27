@@ -33,7 +33,7 @@ uv run tools/fetch_activity.py <slug> --region IS-1 --inat-place-id 10868 --gbif
 
 ### Candidate species (12; list at least 8; aim for 12 or more)
 
-On 2026-09-26, 0 of these existed under `species/`. Check `species/` for any added since.
+On 2026-09-26, 1 of these existed under `species/` (`troglodytes-troglodytes`); they still need a curve for `IS-1`. Check `species/` for any added since.
 Add the rest by the species flow in AGENTS.md; a locale PR may carry the species it needs. Search open `species-request` issues first, and claim any you take.
 
 | Species | Common name | In `species/` on 2026-09-26 | GBIF | iNaturalist | Note |
@@ -44,7 +44,7 @@ Add the rest by the species flow in AGENTS.md; a locale PR may carry the species
 | *Anser anser* | Greylag Goose | no | [2498036](https://www.gbif.org/species/2498036) | [7018](https://www.inaturalist.org/taxa/7018) |  |
 | *Chroicocephalus ridibundus* | Black-headed Gull | no | [6065824](https://www.gbif.org/species/6065824) | [144510](https://www.inaturalist.org/taxa/144510) |  |
 | *Corvus corax* | Common Raven | no | [2482492](https://www.gbif.org/species/2482492) | [8010](https://www.inaturalist.org/taxa/8010) |  |
-| *Troglodytes troglodytes* | Eurasian Wren | no | [5231438](https://www.gbif.org/species/5231438) | [145363](https://www.inaturalist.org/taxa/145363) |  |
+| *Troglodytes troglodytes* | Eurasian Wren | yes (`troglodytes-troglodytes`) | [5231438](https://www.gbif.org/species/5231438) | [145363](https://www.inaturalist.org/taxa/145363) |  |
 | *Acanthis flammea* | Redpoll | no | [5231630](https://www.gbif.org/species/5231630) | [145300](https://www.inaturalist.org/taxa/145300) |  |
 | *Plectrophenax nivalis* | Snow Bunting | no | [2491719](https://www.gbif.org/species/2491719) | [117059](https://www.inaturalist.org/taxa/117059) |  |
 | *Oryctolagus cuniculus* | European Rabbit | no | [2436940](https://www.gbif.org/species/2436940) | [43151](https://www.inaturalist.org/taxa/43151) |  |
