@@ -587,7 +587,7 @@ PLACES: list[Place] = [
          "Ictidomys tridecemlineatus", "Lasionycteris noctivagans", "Lithobates pipiens"),
         ("Bismarck sits on the Dfa/Dfb boundary; Wikipedia gives Dfa/Dfb.",
          "Bat records are sparse here (2 research-grade silver-haired bat observations in the county); "
-         "`fetch_activity.py` may need the state curve."),
+         "if `fetch_activity.py` widens to the country (US), say so in the PR."),
         species_place_name="Burleigh County",
     ),
     Place(
@@ -644,8 +644,8 @@ PLACES: list[Place] = [
          "Sialia sialis", "Dryocopus pileatus", "Odocoileus virginianus", "Tamias striatus", "Glaucomys volans",
          "Lasiurus borealis", "Terrapene carolina", "Anaxyrus americanus"),
         ("Nashville sits on the Cfa/Dfa boundary; Wikipedia gives Cfa.",
-         "Observations are thinner here (about 34,000 research-grade in the county); `fetch_activity.py` may "
-         "fall back to the state for the bat."),
+         "Observations are thinner here (about 34,000 research-grade in the county), so check that the "
+         "bat's county records support listing it."),
         species_place_name="Brown County",
     ),
     Place(
@@ -730,8 +730,8 @@ PLACES: list[Place] = [
         ("Cardinalis cardinalis", "Mimus polyglottos", "Thryothorus ludovicianus", "Toxostoma rufum",
          "Buteo lineatus", "Zenaida macroura", "Sciurus carolinensis", "Didelphis virginiana",
          "Dasypus mexicanus", "Myotis austroriparius", "Anolis carolinensis", "Hemidactylus turcicus"),
-        ("Observations are sparse here (about 14,000 research-grade in the county); `fetch_activity.py` may "
-         "fall back to the state (US-MS). Say so in the PR.",
+        ("Observations are sparse here (about 14,000 research-grade in the county); the activity curves "
+         "use the state (US-MS), and if `fetch_activity.py` widens to the country, say so in the PR.",
          "The Mediterranean house gecko is introduced here."),
         species_place_name="Hinds County",
     ),
@@ -763,8 +763,8 @@ PLACES: list[Place] = [
          "Meleagris gallopavo", "Odocoileus virginianus", "Dasypus mexicanus", "Tamias striatus",
          "Perimyotis subflavus", "Terrapene carolina", "Plethodon glutinosus"),
         ("Oak-hickory forest on the Cumberland Plateau top.",
-         "Observations are sparse here (about 18,000 research-grade in the county); `fetch_activity.py` may "
-         "fall back to the state (US-TN). Say so in the PR."),
+         "Observations are sparse here (about 18,000 research-grade in the county); the activity curves "
+         "use the state (US-TN), and if `fetch_activity.py` widens to the country, say so in the PR."),
         species_place_name="Franklin County",
     ),
     Place(
@@ -836,8 +836,8 @@ PLACES: list[Place] = [
         ("Mimus polyglottos", "Cardinalis cardinalis", "Sialia sialis", "Ictinia mississippiensis",
          "Thryothorus ludovicianus", "Melanerpes carolinus", "Sciurus carolinensis", "Didelphis virginiana",
          "Dasypus mexicanus", "Eptesicus fuscus", "Anolis carolinensis", "Dryophytes cinereus"),
-        ("Bat records are very sparse here (one research-grade observation in the parish); `fetch_activity.py` "
-         "may need the state curve (US-LA).",),
+        ("Bat records are very sparse here (one research-grade observation in the parish); if "
+         "`fetch_activity.py` widens to the country (US), say so in the PR.",),
         species_place_name="Caddo Parish",
     ),
     Place(
@@ -930,8 +930,10 @@ def render_body(place: Place) -> str:
         lines.append(f"- {label}: {url} (check each dataset's licence)")
     lines += [
         f"- Climate normals: the maintainers' import derives weather from climate normals at the centroid, "
-        f"so you do not supply them. For the Köppen class, see the climate table on [Wikipedia]({wikipedia_url}) "
-        f"or the WMO 1991-2020 normals at https://www.ncei.noaa.gov/products/wmo-climate-normals",
+        f"so you do not supply them. For the Köppen class, see "
+        + ("the source named in the table above" if place.koppen_source
+           else f"the climate table on [Wikipedia]({wikipedia_url})")
+        + " or the WMO 1991-2020 normals at https://www.ncei.noaa.gov/products/wmo-climate-normals",
         "",
         "Activity curves for this region, per species:",
         "",

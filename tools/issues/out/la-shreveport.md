@@ -57,7 +57,7 @@ Add the rest by the species flow in AGENTS.md; a locale PR may carry the species
 
 ### Notes
 
-- Bat records are very sparse here (one research-grade observation in the parish); `fetch_activity.py` may need the state curve (US-LA).
+- Bat records are very sparse here (one research-grade observation in the parish); if `fetch_activity.py` widens to the country (US), say so in the PR.
 
 ### Plants
 

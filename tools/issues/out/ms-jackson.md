@@ -57,7 +57,7 @@ Add the rest by the species flow in AGENTS.md; a locale PR may carry the species
 
 ### Notes
 
-- Observations are sparse here (about 14,000 research-grade in the county); `fetch_activity.py` may fall back to the state (US-MS). Say so in the PR.
+- Observations are sparse here (about 14,000 research-grade in the county); the activity curves use the state (US-MS), and if `fetch_activity.py` widens to the country, say so in the PR.
 - The Mediterranean house gecko is introduced here.
 
 ### Plants

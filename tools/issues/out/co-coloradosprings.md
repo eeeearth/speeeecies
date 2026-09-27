@@ -27,7 +27,7 @@ Use the city or district centroid only: never a street address, a house, or your
 - eBird bar charts, for species lists and seasons (eBird data are not openly licensed): https://ebird.org/ (check each dataset's licence)
 - USGS North American Breeding Bird Survey (public domain): https://www.pwrc.usgs.gov/bbs/ (check each dataset's licence)
 - USGS Nonindigenous Aquatic Species, to check whether a species is introduced (public domain): https://nas.er.usgs.gov/ (check each dataset's licence)
-- Climate normals: the maintainers' import derives weather from climate normals at the centroid, so you do not supply them. For the Köppen class, see the climate table on [Wikipedia](https://en.wikipedia.org/wiki/Colorado_Springs,_Colorado) or the WMO 1991-2020 normals at https://www.ncei.noaa.gov/products/wmo-climate-normals
+- Climate normals: the maintainers' import derives weather from climate normals at the centroid, so you do not supply them. For the Köppen class, see the source named in the table above or the WMO 1991-2020 normals at https://www.ncei.noaa.gov/products/wmo-climate-normals
 
 Activity curves for this region, per species:
 

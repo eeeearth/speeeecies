@@ -58,7 +58,7 @@ Add the rest by the species flow in AGENTS.md; a locale PR may carry the species
 ### Notes
 
 - Bismarck sits on the Dfa/Dfb boundary; Wikipedia gives Dfa/Dfb.
-- Bat records are sparse here (2 research-grade silver-haired bat observations in the county); `fetch_activity.py` may need the state curve.
+- Bat records are sparse here (2 research-grade silver-haired bat observations in the county); if `fetch_activity.py` widens to the country (US), say so in the PR.
 
 ### Plants
 

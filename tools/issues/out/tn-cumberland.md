@@ -58,7 +58,7 @@ Add the rest by the species flow in AGENTS.md; a locale PR may carry the species
 ### Notes
 
 - Oak-hickory forest on the Cumberland Plateau top.
-- Observations are sparse here (about 18,000 research-grade in the county); `fetch_activity.py` may fall back to the state (US-TN). Say so in the PR.
+- Observations are sparse here (about 18,000 research-grade in the county); the activity curves use the state (US-TN), and if `fetch_activity.py` widens to the country, say so in the PR.
 
 ### Plants
 

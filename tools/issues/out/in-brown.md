@@ -58,7 +58,7 @@ Add the rest by the species flow in AGENTS.md; a locale PR may carry the species
 ### Notes
 
 - Nashville sits on the Cfa/Dfa boundary; Wikipedia gives Cfa.
-- Observations are thinner here (about 34,000 research-grade in the county); `fetch_activity.py` may fall back to the state for the bat.
+- Observations are thinner here (about 34,000 research-grade in the county), so check that the bat's county records support listing it.
 
 ### Plants
 
