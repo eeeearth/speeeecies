@@ -14,11 +14,11 @@ The order is chosen so that each new place adds something the stream has
 not shown yet: first an unseen EPA Level III ecoregion (a public-domain
 map of the country's ecological regions), then an unseen setting within
 an ecoregion, a new climate class or a new kind of coast. Places are
-grouped into waves of six.
+grouped into waves of about six.
 
 ## Taking a place
 
-Waves 5 to 8 are open to contributors. Each place in them has an open
+Waves 5 to 8 are open to contributors. Each place in them gets an open
 [`locale-request` issue](https://github.com/jt55401/speeeecies/issues?q=is%3Aissue+is%3Aopen+label%3Alocale-request)
 with a suggested manifest, data pointers and 10 to 12 candidate species.
 Claim one there and follow "Contribute a locale" in
