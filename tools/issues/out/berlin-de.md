@@ -33,7 +33,7 @@ uv run tools/fetch_activity.py <slug> --region DE-BE --inat-place-id 12872 --gbi
 
 ### Candidate species (12; list at least 8; aim for 12 or more)
 
-On 2026-09-26, 6 of these existed under `species/` (`passer-domesticus`, `turdus-merula`, `cyanistes-caeruleus`, `vulpes-vulpes`, `erinaceus-europaeus`, `bufo-bufo`); they still need a curve for `DE-BE`. Check `species/` for any added since.
+On 2026-09-26, 8 of these existed under `species/` (`passer-domesticus`, `turdus-merula`, `columba-palumbus`, `parus-major`, `cyanistes-caeruleus`, `vulpes-vulpes`, `erinaceus-europaeus`, `bufo-bufo`); they still need a curve for `DE-BE`. Check `species/` for any added since.
 Add the rest by the species flow in AGENTS.md; a locale PR may carry the species it needs. Search open `species-request` issues first, and claim any you take.
 
 | Species | Common name | In `species/` on 2026-09-26 | GBIF | iNaturalist | Note |
@@ -41,9 +41,9 @@ Add the rest by the species flow in AGENTS.md; a locale PR may carry the species
 | *Passer domesticus* | House Sparrow | yes (`passer-domesticus`) | [5231190](https://www.gbif.org/species/5231190) | [13858](https://www.inaturalist.org/taxa/13858) |  |
 | *Turdus merula* | Eurasian Blackbird | yes (`turdus-merula`) | [2490719](https://www.gbif.org/species/2490719) | [12716](https://www.inaturalist.org/taxa/12716) |  |
 | *Corvus cornix* | Hooded Crow | no | [2482515](https://www.gbif.org/species/2482515) | [144757](https://www.inaturalist.org/taxa/144757) |  |
-| *Columba palumbus* | Common Wood-Pigeon | no | [2495455](https://www.gbif.org/species/2495455) | [3048](https://www.inaturalist.org/taxa/3048) |  |
+| *Columba palumbus* | Common Wood-Pigeon | yes (`columba-palumbus`) | [2495455](https://www.gbif.org/species/2495455) | [3048](https://www.inaturalist.org/taxa/3048) |  |
 | *Sturnus vulgaris* | European Starling | no | [9809229](https://www.gbif.org/species/9809229) | [14850](https://www.inaturalist.org/taxa/14850) |  |
-| *Parus major* | Great Tit | no | [9705453](https://www.gbif.org/species/9705453) | [203153](https://www.inaturalist.org/taxa/203153) |  |
+| *Parus major* | Great Tit | yes (`parus-major`) | [9705453](https://www.gbif.org/species/9705453) | [203153](https://www.inaturalist.org/taxa/203153) |  |
 | *Cyanistes caeruleus* | Eurasian Blue Tit | yes (`cyanistes-caeruleus`) | [2487879](https://www.gbif.org/species/2487879) | [144849](https://www.inaturalist.org/taxa/144849) |  |
 | *Sciurus vulgaris* | Eurasian Red Squirrel | no | [8211070](https://www.gbif.org/species/8211070) | [46001](https://www.inaturalist.org/taxa/46001) |  |
 | *Vulpes vulpes* | Red Fox | yes (`vulpes-vulpes`) | [5219243](https://www.gbif.org/species/5219243) | [42069](https://www.inaturalist.org/taxa/42069) |  |

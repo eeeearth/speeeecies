@@ -33,7 +33,7 @@ uv run tools/fetch_activity.py <slug> --region IE-D --inat-place-id 6719 --gbif-
 
 ### Candidate species (12; list at least 8; aim for 12 or more)
 
-On 2026-09-26, 7 of these existed under `species/` (`turdus-merula`, `erithacus-rubecula`, `passer-domesticus`, `cyanistes-caeruleus`, `vulpes-vulpes`, `sciurus-carolinensis`, `erinaceus-europaeus`); they still need a curve for `IE-D`. Check `species/` for any added since.
+On 2026-09-26, 9 of these existed under `species/` (`turdus-merula`, `erithacus-rubecula`, `passer-domesticus`, `cyanistes-caeruleus`, `pica-pica`, `parus-major`, `vulpes-vulpes`, `sciurus-carolinensis`, `erinaceus-europaeus`); they still need a curve for `IE-D`. Check `species/` for any added since.
 Add the rest by the species flow in AGENTS.md; a locale PR may carry the species it needs. Search open `species-request` issues first, and claim any you take.
 
 | Species | Common name | In `species/` on 2026-09-26 | GBIF | iNaturalist | Note |
@@ -42,10 +42,10 @@ Add the rest by the species flow in AGENTS.md; a locale PR may carry the species
 | *Erithacus rubecula* | European Robin | yes (`erithacus-rubecula`) | [2492462](https://www.gbif.org/species/2492462) | [13094](https://www.inaturalist.org/taxa/13094) |  |
 | *Passer domesticus* | House Sparrow | yes (`passer-domesticus`) | [5231190](https://www.gbif.org/species/5231190) | [13858](https://www.inaturalist.org/taxa/13858) |  |
 | *Cyanistes caeruleus* | Eurasian Blue Tit | yes (`cyanistes-caeruleus`) | [2487879](https://www.gbif.org/species/2487879) | [144849](https://www.inaturalist.org/taxa/144849) |  |
-| *Pica pica* | Eurasian Magpie | no | [5229490](https://www.gbif.org/species/5229490) | [891696](https://www.inaturalist.org/taxa/891696) |  |
+| *Pica pica* | Eurasian Magpie | yes (`pica-pica`) | [5229490](https://www.gbif.org/species/5229490) | [891696](https://www.inaturalist.org/taxa/891696) |  |
 | *Corvus cornix* | Hooded Crow | no | [2482515](https://www.gbif.org/species/2482515) | [144757](https://www.inaturalist.org/taxa/144757) |  |
 | *Coloeus monedula* | Eurasian Jackdaw | no | [6100954](https://www.gbif.org/species/6100954) | [336399](https://www.inaturalist.org/taxa/336399) |  |
-| *Parus major* | Great Tit | no | [9705453](https://www.gbif.org/species/9705453) | [203153](https://www.inaturalist.org/taxa/203153) |  |
+| *Parus major* | Great Tit | yes (`parus-major`) | [9705453](https://www.gbif.org/species/9705453) | [203153](https://www.inaturalist.org/taxa/203153) |  |
 | *Vulpes vulpes* | Red Fox | yes (`vulpes-vulpes`) | [5219243](https://www.gbif.org/species/5219243) | [42069](https://www.inaturalist.org/taxa/42069) |  |
 | *Sciurus carolinensis* | Eastern Gray Squirrel | yes (`sciurus-carolinensis`) | [5219681](https://www.gbif.org/species/5219681) | [46017](https://www.inaturalist.org/taxa/46017) |  |
 | *Erinaceus europaeus* | Common Hedgehog | yes (`erinaceus-europaeus`) | [5219616](https://www.gbif.org/species/5219616) | [43042](https://www.inaturalist.org/taxa/43042) |  |

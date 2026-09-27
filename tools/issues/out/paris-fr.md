@@ -34,19 +34,19 @@ uv run tools/fetch_activity.py <slug> --region FR-IDF --inat-place-id 10577 --gb
 
 ### Candidate species (12; list at least 8; aim for 12 or more)
 
-On 2026-09-26, 6 of these existed under `species/` (`turdus-merula`, `passer-domesticus`, `cyanistes-caeruleus`, `erithacus-rubecula`, `erinaceus-europaeus`, `bufo-bufo`); they still need a curve for `FR-IDF`. Check `species/` for any added since.
+On 2026-09-26, 9 of these existed under `species/` (`columba-palumbus`, `turdus-merula`, `passer-domesticus`, `cyanistes-caeruleus`, `erithacus-rubecula`, `psittacula-krameri`, `parus-major`, `erinaceus-europaeus`, `bufo-bufo`); they still need a curve for `FR-IDF`. Check `species/` for any added since.
 Add the rest by the species flow in AGENTS.md; a locale PR may carry the species it needs. Search open `species-request` issues first, and claim any you take.
 
 | Species | Common name | In `species/` on 2026-09-26 | GBIF | iNaturalist | Note |
 |---|---|---|---|---|---|
-| *Columba palumbus* | Common Wood-Pigeon | no | [2495455](https://www.gbif.org/species/2495455) | [3048](https://www.inaturalist.org/taxa/3048) |  |
+| *Columba palumbus* | Common Wood-Pigeon | yes (`columba-palumbus`) | [2495455](https://www.gbif.org/species/2495455) | [3048](https://www.inaturalist.org/taxa/3048) |  |
 | *Corvus corone* | Carrion Crow | no | [9409796](https://www.gbif.org/species/9409796) | [204496](https://www.inaturalist.org/taxa/204496) |  |
 | *Turdus merula* | Eurasian Blackbird | yes (`turdus-merula`) | [2490719](https://www.gbif.org/species/2490719) | [12716](https://www.inaturalist.org/taxa/12716) |  |
 | *Passer domesticus* | House Sparrow | yes (`passer-domesticus`) | [5231190](https://www.gbif.org/species/5231190) | [13858](https://www.inaturalist.org/taxa/13858) |  |
 | *Cyanistes caeruleus* | Eurasian Blue Tit | yes (`cyanistes-caeruleus`) | [2487879](https://www.gbif.org/species/2487879) | [144849](https://www.inaturalist.org/taxa/144849) |  |
 | *Erithacus rubecula* | European Robin | yes (`erithacus-rubecula`) | [2492462](https://www.gbif.org/species/2492462) | [13094](https://www.inaturalist.org/taxa/13094) |  |
-| *Psittacula krameri* | Rose-ringed Parakeet | no | [2479226](https://www.gbif.org/species/2479226) | [18911](https://www.inaturalist.org/taxa/18911) |  |
-| *Parus major* | Great Tit | no | [9705453](https://www.gbif.org/species/9705453) | [203153](https://www.inaturalist.org/taxa/203153) |  |
+| *Psittacula krameri* | Rose-ringed Parakeet | yes (`psittacula-krameri`) | [2479226](https://www.gbif.org/species/2479226) | [18911](https://www.inaturalist.org/taxa/18911) |  |
+| *Parus major* | Great Tit | yes (`parus-major`) | [9705453](https://www.gbif.org/species/9705453) | [203153](https://www.inaturalist.org/taxa/203153) |  |
 | *Erinaceus europaeus* | Common Hedgehog | yes (`erinaceus-europaeus`) | [5219616](https://www.gbif.org/species/5219616) | [43042](https://www.inaturalist.org/taxa/43042) |  |
 | *Podarcis muralis* | Common Wall Lizard | no | [2469188](https://www.gbif.org/species/2469188) | [55990](https://www.inaturalist.org/taxa/55990) |  |
 | *Pipistrellus pipistrellus* | Common Pipistrelle | no | [5218465](https://www.gbif.org/species/5218465) | [40364](https://www.inaturalist.org/taxa/40364) |  |

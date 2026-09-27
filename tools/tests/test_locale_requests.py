@@ -28,8 +28,12 @@ def locale_schema():
     return json.loads((REPO_ROOT / "schema" / "v0.1" / "locale.schema.json").read_text(encoding="utf-8"))
 
 
-def test_about_twenty_places_with_unique_ids_and_titles(lr):
-    assert 18 <= len(lr.PLACES) <= 22
+def test_about_twenty_places_abroad_plus_the_us_queue_with_unique_ids_and_titles(lr):
+    us = [p for p in lr.PLACES if p.country == "US"]
+    assert 18 <= len(lr.PLACES) - len(us) <= 22
+    assert len(us) == 24  # waves 5 to 8 of docs/us-queue.md
+    assert all(p.continent == "north-america" and p.region.startswith("US-") for p in us)
+    assert all(p.gadm_gid.startswith("USA.") and p.gadm_gid.endswith("_1") for p in us)
     assert len({p.id for p in lr.PLACES}) == len(lr.PLACES)
     assert len({p.title for p in lr.PLACES}) == len(lr.PLACES)
     assert "london-uk" not in {p.id for p in lr.PLACES}  # the worked example is done
@@ -71,7 +75,7 @@ def test_body_marks_existing_species_and_has_the_essentials(lr):
     dublin = next(p for p in lr.PLACES if p.id == "dublin-ie")
     body = lr.render_body(dublin)
     assert "| *Turdus merula* | Eurasian Blackbird | yes (`turdus-merula`) |" in body
-    assert "| *Pica pica* | Eurasian Magpie | no |" in body
+    assert "| *Corvus cornix* | Hooded Crow | no |" in body
     for needle in (
         "`IE-D`", "53.35, -6.26", "`Europe/Dublin`", "`Cfb`", "`rowhouse-garden`",
         "https://www.inaturalist.org/places/6719", "`IRL.6_1`",
@@ -83,6 +87,18 @@ def test_body_marks_existing_species_and_has_the_essentials(lr):
         "aim for 12 or more",
     ):
         assert needle in body, needle
+
+
+def test_us_body_names_its_species_place_and_koppen_source(lr):
+    springs = next(p for p in lr.PLACES if p.id == "co-coloradosprings")
+    body = lr.render_body(springs)
+    assert "iNaturalist place for El Paso County, for species lists: [2894]" in body
+    assert "`BSk`, from the Beck et al. 2018" in body
+    assert "from the climate section of [Wikipedia]" not in body
+    assert "https://ebird.org/" in body and "not openly licensed" in body
+    # places without the new fields render as before
+    dublin = lr.render_body(next(p for p in lr.PLACES if p.id == "dublin-ie"))
+    assert "from the climate section of [Wikipedia](https://en.wikipedia.org/wiki/Dublin)" in dublin
 
 
 def test_body_without_elevation_says_to_confirm(lr):

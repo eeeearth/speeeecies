@@ -34,7 +34,7 @@ uv run tools/fetch_activity.py <slug> --region IN-KA --inat-place-id 7043 --gbif
 
 ### Candidate species (12; list at least 8; aim for 12 or more)
 
-On 2026-09-26, 0 of these existed under `species/`. Check `species/` for any added since.
+On 2026-09-26, 1 of these existed under `species/` (`psittacula-krameri`); they still need a curve for `IN-KA`. Check `species/` for any added since.
 Add the rest by the species flow in AGENTS.md; a locale PR may carry the species it needs. Search open `species-request` issues first, and claim any you take.
 
 | Species | Common name | In `species/` on 2026-09-26 | GBIF | iNaturalist | Note |
@@ -43,7 +43,7 @@ Add the rest by the species flow in AGENTS.md; a locale PR may carry the species
 | *Pycnonotus jocosus* | Red-whiskered Bulbul | no | [2486151](https://www.gbif.org/species/2486151) | [14591](https://www.inaturalist.org/taxa/14591) |  |
 | *Leptocoma zeylonica* | Purple-rumped Sunbird | no | [7340855](https://www.gbif.org/species/7340855) | [145146](https://www.inaturalist.org/taxa/145146) |  |
 | *Spilopelia chinensis* | Spotted Dove | no | [6101224](https://www.gbif.org/species/6101224) | [1455918](https://www.inaturalist.org/taxa/1455918) |  |
-| *Psittacula krameri* | Rose-ringed Parakeet | no | [2479226](https://www.gbif.org/species/2479226) | [18911](https://www.inaturalist.org/taxa/18911) |  |
+| *Psittacula krameri* | Rose-ringed Parakeet | yes (`psittacula-krameri`) | [2479226](https://www.gbif.org/species/2479226) | [18911](https://www.inaturalist.org/taxa/18911) |  |
 | *Acridotheres tristis* | Common Myna | no | [2489005](https://www.gbif.org/species/2489005) | [204454](https://www.inaturalist.org/taxa/204454) |  |
 | *Copsychus saularis* | Oriental Magpie-Robin | no | [2492680](https://www.gbif.org/species/2492680) | [204491](https://www.inaturalist.org/taxa/204491) |  |
 | *Corvus splendens* | House Crow | no | [2482499](https://www.gbif.org/species/2482499) | [8031](https://www.inaturalist.org/taxa/8031) |  |

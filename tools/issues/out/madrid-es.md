@@ -34,20 +34,20 @@ uv run tools/fetch_activity.py <slug> --region ES-MD --inat-place-id 10543 --gbi
 
 ### Candidate species (12; list at least 8; aim for 12 or more)
 
-On 2026-09-26, 3 of these existed under `species/` (`passer-domesticus`, `turdus-merula`, `erinaceus-europaeus`); they still need a curve for `ES-MD`. Check `species/` for any added since.
+On 2026-09-26, 6 of these existed under `species/` (`passer-domesticus`, `pica-pica`, `turdus-merula`, `columba-palumbus`, `parus-major`, `erinaceus-europaeus`); they still need a curve for `ES-MD`. Check `species/` for any added since.
 Add the rest by the species flow in AGENTS.md; a locale PR may carry the species it needs. Search open `species-request` issues first, and claim any you take.
 
 | Species | Common name | In `species/` on 2026-09-26 | GBIF | iNaturalist | Note |
 |---|---|---|---|---|---|
 | *Passer domesticus* | House Sparrow | yes (`passer-domesticus`) | [5231190](https://www.gbif.org/species/5231190) | [13858](https://www.inaturalist.org/taxa/13858) |  |
-| *Pica pica* | Eurasian Magpie | no | [5229490](https://www.gbif.org/species/5229490) | [891696](https://www.inaturalist.org/taxa/891696) |  |
+| *Pica pica* | Eurasian Magpie | yes (`pica-pica`) | [5229490](https://www.gbif.org/species/5229490) | [891696](https://www.inaturalist.org/taxa/891696) |  |
 | *Turdus merula* | Eurasian Blackbird | yes (`turdus-merula`) | [2490719](https://www.gbif.org/species/2490719) | [12716](https://www.inaturalist.org/taxa/12716) |  |
-| *Columba palumbus* | Common Wood-Pigeon | no | [2495455](https://www.gbif.org/species/2495455) | [3048](https://www.inaturalist.org/taxa/3048) |  |
+| *Columba palumbus* | Common Wood-Pigeon | yes (`columba-palumbus`) | [2495455](https://www.gbif.org/species/2495455) | [3048](https://www.inaturalist.org/taxa/3048) |  |
 | *Myiopsitta monachus* | Monk Parakeet | no | [2479407](https://www.gbif.org/species/2479407) | [19349](https://www.inaturalist.org/taxa/19349) |  |
 | *Sturnus unicolor* | Spotless Starling | no | [2489104](https://www.gbif.org/species/2489104) | [14849](https://www.inaturalist.org/taxa/14849) |  |
 | *Apus apus* | Common Swift | no | [5228676](https://www.gbif.org/species/5228676) | [6638](https://www.inaturalist.org/taxa/6638) |  |
 | *Serinus serinus* | European Serin | no | [2494200](https://www.gbif.org/species/2494200) | [9236](https://www.inaturalist.org/taxa/9236) |  |
-| *Parus major* | Great Tit | no | [9705453](https://www.gbif.org/species/9705453) | [203153](https://www.inaturalist.org/taxa/203153) |  |
+| *Parus major* | Great Tit | yes (`parus-major`) | [9705453](https://www.gbif.org/species/9705453) | [203153](https://www.inaturalist.org/taxa/203153) |  |
 | *Erinaceus europaeus* | Common Hedgehog | yes (`erinaceus-europaeus`) | [5219616](https://www.gbif.org/species/5219616) | [43042](https://www.inaturalist.org/taxa/43042) |  |
 | *Tarentola mauritanica* | Moorish Gecko | no | [2445034](https://www.gbif.org/species/2445034) | [33602](https://www.inaturalist.org/taxa/33602) |  |
 | *Pelophylax perezi* | Iberian Green Frog | no | [2426658](https://www.gbif.org/species/2426658) | [66331](https://www.inaturalist.org/taxa/66331) |  |

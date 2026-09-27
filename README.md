@@ -36,6 +36,13 @@ or pick an open
 (Berlin, Tokyo, Sydney, Cape Town, São Paulo and more) and follow
 "Contribute a locale" in [`AGENTS.md`](AGENTS.md).
 
+**United States, state by state.** The rotation is working through every
+US state in rural, coastal, suburban and urban settings, ordered so that
+each new place adds an ecoregion or setting the stream has not shown.
+The open US `locale-request` issues are the slots anyone can take, and
+more are posted as those are claimed. The whole queue is in
+[`docs/us-queue.md`](docs/us-queue.md).
+
 A validated locale enters the live rotation automatically: once its pull
 request is merged, CI is green and the maintainers' import succeeds, it
 joins the next cycle, and the pull request gets a comment saying when it
