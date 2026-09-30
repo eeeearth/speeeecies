@@ -234,6 +234,24 @@ def test_teardown_reports_whether_a_pr_actually_exists():
     assert "NO PR was opened" in teardown, "teardown should say so when no PR exists"
 
 
+def test_teardown_keeps_the_log_when_no_pr_was_opened():
+    """Two of four agents died with zero commits and teardown had already
+    destroyed their logs, leaving no way to tell why. A failed agent's log is
+    the only diagnostic record of the failure."""
+    text = FLEET.read_text(encoding="utf-8")
+    teardown = text.split("cmd_teardown() {", 1)[1].split("\n}", 1)[0]
+    bulk_rm, _, branches = teardown.partition("if pr_for_slug")
+    assert "$slug.log" not in bulk_rm, (
+        "the unconditional rm must not delete the agent log"
+    )
+    assert 'rm -f "$STATE_DIR/$slug.log"' in branches, (
+        "a successful agent's log may be discarded, but only on the PR branch"
+    )
+    assert "log kept for diagnosis" in teardown, (
+        "a failed teardown should point the operator at the retained log"
+    )
+
+
 def test_script_is_syntactically_valid():
     result = subprocess.run(["bash", "-n", str(FLEET)], capture_output=True, text=True)
     assert result.returncode == 0, result.stderr
