@@ -1,0 +1,427 @@
+#!/usr/bin/env bash
+# fleet.sh - coordinate several coding agents contributing species records in
+# parallel, each in its own git worktree and branch, each ending in a pull
+# request.
+#
+# One agent, one issue, one worktree, one branch, one PR. The fleet never merges
+# and never touches main; a human does that.
+#
+#   tools/agents/fleet.sh list-issues
+#   tools/agents/fleet.sh probe-models
+#   tools/agents/fleet.sh spawn   --issue 33 --slug tiliqua-scincoides \
+#                                 --scientific "Tiliqua scincoides"
+#   tools/agents/fleet.sh status  [slug]
+#   tools/agents/fleet.sh teardown <slug> [--force]
+#   tools/agents/fleet.sh supervise [--min 3] [--max 5] [--once]
+#
+# Requirements: git, gh (authed, with write access), and an agent CLI on PATH
+# that can run headless. This script defaults to `opencode run`; override with
+# AGENT_BIN / AGENT_MODEL.
+set -euo pipefail
+
+# Resolve this script's own directory so the harness finds its own templates
+# whichever checkout it is invoked from. The common failure here is running an
+# unmerged harness from the main checkout, where tools/agents/ does not exist
+# yet; anchoring to the script directory makes that impossible.
+SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
+
+# Resolved leniently: render-brief needs no repo, so the commands that do need
+# one re-check rather than letting every invocation die outside a checkout.
+REPO=$(git rev-parse --show-toplevel 2>/dev/null || true)
+GH_REPO=${GH_REPO:-$(gh repo view --json nameWithOwner -q .nameWithOwner 2>/dev/null || echo "")}
+[ -n "$GH_REPO" ] || { echo "cannot determine the GitHub repo; set GH_REPO=<owner/name>" >&2; exit 2; }
+
+# Worktrees land in a sibling directory by default. Override WORKTREE_ROOT to
+# put a run's worktrees somewhere specific; every path is derived from it.
+WORKTREE_ROOT=${WORKTREE_ROOT:-$HOME/worktrees/$(basename "$REPO")}
+STATE_DIR=${FLEET_STATE_DIR:-$HOME/.local/state/speeeecies-fleet}
+AGENT_BIN=${AGENT_BIN:-opencode}
+BASE_REF=${BASE_REF:-origin/main}
+FLEET_MIN=${FLEET_MIN:-3}
+FLEET_MAX=${FLEET_MAX:-5}
+POLL_SECONDS=${POLL_SECONDS:-60}
+BRANCH_PREFIX=${BRANCH_PREFIX:-$(gh api user -q .login 2>/dev/null || echo contributor)}
+BRIEF_TEMPLATE=${BRIEF_TEMPLATE:-$SCRIPT_DIR/brief-species.md}
+PERMISSIONS=${PERMISSIONS:-$SCRIPT_DIR/agent-permissions.json}
+RECIPES=${RECIPES:-$SCRIPT_DIR/recipes.md}
+VISUAL_CHECK=${VISUAL_CHECK:-0}
+
+
+mkdir -p "$WORKTREE_ROOT" "$STATE_DIR"
+
+# --- the free-tier model pool ------------------------------------------------
+# Nine buckets, probed working. The same model published under two provider ids
+# is TWO buckets with separate quotas, so interleaving providers spreads load
+# across both aggregate limits instead of exhausting one. Extend the pool after
+# `probe-models` finds a model that works; never add one you have not probed.
+# DEAD: ling-3.0-flash-fin-free returns "Not Found: Cannot find any route".
+MODEL_POOL=(
+  "opencode/nemotron-3-ultra-free"            # zen, largest free model
+  "opencode-go/space-bunny-free"              # go
+  "opencode/space-bunny-free"                 # zen, same model as above
+  "opencode-go/longcat-2.5-preview-free"      # go
+  "opencode/nemotron-3.5-lightning-free"      # zen, fast
+  "opencode/longcat-2.5-preview-free"         # zen
+  "opencode/mimo-v2.6-flash-free"             # zen
+  "opencode/muse-spark-1.3-contributor-free"  # zen, contributor tier
+  "opencode/big-pickle"                       # zen
+)
+model_variant() {
+  case "$1" in
+    *nemotron-3.5-lightning*) echo "medium" ;;
+    *)                        echo "high" ;;
+  esac
+}
+
+# --- helpers -----------------------------------------------------------------
+say()  { printf '%s\n' "$*"; }
+die()  { printf '%s\n' "$*" >&2; exit 1; }
+
+slug_ok() { case "$1" in ''|*[!a-z0-9-]*) return 1;; *) return 0;; esac; }
+
+need_repo() { [ -n "$REPO" ] || die "not inside a git repository; run this from a checkout of the project"; }
+
+meta_get() { sed -n "s/^$2=//p" "$STATE_DIR/$1.meta" 2>/dev/null | head -1; }
+
+next_model() {
+  local i n
+  i=$(cat "$STATE_DIR/model_cursor" 2>/dev/null || echo 0)
+  n=${#MODEL_POOL[@]}
+  printf '%s' "${MODEL_POOL[$(( i % n ))]}"
+}
+advance_model() {
+  local i; i=$(cat "$STATE_DIR/model_cursor" 2>/dev/null || echo 0)
+  printf '%s\n' "$(( (i + 1) % ${#MODEL_POOL[@]} ))" > "$STATE_DIR/model_cursor"
+}
+
+agent_running() {  # slug -> 0 running, 1 not
+  local wt; wt=$(meta_get "$1" worktree)
+  [ -n "$wt" ] || return 1
+  pgrep -af "$AGENT_BIN run" 2>/dev/null | grep -qF -- "$wt"
+}
+
+# The researched recipe for one issue, out of recipes.md. Markers are matched
+# exactly, so recipe:9 never matches recipe:39: the closing ` -->` is part of
+# the pattern.
+recipe_for_issue() {  # issue -> recipe text on stdout, empty if none
+  local issue="$1"
+  [ -f "$RECIPES" ] || return 0
+  # Exact string match, not regex: `recipe:9 -->` must not match `recipe:39 -->`.
+  awk -v want="$issue" '
+    $0 == "<!-- recipe:" want " -->" { inblock = 1; next }
+    $0 == "<!-- /recipe:" want " -->" { inblock = 0 }
+    inblock { print }
+  ' "$RECIPES"
+}
+
+render_brief() {  # issue slug sci regions worktree branch outfile
+  local issue="$1" slug="$2" sci="$3" regions="$4" wpath="$5" branch="$6" out="$7" recipe
+  [ -f "$BRIEF_TEMPLATE" ] || die "brief template not found: $BRIEF_TEMPLATE"
+  recipe=$(recipe_for_issue "$issue")
+  [ -n "$recipe" ] || recipe="No researched recipe for issue #$issue. Use the general table in this brief, and say in the PR that you had no recipe."
+
+  # python3, not sed: recipe text carries slashes and ampersands, which are
+  # meaningful in a sed replacement.
+  ISSUE="$issue" SLUG="$slug" SCIENTIFIC="$sci" REGIONS="$regions" \
+  WORKTREE="$wpath" BRANCH="$branch" BASE_REF="$BASE_REF" REPO="$REPO" \
+  GH_REPO="$GH_REPO" VISUAL_CHECK="$VISUAL_CHECK" RECIPE="$recipe" \
+  python3 -c '
+import os, sys
+tpl, out = sys.argv[1], sys.argv[2]
+with open(tpl, encoding="utf-8") as fh:
+    text = fh.read()
+for key, val in os.environ.items():
+    text = text.replace("{{%s}}" % key, val)
+with open(out, "w", encoding="utf-8") as fh:
+    fh.write(text)
+' "$BRIEF_TEMPLATE" "$out"
+
+  local leftover
+  leftover=$(grep -o '{{[A-Z_]*}}' "$out" 2>/dev/null | sort -u | tr '\n' ' ' || true)
+  [ -z "$leftover" ] || die "brief still has unsubstituted placeholders: $leftover"
+}
+
+pr_field() {  # slug field jq-expr
+  local br; br=$(meta_get "$1" branch)
+  [ -n "$br" ] || { echo "-"; return; }
+  gh pr view "$br" --repo "$GH_REPO" --json "$2" -q "$3" 2>/dev/null || echo "-"
+}
+
+cmd_list_issues() {
+  need_repo
+  # Open animal species-request issues, unassigned, with the scientific name and
+  # the regions the issue suggests for activity curves. Skips anything with an
+  # open PR so a second fleet never duplicates work.
+  gh issue list --repo "$GH_REPO" --state open --limit 200 --json number,title,labels,assignees \
+    | python3 -c '
+import json,sys
+iss=json.load(sys.stdin)
+for i in iss:
+    labs={l["name"] for l in i["labels"]}
+    if "species-request" not in labs or "animal" not in labs: continue
+    if "phase-2" in labs: continue
+    if i["assignees"]: continue
+    t=i["title"]
+    sci=""
+    if "(" in t and t.rstrip().endswith(")"):
+        sci=t[t.rindex("(")+1:-1].strip()
+    print(f'"'"'{i["number"]}\t{sci}\t{t}'"'"')
+' | while IFS=$'\t' read -r n sci title; do
+      slug=$(printf '%s' "$sci" | tr '[:upper:]' '[:lower:]' | tr ' ' '-')
+      if pr_for_slug "$slug" >/dev/null 2>&1; then continue; fi
+      record_exists "$slug" && continue
+      printf '%s\t%s\t%s\n' "$n" "$slug" "$title"
+    done
+}
+
+# Is there already an open PR touching species/<slug>/ ?
+pr_for_slug() {
+  local slug="$1"
+  [ -n "$slug" ] || return 1
+  local n
+  n=$(gh pr list --repo "$GH_REPO" --state open --limit 100 --json number,files \
+        -q "[.[] | select(any(.files[]; .path | startswith(\"species/$slug/\")))] | length" 2>/dev/null || echo 0)
+  [ "${n:-0}" != "0" ]
+}
+
+# Some request issues outlive the work that satisfied them: #2 and #3 still ask
+# for records PR #42 already added, so building them again would collide.
+record_exists() {
+  need_repo
+  git -C "$REPO" cat-file -e "$BASE_REF:species/$1/species.json" 2>/dev/null
+}
+
+cmd_probe_models() {
+  need_repo
+  # Confirm each pooled model still answers before trusting the rotation. The
+  # prompt is a positional argument: `opencode run` does not read it from stdin.
+  local m ok
+  for m in "${MODEL_POOL[@]}"; do
+    if timeout 300 "$AGENT_BIN" run --model "$m" --dir "$REPO" \
+         'Reply with exactly: PROBE_OK' 2>/dev/null | grep -q PROBE_OK; then
+      ok=1
+    else
+      ok=0
+    fi
+    printf '%-46s %s\n' "$m" "$([ "$ok" = 1 ] && echo ok || echo FAIL)"
+  done
+}
+
+cmd_spawn() {
+  need_repo
+  local issue slug sci model variant
+  issue=""; slug=""; sci=""; model=""; variant=""
+  while [ $# -gt 0 ]; do
+    case "$1" in
+      --issue) issue=$2; shift 2;;
+      --slug) slug=$2; shift 2;;
+      --scientific) sci=$2; shift 2;;
+      --model) model=$2; shift 2;;
+      --variant) variant=$2; shift 2;;
+      *) die "unknown argument: $1";;
+    esac
+  done
+  [ -n "$issue" ] && [ -n "$slug" ] && [ -n "$sci" ] || die "need --issue --slug --scientific"
+  slug_ok "$slug" || die "slug must be lowercase letters, digits and dashes: $slug"
+  [ -f "$BRIEF_TEMPLATE" ] || die "brief template not found: $BRIEF_TEMPLATE"
+  slug=$(printf '%s' "$slug" | tr '[:upper:]' '[:lower:]' | tr ' ' '-')
+  slug_ok "$slug" || die "slug must normalise to lowercase letters, digits and dashes: $slug"
+
+  local state
+  state=$(gh issue view "$issue" --repo "$GH_REPO" --json state,assignees \
+          -q '.state + "|" + ([.assignees[].login] | join(","))' 2>/dev/null || echo "ERR|")
+  case "$state" in
+    OPEN\|) : ;;
+    OPEN\|*) die "issue $issue is already assigned to ${state#OPEN|}; leave it to them";;
+    *) die "issue $issue is not an open species-request animal issue (got '$state')";;
+  esac
+  pr_for_slug "$slug" && die "an open PR already touches species/$slug/; pick another issue"
+  record_exists "$slug" && die "species/$slug/species.json already exists on $BASE_REF; the issue is stale"
+
+  [ -n "$model" ] || model=$(next_model)
+  [ -n "$variant" ] || variant=$(model_variant "$model")
+
+  local branch wpath
+  branch="$BRANCH_PREFIX/species-$issue-$slug"
+  wpath="$WORKTREE_ROOT/$slug"
+  [ -e "$wpath" ] && die "worktree path already exists: $wpath"
+  git -C "$REPO" show-ref --quiet "refs/heads/$branch" && die "branch $branch exists; pick another slug"
+
+  ( cd "$REPO" && git fetch --quiet origin && git worktree add -b "$branch" "$wpath" "$BASE_REF" ) >/dev/null
+
+  # Region hints come from the issue body, so the agent does not have to guess.
+  local regions
+  regions=$(gh issue view "$issue" --repo "$GH_REPO" --json body \
+            | python3 -c 'import json,re,sys
+b=json.load(sys.stdin)["body"] or ""
+m=re.search(r"[Ss]uggested regions.*?\n(.*?)(\n\n|\Z)", b, re.S)
+print(" ".join(re.findall(r"`([A-Z]{2}(?:-[A-Z0-9]{1,3})?)`", m.group(1))) if m else "")')
+
+  local brief="$STATE_DIR/$slug.brief.md"
+  [ -n "$regions" ] || regions=$(gh issue view "$issue" --repo "$GH_REPO" --json body \
+    | python3 -c 'import json,re,sys
+b=json.load(sys.stdin)["body"] or ""
+print(" ".join(re.findall(r"\b([A-Z]{2}(?:-[A-Z0-9]{1,3})?)\b", b))[:40])')
+
+  render_brief "$issue" "$slug" "$sci" "$regions" "$wpath" "$branch" "$brief"
+
+  local log="$STATE_DIR/$slug.log" status="$STATE_DIR/$slug.status.md" launch="$STATE_DIR/$slug.launch.sh"
+  printf '# %s\nissue: %s\nscientific: %s\nbranch: %s\nworktree: %s\nmodel: %s\nregions: %s\nstarted: %s\n\n' \
+    "$slug" "$issue" "$sci" "$branch" "$wpath" "$model" "$regions" "$(date -u +%FT%TZ)" > "$status"
+  printf 'workspace=none\nagent=%s\nworktree=%s\nbranch=%s\nissue=%s\nslug=%s\nscientific=%s\nmodel=%s\nvariant=%s\nregions=%s\nlog=%s\nstatus=%s\nbrief=%s\nmain=%s\n' \
+    "$slug" "$wpath" "$branch" "$issue" "$slug" "$sci" "$model" "$variant" "$regions" "$log" "$status" "$brief" "$REPO" \
+    > "$STATE_DIR/$slug.meta"
+
+  cat > "$launch" <<LAUNCHER
+#!/usr/bin/env bash
+exec > "$log" 2>&1
+echo "=== fleet.sh spawn \$(date -u +%FT%TZ) model=$model variant=$variant"
+cd "$wpath" || exit 9
+[ -f "$PERMISSIONS" ] && export OPENCODE_CONFIG="$PERMISSIONS"
+"$AGENT_BIN" run --model "$model" --variant "$variant" --dir "$wpath" \
+  --title "species $sci #$issue" --auto "\$(cat "$brief")"
+rc=\$?
+echo "=== agent exited rc=\$rc \$(date -u +%FT%TZ)"
+LAUNCHER
+  chmod +x "$launch"
+
+  # Detached, so one fleet member's exit cannot take the supervisor down with it.
+  setsid nohup "$launch" </dev/null >/dev/null 2>&1 &
+  disown 2>/dev/null || true
+  advance_model
+
+  printf '%s\t%s\n' "$issue" "$slug" >> "$STATE_DIR/queue.tsv"
+  say "spawned $slug (issue $issue, model $model)"
+}
+
+cmd_status() {
+  if [ $# -ge 1 ]; then
+    row "$1"; return
+  fi
+  shopt -s nullglob
+  local metas=("$STATE_DIR"/*.meta)
+  [ ${#metas[@]} -gt 0 ] || { say "no agents; looked in $STATE_DIR"; return; }
+  for m in "${metas[@]}"; do row "$(basename "$m" .meta)"; done
+}
+
+row() {
+  local slug="$1" model br run age last pr ci
+  [ -f "$STATE_DIR/$slug.meta" ] || { printf '%-26s %-40s %s\n' "$slug" "-" "no meta"; return; }
+  model=$(meta_get "$slug" model); br=$(meta_get "$slug" branch)
+  if agent_running "$slug"; then run=running; else run=stopped; fi
+  age=$(( ( $(date -u +%s) - $(date -u -d "$(sed -n 's/^started: //p' "$STATE_DIR/$slug.status.md" | head -1)" +%s 2>/dev/null || date -u +%s) ) / 60 ))
+  pr=$(pr_field "$slug" number "#\(.number) \(.state)")
+  ci=$(pr_field "$slug" statusCheckRollup '[.statusCheckRollup[]?.conclusion] | if length==0 then "none" else (join(" ")) end')
+  last=$(tail -2 "$STATE_DIR/$slug.log" 2>/dev/null | tr -d '\r' | grep -v '^$' | tail -1 | cut -c1-70)
+  printf '%-26s %-40s %-8s %-6s %-3s %-8s %s\n' "$slug" "$model" "$run" "${age}m" "$pr" "$ci" "$last"
+}
+
+cmd_teardown() {
+  need_repo
+  local slug force=0
+  [ $# -ge 1 ] || die "need a slug"
+  slug="$1"; shift || true
+  while [ $# -gt 0 ]; do case "$1" in --force) force=1; shift;; *) shift;; esac; done
+  [ -f "$STATE_DIR/$slug.meta" ] || die "no metadata for $slug in $STATE_DIR"
+  local wt br; wt=$(meta_get "$slug" worktree); br=$(meta_get "$slug" branch)
+
+  # Never tear down while the agent is mid-flight, unless forced.
+  if [ "$force" = 0 ] && agent_running "$slug"; then
+    say "$slug is still running; pass --force once its PR is open"
+    return 0
+  fi
+  if [ "$force" = 0 ] && [ -d "$wt" ] && [ -n "$(git -C "$wt" status --porcelain 2>/dev/null)" ]; then
+    say "$wt has uncommitted changes; refusing to tear down. Inspect it, then --force."
+    return 1
+  fi
+  [ -d "$wt" ] && git -C "$REPO" worktree remove --force "$wt"
+  git -C "$REPO" worktree prune
+  rm -f "$STATE_DIR/$slug.meta" "$STATE_DIR/$slug.status.md" \
+        "$STATE_DIR/$slug.log" "$STATE_DIR/$slug.brief.md" "$STATE_DIR/$slug.launch.sh"
+  say "torn down $slug; branch kept ($br) because it is the PR"
+}
+
+cmd_supervise() {
+  local once=0
+  while [ $# -gt 0 ]; do
+    case "$1" in --once) once=1; shift;; --min) FLEET_MIN=$2; shift 2;; --max) FLEET_MAX=$2; shift 2;; *) shift;; esac
+  done
+  [ "$FLEET_MAX" -ge "$FLEET_MIN" ] || die "--max must be >= --min"
+
+  while :; do
+    # Reap: an agent that finished with a PR leaves the fleet.
+    shopt -s nullglob
+    for m in "$STATE_DIR"/*.meta; do
+      slug=$(basename "$m" .meta)
+      agent_running "$slug" && continue
+      pr=$(pr_field "$slug" number)
+      case "$pr" in \#*) echo "[$(date -u +%T)] $slug finished: $pr -> teardown"
+                        cmd_teardown "$slug" --force || true ;;
+           *)   echo "[$(date -u +%T)] $slug stopped with NO PR (model $(meta_get "$slug" model)); log tail:"
+                tail -5 "$STATE_DIR/$slug.log" | sed 's/^/    /'
+                cmd_teardown "$slug" --force || true ;;
+      esac
+    done
+
+    # Refill to the floor, never past --max. Anything already attempted stays
+    # in queue.tsv and is skipped, so a run that died without a PR is not
+    # silently retried forever.
+    local live pick row_pick n sl ti sc
+    live=$(ls "$STATE_DIR"/*.meta 2>/dev/null | wc -l | tr -d ' ')
+    if [ "$live" -lt "$FLEET_MIN" ]; then
+      pick=$(cmd_list_issues)
+      if [ -f "$STATE_DIR/queue.tsv" ]; then
+        pick=$(printf '%s\n' "$pick" | awk -F'\t' '
+          NR==FNR { if ($2 != "") seen[$2] = 1; next }
+          !($2 in seen)
+        ' "$STATE_DIR/queue.tsv" -)
+      fi
+      row_pick=$(printf '%s\n' "$pick" | head -1)
+      [ -n "$row_pick" ] || { echo "[$(date -u +%T)] queue empty; nothing to spawn"; }
+      while [ -n "$row_pick" ] && [ "$live" -lt "$FLEET_MIN" ]; do
+        IFS=$'\t' read -r n sl ti <<<"$row_pick"
+        sc=$(gh issue view "$n" --repo "$GH_REPO" --json title \
+             | python3 -c 'import json,sys;t=json.load(sys.stdin)["title"];print(t[t.rindex("(")+1:-1].strip() if "(" in t else "")')
+        [ -n "$sc" ] || sc="$ti"
+        cmd_spawn --issue "$n" --slug "$sl" --scientific "$sc" || break
+        live=$(( live + 1 ))
+        row_pick=$(printf '%s\n' "$pick" | awk -F'\t' -v s="$sl" 'NR>1 && $2 != s' | head -1)
+      done
+    fi
+    echo "[$(date -u +%T)] fleet=$live (min $FLEET_MIN max $FLEET_MAX) next-model=$(next_model)"
+    [ "$once" = 1 ] && return 0
+    sleep "$POLL_SECONDS"
+  done
+}
+
+cmd_render_brief() {
+  local issue slug sci regions out
+  issue=""; slug=""; sci=""; regions=""; out=""
+  while [ $# -gt 0 ]; do
+    case "$1" in
+      --issue) issue=$2; shift 2;;
+      --slug) slug=$2; shift 2;;
+      --scientific) sci=$2; shift 2;;
+      --regions) regions=$2; shift 2;;
+      --out) out=$2; shift 2;;
+      *) die "unknown argument: $1";;
+    esac
+  done
+  [ -n "$issue" ] && [ -n "$slug" ] && [ -n "$sci" ] || die "need --issue --slug --scientific"
+  [ -n "$out" ] || out="/dev/stdout"
+  render_brief "$issue" "$slug" "$sci" "$regions" \
+    "$WORKTREE_ROOT/$slug" "$BRANCH_PREFIX/species-$issue-$slug" "$out"
+  [ "$out" = "/dev/stdout" ] || say "wrote $out"
+}
+
+case "${1:-}" in
+  list-issues) shift; cmd_list_issues "$@";;
+  probe-models) shift; cmd_probe_models "$@";;
+  render-brief) shift; cmd_render_brief "$@";;
+  spawn)       shift; cmd_spawn "$@";;
+  status)      shift; cmd_status "$@";;
+  teardown)    shift; cmd_teardown "$@";;
+  supervise)   shift; cmd_supervise "$@";;
+  ""|-h|--help|help) sed -n '2,20p' "$0";;
+  *) die "unknown command: $1";;
+esac

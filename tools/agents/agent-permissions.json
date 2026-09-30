@@ -1,0 +1,22 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "_comment": "Permission rails for a delegated fleet agent. Loaded with OPENCODE_CONFIG so one agent cannot merge its own pull request, push to main, or force-push, even though the account that runs it may have maintainer rights on the repository. Everything else is allowed because the job needs git, gh, uv and a browser.",
+  "permission": {
+    "bash": {
+      "*": "allow",
+      "gh pr merge*": "deny",
+      "gh pr merge": "deny",
+      "gh pr ready": "deny",
+      "gh api -X PUT /repos/*/pulls/*/merge": "deny",
+      "git push origin main*": "deny",
+      "git push -u origin main*": "deny",
+      "git push --force*": "deny",
+      "git push -f*": "deny",
+      "git commit --amend*": "deny",
+      "gh pr edit --add-reviewer jt55401*": "deny"
+    },
+    "external_directory": {
+      "*": "allow"
+    }
+  }
+}
