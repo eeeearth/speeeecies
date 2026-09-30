@@ -343,7 +343,13 @@ cmd_teardown() {
   git -C "$REPO" worktree prune
   rm -f "$STATE_DIR/$slug.meta" "$STATE_DIR/$slug.status.md" \
         "$STATE_DIR/$slug.log" "$STATE_DIR/$slug.brief.md" "$STATE_DIR/$slug.launch.sh"
-  say "torn down $slug; branch kept ($br) because it is the PR"
+  # Say which of the two happened. "because it is the PR" on its own let an
+  # agent that died with no PR look delivered, so its issue went unclaimed.
+  if pr_for_slug "$slug"; then
+    say "torn down $slug; branch kept ($br) because it is the PR"
+  else
+    say "torn down $slug; NO PR was opened, branch $br kept for salvage, issue still needs work"
+  fi
 }
 
 cmd_supervise() {

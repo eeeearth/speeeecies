@@ -222,6 +222,18 @@ def test_reap_loop_requests_a_hash_prefixed_pr_label():
     )
 
 
+def test_teardown_reports_whether_a_pr_actually_exists():
+    """Teardown used to say "branch kept because it is the PR" unconditionally, so
+    an agent that died without opening one looked delivered and its issue was
+    never re-queued. The claim must be conditional on a real PR."""
+    text = FLEET.read_text(encoding="utf-8")
+    teardown = text.split("cmd_teardown() {", 1)[1].split("\n}", 1)[0]
+    assert 'if pr_for_slug "$slug"; then' in teardown, (
+        "teardown must check for a real PR before claiming the branch is one"
+    )
+    assert "NO PR was opened" in teardown, "teardown should say so when no PR exists"
+
+
 def test_script_is_syntactically_valid():
     result = subprocess.run(["bash", "-n", str(FLEET)], capture_output=True, text=True)
     assert result.returncode == 0, result.stderr
