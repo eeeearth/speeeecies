@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "format": "speeeecies/behavior",
+  "id": "fsm-bat-nocturnal-v1",
+  "kind": "fsm",
+  "description": "Common pipistrelle: nocturnal bat, roost by day, emerge at dusk, forage aerially at night, return at dawn.",
+  "params": {
+    "emerge_sun_deg": -6,
+    "return_sun_deg": -12,
+    "flee_m": 10,
+    "food_tag": "invertebrate"
+  },
+  "initial": "roost",
+  "states": {
+    "roost": {
+      "action": {
+        "do": "rest"
+      },
+      "min_dwell_s": 3600
+    },
+    "emerge": {
+      "action": {
+        "do": "take_off"
+      },
+      "min_dwell_s": 30
+    },
+    "aerial_forage": {
+      "action": {
+        "do": "eat_nearest",
+        "tag": "${food_tag}",
+        "gait": "fly"
+      },
+      "min_dwell_s": 120
+    },
+    "return": {
+      "action": {
+        "do": "fly_to_nearest",
+        "tag": "shelter"
+      },
+      "min_dwell_s": 30
+    },
+    "flee": {
+      "action": {
+        "do": "flee",
+        "gait": "hop"
+      },
+      "min_dwell_s": 2
+    }
+  },
+  "transitions": [
+    {
+      "from": "roost",
+      "to": "emerge",
+      "when": {
+        "sun_elevation_between_deg": [
+          -12,
+          "${emerge_sun_deg}"
+        ]
+      }
+    },
+    {
+      "from": "emerge",
+      "to": "aerial_forage",
+      "when": {
+        "chance": 0.1
+      }
+    },
+    {
+      "from": "aerial_forage",
+      "to": "return",
+      "when": {
+        "sun_elevation_between_deg": [
+          "${return_sun_deg}",
+          0
+        ]
+      }
+    },
+    {
+      "from": "return",
+      "to": "roost",
+      "when": {
+        "chance": 0.1
+      }
+    },
+    {
+      "from": "*",
+      "to": "flee",
+      "when": {
+        "threat_within_m": "${flee_m}"
+      },
+      "priority": 100
+    },
+    {
+      "from": "flee",
+      "to": "roost",
+      "when": {
+        "chance": 0.5
+      },
+      "priority": 50
+    }
+  ]
+}
