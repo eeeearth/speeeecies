@@ -1,0 +1,835 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Trichosurus vulpecula",
+  "slug": "trichosurus-vulpecula",
+  "common_names": {
+    "en": "common brushtail possum",
+    "de": "Fuchskusu",
+    "mi": "paihamu"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Mammalia",
+    "order": "Diprotodontia",
+    "family": "Phalangeridae",
+    "genus": "Trichosurus",
+    "authority": "(Kerr, 1792)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2440254,
+    "inat_taxon_id": 42808,
+    "itis_tsn": 552696,
+    "wikidata": "Q732477",
+    "ncbi_taxon_id": 9337
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "AU"
+    ],
+    "introduced": [
+      "NZ"
+    ],
+    "invasive_in": [
+      "NZ"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk",
+      "Climb"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Fur",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Cavity",
+    "perching": false,
+    "size_class": "Medium",
+    "mass_kg": 2.67,
+    "mass_range_kg": [
+      1.2,
+      4.5
+    ],
+    "length_m": 0.79,
+    "shoulder_height_m": 0.15,
+    "lifespan_y": 13,
+    "home_range_ha": 3,
+    "diet": {
+      "browse": 0.6,
+      "fruit": 0.3,
+      "invertebrate": 0.1
+    },
+    "social": {
+      "structure": "Solitary",
+      "group_size": [
+        1,
+        1
+      ]
+    },
+    "activity_pattern": "Nocturnal",
+    "defense": "Flee",
+    "wariness": 0.35
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.4,
+      "arboreal": 0.6
+    },
+    "shelter_tag": "cavity",
+    "resources": [
+      {
+        "tag": "browse",
+        "kind": "Herbivory",
+        "weight": 0.6
+      },
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.3
+      },
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.1
+      },
+      {
+        "tag": "cavity",
+        "kind": "Nesting",
+        "weight": 1.0
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Exploiter",
+      "uses_gardens": true,
+      "notes": "One of the Australian marsupials most often seen by city dwellers; thrives in cities and a wide range of human-modified environments, denning in tree hollows, caves and house roofs and raiding fruit trees, vegetable gardens and kitchens. Considered a major pest in New Zealand."
+    },
+    "density_per_ha": {
+      "min": 0.12,
+      "typical": 1.24,
+      "max": 12.4
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "mating",
+        "start": "03-01",
+        "end": "05-31",
+        "note": "Autumn breeding peak; breeding tends to peak in autumn, March to May, in some areas."
+      },
+      {
+        "name": "mating",
+        "start": "09-01",
+        "end": "11-30",
+        "note": "Spring breeding peak, September to November; mating is promiscuous and random."
+      },
+      {
+        "name": "young",
+        "start": "01-01",
+        "end": "12-31",
+        "note": "Breeding can occur at any time of year, so dependent young are present year-round. Gestation is 16-18 days, the young stays in the pouch for 4-5 months, then is left in the den or rides on its mother's back until 7-9 months old."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Juvenile",
+        "duration_days": 365,
+        "scale": 0.5,
+        "requires_tag": "cavity"
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "AU",
+        "monthly": [
+          0.63,
+          0.7,
+          0.89,
+          1.0,
+          0.96,
+          0.88,
+          0.67,
+          0.76,
+          0.73,
+          0.62,
+          0.74,
+          0.65
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 315470,
+        "sources": [
+          "inat-activity-au",
+          "gbif-activity-au"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 6744,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=42808&place_id=6744&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=6744&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "total": 2270,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "country",
+              "AU"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2440254&country=AU&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&country=AU&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 313200,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "NZ",
+        "monthly": [
+          0.72,
+          0.6,
+          0.73,
+          0.92,
+          0.87,
+          1.0,
+          0.58,
+          0.62,
+          0.69,
+          0.54,
+          0.5,
+          0.61
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 2591,
+        "sources": [
+          "inat-activity-nz",
+          "gbif-activity-nz"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 6803,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=42808&place_id=6803&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=6803&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "total": 1146,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "country",
+              "NZ"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2440254&country=NZ&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&country=NZ&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 1445,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-ground-forager-v1",
+    "params": {
+      "food_tag": "browse",
+      "flee_m": 10,
+      "calm_m": 20,
+      "food_m": 30,
+      "flee_gait": "walk",
+      "forage_gait": "walk"
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "click",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [],
+      "cooldown_s": 10,
+      "loudness": "Quiet",
+      "description": "Short, soft clicks exchanged between individuals in close contact, including mothers and their young."
+    },
+    {
+      "call_id": "grunt",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [],
+      "cooldown_s": 20,
+      "loudness": "Quiet",
+      "description": "Low grunts and soft guttural sounds given in close encounters between conspecifics."
+    },
+    {
+      "call_id": "hiss",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [],
+      "cooldown_s": 15,
+      "loudness": "Moderate",
+      "description": "A sharp hiss given when threatened or cornered, often accompanied by an open-mouthed threat display."
+    },
+    {
+      "call_id": "chatter",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [],
+      "cooldown_s": 10,
+      "loudness": "Loud",
+      "description": "Rapid alarm chattering, directed at a threat, a rival or an intruder near the den."
+    },
+    {
+      "call_id": "cough",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [],
+      "cooldown_s": 20,
+      "loudness": "Moderate",
+      "description": "A guttural cough, part of the species' alarm repertoire."
+    },
+    {
+      "call_id": "screech",
+      "context": "Scream",
+      "season_months": [],
+      "time_windows": [],
+      "cooldown_s": 20,
+      "loudness": "Loud",
+      "description": "A loud screech, used in aggressive encounters and fights between individuals."
+    }
+  ],
+  "look": {
+    "body_plan": "quadruped",
+    "proportions": {
+      "torso_aspect": 2.0,
+      "leg_length_ratio": 0.35,
+      "head_scale": 0.65,
+      "neck_angle_deg": 20,
+      "tail_ratio": 1.0,
+      "ear_ratio": 0.45,
+      "beak_ratio": 0.4,
+      "girth_ratio": 0.9
+    },
+    "palette": {
+      "body": "#8f8d87",
+      "belly": "#e6dfd0",
+      "markings": "#4a4239",
+      "accent": "#b7a993",
+      "eye": "#171310"
+    },
+    "part_colors": {
+      "snout": "belly",
+      "ear_*": "markings",
+      "tail": "markings"
+    },
+    "extra_parts": [
+      {
+        "name": "tail_fluff",
+        "parent": "tail",
+        "offset": [
+          0,
+          0.1,
+          0
+        ],
+        "size": [
+          0.9,
+          1.6,
+          1.6
+        ],
+        "color": "markings"
+      }
+    ],
+    "poses": {
+      "idle": {
+        "keyframes": [
+          {
+            "t": 0,
+            "parts": {
+              "tail": {
+                "rot_deg": [
+                  0,
+                  0,
+                  -40
+                ]
+              }
+            }
+          },
+          {
+            "t": 1,
+            "parts": {
+              "tail": {
+                "rot_deg": [
+                  0,
+                  0,
+                  -40
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "walk": {
+        "keyframes": [
+          {
+            "t": 0,
+            "parts": {
+              "tail": {
+                "rot_deg": [
+                  0,
+                  0,
+                  -40
+                ]
+              }
+            }
+          },
+          {
+            "t": 1,
+            "parts": {
+              "tail": {
+                "rot_deg": [
+                  0,
+                  0,
+                  -40
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "rest": {
+        "keyframes": [
+          {
+            "t": 0,
+            "parts": {
+              "tail": {
+                "rot_deg": [
+                  0,
+                  0,
+                  -40
+                ]
+              }
+            }
+          },
+          {
+            "t": 1,
+            "parts": {
+              "tail": {
+                "rot_deg": [
+                  0,
+                  0,
+                  -40
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2440254",
+      "title": "GBIF Backbone Taxonomy: Trichosurus vulpecula",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-09-30",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q732477",
+      "title": "Wikidata: Trichosurus vulpecula (Q732477)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-09-30",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Common_brushtail_possum",
+      "title": "Wikipedia: Common brushtail possum",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-09-30",
+      "attribution": "Wikipedia contributors, \"Common brushtail possum\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=552696",
+      "title": "ITIS: Trichosurus vulpecula, TSN 552696",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-09-30",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "eltontraits",
+      "url": "https://doi.org/10.6084/m9.figshare.3559887.v1",
+      "title": "EltonTraits 1.0: species-level foraging attributes of the world's birds and mammals (MamFuncDat)",
+      "license": "CC0-1.0",
+      "kind": "dataset",
+      "accessed": "2026-09-30",
+      "attribution": "Wilman, H. et al. (2014) EltonTraits 1.0. Ecology 95:2027",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "pantheria",
+      "url": "https://esapubs.org/archive/ecol/E090/184/PanTHERIA_1-0_WR05_Aug2008.txt",
+      "title": "PanTHERIA 1.0: species-level life history, ecology and geography of extant mammals",
+      "license": "CC-BY-4.0",
+      "kind": "dataset",
+      "accessed": "2026-09-30",
+      "attribution": "Jones, K. E. et al. (2009) PanTHERIA. Ecology 90:2648",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "inat-activity-au",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=42808&place_id=6744&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Trichosurus vulpecula in AU",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-au",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2440254&country=AU&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Trichosurus vulpecula in AU",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "inat-activity-nz",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=42808&place_id=6803&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Trichosurus vulpecula in NZ",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-nz",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2440254&country=NZ&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Trichosurus vulpecula in NZ",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "itis"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "ITIS TSN and NCBI taxon id via Wikidata properties P815 and P685."
+    },
+    "common_names": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "German 'Fuchskusu' and Maori 'paihamu' from Wikidata labels; English common name from GBIF and iNaturalist."
+    },
+    "conservation": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "Wikidata P141 = least concern (Q211005)."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Native to Australia, including Tasmania and offshore islands; introduced to New Zealand in the 1850s and invasive there as a major agricultural and conservation pest."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Quadrupedal on the ground and in trees, largely arboreal. Climb is declared as a locomotion mode; the body plan has no climb pose, so none is defined."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Marsupial endotherm."
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Climbs and rests on branches, but does not perch like a bird; set to false."
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Dens in tree hollows and caves, and in house roofs; Cavity chosen as the primary type."
+    },
+    "traits.size_class": {
+      "sources": [
+        "eltontraits",
+        "pantheria"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "eltontraits",
+        "pantheria"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Mean of EltonTraits BodyMass-Value 2650 g and PanTHERIA AdultBodyMass_g 2685.39 g; both sit inside Wikipedia's stated adult range of 1.2-4.5 kg."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.length_m": {
+      "sources": [
+        "pantheria",
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "PanTHERIA AdultHeadBodyLen_mm 472.78 mm plus the midpoint of Wikipedia's tail length range 24-40 cm (32 cm)."
+    },
+    "traits.shoulder_height_m": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: a stocky, short-legged arboreal quadruped, roughly a fifth of nose-to-tail length; no open source gives a shoulder height for this species."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "'Brushtail possums can live up to 13 years in the wild.' This is the maximum reported wild lifespan; PanTHERIA MaxLongevity_m 176.4 months (14.7 y) is consistent."
+    },
+    "traits.home_range_ha": {
+      "sources": [
+        "pantheria"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "PanTHERIA HomeRange_Indiv_km2 0.03 km2 converted to 3 hectares."
+    },
+    "traits.diet": {
+      "sources": [
+        "eltontraits",
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "EltonTraits Diet-PlantO 60 (leaves, shoots, herbs) mapped to schema 'browse'; Diet-Fruit 20 and Diet-Seed 20 combined and represented as 'fruit' (0.3); EltonTraits records Diet-Inv 0, but Wikipedia describes insects, birds' eggs and chicks and other small vertebrates, so 0.1 is assigned to 'invertebrate' as an authored allowance. Shares sum to 1.0."
+    },
+    "traits.social": {
+      "sources": [
+        "pantheria",
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "PanTHERIA SocialGrpSize 1 (solitary); Wikipedia: mostly solitary, individuals keep their distance, and normally sleep in separate dens, though dens are sometimes shared."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "eltontraits",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "EltonTraits Activity-Nocturnal 1 (exclusively nocturnal); Wikipedia: 'largely arboreal and nocturnal'."
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Flees from predators (quolls, dogs, foxes, cats, goannas, carpet snakes and powerful owls) and is generally non-aggressive, preferring to stare with erect ears; judgement mapping to the schema's single-value field."
+    },
+    "traits.wariness": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: tolerant of humans and sometimes hand-fed in urban Australia, but hunted heavily in New Zealand; a mid-low value."
+    },
+    "habitat.use": {
+      "sources": [
+        "eltontraits",
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "EltonTraits ForStrat-Value 'Ar' (arboreal) gives the primary stratum; the ground share is judgement, reflecting regular ground foraging described on Wikipedia."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "habitat.resources": {
+      "sources": [
+        "eltontraits",
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Food weights follow traits.diet; the cavity nesting resource is the tree hollow or roof den described on Wikipedia."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Wikipedia: 'one of few [marsupials] that thrive in cities and a wide range of natural and human-modified environments', with 'a liking for fruit trees, vegetable gardens, and kitchen raids', and a major pest in New Zealand."
+    },
+    "habitat.density_per_ha": {
+      "sources": [
+        "pantheria"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Typical from PanTHERIA PopulationDensity_n/km2 124 converted to per-hectare; min and max are an authored tenfold band either side, following the same convention used for sciurus-carolinensis and vulpes-vulpes."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Active year-round; no hibernation or migration is described."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Two breeding peaks (autumn March-May and spring September-November) from the Reproduction section; the year-round 'young' phase reflects that breeding can occur at any time of year."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia",
+        "pantheria"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Juvenile duration 365 days, to the age at which females reach sexual maturity ('a year old' per Wikipedia; PanTHERIA SexualMaturityAge_d 420.91 is similar); scale is authored judgement."
+    },
+    "vocalizations": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Calls (clicks, grunts, hisses, alarm chatters, guttural coughs, screeching) from Wikipedia's Behaviour section; contexts, months, time windows and cooldowns are authored judgement since no open source quantifies them. No open source gives frequency bands, so freq_hz is omitted."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Colours from Wikipedia's description (thick woolly pelage, typically silver-grey to brown, lighter underside, usually brown or black tail, dark muzzle patches); proportions and the extra tail-fluff part are authored judgement to render the bushy prehensile tail and large pointed ears."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared ground-forager program. The program's default rest_sun_lo_deg/rest_sun_hi_deg (10/90) are kept, so the possum rests while the sun is up and forages at night, matching its nocturnal habit; the sun params are deliberately not overridden as they are for the diurnal squirrel. Arboreal denning and climbing are not modelled by the program; flee/food radii and gaits are judgement scaled for a medium, slow-moving arboreal animal."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies maintainers",
+      "agent": "opencode"
+    }
+  ]
+}
