@@ -1,0 +1,132 @@
+{
+  "schema_version": 1,
+  "format": "speeeecies/behavior",
+  "id": "fsm-pinniped-haulout-v1",
+  "kind": "fsm",
+  "description": "Pinniped haul-out and dive cycle, written for the Weddell seal. The animal rests hauled out on the ice, dives to forage on fish and cephalopods, and hauls out again to breathe; an adult male sings through the austral-spring mating season, and a disturbed animal moves off towards the water. `dive_depth_m` and `haul_out_hours` are read from the agent's blackboard (`depth_m`, `hours_hailed_out`) because this format's duration fields are seconds and no predicate takes a length in metres; when the host publishes neither, hunger still drives the cycle.",
+  "params": {
+    "food_tag": "small_vertebrate",
+    "food_m": 400,
+    "dive_depth_m": 600,
+    "haul_out_hours": 8,
+    "flee_m": 15,
+    "calm_m": 40,
+    "call": "song",
+    "call_m1": 11,
+    "call_m2": 12
+  },
+  "initial": "haul_out",
+  "states": {
+    "haul_out": {
+      "action": {
+        "do": "rest"
+      },
+      "min_dwell_s": 300
+    },
+    "dive_forage": {
+      "action": {
+        "do": "eat_nearest",
+        "tag": "${food_tag}",
+        "gait": "swim"
+      },
+      "min_dwell_s": 60
+    },
+    "call": {
+      "action": {
+        "do": "sing",
+        "call": "${call}"
+      },
+      "min_dwell_s": 5
+    },
+    "flee": {
+      "action": {
+        "do": "flee",
+        "gait": "walk"
+      },
+      "min_dwell_s": 3
+    }
+  },
+  "transitions": [
+    {
+      "from": "*",
+      "to": "flee",
+      "when": {
+        "threat_within_m": "${flee_m}"
+      },
+      "priority": 100
+    },
+    {
+      "from": "flee",
+      "to": "haul_out",
+      "when": {
+        "not": {
+          "threat_within_m": "${calm_m}"
+        }
+      }
+    },
+    {
+      "from": "haul_out",
+      "to": "call",
+      "when": {
+        "all": [
+          {
+            "month_in": [
+              "${call_m1}",
+              "${call_m2}"
+            ]
+          },
+          {
+            "chance": 0.05
+          }
+        ]
+      }
+    },
+    {
+      "from": "call",
+      "to": "haul_out",
+      "when": {
+        "chance": 0.4
+      }
+    },
+    {
+      "from": "haul_out",
+      "to": "dive_forage",
+      "when": {
+        "any": [
+          {
+            "all": [
+              {
+                "need": "hunger",
+                "gt": 0.4
+              },
+              {
+                "food_within_m": "${food_m}",
+                "tag": "${food_tag}"
+              }
+            ]
+          },
+          {
+            "bb": "hours_hailed_out",
+            "gt": "${haul_out_hours}"
+          }
+        ]
+      }
+    },
+    {
+      "from": "dive_forage",
+      "to": "haul_out",
+      "when": {
+        "any": [
+          {
+            "need": "hunger",
+            "lt": 0.15
+          },
+          {
+            "bb": "depth_m",
+            "gt": "${dive_depth_m}"
+          }
+        ]
+      }
+    }
+  ]
+}
