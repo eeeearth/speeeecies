@@ -31,9 +31,10 @@ REPO=$(git rev-parse --show-toplevel 2>/dev/null || true)
 GH_REPO=${GH_REPO:-$(gh repo view --json nameWithOwner -q .nameWithOwner 2>/dev/null || echo "")}
 [ -n "$GH_REPO" ] || { echo "cannot determine the GitHub repo; set GH_REPO=<owner/name>" >&2; exit 2; }
 
-# Worktrees land in a sibling directory by default. Override WORKTREE_ROOT to
-# put a run's worktrees somewhere specific; every path is derived from it.
-WORKTREE_ROOT=${WORKTREE_ROOT:-$HOME/worktrees/$(basename "$REPO")}
+# Worktrees land in a `worktrees/` sibling of the checkout, so a run stays
+# inside the project directory instead of scattering across $HOME. An exported
+# WORKTREE_ROOT still wins, which is how a caller redirects a whole run.
+WORKTREE_ROOT=${WORKTREE_ROOT:-$(dirname "$REPO")/worktrees}
 STATE_DIR=${FLEET_STATE_DIR:-$HOME/.local/state/speeeecies-fleet}
 AGENT_BIN=${AGENT_BIN:-opencode}
 BASE_REF=${BASE_REF:-origin/main}
@@ -64,7 +65,6 @@ MODEL_POOL=(
   "opencode/longcat-2.5-preview-free"         # zen
   "opencode/mimo-v2.6-flash-free"             # zen
   "opencode/muse-spark-1.3-contributor-free"  # zen, contributor tier
-  "opencode/big-pickle"                       # zen
 )
 model_variant() {
   case "$1" in
@@ -367,12 +367,20 @@ cmd_supervise() {
     # in queue.tsv and is skipped, so a run that died without a PR is not
     # silently retried forever.
     local live pick row_pick n sl ti sc
-    live=$(ls "$STATE_DIR"/*.meta 2>/dev/null | wc -l | tr -d ' ')
+    # Count via array glob, not `ls "$STATE_DIR"/*.meta`. nullglob is set above,
+    # so an unmatched glob expands to zero words and bare `ls` would list the
+    # current directory instead, reporting the repo root's entry count as the
+    # fleet size and silently skipping every refill.
+    local metas=("$STATE_DIR"/*.meta)
+    live=${#metas[@]}
     if [ "$live" -lt "$FLEET_MIN" ]; then
       pick=$(cmd_list_issues)
+      # Key on FILENAME, not NR==FNR. queue.tsv is empty on a first run, and with
+      # an empty first file NR and FNR advance in lockstep, so NR==FNR stays true
+      # for every candidate row and the whole queue is swallowed as "already tried".
       if [ -f "$STATE_DIR/queue.tsv" ]; then
-        pick=$(printf '%s\n' "$pick" | awk -F'\t' '
-          NR==FNR { if ($2 != "") seen[$2] = 1; next }
+        pick=$(printf '%s\n' "$pick" | awk -F'\t' -v q="$STATE_DIR/queue.tsv" '
+          FILENAME == q { if ($2 != "") seen[$2] = 1; next }
           !($2 in seen)
         ' "$STATE_DIR/queue.tsv" -)
       fi
