@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Live captions | speeeecies</title>
+<meta name="description" content="Watch the live simulation and choose a caption language." />
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="css/site.css" />
+</head>
+<body>
+<header class="site-header">
+  <div class="bar">
+    <a class="brand" href="index.html">speeeecies</a>
+    <nav>
+      <a href="index.html">About</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="locales.html">Locales</a>
+      <a href="preview.html">Previewer</a>
+      <a href="schema.html">Schema</a>
+      <a href="behaviors.html">Behaviour guide</a>
+      <a href="captions.html" aria-current="page">Live captions</a>
+    </nav>
+  </div>
+</header>
+<main>
+  <h1>Watch with captions</h1>
+  <p>Choose the spoken language, its English translation, or a silent Klingon line about the scene's data. The stream player also has its own CC control when YouTube provides captions.</p>
+  <div class="caption-controls">
+    <label for="caption-track">Captions</label>
+    <select id="caption-track">
+      <option value="spoken">Spoken language</option>
+      <option value="en">English</option>
+      <option value="tlh">Klingon data</option>
+      <option value="off">Off</option>
+    </select>
+    <label for="caption-delay">Stream delay</label>
+    <input id="caption-delay" type="number" min="0" max="120" value="10" step="1" />
+    <span>seconds</span>
+  </div>
+  <p id="caption-status" class="muted" role="status">Checking live captions…</p>
+  <div class="caption-player">
+    <iframe
+      src="https://www.youtube.com/embed/live_stream?channel=UCsO-hnVVBtzrP0RcUDw0hsA"
+      title="The live simulation (YouTube live stream)"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen></iframe>
+    <div id="caption-overlay" class="caption-overlay" aria-live="polite"></div>
+  </div>
+  <p class="muted">The stream's delay can change. Adjust the number above if a caption appears early or late. <a href="https://www.youtube.com/@jt55401/live">Open the stream on YouTube</a>.</p>
+  <section aria-labelledby="caption-archive-heading">
+    <h2 id="caption-archive-heading">Caption archives</h2>
+    <p>Completed scene rotations appear here after publication. Each file is WebVTT text.</p>
+    <ul id="caption-archive"><li>No published captions yet.</li></ul>
+  </section>
+</main>
+<script src="js/captions.js" defer></script>
+</body>
+</html>
