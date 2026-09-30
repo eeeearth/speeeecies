@@ -41,6 +41,7 @@ BASE_REF=${BASE_REF:-origin/main}
 FLEET_MIN=${FLEET_MIN:-3}
 FLEET_MAX=${FLEET_MAX:-5}
 POLL_SECONDS=${POLL_SECONDS:-60}
+FLEET_MAX_ATTEMPTS=${FLEET_MAX_ATTEMPTS:-3}
 BRANCH_PREFIX=${BRANCH_PREFIX:-$(gh api user -q .login 2>/dev/null || echo contributor)}
 BRIEF_TEMPLATE=${BRIEF_TEMPLATE:-$SCRIPT_DIR/brief-species.md}
 PERMISSIONS=${PERMISSIONS:-$SCRIPT_DIR/agent-permissions.json}
@@ -376,9 +377,10 @@ cmd_supervise() {
       esac
     done
 
-    # Refill to the floor, never past --max. Anything already attempted stays
-    # in queue.tsv and is skipped, so a run that died without a PR is not
-    # silently retried forever.
+    # Refill to the floor, never past --max. A slug is skipped only once it has
+    # burned FLEET_MAX_ATTEMPTS tries, so a flaky model route or a dropped
+    # connection does not retire an issue for the life of the queue, while a
+    # genuinely broken issue still stops being retried.
     local live pick row_pick n sl ti sc
     # Count via array glob, not `ls "$STATE_DIR"/*.meta`. nullglob is set above,
     # so an unmatched glob expands to zero words and bare `ls` would list the
@@ -392,9 +394,10 @@ cmd_supervise() {
       # an empty first file NR and FNR advance in lockstep, so NR==FNR stays true
       # for every candidate row and the whole queue is swallowed as "already tried".
       if [ -f "$STATE_DIR/queue.tsv" ]; then
-        pick=$(printf '%s\n' "$pick" | awk -F'\t' -v q="$STATE_DIR/queue.tsv" '
-          FILENAME == q { if ($2 != "") seen[$2] = 1; next }
-          !($2 in seen)
+        pick=$(printf '%s\n' "$pick" | awk -F'\t' -v q="$STATE_DIR/queue.tsv" \
+          -v max="$FLEET_MAX_ATTEMPTS" '
+          FILENAME == q { if ($2 != "") n[$2]++; next }
+          { s = $2; if (s != "" && (s in n) && n[s] >= max) next; print }
         ' "$STATE_DIR/queue.tsv" -)
       fi
       row_pick=$(printf '%s\n' "$pick" | head -1)

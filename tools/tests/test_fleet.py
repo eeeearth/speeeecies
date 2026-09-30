@@ -180,17 +180,21 @@ def test_queue_filter_keeps_candidates_when_queue_file_is_empty(tmp_path):
     assert "weddellii" in filtered
 
 
-def test_queue_filter_still_excludes_already_attempted(tmp_path):
-    """The filter must keep its original job: never re-pick a slug already tried."""
-    queue = tmp_path / "queue.tsv"
-    queue.write_text("39\tweddellii\n", encoding="utf-8")
-    candidates = "39\tweddellii\ta\n38\temperor\tb\n"
-
-    filtered = subprocess.run(
+def _queue_filter(queue: Path, candidates: str, max_attempts: int = 3) -> str:
+    """Run the awk the refill loop actually ships, extracted from fleet.sh so a
+    test cannot pass while the real filter does something else."""
+    text = FLEET.read_text(encoding="utf-8")
+    awk_body = re.search(
+        r"FILENAME == q \{.*?\n\s*' \"\$STATE_DIR/queue\.tsv\" -\)",
+        text,
+        re.S,
+    )
+    assert awk_body, "could not find the queue filter in fleet.sh"
+    script = re.sub(r"'\s*\"\$STATE_DIR/queue\.tsv\" -\)\s*$", "", awk_body.group(0))
+    return subprocess.run(
         [
-            "awk", "-F\t", "-v", f"q={queue}",
-            'FILENAME == q { if ($2 != "") seen[$2] = 1; next } !($2 in seen)',
-            str(queue), "-",
+            "awk", "-F\t", "-v", f"q={queue}", "-v", f"max={max_attempts}",
+            "\n".join(script.splitlines()[:-1]), str(queue), "-",
         ],
         input=candidates,
         capture_output=True,
@@ -198,8 +202,41 @@ def test_queue_filter_still_excludes_already_attempted(tmp_path):
         check=True,
     ).stdout
 
-    assert "weddellii" not in filtered, "already-attempted slug was re-offered"
-    assert "emperor" in filtered
+
+def test_queue_filter_excludes_a_slug_that_exhausted_its_attempts(tmp_path):
+    """A slug is skipped only once it has burned the whole budget, so a flaky
+    model route does not retire an issue for the life of the queue."""
+    queue = tmp_path / "queue.tsv"
+    queue.write_text("39\tweddellii\n39\tweddellii\n39\tweddellii\n", encoding="utf-8")
+    candidates = "39\tweddellii\ta\n38\temperor\tb\n"
+
+    filtered = _queue_filter(queue, candidates, max_attempts=3)
+
+    assert "weddellii" not in filtered, "exhausted slug was re-offered"
+    assert "emperor" in filtered, "untried slug was withheld"
+
+
+def test_queue_filter_retries_a_slug_that_failed_under_budget(tmp_path):
+    """Two prior attempts is a transient failure, not a dead issue. The old
+    presence-only filter retired it forever, which starved the pool over a
+    long run."""
+    queue = tmp_path / "queue.tsv"
+    queue.write_text("38\temperor\n38\temperor\n", encoding="utf-8")
+    candidates = "38\temperor\tb\n"
+
+    filtered = _queue_filter(queue, candidates, max_attempts=3)
+
+    assert "emperor" in filtered, "a slug under its attempt budget must stay pickable"
+
+
+def test_queue_filter_allows_exactly_max_attempts_then_stops(tmp_path):
+    """The budget is a boundary: max-1 tries stays pickable, max does not."""
+    queue = tmp_path / "queue.tsv"
+    queue.write_text("38\temperor\n38\temperor\n", encoding="utf-8")
+    candidates = "38\temperor\tb\n"
+
+    assert "emperor" in _queue_filter(queue, candidates, max_attempts=3)
+    assert "emperor" not in _queue_filter(queue, candidates, max_attempts=2)
 
 
 def test_pr_field_never_dereferences_bare_third_argument():
