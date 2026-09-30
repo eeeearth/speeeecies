@@ -301,9 +301,32 @@ def test_reap_loop_requests_a_hash_prefixed_pr_label():
     number would fall into the NO PR branch and tear down a healthy agent."""
     text = FLEET.read_text(encoding="utf-8")
     reap = text.split("# Reap:", 1)[1].split("done", 1)[0]
-    assert re.search(r'pr_field\s+"\$slug"\s+number\s+\S', reap), (
+    assert re.search(r'pr_field\s+"\$slug"\s+number(?:,\w+)*\s+\S', reap), (
         "reap must pass a jq expression that yields a #-prefixed label"
     )
+
+
+def test_pr_field_jq_only_touches_requested_fields():
+    """`gh pr view --json <fields>` only returns the fields it was asked for, so
+    a jq expression that interpolates anything else silently renders `null`.
+    Every reap logged "finished: #99 null" because it read .state from a
+    response that only carried number.
+
+    Only the root of a chain counts: `.statusCheckRollup[]?.conclusion` needs
+    `statusCheckRollup` requested, not `conclusion`."""
+    text = FLEET.read_text(encoding="utf-8")
+    calls = re.findall(r'pr_field\s+"[^"]+"\s+([\w,]+)\s+(\'[^\']*\'|"[^"]*")', text)
+    assert calls, "found no pr_field call sites to check"
+    for fields, jq_expr in calls:
+        requested = {f.strip() for f in fields.split(",")}
+        chains = re.findall(r"((?:\??\.[A-Za-z_]\w*(?:\[\])?)+)", jq_expr)
+        assert chains, f"no field access found in jq expression {jq_expr}"
+        for chain in chains:
+            root = re.findall(r"[A-Za-z_]\w*", chain)[0]
+            assert root in requested, (
+                f"jq reads {chain} rooted at .{root} but pr_field only "
+                f"requested {sorted(requested)}"
+            )
 
 
 def test_teardown_reports_whether_a_pr_actually_exists():
