@@ -180,6 +180,22 @@ def test_queue_filter_keeps_candidates_when_queue_file_is_empty(tmp_path):
     assert "weddellii" in filtered
 
 
+def test_spawn_retries_a_leftover_branch_instead_of_dying():
+    """cmd_spawn is called directly from the refill loop and die() calls exit, so
+    dying on a leftover branch ends the whole supervisor. Teardown keeps the
+    branch of a no-PR failure on purpose, and the retry filter re-picks exactly
+    those slugs, so this path is reached routinely."""
+    text = FLEET.read_text(encoding="utf-8")
+    spawn = text.split("cmd_spawn() {", 1)[1].split("\n}", 1)[0]
+    assert 'die "branch $branch exists' not in spawn, (
+        "an existing branch is a retry, not a fatal collision"
+    )
+    assert "branch_flag=-B" in spawn, "a retry must reset the leftover branch"
+    assert 'worktree add "$branch_flag"' in spawn, (
+        "worktree add must use the chosen flag rather than a hardcoded -b"
+    )
+
+
 def _queue_filter(queue: Path, candidates: str, max_attempts: int = 3) -> str:
     """Run the awk the refill loop actually ships, extracted from fleet.sh so a
     test cannot pass while the real filter does something else."""

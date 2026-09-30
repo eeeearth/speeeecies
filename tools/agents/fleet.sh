@@ -251,9 +251,16 @@ cmd_spawn() {
   branch="$BRANCH_PREFIX/species-$issue-$slug"
   wpath="$WORKTREE_ROOT/$slug"
   [ -e "$wpath" ] && die "worktree path already exists: $wpath"
-  git -C "$REPO" show-ref --quiet "refs/heads/$branch" && die "branch $branch exists; pick another slug"
+  # A leftover branch is a retry, not a fatal collision. cmd_spawn is called
+  # directly from the refill loop, so die() here would exit the whole supervisor
+  # and end the fleet permanently. Reset the branch to base and start over.
+  local branch_flag=-b
+  if git -C "$REPO" show-ref --quiet "refs/heads/$branch"; then
+    branch_flag=-B
+    say "retrying $slug: resetting branch $branch to $BASE_REF"
+  fi
 
-  ( cd "$REPO" && git fetch --quiet origin && git worktree add -b "$branch" "$wpath" "$BASE_REF" ) >/dev/null
+  ( cd "$REPO" && git fetch --quiet origin && git worktree add "$branch_flag" "$branch" "$wpath" "$BASE_REF" ) >/dev/null
 
   # Region hints come from the issue body, so the agent does not have to guess.
   local regions
