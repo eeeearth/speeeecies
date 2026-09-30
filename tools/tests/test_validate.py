@@ -56,7 +56,7 @@ def test_default_discovery_finds_behaviors_dir(validate_module):
     root = validate_module.default_root()
     result, usage = validate_module.run([], root)
     assert usage == []
-    assert len(result.program_reports) == 3
+    assert len(result.program_reports) == 4
 
 
 # ---------------------------------------------------------------------------
