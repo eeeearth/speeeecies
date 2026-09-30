@@ -400,11 +400,16 @@ cmd_supervise() {
       # Key on FILENAME, not NR==FNR. queue.tsv is empty on a first run, and with
       # an empty first file NR and FNR advance in lockstep, so NR==FNR stays true
       # for every candidate row and the whole queue is swallowed as "already tried".
+      # A slug with a live agent is always skipped, whatever its attempt count:
+      # the retry budget would otherwise offer a running agent its own slug.
+      local busy
+      busy=$(for m in "${metas[@]}"; do basename "$m" .meta; done | paste -sd' ' -)
       if [ -f "$STATE_DIR/queue.tsv" ]; then
         pick=$(printf '%s\n' "$pick" | awk -F'\t' -v q="$STATE_DIR/queue.tsv" \
-          -v max="$FLEET_MAX_ATTEMPTS" '
+          -v max="$FLEET_MAX_ATTEMPTS" -v busy="$busy" '
+          BEGIN { k = split(busy, b, " "); for (i = 1; i <= k; i++) if (b[i] != "") live[b[i]] = 1 }
           FILENAME == q { if ($2 != "") n[$2]++; next }
-          { s = $2; if (s != "" && (s in n) && n[s] >= max) next; print }
+          { s = $2; if (s == "" || (s in live)) next; if ((s in n) && n[s] >= max) next; print }
         ' "$STATE_DIR/queue.tsv" -)
       fi
       row_pick=$(printf '%s\n' "$pick" | head -1)
@@ -414,7 +419,7 @@ cmd_supervise() {
         sc=$(gh issue view "$n" --repo "$GH_REPO" --json title \
              | python3 -c 'import json,sys;t=json.load(sys.stdin)["title"];print(t[t.rindex("(")+1:-1].strip() if "(" in t else "")')
         [ -n "$sc" ] || sc="$ti"
-        cmd_spawn --issue "$n" --slug "$sl" --scientific "$sc" || break
+        ( cmd_spawn --issue "$n" --slug "$sl" --scientific "$sc" ) || break
         live=$(( live + 1 ))
         row_pick=$(printf '%s\n' "$pick" | awk -F'\t' -v s="$sl" 'NR>1 && $2 != s' | head -1)
       done

@@ -196,27 +196,58 @@ def test_spawn_retries_a_leftover_branch_instead_of_dying():
     )
 
 
-def _queue_filter(queue: Path, candidates: str, max_attempts: int = 3) -> str:
+def test_spawn_failure_cannot_exit_the_supervisor():
+    """cmd_spawn dies on several conditions and die() calls exit. Run bare from
+    the refill loop, any of them ends the whole fleet; this actually happened
+    when a respawn hit an existing worktree path."""
+    text = FLEET.read_text(encoding="utf-8")
+    refill = text.split("# Refill to the floor", 1)[1]
+    assert "( cmd_spawn --issue" in refill, (
+        "cmd_spawn must run in a subshell so a die() cannot exit the supervisor"
+    )
+
+
+def _queue_filter(
+    queue: Path, candidates: str, max_attempts: int = 3, busy: str = ""
+) -> str:
     """Run the awk the refill loop actually ships, extracted from fleet.sh so a
     test cannot pass while the real filter does something else."""
     text = FLEET.read_text(encoding="utf-8")
+    # Capture the whole program between the opening quote after the -v options
+    # and the closing quote before the input files. Anchoring on a rule body
+    # instead would silently drop a leading BEGIN block.
     awk_body = re.search(
-        r"FILENAME == q \{.*?\n\s*' \"\$STATE_DIR/queue\.tsv\" -\)",
+        r"awk -F'\\t'.*?'\n(.*?)\n\s*' \"\$STATE_DIR/queue\.tsv\" -\)",
         text,
         re.S,
     )
     assert awk_body, "could not find the queue filter in fleet.sh"
-    script = re.sub(r"'\s*\"\$STATE_DIR/queue\.tsv\" -\)\s*$", "", awk_body.group(0))
+    program = awk_body.group(1)
+    assert "BEGIN" in program, "extracted awk program is missing its BEGIN block"
     return subprocess.run(
         [
             "awk", "-F\t", "-v", f"q={queue}", "-v", f"max={max_attempts}",
-            "\n".join(script.splitlines()[:-1]), str(queue), "-",
+            "-v", f"busy={busy}", program, str(queue), "-",
         ],
         input=candidates,
         capture_output=True,
         text=True,
         check=True,
     ).stdout
+
+
+def test_queue_filter_never_offers_a_slug_with_a_live_agent(tmp_path):
+    """A running agent is under its attempt budget, so the retry filter made its
+    own slug a candidate. Respawning it hit "worktree path already exists",
+    and die() there exits the whole supervisor. The fleet died this way."""
+    queue = tmp_path / "queue.tsv"
+    queue.write_text("37\tadeliae\n", encoding="utf-8")
+    candidates = "37\tadeliae\ta\n38\temperor\tb\n"
+
+    filtered = _queue_filter(queue, candidates, max_attempts=3, busy="adeliae")
+
+    assert "adeliae" not in filtered, "a live agent was offered its own slug"
+    assert "emperor" in filtered
 
 
 def test_queue_filter_excludes_a_slug_that_exhausted_its_attempts(tmp_path):
