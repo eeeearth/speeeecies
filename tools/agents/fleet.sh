@@ -142,9 +142,14 @@ with open(out, "w", encoding="utf-8") as fh:
 }
 
 pr_field() {  # slug field jq-expr
-  local br; br=$(meta_get "$1" branch)
+  local br jq
+  br=$(meta_get "$1" branch)
   [ -n "$br" ] || { echo "-"; return; }
-  gh pr view "$br" --repo "$GH_REPO" --json "$2" -q "$3" 2>/dev/null || echo "-"
+  # Default to the bare field rather than $3 bare: `set -u` makes a missing third
+  # argument fatal, and that killed the supervisor the first time an agent
+  # finished, which is exactly when the reap loop needs to run.
+  jq=${3:-".$2"}
+  gh pr view "$br" --repo "$GH_REPO" --json "$2" -q "$jq" 2>/dev/null || echo "-"
 }
 
 cmd_list_issues() {
@@ -354,7 +359,7 @@ cmd_supervise() {
     for m in "$STATE_DIR"/*.meta; do
       slug=$(basename "$m" .meta)
       agent_running "$slug" && continue
-      pr=$(pr_field "$slug" number)
+      pr=$(pr_field "$slug" number '"#\(.number) \(.state)"')
       case "$pr" in \#*) echo "[$(date -u +%T)] $slug finished: $pr -> teardown"
                         cmd_teardown "$slug" --force || true ;;
            *)   echo "[$(date -u +%T)] $slug stopped with NO PR (model $(meta_get "$slug" model)); log tail:"

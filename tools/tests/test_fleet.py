@@ -202,6 +202,26 @@ def test_queue_filter_still_excludes_already_attempted(tmp_path):
     assert "emperor" in filtered
 
 
+def test_pr_field_never_dereferences_bare_third_argument():
+    """The reap loop calls pr_field with a jq expression, but a bare $3 is fatal
+    under `set -u` and that killed the supervisor the first time an agent
+    finished, which is precisely when the reap loop has to work."""
+    text = FLEET.read_text(encoding="utf-8")
+    body = text.split("pr_field() {", 1)[1].split("\n}", 1)[0]
+    assert '-q "$3"' not in body, "pr_field still dereferences a bare $3"
+    assert '${3:-' in body, "pr_field should default its jq expression"
+
+
+def test_reap_loop_requests_a_hash_prefixed_pr_label():
+    """Reap matches \\#* to tell "finished with a PR" from "died with none". A bare
+    number would fall into the NO PR branch and tear down a healthy agent."""
+    text = FLEET.read_text(encoding="utf-8")
+    reap = text.split("# Reap:", 1)[1].split("done", 1)[0]
+    assert re.search(r'pr_field\s+"\$slug"\s+number\s+\S', reap), (
+        "reap must pass a jq expression that yields a #-prefixed label"
+    )
+
+
 def test_script_is_syntactically_valid():
     result = subprocess.run(["bash", "-n", str(FLEET)], capture_output=True, text=True)
     assert result.returncode == 0, result.stderr
