@@ -1064,7 +1064,7 @@ cmd_supervise() {
   reconcile_provider_counts
   # Outside the loop on purpose: reset per pass and the transition-only
   # reporting below can never fire.
-  local fleet_state=OK prev_state=OK
+  local fleet_state=OK prev_state=OK warned_foreign=""
 
   while :; do
     # fleet_state is recomputed each pass; prev_state alone carries history.
@@ -1095,13 +1095,21 @@ cmd_supervise() {
       if [ -z "$(git -C "$w" status --porcelain 2>/dev/null)" ]; then
         if git -C "$REPO" worktree remove --force "$w" 2>/dev/null; then
           echo "[$(date -u +%FT%TZ)] reclaimed orphan worktree $wbase (no meta, clean)"
+          [ "$warned_foreign" = "$wbase" ] && warned_foreign=""
         elif [ -n "$(git -C "$w" rev-parse --git-dir 2>/dev/null)" ]; then
           # Clean, and a real git worktree, but this repository cannot remove it:
           # its .git points into a different checkout, so this repo holds no
           # registration for it. It is not ours to delete, and it will wedge its
           # slug on "worktree path already exists". Name it rather than let the
           # spawn fail for a reason nobody can see.
-          echo "[$(date -u +%FT%TZ)] WARNING orphan worktree $wbase could not be reclaimed: it is registered to another checkout and will block its slug until removed by hand"
+          # Transition-only, like the STARVED report below. This condition
+          # persists until a human removes the directory, so logging it every poll
+          # wrote 1440 identical lines a day and buried everything else.
+          if [ "$warned_foreign" != "$wbase" ]; then
+            echo "[$(date -u +%FT%TZ)] WARNING orphan worktree $wbase could not be reclaimed: it is registered to another checkout and will block its slug until removed by hand"
+            warned_foreign="$wbase"
+            fleet_state=BLOCKED_BY_FOREIGN_WORKTREE
+          fi
         fi
       else
         say "orphan worktree $wbase has uncommitted work; leaving it for inspection"
