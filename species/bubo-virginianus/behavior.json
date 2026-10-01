@@ -1,0 +1,183 @@
+{
+  "schema_version": 1,
+  "format": "speeeecies/behavior",
+  "id": "fsm-nocturnal-raptor-v1",
+  "kind": "fsm",
+  "description": "Large nocturnal bird of prey (great horned owl): roosts and rests in a tree through the day, perches at night to listen for prey, flies out on short quartering flights, swoops on live prey, hoots to hold its territory, and flies off from threats. No shared program fits: the perching songbird forages on the ground by hops and sings from a song perch at dawn and dusk, the ground forager is a terrestrial mammal that walks to its prey and rests in a burrow, the anuran hides by day and calls beside water in the breeding season, and the seabird predator has no night/day rhythm at all and walks to its prey.",
+  "params": {
+    "flee_m": 25,
+    "calm_m": 60,
+    "food_tag": "small_vertebrate",
+    "food_m": 90,
+    "perch_tag": "perch",
+    "hoot": "hoot",
+    "fly_gait": "fly",
+    "hunt_gait": "walk"
+  },
+  "initial": "roost",
+  "states": {
+    "roost": {
+      "action": {
+        "do": "rest",
+        "at": "shelter"
+      },
+      "min_dwell_s": 60
+    },
+    "perch": {
+      "action": {
+        "do": "perch_nearest",
+        "tag": "${perch_tag}"
+      },
+      "min_dwell_s": 5
+    },
+    "quarter": {
+      "action": {
+        "do": "wander",
+        "gait": "${fly_gait}"
+      }
+    },
+    "hunt": {
+      "action": {
+        "do": "eat_nearest",
+        "tag": "${food_tag}",
+        "gait": "${hunt_gait}"
+      },
+      "min_dwell_s": 5
+    },
+    "hoot": {
+      "action": {
+        "do": "sing",
+        "call": "${hoot}"
+      },
+      "min_dwell_s": 10
+    },
+    "flee": {
+      "action": {
+        "do": "flee",
+        "gait": "${fly_gait}"
+      },
+      "min_dwell_s": 3
+    }
+  },
+  "transitions": [
+    {
+      "from": "*",
+      "to": "flee",
+      "when": {
+        "threat_within_m": "${flee_m}"
+      },
+      "priority": 100
+    },
+    {
+      "from": "*",
+      "to": "flee",
+      "when": {
+        "need": "fear",
+        "gt": 0.2
+      },
+      "priority": 90
+    },
+    {
+      "from": "*",
+      "to": "roost",
+      "when": {
+        "is_day": true
+      },
+      "priority": 70
+    },
+    {
+      "from": "flee",
+      "to": "perch",
+      "when": {
+        "all": [
+          {
+            "is_day": false
+          },
+          {
+            "not": {
+              "threat_within_m": "${calm_m}"
+            }
+          }
+        ]
+      },
+      "priority": 50
+    },
+    {
+      "from": "flee",
+      "to": "roost",
+      "when": {
+        "not": {
+          "threat_within_m": "${calm_m}"
+        }
+      }
+    },
+    {
+      "from": "roost",
+      "to": "perch",
+      "when": {
+        "is_day": false
+      },
+      "priority": 40
+    },
+    {
+      "from": "perch",
+      "to": "hunt",
+      "when": {
+        "all": [
+          {
+            "need": "hunger",
+            "gt": 0.4
+          },
+          {
+            "food_within_m": "${food_m}",
+            "tag": "${food_tag}"
+          }
+        ]
+      }
+    },
+    {
+      "from": "perch",
+      "to": "hoot",
+      "when": {
+        "chance": 0.08
+      }
+    },
+    {
+      "from": "perch",
+      "to": "quarter",
+      "when": {
+        "chance": 0.2
+      }
+    },
+    {
+      "from": "hoot",
+      "to": "perch",
+      "when": {
+        "chance": 0.5
+      }
+    },
+    {
+      "from": "quarter",
+      "to": "hunt",
+      "when": {
+        "food_within_m": "${food_m}",
+        "tag": "${food_tag}"
+      }
+    },
+    {
+      "from": "quarter",
+      "to": "perch",
+      "when": {
+        "chance": 0.2
+      }
+    },
+    {
+      "from": "hunt",
+      "to": "perch",
+      "when": {
+        "need": "hunger",
+        "lt": 0.2
+      }
+    }
+  ]
+}
