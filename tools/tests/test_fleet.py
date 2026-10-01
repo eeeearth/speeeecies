@@ -995,23 +995,34 @@ def test_spawn_actually_completes_on_a_clean_state_dir(tmp_path):
 def test_a_failed_spawn_leaves_no_orphaned_worktree():
     """A spawn that died between `git worktree add` and the .meta write left a
     worktree the supervisor could not count, could not reap, and retried around;
-    three had accumulated. An EXIT trap undoes the worktree until the metadata
-    makes the spawn real."""
+    three had accumulated.
+
+    This used to be an EXIT trap. It could not work: it fires when the *shell*
+    exits, expanding $slug and $wpath long after cmd_spawn's locals were gone, so
+    it printed `slug: unbound variable` and leaked the worktree it was meant to
+    undo. Guarded `return 1` paths return from a function, so it never fired for
+    them at all. Cleanup is now explicit at each failure point.
+    """
     text = FLEET.read_text(encoding="utf-8")
     spawn = text.split("cmd_spawn() {", 1)[1].split("\n}\n", 1)[0]
+
+    # Comments are excluded: the prose explaining why the trap was removed
+    # contains the word "trap", and matching that would pass for the very thing
+    # this asserts is gone.
+    code = "\n".join(l for l in spawn.split("\n") if not l.strip().startswith("#"))
+    assert "trap " not in code, (
+        "cmd_spawn must not rely on an EXIT trap: it expands locals after the "
+        "function returns and never fires for a guarded `return 1`"
+    )
     add = spawn.index('"${worktree_add[@]}"')
     meta = spawn.index('> "$STATE_DIR/$slug.meta"')
-    trap = spawn.index("trap ", add)
-    assert add < trap < meta, (
-        "the cleanup trap must sit between worktree creation and the meta write"
+    assert add < meta, "the worktree is created before the agent is published"
+    rollback = spawn.index("spawn_rollback() {")
+    assert add < rollback or rollback < add, "rollback helper is defined in spawn"
+    assert 'git -C "$REPO" worktree remove --force "$wpath"' in spawn, (
+        "the rollback must remove the worktree it created"
     )
-    assert "trap - EXIT" in spawn[meta:], (
-        "the trap is never cleared, so a later unrelated exit would delete the worktree"
-    )
-    assert 'git -C "$REPO" worktree remove --force "$wpath"' in spawn[trap:meta], (
-        "the trap must remove the worktree it created"
-    )
-
+    assert "worktree prune" in spawn, "and prune the registration it leaves"
 
 def test_a_failed_salvage_keeps_the_worktree():
     """Salvage exists so a stopped agent's files survive. If the salvage commit
@@ -2047,8 +2058,8 @@ def test_the_provider_cursor_advances_once_per_committed_spawn():
         "exactly one advance_model call per spawn, or the rotation is wrong"
     )
     # And it must come after the commit point, so a refused spawn does not rotate.
-    assert spawn.index("advance_model") > spawn.index("trap - EXIT"), (
-        "the cursor must only step for a spawn that was actually committed"
+    assert spawn.index("advance_model") > spawn.index('spawn_started "$slug"'), (
+        "the cursor must only step once the agent is confirmed running"
     )
 
 
@@ -2064,11 +2075,22 @@ def test_a_spawn_is_published_only_after_the_launcher_exists():
     checks = spawn.index('if [ ! -s "$launch_tmp" ]')
     install = spawn.index('mv -fT "$launch_tmp" "$launch"')
     publish = spawn.index('> "$STATE_DIR/$slug.meta"')
-    commit = spawn.index("trap - EXIT")
+    commit = spawn.index('spawn_started "$slug"')
     launched = spawn.index('setsid nohup "$launch"')
     assert build < checks < install, "the launcher is built, then verified, then installed"
-    assert install < launched < publish, "the agent is launched before it is published"
-    assert publish < commit, "publication is the commit point"
+    # Ownership before process. A .meta with no live agent is recoverable -- the
+    # reap loop tears it down next poll -- but a running process with no .meta is
+    # invisible to everything, which is how agents were stranded in deleted
+    # worktrees. So the meta is written first and the launch verified after.
+    assert install < publish < launched, (
+        "the launcher must be installed, then ownership published, then launched"
+    )
+    assert spawn.index('spawn_started "$slug"') > launched, (
+        "a launch that never took must be detected and rolled back"
+    )
+    assert commit < spawn.index("advance_model"), (
+        "the launch must be confirmed before the cursor steps and `spawned` is logged"
+    )
 
 
 def test_the_launcher_must_be_an_executable_regular_file():
@@ -2114,9 +2136,16 @@ def test_a_failed_spawn_rolls_back_its_worktree():
     lines = spawn.split("\n")
     # Skip the worktree-add failure entirely: git never created the tree there, so
     # that path has nothing to undo. Its `return 1` sits before the closing `fi`.
-    add_fail = next(i for i, l in enumerate(lines) if "could not create a worktree" in l)
-    worktree_made = next(i for i in range(add_fail, len(lines)) if lines[i].strip() == "fi") + 1
-    commit = next(i for i, l in enumerate(lines) if l.strip() == "trap - EXIT")
+    # Start after the rollback/startup helper definitions close, so their own
+    # `return 1` lines are not mistaken for spawn failure paths.
+    helper_end = max(
+        next(i for i, l in enumerate(lines) if l.startswith("  spawn_rollback() {")),
+        next(i for i, l in enumerate(lines) if l.startswith("  spawn_started() {")),
+    )
+    helper_end = next(i for i in range(helper_end, len(lines))
+                      if lines[i] == "  }") + 1
+    worktree_made = helper_end
+    commit = next(i for i, l in enumerate(lines) if 'spawn_started "$slug"' in l)
     assert worktree_made < commit, "worktree creation must precede the commit point"
     for i in range(worktree_made, commit):
         if lines[i].strip() != "return 1":

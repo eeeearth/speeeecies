@@ -621,10 +621,22 @@ cmd_spawn() {
     say "could not create a worktree for $slug at $wpath"
     return 1
   fi
-  # Undo a partially-created spawn. The EXIT trap cannot do this: it fires when
-  # the shell exits, and cmd_spawn's guarded `return 1` paths return from a
-  # function instead. Under `supervise` the shell keeps running for days, so every
-  # one of those paths leaked its worktree and its branch registration instead.
+  # Undo a partially-created spawn. An EXIT trap cannot do this job: it fires
+  # when the shell exits, expanding $slug and $wpath long after this function's
+  # locals were gone, and it printed `slug: unbound variable` while leaking the
+  # very worktree it was meant to undo. Guarded `return 1` paths return from a
+  # function, so it never fired for them at all.
+  # 0 when the launched agent published its pidfile. Bounded, so a slow start
+  # cannot stall the refill loop while it waits for an agent that never comes.
+  spawn_started() {
+    local slug="$1" i
+    for i in $(seq 1 10); do
+      [ -s "$STATE_DIR/$slug.pid" ] && return 0
+      sleep 0.2 9>&-
+    done
+    return 1
+  }
+
   spawn_rollback() {
     [ -f "$STATE_DIR/$slug.meta" ] && return 0
     [ -d "$wpath" ] || return 0
@@ -634,12 +646,6 @@ cmd_spawn() {
     rm -f "$launch_tmp" "$launch" 2>/dev/null
     return 0
   }
-
-  # Transaction boundary. A spawn that dies between here and the .meta write
-  # leaves a worktree the supervisor cannot count, cannot reap, and retries
-  # around -- it leaked three before this existed. Undo the worktree on any
-  # exit until the metadata makes the spawn real.
-  trap 'if [ ! -f "$STATE_DIR/$slug.meta" ] && [ -d "$wpath" ]; then git -C "$REPO" worktree remove --force "$wpath" 2>/dev/null; git -C "$REPO" worktree prune 2>/dev/null; fi' EXIT
 
   # Region hints come from the issue body, so the agent does not have to guess.
   local regions
@@ -660,10 +666,12 @@ print(" ".join(re.findall(r"`([A-Z]{2}(?:-[A-Z0-9]{1,3})?)`", m.group(1))) if m 
   # suggested-regions section itself when this is empty, which is honest.
 
   render_brief "$issue" "$slug" "$sci" "$regions" "$wpath" "$branch" "$brief" \
-    "$kind" "$brief_tpl" "$status"
+    "$kind" "$brief_tpl" "$status" \
+    || { say "could not render the brief for $slug"; spawn_rollback; return 1; }
 
   printf '# %s\nissue: %s\nscientific: %s\nbranch: %s\nworktree: %s\nmodel: %s\nregions: %s\nstarted: %s\n\n' \
-    "$slug" "$issue" "$sci" "$branch" "$wpath" "$model" "$regions" "$(date -u +%FT%TZ)" > "$status"
+    "$slug" "$issue" "$sci" "$branch" "$wpath" "$model" "$regions" "$(date -u +%FT%TZ)" > "$status" \
+    || { say "could not write the status file for $slug"; spawn_rollback; return 1; }
   # kind is persisted because teardown and status look the PR up by directory, and
 # a locale's PR touches locales/ while a species record touches species/. Without
 # it a finished locale agent reads as "no PR", its worktree is destroyed and its
@@ -692,9 +700,12 @@ cd "$wpath" || exit 9
 rc=\$?
 echo "=== agent exited rc=\$rc \$(date -u +%FT%TZ)"
 LAUNCHER
-  # Each step checked by hand, for the same reason. The EXIT trap still owns the
-  # worktree here, because .meta has deliberately not been written yet, so any
-  # failure unwinds cleanly instead of leaving debris behind.
+  # Each step checked by hand. Nothing is watching over this window: the EXIT trap
+  # that used to is gone, because it expanded $slug and $wpath at shell exit --
+  # long after this function's locals were gone -- and printed
+  # `slug: unbound variable` while leaking the very worktree it was meant to undo.
+  # Every fallible step from here to the commit point therefore rolls back
+  # explicitly.
   if [ ! -s "$launch_tmp" ]; then
     say "could not write the launcher for $slug"
     rm -f "$launch_tmp"
@@ -726,19 +737,31 @@ LAUNCHER
     return 1
   fi
 
-  # Detached, so one fleet member's exit cannot take the supervisor down with it.
-  # 9>&- closes the lock for this spawn too: the launcher closes it as its first
-  # act, but setsid holds it in between.
-  setsid nohup "$launch" 9>&- </dev/null >/dev/null 2>&1 &
-  disown 2>/dev/null || true
+# Publish the agent BEFORE launching it. The asymmetry matters: a .meta with no
+# live process is recoverable -- agent_running reports it dead and the reap loop
+# tears it down next poll -- whereas a running process with no .meta is invisible
+# to everything, unable to be counted, found, or stopped. That is how agents ended
+# up stranded in deleted worktrees. Ownership first, then the process.
+printf 'workspace=none\nagent=%s\nworktree=%s\nbranch=%s\nissue=%s\nslug=%s\nkind=%s\nscientific=%s\nmodel=%s\nvariant=%s\nregions=%s\nlog=%s\nstatus=%s\nbrief=%s\nmain=%s\n' \
+  "$slug" "$wpath" "$branch" "$issue" "$slug" "$kind" "$sci" "$model" "$variant" "$regions" "$log" "$status" "$brief" "$REPO" \
+  > "$STATE_DIR/$slug.meta" \
+  || { say "could not publish metadata for $slug"; rm -f "$STATE_DIR/$slug.meta"; spawn_rollback; return 1; }
 
-  # Publish the agent only now, once everything needed to run it exists. This is
-  # the commit point: from here the supervisor can see and reap it, and the EXIT
-  # trap stops unwinding the worktree.
-  printf 'workspace=none\nagent=%s\nworktree=%s\nbranch=%s\nissue=%s\nslug=%s\nkind=%s\nscientific=%s\nmodel=%s\nvariant=%s\nregions=%s\nlog=%s\nstatus=%s\nbrief=%s\nmain=%s\n' \
-    "$slug" "$wpath" "$branch" "$issue" "$slug" "$kind" "$sci" "$model" "$variant" "$regions" "$log" "$status" "$brief" "$REPO" \
-    > "$STATE_DIR/$slug.meta"
-  trap - EXIT
+# Detached, so one fleet member's exit cannot take the supervisor down with it.
+# 9>&- closes the lock for this spawn too: the launcher closes it as its first
+# act, but setsid holds it in between.
+setsid nohup "$launch" 9>&- </dev/null >/dev/null 2>&1 &
+disown 2>/dev/null || true
+
+# The launcher publishes its own pidfile as its first act, so its absence means
+# the launch never took. Undo the metadata and the worktree rather than leave a
+# meta describing an agent that does not exist.
+if ! spawn_started "$slug"; then
+  say "the agent for $slug never started; rolling the spawn back"
+  rm -f "$STATE_DIR/$slug.meta"
+  spawn_rollback
+  return 1
+fi
 
   # Step the provider cursor once per committed spawn, so the next one is served
   # by the other provider. Removing this while reordering the spawn left the
