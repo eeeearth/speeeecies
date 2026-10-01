@@ -551,6 +551,11 @@ printf 'workspace=none\nagent=%s\nworktree=%s\nbranch=%s\nissue=%s\nslug=%s\nkin
 
   cat > "$launch" <<LAUNCHER
 #!/usr/bin/env bash
+# Drop the supervisor's lock fd before doing anything else. bash does not set
+# close-on-exec on it, so every agent inherited the open file description and
+# the flock stayed held for the lifetime of the fleet: a second supervisor could
+# never start, because the agents were holding the lock meant to exclude one.
+exec 9>&-
 exec > "$log" 2>&1
 echo \$\$ > "$STATE_DIR/$slug.pid"
 echo "=== fleet.sh spawn \$(date -u +%FT%TZ) model=$model variant=$variant"

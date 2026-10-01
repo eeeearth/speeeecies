@@ -1539,3 +1539,79 @@ def test_stopping_an_agent_without_a_pidfile_still_reaches_the_process():
             time.sleep(0.5)
         for pid in pids:
             assert not Path(f"/proc/{pid}").exists(), f"pid {pid} survived the stop"
+
+
+def test_the_launcher_drops_the_supervisor_lock_fd():
+    """The flock lived on fd 9, which bash does not mark close-on-exec, so every
+    agent inherited the open file description and the lock stayed held for as
+    long as the fleet ran. The exclusion lock was doing the opposite of
+    excluding: a second supervisor could never start while agents were alive.
+    Six holders were observed live with zero supervisors running."""
+    text = FLEET.read_text(encoding="utf-8")
+    spawn = text.split("cmd_spawn() {", 1)[1].split("\n}\n", 1)[0]
+    launcher = spawn.split("<<LAUNCHER", 1)[1]
+    head = launcher.split("\n", 6)
+    assert "exec 9>&-" in "\n".join(head), (
+        "the launcher must close the supervisor's lock fd before exec"
+    )
+    # It has to happen before the agent is started, not after.
+    assert launcher.index("exec 9>&-") < launcher.index('"$AGENT_BIN" run'), (
+        "closing the fd after launching would still pass it to the agent"
+    )
+
+
+@pytest.mark.skipif(
+    os.environ.get("FLEET_SLOW_TESTS") != "1",
+    reason="signals real processes to compare lock inheritance",
+)
+def test_a_child_that_closes_the_lock_fd_does_not_hold_the_lock():
+    """Controlled comparison, because a bare holder count is confounded: the
+    measurement itself forks children that inherit the fd. Same method three
+    times: no child, a child that keeps fd 9, a child that closes it.
+
+    Two details make this faithful to cmd_supervise. The lock must sit on fd 9
+    specifically, because that is the fd the launcher closes. And the children
+    must be spawned with close_fds=False, because bash's `&` inherits every
+    descriptor while Popen closes them above 2 by default -- with the default,
+    neither child inherits anything and the test passes vacuously.
+    """
+    import fcntl
+    import tempfile
+
+    def holders(path: str) -> int:
+        out = subprocess.run(["fuser", path], capture_output=True, text=True)
+        return len([w for w in out.stdout.split() if w.isdigit()])
+
+    with tempfile.TemporaryDirectory() as td:
+        lock = f"{td}/supervisor.lock"
+        fd = os.open(lock, os.O_CREAT | os.O_RDWR, 0o644)
+        os.dup2(fd, 9)  # cmd_supervise locks fd 9; the launcher closes fd 9
+        fcntl.flock(9, fcntl.LOCK_EX | fcntl.LOCK_NB)
+
+        def spawn(script: str) -> subprocess.Popen:
+            return subprocess.Popen(
+                ["setsid", "bash", "-c", script],
+                stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL, close_fds=False)
+
+        base = holders(lock)
+
+        keeper = spawn('exec -a probeA sleep 15')
+        time.sleep(1)
+        with_keeper = holders(lock)
+        keeper.terminate()
+
+        closer = spawn('exec 9>&-; exec -a probeB sleep 15')
+        time.sleep(1)
+        with_closer = holders(lock)
+        closer.terminate()
+
+        assert with_keeper > base, (
+            f"a child that keeps fd 9 should add a lock holder "
+            f"(baseline {base}, with keeper {with_keeper}); if it does not, this "
+            f"test cannot detect the inheritance bug it exists to catch"
+        )
+        assert with_closer == base, (
+            f"a child that closes fd 9 still holds the lock "
+            f"({with_closer} vs baseline {base})"
+        )
