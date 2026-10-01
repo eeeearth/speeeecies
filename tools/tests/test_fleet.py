@@ -696,8 +696,11 @@ def _queue_filter(
     # Capture the whole program between the opening quote after the -v options
     # and the closing quote before the input files. Anchoring on a rule body
     # instead would silently drop a leading BEGIN block.
+    # Anchor on -v busy="$busy" ' rather than a bare awk: with re.S an unanchored
+    # match runs from an unrelated awk in the file all the way to the queue line
+    # and captures most of the script.
     awk_body = re.search(
-        r"awk -F'\\t'.*?'\n(.*?)\n\s*' \"\$STATE_DIR/queue\.tsv\" -\)",
+        r"-v busy=\"\$busy\" '\n(.*?)\n\s*' \"\$STATE_DIR/queue\.tsv\" -\)",
         text,
         re.S,
     )
@@ -733,15 +736,22 @@ def test_queue_filter_keys_attempts_on_kind_not_just_slug(tmp_path):
     assert "species" not in filtered, "the exhausted species should be retired"
 
 
-def test_a_live_locale_does_not_block_the_same_named_species(tmp_path):
+def test_a_live_locale_blocks_the_same_named_species(tmp_path):
+    """Liveness is keyed on the bare slug, not kind/slug, because every state file
+    is $slug.* -- .meta, .log, .status.md, .launch.sh. A species and a locale
+    sharing a name would otherwise overwrite each other's files while the
+    scheduler believed they were distinct. Attempts stay per kind/slug, so the
+    blocked species keeps its own retry history and is merely scheduled later.
+    """
     queue = tmp_path / "queue.tsv"
     queue.write_text("", encoding="utf-8")
     candidates = "9\tshared\tlocale\ta\n4\tshared\tspecies\tb\n"
 
-    filtered = _queue_filter(queue, candidates, busy="locale/shared")
+    filtered = _queue_filter(queue, candidates, busy="shared")
 
-    assert "species" in filtered, (
-        "a live locale blocked the same-named species from being spawned"
+    assert "species" not in filtered, (
+        "a live locale did not block the same-named species; their state files "
+        "would collide"
     )
     assert "locale" not in filtered
 
@@ -754,7 +764,7 @@ def test_queue_filter_never_offers_a_slug_with_a_live_agent(tmp_path):
     queue.write_text("37\tspecies\tadeliae\n", encoding="utf-8")
     candidates = "37\tadeliae\tspecies\ta\n38\temperor\tspecies\tb\n"
 
-    filtered = _queue_filter(queue, candidates, max_attempts=3, busy="species/adeliae")
+    filtered = _queue_filter(queue, candidates, max_attempts=3, busy="adeliae")
 
     assert "adeliae" not in filtered, "a live agent was offered its own slug"
     assert "emperor" in filtered
@@ -1165,3 +1175,44 @@ def test_briefs_forbid_touching_the_repository_status_file():
         assert "already exists" in low, (
             f"{brief.name} must explain that the in-repo status file is not the agent's"
         )
+
+
+def test_a_dead_model_route_does_not_burn_an_issue_retry():
+    """The queue row is written at spawn, so a provider outage counted against the
+    issue's three attempts. Three consecutive route failures could retire an issue
+    that had done nothing wrong. A routing failure is now refunded."""
+    text = FLEET.read_text(encoding="utf-8")
+    assert "refund_attempt()" in text, "no attempt refund exists"
+    # note_route_failure must distinguish the two outcomes, and the caller must
+    # use it in a condition so the non-routing path cannot trip errexit.
+    fn = text.split("note_route_failure() {", 1)[1].split("\n}\n", 1)[0]
+    assert "return 0" in fn and "return 1" in fn, (
+        "note_route_failure must report whether the failure was routing"
+    )
+    reap = text.split("*)     # if-guard", 1)
+    assert len(reap) == 2 and "refund_attempt" in reap[1][:400], (
+        "the reap does not refund on a routing failure"
+    )
+    assert "if note_route_failure" in text, (
+        "note_route_failure is called bare; its non-routing return would trip errexit"
+    )
+
+
+def test_liveness_and_attempts_use_consistent_keys():
+    """Scheduling keyed liveness on kind/slug while every state file is $slug.*,
+    so a species and a locale sharing a name would overwrite each other's .meta.
+    Liveness now keys on the bare slug, matching the state layer; attempts stay
+    keyed by kind/slug because they are separate issues."""
+    text = FLEET.read_text(encoding="utf-8")
+    loop = text.split("cmd_supervise() {", 1)[1]
+    busy = re.search(r"busy=\$\(for m in \"\$\{metas\[@\]\}\"; do ([^\n]*)", loop)
+    assert busy, "no busy-set construction found"
+    assert "basename" in busy.group(1) and "/$s" not in busy.group(1), (
+        "the busy set must be keyed on the bare slug to match the state files"
+    )
+    assert '{ if ($2 == "" || $3 == "") next; key = $3 "/" $2; if ($2 in live) next;' in loop, (
+        "the filter must test the bare slug for liveness"
+    )
+    assert 'FILENAME == q { if ($3 != "") n[$2 "/" $3]++; next }' in loop, (
+        "attempts must still be counted per kind/slug"
+    )

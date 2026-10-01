@@ -132,14 +132,25 @@ note_spawn_provider() {  # model id; tally what was really served per provider
   mv "$f.tmp" "$f"
 }
 
-note_route_failure() {  # slug; back off the provider if the agent died on routing
+note_route_failure() {  # slug; 0 when the agent died on routing, 1 otherwise
   local model
   model=$(meta_get "$1" model)
-  [ -n "$model" ] && [ -f "$STATE_DIR/$1.log" ] || return 0
+  [ -n "$model" ] && [ -f "$STATE_DIR/$1.log" ] || return 1
   if grep -qiE 'cannot find any route|rate limit|429|too many requests|quota exceeded' \
        "$STATE_DIR/$1.log"; then
     provider_note_failure "$(provider_of_model "$model")"
+    return 0
   fi
+  return 1
+}
+
+refund_attempt() {  # kind slug; a dead model route is not the issue's fault
+  local q="$STATE_DIR/queue.tsv" last
+  [ -f "$q" ] || return 0
+  last=$(awk -F'\t' -v k="$1/$2" '$2 "/" $3 == k { n = NR } END { print n + 0 }' "$q")
+  [ "$last" -gt 0 ] || return 0
+  awk -F'\t' -v n="$last" 'NR != n' "$q" > "$q.tmp" && mv "$q.tmp" "$q"
+  say "refunded one retry attempt for $2: the failure was a model route, not the issue"
 }
 
 next_model() {  # peek only, never mutates: the status line calls this every poll
@@ -600,7 +611,11 @@ cmd_supervise() {
         # transient outage and burn a retry.
         GHERR) fleet_state=GH_UNREACHABLE
                echo "[$(date -u +%FT%TZ)] $slug: PR lookup failed (GitHub unreachable); leaving it for the next poll" ;;
-        *)     note_route_failure "$slug"
+        *)     # if-guard, not a bare call: note_route_failure returns 1 for a
+               # normal no-PR exit, and that must not trip errexit.
+               if note_route_failure "$slug"; then
+                 refund_attempt "$(meta_get "$slug" kind)" "$slug"
+               fi
                echo "[$(date -u +%FT%TZ)] $slug stopped with NO PR (model $(meta_get "$slug" model)); log tail:"
                tail -5 "$STATE_DIR/$slug.log" | sed 's/^/    /'
                cmd_teardown "$slug" --force || true ;;
@@ -632,16 +647,17 @@ cmd_supervise() {
       # A slug with a live agent is always skipped, whatever its attempt count:
       # the retry budget would otherwise offer a running agent its own slug.
       local busy
-      busy=$(for m in "${metas[@]}"; do
-               s=$(basename "$m" .meta); k=$(meta_get "$s" kind); [ -n "$k" ] || k=species
-               printf '%s/%s\n' "$k" "$s"
-             done | paste -sd' ' -)
+      # Liveness is keyed on the bare slug because the state layer is: .meta,
+      # .log, .status.md and .launch.sh are all $slug.*, so two agents sharing a
+      # slug would overwrite each other's files. Attempts stay keyed by kind/slug
+      # because a species and a locale with the same name are separate issues.
+      busy=$(for m in "${metas[@]}"; do basename "$m" .meta; done | paste -sd' ' -)
       if [ -f "$STATE_DIR/queue.tsv" ]; then
         pick=$(printf '%s\n' "$pick" | awk -F'\t' -v q="$STATE_DIR/queue.tsv" \
           -v max="$FLEET_MAX_ATTEMPTS" -v maxloc="$FLEET_MAX_ATTEMPTS_LOCALE" -v busy="$busy" '
           BEGIN { k = split(busy, b, " "); for (i = 1; i <= k; i++) if (b[i] != "") live[b[i]] = 1 }
           FILENAME == q { if ($3 != "") n[$2 "/" $3]++; next }
-          { if ($2 == "" || $3 == "") next; key = $3 "/" $2; if (key in live) next;
+          { if ($2 == "" || $3 == "") next; key = $3 "/" $2; if ($2 in live) next;
             lim = ($3 == "locale") ? maxloc : max;
             if ((key in n) && n[key] >= lim) next; print }
         ' "$STATE_DIR/queue.tsv" -)
