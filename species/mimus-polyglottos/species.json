@@ -1,0 +1,676 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Mimus polyglottos",
+  "slug": "mimus-polyglottos",
+  "common_names": {
+    "en": "Northern mockingbird",
+    "fr": "Moqueur polyglotte"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Passeriformes",
+    "family": "Mimidae",
+    "genus": "Mimus",
+    "authority": "(Linnaeus, 1758)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 5231677,
+    "inat_taxon_id": 14886,
+    "itis_tsn": 178620,
+    "wikidata": "Q829683",
+    "ncbi_taxon_id": 60713,
+    "ebird_code": "normoc"
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "US",
+      "CA",
+      "MX",
+      "CU",
+      "JM",
+      "DO",
+      "HT",
+      "PR"
+    ],
+    "introduced": [
+      "BB",
+      "SH",
+      "PF"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Hop",
+      "Fly"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Cup",
+    "perching": true,
+    "size_class": "Tiny",
+    "mass_kg": 0.049,
+    "mass_range_kg": [
+      0.04,
+      0.058
+    ],
+    "length_m": 0.2425,
+    "wingspan_m": 0.345,
+    "lifespan_y": 8,
+    "diet": {
+      "invertebrate": 0.5,
+      "fruit": 0.3,
+      "seed": 0.2
+    },
+    "social": {
+      "structure": "Pair",
+      "group_size": [
+        2,
+        2
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Mob",
+    "wariness": 0.45
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.7,
+      "arboreal": 0.3
+    },
+    "shelter_tag": "shrub_thicket",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 1.0,
+        "months": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.6,
+        "months": [
+          9,
+          10,
+          11,
+          12,
+          1,
+          2
+        ]
+      },
+      {
+        "tag": "seed",
+        "kind": "Herbivory",
+        "weight": 0.4,
+        "months": [
+          9,
+          10,
+          11,
+          12,
+          1,
+          2
+        ]
+      },
+      {
+        "tag": "nest_cup",
+        "kind": "Nesting",
+        "weight": 1.0
+      },
+      {
+        "tag": "shrub_thicket",
+        "kind": "Shelter",
+        "weight": 0.6
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.4
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "light_max": 0.6,
+      "notes": "In the eastern United States suburban and urban areas such as parks and gardens are frequent residential areas; it has an affinity for mowed lawns with shrubs within proximity for shade and nesting, and birds nesting near artificial light feed their nestlings into the night."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "territorial",
+        "start": "01-01",
+        "end": "12-31",
+        "note": "'generally resides in the same habitats year round'; northern birds move south in inclement weather, so the population share on site dips in midwinter."
+      },
+      {
+        "name": "nesting",
+        "start": "04-01",
+        "end": "08-31",
+        "note": "Judgement: the article describes several nests per breeding season, an average clutch of four eggs and nestling development to leaving the nest in 11 to 13 days, but dates no season, so late spring to late summer is authored."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg"
+      },
+      {
+        "stage": "Juvenile",
+        "duration_days": 14,
+        "scale": 0.75
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US-AL",
+        "monthly": [
+          0.74,
+          0.92,
+          1.0,
+          0.88,
+          0.77,
+          0.88,
+          0.93,
+          0.7,
+          0.78,
+          0.99,
+          0.81,
+          0.7
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 227791,
+        "sources": [
+          "inat-activity-us-al",
+          "gbif-activity-us-al"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 19,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=14886&place_id=19&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=19&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 3653,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.1_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5231677&gadmGid=USA.1_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.1_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 224138,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "bt-perching-songbird-v1",
+    "params": {
+      "flee_m": 10,
+      "food_tag": "fruit",
+      "song": "song",
+      "alarm": "hew",
+      "song_cooldown_s": 20,
+      "nest_m1": 4,
+      "nest_m2": 7
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "song",
+      "context": "Song",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day",
+        "Dusk",
+        "Night"
+      ],
+      "cooldown_s": 20,
+      "loudness": "Loud",
+      "description": "Long song bouts that imitate bird calls and other sounds, including artificial and electronic noises; the best-known mimic in North America. Males sing at the start of the breeding season to attract females, sing from an exposed perch to lure a female away from a mated male, and in residential areas will sing through the night under artificial light to feed nestlings."
+    },
+    {
+      "call_id": "hew",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Day",
+        "DawnChorus",
+        "Dusk"
+      ],
+      "cooldown_s": 10,
+      "loudness": "Loud",
+      "description": "One of four recognised calls; used by both sexes against nest predators, in conspecific chasing and in various interactions between mates."
+    },
+    {
+      "call_id": "chat",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 8,
+      "loudness": "Loud",
+      "description": "The chat or chatburst call, given when the birds aggressively defend their nests and surrounding area against other birds and animals."
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.5,
+      "leg_length_ratio": 0.45,
+      "head_scale": 0.8,
+      "neck_angle_deg": 15,
+      "tail_ratio": 1.0,
+      "wing_aspect": 2.8,
+      "beak_ratio": 0.4,
+      "girth_ratio": 1.0
+    },
+    "palette": {
+      "body": "#8e9298",
+      "belly": "#f0efe9",
+      "markings": "#2b2b2b",
+      "accent": "#f5f4ef",
+      "eye": "#1a1a18"
+    },
+    "part_colors": {
+      "beak": "markings",
+      "eye_left": "eye",
+      "eye_right": "eye",
+      "tail": "markings"
+    },
+    "extra_parts": [
+      {
+        "name": "wingbar",
+        "parent": "wing_left",
+        "offset": [
+          0.1,
+          0.1,
+          0.5
+        ],
+        "size": [
+          0.5,
+          0.12,
+          0.9
+        ],
+        "color": "accent"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "hop": {},
+      "fly": {},
+      "glide": {},
+      "perched": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/5231677",
+      "title": "GBIF Backbone Taxonomy: Mimus polyglottos",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q829683",
+      "title": "Wikidata: Northern mockingbird (Q829683)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Northern_mockingbird",
+      "title": "Wikipedia: Northern mockingbird",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Northern mockingbird\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=178620",
+      "title": "ITIS: Mimus polyglottos, TSN 178620",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "inat-activity-us-al",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=14886&place_id=19&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Mimus polyglottos in US-AL",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-al",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5231677&gadmGid=USA.1_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Mimus polyglottos in US-AL",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "itis"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "iNaturalist, NCBI and eBird ids via Wikidata P3151, P685 and P3444."
+    },
+    "common_names": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikidata",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Wikidata P141 = least concern (Q211005); the article states it is listed as a species of least concern by the IUCN."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Breeds from the Maritime provinces of southern Canada west to southern Oregon and south through practically the whole continental United States, the Greater Antilles and most of Mexico; human-mediated introductions on Hawaii, Barbados, St Helena, Socorro Island, the Cayman Islands, Tahiti and Bermuda. The introduced countries listed here are the Caribbean and Atlantic ones; Hawaii and Socorro fall inside existing country codes."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Hops when foraging on short grass and flies between song perches and the nest; the tail is almost as long as the body."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'The nest is built approximately three to ten feet above the ground', of twigs outside and grasses, dead leaves, moss or artificial fibres inside, in a shrub or tree."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.size_class": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of 40-58 g."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "40-58 g."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of 20.5-28 cm including a tail almost as long as the body."
+    },
+    "traits.wingspan_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of 31-38 cm."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'The northern mockingbird's lifespan is observed to be up to 8 years, but captive birds can live up to 20 years.' The wild figure is used."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'The birds' diet consists of arthropods..., earthworms, berries, fruits, seeds, and occasionally flowers, small crustaceans, and lizards', and 'its diet heavily consists of animal prey during the breeding season, but takes a drastic shift to fruits during the fall and winter'. The 50/30/20 split is judgement inside that description; the occasional lizard is not modelled."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Territorial pairs; males do most of the nest building while the female perches nearby watching for predators, and females may change mates within a season when a male's parental care is poor."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Diurnal by behaviour, though it sings through the night where artificial light lets it feed nestlings late."
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'The birds aggressively defend their nests and surrounding areas against other birds and animals', and high-nesting-success males attack intruders; mapped to Mob."
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "'Studies have shown its ability to identify individual humans and treat them differently based on learned threat assessments', and birds retreat further from individuals who behaved more threateningly; bold about food, cautious about people."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'It prefers open areas with sparse vegetation... It has an affinity for mowed lawns', and 'when foraging for food, it prefers short grass', so most of its time is on the ground."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Nests in shrubs and small trees 3-10 ft up and perches in them to watch for predators and to sing."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Food weights and their months follow traits.diet and the breeding-season versus autumn-winter shift; nest and perch sites from the nesting description."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'In the eastern regions, suburban and urban areas such as parks and gardens are frequent residential areas', and urban birds return to successful nest sites and feed nestlings under artificial light."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'The mockingbird is generally a year-round resident of its range, but birds that live in the northern portion of its range often move south during the winter season.'"
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Year-round residency is stated. The nesting window is authored: the article describes several nests per season, an average clutch of four and nest leaving in 11 to 13 days, but gives no calendar dates."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "'Wing-flashing, bathing, flight, and leaving the nest happened within seventeen days (nest leaving occurred within 11 to 13 days)'; 14 days covers the documented window and the 0.75 scale is authored judgement."
+    },
+    "vocalizations.song": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "vocalizations.hew": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "vocalizations.chat": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Grey to brown upper feathers with a white or whitish-grey belly, parallel wing bars and white patches on wings and tail that show in flight, long legs and a long tail, from the Description section; the white wing bar is an extra part and the proportions are authored judgement."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared perching-songbird program. food_tag fruit because fruit is what the plot's berry and fruit plants provide and what the species switches to outside the breeding season; flee_m 10 m is longer than for a small songbird because it is a big aggressive bird that stands its ground; the alarm slot uses the documented hew call."
+    }
+  },
+  "contributors": [
+    {
+      "name": "opencode agent (al-birmingham locale, issue #73)",
+      "agent": "opencode"
+    }
+  ]
+}
