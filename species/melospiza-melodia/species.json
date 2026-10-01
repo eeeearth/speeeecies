@@ -1,0 +1,711 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Melospiza melodia",
+  "slug": "melospiza-melodia",
+  "common_names": {
+    "en": "Song Sparrow"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Passeriformes",
+    "family": "Passerellidae",
+    "genus": "Melospiza",
+    "authority": "(A. Wilson, 1810)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2492196,
+    "inat_taxon_id": 9100,
+    "itis_tsn": 179848,
+    "wikidata": "Q842599",
+    "ncbi_taxon_id": 141842,
+    "ebird_code": "sonspa"
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "US",
+      "CA",
+      "MX"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Hop",
+      "Fly"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Cup",
+    "perching": true,
+    "size_class": "Tiny",
+    "mass_kg": 0.021,
+    "mass_range_kg": [
+      0.012,
+      0.053
+    ],
+    "length_m": 0.15,
+    "wingspan_m": 0.23,
+    "lifespan_y": 5,
+    "diet": {
+      "seed": 0.5,
+      "invertebrate": 0.4,
+      "fruit": 0.1
+    },
+    "social": {
+      "structure": "Solitary",
+      "group_size": [
+        1,
+        2
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.25
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.7,
+      "arboreal": 0.3
+    },
+    "shelter_tag": "shrub_thicket",
+    "resources": [
+      {
+        "tag": "seed",
+        "kind": "Herbivory",
+        "weight": 0.5
+      },
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.4,
+        "months": [
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.1,
+        "months": [
+          9,
+          10,
+          11,
+          12
+        ]
+      },
+      {
+        "tag": "shrub_thicket",
+        "kind": "Shelter",
+        "weight": 0.9
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.5
+      },
+      {
+        "tag": "nest_cup",
+        "kind": "Nesting",
+        "weight": 1.0
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "light_max": 0.7,
+      "notes": "Common in suburban yards, parks, and gardens; nests in shrubs and low vegetation; visits bird feeders."
+    },
+    "density_per_ha": {
+      "min": 0.5,
+      "typical": 3,
+      "max": 15
+    }
+  },
+  "seasonal": {
+    "strategy": "PartialMigration",
+    "winter_fraction": 0.6,
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "03-01",
+        "end": "08-31",
+        "region": "US-NC",
+        "note": "Breeds in shrubby areas, forest edges, and gardens; two to three broods per season."
+      },
+      {
+        "name": "territorial",
+        "start": "09-01",
+        "end": "02-28",
+        "note": "Maintains winter territories; sings year-round in milder climates."
+      },
+      {
+        "name": "absent",
+        "start": "10-15",
+        "end": "03-15",
+        "region": "CA",
+        "fraction": 0.4,
+        "note": "Northern populations migrate south; mid-Atlantic and southern birds largely resident."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg"
+      },
+      {
+        "stage": "Juvenile",
+        "duration_days": 60,
+        "scale": 0.9
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US-NC",
+        "monthly": [
+          0.92,
+          0.82,
+          0.74,
+          0.47,
+          0.37,
+          0.36,
+          0.54,
+          0.35,
+          0.3,
+          0.59,
+          1.0,
+          0.85
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 440243,
+        "sources": [
+          "inat-activity-us-nc",
+          "gbif-activity-us-nc"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 30,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=9100&place_id=30&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=30&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "total": 375,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.34_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2492196&gadmGid=USA.34_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.34_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 439868,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "bt-perching-songbird-v1",
+    "params": {
+      "flee_m": 4,
+      "food_tag": "seed",
+      "song": "song",
+      "alarm": "alarm",
+      "song_cooldown_s": 8,
+      "nest_m1": 3,
+      "nest_m2": 8
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "song",
+      "context": "Song",
+      "season_months": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "time_windows": [
+        "DawnChorus",
+        "Day",
+        "Dusk"
+      ],
+      "cooldown_s": 10,
+      "loudness": "Moderate",
+      "description": "Loud, variable song starting with 2-4 clear whistles followed by a buzzy trill; each male has multiple song types."
+    },
+    {
+      "call_id": "alarm",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day",
+        "Dusk"
+      ],
+      "cooldown_s": 4,
+      "loudness": "Moderate",
+      "description": "Sharp 'chimp' or 'tink' call given when disturbed or flushed from cover."
+    },
+    {
+      "call_id": "contact",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 3,
+      "loudness": "Quiet",
+      "description": "Soft 'seep' or 'tsip' notes given by pair members maintaining contact."
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.4,
+      "leg_length_ratio": 0.35,
+      "head_scale": 0.8,
+      "neck_angle_deg": 15,
+      "tail_ratio": 0.7,
+      "wing_aspect": 2.6,
+      "beak_ratio": 0.35,
+      "girth_ratio": 1.15
+    },
+    "palette": {
+      "body": "#8b7355",
+      "belly": "#f5f0e8",
+      "markings": "#5d4e37",
+      "accent": "#c4a36b",
+      "eye": "#1a1a1a"
+    },
+    "part_colors": {
+      "head": "body",
+      "breast": "body",
+      "tail": "markings",
+      "wing_*": "markings",
+      "beak": "accent",
+      "leg_*": "accent"
+    },
+    "extra_parts": [
+      {
+        "name": "malar_stripe",
+        "parent": "head",
+        "offset": [
+          0.3,
+          0.2,
+          0.25
+        ],
+        "size": [
+          0.4,
+          0.3,
+          0.15
+        ],
+        "color": "markings",
+        "mirror": true
+      },
+      {
+        "name": "breast_spot",
+        "parent": "breast",
+        "offset": [
+          0.1,
+          -0.1,
+          0
+        ],
+        "size": [
+          0.3,
+          0.3,
+          0.3
+        ],
+        "color": "markings"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "hop": {},
+      "fly": {},
+      "glide": {},
+      "perched": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2492196",
+      "title": "GBIF Backbone Taxonomy: Melospiza melodia",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q842599",
+      "title": "Wikidata: Song sparrow (Q842599)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Song_sparrow",
+      "title": "Wikipedia: Song sparrow",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Song sparrow\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=179848",
+      "title": "ITIS: Melospiza melodia, TSN 179848",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "inat-activity-us-nc",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=9100&place_id=30&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Melospiza melodia in US-NC",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-nc",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2492196&gadmGid=USA.34_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Melospiza melodia in US-NC",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "itis"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "iNaturalist, NCBI and eBird ids via Wikidata (P3151, P685, P3444)."
+    },
+    "common_names": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikidata",
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Country list derived from range across North America from Alaska to Mexico."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Forages by hopping on ground; flies between perches."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Cup nest in low shrubs or on ground."
+    },
+    "traits.size_class": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg (12-53 g)."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Body mass 12-53 g, average ~21 g."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of 12-17 cm."
+    },
+    "traits.wingspan_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of 18-25 cm."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Average 2-5 years in wild; maximum recorded 11+ years."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Seeds and grains (50%), insects and invertebrates (40%, mostly breeding season), some fruit (10%)."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Territorial pairs in breeding season; solitary or loose flocks in winter."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.defense": {
+      "sources": [],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Authored: flies to cover when threatened."
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Relatively tolerant of humans; common in suburban areas."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Forages mostly on ground (70%); perches and nests in shrubs (30%)."
+    },
+    "habitat.shelter_tag": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Seeds year-round; invertebrates in breeding season; fruit in autumn/winter; nests in shrubs."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Common in suburban areas; nests in gardens; light_max authored."
+    },
+    "habitat.density_per_ha": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored judgement: variable, higher in optimal shrubby habitat."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Northern populations migratory; southern populations largely resident; some altitudinal migration."
+    },
+    "seasonal.winter_fraction": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: majority of population in mid-latitudes are year-round residents."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Breeding season and territorial behavior from Wikipedia; migratory window and fraction are judgements."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Fledging at 9-12 days; juvenile plumage for 1-2 months; scale authored."
+    },
+    "vocalizations.song": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Description from Wikipedia; months, windows, cooldown authored."
+    },
+    "vocalizations.alarm": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Description from Wikipedia; parameters authored."
+    },
+    "vocalizations.contact": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Description from Wikipedia; parameters authored."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Brown streaked upperparts, white underparts with dark central breast spot, brown crown with central stripe, grayish face with malar stripe; proportions authored."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared perching-songbird program; food_tag changed to seed."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies fleet",
+      "agent": "opencode"
+    }
+  ]
+}
