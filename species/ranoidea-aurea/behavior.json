@@ -1,0 +1,334 @@
+{
+  "schema_version": 1,
+  "format": "speeeecies/behavior",
+  "id": "fsm-bell-frog-v1",
+  "kind": "fsm",
+  "description": "Diurnal frog (green and golden bell frog): basks in the open by day, forages on the ground and in shallow water for insects and other small prey, and shelters in cover around its breeding site overnight and through the cool months. Males call from the water at night through the breeding season. A threatened frog freezes, then hops away; a touched frog that is not alarmed tolerates the contact. No shared program fits: the shared anuran program is explicitly nocturnal and gates its whole loop on `is_day` (it hides by day and only emerges at night), which is the opposite of a frog the reference describes as often active during the day; the ground forager is written for a furred, endothermic mammal with four-legged gaits and no basking or calling state; the songbird assumes flight and perching; and the seabird assumes a marine colony.",
+  "params": {
+    "flee_m": 3,
+    "calm_m": 8,
+    "freeze_m": 6,
+    "food_tag": "invertebrate",
+    "food_m": 8,
+    "water_m": 25,
+    "forage_gait": "walk",
+    "flee_gait": "hop",
+    "night_lo_deg": -90,
+    "night_hi_deg": -6,
+    "min_temp_c": 12,
+    "max_temp_c": 30,
+    "call": "growl",
+    "call_m1": 10,
+    "call_m2": 3
+  },
+  "initial": "bask",
+  "states": {
+    "bask": {
+      "action": {
+        "do": "rest"
+      },
+      "min_dwell_s": 180
+    },
+    "forage": {
+      "action": {
+        "do": "eat_nearest",
+        "tag": "${food_tag}",
+        "gait": "${forage_gait}"
+      }
+    },
+    "wander": {
+      "action": {
+        "do": "wander",
+        "gait": "${forage_gait}"
+      }
+    },
+    "call": {
+      "action": {
+        "do": "sing",
+        "call": "${call}"
+      },
+      "min_dwell_s": 2
+    },
+    "shelter": {
+      "action": {
+        "do": "hide_nearest"
+      },
+      "min_dwell_s": 600
+    },
+    "freeze": {
+      "action": {
+        "do": "emote",
+        "kind": "freeze"
+      },
+      "min_dwell_s": 2
+    },
+    "flee": {
+      "action": {
+        "do": "flee",
+        "gait": "${flee_gait}"
+      },
+      "min_dwell_s": 2
+    },
+    "touched": {
+      "action": {
+        "do": "tolerate_touch"
+      }
+    },
+    "accept": {
+      "action": {
+        "do": "accept_offer"
+      }
+    }
+  },
+  "transitions": [
+    {
+      "from": "*",
+      "to": "flee",
+      "when": {
+        "threat_within_m": "${flee_m}"
+      },
+      "priority": 100
+    },
+    {
+      "from": "*",
+      "to": "flee",
+      "when": {
+        "need": "fear",
+        "gt": 0.2
+      },
+      "priority": 90
+    },
+    {
+      "from": "*",
+      "to": "freeze",
+      "when": {
+        "all": [
+          {
+            "threat_within_m": "${freeze_m}"
+          },
+          {
+            "not": {
+              "threat_within_m": "${flee_m}"
+            }
+          }
+        ]
+      },
+      "priority": 50
+    },
+    {
+      "from": "*",
+      "to": "touched",
+      "when": {
+        "all": [
+          {
+            "player_touch": true
+          },
+          {
+            "need": "fear",
+            "lt": 0.2
+          },
+          {
+            "not": {
+              "threat_within_m": "${flee_m}"
+            }
+          }
+        ]
+      },
+      "priority": 60
+    },
+    {
+      "from": "*",
+      "to": "accept",
+      "when": {
+        "all": [
+          {
+            "player_offer": "food"
+          },
+          {
+            "need": "fear",
+            "lt": 0.2
+          },
+          {
+            "not": {
+              "threat_within_m": "${flee_m}"
+            }
+          }
+        ]
+      },
+      "priority": 40
+    },
+    {
+      "from": "touched",
+      "to": "bask",
+      "when": {
+        "player_touch": false
+      }
+    },
+    {
+      "from": "accept",
+      "to": "bask",
+      "when": {
+        "not": {
+          "player_offer": "food"
+        }
+      }
+    },
+    {
+      "from": "freeze",
+      "to": "bask",
+      "when": {
+        "not": {
+          "threat_within_m": "${calm_m}"
+        }
+      }
+    },
+    {
+      "from": "flee",
+      "to": "bask",
+      "when": {
+        "not": {
+          "threat_within_m": "${calm_m}"
+        }
+      }
+    },
+    {
+      "from": "bask",
+      "to": "forage",
+      "when": {
+        "all": [
+          {
+            "need": "hunger",
+            "gt": 0.5
+          },
+          {
+            "food_within_m": "${food_m}",
+            "tag": "${food_tag}"
+          }
+        ]
+      }
+    },
+    {
+      "from": "bask",
+      "to": "wander",
+      "when": {
+        "chance": 0.2
+      }
+    },
+    {
+      "from": "bask",
+      "to": "shelter",
+      "when": {
+        "any": [
+          {
+            "need": "energy",
+            "gt": 0.7
+          },
+          {
+            "sun_elevation_between_deg": [
+              "${night_lo_deg}",
+              "${night_hi_deg}"
+            ]
+          },
+          {
+            "not": {
+              "temperature_between_c": [
+                "${min_temp_c}",
+                "${max_temp_c}"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "from": "forage",
+      "to": "bask",
+      "when": {
+        "need": "hunger",
+        "lt": 0.2
+      }
+    },
+    {
+      "from": "wander",
+      "to": "bask",
+      "when": {
+        "chance": 0.2
+      }
+    },
+    {
+      "from": "wander",
+      "to": "forage",
+      "when": {
+        "all": [
+          {
+            "need": "hunger",
+            "gt": 0.5
+          },
+          {
+            "food_within_m": "${food_m}",
+            "tag": "${food_tag}"
+          }
+        ]
+      }
+    },
+    {
+      "from": "shelter",
+      "to": "bask",
+      "when": {
+        "all": [
+          {
+            "need": "energy",
+            "lt": 0.2
+          },
+          {
+            "not": {
+              "sun_elevation_between_deg": [
+                "${night_lo_deg}",
+                "${night_hi_deg}"
+              ]
+            }
+          },
+          {
+            "temperature_between_c": [
+              "${min_temp_c}",
+              "${max_temp_c}"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "from": "shelter",
+      "to": "call",
+      "when": {
+        "all": [
+          {
+            "month_in": [
+              "${call_m1}",
+              "${call_m2}"
+            ]
+          },
+          {
+            "water_within_m": "${water_m}"
+          },
+          {
+            "temperature_between_c": [
+              "${min_temp_c}",
+              "${max_temp_c}"
+            ]
+          },
+          {
+            "chance": 0.15
+          }
+        ]
+      }
+    },
+    {
+      "from": "call",
+      "to": "shelter",
+      "when": {
+        "chance": 0.3
+      }
+    }
+  ]
+}

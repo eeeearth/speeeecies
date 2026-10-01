@@ -1,0 +1,614 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Zosterops lateralis",
+  "slug": "zosterops-lateralis",
+  "common_names": {
+    "en": "Silvereye",
+    "fr": "Zostérops à dos gris",
+    "de": "Graumantel-Brillenvogel",
+    "nl": "Grijsrugbrilvogel"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Passeriformes",
+    "family": "Zosteropidae",
+    "genus": "Zosterops",
+    "authority": "(J. Latham, 1801)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2489396,
+    "inat_taxon_id": 202505,
+    "itis_tsn": 563845,
+    "wikidata": "Q313394",
+    "ncbi_taxon_id": 43581,
+    "ebird_code": "silver3"
+  },
+  "conservation": {
+    "iucn": "LC",
+    "notes": "First recorded in New Zealand in 1832 and present in greater numbers from 1856, after which it arrived apparently self-introduced and is protected as a native New Zealand species."
+  },
+  "range": {
+    "native": [
+      "AU",
+      "NZ",
+      "FJ",
+      "VU",
+      "NF",
+      "FR-NC"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Hop",
+      "Fly"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Cup",
+    "perching": true,
+    "size_class": "Tiny",
+    "mass_kg": 0.01268,
+    "length_m": 0.12,
+    "wingspan_m": 0.12,
+    "lifespan_y": 4,
+    "diet": {
+      "invertebrate": 0.45,
+      "fruit": 0.35,
+      "nectar": 0.2
+    },
+    "social": {
+      "structure": "Group",
+      "group_size": [
+        1,
+        20
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.15
+  },
+  "habitat": {
+    "use": {
+      "arboreal": 0.85,
+      "ground": 0.15
+    },
+    "shelter_tag": "shrub_thicket",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 1.0
+      },
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.8
+      },
+      {
+        "tag": "nectar",
+        "kind": "Nectarivory",
+        "weight": 0.6
+      },
+      {
+        "tag": "berry",
+        "kind": "Herbivory",
+        "weight": 0.4
+      },
+      {
+        "tag": "nest_cup",
+        "kind": "Nesting",
+        "weight": 1.0
+      },
+      {
+        "tag": "shrub_thicket",
+        "kind": "Shelter",
+        "weight": 0.8
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.6
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Exploiter",
+      "uses_gardens": true,
+      "light_max": 0.7,
+      "flight_distance_m": 3,
+      "notes": "Found in any vegetated area apart from open grasslands, including forest, scrub, horticultural blocks and urban gardens, and takes a wide variety of foods from bird tables when winter food is scarce."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "09-01",
+        "end": "12-31",
+        "note": "Silvereyes breed in spring and early summer, mainly between September and December. They make a tiny cup of grass, moss, hair, spiderweb and thistledown suspended from a branch fork in the outer reaches of small trees or shrubs, lay two to four pale blue eggs, and raise two or sometimes three broods in a season. The eggs hatch after about 11 days, the young fledge after another 10, are independent at 3 weeks and able to breed at 9 months."
+      },
+      {
+        "name": "flocking",
+        "start": "02-01",
+        "end": "03-31",
+        "region": "AU",
+        "note": "Australian populations only: in late summer silvereyes gather into flocks and many birds migrate, foraging busily during the day and then flying long distances through the night. Most of the Tasmanian population crosses the Bass Strait, and birds from Victoria, New South Wales and south-eastern Queensland head further north, while northern Australian birds stay resident all year. The phase is restricted to AU because the New Zealand population does not leave the country."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg",
+        "duration_days": 11
+      },
+      {
+        "stage": "Juvenile",
+        "duration_days": 10
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "NZ-AUK",
+        "monthly": [
+          0.47,
+          0.53,
+          0.63,
+          0.72,
+          0.72,
+          0.79,
+          1.0,
+          0.55,
+          0.41,
+          0.42,
+          0.39,
+          0.39
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 33704,
+        "sources": [
+          "inat-activity-nz-auk",
+          "gbif-activity-nz-auk"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 8345,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=202505&place_id=8345&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=8345&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 960,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "NZL.1_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2489396&gadmGid=NZL.1_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=NZL.1_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 32744,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "bt-perching-songbird-v1",
+    "params": {
+      "flee_m": 3,
+      "food_tag": "invertebrate",
+      "song_cooldown_s": 20,
+      "nest_m1": 9,
+      "nest_m2": 12
+    }
+  },
+  "vocalizations": [],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.6,
+      "leg_length_ratio": 0.42,
+      "head_scale": 0.8,
+      "neck_angle_deg": 15,
+      "tail_ratio": 0.6,
+      "wing_aspect": 2.2,
+      "beak_ratio": 0.4,
+      "girth_ratio": 0.8
+    },
+    "palette": {
+      "body": "#7d8a5c",
+      "belly": "#c9a86a",
+      "markings": "#f4f2e8",
+      "accent": "#e8d98a",
+      "eye": "#151515"
+    },
+    "part_colors": {
+      "beak": "body",
+      "leg_left": "body",
+      "leg_right": "body"
+    },
+    "extra_parts": [
+      {
+        "name": "eye_ring",
+        "parent": "head",
+        "offset": [
+          0.3,
+          0.03,
+          0.46
+        ],
+        "size": [
+          0.34,
+          0.34,
+          0.2
+        ],
+        "color": "markings",
+        "mirror": true
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "hop": {},
+      "fly": {},
+      "perched": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2489396",
+      "title": "GBIF Backbone Taxonomy: Zosterops lateralis",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q313394",
+      "title": "Wikidata: Zosterops lateralis (Q313394)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Silvereye",
+      "title": "Wikipedia: Silvereye",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Silvereye\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "wikipedia-fr",
+      "url": "https://fr.wikipedia.org/wiki/Zost%C3%A9rops_%C3%A0_dos_gris",
+      "title": "Wikipedia: Zostérops à dos gris (French)",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipédiens, \"Zostérops à dos gris\", Wikipédia en français, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "avonet",
+      "url": "https://doi.org/10.6084/m9.figshare.16586228",
+      "title": "AVONET: morphological, ecological and geographical data for all birds",
+      "license": "CC-BY-4.0",
+      "kind": "dataset",
+      "accessed": "2026-10-01",
+      "attribution": "Tobias, J. A. et al. (2022) AVONET. Ecology Letters 25:581-597",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=563845",
+      "title": "ITIS: Zosterops lateralis, TSN 563845",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "inat-activity-nz-auk",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=202505&place_id=8345&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Zosterops lateralis in NZ-AUK",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-nz-auk",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2489396&gadmGid=NZL.1_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Zosterops lateralis in NZ-AUK",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "itis"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "iNaturalist (P3151), NCBI (P685) and eBird (P3444) ids via Wikidata; GBIF usage key 2489396 matches the GBIF backbone and the ITIS TSN comes from Wikidata P815."
+    },
+    "common_names": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "English, French, German and Dutch names from Wikidata P1843. The Māori name tauhou ('stranger', or 'new arrival') appears in the article rather than on the Wikidata property; the article also notes that 'white-eye' is sometimes used in Australia and New Zealand but is more often a name for the whole genus or family."
+    },
+    "conservation": {
+      "sources": [
+        "wikipedia",
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Distribution and habitat section: native to Australia, New Zealand and the south-west Pacific islands of Lord Howe, New Caledonia, the Loyalty Islands, Vanuatu and Fiji. Australia (including Tasmania, the Bass Strait islands and Lord Howe), New Zealand (including the Chathams), Fiji, Vanuatu and Norfolk Island are ISO 3166-1 alpha-2 codes; New Caledonia and the Loyalty Islands are carried as the ISO 3166-2 subdivision FR-NC because no alpha-2 code exists for them. The nominate subspecies Z. l. lateralis also occurs as a non-breeding migrant in continental south-eastern Australia, but that is migration within a native range rather than an introduction, so Australia stays in native."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Behaviour section describes 'quick movement through the shrubbery' while foraging and, in the flocking phase, long-distance flight by night; hop covers the short movements a small passerine makes between twigs and feeders."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'making a tiny cup of grass, moss, hair, spiderweb, and thistledown, suspended from a branch fork in the outer reaches of small trees or shrubs'."
+    },
+    "traits.size_class": {
+      "sources": [
+        "avonet",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg: 0.0127 kg falls in the Tiny band."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "avonet",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "AVONET Mass = 12.68 g (mean of 22 individuals, Mass.Source Dunning); the article's 'around 10 g' is a rounded figure of the same order. mass_range_kg was left unset because neither source gives a weight range."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of 11-13 cm."
+    },
+    "traits.wingspan_m": {
+      "sources": [
+        "wikipedia-fr",
+        "avonet"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Honest gap in the English sources: English Wikipedia and Wikidata P2050 give no wingspan. The French Wikipedia article describes it as 'un oiseau de 12 cm d'envergure pesant seulement quelques grammes' (a bird of 12 cm wingspan weighing only a few grams), which is used directly at 0.12 m and is consistent with AVONET's 59.0 mm mean wing length (half-span/chord about 2.0, a low but plausible ratio for a short round wing). Confidence is Medium rather than High because a single secondary-language statement is the only wingspan figure available."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Honest gap: neither the article, Wikidata nor AVONET states a typical or mean wild lifespan for this species. 4 years is a judgement for a small omnivorous passerine."
+    },
+    "traits.diet": {
+      "sources": [
+        "avonet",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Feeding section: 'Silvereyes feed on small insects and spiders and large amounts of fruit and nectar, making them occasional pests of commercial orchards', and the Behaviour section repeats 'a diet that includes insects, spiders, berries, fruit and nectar', adding that in New Zealand they take fruit from native trees including kahikatea and rimu. AVONET independently classifies the species as Trophic.Level Omnivore, Trophic.Niche Omnivore. Shares derive from that mix: invertebrate 0.45, nectar 0.20, and fruit 0.35, with the article's berries folded into fruit because the diet schema has no separate berry key (the habitat resources below keep berry as a distinct tag, which the resource tag vocabulary does allow)."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Behaviour section: 'In late summer, silvereyes gather into flocks', and the species forages in shrubbery in groups; structure Group reflects that. The upper bound of 20 is a judgement, because the article describes no flock size, and the flocking it describes is explicitly an Australian late-summer phenomenon, so New Zealand groups are likely smaller."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "avonet",
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Authored from the sourced behaviour: the bird drops from the perch and flies off. The article records no threat display, and the pressure it records on silvereyes is predation of nests by introduced species elsewhere in New Zealand rather than any defence by adults."
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: 0.15. The bird is described as commonplace in urban gardens and horticultural blocks, is 'so small' that orchardists say it simply ignores bird nets, and takes food from bird tables when winter food is scarce."
+    },
+    "habitat.use": {
+      "sources": [
+        "avonet",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "AVONET Habitat = Shrubland and Primary.Lifestyle = Insessorial; the article describes the bird moving through shrubbery and taking fruit from tree canopies, with occasional ground feeding. arboreal 0.85 / ground 0.15."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Behaviour section: the nest is 'suspended from a branch fork in the outer reaches of small trees or shrubs', and the bird forages in shrubbery, so shrub_thicket is the matching shelter tag."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia",
+        "avonet"
+      ],
+      "confidence": "High",
+      "note": "Feeding and Behaviour sections for insects, spiders, fruit, berries and nectar (including from native trees such as kahikatea and rimu), the suspended cup nest, and the shrubby foraging cover the bird uses."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Distribution and habitat section: 'liable to be found in any vegetated area, apart from open grasslands, within its distribution range, including forest, scrub, horticultural blocks and urban gardens', which makes Exploiter the matching affinity; Behaviour adds bird-table feeding when winter food is scarce. light_max and flight_distance_m are authored judgements."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia",
+        "avonet"
+      ],
+      "confidence": "High",
+      "note": "The New Zealand population does not leave the country and the article's description of migration is explicitly about Australian birds ('many Australian birds migrate', 'most of the Tasmanian population crosses the Bass Strait'). AVONET Migration = 1 (sedentary) for the species as a whole. Because the Auckland locale would show the resident New Zealand birds, ActiveYearRound is the correct strategy and the Australian movement is carried in an AU-restricted phase."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia",
+        "wikipedia-fr"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Behaviour section for the September-December breeding window, the nest and clutch, the 11-day incubation and 10-day nestling period, independence at 3 weeks, first breeding at 9 months, and two or three broods a season; and for late-summer flocking and the Australian migrations, whose detail (Bass Strait crossings, movements further north, northern birds resident) the French article also gives. The flocking phase end is an authored judgement of what counts as 'late summer'."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Behaviour section: two to four pale blue eggs, hatching after about 11 days, fledging after another 10, independence at 3 weeks and first breeding at 9 months. duration_days is the sourced 11 for the egg and the sourced 10 to fledging for the juvenile."
+    },
+    "look": {
+      "sources": [
+        "wikipedia",
+        "avonet"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Description section for the plumage: a conspicuous ring of white feathers around the eye, olive-green wings, a grey or olive-green back, a lighter throat that is yellow or grey, flanks from chestnut to pale buff, and an undertail that may be white or yellow, with plumage varying between the 17 subspecies. Proportions are authored from AVONET's measurements for this species (culmen 12.7 mm, tarsus 16.4 mm, wing 59.0 mm, Kipps distance 15.2 mm, tail 42.2 mm) read against the biped_winged body plan: a very small, compact, fine-billed bird with comparatively long legs and a short round wing. The eye ring is the species' field mark and is carried as a mirrored extra part in the markings slot."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared perching-songbird program, which fits the posture and movement well: a small perching bird that flushes to a perch, forages by short flights through shrubbery, and builds a suspended cup nest. Honest limitations: (1) the shared program has song and alarm actions and this record declares no vocalizations, because no openly licensed source consulted transcribes the silvereye's call - English Wikipedia records only 'much calling' without rendering it, the French article gives no call description, and the Xeno-canto API this kit would use for openly licensed recordings has been retired. That leaves two UnknownCallId warnings, which is the honest gap rather than an invented call description. (2) food_tag is invertebrate because insects and spiders are the largest single share of the omnivorous diet. (3) nest_m1/nest_m2 are 9 and 12 for the sourced September-December window. flee_m 3 and song_cooldown_s 20 are judgements for a bold bird that feeds at bird tables."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies maintainers",
+      "agent": "claude-code"
+    }
+  ]
+}
