@@ -1,0 +1,601 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Anolis carolinensis",
+  "slug": "anolis-carolinensis",
+  "common_names": {
+    "en": "Green anole",
+    "es": "Anolis carolino"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Reptilia",
+    "order": "Squamata",
+    "family": "Dactyloidae",
+    "genus": "Anolis",
+    "authority": "Voigt, 1832",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2466939,
+    "inat_taxon_id": 36514,
+    "wikidata": "Q930252"
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "US",
+      "MX"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk",
+      "Climb"
+    ],
+    "thermoregulation": "Ectotherm",
+    "skin": "Scales",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Ground",
+    "perching": false,
+    "size_class": "Tiny",
+    "mass_kg": 0.005,
+    "mass_range_kg": [
+      0.003,
+      0.007
+    ],
+    "length_m": 0.164,
+    "lifespan_y": 8,
+    "diet": {
+      "invertebrate": 0.85,
+      "seed": 0.1,
+      "fruit": 0.05
+    },
+    "social": {
+      "structure": "Solitary",
+      "group_size": [
+        1,
+        2
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.2
+  },
+  "habitat": {
+    "use": {
+      "arboreal": 0.9,
+      "ground": 0.1
+    },
+    "shelter_tag": "perch",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.85
+      },
+      {
+        "tag": "seed",
+        "kind": "Herbivory",
+        "weight": 0.1
+      },
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.05
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.8
+      },
+      {
+        "tag": "shrub_thicket",
+        "kind": "Shelter",
+        "weight": 0.5
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "light_max": 0.6,
+      "road_mortality": "Medium",
+      "notes": "Common on trunks, fences, shrubs and walls around houses, where its adhesive toe pads let it climb. Most abundant on the Gulf Coastal Plain, including Mississippi."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "04-01",
+        "end": "09-30",
+        "note": "The breeding season starts as early as April and ends in late September, regulated largely by photoperiod; reproduction is highest in the summer heat."
+      },
+      {
+        "name": "territorial",
+        "start": "10-01",
+        "end": "03-31",
+        "note": "A refractory season from late fall until late winter or early spring, when males patrol their territory and display."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg"
+      },
+      {
+        "stage": "Juvenile",
+        "duration_days": 60,
+        "scale": 0.5
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US-MS",
+        "monthly": [
+          0.15,
+          0.3,
+          1.0,
+          0.95,
+          0.57,
+          0.44,
+          0.4,
+          0.41,
+          0.56,
+          0.5,
+          0.33,
+          0.34
+        ],
+        "method": "mean(inat_raw, gbif_raw)",
+        "observations": 2073,
+        "sources": [
+          "inat-activity-us-ms",
+          "gbif-activity-us-ms"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 37,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=36514&place_id=37&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": null,
+            "total": 1753,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.25_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2466939&gadmGid=USA.25_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": null,
+            "total": 320,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-ground-forager-v1",
+    "params": {
+      "flee_m": 4,
+      "calm_m": 12,
+      "food_tag": "invertebrate",
+      "food_m": 15,
+      "flee_gait": "walk",
+      "forage_gait": "walk",
+      "rest_sun_lo_deg": -90,
+      "rest_sun_hi_deg": -6
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "chuck",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 10,
+      "loudness": "Quiet",
+      "description": "A short 'chuck' or 'ch-ch-ch' given by a territorial male, usually with the dewlap extended and the body compressed, and by a female answering a courting male."
+    }
+  ],
+  "look": {
+    "body_plan": "quadruped",
+    "proportions": {
+      "torso_aspect": 1.8,
+      "leg_length_ratio": 0.3,
+      "head_scale": 0.62,
+      "neck_angle_deg": 22,
+      "tail_ratio": 1.9,
+      "ear_ratio": 0.2,
+      "girth_ratio": 0.75
+    },
+    "palette": {
+      "body": "#5f9e4a",
+      "belly": "#cdd9a4",
+      "markings": "#c85a7a",
+      "accent": "#8b5a2b",
+      "eye": "#101010"
+    },
+    "part_colors": {},
+    "extra_parts": [
+      {
+        "name": "dewlap",
+        "parent": "neck",
+        "offset": [
+          0.35,
+          -0.3,
+          0
+        ],
+        "size": [
+          0.5,
+          0.55,
+          0.7
+        ],
+        "color": "markings"
+      },
+      {
+        "name": "dorsal_ridge",
+        "parent": "body",
+        "offset": [
+          -0.1,
+          0.5,
+          0
+        ],
+        "size": [
+          1.1,
+          0.22,
+          0.2
+        ],
+        "color": "markings"
+      },
+      {
+        "name": "head_ridges",
+        "parent": "head",
+        "offset": [
+          0.1,
+          0.35,
+          0
+        ],
+        "size": [
+          0.8,
+          0.14,
+          0.5
+        ],
+        "color": "accent"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "trot": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2466939",
+      "title": "GBIF Backbone Taxonomy: Green anole",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q930252",
+      "title": "Wikidata: Green anole (Q930252)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Green_anole",
+      "title": "Wikipedia: Green anole",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Green anole\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "inat-activity-us-ms",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=36514&place_id=37&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Anolis carolinensis in US-MS",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-ms",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2466939&gadmGid=USA.25_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Anolis carolinensis in US-MS",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared ground-forager program, with the sun window set for a diurnal species so it rests at night."
+    },
+    "conservation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "IUCN Red List category via Wikidata P141 (Q211005, least concern)."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "GBIF usage key 2466939 from the GBIF Backbone Taxonomy; iNaturalist taxon id 36514 and Wikidata Q930252 via Wikidata."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Gulf Coastal Plain abundance including Mississippi, and the adhesive toe pads used to climb, are from Wikipedia; the rest are judgements."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The food resources follow the diet shares; perch and shrub thicket are authored from where it sits."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Perches and trunk-shrub cover, which is where it settles to rest."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Shares authored: it is 'a tree-dwelling species', 'a trunk-crown ecomorph', that comes down to the ground only rarely."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Green in warm conditions and brown in cool ones, with a long pointed head bearing ridges, a pink to orange-red male dewlap, a crest that inflates when threatened and a long tapering tail; proportions and palette are authored."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Country list derived from 'native to the southeastern United States ... they have also been recorded in Tamaulipas, Mexico'; it is most abundant on the Gulf Coast in Alabama, Mississippi, Louisiana and Texas. Islands in the Pacific and Caribbean are described as holding introduced populations but are not enumerated, so no introduced entry is recorded."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "The juvenile period is authored; it covers growth from the hatchling to the roughly 7.5 cm adult snout-to-vent length."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "The April to late-September breeding season, the summer peak and the late-fall to early-spring refractory season are from Wikipedia."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Active all year in its native range; gonadal activity 'largely regulated by photoperiod' with a refractory period in the cool months."
+    },
+    "taxonomy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'The male will fight other males to defend his territory', compressing its body, extending the dewlap, inflating a dorsal ridge and bobbing its head; a threatened animal drops to the ground and away."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Weights authored from a diet 'consisting primarily of small insects', with occasional molluscs, grains and seeds."
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of the 12.5-20.3 cm total length of adult males, of which about 60-70% is tail; snout-to-vent length reaches 7.5 cm."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "8 years is the stated captive maximum; wild longevity is shorter."
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "It climbs trunks and branches with its adhesive toe pads and walks along them. 'Green anoles use jumping for their primary means of locomotion', but the shared quadruped mesh has no hop animation, so Hop is deliberately left out rather than given a pose that does not exist; the jump is recorded under traits.defense and habitat notes instead."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of 3-7 g."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "3-7 g."
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Eggs are laid in soil or sheltered vegetation; no nest is built, so Ground is recorded as the nearest of the available classes."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.size_class": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg."
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "'Male anoles are strongly territorial creatures' whose territory 'encompass[es] multiple smaller areas of females', so an animal is seen alone or as a pair."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "It habitually sits on fences, walls and shrubs around houses and only moves when approached; 0.2 is a judgement."
+    },
+    "vocalizations.chuck": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "The chuck is the standard display call of a male anole, consistent with the territorial displays described; no recording is cited."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies contributors",
+      "agent": "opencode-go/space-bunny-free"
+    }
+  ]
+}
