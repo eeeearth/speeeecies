@@ -96,7 +96,12 @@ slug_ok() { case "$1" in ''|*[!a-z0-9-]*) return 1;; *) return 0;; esac; }
 
 need_repo() { [ -n "$REPO" ] || die "not inside a git repository; run this from a checkout of the project"; }
 
-meta_get() { sed -n "s/^$2=//p" "$STATE_DIR/$1.meta" 2>/dev/null | head -1; }
+# Always exit 0. A missing or unreadable meta is an expected state -- a pidfile
+# can outlive its meta, and the orphan sweep exists precisely to clean that up --
+# but sed failing inside the pipeline made pipefail fail the caller's assignment,
+# so the caller died before reaching its own guard. An orphan pidfile therefore
+# killed the supervisor instead of being reaped.
+meta_get() { sed -n "s/^$2=//p" "$STATE_DIR/$1.meta" 2>/dev/null | head -1 || true; }
 
 provider_of() {  # which provider the cursor points at, honouring a backoff marker
   local p
@@ -278,6 +283,10 @@ group_serves_worktree() {  # worktree leader -> 0/1
 agent_running() {  # slug -> 0 running, 1 not
   local pf="$STATE_DIR/$1.pid" pid wt
   wt=$(meta_get "$1" worktree)
+  # A deleted worktree means the agent cannot commit and is working out of a
+  # directory that no longer exists. It was still counted as live, so the fleet
+  # reported healthy while an agent was stranded.
+  [ -d "$wt" ] || return 1
   # Without a worktree there is nothing to match a process against, and the
   # comparison below would be "" = "" -- true for any process with no --dir,
   # counting it live forever. Unknown means not-running.
@@ -780,11 +789,23 @@ supervisor_alive() {  # pid -> 0/1
       supervise)  saw_supervise=1 ;;
     esac
   done < "/proc/$pid/cmdline"
-  [ "$saw_script" = 1 ] && [ "$saw_supervise" = 1 ]
+  [ "$saw_script" = 1 ] && [ "$saw_supervise" = 1 ] || return 1
+  # Shape is not ownership. A process whose argv merely looks like a supervisor
+  # must not be able to block recovery of a dead lock, and a supervisor of a
+  # DIFFERENT state dir must not have its lock broken by this one. Require that
+  # the pid actually holds a descriptor on THIS state directory's lock; only the
+  # supervisor that took it can.
+  local fd target
+  target="$STATE_DIR/supervisor.lock"
+  for fd in /proc/"$pid"/fd/*; do
+    [ -e "$fd" ] || continue
+    [ "$(readlink "$fd" 2>/dev/null || true)" = "$target" ] && return 0
+  done
+  return 1
 }
 
 cmd_supervise() {
-  local once=0 holder
+  local once=0 holder waited
   while [ $# -gt 0 ]; do
     case "$1" in --once) once=1; shift;; --min) FLEET_MIN=$2; shift 2;; --max) FLEET_MAX=$2; shift 2;; *) shift;; esac
   done
@@ -805,16 +826,35 @@ cmd_supervise() {
   exec 9>"$STATE_DIR/supervisor.lock" \
     || die "cannot open lock file in $STATE_DIR"
   if ! flock -n 9; then
-    holder=$(tr -dc '0-9' < "$STATE_DIR/supervisor.owner" 2>/dev/null)
-    if [ -n "$holder" ] && ! supervisor_alive "$holder"; then
-      say "breaking a supervisor lock orphaned by dead pid $holder"
-      rm -f "$STATE_DIR/supervisor.lock"
-      exec 9>"$STATE_DIR/supervisor.lock" \
-        || die "cannot reopen lock file in $STATE_DIR"
-      flock -n 9 || die "another supervisor already holds $STATE_DIR/supervisor.lock"
-    else
-      die "another supervisor already holds $STATE_DIR/supervisor.lock"
+    # Serialise the reclaim. Unlinking and recreating the lock is atomic per
+    # process but not between them: two contenders can both see a dead owner,
+    # both unlink, and end up holding locks on two different inodes -- both
+    # convinced they are exclusive. Oracle measured 42 of 80 concurrent trials
+    # admitting two supervisors. mkdir is the mutex: atomic, and it leaves no
+    # descriptor for a child to inherit.
+    local waited=0
+    until mkdir "$STATE_DIR/supervisor.reclaim" 2>/dev/null; do
+      waited=$((waited + 1))
+      [ "$waited" -gt 30 ] \
+        && die "another supervisor is reclaiming $STATE_DIR/supervisor.lock"
+      sleep 1 9>&-
+    done
+    # Re-test under the mutex: the contender that won the race may already hold
+    # the lock, in which case this one must stand down rather than break it.
+    if ! flock -n 9; then
+      holder=$(tr -dc '0-9' < "$STATE_DIR/supervisor.owner" 2>/dev/null)
+      if [ -n "$holder" ] && ! supervisor_alive "$holder"; then
+        say "breaking a supervisor lock orphaned by dead pid $holder"
+        rm -f "$STATE_DIR/supervisor.lock"
+        exec 9>"$STATE_DIR/supervisor.lock" \
+          || die "cannot reopen lock file in $STATE_DIR"
+        flock -n 9 || die "another supervisor already holds $STATE_DIR/supervisor.lock"
+      else
+        rmdir "$STATE_DIR/supervisor.reclaim" 2>/dev/null
+        die "another supervisor already holds $STATE_DIR/supervisor.lock"
+      fi
     fi
+    rmdir "$STATE_DIR/supervisor.reclaim" 2>/dev/null
   fi
   # Named .owner, deliberately NOT .pid. The orphan sweep below globs *.pid and
   # treats any pidfile without a matching .meta as a dead agent to reap; a

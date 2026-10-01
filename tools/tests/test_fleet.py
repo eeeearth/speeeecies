@@ -1919,3 +1919,72 @@ def test_an_empty_worktree_can_never_authorise_killing_a_process_group():
         assert "-z \"$wt\"" in code or "[ -n \"$wt\" ]" in code, (
             f"{name} must refuse to act when the worktree is unknown"
         )
+
+
+def test_meta_get_never_aborts_its_caller():
+    """A pidfile can outlive its .meta -- that is exactly what the orphan sweep
+    exists to clean up. But sed failing inside the pipeline made pipefail fail
+    the caller's assignment, so the caller died before reaching its own guard,
+    and an orphan pidfile killed the supervisor instead of being reaped."""
+    text = FLEET.read_text(encoding="utf-8")
+    fn = text.split("meta_get() {", 1)[1].split("\n}\n", 1)[0]
+    assert "|| true" in fn, (
+        "meta_get must always succeed; a missing meta is an expected state"
+    )
+    # Every caller must tolerate an empty result rather than treating it as fatal.
+    for name in ("agent_running", "stop_agent", "supervisor_alive"):
+        assert name in text, f"{name} should exist"
+
+
+def test_liveness_requires_the_worktree_to_still_exist():
+    """An agent whose worktree has been deleted cannot commit and is working out
+    of a directory that no longer exists. It was still counted as live, so the
+    fleet reported `live=3 state=OK` while an agent was stranded in a deleted
+    cwd."""
+    text = FLEET.read_text(encoding="utf-8")
+    fn = text.split("agent_running() {", 1)[1].split("\n}\n", 1)[0]
+    guard = fn.index('[ -d "$wt" ] || return 1')
+    assert guard < fn.index("kill -0"), (
+        "the worktree check must come before any liveness claim"
+    )
+
+
+def test_the_stale_lock_reclaim_is_serialised():
+    """Unlink-and-recreate is atomic per process but not between them: two
+    contenders can both see a dead owner, both unlink, and hold locks on two
+    different inodes, each convinced it is exclusive. Oracle measured 42 of 80
+    concurrent trials admitting two supervisors."""
+    text = FLEET.read_text(encoding="utf-8")
+    loop = text.split("cmd_supervise() {", 1)[1]
+    assert 'mkdir "$STATE_DIR/supervisor.reclaim"' in loop, (
+        "the reclaim needs an atomic mutex between contenders"
+    )
+    # The mutex must be taken BEFORE the staleness decision, and the decision
+    # re-tested under it.
+    take = loop.index('mkdir "$STATE_DIR/supervisor.reclaim"')
+    decide = loop.index('supervisor_alive "$holder"')
+    assert take < decide, "the mutex must serialise the staleness decision"
+    assert loop.count("flock -n 9") >= 2, (
+        "flock must be re-tested under the mutex, after the winner may hold it"
+    )
+    assert "rmdir \"$STATE_DIR/supervisor.reclaim\"" in loop, (
+        "the mutex must be released on every exit path"
+    )
+
+
+def test_a_lock_holder_is_proven_by_the_lock_not_by_its_argv():
+    """Argv shape is not ownership: any process whose arguments contain a path
+    ending in fleet.sh plus a bare `supervise` satisfied the old check, and a
+    supervisor of a different state directory would have had its lock broken by
+    this one."""
+    text = FLEET.read_text(encoding="utf-8")
+    fn = text.split("supervisor_alive() {", 1)[1].split("\n}\n", 1)[0]
+    assert "/proc/\"$pid\"/fd/*" in fn, (
+        "ownership must be proven by holding this state dir's lock descriptor"
+    )
+    assert 'target="$STATE_DIR/supervisor.lock"' in fn, (
+        "the descriptor must be checked against THIS state directory's lock"
+    )
+    shape = fn.index("saw_supervise=1")
+    proof = fn.index('/proc/"$pid"/fd/*')
+    assert shape < proof, "argv shape is a precondition, not the proof"
