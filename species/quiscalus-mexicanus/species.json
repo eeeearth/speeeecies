@@ -1,0 +1,627 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Quiscalus mexicanus",
+  "slug": "quiscalus-mexicanus",
+  "common_names": {
+    "en": "great-tailed grackle"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Passeriformes",
+    "family": "Icteridae",
+    "genus": "Quiscalus",
+    "authority": "(Gmelin, 1788)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 9476062,
+    "inat_taxon_id": 9607,
+    "itis_tsn": 179109,
+    "wikidata": "Q1234856"
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "US",
+      "MX",
+      "GT",
+      "BZ",
+      "HN",
+      "NI",
+      "CR",
+      "PA",
+      "CO",
+      "VE",
+      "EC"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Walk",
+      "Fly"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Cup",
+    "perching": true,
+    "size_class": "Small",
+    "mass_kg": 0.19,
+    "mass_range_kg": [
+      0.115,
+      0.265
+    ],
+    "length_m": 0.42,
+    "wingspan_m": 0.53,
+    "lifespan_y": 10,
+    "diet": {
+      "invertebrate": 0.4,
+      "seed": 0.2,
+      "fruit": 0.15,
+      "vertebrate": 0.15,
+      "carrion": 0.1
+    },
+    "social": {
+      "structure": "Flock",
+      "group_size": [
+        10,
+        200
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.3
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.7,
+      "arboreal": 0.3
+    },
+    "shelter_tag": "perch",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.4
+      },
+      {
+        "tag": "seed",
+        "kind": "Herbivory",
+        "weight": 0.2
+      },
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.15
+      },
+      {
+        "tag": "small_vertebrate",
+        "kind": "Predation",
+        "weight": 0.15
+      },
+      {
+        "tag": "carrion",
+        "kind": "Scavenging",
+        "weight": 0.1
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.6
+      },
+      {
+        "tag": "nest_cup",
+        "kind": "Nesting",
+        "weight": 1.0
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Exploiter",
+      "uses_gardens": true,
+      "light_max": 0.9,
+      "road_mortality": "Medium",
+      "notes": "Range has expanded with agricultural and urban settings; communally roosts in trees and commonly forages in parking lots and near food trucks."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "04-01",
+        "end": "07-31",
+        "note": "Mating season usually begins in early or mid-April; nests built near the top of large or medium-sized trees. Dates are a judgement."
+      },
+      {
+        "name": "flocking",
+        "start": "08-01",
+        "end": "03-31",
+        "note": "Communal roosting outside the breeding season; exact boundary dates are a judgement."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg"
+      },
+      {
+        "stage": "Juvenile",
+        "duration_days": 45,
+        "scale": 0.85
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US-OK",
+        "monthly": [
+          0.37,
+          0.36,
+          0.72,
+          0.72,
+          0.61,
+          0.91,
+          0.98,
+          1.0,
+          0.83,
+          0.8,
+          0.45,
+          0.3
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 35237,
+        "sources": [
+          "inat-activity-us-ok",
+          "gbif-activity-us-ok"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 12,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=9607&place_id=12&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=12&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 1602,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.37_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=9476062&gadmGid=USA.37_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.37_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 33635,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "bt-perching-songbird-v1",
+    "params": {
+      "flee_m": 6,
+      "food_tag": "invertebrate",
+      "song": "song",
+      "alarm": "alarm",
+      "nest_m1": 4,
+      "nest_m2": 8
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "song",
+      "context": "Song",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day",
+        "Dusk"
+      ],
+      "cooldown_s": 8,
+      "loudness": "Loud",
+      "description": "Unusually large repertoire ranging from sweet, tinkling notes to a rusty-gate-hinge rasp; males use a wider variety of vocalization types than females."
+    },
+    {
+      "call_id": "chatter",
+      "context": "Chirp",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 6,
+      "loudness": "Moderate",
+      "description": "Low chattering given by females and by birds moving in flocks."
+    },
+    {
+      "call_id": "alarm",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 5,
+      "loudness": "Loud",
+      "description": "Harsh, grating alarm call given when the colony is disturbed."
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.5,
+      "leg_length_ratio": 0.35,
+      "head_scale": 0.85,
+      "neck_angle_deg": 10,
+      "tail_ratio": 1.1,
+      "wing_aspect": 2.6,
+      "beak_ratio": 0.45,
+      "girth_ratio": 1.0
+    },
+    "palette": {
+      "body": "#1a1a2e",
+      "belly": "#2d2d44",
+      "markings": "#0d0d1a",
+      "accent": "#3d3d5c",
+      "eye": "#f5d020"
+    },
+    "part_colors": {
+      "beak": "markings"
+    },
+    "extra_parts": [],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "fly": {},
+      "perched": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/9476062",
+      "title": "GBIF Backbone Taxonomy: Quiscalus mexicanus",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q1234856",
+      "title": "Wikidata: Great-tailed Grackle (Q1234856)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Great-tailed_grackle",
+      "title": "Wikipedia: Great-tailed grackle",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Great-tailed grackle\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=179109",
+      "title": "ITIS: Quiscalus mexicanus, TSN 179109",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "inat-activity-us-ok",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=9607&place_id=12&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Quiscalus mexicanus in US-OK",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-ok",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=9476062&gadmGid=USA.37_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Quiscalus mexicanus in US-OK",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "itis"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "common_names": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "Wikidata P141 = least concern."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Country list derived from the described range: from Minnesota, Oregon and California south through the United States, Mexico and Central America to Venezuela, Colombia and Ecuador."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Walks and runs on the ground while foraging; flies between roosts and foraging sites."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Nest of woven grass and twigs, built near the top of a large or medium-sized tree."
+    },
+    "traits.size_class": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "From mass_kg (< 1 kg)."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Midpoint of the described male 203-265 g and female 115-142 g weights."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Described weights: males 203-265 g, females 115-142 g."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Midpoint of the described 38-46 cm total length."
+    },
+    "traits.wingspan_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Midpoint of the described 48-58 cm wingspan."
+    },
+    "traits.lifespan_y": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "The Wikipedia article gives no lifespan. Set to 10 years as a judgement for a medium-sized passerine, consistent with related icterids; not a sourced figure."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Diverse foraging: larvae and insects from grassy areas, lizards, nestlings and eggs, fruit and grains, tadpoles and fish, dead insects picked off cars. Shares are a judgement from that description."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Highly social: communally roosts in trees or wetland reeds at night and nests in colonies with territorial, residential and transient males."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Forages by day; communally roosts at night."
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Judgement: flocks flee disturbance; considered a pest species by some because of its loud vocalizations."
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Judgement from the described behaviour: bold around people in urban areas, foraging in parking lots and near food trucks."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Forages on the ground in clear areas such as pastures and wetlands; roosts and nests in trees."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Communally roosts in trees or the reeds of wetlands at night."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Weights follow the described diet: insects and larvae, lizards, nestlings and eggs, fruit and grains, carrion from roads; nests in trees."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Range expanded with agricultural and urban settings; common in parking lots and near food trucks."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Resident across the southern and southwestern United States; no migration described for this part of the range."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Mating season beginning in early or mid-April is from Wikipedia; exact phase dates and the flocking window are a judgement."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Incubation 13-14 days plus young leaving the nest 12-17 days after hatching; duration_days and scale are a judgement approximation."
+    },
+    "vocalizations.song": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "vocalizations.chatter": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "vocalizations.alarm": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Alarm-call description authored from the described loud, varied vocalizations; no open source gives the exact call text."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Adult male: iridescent black with a purple-blue sheen on head and upper body, bright yellow eyes and a long keel-shaped tail; female brown. Model follows the male. Proportions are judgement."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared perching-songbird program: invertebrate-based ground foraging, a nest-building window from April, and a moderate flee distance reflecting urban boldness."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies maintainers",
+      "agent": "claude-code"
+    }
+  ]
+}
