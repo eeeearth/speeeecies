@@ -217,6 +217,73 @@ def test_a_github_outage_is_not_reported_as_no_work():
 
 
 
+def test_a_failed_agents_work_is_salvaged_not_deleted():
+    """Teardown promises the branch is kept "for salvage", but --force skipped the
+    uncommitted-changes guard and `worktree remove --force` deleted the files. A
+    locale agent part-way through a dozen species lost all of it, and the retry
+    then reset the branch, so committed work died too."""
+    text = FLEET.read_text(encoding="utf-8")
+    teardown = text.split("cmd_teardown() {", 1)[1].split("\n}\n", 1)[0]
+    rm = teardown.index('worktree remove --force "$wt"')
+    salvage = teardown.find("salvaged uncommitted work from")
+    assert salvage != -1, "teardown never salvages uncommitted work"
+    assert salvage < rm, (
+        "salvage must happen before the worktree is removed, or it salvages nothing"
+    )
+    assert "git add -A" in teardown, "salvage must commit the pending files"
+    assert "could not salvage" in teardown, (
+        "a failed salvage must be reported rather than silently dropping the work"
+    )
+
+
+def test_a_retry_continues_the_branch_instead_of_resetting_it():
+    """FLEET_MAX_ATTEMPTS_LOCALE=5 is pointless if each retry restarts from
+    origin/main. Verified in a scratch repo: `worktree add <path> <branch>` keeps
+    the salvaged commit, `-B <branch> origin/main` discards it."""
+    text = FLEET.read_text(encoding="utf-8")
+    spawn = text.split("cmd_spawn() {", 1)[1].split("\n}\n", 1)[0]
+    assert "resetting branch" not in spawn, "a retry still resets to base and discards work"
+    assert 'worktree_add=(git worktree add "$wpath" "$branch")' in spawn, (
+        "an existing branch must be checked out where it stands"
+    )
+    assert 'worktree_add=(git worktree add -b "$branch" "$wpath" "$BASE_REF")' in spawn, (
+        "a new branch must still start from base"
+    )
+
+
+def test_briefs_name_the_real_status_file_and_forbid_an_in_repo_one():
+    """A STATUS.md was committed on a live branch and would have landed in that
+    pull request. The brief said "your status file" with no path, so agents
+    invented one inside the repo."""
+    for brief in (BRIEF, BRIEF_LOCALE):
+        body = brief.read_text(encoding="utf-8")
+        low = " ".join(body.lower().split())
+        assert "{{STATUSFILE}}" in body, f"{brief.name} does not name a status path"
+        assert "do not create a status file inside the worktree" in low, (
+            f"{brief.name} does not forbid the in-repo status file"
+        )
+        assert "continuing a previous attempt" in low, (
+            f"{brief.name} does not tell a retried agent to continue salvaged work"
+        )
+    text = FLEET.read_text(encoding="utf-8")
+    assert "STATUSFILE=" in text, "render_brief does not supply the status path"
+    assert text.count('"$STATE_DIR/$slug.status.md"') >= 2, (
+        "both the spawn and dry-run render must pass a status path"
+    )
+
+
+def test_a_successful_spawn_is_not_silent():
+    """spawn_err captured stdout and stderr on success and never printed it, so
+    every successful spawn lost its own diagnostics."""
+    text = FLEET.read_text(encoding="utf-8")
+    loop = text.split("cmd_supervise() {", 1)[1]
+    ok = loop.index("live=$(( live + 1 ))")
+    prior = loop[:ok]
+    assert 'printf \'%s\\n\' "$spawn_err"' in prior, (
+        "a successful spawn prints nothing; its output is captured and dropped"
+    )
+
+
 def test_locale_gets_a_larger_retry_budget_than_a_species():
     """A locale is one manifest plus 8-12 species records and a flora catalog, so
     it exhausts an agent's budget far more often. Four locales burned all three
@@ -591,15 +658,21 @@ def test_spawn_retries_a_leftover_branch_instead_of_dying():
     """cmd_spawn is called directly from the refill loop and die() calls exit, so
     dying on a leftover branch ends the whole supervisor. Teardown keeps the
     branch of a no-PR failure on purpose, and the retry filter re-picks exactly
-    those slugs, so this path is reached routinely."""
+    those slugs, so this path is reached routinely.
+
+    This originally reset the branch with -B. That was safe from the supervisor's
+    point of view but destroyed the previous attempt's committed work, so a retry
+    now continues the branch where it stands."""
     text = FLEET.read_text(encoding="utf-8")
-    spawn = text.split("cmd_spawn() {", 1)[1].split("\n}", 1)[0]
+    spawn = text.split("cmd_spawn() {", 1)[1].split("\n}\n", 1)[0]
     assert 'die "branch $branch exists' not in spawn, (
         "an existing branch is a retry, not a fatal collision"
     )
-    assert "branch_flag=-B" in spawn, "a retry must reset the leftover branch"
-    assert 'worktree add "$branch_flag"' in spawn, (
-        "worktree add must use the chosen flag rather than a hardcoded -b"
+    assert "worktree_add=(git worktree add \"$wpath\" \"$branch\")" in spawn, (
+        "an existing branch must be checked out where it stands, not reset"
+    )
+    assert 'show-ref --quiet "refs/heads/$branch"' in spawn, (
+        "the retry must be chosen by testing for the branch, not by a flag"
     )
 
 

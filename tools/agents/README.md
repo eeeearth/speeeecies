@@ -195,6 +195,17 @@ queue on one failure throws away a working issue. Three strikes is a real
 signal: read that agent's log and fix the brief rather than letting the fleet
 churn on it.
 
+A retry **continues** the branch rather than resetting it, and that is the part
+that matters for long runs. When an agent stops without a PR, teardown first
+commits whatever is in the worktree onto the kept branch — otherwise
+`worktree remove --force` deletes uncommitted files and the salvage promise in
+its own message is a lie. The next attempt then checks the branch out where it
+stands and keeps going. Four locales had already exhausted three attempts with
+their work destroyed on each retry, so `FLEET_MAX_ATTEMPTS_LOCALE` defaults to 5
+(`FLEET_MAX_ATTEMPTS` is 3 for species, which usually finish in one). A locale is
+one manifest plus 8 to 12 species records and a flora catalog; the budget follows
+the work, not the other way round.
+
 It does not merge anything.
 
 Two failures it must not confuse. An unreachable GitHub is reported as

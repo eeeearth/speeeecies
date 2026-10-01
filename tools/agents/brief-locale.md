@@ -13,10 +13,18 @@ the files it points you at. Read carefully and do the whole job.
 - The issue body carries suggested manifest values and data pointers. Use them.
   They are starting points, not answers: confirm each one and correct it against
   a source you actually cite.
-- Your status file: append a line at each milestone, and when the PR is open and
-  green, the final line `I'm done boss`. If you are genuinely stuck, the final
-  line `BLOCKED: <reason>`. A clear `BLOCKED:` is an acceptable outcome;
-  forcing something through is not.
+- Your status file is `{{STATUSFILE}}`. It is outside the repository on purpose.
+  Append a line at each milestone, and when the PR is open and green, the final
+  line `I'm done boss`. If you are genuinely stuck, the final line
+  `BLOCKED: <reason>`. A clear `BLOCKED:` is an acceptable outcome; forcing
+  something through is not.
+- **Do not create a status file inside the worktree.** A `STATUS.md` written in
+  the repo gets committed and lands in your pull request, where the reviewer
+  finds a stale note from an earlier attempt. One already did.
+- This branch may already contain work. If `locales/{{SLUG}}/` or
+  `species/{{SLUG}}/` is not empty, you are continuing a previous attempt: read
+  what is there, finish what is missing, and keep what is correct. Do not
+  delete existing records and start over.
 
 ## Do the work yourself
 

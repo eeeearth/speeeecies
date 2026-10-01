@@ -191,7 +191,7 @@ recipe_for_issue() {  # issue -> recipe text on stdout, empty if none
 
 render_brief() {  # issue slug sci regions worktree branch outfile [kind] [template]
   local issue="$1" slug="$2" sci="$3" regions="$4" wpath="$5" branch="$6" out="$7" recipe
-  local kind="${8:-species}" template="${9:-}"
+  local kind="${8:-species}" template="${9:-}" status="${10:-}"
   if [ -z "$template" ]; then
     if [ "$kind" = locale ]; then template="$BRIEF_LOCALE"; else template="$BRIEF_SPECIES"; fi
   fi
@@ -204,6 +204,7 @@ render_brief() {  # issue slug sci regions worktree branch outfile [kind] [templ
   ISSUE="$issue" SLUG="$slug" SCIENTIFIC="$sci" REGIONS="$regions" \
   WORKTREE="$wpath" BRANCH="$branch" BASE_REF="$BASE_REF" REPO="$REPO" \
 GH_REPO="$GH_REPO" VISUAL_CHECK="$VISUAL_CHECK" RECIPE="$recipe" KIND="$kind" \
+    STATUSFILE="$status" \
     python3 -c '
 import os, sys
 tpl, out = sys.argv[1], sys.argv[2]
@@ -382,16 +383,19 @@ cmd_spawn() {
   branch="$BRANCH_PREFIX/$kind-$issue-$slug"
   wpath="$WORKTREE_ROOT/$kind-$slug"
   [ -e "$wpath" ] && die "worktree path already exists: $wpath"
-  # A leftover branch is a retry, not a fatal collision. cmd_spawn is called
-  # directly from the refill loop, so die() here would exit the whole supervisor
-  # and end the fleet permanently. Reset the branch to base and start over.
-  local branch_flag=-b
+  # A leftover branch is a retry, not a fatal collision, and cmd_spawn is called
+  # directly from the refill loop, so a die() here would exit the whole supervisor.
+  # Continue the branch where it stands: a locale can legitimately need several
+  # attempts, and resetting to base discarded everything the previous attempt built.
+  local worktree_add
   if git -C "$REPO" show-ref --quiet "refs/heads/$branch"; then
-    branch_flag=-B
-    say "retrying $slug: resetting branch $branch to $BASE_REF"
+    say "retrying $slug: continuing $branch at $(git -C "$REPO" rev-parse --short "$branch")"
+    worktree_add=(git worktree add "$wpath" "$branch")
+  else
+    worktree_add=(git worktree add -b "$branch" "$wpath" "$BASE_REF")
   fi
 
-  ( cd "$REPO" && git fetch --quiet origin && git worktree add "$branch_flag" "$branch" "$wpath" "$BASE_REF" ) >/dev/null
+  ( cd "$REPO" && git fetch --quiet origin && "${worktree_add[@]}" ) >/dev/null
 
   # Region hints come from the issue body, so the agent does not have to guess.
   local regions
@@ -408,7 +412,8 @@ print(" ".join(re.findall(r"`([A-Z]{2}(?:-[A-Z0-9]{1,3})?)`", m.group(1))) if m 
 b=json.load(sys.stdin)["body"] or ""
 print(" ".join(re.findall(r"\b([A-Z]{2}(?:-[A-Z0-9]{1,3})?)\b", b))[:40])')
 
-  render_brief "$issue" "$slug" "$sci" "$regions" "$wpath" "$branch" "$brief" "$kind" "$brief_tpl"
+  render_brief "$issue" "$slug" "$sci" "$regions" "$wpath" "$branch" "$brief" \
+    "$kind" "$brief_tpl" "$status"
 
   local log="$STATE_DIR/$slug.log" status="$STATE_DIR/$slug.status.md" launch="$STATE_DIR/$slug.launch.sh"
   printf '# %s\nissue: %s\nscientific: %s\nbranch: %s\nworktree: %s\nmodel: %s\nregions: %s\nstarted: %s\n\n' \
@@ -488,6 +493,20 @@ cmd_teardown() {
   if [ "$force" = 0 ] && [ -d "$wt" ] && [ -n "$(git -C "$wt" status --porcelain 2>/dev/null)" ]; then
     say "$wt has uncommitted changes; refusing to tear down. Inspect it, then --force."
     return 1
+  fi
+  # Salvage before destroying. Teardown promises the branch is kept "for salvage",
+  # but worktree remove --force deletes uncommitted files outright, so a locale
+  # agent that got part-way through a dozen species lost all of it. Commit it onto
+  # the branch first: that is what makes the promise true, and it gives the next
+  # attempt something to continue from instead of restarting at zero.
+  if [ -d "$wt" ] && [ -n "$(git -C "$wt" status --porcelain 2>/dev/null)" ]; then
+    if ( cd "$wt" && git add -A && git -c user.email=fleet@localhost \
+           -c user.name=fleet commit -q \
+           -m "fleet: salvage work from an agent that stopped without opening a PR" ) 2>/dev/null; then
+      say "salvaged uncommitted work from $slug onto $br"
+    else
+      say "could not salvage $slug; $wt will be removed with its changes"
+    fi
   fi
   [ -d "$wt" ] && git -C "$REPO" worktree remove --force "$wt"
   git -C "$REPO" worktree prune
@@ -614,6 +633,7 @@ cmd_supervise() {
           row_pick=$(printf '%s\n' "$pick" | awk -F'\t' -v s="$sl" 'NR>1 && $2 != s' | head -1)
           continue
         fi
+        [ -n "$spawn_err" ] && printf '%s\n' "$spawn_err"
         live=$(( live + 1 ))
         row_pick=$(printf '%s\n' "$pick" | awk -F'\t' -v s="$sl" 'NR>1 && $2 != s' | head -1)
       done
@@ -654,7 +674,8 @@ cmd_render_brief() {
   [ "$kind" = species ] && { [ -n "$sci" ] || die "need --scientific for a species"; }
   [ -n "$out" ] || out="/dev/stdout"
   render_brief "$issue" "$slug" "$sci" "$regions" \
-    "$WORKTREE_ROOT/$slug" "$BRANCH_PREFIX/$kind-$issue-$slug" "$out" "$kind"
+    "$WORKTREE_ROOT/$slug" "$BRANCH_PREFIX/$kind-$issue-$slug" "$out" "$kind" "" \
+      "$STATE_DIR/$slug.status.md"
   [ "$out" = "/dev/stdout" ] || say "wrote $out"
 }
 
