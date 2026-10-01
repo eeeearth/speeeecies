@@ -395,6 +395,55 @@
             "gbif"
           ]
         }
+      },
+      {
+        "region": "KR-11",
+        "monthly": [
+          0.56,
+          0.55,
+          0.54,
+          0.65,
+          0.85,
+          0.97,
+          1.0,
+          0.92,
+          0.74,
+          0.69,
+          0.71,
+          0.67
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 11125,
+        "sources": [
+          "inat-activity-kr-11",
+          "gbif-activity-kr-11"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 11005,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=13851&place_id=11005&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=11005&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 712,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "KOR.16_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5231198&gadmGid=KOR.16_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=KOR.16_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 10413,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
       }
     ]
   },
@@ -643,6 +692,24 @@
       "license": "CC-BY-4.0",
       "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
       "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "inat-activity-kr-11",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=13851&place_id=11005&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Passer montanus in KR-11",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-kr-11",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5231198&gadmGid=KOR.16_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Passer montanus in KR-11",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
       "kind": "api"
     }
   ],
