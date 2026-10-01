@@ -1,0 +1,716 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Tamias striatus",
+  "slug": "tamias-striatus",
+  "common_names": {
+    "en": "eastern chipmunk",
+    "fr": "tamias stri\u00e9",
+    "de": "Streifenh\u00f6rnchen"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Mammalia",
+    "order": "Rodentia",
+    "family": "Sciuridae",
+    "genus": "Tamias",
+    "authority": "(Linnaeus, 1758)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2437438,
+    "inat_taxon_id": 46217,
+    "itis_tsn": 180207,
+    "wikidata": "Q692664",
+    "ncbi_taxon_id": 45474
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "US",
+      "CA"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk",
+      "Climb"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Fur",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Burrow",
+    "perching": false,
+    "size_class": "Small",
+    "mass_kg": 0.108,
+    "mass_range_kg": [
+      0.066,
+      0.15
+    ],
+    "length_m": 0.3,
+    "shoulder_height_m": 0.05,
+    "lifespan_y": 3,
+    "diet": {
+      "seed": 0.35,
+      "fruit": 0.2,
+      "browse": 0.2,
+      "invertebrate": 0.25
+    },
+    "social": {
+      "structure": "Solitary",
+      "group_size": [
+        1,
+        2
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.5
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.7,
+      "arboreal": 0.3
+    },
+    "shelter_tag": "burrow",
+    "resources": [
+      {
+        "tag": "seed",
+        "kind": "Herbivory",
+        "weight": 0.35
+      },
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.2
+      },
+      {
+        "tag": "browse",
+        "kind": "Herbivory",
+        "weight": 0.2
+      },
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.2
+      },
+      {
+        "tag": "burrow",
+        "kind": "Shelter",
+        "weight": 0.6
+      },
+      {
+        "tag": "log_pile",
+        "kind": "Shelter",
+        "weight": 0.4
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Exploiter",
+      "uses_gardens": true,
+      "notes": "Lives in deciduous woodland and urban parks across the eastern United States and southern Canada, and prefers rocky areas, brush or log piles and shrubs for cover, so a garden with a woodpile suits it. Readily takes seed from feeders and bird baths."
+    },
+    "density_per_ha": {
+      "min": 0.5,
+      "typical": 5.0,
+      "max": 50.0
+    }
+  },
+  "seasonal": {
+    "strategy": "Hibernation",
+    "phases": [
+      {
+        "name": "mating",
+        "start": "02-01",
+        "end": "04-30",
+        "note": "The first of two breeding seasons, February to April."
+      },
+      {
+        "name": "mating",
+        "start": "06-01",
+        "end": "08-31",
+        "note": "The second breeding season, June to August."
+      },
+      {
+        "name": "young",
+        "start": "04-01",
+        "end": "09-30",
+        "note": "Females usually produce one or two litters of three to five young; pups stay with their mother for around six to eight weeks."
+      },
+      {
+        "name": "dormancy",
+        "start": "11-01",
+        "end": "03-15",
+        "note": "During the winter the chipmunk may enter long periods of hibernation, breaking between torpor bouts to feed on stores."
+      },
+      {
+        "name": "caching",
+        "start": "09-01",
+        "end": "11-15",
+        "note": "Food is transported in the cheek pouches and buried in the shallow underground stores that carry the animal through winter."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Juvenile",
+        "duration_days": 252,
+        "scale": 0.55,
+        "requires_tag": "burrow"
+      },
+      {
+        "stage": "Adult"
+      }
+    ],
+    "triggers": {
+      "enter": {
+        "temperature_below_c": 2,
+        "days": 5
+      },
+      "exit": {
+        "temperature_above_c": 5,
+        "days": 3
+      }
+    }
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US-NC",
+        "monthly": [
+          0.14,
+          0.19,
+          0.19,
+          0.65,
+          0.76,
+          0.61,
+          0.33,
+          0.34,
+          0.81,
+          1.0,
+          0.44,
+          0.1
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 3256,
+        "sources": [
+          "inat-activity-us-nc",
+          "gbif-activity-us-nc"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 30,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=46217&place_id=30&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=30&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 1660,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "C",
+            "area": [
+              "gadmGid",
+              "USA.34_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2437438&gadmGid=USA.34_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.34_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "total": 1596,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-ground-forager-v1",
+    "params": {
+      "food_tag": "seed",
+      "flee_m": 8,
+      "calm_m": 15,
+      "food_m": 20,
+      "flee_gait": "walk",
+      "forage_gait": "walk",
+      "rest_sun_lo_deg": -90,
+      "rest_sun_hi_deg": -6
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "chip",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 10,
+      "loudness": "Moderate",
+      "description": "The sharp, repeated 'chip' that gives the animal its name; one of five stereotyped sounds in the species' repertoire, given at an alarming stimulus and often followed by a dart into the nearest cover."
+    },
+    {
+      "call_id": "chuck",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 10,
+      "loudness": "Moderate",
+      "description": "A lower, gurgling 'chuck', the second of the five stereotyped calls, given when the animal is wary but not yet fleeing."
+    },
+    {
+      "call_id": "trill",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 15,
+      "loudness": "Loud",
+      "description": "A trill measured at about 130 trills per minute, used in alarm and in territorial and courtship interactions."
+    },
+    {
+      "call_id": "whistle",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 20,
+      "loudness": "Moderate",
+      "description": "A high-pitched whistle or squeal, one of the five stereotyped calls, used as a contact and courtship call between adults."
+    },
+    {
+      "call_id": "chatter",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 12,
+      "loudness": "Moderate",
+      "description": "The fifth stereotyped sound: a rapid chatter given in close social encounters, chiefly between a mother and her pups and between courting adults."
+    }
+  ],
+  "look": {
+    "body_plan": "quadruped",
+    "proportions": {
+      "torso_aspect": 1.75,
+      "leg_length_ratio": 0.3,
+      "head_scale": 0.85,
+      "neck_angle_deg": 12,
+      "tail_ratio": 0.85,
+      "ear_ratio": 0.4,
+      "beak_ratio": 0.2,
+      "girth_ratio": 0.9
+    },
+    "palette": {
+      "body": "#a9764b",
+      "belly": "#e3d6bb",
+      "markings": "#3d2a1c",
+      "accent": "#c9973f",
+      "eye": "#14100c"
+    },
+    "part_colors": {
+      "snout": "belly",
+      "tail": "accent",
+      "ear_*": "body",
+      "leg_*": "belly"
+    },
+    "extra_parts": [
+      {
+        "name": "back_stripes",
+        "parent": "body",
+        "offset": [
+          0,
+          0.44,
+          0
+        ],
+        "size": [
+          1.55,
+          0.12,
+          0.32
+        ],
+        "color": "markings",
+        "mirror": true
+      },
+      {
+        "name": "cheek_stripe",
+        "parent": "head",
+        "offset": [
+          0.28,
+          0.05,
+          0.4
+        ],
+        "size": [
+          0.5,
+          0.22,
+          0.12
+        ],
+        "color": "accent",
+        "mirror": true
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2437438",
+      "title": "GBIF Backbone Taxonomy: Tamias striatus",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q692664",
+      "title": "Wikidata: eastern chipmunk (Q692664)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Eastern_chipmunk",
+      "title": "Wikipedia: Eastern chipmunk",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Eastern chipmunk\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=180207",
+      "title": "ITIS: Tamias striatus, TSN 180207",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "pantheria",
+      "url": "https://esapubs.org/archive/ecol/E090/184/PanTHERIA_1-0_WR05_Aug2008.txt",
+      "title": "PanTHERIA 1.0: species-level life history, ecology and geography of extant mammals",
+      "license": "CC-BY-4.0",
+      "kind": "dataset",
+      "accessed": "2026-10-01",
+      "attribution": "Jones, K. E. et al. (2009) PanTHERIA. Ecology 90:2648",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "inat-activity-us-nc",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=46217&place_id=30&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Tamias striatus in US-NC",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-nc",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2437438&gadmGid=USA.34_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+      "title": "GBIF occurrence search for Tamias striatus in US-NC",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "itis"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "GBIF usage key 2437438 from the GBIF backbone match; NCBI taxon id via Wikidata P685."
+    },
+    "common_names": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "Wikidata P141 = least concern (Q211005). The IUCN Red List page itself is not openly licensed, so it is not cited."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Wikipedia's Habitat section: 'lives in deciduous wooded areas and urban parks throughout the eastern United States and southern Canada'. No introduced range is described, so none is listed."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'The eastern chipmunk can climb trees well, but constructs underground nests.' Walk and Climb are the two modes the schema offers for a small terrestrial-arboreal rodent."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Climbs and sits on stumps, logs and low branches, but does not grip a perch with its feet the way a bird does; set to false."
+    },
+    "traits.size_class": {
+      "sources": [
+        "wikipedia",
+        "pantheria"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg: 108 g falls in the schema's 'Small' band (below 1 kg)."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia",
+        "pantheria"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Midpoint of Wikipedia's stated adult weight range 66-150 g. PanTHERIA carries no AdultBodyMass for this species (-999), but its AdultHeadBodyLen_mm 146.47 mm is used for length_m."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Wikipedia's 66-150 g (2.3-5.3 oz) converted to kilograms."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia",
+        "pantheria"
+      ],
+      "confidence": "High",
+      "note": "Wikipedia gives 'about 30 cm (12 in) in length including the tail'; PanTHERIA AdultHeadBodyLen_mm 146.47 mm is consistent with that once the bushy tail is added."
+    },
+    "traits.shoulder_height_m": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: no open source gives a standing/shoulder height for this species. Estimated at 5 cm from a 14.6 cm head-body length (PanTHERIA) and the low-slung build of a burrowing chipmunk; the same convention as apodemus-sylvaticus in this repository."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'On average, eastern chipmunks live three or more years in the wild, but in captivity they may live as long as eight years.' The wild figure is used."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Wikipedia's Diet section: 'It prefers bulbs, seeds, fruits, nuts, green plants, mushrooms, insects, worms, and bird eggs.' Seed takes the largest share because the cheek-pouch transport and the winter stores described under Lifecycle are seed- and nut-based; browse covers bulbs and green plants; invertebrate covers insects and worms; fruit covers fruits and mushrooms. Bird eggs are recorded qualitatively in the Locomotion/Burrow-adjacent prose and left out of the fractions."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'The eastern chipmunk defends its burrow and lives a solitary life, except during mating season ... Members of the species interact with each other only while courting and mating, and for the period that pups spend with their mothers after birth, typically around six to eight weeks.' Group size 2 allows a mother with a single pup."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'The chipmunk is mainly active during the day, spending most of its day foraging.'"
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Wikipedia's Predators section lists hawks, owls, foxes, raccoons, snakes, weasels, coyotes, bobcats, lynx and domestic cats and dogs; the chipmunk's response is to flee to its burrow or the nearest cover rather than to freeze or fight."
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: mid-range. Bold in parks and gardens where it habituates to people and feeds openly, but a prey species for many predators, so not at the low end of the scale."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Ground share is the majority because the animal constructs 'underground nests with extensive tunnel systems, often with several entrances' and forages on the ground all day; the arboreal share reflects that it 'can climb trees well' and takes food from shrubs and low canopy."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Food weights follow traits.diet. The burrow and log-pile shelter weights are judgement: Wikipedia names burrows as the animal's own construction and 'rocky areas, brush or log piles, and shrubs to provide cover' as the habitat features it prefers, without ranking them."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Wikipedia's Habitat section places it in 'deciduous wooded areas and urban parks', and its Diet section describes transporting food in cheek pouches, which is the behaviour that makes it a fixture at feeders."
+    },
+    "habitat.density_per_ha": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement. No open source found gives a population density for this species and PanTHERIA records none (-999), so this is an authored band consistent with a solitary, territorial burrower: burrows are defended and spaced out, which caps local density well below that of sciurus-carolinensis."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'During the winter, the chipmunk may enter long periods of hibernation.'"
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Both breeding seasons (February-April and June-August), litter size of three to five young, and the six-to-eight-week period pups spend with the mother are from the Lifecycle section; the winter hibernation window is from the same section, dated to November to mid-March as an authored approximation of 'during the winter'. The caching window is judgement, tied to the cheek-pouch transport described under Diet."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Juvenile duration 252 days, after which the animal is a full-sized adult; 'The chipmunk's appearance remains consistent throughout life' supports the modest 0.55 scale for the first months rather than a nestling-like look."
+    },
+    "vocalizations": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Wikipedia's Behavior section quotes the five stereotyped sounds of the repertoire - 'the chip, the chuck, the trills, the whistle or squeal, and chatter' - and gives the trill rate as 130 per minute. Which of the five belongs to which context is authored judgement from the descriptions of the calls' use; time windows and cooldowns are also authored, since no open source quantifies them. No frequency bands are given, so freq_hz is omitted."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Palette and stripes follow Wikipedia's Description section: 'reddish-brown fur on its upper body and five dark brown stripes contrasting with light brown stripes along its back, ending in a dark tail', lighter fur below, a tawny stripe from the whiskers to below the ears and light stripes over the eyes. The five back stripes and the cheek stripe are drawn as extra_parts because the quadruped plan has no stripe part; proportions are authored judgement for a small, short-legged, big-headed rodent with a bushy tail."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared ground-forager program. rest_sun_lo_deg/rest_sun_hi_deg set to -90/-6 per the program's description for a diurnal species (rests while the sun is below the horizon). food_tag seed follows the largest diet fraction; flee/food radii are judgement, scaled down from the fox example for a 108 g animal."
+    },
+    "seasonal.triggers": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored temperatures and day counts; no open source gives thresholds (the same convention as the common toad and European hedgehog records). Wikipedia says only that the chipmunk 'may enter long periods of hibernation' during winter; the figures bracket the months when the ground at Boone's elevation stays near freezing."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies fleet",
+      "agent": "opencode"
+    }
+  ]
+}
