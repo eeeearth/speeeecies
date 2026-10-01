@@ -540,7 +540,7 @@ cmd_supervise() {
     # burned FLEET_MAX_ATTEMPTS tries, so a flaky model route or a dropped
     # connection does not retire an issue for the life of the queue, while a
     # genuinely broken issue still stops being retried.
-    local live pick row_pick n sl ti sc
+    local live pick row_pick n sl ti sc spawn_err zen_n go_n
     # Count via array glob, not `ls "$STATE_DIR"/*.meta`. nullglob is set above,
     # so an unmatched glob expands to zero words and bare `ls` would list the
     # current directory instead, reporting the repo root's entry count as the
@@ -591,18 +591,38 @@ cmd_supervise() {
                | python3 -c 'import json,sys;t=json.load(sys.stdin)["title"];print(t[t.rindex("(")+1:-1].strip() if "(" in t else "")' 2>/dev/null || true)
           [ -n "$sc" ] || sc="$ti"
         fi
-        ( cmd_spawn --issue "$n" --slug "$sl" --scientific "$sc" --kind "$kind" ) || break
+        # A refused spawn must not leave the fleet reporting OK below its floor,
+        # and it must not block every later candidate behind one bad issue. An
+        # unreachable GitHub is the exception: nothing after it will spawn either,
+        # so stop the pass rather than walk the whole queue.
+        if ! spawn_err=$( ( cmd_spawn --issue "$n" --slug "$sl" \
+                                   --scientific "$sc" --kind "$kind" ) 2>&1 ); then
+          fleet_state=REFILL_FAILED
+          echo "[$(date -u +%FT%TZ)] spawn refused for $sl (issue $n): $spawn_err"
+          case "$spawn_err" in
+            *nreachable*|*"cannot verify"*)
+              fleet_state=GH_UNREACHABLE
+              break ;;
+          esac
+          row_pick=$(printf '%s\n' "$pick" | awk -F'\t' -v s="$sl" 'NR>1 && $2 != s' | head -1)
+          continue
+        fi
         live=$(( live + 1 ))
         row_pick=$(printf '%s\n' "$pick" | awk -F'\t' -v s="$sl" 'NR>1 && $2 != s' | head -1)
       done
     fi
-    local zen_n go_n
+    # Invariant, applied last: never report OK while below the floor, whatever
+    # path got us here. This is the check a future edit cannot quietly bypass.
+    if [ "$live" -lt "$FLEET_MIN" ] && [ "$fleet_state" = OK ]; then
+      fleet_state=BELOW_FLOOR
+    fi
     zen_n=$(awk '$1=="zen" {print $2}' "$STATE_DIR/provider_counts" 2>/dev/null | tail -1) || true
     go_n=$(awk '$1=="go" {print $2}' "$STATE_DIR/provider_counts" 2>/dev/null | tail -1) || true
     printf 'live=%s floor=%s max=%s state=%s zen=%s go=%s at=%s\n' \
       "$live" "$FLEET_MIN" "$FLEET_MAX" "$fleet_state" "${zen_n:-0}" "${go_n:-0}" \
       "$(date -u +%FT%TZ)" > "$STATE_DIR/heartbeat"
     prev_state=$fleet_state
+
     echo "[$(date -u +%FT%TZ)] fleet=$live (min $FLEET_MIN max $FLEET_MAX) state=$fleet_state next-model=$(next_model)"
     [ "$once" = 1 ] && return 0
     sleep "$POLL_SECONDS"

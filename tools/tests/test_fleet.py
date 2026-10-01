@@ -217,6 +217,39 @@ def test_a_github_outage_is_not_reported_as_no_work():
 
 
 
+def test_a_refused_spawn_cannot_leave_the_fleet_reporting_ok():
+    """`( cmd_spawn ... ) || break` ended the refill pass without touching the
+    state, so a refused spawn left `live=0` and `state=OK` — the fleet claiming
+    to be healthy while nothing was running. Exercised with a stub gh: the old
+    code wrote `fleet=0 (min 1 max 1) state=OK`."""
+    text = FLEET.read_text(encoding="utf-8")
+    loop = text.split("cmd_supervise() {", 1)[1]
+    refill = loop.split('while [ -n "$row_pick" ]', 1)[1].split("\n      done", 1)[0]
+    assert "|| break" not in refill, (
+        "a refused spawn still aborts the pass and blocks every later candidate"
+    )
+    assert "REFILL_FAILED" in refill, "a refused spawn must change the reported state"
+    assert "continue" in refill, (
+        "a per-candidate refusal must fall through to the next candidate"
+    )
+    assert "*nreachable*" in refill, (
+        "a GitHub outage must break the pass instead of walking the whole queue"
+    )
+
+    # The invariant is the backstop: applied after refill, before the heartbeat.
+    inv = re.search(
+        r'if \[ "\$live" -lt "\$FLEET_MIN" \] && \[ "\$fleet_state" = OK \]; then\s*\n\s*fleet_state=BELOW_FLOOR',
+        loop,
+    )
+    assert inv, "missing the below-floor invariant"
+    assert loop.index("BELOW_FLOOR") < loop.index('> "$STATE_DIR/heartbeat"'), (
+        "the invariant must run before the heartbeat is written, or it guards nothing"
+    )
+    assert loop.index("BELOW_FLOOR") > loop.index('while [ -n "$row_pick" ]'), (
+        "the invariant must run after the refill attempt, not before"
+    )
+
+
 def test_supervisor_state_survives_the_first_starved_poll():
     """prev_state was declared without a value and dereferenced under `set -u` on
     the first starved poll, so the supervisor died exactly when it had nothing to
