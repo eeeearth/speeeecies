@@ -48,7 +48,7 @@
     "metamorphosis": "None",
     "nest_type": "Ground",
     "perching": true,
-    "size_class": "Small",
+    "size_class": "Tiny",
     "mass_kg": 0.037,
     "mass_range_kg": [
       0.03,
@@ -177,21 +177,21 @@
       {
         "region": "US-NC",
         "monthly": [
-          0.0,
-          0.0,
-          0.0,
-          0.0,
-          0.0,
-          0.0,
-          0.0,
-          0.0,
-          0.0,
-          0.0,
-          0.0,
-          0.0
+          0.55,
+          0.66,
+          0.92,
+          0.97,
+          0.68,
+          0.92,
+          1.0,
+          0.64,
+          0.41,
+          0.59,
+          0.52,
+          0.53
         ],
         "method": "mean(inat_share, gbif_share)",
-        "observations": 0,
+        "observations": 540733,
         "sources": [
           "inat-activity-us-nc",
           "gbif-activity-us-nc"
@@ -203,8 +203,8 @@
             "place_id": 30,
             "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=9424&place_id=30&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
             "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=30&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
-            "total": 0,
-            "usable": false
+            "total": 340,
+            "usable": true
           },
           "gbif": {
             "tier": "A",
@@ -214,8 +214,8 @@
             ],
             "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2491205&gadmGid=USA.34_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
             "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.34_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
-            "total": 0,
-            "usable": false
+            "total": 540393,
+            "usable": true
           },
           "used": [
             "inat",
@@ -302,8 +302,7 @@
     },
     "part_colors": {
       "head": "body",
-      "breast": "body",
-      "belly": "belly",
+      "breast": "belly",
       "tail": "markings",
       "wing_*": "markings",
       "beak": "accent",
@@ -321,7 +320,8 @@
         "size": [
           0.3,
           0.5,
-          0.4],
+          0.4
+        ],
         "color": "accent",
         "mirror": true
       }
@@ -497,7 +497,7 @@
       ],
       "confidence": "High",
       "derived": true,
-      "note": "From mass_kg (30-45 g)."
+      "note": "From mass_kg: 37 g is in the schema's 'Tiny' band, the same band as the other small passerines in this repo (junco-hyemalis 21 g, passer-domesticus 30 g)."
     },
     "traits.mass_kg": {
       "sources": [
