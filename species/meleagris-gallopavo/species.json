@@ -1,0 +1,602 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Meleagris gallopavo",
+  "slug": "meleagris-gallopavo",
+  "common_names": {
+    "en": "Wild Turkey"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Galliformes",
+    "family": "Phasianidae",
+    "genus": "Meleagris",
+    "authority": "Linnaeus, 1758",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 9606290,
+    "inat_taxon_id": 906,
+    "wikidata": "Q26844"
+  },
+  "range": {
+    "native": [
+      "US",
+      "MX",
+      "CA"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Walk",
+      "Fly"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Ground",
+    "perching": true,
+    "size_class": "Medium",
+    "mass_kg": 5.5,
+    "mass_range_kg": [
+      3.0,
+      10.0
+    ],
+    "length_m": 1.1,
+    "wingspan_m": 1.5,
+    "lifespan_y": 4,
+    "diet": {
+      "mast": 0.4,
+      "seed": 0.2,
+      "invertebrate": 0.25,
+      "browse": 0.15
+    },
+    "social": {
+      "structure": "Group",
+      "group_size": [
+        5,
+        30
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.7
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.8,
+      "arboreal": 0.2
+    },
+    "shelter_tag": "perch",
+    "resources": [
+      {
+        "tag": "mast",
+        "kind": "Herbivory",
+        "weight": 0.4
+      },
+      {
+        "tag": "seed",
+        "kind": "Herbivory",
+        "weight": 0.2
+      },
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.25
+      },
+      {
+        "tag": "browse",
+        "kind": "Herbivory",
+        "weight": 0.15
+      },
+      {
+        "tag": "nest_ground",
+        "kind": "Nesting",
+        "weight": 1.0
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.9
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": false,
+      "light_max": 0.5,
+      "notes": "Lives in open woodland and forest edges; roosts in trees at night and forages on the ground by day."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "03-01",
+        "end": "06-30",
+        "region": "US-TN",
+        "note": "Males gobble and display from March; hens nest on the ground."
+      },
+      {
+        "name": "flocking",
+        "start": "08-01",
+        "end": "02-28",
+        "note": "Forms large winter flocks, often single-sex."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg"
+      },
+      {
+        "stage": "Juvenile",
+        "duration_days": 120,
+        "scale": 0.6
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-ground-forager-v1",
+    "params": {
+      "flee_m": 40,
+      "calm_m": 80,
+      "food_tag": "mast",
+      "food_m": 60,
+      "flee_gait": "walk",
+      "forage_gait": "walk",
+      "rest_sun_lo_deg": -90,
+      "rest_sun_hi_deg": -6
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "gobble",
+      "context": "Song",
+      "season_months": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "time_windows": [
+        "DawnChorus",
+        "Day"
+      ],
+      "cooldown_s": 25,
+      "loudness": "Loud",
+      "description": "The loud, far-carrying 'gobble-gobble-gobble' of a male, given from the ground or a roost in spring."
+    },
+    {
+      "call_id": "yelp",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 12,
+      "loudness": "Moderate",
+      "description": "Soft 'yelp-yelp-yelp' contact call of hens and young, used to keep a flock together."
+    },
+    {
+      "call_id": "putt",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 8,
+      "loudness": "Moderate",
+      "description": "Sharp, staccato 'putt' or 'kut' alarm note given when a flock is disturbed."
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.9,
+      "leg_length_ratio": 0.45,
+      "head_scale": 0.5,
+      "neck_angle_deg": 25,
+      "tail_ratio": 0.7,
+      "wing_aspect": 2.6,
+      "beak_ratio": 0.3,
+      "girth_ratio": 1.3
+    },
+    "palette": {
+      "body": "#4a3a2a",
+      "belly": "#2a2018",
+      "markings": "#8a6a4a",
+      "accent": "#c0392b",
+      "eye": "#111111"
+    },
+    "part_colors": {
+      "head": "accent",
+      "breast": "markings",
+      "beak": "markings",
+      "leg_*": "markings",
+      "snood": "accent",
+      "beard": "markings"
+    },
+    "extra_parts": [
+      {
+        "name": "snood",
+        "parent": "head",
+        "offset": [
+          0.35,
+          0.15,
+          0
+        ],
+        "size": [
+          0.25,
+          0.5,
+          0.2
+        ],
+        "color": "accent",
+        "mirror": false
+      },
+      {
+        "name": "beard",
+        "parent": "breast",
+        "offset": [
+          0.3,
+          -0.3,
+          0
+        ],
+        "size": [
+          0.2,
+          0.7,
+          0.25
+        ],
+        "color": "markings",
+        "mirror": false
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "fly": {},
+      "glide": {},
+      "perched": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/9606290",
+      "title": "GBIF Backbone Taxonomy: Meleagris gallopavo",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q26844",
+      "title": "Wikidata: Wild Turkey (Q26844)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Wild_turkey",
+      "title": "Wikipedia: Wild Turkey",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Wild Turkey\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "eltontraits",
+      "url": "https://doi.org/10.6084/m9.figshare.3559887.v1",
+      "title": "EltonTraits 1.0: species-level foraging attributes of the world's birds and mammals (BirdFuncDat)",
+      "license": "CC0-1.0",
+      "kind": "dataset",
+      "accessed": "2026-10-01",
+      "attribution": "Wilman, H. et al. (2014) EltonTraits 1.0. Ecology 95:2027",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "avonet",
+      "url": "https://doi.org/10.6084/m9.figshare.16586228",
+      "title": "AVONET: morphological, ecological and geographical data for all birds",
+      "license": "CC-BY-4.0",
+      "kind": "dataset",
+      "accessed": "2026-10-01",
+      "attribution": "Tobias, J. A. et al. (2022) AVONET. Ecology Letters 25:581-597",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "iNaturalist and Wikidata ids from GBIF match and Wikidata."
+    },
+    "common_names": {
+      "sources": [
+        "wikidata",
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "Wikidata P141 = least concern (Q211005)."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Country list derived from 'North America, from Mexico to Canada' in Wikipedia."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Walks and runs on the ground; flies in short bursts to roost and escape."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Roosts in trees at night; does not perch like a songbird."
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Nests in a shallow scrape on the ground."
+    },
+    "traits.size_class": {
+      "sources": [
+        "eltontraits"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "eltontraits",
+        "avonet"
+      ],
+      "confidence": "High",
+      "note": "BodyMass ~5.5 kg in both datasets (male ~8 kg, female ~3.5 kg)."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "3-10 kg."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of 80-125 cm."
+    },
+    "traits.wingspan_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of 130-170 cm."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Up to 4-5 years in the wild."
+    },
+    "traits.diet": {
+      "sources": [
+        "eltontraits",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "EltonTraits Diet-Mast 40, Diet-Seed 20, Diet-Inv 25, Diet-PlantO 15; Wikipedia confirms acorns, seeds, insects and greens."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Flocks of 5-30 outside breeding, often single-sex."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "eltontraits",
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.defense": {
+      "sources": [],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Authored: runs or flies to cover."
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Very wary; flushes at approaching people."
+    },
+    "habitat.use": {
+      "sources": [
+        "eltontraits"
+      ],
+      "confidence": "High",
+      "note": "ForStrat-ground 80, ForStrat-understory 20 (understory mapped to arboreal)."
+    },
+    "habitat.shelter_tag": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored: roosts in trees."
+    },
+    "habitat.resources": {
+      "sources": [
+        "eltontraits",
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Acorns, seeds, insects and greens all year; ground nests and tree roosts from Wikipedia."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Open woodland and forest edges from Wikipedia; light_max authored."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Year-round resident; non-migratory."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Breeding and winter flocking from Wikipedia; dates are judgements for Tennessee."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Juvenile period ~4 months; scale authored."
+    },
+    "vocalizations.gobble": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "vocalizations.yelp": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "vocalizations.putt": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Dark bronze plumage, red head and neck, beard and snood from Wikipedia; proportions and extra parts authored."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared ground-forager program, used for a heavy ground-foraging bird that walks and roosts in trees."
+    }
+  },
+  "contributors": [
+    {
+      "name": "Sisyphus agent",
+      "agent": "claude-code"
+    }
+  ],
+  "conservation": {
+    "iucn": "LC"
+  }
+}

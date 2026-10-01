@@ -1,0 +1,573 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Strix varia",
+  "slug": "strix-varia",
+  "common_names": {
+    "en": "Barred Owl"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Strigiformes",
+    "family": "Strigidae",
+    "genus": "Strix",
+    "authority": "Barton, 1799",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2497541,
+    "inat_taxon_id": 19893,
+    "wikidata": "Q630457"
+  },
+  "range": {
+    "native": [
+      "US",
+      "CA",
+      "MX"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Hop",
+      "Fly"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Cavity",
+    "perching": true,
+    "size_class": "Small",
+    "mass_kg": 0.78,
+    "mass_range_kg": [
+      0.63,
+      1.05
+    ],
+    "length_m": 0.51,
+    "wingspan_m": 1.07,
+    "lifespan_y": 10,
+    "diet": {
+      "vertebrate": 0.85,
+      "invertebrate": 0.15
+    },
+    "social": {
+      "structure": "Pair",
+      "group_size": [
+        2,
+        2
+      ]
+    },
+    "activity_pattern": "Nocturnal",
+    "defense": "Flee",
+    "wariness": 0.5
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.1,
+      "arboreal": 0.9
+    },
+    "shelter_tag": "cavity",
+    "resources": [
+      {
+        "tag": "vertebrate",
+        "kind": "Predation",
+        "weight": 0.85
+      },
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.15
+      },
+      {
+        "tag": "cavity",
+        "kind": "Nesting",
+        "weight": 1.0
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.9
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "light_max": 0.4,
+      "notes": "Lives in mature forest and wooded suburbs; hunts from a perch and nests in tree cavities."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "01-01",
+        "end": "05-31",
+        "region": "US-TN",
+        "note": "Nests very early, January to March; one brood."
+      },
+      {
+        "name": "territorial",
+        "start": "08-01",
+        "end": "12-31",
+        "note": "Pairs defend a year-round territory; hooting peaks in late winter."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg"
+      },
+      {
+        "stage": "Juvenile",
+        "duration_days": 90,
+        "scale": 0.85
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-nocturnal-owl-v1",
+    "params": {
+      "flee_m": 15,
+      "calm_m": 30,
+      "food_tag": "vertebrate",
+      "food_m": 40,
+      "hoot_m1": 1,
+      "hoot_m2": 4
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "hoot",
+      "context": "Hoot",
+      "season_months": [
+        1,
+        2,
+        3,
+        4,
+        10,
+        11,
+        12
+      ],
+      "time_windows": [
+        "Dusk",
+        "Night"
+      ],
+      "cooldown_s": 30,
+      "loudness": "Loud",
+      "description": "The classic 'who cooks for you, who cooks for you-all' series of 8-9 hoots, given by both sexes."
+    },
+    {
+      "call_id": "call",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [
+        "Night"
+      ],
+      "cooldown_s": 20,
+      "loudness": "Moderate",
+      "description": "Barking 'hoo-hoo' and 'hoo-aw' calls between a pair, and a rising 'hoo-aw' given in flight."
+    },
+    {
+      "call_id": "alarm",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Night"
+      ],
+      "cooldown_s": 10,
+      "loudness": "Loud",
+      "description": "Maniacal, screaming cackle and 'kak-kak-kak' given at predators near the nest."
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.6,
+      "leg_length_ratio": 0.25,
+      "head_scale": 0.95,
+      "neck_angle_deg": 5,
+      "tail_ratio": 0.5,
+      "wing_aspect": 3.4,
+      "beak_ratio": 0.35,
+      "girth_ratio": 1.25
+    },
+    "palette": {
+      "body": "#7a6a58",
+      "belly": "#d8cfc0",
+      "markings": "#3a2f26",
+      "accent": "#d8b840",
+      "eye": "#1a1a1a"
+    },
+    "part_colors": {
+      "breast": "belly",
+      "beak": "accent",
+      "leg_*": "markings",
+      "wing_*": "body",
+      "facial_disc": "belly"
+    },
+    "extra_parts": [
+      {
+        "name": "facial_disc",
+        "parent": "head",
+        "offset": [
+          0,
+          0.1,
+          0
+        ],
+        "size": [
+          1.1,
+          0.9,
+          1.0
+        ],
+        "color": "belly",
+        "mirror": false
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "hop": {},
+      "fly": {},
+      "glide": {},
+      "perched": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2497541",
+      "title": "GBIF Backbone Taxonomy: Strix varia",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q630457",
+      "title": "Wikidata: Barred Owl (Q630457)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Barred_owl",
+      "title": "Wikipedia: Barred Owl",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Barred Owl\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "eltontraits",
+      "url": "https://doi.org/10.6084/m9.figshare.3559887.v1",
+      "title": "EltonTraits 1.0: species-level foraging attributes of the world's birds and mammals (BirdFuncDat)",
+      "license": "CC0-1.0",
+      "kind": "dataset",
+      "accessed": "2026-10-01",
+      "attribution": "Wilman, H. et al. (2014) EltonTraits 1.0. Ecology 95:2027",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "avonet",
+      "url": "https://doi.org/10.6084/m9.figshare.16586228",
+      "title": "AVONET: morphological, ecological and geographical data for all birds",
+      "license": "CC-BY-4.0",
+      "kind": "dataset",
+      "accessed": "2026-10-01",
+      "attribution": "Tobias, J. A. et al. (2022) AVONET. Ecology Letters 25:581-597",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "iNaturalist and Wikidata ids from GBIF match and Wikidata."
+    },
+    "common_names": {
+      "sources": [
+        "wikidata",
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "Wikidata P141 = least concern (Q211005)."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Country list derived from 'eastern North America and the Pacific Northwest' in Wikipedia."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Hops on the ground and flies between perches."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Nests in tree cavities, often an old woodpecker hole."
+    },
+    "traits.size_class": {
+      "sources": [
+        "eltontraits"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "eltontraits",
+        "avonet"
+      ],
+      "confidence": "High",
+      "note": "BodyMass ~780 g in both datasets."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "630-1050 g."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of 40-63 cm."
+    },
+    "traits.wingspan_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of 101-112 cm."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Up to 10 years in the wild."
+    },
+    "traits.diet": {
+      "sources": [
+        "eltontraits",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "EltonTraits Diet-Vend 85, Diet-Inv 15; Wikipedia confirms mice, voles, shrews, birds and insects."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Monogamous pairs; year-round territory."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "eltontraits",
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.defense": {
+      "sources": [],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Authored: flies to cover."
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Fairly tame in suburban woodland; hoots betray presence."
+    },
+    "habitat.use": {
+      "sources": [
+        "eltontraits"
+      ],
+      "confidence": "High",
+      "note": "ForStrat-ground 10, ForStrat-understory 90 (understory mapped to arboreal)."
+    },
+    "habitat.shelter_tag": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored: cavity nester and rooster."
+    },
+    "habitat.resources": {
+      "sources": [
+        "eltontraits",
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Small mammals and birds all year; insects in summer; nest cavities from Wikipedia."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Mature forest and wooded suburbs from Wikipedia; light_max authored."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Year-round resident; non-migratory."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Early breeding and year-round territoriality from Wikipedia; dates are judgements for Tennessee."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Juvenile period ~3 months; scale authored."
+    },
+    "vocalizations.hoot": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "vocalizations.call": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "vocalizations.alarm": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Brown-grey barred plumage, dark eyes, yellow beak and facial disc from Wikipedia; proportions and facial disc authored."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored bespoke program fsm-nocturnal-owl-v1: roosts by day, hunts small vertebrates at night, hoots in the breeding months."
+    }
+  },
+  "contributors": [
+    {
+      "name": "Sisyphus agent",
+      "agent": "claude-code"
+    }
+  ],
+  "conservation": {
+    "iucn": "LC"
+  }
+}

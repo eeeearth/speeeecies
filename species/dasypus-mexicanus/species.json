@@ -1,0 +1,582 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Dasypus novemcinctus",
+  "slug": "dasypus-mexicanus",
+  "common_names": {
+    "en": "Nine-banded Armadillo"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Mammalia",
+    "order": "Cingulata",
+    "family": "Dasypodidae",
+    "genus": "Dasypus",
+    "authority": "Linnaeus, 1758",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2440779,
+    "inat_taxon_id": 1647419,
+    "wikidata": "Q649549"
+  },
+  "range": {
+    "native": [
+      "US",
+      "MX",
+      "GT",
+      "BZ",
+      "SV",
+      "HN",
+      "NI",
+      "CR",
+      "PA",
+      "CO",
+      "VE",
+      "EC",
+      "PE",
+      "BO",
+      "BR",
+      "PY",
+      "AR",
+      "UY"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk",
+      "Trot",
+      "Gallop",
+      "Burrow"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Shell",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Burrow",
+    "perching": false,
+    "size_class": "Medium",
+    "mass_kg": 5.5,
+    "mass_range_kg": [
+      3.0,
+      8.0
+    ],
+    "length_m": 0.75,
+    "shoulder_height_m": 0.2,
+    "lifespan_y": 12,
+    "home_range_ha": 12,
+    "diet": {
+      "invertebrate": 0.85,
+      "vertebrate": 0.1,
+      "fruit": 0.05
+    },
+    "social": {
+      "structure": "Solitary",
+      "group_size": [
+        1,
+        1
+      ]
+    },
+    "activity_pattern": "Nocturnal",
+    "defense": "Flee",
+    "wariness": 0.7
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.8,
+      "fossorial": 0.2
+    },
+    "shelter_tag": "burrow",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.85
+      },
+      {
+        "tag": "vertebrate",
+        "kind": "Predation",
+        "weight": 0.1
+      },
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.05
+      },
+      {
+        "tag": "burrow",
+        "kind": "Nesting",
+        "weight": 1.0
+      },
+      {
+        "tag": "leaf_litter",
+        "kind": "Shelter",
+        "weight": 0.5
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "road_mortality": "High",
+      "notes": "Lives in woodland, scrub and suburban edges; digs burrows and forages by night; a frequent roadkill."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "mating",
+        "start": "07-01",
+        "end": "09-30",
+        "region": "US-TN",
+        "note": "Mating in summer; delayed implantation, young born in spring."
+      },
+      {
+        "name": "young",
+        "start": "03-01",
+        "end": "05-31",
+        "note": "Four identical young born in March-April."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Juvenile",
+        "duration_days": 180,
+        "scale": 0.5
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-ground-forager-v1",
+    "params": {
+      "flee_m": 15,
+      "calm_m": 30,
+      "food_tag": "invertebrate",
+      "food_m": 25,
+      "flee_gait": "gallop",
+      "forage_gait": "walk",
+      "rest_sun_lo_deg": 10,
+      "rest_sun_hi_deg": 90
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "grunt",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [
+        "Night"
+      ],
+      "cooldown_s": 30,
+      "loudness": "Quiet",
+      "description": "Low grunting and squealing, mostly between a mother and her young."
+    },
+    {
+      "call_id": "squeal",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Night"
+      ],
+      "cooldown_s": 15,
+      "loudness": "Moderate",
+      "description": "High-pitched squeal given when the animal is handled or threatened."
+    }
+  ],
+  "look": {
+    "body_plan": "quadruped",
+    "proportions": {
+      "torso_aspect": 2.4,
+      "leg_length_ratio": 0.3,
+      "head_scale": 0.6,
+      "neck_angle_deg": 10,
+      "tail_ratio": 0.9,
+      "ear_ratio": 0.3,
+      "beak_ratio": 0.5,
+      "girth_ratio": 1.0
+    },
+    "palette": {
+      "body": "#8a7a6a",
+      "belly": "#b0a898",
+      "markings": "#5a4a3a",
+      "accent": "#c8bca8",
+      "eye": "#1c1712"
+    },
+    "part_colors": {
+      "snout": "belly",
+      "ear_*": "markings",
+      "shell": "markings"
+    },
+    "extra_parts": [
+      {
+        "name": "shell",
+        "parent": "body",
+        "offset": [
+          0,
+          0.35,
+          0
+        ],
+        "size": [
+          1.1,
+          0.5,
+          1.0
+        ],
+        "color": "markings",
+        "mirror": false
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "trot": {},
+      "gallop": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2440779",
+      "title": "GBIF Backbone Taxonomy: Dasypus novemcinctus",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q649549",
+      "title": "Wikidata: Nine-banded Armadillo (Q649549)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Nine-banded_armadillo",
+      "title": "Wikipedia: Nine-banded Armadillo",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Nine-banded Armadillo\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "eltontraits",
+      "url": "https://doi.org/10.6084/m9.figshare.3559887.v1",
+      "title": "EltonTraits 1.0: species-level foraging attributes of the world's birds and mammals (MamFuncDat)",
+      "license": "CC0-1.0",
+      "kind": "dataset",
+      "accessed": "2026-10-01",
+      "attribution": "Wilman, H. et al. (2014) EltonTraits 1.0. Ecology 95:2027",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "pantheria",
+      "url": "https://esapubs.org/archive/ecol/E090/184/PanTHERIA_1-0_WR05_Aug2008.txt",
+      "title": "PanTHERIA 1.0: species-level life history, ecology and geography of extant mammals",
+      "license": "CC-BY-4.0",
+      "kind": "dataset",
+      "accessed": "2026-10-01",
+      "attribution": "Jones, K. E. et al. (2009) PanTHERIA. Ecology 90:2648",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "GBIF backbone uses Dasypus novemcinctus; iNaturalist splits the US population as Dasypus mexicanus (taxon 1647419), so the iNaturalist id follows iNaturalist and the GBIF key follows GBIF. Both refer to the same animal in Tennessee."
+    },
+    "common_names": {
+      "sources": [
+        "wikidata",
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "Wikidata P141 = least concern (Q211005)."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Country list derived from 'the southern United States to Argentina and Uruguay' in Wikipedia."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Walks, trots and gallops; digs burrows with its claws."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Bony dermal plates covered in keratinous scutes; 'Shell' is the format's skin class."
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Does not perch; set to false."
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Nests in an underground burrow."
+    },
+    "traits.size_class": {
+      "sources": [
+        "eltontraits",
+        "pantheria"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "eltontraits",
+        "pantheria"
+      ],
+      "confidence": "High",
+      "note": "Mean of EltonTraits BodyMass ~5.5 kg and PanTHERIA AdultBodyMass_g ~5.5 kg; consistent with Wikipedia's 3-8 kg."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "3-8 kg."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "PanTHERIA AdultHeadBodyLen_mm ~450 mm plus the midpoint of Wikipedia's tail length range 25-30 cm (27.5 cm)."
+    },
+    "traits.shoulder_height_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of 15-25 cm."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Up to 12-15 years in the wild."
+    },
+    "traits.home_range_ha": {
+      "sources": [
+        "pantheria"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "PanTHERIA HomeRange_Indiv_km2 ~0.12 km2 converted to hectares."
+    },
+    "traits.diet": {
+      "sources": [
+        "eltontraits",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "EltonTraits Diet-Inv 85, Diet-Vend 10, Diet-Fruit 5; Wikipedia confirms insects, grubs, small vertebrates and berries."
+    },
+    "traits.social": {
+      "sources": [
+        "pantheria",
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "PanTHERIA SocialGrpSize 1 (solitary); Wikipedia notes brief pair bonds."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "eltontraits",
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Flees to its burrow or jumps straight up when startled."
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Fairly confiding where not hunted."
+    },
+    "habitat.use": {
+      "sources": [
+        "eltontraits"
+      ],
+      "confidence": "High",
+      "note": "ForStrat-ground 80, ForStrat-fossorial 20."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Sleeps and nests in an underground burrow."
+    },
+    "habitat.resources": {
+      "sources": [
+        "eltontraits",
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Insects and grubs all year; small vertebrates and berries; burrows and leaf litter for shelter from Wikipedia."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Woodland, scrub and suburban edges from Wikipedia; road mortality from Wikipedia."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Year-round resident; non-migratory."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Summer mating and spring birth from Wikipedia; dates are judgements for Tennessee."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Juvenile period ~6 months; scale authored."
+    },
+    "vocalizations.grunt": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "vocalizations.squeal": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Grey-brown leathery shell with nine bands, long snout and tapering tail from Wikipedia; proportions and shell authored."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared ground-forager program; rest window left at the default daytime for a nocturnal species."
+    }
+  },
+  "contributors": [
+    {
+      "name": "Sisyphus agent",
+      "agent": "claude-code"
+    }
+  ],
+  "conservation": {
+    "iucn": "LC"
+  }
+}
