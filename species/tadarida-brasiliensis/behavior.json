@@ -1,0 +1,165 @@
+{
+  "schema_version": 1,
+  "format": "speeeecies/behavior",
+  "id": "fsm-nocturnal-aerial-hunter-v1",
+  "kind": "fsm",
+  "description": "A nocturnal bat that roosts during the day, emerges around dusk, flies to hunt aerial insects, drinks on the wing, returns before dawn, and flees from nearby threats.",
+  "params": {
+    "flee_m": 8,
+    "calm_m": 25,
+    "food_tag": "invertebrate",
+    "water_m": 80,
+    "roost_sun_lo_deg": 0,
+    "roost_sun_hi_deg": 90,
+    "twilight_sun_lo_deg": -8,
+    "twilight_sun_hi_deg": 6
+  },
+  "initial": "roost",
+  "states": {
+    "roost": {
+      "action": {
+        "do": "rest",
+        "at": "shelter"
+      },
+      "min_dwell_s": 30
+    },
+    "emerge": {
+      "action": {
+        "do": "wander",
+        "gait": "fly"
+      },
+      "min_dwell_s": 5
+    },
+    "hunt": {
+      "action": {
+        "do": "eat_nearest",
+        "tag": "${food_tag}",
+        "gait": "fly"
+      }
+    },
+    "drink": {
+      "action": {
+        "do": "drink_nearest",
+        "gait": "fly"
+      }
+    },
+    "return": {
+      "action": {
+        "do": "wander",
+        "gait": "fly"
+      },
+      "min_dwell_s": 5
+    },
+    "flee": {
+      "action": {
+        "do": "flee",
+        "gait": "fly"
+      },
+      "min_dwell_s": 3
+    }
+  },
+  "transitions": [
+    {
+      "from": "*",
+      "to": "flee",
+      "when": {
+        "threat_within_m": "${flee_m}"
+      },
+      "priority": 100
+    },
+    {
+      "from": "*",
+      "to": "flee",
+      "when": {
+        "need": "fear",
+        "gt": 0.25
+      },
+      "priority": 90
+    },
+    {
+      "from": "flee",
+      "to": "hunt",
+      "when": {
+        "not": {
+          "threat_within_m": "${calm_m}"
+        }
+      }
+    },
+    {
+      "from": "roost",
+      "to": "emerge",
+      "when": {
+        "sun_elevation_between_deg": [
+          "${twilight_sun_lo_deg}",
+          "${twilight_sun_hi_deg}"
+        ]
+      }
+    },
+    {
+      "from": "emerge",
+      "to": "hunt",
+      "when": {
+        "any": [
+          {
+            "need": "hunger",
+            "gt": 0.3
+          },
+          {
+            "chance": 0.4
+          }
+        ]
+      }
+    },
+    {
+      "from": "hunt",
+      "to": "drink",
+      "when": {
+        "all": [
+          {
+            "need": "thirst",
+            "gt": 0.6
+          },
+          {
+            "water_within_m": "${water_m}"
+          }
+        ]
+      }
+    },
+    {
+      "from": "hunt",
+      "to": "return",
+      "when": {
+        "any": [
+          {
+            "sun_elevation_between_deg": [
+              "${twilight_sun_lo_deg}",
+              "${twilight_sun_hi_deg}"
+            ]
+          },
+          {
+            "need": "energy",
+            "gt": 0.85
+          }
+        ]
+      }
+    },
+    {
+      "from": "drink",
+      "to": "hunt",
+      "when": {
+        "need": "thirst",
+        "lt": 0.2
+      }
+    },
+    {
+      "from": "return",
+      "to": "roost",
+      "when": {
+        "sun_elevation_between_deg": [
+          "${roost_sun_lo_deg}",
+          "${roost_sun_hi_deg}"
+        ]
+      }
+    }
+  ]
+}

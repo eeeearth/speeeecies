@@ -1,0 +1,426 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Sylvilagus audubonii",
+  "slug": "sylvilagus-audubonii",
+  "common_names": {
+    "en": "desert cottontail"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Mammalia",
+    "order": "Lagomorpha",
+    "family": "Leporidae",
+    "genus": "Sylvilagus",
+    "authority": "(Baird, 1858)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2436910,
+    "inat_taxon_id": 43115,
+    "itis_tsn": 180122,
+    "wikidata": "Q608572",
+    "ncbi_taxon_id": 30581
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "US",
+      "MX"
+    ],
+    "elevation_m": [
+      0,
+      1830
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Hop",
+      "Walk"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Fur",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Burrow",
+    "perching": false,
+    "size_class": "Small",
+    "mass_kg": 0.9,
+    "mass_range_kg": [
+      0.7,
+      1.2
+    ],
+    "length_m": 0.39,
+    "shoulder_height_m": 0.18,
+    "speed_ms": {
+      "hop": 8.33
+    },
+    "lifespan_y": 2,
+    "home_range_ha": 3.25,
+    "diet": {
+      "graze": 0.9,
+      "browse": 0.1
+    },
+    "social": {
+      "structure": "Group",
+      "group_size": [
+        1,
+        6
+      ]
+    },
+    "activity_pattern": "Crepuscular",
+    "defense": "Flee",
+    "wariness": 0.55
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.85,
+      "fossorial": 0.15
+    },
+    "shelter_tag": "burrow",
+    "resources": [
+      {
+        "tag": "graze",
+        "kind": "Herbivory",
+        "weight": 0.9
+      },
+      {
+        "tag": "browse",
+        "kind": "Herbivory",
+        "weight": 0.1
+      },
+      {
+        "tag": "burrow",
+        "kind": "Nesting",
+        "weight": 0.8
+      },
+      {
+        "tag": "shrub_thicket",
+        "kind": "Shelter",
+        "weight": 0.7
+      },
+      {
+        "tag": "water",
+        "kind": "Water",
+        "weight": 0.1
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "notes": "Common in arid grassland, shrubland, riparian areas, pinyon-juniper and suburban edges where low cover and forage remain."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "mating",
+        "start": "01-01",
+        "end": "09-30",
+        "note": "Highly active sexually and capable of multiple litters in a year; AnAge lists 29-day gestation and five litters per year."
+      },
+      {
+        "name": "young",
+        "start": "02-01",
+        "end": "10-31",
+        "note": "Kits grow quickly, are weaned at about 28 days and may be full grown by about three months."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Juvenile",
+        "duration_days": 90,
+        "scale": 0.55,
+        "requires_tag": "burrow"
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US-NM",
+        "monthly": [
+          0.45,
+          0.57,
+          0.57,
+          1.0,
+          0.79,
+          0.76,
+          0.62,
+          0.69,
+          0.62,
+          0.65,
+          0.79,
+          0.52
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 3265,
+        "sources": [
+          "inat-activity-us-nm",
+          "gbif-activity-us-nm"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 9,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=43115&place_id=9&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=9&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 2309,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.32_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2436910&gadmGid=USA.32_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.32_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 956,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-ground-forager-v1",
+    "params": {
+      "food_tag": "graze",
+      "flee_m": 18,
+      "calm_m": 36,
+      "food_m": 30,
+      "flee_gait": "hop",
+      "forage_gait": "walk",
+      "rest_sun_lo_deg": 10,
+      "rest_sun_hi_deg": 90
+    }
+  },
+  "vocalizations": [],
+  "look": {
+    "body_plan": "hopper",
+    "proportions": {
+      "torso_aspect": 1.55,
+      "leg_length_ratio": 0.42,
+      "head_scale": 0.78,
+      "neck_angle_deg": 35,
+      "tail_ratio": 0.18,
+      "ear_ratio": 0.95,
+      "beak_ratio": 0.42,
+      "girth_ratio": 0.9
+    },
+    "palette": {
+      "body": "#9a8268",
+      "belly": "#efe8db",
+      "markings": "#6f604f",
+      "accent": "#ffffff",
+      "eye": "#1b1510"
+    },
+    "part_colors": {
+      "snout": "belly",
+      "tail": "accent",
+      "leg_front_*": "belly",
+      "ear_*": "body"
+    },
+    "extra_parts": [
+      {
+        "name": "cotton_tail",
+        "parent": "tail",
+        "offset": [
+          -0.05,
+          0.1,
+          0
+        ],
+        "size": [
+          1.2,
+          1.45,
+          1.45
+        ],
+        "color": "accent"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "hop": {},
+      "walk": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2436910",
+      "title": "GBIF Backbone Taxonomy: Sylvilagus audubonii",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-09-30",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q608572",
+      "title": "Wikidata: desert cottontail (Q608572)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-09-30",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Desert_cottontail",
+      "title": "Wikipedia: Desert cottontail",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-09-30",
+      "attribution": "Wikipedia contributors, \"Desert cottontail\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "anage",
+      "url": "https://genomics.senescence.info/species/entry.php?species=Sylvilagus_audubonii",
+      "title": "AnAge: Sylvilagus audubonii, HAGRID 02602",
+      "license": "CC-BY-3.0",
+      "kind": "database",
+      "accessed": "2026-09-30",
+      "attribution": "Human Ageing Genomic Resources, AnAge database, version 15",
+      "license_url": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=180122",
+      "title": "ITIS: Sylvilagus audubonii, TSN 180122",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-09-30",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "inat-activity-us-nm",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=43115&place_id=9&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Sylvilagus audubonii in US-NM",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-nm",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2436910&gadmGid=USA.32_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Sylvilagus audubonii in US-NM",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia",
+        "itis"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata",
+        "anage",
+        "itis"
+      ],
+      "confidence": "High"
+    },
+    "common_names": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata",
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikipedia",
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Western United States, northern and central Mexico; elevation up to 1,830 m."
+    },
+    "traits": {
+      "sources": [
+        "wikipedia",
+        "anage"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Mass, gestation, weaning, litter frequency and adult weight from AnAge and Wikipedia; length/mass ranges, diet, activity, speed and home ranges from Wikipedia; shoulder height, social range and wariness are simulation judgments."
+    },
+    "habitat": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Dry grasslands, shrublands, pinyon-juniper, riparian arid zones, shallow depressions and old burrows from Wikipedia; resource weights are simulation judgments."
+    },
+    "seasonal": {
+      "sources": [
+        "wikipedia",
+        "anage"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Multiple litters and rapid growth from Wikipedia/AnAge; phase boundaries are authored for a southwestern active-year-round population."
+    },
+    "vocalizations": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "No open source in the reviewed sources described a distinctive audible vocalization; left empty rather than invented."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Greyish-brown fur, white belly, broad white underside/edge to tail and large erect ears from Wikipedia; proportions and exact colours are authored."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared ground-forager program; configured as a crepuscular grazer/browser that rests in daytime heat and flees by hopping."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies maintainers",
+      "agent": "opencode"
+    }
+  ]
+}

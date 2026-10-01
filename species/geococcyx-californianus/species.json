@@ -1,0 +1,563 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Geococcyx californianus",
+  "slug": "geococcyx-californianus",
+  "common_names": {
+    "en": "Greater roadrunner"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Cuculiformes",
+    "family": "Cuculidae",
+    "genus": "Geococcyx",
+    "authority": "(Lesson, 1829)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2496459,
+    "inat_taxon_id": 1986,
+    "itis_tsn": 177836,
+    "wikidata": "Q634804"
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "US",
+      "MX"
+    ],
+    "koppen": [
+      "BWh",
+      "BWk",
+      "BSh",
+      "BSk",
+      "Csa"
+    ],
+    "elevation_m": [
+      -61,
+      3000
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Walk",
+      "Trot",
+      "Fly"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Platform",
+    "perching": true,
+    "size_class": "Small",
+    "mass_kg": 0.284,
+    "mass_range_kg": [
+      0.227,
+      0.341
+    ],
+    "length_m": 0.56,
+    "wingspan_m": 0.52,
+    "speed_ms": {
+      "trot": 8.9
+    },
+    "lifespan_y": 7.5,
+    "diet": {
+      "vertebrate": 0.45,
+      "invertebrate": 0.45,
+      "fruit": 0.1
+    },
+    "social": {
+      "structure": "Pair",
+      "group_size": [
+        1,
+        2
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.35
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.85,
+      "arboreal": 0.15
+    },
+    "shelter_tag": "shrub_thicket",
+    "resources": [
+      {
+        "tag": "small_vertebrate",
+        "kind": "Predation",
+        "weight": 0.45
+      },
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.45
+      },
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.1,
+        "months": [
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "tag": "nest_platform",
+        "kind": "Nesting",
+        "weight": 1.0
+      },
+      {
+        "tag": "shrub_thicket",
+        "kind": "Shelter",
+        "weight": 0.8
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.4
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "flight_distance_m": 12,
+      "road_mortality": "Medium",
+      "notes": "Uses desert scrub, roads, packed trails and human structures for short flights or calling perches; iconic and often conspicuous around southwestern settlements."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "03-15",
+        "end": "09-01",
+        "note": "Breeding begins from mid-March to early September; second broods may occur when rainy-season food is abundant."
+      },
+      {
+        "name": "territorial",
+        "start": "01-01",
+        "end": "12-31",
+        "note": "Non-migratory pairs defend territories year-round."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg"
+      },
+      {
+        "stage": "Juvenile",
+        "duration_days": 50,
+        "scale": 0.8
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US-NM",
+        "monthly": [
+          0.72,
+          0.93,
+          0.84,
+          0.75,
+          0.59,
+          0.65,
+          0.72,
+          0.99,
+          0.86,
+          1.0,
+          0.88,
+          0.65
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 75610,
+        "sources": [
+          "inat-activity-us-nm",
+          "gbif-activity-us-nm"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 9,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=1986&place_id=9&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=9&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 3482,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.32_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2496459&gadmGid=USA.32_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.32_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 72128,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "bt-perching-songbird-v1",
+    "params": {
+      "flee_m": 12,
+      "food_tag": "small_vertebrate",
+      "song": "coo",
+      "alarm": "clack",
+      "song_cooldown_s": 20,
+      "nest_m1": 3,
+      "nest_m2": 9
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "coo",
+      "context": "Song",
+      "season_months": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "time_windows": [
+        "DawnChorus",
+        "Day"
+      ],
+      "cooldown_s": 20,
+      "loudness": "Moderate",
+      "description": "Male gives a slow descending series of about six low cooing notes, often from a high perch such as a fence post, dead tree or cactus."
+    },
+    {
+      "call_id": "clack",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 8,
+      "loudness": "Moderate",
+      "description": "Sharp clackety alarm made by rapidly clicking the mandibles together."
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 2.2,
+      "leg_length_ratio": 0.55,
+      "head_scale": 0.7,
+      "neck_angle_deg": 20,
+      "tail_ratio": 1.25,
+      "wing_aspect": 2.2,
+      "beak_ratio": 0.85,
+      "girth_ratio": 0.8
+    },
+    "palette": {
+      "body": "#5a4638",
+      "belly": "#f1eadb",
+      "markings": "#1f1a16",
+      "accent": "#3f4f5a",
+      "eye": "#f0c63a"
+    },
+    "part_colors": {
+      "breast": "belly",
+      "wing_*": "markings",
+      "tail": "markings",
+      "beak": "accent",
+      "leg_*": "accent"
+    },
+    "extra_parts": [
+      {
+        "name": "crest",
+        "parent": "head",
+        "offset": [
+          -0.1,
+          0.65,
+          0
+        ],
+        "size": [
+          0.6,
+          0.25,
+          0.8
+        ],
+        "color": "markings"
+      },
+      {
+        "name": "face_patch",
+        "parent": "head",
+        "offset": [
+          0.1,
+          0.0,
+          0.52
+        ],
+        "size": [
+          0.28,
+          0.34,
+          0.08
+        ],
+        "color": "accent",
+        "mirror": true
+      },
+      {
+        "name": "tail_tip",
+        "parent": "tail",
+        "offset": [
+          -0.45,
+          0,
+          0
+        ],
+        "size": [
+          0.18,
+          1.02,
+          1.02
+        ],
+        "color": "belly"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "trot": {
+        "cycle_s": 0.5,
+        "amplitude": 1.2,
+        "keyframes": [
+          {
+            "t": 0,
+            "parts": {
+              "body": {
+                "rot_deg": [
+                  0,
+                  0,
+                  -2
+                ]
+              },
+              "tail": {
+                "rot_deg": [
+                  0,
+                  8,
+                  0
+                ]
+              }
+            }
+          },
+          {
+            "t": 0.5,
+            "parts": {
+              "body": {
+                "rot_deg": [
+                  0,
+                  0,
+                  2
+                ]
+              },
+              "tail": {
+                "rot_deg": [
+                  0,
+                  -8,
+                  0
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "fly": {},
+      "perched": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2496459",
+      "title": "GBIF Backbone Taxonomy: Geococcyx californianus",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-09-30",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q634804",
+      "title": "Wikidata: Greater roadrunner (Q634804)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-09-30",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Greater_roadrunner",
+      "title": "Wikipedia: Greater roadrunner",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-09-30",
+      "attribution": "Wikipedia contributors, \"Greater roadrunner\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=177836",
+      "title": "ITIS: Geococcyx californianus, TSN 177836",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-09-30",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "animal-diversity-web",
+      "url": "https://animaldiversity.org/accounts/Geococcyx_californianus/",
+      "title": "Animal Diversity Web: Geococcyx californianus",
+      "license": "CC-BY-NC-SA-3.0",
+      "kind": "webpage",
+      "accessed": "2026-09-30",
+      "attribution": "Grisham, E. 2005. Geococcyx californianus, Animal Diversity Web, CC BY-NC-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/3.0/",
+      "note": "Used as a last-resort open source for lifespan and habitat details not stated in the other open sources."
+    },
+    {
+      "id": "inat-activity-us-nm",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=1986&place_id=9&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Geococcyx californianus in US-NM",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-nm",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2496459&gadmGid=USA.32_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Geococcyx californianus in US-NM",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "itis"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata",
+        "itis"
+      ],
+      "confidence": "High",
+      "note": "iNaturalist id supplied by the issue; Wikidata id from the linked Wikipedia item."
+    },
+    "common_names": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikipedia",
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Native countries and arid/semi-arid climate classes derived from southwestern United States/northern Mexico range and desert-scrub habitat; elevation from Wikipedia."
+    },
+    "traits": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Bird traits from sources; midpoint values computed from stated mass, length and wingspan ranges. Diet shares, wariness and exact social group size are authored from qualitative diet/behavior descriptions."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "animal-diversity-web"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Midpoint of ADW lifespan range 7 to 8 years; ADW is used as a last-resort open source for this required value."
+    },
+    "habitat": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Ground-heavy habitat use and resources are derived from arid scrub, open foraging, cactus/bush/low-tree nesting, and omnivorous prey descriptions."
+    },
+    "seasonal": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Breeding window, non-migratory strategy and juvenile duration are derived from nesting and post-fledging notes."
+    },
+    "vocalizations": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Descriptions from vocalization sections; cooldowns are authored for the simulator."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Colours from descriptions of brown/black streaked upperparts, pale breast and belly, crest, gray-blue beak/legs and colored postocular skin; proportions authored."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared perching-songbird program, adapted to a mostly terrestrial cuckoo."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies maintainers",
+      "agent": "opencode"
+    }
+  ]
+}

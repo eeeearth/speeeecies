@@ -1,0 +1,491 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Otospermophilus variegatus",
+  "slug": "otospermophilus-variegatus",
+  "common_names": {
+    "en": "rock squirrel"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Mammalia",
+    "order": "Rodentia",
+    "family": "Sciuridae",
+    "genus": "Otospermophilus",
+    "authority": "(Erxleben, 1777)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 7572569,
+    "inat_taxon_id": 180008,
+    "itis_tsn": 930302,
+    "wikidata": "Q1404317",
+    "ncbi_taxon_id": 45472
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "US",
+      "MX"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk",
+      "Trot",
+      "Climb"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Fur",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Burrow",
+    "perching": false,
+    "size_class": "Small",
+    "mass_kg": 0.663,
+    "mass_range_kg": [
+      0.45,
+      0.85
+    ],
+    "length_m": 0.53,
+    "shoulder_height_m": 0.13,
+    "lifespan_y": 9.8,
+    "diet": {
+      "browse": 0.35,
+      "seed": 0.25,
+      "fruit": 0.2,
+      "mast": 0.1,
+      "invertebrate": 0.08,
+      "vertebrate": 0.02
+    },
+    "social": {
+      "structure": "Group",
+      "group_size": [
+        2,
+        12
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.6
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.65,
+      "fossorial": 0.2,
+      "arboreal": 0.15
+    },
+    "shelter_tag": "burrow",
+    "resources": [
+      {
+        "tag": "browse",
+        "kind": "Herbivory",
+        "weight": 0.35
+      },
+      {
+        "tag": "seed",
+        "kind": "Herbivory",
+        "weight": 0.25
+      },
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.2
+      },
+      {
+        "tag": "mast",
+        "kind": "Herbivory",
+        "weight": 0.1
+      },
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.08
+      },
+      {
+        "tag": "small_vertebrate",
+        "kind": "Predation",
+        "weight": 0.02
+      },
+      {
+        "tag": "burrow",
+        "kind": "Nesting",
+        "weight": 1.0
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.4
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "notes": "Uses rocky hills, cliffs, canyon walls and human-modified rocky edges; may be treated as a pest but persists around suitable rock or burrow shelter."
+    }
+  },
+  "seasonal": {
+    "strategy": "Torpor",
+    "triggers": {
+      "enter": {
+        "temperature_below_c": 5,
+        "days": 5
+      },
+      "exit": {
+        "temperature_above_c": 10,
+        "days": 3
+      }
+    },
+    "phases": [
+      {
+        "name": "mating",
+        "start": "02-01",
+        "end": "07-31",
+        "note": "Females may have two litters; AnAge lists about 1.5 litters per year, 30-day gestation and 4.3 young."
+      },
+      {
+        "name": "young",
+        "start": "04-01",
+        "end": "09-30",
+        "note": "First litters are typically born April-June and second litters in August or September; young are weaned around 53 days."
+      },
+      {
+        "name": "dormancy",
+        "start": "11-01",
+        "end": "02-28",
+        "fraction": 0.5,
+        "note": "Northern populations hibernate in colder months; southern populations may not hibernate at all."
+      },
+      {
+        "name": "caching",
+        "start": "08-01",
+        "end": "10-31",
+        "note": "Food is carried in cheek pouches and stored or eaten near burrows; caching emphasis is authored from daily foraging and storage behavior."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Juvenile",
+        "duration_days": 53,
+        "scale": 0.55,
+        "requires_tag": "burrow"
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US-NM",
+        "monthly": [
+          0.26,
+          0.4,
+          0.79,
+          0.98,
+          0.91,
+          0.77,
+          0.88,
+          1.0,
+          0.93,
+          0.81,
+          0.68,
+          0.42
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 2899,
+        "sources": [
+          "inat-activity-us-nm",
+          "gbif-activity-us-nm"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 9,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=180008&place_id=9&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=9&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 1800,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.32_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=7572569&gadmGid=USA.32_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.32_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 1099,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-ground-forager-v1",
+    "params": {
+      "food_tag": "seed",
+      "flee_m": 16,
+      "calm_m": 32,
+      "food_m": 35,
+      "flee_gait": "trot",
+      "forage_gait": "walk",
+      "rest_sun_lo_deg": -90,
+      "rest_sun_hi_deg": -6
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "alarm_whistle",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 12,
+      "loudness": "Loud",
+      "description": "Short, sharp, oscillating whistle given when alarmed, often from rocks, trees or stumps used as lookouts."
+    }
+  ],
+  "look": {
+    "body_plan": "quadruped",
+    "proportions": {
+      "torso_aspect": 1.8,
+      "leg_length_ratio": 0.42,
+      "head_scale": 0.72,
+      "neck_angle_deg": 20,
+      "tail_ratio": 1.25,
+      "ear_ratio": 0.32,
+      "beak_ratio": 0.35,
+      "girth_ratio": 0.9
+    },
+    "palette": {
+      "body": "#7d7568",
+      "belly": "#6b5848",
+      "markings": "#3d342d",
+      "accent": "#d9d1bf",
+      "eye": "#17120f"
+    },
+    "part_colors": {
+      "snout": "belly",
+      "tail": "markings",
+      "ear_*": "markings",
+      "leg_*": "belly"
+    },
+    "extra_parts": [
+      {
+        "name": "tail_fluff",
+        "parent": "tail",
+        "offset": [
+          0,
+          0.12,
+          0
+        ],
+        "size": [
+          1.0,
+          1.55,
+          1.55
+        ],
+        "color": "body"
+      },
+      {
+        "name": "eye_ring",
+        "parent": "head",
+        "offset": [
+          0.22,
+          0.05,
+          0
+        ],
+        "size": [
+          0.25,
+          0.35,
+          1.05
+        ],
+        "color": "accent"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "trot": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/7572569",
+      "title": "GBIF Backbone Taxonomy: Otospermophilus variegatus",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-09-30",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q1404317",
+      "title": "Wikidata: rock squirrel (Q1404317)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-09-30",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Rock_squirrel",
+      "title": "Wikipedia: Rock squirrel",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-09-30",
+      "attribution": "Wikipedia contributors, \"Rock squirrel\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "anage",
+      "url": "https://genomics.senescence.info/species/entry.php?species=Otospermophilus_variegatus",
+      "title": "AnAge: Otospermophilus variegatus, HAGRID 03144",
+      "license": "CC-BY-3.0",
+      "kind": "database",
+      "accessed": "2026-09-30",
+      "attribution": "Human Ageing Genomic Resources, AnAge database, version 15",
+      "license_url": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=930302",
+      "title": "ITIS: Otospermophilus variegatus, TSN 930302",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-09-30",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "inat-activity-us-nm",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=180008&place_id=9&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Otospermophilus variegatus in US-NM",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-nm",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=7572569&gadmGid=USA.32_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Otospermophilus variegatus in US-NM",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia",
+        "itis"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata",
+        "anage",
+        "itis"
+      ],
+      "confidence": "High"
+    },
+    "common_names": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata",
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikipedia",
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Native to Mexico and the southwestern United States including New Mexico."
+    },
+    "traits": {
+      "sources": [
+        "wikipedia",
+        "anage"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Adult mass and maximum captive longevity from AnAge; maximum length, diurnal/heat-avoidance activity, social group structure, burrows, diet and alarm whistle from Wikipedia; mass range, shoulder height, diet shares and wariness are simulation judgments."
+    },
+    "habitat": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Rocky mountains, canyon walls, cliffs, steep rocky hills, burrow systems and foraging in trees/bushes/on ground from Wikipedia; stratum shares and resource weights are authored."
+    },
+    "seasonal": {
+      "sources": [
+        "wikipedia",
+        "anage"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Litter timing, two-litter potential, hibernation in northern range, no hibernation in southern range, gestation and weaning from Wikipedia/AnAge; torpor triggers and phase windows are authored."
+    },
+    "vocalizations": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Wikipedia describes a short, sharp, oscillating whistle when alarmed; timing and cooldown are authored."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Speckled grayish-brown front/top, mottled brownish-black rear/bottom, light eye ring, pointed ears and long bushy white-edged tail from Wikipedia; proportions and exact colours are authored."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared ground-forager program; configured as a diurnal seed/plant forager that rests at night, flees by trotting, and uses burrow shelter."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies maintainers",
+      "agent": "opencode"
+    }
+  ]
+}
