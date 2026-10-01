@@ -2310,7 +2310,16 @@ def _poll(worktree_root: str, state: str, seconds: float = 6.0) -> str:
     except subprocess.TimeoutExpired:
         os.killpg(os.getpgid(proc.pid), signal.SIGKILL)
         out, _ = proc.communicate()
-    return out or ""
+    out = out or ""
+    # Guard against a vacuous pass. Two of the three tests below assert that a
+    # warning is ABSENT, which is trivially true of empty output -- and they did
+    # pass, green, against a tree where the supervisor had died on "not inside a
+    # git repository" before reaching the sweep at all. A poll line proves the
+    # supervisor actually ran the code under test.
+    assert "fleet=" in out, (
+        f"the supervisor produced no poll line, so this proves nothing: {out!r}"
+    )
+    return out
 
 
 @pytest.mark.skipif(
