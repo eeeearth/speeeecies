@@ -19,3 +19,12 @@
 - Not done: visual_check.py (BioCLIP) not run — advisory only, and it would need a ~1 GB model download on CPU; the previewer check above was done instead. No species-local issues otherwise.
 
 I'm done boss
+
+# Status: locale co-coloradosprings (issue #86)
+
+- 2026-09-30: Claimed issue #86 (comment, ETA 2026-10-03). Read AGENTS.md "Contribute a locale", docs/locale-richness.md, the schemas, and the london-uk worked example. Confirmed none of the 12 candidate species exist under `species/` (21 records, all European/oceanic).
+- 2026-09-30: Verified GBIF usage keys + iNaturalist taxon ids for 12 chosen species against the live APIs, and pulled ITIS TSN / Wikidata Q / NCBI id / authorship / order from GBIF, Wikidata and ITIS. Chose: Pica hudsonia, Turdus migratorius, Haemorhous mexicanus, Colaptes auratus, Junco hyemalis, Sciurus niger, Procyon lotor, Sylvilagus audubonii, Aphelocoma woodhouseii, Bubo virginianus, Sceloporus consobrinus, Thamnophis elegans (Big Brown Bat dropped: no bat body plan or behaviour program in v0.1; Great Horned Owl covers the nocturnal slot with `biped_winged` + bt-perching-songbird-v1).
+- 2026-09-30: Created species-request issues #120-#131 for the 12 and claimed each with an ETA.
+- 2026-09-30: Wrote and validated 5 of the 12 species records, each 0 errors / 0 warnings: pica-hudsonia, turdus-migratorius, haemorhous-mexicanus, colaptes-auratus, junco-hyemalis. All with US-CO activity curves via fetch_activity.py (inat place 34 + GBIF GADM USA.6_1, tier A on both). Recorded honest gaps where no CC0/CC-BY lifespan figure exists (haemorhous, colaptes, junco): lifespan_y is marked derived with the close-relative anchor and the assumption stated in the provenance note.
+- 2026-09-30: 8 of 12 species records written and validated — the locale minimum is now met. Added the mammals: sciurus-niger (note: Wikipedia puts Colorado inside the fox squirrel's NATIVE range, contradicting the issue's "introduced in Colorado" note; followed the source), procyon-lotor (empty vocalizations + an honest note: the Wikipedia article contains no call description; Colorado raccoon records are thin so fetch_activity.py fell to tier C, giving two CC-BY-NC activity sources to justify), sylvilagus-audubonii (also empty vocalizations; sourced elevation ceiling 1830 m sits just below the Colorado Springs centroid's 1839 m, recorded honestly).
+- 2026-09-30: Checkpoint commit of the 8 species before continuing.
