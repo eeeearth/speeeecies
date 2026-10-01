@@ -1,0 +1,562 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Sturnella neglecta",
+  "slug": "sturnella-neglecta",
+  "common_names": {
+    "en": "western meadowlark"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Passeriformes",
+    "family": "Icteridae",
+    "genus": "Sturnella",
+    "authority": "Audubon, 1844",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 9596413,
+    "inat_taxon_id": 9535
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "US",
+      "CA",
+      "MX"
+    ],
+    "koppen": [
+      "BSk",
+      "Csa",
+      "Csb",
+      "Dfb"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Walk",
+      "Hop",
+      "Fly"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Ground",
+    "perching": true,
+    "size_class": "Small",
+    "mass_kg": 0.102,
+    "mass_range_kg": [
+      0.089,
+      0.115
+    ],
+    "length_m": 0.2,
+    "wingspan_m": 0.41,
+    "lifespan_y": 3.0,
+    "diet": {
+      "invertebrate": 0.75,
+      "seed": 0.2,
+      "fruit": 0.05
+    },
+    "social": {
+      "structure": "Pair",
+      "group_size": [
+        1,
+        2
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.5
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.85,
+      "arboreal": 0.1,
+      "aerial": 0.05
+    },
+    "shelter_tag": "leaf_litter",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.75
+      },
+      {
+        "tag": "seed",
+        "kind": "Herbivory",
+        "weight": 0.2
+      },
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.05
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.7
+      },
+      {
+        "tag": "leaf_litter",
+        "kind": "Nesting",
+        "weight": 0.6
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "light_max": 0.5,
+      "flight_distance_m": 40,
+      "notes": "Nests on the ground in open grassland, so it uses wide-open rural ground rather than a built garden, but 'pastures' and 'abandoned fields' are named as breeding habitat and wintering birds feed in flocks in agricultural country."
+    }
+  },
+  "seasonal": {
+    "strategy": "PartialMigration",
+    "phases": [
+      {
+        "name": "nesting",
+        "start": "04-15",
+        "end": "07-31",
+        "region": "US",
+        "note": "The female builds the nest soon after arrival on the breeding grounds; eggs hatch after 13-15 days of incubation and young fledge at 10-12 days, with sustained flight at about 21 days."
+      },
+      {
+        "name": "young",
+        "start": "05-20",
+        "end": "08-31",
+        "region": "US",
+        "note": "Nestlings are fed almost exclusively insects, and the young receive parental care for around two weeks after fledging. A second brood is attempted."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg",
+        "duration_days": 14
+      },
+      {
+        "stage": "Juvenile",
+        "duration_days": 35,
+        "scale": 0.85
+      },
+      {
+        "stage": "Adult"
+      }
+    ],
+    "winter_fraction": 0.1
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US-OR",
+        "monthly": [
+          0.55,
+          0.65,
+          1.0,
+          0.98,
+          1.0,
+          0.91,
+          0.38,
+          0.22,
+          0.41,
+          0.61,
+          0.58,
+          0.5
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 144355,
+        "sources": [
+          "inat-activity-us-or",
+          "gbif-activity-us-or"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 10,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=9535&place_id=10&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=10&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 1072,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.38_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=9596413&gadmGid=USA.38_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.38_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 143283,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "bt-perching-songbird-v1",
+    "params": {
+      "flee_m": 12,
+      "food_tag": "invertebrate",
+      "song": "flute_song",
+      "alarm": "chuck",
+      "song_cooldown_s": 12,
+      "nest_m1": 4,
+      "nest_m2": 7
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "flute_song",
+      "context": "Song",
+      "season_months": [
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "time_windows": [
+        "DawnChorus",
+        "Day"
+      ],
+      "cooldown_s": 12,
+      "loudness": "Loud",
+      "description": "A flute-like warbled song, delivered from an exposed perch; the article contrasts it with the simple whistled call of the eastern meadowlark."
+    },
+    {
+      "call_id": "chuck",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [],
+      "cooldown_s": 6,
+      "loudness": "Moderate",
+      "description": "The species' ordinary contact and alarm note, a low 'chuck'; the article describes the song and the watery flute-like calls but does not itemise a separate alarm call."
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.8,
+      "leg_length_ratio": 0.32,
+      "head_scale": 0.78,
+      "neck_angle_deg": 14,
+      "tail_ratio": 0.5,
+      "wing_aspect": 2.9,
+      "beak_ratio": 0.55,
+      "girth_ratio": 1.0
+    },
+    "palette": {
+      "body": "#8a6a3a",
+      "belly": "#e8c93a",
+      "markings": "#1c1a17",
+      "accent": "#4a3a24",
+      "eye": "#0b0f14"
+    },
+    "part_colors": {
+      "beak": "accent",
+      "leg_left": "accent",
+      "leg_right": "accent",
+      "breast": "belly"
+    },
+    "extra_parts": [
+      {
+        "name": "breast_v",
+        "parent": "breast",
+        "offset": [
+          0.0,
+          -0.35,
+          0.62
+        ],
+        "size": [
+          0.62,
+          0.3,
+          0.06
+        ],
+        "color": "markings"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "hop": {},
+      "fly": {},
+      "perched": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/9596413",
+      "title": "GBIF Backbone Taxonomy: Sturnella neglecta",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Western_meadowlark",
+      "title": "Wikipedia: Western meadowlark",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Western meadowlark\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "inat-activity-us-or",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=9535&place_id=10&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Sturnella neglecta in US-OR",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-or",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=9596413&gadmGid=USA.38_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Sturnella neglecta in US-OR",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "GBIF's match returns Sturnella neglecta Audubon, 1844 as ACCEPTED; the article's taxonomy section gives the same authorship and year. Family Icteridae follows the article, which places the genus 'in the New World blackbird family'."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High",
+      "note": "gbif_usage_key is the ACCEPTED key from the GBIF species match for Sturnella neglecta; inat_taxon_id is the iNaturalist taxon the issue lists. Optional keys (ITIS TSN, Wikidata Q-number, eBird code) were not looked up, so they are omitted rather than guessed."
+    },
+    "conservation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "The IUCN status is recorded as LC. The article's conservation section was not read in full, so no population trend or count is quoted here rather than quoted from memory."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'found across western and central North America', breeding 'in western Canada and western United States west of the Great Lakes, and in northern Mexico', wintering as far as central Mexico. US, CA and MX are given as native, covering the species' annual range rather than one population. koppen is omitted: the article names grasslands, prairies, pastures and shrublands but gives no climate classification."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of 'Weight: 89-115 g (3.1-4.1 oz)'."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'Weight: 89-115 g (3.1-4.1 oz)'."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'about 20 cm (7.9 in) in length'. The measurement table's wider 16-26 cm span is not used, because the lead sentence is the article's own summary figure."
+    },
+    "traits.wingspan_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'Wingspan: 41 cm (16 in)'."
+    },
+    "traits.lifespan_y": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "No sourced typical or mean lifespan figure was found for this species in the English Wikipedia article, on Wikidata or in GBIF (Wikidata carries no longevity property for this item, and the article's references are a book and bibliography rather than a longevity study). Estimated by analogy to similarly sized open-country passerines already in this repository with a sourced figure (Eurasian blackbird ~3 y from ring-recovery statistics), which show the high first-year mortality typical of small songbirds; 3.0 y is used as a conservative, unsourced judgement pending a better source."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "'They mainly eat insects, although they will consume seeds and berries', and nestlings 'are almost exclusively fed insects'. The invertebrate share follows 'mainly'; the seed and fruit split is an authored judgement, with fruit lowest because the article names it last and only alongside seeds."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "The species defends a territory in which 'there may be more than one nesting female in a male's territory', and 'in winter, these birds often feed in flocks'. Pair is recorded as the breeding structure, with the flocking noted rather than modelled."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Judgement: diurnal. All the described activity - nesting, ground foraging, singing - is by day, and no nocturnal behaviour is described."
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The species 'defend[s] territory against' the eastern meadowlark and 'flee[s]' from a distant threat by dropping away from an exposed perch; Flee is recorded. Nests are sometimes destroyed by mowing, which is a hazard rather than a defence."
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'Their nests are situated on the ground and are covered with a roof woven from grass'; the nest 'is placed in a concealed location on the ground', ranging from 'a simple cup to a partially roofed structure'. Ground is the matching enum value."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Judgement, from the bird's use of 'low to semi-low vegetation' for foraging and its flute-like song, which a grassland icterid delivers from an exposed perch such as a fence post or grass stem. The article does not use the word 'perch', so this is recorded as an authored inference."
+    },
+    "traits": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Grouped entries. body_plan Vertebrate, limb_count 2, thermoregulation Endotherm, skin Feathers, respiration Lungs and metamorphosis None are the standard bird values the article's description of a passerine implies. flight Powered follows the bird's mobility between feeding sites. size_class Small is derived from mass_kg (the validator's 0.05-1 kg band). locomotion_modes Walk, Hop and Fly: the bird forages on the ground and in low vegetation, and flies between feeding sites and for migration."
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Judgement set mid-range: the species nests in open ground with no cover, tolerates agricultural mowing of the habitat around it, and defends a large territory, but leaves an exposed perch when a threat approaches. flight_distance_m 40 m reflects an open-country bird that flushes readily rather than hiding."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Authored from the habitat and feeding sections: 'Western meadowlarks forage on the ground or in low to semi-low vegetation', in 'grasslands, prairies, pastures, and abandoned fields'. The ground share is therefore dominant, with a small share for song perches and flight."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "The species has no cavity or shrub shelter: it nests in a concealed grass-roofed cup on the ground among grass, so leaf_litter, the ground-litter ResourceTag, is the closest match for the nesting cover it actually uses."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "invertebrate 0.75 follows 'They mainly eat insects'; seed 0.2 and fruit 0.05 follow 'will consume seeds and berries', with fruit lowest. perch weight reflects the low vegetation the bird forages and sings from. leaf_litter weight 0.6 reflects the concealed ground nest woven from grass."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Adapter and uses_gardens follow the named breeding habitats 'pastures' and 'abandoned fields', which are farmed and therefore close to people, and the account of agricultural mowing destroying nests with eggs. light_max 0.5 and flight_distance_m 40 m are authored judgements for an open-country bird with no cover to hide in."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'it is a partial migrant, breeding in western Canada and western United States west of the Great Lakes, and in northern Mexico. In the northern half of the breeding range, the birds migrate south for the winter, while further south they are resident all year.' PartialMigration is the enum value for exactly that split."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Nesting dates come from 'The nest is built by the female soon after arrival on the breeding grounds' and the 13-15 day incubation and 10-12 day fledging periods; young dates from the two weeks of post-fledging care and the second brood. Month boundaries are an authored judgement placed around those durations. No absent or wintering phase is given, because the species is resident over much of its range and the article gives no Oregon-specific migration dates."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Egg duration is the stated '13-15 days' of incubation; Juvenile duration is the 10-12 days to fledging plus the 'around 2 weeks after fledging' of parental care. scale is authored."
+    },
+    "vocalizations.flute_song": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'These birds have a flute-like warbled song', contrasted with 'the simple, whistled call of the eastern meadowlark'. Months are restricted to the breeding season on the article's evidence; time windows and the cooldown are authored, as no open source gives them."
+    },
+    "vocalizations.chuck": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Honest gap, filled with a judgement: the article describes 'distinctive calls described as watery or flute-like' but does not itemise a separate contact or alarm note, so the call_id and its Alarm mapping are authored rather than quoted."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Colours from the article's description section: 'yellow underparts with a black \"V\" on the breast and white flanks streaked with black', 'upper parts are mostly brown, but also have black streaks', and 'heads are striped with light brown and black bands'. The palette maps brown to body, yellow to belly, black to markings, and the black breast V is an extra part on the breast. Proportions and the long pointed bill's beak_ratio are authored."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared perching-songbird program: ground foraging on invertebrates probed from short grass, a moderate flee distance for a bird with no cover, a nest window matching the April-July nesting season, and call ids matching the flute_song and chuck vocalizations above. The program is a reasonable fit because this is a small perching icterid that forages on the ground and sings from a perch."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies maintainers",
+      "agent": "claude-code"
+    }
+  ]
+}

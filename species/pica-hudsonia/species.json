@@ -1,0 +1,555 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Pica hudsonia",
+  "slug": "pica-hudsonia",
+  "common_names": {
+    "en": "black-billed magpie"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Passeriformes",
+    "family": "Corvidae",
+    "genus": "Pica",
+    "authority": "(Sabine, 1823)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 5229487,
+    "inat_taxon_id": 143853
+  },
+  "conservation": {
+    "iucn": "LC",
+    "notes": "Least Concern. Hunted as a pest through the 1900s for its perceived impact on cattle and game birds, which reduced the population; it is now common throughout its range."
+  },
+  "range": {
+    "native": [
+      "US",
+      "CA"
+    ],
+    "koppen": [
+      "BSk",
+      "Csa",
+      "Csb",
+      "Dfb"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Walk",
+      "Hop",
+      "Fly"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Cup",
+    "perching": true,
+    "size_class": "Small",
+    "mass_kg": 0.1915,
+    "mass_range_kg": [
+      0.141,
+      0.216
+    ],
+    "length_m": 0.525,
+    "wingspan_m": 0.335,
+    "lifespan_y": 6.5,
+    "diet": {
+      "invertebrate": 0.4,
+      "seed": 0.25,
+      "fruit": 0.15,
+      "carrion": 0.1,
+      "vertebrate": 0.1
+    },
+    "social": {
+      "structure": "Pair",
+      "group_size": [
+        1,
+        8
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Mob",
+    "wariness": 0.35
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.6,
+      "arboreal": 0.35,
+      "aerial": 0.05
+    },
+    "shelter_tag": "nest_platform",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.4
+      },
+      {
+        "tag": "seed",
+        "kind": "Herbivory",
+        "weight": 0.25
+      },
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.15
+      },
+      {
+        "tag": "fruit",
+        "kind": "Scavenging",
+        "weight": 0.2,
+        "months": [
+          11,
+          12,
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.9
+      },
+      {
+        "tag": "nest_platform",
+        "kind": "Nesting",
+        "weight": 1.0
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Exploiter",
+      "uses_gardens": true,
+      "light_max": 0.6,
+      "flight_distance_m": 50,
+      "notes": "'can also commonly be found in farmlands and suburban areas', and near humans it eats garbage and food from pets and livestock fed outside, making several false caches when other magpies are watching. Where persecuted it becomes very wary; otherwise it is fairly tolerant of human presence."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "territorial",
+        "start": "02-15",
+        "end": "04-15",
+        "region": "US",
+        "note": "Pairs occupy and defend the nest tree and its immediate surroundings; nests are built near the top of trees and the nesting season ends in early July."
+      },
+      {
+        "name": "nesting",
+        "start": "03-20",
+        "end": "07-10",
+        "region": "US",
+        "note": "Domed twig nests hold six to seven eggs; incubation by the female alone lasts 16-21 days and the nestling period is three to four weeks."
+      },
+      {
+        "name": "flocking",
+        "start": "08-01",
+        "end": "12-31",
+        "region": "US",
+        "note": "Outside the breeding season the birds form loose flocks in which dominance hierarchies develop, and cache and eat more vegetation."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg",
+        "duration_days": 18
+      },
+      {
+        "stage": "Juvenile",
+        "duration_days": 25,
+        "scale": 0.85
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US-OR",
+        "monthly": [
+          0.6,
+          0.67,
+          0.66,
+          0.64,
+          0.97,
+          0.99,
+          0.52,
+          0.57,
+          0.9,
+          0.82,
+          0.85,
+          1.0
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 99255,
+        "sources": [
+          "inat-activity-us-or",
+          "gbif-activity-us-or"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 10,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=143853&place_id=10&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=10&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 863,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.38_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5229487&gadmGid=USA.38_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.38_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 98392,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "bt-perching-songbird-v1",
+    "params": {
+      "flee_m": 15,
+      "food_tag": "invertebrate",
+      "song": "chatter",
+      "alarm": "chatter",
+      "song_cooldown_s": 8,
+      "nest_m1": 3,
+      "nest_m2": 7
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "chatter",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [],
+      "cooldown_s": 8,
+      "loudness": "Loud",
+      "description": "The most common call, an alarm chatter described as a 'ka-ka-ka-ka', sometimes preceded with a 'skah-skah'; the name 'magpie' is noted as coming from calls thought to sound like a person chattering."
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.7,
+      "leg_length_ratio": 0.34,
+      "head_scale": 0.82,
+      "neck_angle_deg": 16,
+      "tail_ratio": 0.95,
+      "wing_aspect": 2.6,
+      "beak_ratio": 0.6,
+      "girth_ratio": 0.85
+    },
+    "palette": {
+      "body": "#14161a",
+      "belly": "#f2f2ee",
+      "markings": "#1d3f52",
+      "accent": "#0d0f12",
+      "eye": "#0b0f14"
+    },
+    "part_colors": {
+      "beak": "accent",
+      "breast": "belly",
+      "leg_left": "accent",
+      "leg_right": "accent"
+    },
+    "extra_parts": [
+      {
+        "name": "shoulder_flash",
+        "parent": "body",
+        "offset": [
+          0.42,
+          0.22,
+          -0.1
+        ],
+        "size": [
+          0.28,
+          0.34,
+          0.72
+        ],
+        "color": "markings"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "hop": {},
+      "fly": {},
+      "perched": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/5229487",
+      "title": "GBIF Backbone Taxonomy: Pica hudsonia",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Black-billed_magpie",
+      "title": "Wikipedia: Black-billed magpie",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Black-billed magpie\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "inat-activity-us-or",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=143853&place_id=10&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Pica hudsonia in US-OR",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-or",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5229487&gadmGid=USA.38_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Pica hudsonia in US-OR",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "GBIF's match returns Pica hudsonia (Sabine, 1823) as ACCEPTED, separate from Pica pica; the article's systematics section describes the 2000 AOU separation from the Eurasian magpie on mtDNA divergence. Family Corvidae is the article's."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High",
+      "note": "gbif_usage_key is the ACCEPTED key from the GBIF species match for Pica hudsonia; inat_taxon_id is the iNaturalist taxon the issue lists. Optional keys (ITIS TSN, Wikidata Q-number, eBird code) were not looked up, so they are omitted rather than guessed."
+    },
+    "conservation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'they are considered a species of least concern by the IUCN'. The hunting history and its population effect are quoted from the lead and conservation material."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'found in the western half of North America', ranging 'from coastal southern Alaska, southwest Yukon Territory' southward; the genus Pica is absent from the Old World for this species. US and CA are given as native. koppen is omitted: the article names open habitats with clumps of trees, meadows, suburbs and riparian thickets but gives no climate classification."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of the pooled sex range: males '167-216 g', females '141-179 g'. The species is size-dimorphic, so this is a species-wide midpoint rather than a sex-specific figure."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "The pooled range of the sex figures given: females '141-179 g (5.0-6.3 oz)' and males '167-216 g (5.9-7.6 oz)'."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of '45-60 cm (18-24 in) from tip to tail'."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "The article gives two figures: 'in the wild have a lifespan of six to seven years' in the lead and 'The lifespan of the species in the wild is about four to six years' in the breeding section. The narrower, higher of the two statements (six to seven years) is used; midpoint 6.5 years."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "'an opportunistic omnivore, eating whatever is readily available, including carrion, insects, seeds, berries, and nuts', with 'primarily feed on animal matter during the summer, and in the winter switch to more vegetation'. invertebrate is the largest single share because insects lead the list and animal matter dominates the summer half of the year; seed and fruit follow the named plant foods; carrion covers the scavenging from carcasses and predator kills the article describes; vertebrate covers the rodents, reptiles, amphibians, small birds and eggs it is 'known to hunt'. The split is an authored judgement, not a measurement."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Pairs nest individually and aggressively defend the nest tree, but 'Black-billed magpies often form loose flocks outside of the breeding season', with dominance hierarchies inside them. Pair is the breeding structure and group_size upper bound reflects the loose flocks."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Judgement: diurnal. Foraging, caching, nest building and flocking are all described by day, and no nocturnal activity is described."
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'black-billed magpie pairs will aggressively defend their nest' and will move the eggs or abandon if disturbance continues; Mob is the enum value for a bird that confronts a threat at the nest rather than dropping away from a perch."
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'The black-billed magpie builds domed nests which are made up of twigs', with 'a hood or dome ... present on almost all nests' over a cup lined with grass and rootlets. Cup is the enum value for the nest's cup; the dome is a roof over it."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Nests are 'located near the top of trees', the bird 'perches' to survey and is described sitting on cattle and following predators on the ground; perching in trees is the species' ordinary resting and watching posture."
+    },
+    "traits": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Grouped entries. body_plan Vertebrate, limb_count 2, thermoregulation Endotherm, skin Feathers, respiration Lungs and metamorphosis None are the standard bird values the article's description of a corvid implies. flight Powered follows the bird's mobility between feeding sites and for postbreeding dispersal. size_class Small is derived from mass_kg (the validator's 0.05-1 kg band). locomotion_modes Walk, Hop and Fly: the article says the bird 'walks or hops on the ground' and flies between perches, caches and nests."
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'Where persecuted it becomes very wary, but otherwise it is fairly tolerant of human presence.' Judgement set low-moderate on that sentence. flight_distance_m 50 m reflects a corvid that relocates rather than hides, and matches the taxon already in this repository for the congeneric Eurasian magpie."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Authored from the feeding and habitat sections: 'Magpies typically forage on the ground, scratching with their feet or beaks to turn over ground litter', in habitat that prefers 'open habitats with clumps of trees'. Ground therefore dominates, with a substantial arboreal share for the high tree nests and perches."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "The domed twig nest is a large structure built near the top of a tree and reused or repaired across years, so nest_platform is the matching ResourceTag; the species has no cavity and does not use a shrub thicket for nesting."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "invertebrate 0.4 follows the named insect foods and the summer animal-matter diet; seed 0.25 and fruit 0.15 follow the named plant foods, with the winter shift to more vegetation given as a separate winter-months Scavenging entry rather than folded into the Herbivory weights. perch 0.9 reflects canopy perching for nesting and watching. nest_platform 1.0 reflects total dependence on a high twig platform."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Exploiter and uses_gardens follow 'can also commonly be found in farmlands and suburban areas' and the account of eating 'garbage and food from pets or livestock that are fed outside'. light_max 0.6 and flight_distance_m 50 m are authored judgements consistent with the article's 'fairly tolerant of human presence' but wary-when-persecuted note."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'Black-billed magpies are generally non-migratory, however some winter movement does occur. While the exact reason for these movements is unknown'. ActiveYearRound is recorded rather than PartialMigration, because the article calls the species non-migratory and describes the winter movement only as unexplained."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Nest-building from February (later in the northern part of the range) and the nesting season 'ending in early July' give the nesting window; the 16-21 day incubation and three-to-four-week nestling period set the young window; 'form loose flocks outside of the breeding season' gives the flocking window. Month boundaries are an authored judgement placed around those dates."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Egg duration is the stated '16-21 days' of incubation; Juvenile duration is the stated nestling period of 'three to four weeks'. scale is authored."
+    },
+    "vocalizations.chatter": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'the most common is an alarm call, called a chatter, that is described as a ka-ka-ka-ka, sometimes preceded with a skah-skah'. Mapped to the schema's Alarm context, which is what the article calls it. No open source gives frequency bands, time windows or a cooldown, so those are authored."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Colours from the description section: 'largely black, with white scapulars, belly, and primaries, and the wings and tail are an iridescent blue-green', 'The beak is uniformly black', 'Adults also have black irises'. The palette maps black to body, white to belly and the iridescent blue-green to markings, which the shoulder flash extra part places on the wing base. The long layered tail is why tail_ratio is the largest in this repository's bird records. Proportions are otherwise authored."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared perching-songbird program: ground foraging on invertebrates scratched from litter, a long flee distance for a corvid that relocates rather than hides, a nest window matching the February-July nesting season, and a chatter call id matching the vocalization above. The program is a good fit for a medium perching corvid that hops and walks on the ground and perches in trees."
+    },
+    "traits.wingspan_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "The article gives wing chord, not wingspan: an 'individual wing chord of 205-219 mm' for males and '175-210 mm' for females. The pooled chord midpoint (175-219 mm) is 0.197 m, and a corvid of this build carries a wingspan of roughly 1.7 times its chord, giving 0.335 m. The multiplier is an authored estimate, so a reviewer should replace this with a measured wingspan if one becomes available."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies maintainers",
+      "agent": "claude-code"
+    }
+  ]
+}

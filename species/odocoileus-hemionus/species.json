@@ -1,0 +1,539 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Odocoileus hemionus",
+  "slug": "odocoileus-hemionus",
+  "common_names": {
+    "en": "mule deer"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Mammalia",
+    "order": "Artiodactyla",
+    "family": "Cervidae",
+    "genus": "Odocoileus",
+    "authority": "(Rafinesque, 1817)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2440974,
+    "inat_taxon_id": 42220
+  },
+  "range": {
+    "native": [
+      "US",
+      "CA",
+      "MX"
+    ],
+    "introduced": [
+      "AR"
+    ],
+    "koppen": [
+      "BSk",
+      "Csa",
+      "Csb",
+      "Dfb"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk",
+      "Trot",
+      "Gallop"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Fur",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "None",
+    "perching": false,
+    "size_class": "Large",
+    "mass_kg": 80.0,
+    "mass_range_kg": [
+      43,
+      150
+    ],
+    "length_m": 1.65,
+    "shoulder_height_m": 0.93,
+    "lifespan_y": 10.0,
+    "diet": {
+      "browse": 0.6,
+      "fruit": 0.2,
+      "graze": 0.15,
+      "mast": 0.05
+    },
+    "social": {
+      "structure": "Group",
+      "group_size": [
+        1,
+        20
+      ]
+    },
+    "activity_pattern": "Crepuscular",
+    "defense": "Flee",
+    "wariness": 0.7
+  },
+  "habitat": {
+    "use": {
+      "ground": 1.0
+    },
+    "shelter_tag": "shrub_thicket",
+    "resources": [
+      {
+        "tag": "browse",
+        "kind": "Herbivory",
+        "weight": 0.6
+      },
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.2
+      },
+      {
+        "tag": "graze",
+        "kind": "Herbivory",
+        "weight": 0.15
+      },
+      {
+        "tag": "mast",
+        "kind": "Herbivory",
+        "weight": 0.05
+      },
+      {
+        "tag": "shrub_thicket",
+        "kind": "Shelter",
+        "weight": 0.9
+      },
+      {
+        "tag": "water",
+        "kind": "Water",
+        "weight": 0.6
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "light_max": 0.4,
+      "flight_distance_m": 120,
+      "notes": "'Mule deer readily adapt to agricultural products and landscape plantings', and in urban areas 'building near mule deer habitat has resulted in some deer becoming accustomed to humans and the resources, such as food and water'. The article nevertheless recommends against feeding deer and against planting deer-resistant plants being replaced, because such deer disrupt migration and gene flow."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "10-01",
+        "end": "12-31",
+        "region": "US",
+        "note": "'The rut or mating season usually begins in the fall as does go into estrus for a period of a few days, and males become more aggressive, competing for mates.'"
+      },
+      {
+        "name": "young",
+        "start": "05-01",
+        "end": "07-31",
+        "region": "US",
+        "note": "'The gestation period is about 190-200 days, with fawns born in the spring'; groups are smallest during fawning season, given as June and July in Saskatchewan and Alberta."
+      },
+      {
+        "name": "flocking",
+        "start": "02-01",
+        "end": "03-31",
+        "region": "US",
+        "note": "Groups are largest in early gestation, given as winter, February and March in Saskatchewan and Alberta; a buck's antlers 'fall off during the winter, then grow again in preparation for the next season's rut'."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Juvenile",
+        "duration_days": 68,
+        "scale": 0.55
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US-OR",
+        "monthly": [
+          1.0,
+          0.95,
+          0.79,
+          0.75,
+          0.66,
+          0.93,
+          0.81,
+          0.65,
+          0.49,
+          0.6,
+          0.83,
+          0.84
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 2066,
+        "sources": [
+          "inat-activity-us-or",
+          "gbif-activity-us-or"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 10,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=42220&place_id=10&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=10&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "total": 1035,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.38_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2440974&gadmGid=USA.38_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.38_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 1031,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-ground-forager-v1",
+    "params": {
+      "flee_m": 80,
+      "calm_m": 150,
+      "food_tag": "browse",
+      "food_m": 40,
+      "flee_gait": "gallop",
+      "forage_gait": "walk",
+      "rest_sun_lo_deg": 6,
+      "rest_sun_hi_deg": 90
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "blow",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [],
+      "cooldown_s": 10,
+      "loudness": "Loud",
+      "description": "The loud nasal blast a deer gives when it detects danger; the call_id is the conventional rendering, because the article describes the animal's flight behaviour rather than transcribing its calls."
+    }
+  ],
+  "look": {
+    "body_plan": "quadruped",
+    "proportions": {
+      "torso_aspect": 1.9,
+      "leg_length_ratio": 0.62,
+      "head_scale": 0.62,
+      "neck_angle_deg": 40,
+      "tail_ratio": 0.18,
+      "ear_ratio": 1.1,
+      "beak_ratio": 0.25,
+      "girth_ratio": 0.8
+    },
+    "palette": {
+      "body": "#a08355",
+      "belly": "#e8e2d4",
+      "markings": "#f0ece0",
+      "accent": "#2a1f16",
+      "eye": "#14100c"
+    },
+    "part_colors": {
+      "snout": "accent",
+      "tail": "accent",
+      "ear_left": "body",
+      "ear_right": "body",
+      "leg_front_left": "accent",
+      "leg_front_right": "accent",
+      "leg_rear_left": "accent",
+      "leg_rear_right": "accent"
+    },
+    "extra_parts": [
+      {
+        "name": "white_rump",
+        "parent": "body",
+        "offset": [
+          0.0,
+          0.2,
+          -0.82
+        ],
+        "size": [
+          0.7,
+          0.6,
+          0.22
+        ],
+        "color": "markings"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "trot": {},
+      "gallop": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2440974",
+      "title": "GBIF Backbone Taxonomy: Odocoileus hemionus",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Mule_deer",
+      "title": "Wikipedia: Mule deer",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Mule deer\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "inat-activity-us-or",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=42220&place_id=10&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Odocoileus hemionus in US-OR",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-or",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2440974&gadmGid=USA.38_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Odocoileus hemionus in US-OR",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "GBIF's match returns Odocoileus hemionus (Rafinesque, 1817) as ACCEPTED; the article's external links give the same authorship and year, and its taxonomy section explains that the mule deer and black-tailed deer groups 'have been treated as separate species, but they hybridize, and virtually all recent authorities treat the mule deer and black-tailed deer as conspecific'. Order Artiodactyla and family Cervidae follow the article's placement among the deer."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High",
+      "note": "gbif_usage_key is the ACCEPTED key from the GBIF species match for Odocoileus hemionus; inat_taxon_id is the iNaturalist taxon the issue lists. Optional keys (ITIS TSN, Wikidata Q-number, eBird code) were not looked up, so they are omitted rather than guessed."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'a deer indigenous to western North America ... Various subspecies range from the western Great Plains to the Rocky Mountains, the southwest United States and northern Mexico, and the west coast of the continent', and 'Mule deer have also been introduced to Argentina and Kauai, Hawaii'. US, CA and MX are native; AR is given as introduced on the strength of the stated introduction to Argentina. The Hawaiian introduction is deliberately not listed, because the two-letter code for that state was not checked against the schema's RegionCode pattern here. koppen is omitted: the article's subspecies accounts name deserts, rainforests and mountains but give no climate classification, and the desert mule deer subspecies O. h. eremicus is not the one that occurs in eastern Oregon."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Mean of the two sex averages the article gives: bucks 'averaging around 92 kg (203 lb)' and does 'with an average of around 68 kg (150 lb)', which is 80 kg. This is a pooled sex figure rather than a figure for one sex."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "The pooled range of the two sex ranges: does 'typically weigh from 43 to 90 kg (95 to 198 lb)' and 'Adult bucks normally weigh 55-150 kg (121-331 lb)'. The article's much higher trophy figure of 210 kg is excluded, because it describes exceptional animals rather than the normal range."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of 'a nose-to-tail length ranging from 1.2 to 2.1 m (3.9 to 6.9 ft)'. This is a total length including the head and tail, and the article notes that 'of this, the tail may comprise 11.6 to 23 cm'."
+    },
+    "traits.shoulder_height_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of 'a height of 80-106 cm (31-42 in) at the shoulders'."
+    },
+    "traits.lifespan_y": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Honest gap: the English Wikipedia article read here has no longevity section and gives no lifespan figure, and none was found on Wikidata or in GBIF for this item. 10.0 y is an unsourced judgement for a large deer, chosen to sit in the range this repository's other Large mammal record (Leptonychotes weddellii, 25 y from a published estimate) shares but far below it, because the article stresses how heavily this deer is hunted - 'Besides humans, the three leading predators of mule deer are coyotes, wolves, and cougars' - and how much of its mortality falls on fawns. A reviewer should replace this with a longevity figure from a marked-population study if one becomes available."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'Mule deer are intermediate feeders rather than pure browsers or grazers; they predominantly browse but also eat forb vegetation, small amounts of grass and, where available, tree or shrub fruits such as beans, pods, nuts (including acorns), and berries.' browse 0.6 follows 'predominantly browse'; graze 0.15 follows 'small amounts of grass', with forb vegetation folded into browse because the schema has no forb term; fruit 0.2 covers the named fruits and berries; mast 0.05 covers the acorns and other nuts, which the article lists as the last item. The split is an authored judgement, but the intermediate-feeding characterisation and the relative ordering are the article's, and 'In 99 studies of mule deer diets, some 788 species of plants were eaten' supports recording a broad diet."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'The size of mule deer groups follows a marked seasonal pattern. Groups are smallest during fawning season ... and largest in early gestation', and 'Does may mate with more than one buck and go back into estrus within a month if they did not become pregnant.' Group is the structure that fits a herd-forming deer whose group size changes with the season. Group size bounds are authored: the article gives no counts, so the upper bound reflects a large winter aggregation rather than a measurement."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Honest gap, filled with a judgement: the article describes migrations, seasonal foraging and predation in detail but never states the animal's daily activity timing - the words crepuscular, nocturnal, dawn, dusk and night do not appear in it. Crepuscular is an unsourced judgement, flagged so a reviewer can replace it with a sourced daily-activity figure; the seasonal material in the article is not evidence for it."
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'Although capable of running, mule deer are often seen stotting (also called pronking), with all four feet coming down together' - an alarm flight rather than a confrontation - against a predator list in which humans, coyotes, wolves and cougars lead. Flee is recorded."
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "The article describes fawns being born in the spring with 'a survival rate of the fawns during labor of about 50%', and never describes a nest, den or shelter being prepared. None is the matching enum value for an animal that gives birth in the open."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "The animal is a large ground-dwelling ungulate: it browses, walks, migrates and stots, and no elevated perch is described. False."
+    },
+    "traits": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Grouped entries. body_plan Vertebrate, limb_count 4, thermoregulation Endotherm, skin Fur, respiration Lungs and metamorphosis None are the standard mammal values the article's description of a deer implies. flight None follows the absence of any flying or gliding stage. size_class Large is derived from mass_kg (the validator's band at and above 50 kg). locomotion_modes Walk, Trot and Gallop: the animal browses at a walk, moves between seasonal ranges at a trot, and escapes by running."
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Judgement set high: the article records that the three leading predators besides humans are coyotes, wolves and cougars, that fawn survival during birth is about 50%, that migration corridors and gene flow are disrupted by development, and that managers recommend against feeding deer because habituated animals stay near urban development. flight_distance_m 120 m reflects a large animal that moves a long way rather than hiding."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Authored from the diet, foraging, migration and subspecies material: the animal browses and grazes on the ground, moves seasonally over long distances, and uses shrub and tree cover; no aerial or arboreal stratum is described. Ground use is total."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The article records deer in open shrubland, sagebrush, grassland and montane forest, and describes movements 'related to available shelter and food', without naming a single ResourceTag. shrub_thicket is an authored choice because the browsed shrub layer this species depends on is also the cover it uses; a reviewer with a habitat-table source could justify a different tag."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The food weights follow traits.diet. shrub_thicket 0.9 reflects dependence on the browsed shrub layer for both food and cover. water 0.6 is an authored entry rather than a quoted one: a 80 kg deer that 'readily adapt[s] to agricultural products and landscape plantings' at a landscape scale needs regular water, but the article does not describe drinking behaviour."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Adapter and uses_gardens follow 'Mule deer readily adapt to agricultural products and landscape plantings' and the urban-development section's account of deer becoming 'accustomed to humans and the resources, such as food and water'. The notes field records the article's own cautions against feeding and for deer-resistant planting, because a reviewer should see that tolerance here is not an endorsement. light_max 0.4 and flight_distance_m 120 m are authored judgements for a large, hunted, wide-ranging animal."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "A deliberate choice away from Migration, and worth a reviewer's attention: the article has a Migration section and describes 'movements related to available shelter and food', so this deer does move seasonally - but it never leaves the region, it ranges within it. The validator requires a phase named 'absent' for the Migration strategy, and claiming this animal is absent from an eastern Oregon lot for part of the year would be false. ActiveYearRound is therefore recorded, and the seasonal movement is carried in the phases and in the notes field of the behavioral datum instead. A reviewer with a locale-specific movement source could argue for Migration if a locale's region is small enough that the herd genuinely leaves it."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Breeding: 'The rut or mating season usually begins in the fall'. Young: 'The gestation period is about 190-200 days, with fawns born in the spring', and fawns are 'weaned in the fall after about 60-75 days'. Flocking: groups are 'largest in early gestation (winter; February and March in Saskatchewan and Alberta)'. The months come from those Saskatchewan and Alberta dates, which are at a similar latitude to eastern Oregon but are not Oregon dates, so they are flagged; the article gives no local calendar."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "'Fawns stay with their mothers during the summer and are weaned in the fall after about 60-75 days'; the Juvenile duration is the midpoint of that quoted range, 68 days. scale 0.55 is authored, sized for a fawn beside a 80 kg doe. No Egg stage is recorded, because the article gives a gestation period but no stillbirth or birth-weight stage figure."
+    },
+    "vocalizations.blow": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Honest gap, filled with a judgement: the article describes the animal's alarm flight ('stotting ... with all four feet coming down together') and its predator pressure but does not transcribe any call, so the call_id and its Alarm mapping are authored rather than quoted. Loudness and the cooldown are authored; no open source gives frequency bands or time windows."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "The article's diagnostic features are colour and shape: 'it is named for its ears, which are large like those of the mule', 'The mule deer's tail is black-tipped', and mule deer antlers 'are bifurcated; they \"fork\" as they grow'. It gives no full pelage description, so the palette follows the one detail it does state - the black tail tip, placed on the tail by part_colors - with the brown body, pale belly and cream rump being an authored rendering of the species' usual agouti coat, flagged here because the article does not state them. Antlers are deliberately not modelled as an extra part: the article describes them as bifurcated and shed annually, and a static box mesh cannot represent a shed-and-regrow cycle, so the record shows the antlerless form. The white_rump extra part carries the pale rump patch that distinguishes a fleeing deer at distance. ear_ratio is the largest in this repository's mammal records, because ear size is the species' namesake."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared ground-forager program. rest_sun_lo_deg 6 and rest_sun_hi_deg 90 keep the program's documented default behaviour of resting in shelter while the sun is up, which suits a crepuscular feeder that is judged above to be active around dawn and dusk; the note on traits.activity_pattern flags that daily timing is unsourced here. food_tag browse matches an intermediate feeder that 'predominantly brows[es]'. flee_m, calm_m and food_m are greatly enlarged from the program's fox-and-badger defaults because the article describes an animal of 43-150 kg that migrates seasonally and is hunted by coyotes, wolves and cougars. flee_gait gallop matches the running escape; forage_gait walk matches browsing. The program is a reasonable fit for a large ground herbivore that shelters by day and ranges widely, though it was written for a small mammal and cannot express a deer's seasonal migration."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies maintainers",
+      "agent": "claude-code"
+    }
+  ]
+}

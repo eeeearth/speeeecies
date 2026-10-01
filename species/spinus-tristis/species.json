@@ -1,0 +1,580 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Spinus tristis",
+  "slug": "spinus-tristis",
+  "common_names": {
+    "en": "American goldfinch"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Passeriformes",
+    "family": "Fringillidae",
+    "genus": "Spinus",
+    "authority": "(Linnaeus, 1758)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 5231640,
+    "inat_taxon_id": 145310
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "US",
+      "CA",
+      "MX"
+    ],
+    "koppen": [
+      "Cfa",
+      "Cfb",
+      "Dfa",
+      "Dfb"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Walk",
+      "Hop",
+      "Fly"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Cup",
+    "perching": true,
+    "size_class": "Tiny",
+    "mass_kg": 0.0155,
+    "mass_range_kg": [
+      0.011,
+      0.02
+    ],
+    "length_m": 0.125,
+    "wingspan_m": 0.205,
+    "lifespan_y": 2.5,
+    "diet": {
+      "seed": 0.8,
+      "invertebrate": 0.1,
+      "fruit": 0.1
+    },
+    "social": {
+      "structure": "Flock",
+      "group_size": [
+        1,
+        40
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.4
+  },
+  "habitat": {
+    "use": {
+      "arboreal": 0.5,
+      "ground": 0.3,
+      "aerial": 0.2
+    },
+    "shelter_tag": "nest_cup",
+    "resources": [
+      {
+        "tag": "seed",
+        "kind": "Herbivory",
+        "weight": 0.8
+      },
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.1,
+        "months": [
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.1
+      },
+      {
+        "tag": "nest_cup",
+        "kind": "Nesting",
+        "weight": 1.0
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.8
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Exploiter",
+      "uses_gardens": true,
+      "light_max": 0.6,
+      "flight_distance_m": 25,
+      "notes": "'Human activity has generally benefited the American goldfinch. It is often found in residential areas because it is attracted to bird feeders, which increase its survival rate in these areas', and 'Deforestation also creates open meadow areas, which is its preferred habitat.'"
+    }
+  },
+  "seasonal": {
+    "strategy": "Migration",
+    "phases": [
+      {
+        "name": "absent",
+        "start": "10-01",
+        "end": "04-01",
+        "region": "US",
+        "note": "'ranging ... from just south of the Canada-United States border to Mexico during the winter'."
+      },
+      {
+        "name": "territorial",
+        "start": "07-15",
+        "end": "08-10",
+        "region": "US",
+        "note": "Males begin courtship in late July, then select a territory and mark its boundaries by warbling from perch to perch; two or three pairs may group their territories in a loose colony."
+      },
+      {
+        "name": "nesting",
+        "start": "07-25",
+        "end": "09-05",
+        "region": "US",
+        "note": "The female builds a nest in a deciduous shrub or tree, taking about six days; the eggs are incubated by the female alone and most pairs raise only one brood."
+      },
+      {
+        "name": "young",
+        "start": "08-20",
+        "end": "10-05",
+        "region": "US",
+        "note": "Nestlings use a chick-kee call shortly before fledging and for up to three weeks after fledging they are still fed by the male, who locates them by listening."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg",
+        "duration_days": 12
+      },
+      {
+        "stage": "Juvenile",
+        "duration_days": 21,
+        "scale": 0.8
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US-OR",
+        "monthly": [
+          0.33,
+          0.38,
+          0.3,
+          0.56,
+          0.75,
+          0.78,
+          0.9,
+          1.0,
+          0.99,
+          0.67,
+          0.34,
+          0.41
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 325169,
+        "sources": [
+          "inat-activity-us-or",
+          "gbif-activity-us-or"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 10,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=145310&place_id=10&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=10&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "total": 637,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.38_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5231640&gadmGid=USA.38_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.38_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 324532,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "bt-perching-songbird-v1",
+    "params": {
+      "flee_m": 8,
+      "food_tag": "seed",
+      "song": "po_ta_to_chip",
+      "alarm": "bearbee",
+      "song_cooldown_s": 8,
+      "nest_m1": 7,
+      "nest_m2": 9
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "po_ta_to_chip",
+      "context": "Song",
+      "season_months": [
+        7,
+        8,
+        9
+      ],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 8,
+      "loudness": "Moderate",
+      "description": "The male's courtship and territorial song, delivered in flight as well as from a perch, with the male warbling throughout a wide circling flight with the female; the call_id is the conventional rendering used for the song, which the article describes but does not transcribe."
+    },
+    {
+      "call_id": "bearbee",
+      "context": "Alarm",
+      "season_months": [
+        7,
+        8,
+        9
+      ],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 6,
+      "loudness": "Moderate",
+      "description": "An adult defence call at the nest, used to signal nestlings to quiet down and crouch in the nest to become less conspicuous; one of two named defence calls."
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.7,
+      "leg_length_ratio": 0.28,
+      "head_scale": 0.8,
+      "neck_angle_deg": 12,
+      "tail_ratio": 0.6,
+      "wing_aspect": 3.2,
+      "beak_ratio": 0.42,
+      "girth_ratio": 0.85
+    },
+    "palette": {
+      "body": "#e8c81e",
+      "belly": "#f2dc4a",
+      "markings": "#1e1c18",
+      "accent": "#f7f2e4",
+      "eye": "#0b0f14"
+    },
+    "part_colors": {
+      "beak": "accent",
+      "wing_left": "markings",
+      "wing_right": "markings",
+      "leg_left": "accent",
+      "leg_right": "accent",
+      "tail": "markings"
+    },
+    "extra_parts": [
+      {
+        "name": "black_cap",
+        "parent": "head",
+        "offset": [
+          0.0,
+          0.28,
+          0.05
+        ],
+        "size": [
+          0.55,
+          0.3,
+          0.7
+        ],
+        "color": "markings"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "hop": {},
+      "fly": {},
+      "perched": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/5231640",
+      "title": "GBIF Backbone Taxonomy: Spinus tristis",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/American_goldfinch",
+      "title": "Wikipedia: American goldfinch",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"American goldfinch\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "inat-activity-us-or",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=145310&place_id=10&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Spinus tristis in US-OR",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-or",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5231640&gadmGid=USA.38_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Spinus tristis in US-OR",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "GBIF's match returns Spinus tristis (Linnaeus, 1758) as ACCEPTED; the article's taxonomy section gives the same authorship and year, records the 1758 description in Systema Naturae, and notes that 'Recent studies have resurrected the genus Spinus' after its 1976 merger into Carduelis. Family Fringillidae is the article's."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High",
+      "note": "gbif_usage_key is the ACCEPTED key from the GBIF species match for Spinus tristis; inat_taxon_id is the iNaturalist taxon returned by the API match. Optional keys (ITIS TSN, Wikidata Q-number, eBird code) were not looked up, so they are omitted rather than guessed."
+    },
+    "conservation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "The IUCN status is recorded as LC. No population trend is quoted, because the article's own account of the species' status is that 'Human activity has generally benefited the American goldfinch', which is not a Red List finding."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'ranging from mid-Alberta to North Carolina during the breeding season, and from just south of the Canada-United States border to Mexico during the winter', with a breeding range 'from coast to coast' bounded on the north by Saskatchewan. US, CA and MX are given as native, covering the annual range. koppen is omitted: the article names open country, fields, meadows, flood plains, roadsides, orchards and gardens, but gives no climate classification."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of 'It weighs between 11-20 g (0.39-0.71 oz)'."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'It weighs between 11-20 g (0.39-0.71 oz)'."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of '11-14 cm (4.3-5.5 in) long'."
+    },
+    "traits.wingspan_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of 'a wingspan of 19-22 cm (7.5-8.7 in)'."
+    },
+    "traits.lifespan_y": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "No sourced typical or mean lifespan figure was found for this species in the English Wikipedia article, on Wikidata or in GBIF. Estimated by analogy to similarly sized granivorous passerines already in this repository with a sourced figure (house sparrow ~2.2 y from survival statistics, both a small flock-forming urban-edge granivore with a complete moult), and set slightly above that because the species is a long-distance migrant. 2.5 y is an unsourced judgement pending a better source."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'The American goldfinch is a diurnal feeder ... It is mainly granivorous, but will occasionally eat insects, which are also fed to its young to provide protein', and it 'also consumes tree buds, maple sap, and berries'. seed 0.8 follows 'mainly granivorous' and 'seeds represent most of their diet'; invertebrate 0.1 follows 'occasionally eat insects'; fruit 0.1 covers the named berries, buds and sap. The invertebrate share is deliberately small because the article calls the species 'one of the strictest vegetarians in the bird world'."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'It is a social bird and will gather in large flocks while feeding and migrating' and 'this finch lives in loose colonies' in the breeding season, with two or three pairs grouping their territories. Flock is the structure that covers both, which is why it is preferred here to Pair."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'The American goldfinch is a diurnal feeder.' Quoted directly."
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "The article describes an elaborate display repertoire escalating to attack - 'Attacks include pecking at feathers, supplanting the opponent by landing next to it, and flying vertically with legs and feet extended, beaks open, and necks extended' - but this is conspecific aggression over territory and dominance, while the bird's response to a predator is to leave; Flee is recorded and the conspecific displays are noted in the human_tolerance notes instead."
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "A tightly woven nest 'built in late summer by the female in the branches of a deciduous shrub or tree at a height of up to 10 m', with an inside diameter of about 6.5 cm and a reinforced rim. Cup is the matching enum value."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "The male marks his territory boundaries by 'warbling as he flies from perch to perch', perches to sing, and the species uses its feet extensively to grip seedhead stems, including catkins held against a branch."
+    },
+    "traits": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Grouped entries. body_plan Vertebrate, limb_count 2, thermoregulation Endotherm, skin Feathers, respiration Lungs and metamorphosis None are the standard bird values the article's description of a finch implies. flight Powered follows the bird's long-distance migration and its courtship and display flights. size_class Tiny is derived from mass_kg (under 0.05 kg). locomotion_modes Walk, Hop and Fly: the bird forages by hanging from seedheads and hopping through weedy growth, and makes sustained display and migration flights."
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Judgement set low-moderate: the species is 'often found in residential areas because it is attracted to bird feeders, which increase its survival rate in these areas', yet its nest is high in a shrub or tree and it is aggressive toward intruders during nest construction. flight_distance_m 25 m reflects a small bird that leaves a feeder rather than hides."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Authored from the habitat, feeding and breeding sections: 'prefers open country where weeds thrive, such as fields, meadows, flood plains, as well as roadsides, orchards, and gardens', nests in shrubs and trees, and spends a striking share of its time in flight for courtship, display and migration. Arboreal use therefore exceeds ground use, with a genuinely large aerial share that most passerine records in this repository do not have."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "The nest is a small woven cup built in the branches of a deciduous shrub or tree, and the species has no cavity dependence, so nest_cup is the matching ResourceTag."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "seed 0.8 follows the granivorous diet; invertebrate 0.1 is restricted to the breeding months, because the article says insects are 'also fed to its young to provide protein' and the breeding season is late summer; fruit 0.1 covers the berries, buds and sap eaten outside that. nest_cup 1.0 reflects total nesting dependence on a woven cup. perch 0.8 reflects perching to sing and to grip seedheads."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Exploiter and uses_gardens are quoted almost directly: 'Human activity has generally benefited the American goldfinch. It is often found in residential areas because it is attracted to bird feeders, which increase its survival rate in these areas', and the habitat section names gardens and orchards. light_max 0.6 and flight_distance_m 25 m are authored judgements for a bird that will feed in the open beside people."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'It is migratory, ranging from mid-Alberta to North Carolina during the breeding season, and from just south of the Canada-United States border to Mexico during the winter.' Migration is the enum value for a species that breeds in one region and winters in another."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Territorial: 'males begin courtship in late July' and then mark a territory by warbling from perch to perch. Nesting: the nest 'is built in late summer', with nest-building taking about six days and incubation by the female alone. Young: nestlings call before fledging and are 'still fed by the male' for up to three weeks after. The absent window is the complement of the stated wintering range. Month boundaries are an authored judgement, and the article is unusually clear that this is 'a breeding season ... later in the year than for any other finch', so the late start is quoted rather than assumed."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The article states that nestlings are fed by the male 'for up to three weeks after fledging' and that most pairs raise one brood; the Juvenile duration follows that three weeks. No incubation length is stated in the text read here, so the Egg duration of 12 days is an authored judgement for a small finch, flagged as such rather than quoted. scale is authored."
+    },
+    "vocalizations.bearbee": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'There are two defense calls made by adults during nesting; a sweet call made to rally other goldfinches to the nest and distract predators, and a bearbee used to signal to the nestlings to quiet them and get them to crouch down in the nest to become less conspicuous.' Quoted directly, and mapped to the schema's Alarm context. The companion rally call is not modelled here, and frequency bands, time windows and the cooldown are authored."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Colours from the lead: 'the male is a vibrant yellow in the summer and an olive color during the winter, while the female is a dull yellow-brown shade which brightens only slightly during the summer'. The palette maps the breeding male's yellow to body and belly, the black of the wing tips, tail and the frontal cap to markings, and the pale conical bill to accent. The black_cap extra part is the male's black forehead and wings-front the article's dichromatism description requires. The record is modelled on the breeding male. Proportions are authored from the article's size description, with the short conical seed-eating bill setting beak_ratio and the small size setting leg_length_ratio."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared perching-songbird program: food_tag seed rather than the program's invertebrate default, because this species is one of the strictest seed-eaters in the bird world and hangs from seedheads rather than probing soil; a short flee distance for a small feeder bird; a July-September nest window matching the article's unusually late breeding season; and call ids matching the two named calls above. The program is a good fit for a small flock-forming perching finch."
+    },
+    "vocalizations.po_ta_to_chip": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'The courtship rituals include aerial maneuvers and singing by males, who begin courtship in late July', and 'the male warbles throughout the flight' as the pair circles. The song's existence, season, context and delivery are quoted; the call_id is the conventional onomatopoeic rendering used for this finch's song, because the article describes the song without transcribing it, and time windows and the cooldown are authored."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies maintainers",
+      "agent": "claude-code"
+    }
+  ]
+}
