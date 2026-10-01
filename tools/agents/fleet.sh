@@ -362,12 +362,22 @@ stop_agent() {  # slug -> 0. Signals the whole process group and waits it out.
   # "remove the metadata" while the process carried on in a deleted directory.
   # Matching is exact --dir argv equality for the reason given above pid_arg_dir.
   if [ ! -f "$pf" ]; then
+    local stopped_all=0
     for pid in $(pgrep -f -- "$AGENT_BIN run" 2>/dev/null); do
       [ "$(pid_arg_dir "$pid")" = "$wt" ] || continue
       say "  no pidfile for $1; stopping its agent on $wt (pid $pid)"
-      stop_signal "$pid"
+      # stop_signal refuses when the target shares our process group, and can
+      # fail to signal. Ignoring that made a refusal indistinguishable from a
+      # successful stop: rc=0 and "stopping" logged while the agent ran on.
+      if ! stop_signal "$pid"; then
+        stopped_all=1
+      elif [ -r "/proc/$pid/stat" ] \
+           && [ "$(awk '{print $3}' "/proc/$pid/stat" 2>/dev/null)" != Z ]; then
+        say "  pid $pid survived the stop"
+        stopped_all=1
+      fi
     done
-    return 0
+    return $((stopped_all))
   fi
   pid=$(tr -dc '0-9' < "$pf" 2>/dev/null)
   if [ -n "$pid" ] && kill -0 "$pid" 2>/dev/null; then
@@ -665,8 +675,11 @@ cmd_spawn() {
   # reference unbound under `set -u`, so the rollback aborted before removing the
   # worktree it was called to undo.
   local launch_tmp=""
+  # force=1 for a launch that failed after publication: there the .meta is the
+  # thing being undone, so its presence must not suppress the worktree removal.
   spawn_rollback() {
-    [ -f "$STATE_DIR/$slug.meta" ] && return 0
+    local force="${1:-0}"
+    [ "$force" = 1 ] || [ ! -f "$STATE_DIR/$slug.meta" ] || return 0
     [ -d "$wpath" ] || return 0
     say "rolling back the worktree for $slug"
     git -C "$REPO" worktree remove --force "$wpath" 2>/dev/null
@@ -810,8 +823,12 @@ disown 2>/dev/null || true
 # meta describing an agent that does not exist.
 if ! spawn_started "$slug"; then
   say "the agent for $slug never started; rolling the spawn back"
-  rm -f "$STATE_DIR/$slug.meta"
-  spawn_rollback
+  # The .meta must not be able to veto its own removal. `rm -f` fails on an
+  # unwritable state dir, and spawn_rollback then saw the file and returned
+  # without removing the worktree -- leaking exactly what this path exists to
+  # clean up. Roll back with force, then best-effort remove the metadata.
+  spawn_rollback 1
+  rm -f "$STATE_DIR/$slug.meta" 2>/dev/null
   return 1
 fi
 
@@ -880,7 +897,13 @@ cmd_teardown() {
   # working out of a deleted directory; the live fleet briefly held five
   # processes for three agents. Salvaging first would also race an agent that
   # was still writing into the very files being committed.
-  stop_agent "$slug"
+  # Explicit, because callers use `cmd_teardown ... || true` and errexit cannot be
+  # relied on here: a failed stop means the agent is still writing into the tree
+  # this is about to commit-and-destroy.
+  if ! stop_agent "$slug"; then
+    say "refusing to tear down $slug; its agent could not be stopped"
+    return 1
+  fi
   # Salvage before destroying. Teardown promises the branch is kept "for salvage",
   # but worktree remove --force deletes uncommitted files outright, so a locale
   # agent that got part-way through a dozen species lost all of it. Commit it onto
