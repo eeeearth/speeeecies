@@ -483,7 +483,9 @@ row() {
   kind=$(meta_get "$slug" kind); [ -n "$kind" ] || kind=species
   if agent_running "$slug"; then run=running; else run=stopped; fi
   age=$(( ( $(date -u +%s) - $(date -u -d "$(sed -n 's/^started: //p' "$STATE_DIR/$slug.status.md" | head -1)" +%s 2>/dev/null || date -u +%s) ) / 60 ))
-  pr=$(pr_field "$slug" number,state "#\(.number) \(.state)")
+  # Quoted like the reap loop's: a bare #... is not a jq string, so gh fails and
+  # the label comes back GHERR even when the PR exists.
+  pr=$(pr_field "$slug" number,state '"#\(.number) \(.state)"')
   ci=$(pr_field "$slug" statusCheckRollup '[.statusCheckRollup[]?.conclusion] | if length==0 then "none" else (join(" ")) end')
   last=$(tail -2 "$STATE_DIR/$slug.log" 2>/dev/null | tr -d '\r' | grep -v '^$' | tail -1 | cut -c1-70)
   printf '%-26s %-7s %-40s %-8s %-6s %-3s %-8s %s\n' "$slug" "$kind" "$model" "$run" "${age}m" "$pr" "$ci" "$last"

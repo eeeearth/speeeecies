@@ -17,9 +17,12 @@ the files it points you at. Read carefully and do the whole job.
   line `I'm done boss`. If you are genuinely stuck, the final line
   `BLOCKED: <reason>`. A clear `BLOCKED:` is an acceptable outcome; forcing
   something through is not.
-- **Do not create a status file inside the worktree.** A `STATUS.md` written in
-  the repo gets committed and lands in your pull request, where the reviewer
-  finds a stale note from an earlier attempt. One already did.
+- **Do not create, edit or commit any status file inside the worktree.** The
+  repository already contains a root `STATUS.md` holding another agent's stale
+  notes; it is *not* yours and must be left exactly as it is. It already exists,
+  so "do not create one" is not the instruction — do not append to it, do not
+  touch it, and do not `git add` it. A pull request that carries a diff to it is
+  sending the reviewer an agent's scratch notes, which has already happened once.
 - This branch may already contain work. If `locales/{{SLUG}}/` or
   `species/{{SLUG}}/` is not empty, you are continuing a previous attempt: read
   what is there, finish what is missing, and keep what is correct. Do not

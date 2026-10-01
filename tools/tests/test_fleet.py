@@ -259,8 +259,8 @@ def test_briefs_name_the_real_status_file_and_forbid_an_in_repo_one():
         body = brief.read_text(encoding="utf-8")
         low = " ".join(body.lower().split())
         assert "{{STATUSFILE}}" in body, f"{brief.name} does not name a status path"
-        assert "do not create a status file inside the worktree" in low, (
-            f"{brief.name} does not forbid the in-repo status file"
+        assert "do not create, edit or commit any status file" in low, (
+            f"{brief.name} does not forbid touching the in-repo status file"
         )
         assert "continuing a previous attempt" in low, (
             f"{brief.name} does not tell a retried agent to continue salvaged work"
@@ -1137,3 +1137,31 @@ def test_launch_title_names_the_work_kind():
         "the launch title hardcodes species, mislabelling locale agents"
     )
     assert '--title "species $sci' not in text, "the hardcoded species title is back"
+
+
+def test_status_and_reap_quote_the_pr_label_the_same_way():
+    """`status` passed a bare `#\\(.number) \\(.state)` to `gh -q`, which is not a
+    jq string, so gh failed and the label came back GHERR even when the pull
+    request existed. The reap loop quoted it correctly, so the two disagreed."""
+    text = FLEET.read_text(encoding="utf-8")
+    calls = re.findall(r'pr_field "\$slug" number,state (\'[^\']*\'|"[^"]*")', text)
+    assert calls, "no pr_field label calls found"
+    assert len(set(calls)) == 1, f"status and reap disagree on jq quoting: {set(calls)}"
+    assert calls[0].startswith("'") and "#" in calls[0], (
+        "the jq expression must be a quoted string for gh -q"
+    )
+
+
+def test_briefs_forbid_touching_the_repository_status_file():
+    """A root STATUS.md already exists on origin/main holding another agent's
+    notes, so "do not create one" does not stop an agent appending to it. PR #134
+    shipped 9 lines of that as part of a locale contribution."""
+    for brief in (BRIEF, BRIEF_LOCALE):
+        low = " ".join(brief.read_text(encoding="utf-8").lower().split())
+        assert "do not create, edit or commit any status file" in low, (
+            f"{brief.name} only forbids creating a status file, not editing the "
+            "one already committed to the repository"
+        )
+        assert "already exists" in low, (
+            f"{brief.name} must explain that the in-repo status file is not the agent's"
+        )
