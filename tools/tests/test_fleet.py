@@ -1967,8 +1967,22 @@ def test_the_stale_lock_reclaim_is_serialised():
     assert loop.count("flock -n 9") >= 2, (
         "flock must be re-tested under the mutex, after the winner may hold it"
     )
-    assert "rmdir \"$STATE_DIR/supervisor.reclaim\"" in loop, (
-        "the mutex must be released on every exit path"
+    # rm -rf, not rmdir: the mutex directory holds an `owner` file, so rmdir
+    # fails on it as non-empty and, under `set -e`, that failure exited the
+    # supervisor -- the reclaim path killed the restart it exists to enable.
+    assert 'rm -rf "$STATE_DIR/supervisor.reclaim"' in loop, (
+        "the mutex must be released on every exit path, with rm -rf"
+    )
+    assert 'rmdir "$STATE_DIR/supervisor.reclaim"' not in loop, (
+        "rmdir fails on the non-empty mutex directory and kills the supervisor"
+    )
+    # A dead owner is detected immediately, not after the full wait, so a restart
+    # after a killed supervisor does not sit through the whole grace period.
+    check = loop.index('reclaim_owner=$(tr -dc')
+    timeout_check = loop.index('[ "$waited" -gt 30 ]')
+    assert check < timeout_check, (
+        "a dead mutex owner must be detected on the first iteration, or every "
+        "restart waits out the full timeout before recovering"
     )
 
 
@@ -2020,3 +2034,130 @@ def test_a_failed_worktree_add_cannot_report_a_spawn():
     assert "\n  ( cd \"$REPO\" && git worktree prune" not in spawn, (
         "an unchecked worktree add is what produced the phantom spawn"
     )
+
+
+def test_the_provider_cursor_advances_once_per_committed_spawn():
+    """Reordering cmd_spawn to publish the agent last removed both `advance_model`
+    calls along the way, and the definition alone looks fine to every gate. The
+    cursor would have frozen and one model would be served forever, which is the
+    rotation the task actually asks for."""
+    text = FLEET.read_text(encoding="utf-8")
+    spawn = text.split("cmd_spawn() {", 1)[1].split("\n}\n", 1)[0]
+    assert len(re.findall(r"^\s*advance_model\s*$", spawn, re.M)) == 1, (
+        "exactly one advance_model call per spawn, or the rotation is wrong"
+    )
+    # And it must come after the commit point, so a refused spawn does not rotate.
+    assert spawn.index("advance_model") > spawn.index("trap - EXIT"), (
+        "the cursor must only step for a spawn that was actually committed"
+    )
+
+
+def test_a_spawn_is_published_only_after_the_launcher_exists():
+    """`cmd_spawn` runs inside `if ! spawn_err=$( ... )`, where bash suspends
+    `set -e`, so nothing aborted on its own. Writing `.meta` first left a phantom
+    when the launcher could not be created: the spawn logged "spawned" with no
+    agent behind it, and the next poll died tailing a log that never existed."""
+    text = FLEET.read_text(encoding="utf-8")
+    spawn = text.split("cmd_spawn() {", 1)[1].split("\n}\n", 1)[0]
+
+    build = spawn.index('cat > "$launch_tmp" <<LAUNCHER')
+    checks = spawn.index('if [ ! -s "$launch_tmp" ]')
+    install = spawn.index('mv -fT "$launch_tmp" "$launch"')
+    publish = spawn.index('> "$STATE_DIR/$slug.meta"')
+    commit = spawn.index("trap - EXIT")
+    launched = spawn.index('setsid nohup "$launch"')
+    assert build < checks < install, "the launcher is built, then verified, then installed"
+    assert install < launched < publish, "the agent is launched before it is published"
+    assert publish < commit, "publication is the commit point"
+
+
+def test_the_launcher_must_be_an_executable_regular_file():
+    """Plain `mv -f src dst` where dst is an existing directory moves src *into*
+    it and still exits 0, so a launcher path that was really a directory
+    installed successfully. And a directory is "executable" because it is
+    searchable, so an -x-only check passed it too."""
+    text = FLEET.read_text(encoding="utf-8")
+    spawn = text.split("cmd_spawn() {", 1)[1].split("\n}\n", 1)[0]
+    assert 'mv -fT "$launch_tmp" "$launch"' in spawn, (
+        "mv must use -T, or a directory at the destination swallows the launcher"
+    )
+    assert '[ ! -f "$launch" ] || [ ! -x "$launch" ]' in spawn, (
+        "the launcher must be a regular executable file; a directory passes -x"
+    )
+
+
+def test_a_failed_spawn_rolls_back_its_worktree():
+    """The EXIT trap cannot do this. It fires when the shell exits, and these
+    paths `return` from a function instead; under `supervise` the shell then runs
+    for days, so every guarded failure leaked a worktree and a branch
+    registration that blocked the slug's next attempt."""
+    text = FLEET.read_text(encoding="utf-8")
+    spawn = text.split("cmd_spawn() {", 1)[1].split("\n}\n", 1)[0]
+    assert "spawn_rollback()" in spawn, "there must be a rollback helper"
+    body = text.split("spawn_rollback() {", 1)[1].split("\n}\n", 1)[0]
+    assert 'worktree remove --force "$wpath"' in body, (
+        "the rollback must remove the worktree it created"
+    )
+    assert "worktree prune" in body, "and prune the registration it leaves"
+    # Every guarded failure after the worktree exists must roll back. The worktree
+    # failure itself happens before there is a worktree to undo, so it is excluded.
+    guarded = re.findall(
+        r'say "(?:could not (?:write|make|install)[^"]*'
+        r'|the launcher[^"]*)"\s*\n\s*rm -f [^\n]*\n\s*spawn_rollback\n\s*return 1',
+        spawn)
+    assert len(guarded) == 4, (
+        f"all four post-worktree failure paths must roll back, found {len(guarded)}"
+    )
+    # Every failure path that runs AFTER a worktree exists must roll back. The
+    # worktree-add failure itself is excluded on purpose: it is the one failure
+    # with nothing to undo, because git never created the tree.
+    lines = spawn.split("\n")
+    # Skip the worktree-add failure entirely: git never created the tree there, so
+    # that path has nothing to undo. Its `return 1` sits before the closing `fi`.
+    add_fail = next(i for i, l in enumerate(lines) if "could not create a worktree" in l)
+    worktree_made = next(i for i in range(add_fail, len(lines)) if lines[i].strip() == "fi") + 1
+    commit = next(i for i, l in enumerate(lines) if l.strip() == "trap - EXIT")
+    assert worktree_made < commit, "worktree creation must precede the commit point"
+    for i in range(worktree_made, commit):
+        if lines[i].strip() != "return 1":
+            continue
+        # Walk back over the rm -f that precedes it, if any.
+        j = i - 1
+        while j > worktree_made and lines[j].strip().startswith("rm -f "):
+            j -= 1
+        assert lines[j].strip() == "spawn_rollback", (
+            f"a failure path leaks its worktree: {lines[i - 2].strip()!r} "
+            f"returns without rolling back"
+        )
+
+
+def test_a_missing_agent_log_cannot_kill_the_reap():
+    """A phantom or salvaged agent can have a `.meta` and no log. The unguarded
+    `tail` made the supervisor exit on the reap, which is how a false spawn killed
+    the following poll."""
+    text = FLEET.read_text(encoding="utf-8")
+    reap = text.split("# Reap:", 1)[1].split("Refill to the floor", 1)[0]
+    for line in reap.splitlines():
+        if 'tail -5 "$STATE_DIR/$slug.log"' in line:
+            assert "2>/dev/null" in line, (
+                f"the reap must tolerate a missing log: {line.strip()!r}"
+            )
+    assert "no agent log" in reap, "a missing log should be reported, not fatal"
+
+
+def test_the_reclaim_mutex_cannot_wedge_forever():
+    """A contender killed between `mkdir supervisor.reclaim` and its `rmdir` left
+    the directory behind, and every future contender then waited 30s and died --
+    permanently wedging stale-lock recovery, which is the one path that must work
+    when a supervisor is restarted."""
+    text = FLEET.read_text(encoding="utf-8")
+    loop = text.split("cmd_supervise() {", 1)[1]
+    assert "clearing a reclaim mutex orphaned by dead pid" in loop, (
+        "a mutex whose owner is dead must be reclaimable"
+    )
+    assert '> "$STATE_DIR/supervisor.reclaim/owner"' in loop, (
+        "the mutex must record its owner so staleness is decidable"
+    )
+    clear = loop.index("clearing a reclaim mutex orphaned")
+    giveup = loop.index('die "another supervisor is reclaiming')
+    assert clear < giveup, "staleness must be checked before giving up"

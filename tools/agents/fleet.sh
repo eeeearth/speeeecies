@@ -621,6 +621,20 @@ cmd_spawn() {
     say "could not create a worktree for $slug at $wpath"
     return 1
   fi
+  # Undo a partially-created spawn. The EXIT trap cannot do this: it fires when
+  # the shell exits, and cmd_spawn's guarded `return 1` paths return from a
+  # function instead. Under `supervise` the shell keeps running for days, so every
+  # one of those paths leaked its worktree and its branch registration instead.
+  spawn_rollback() {
+    [ -f "$STATE_DIR/$slug.meta" ] && return 0
+    [ -d "$wpath" ] || return 0
+    say "rolling back the worktree for $slug"
+    git -C "$REPO" worktree remove --force "$wpath" 2>/dev/null
+    git -C "$REPO" worktree prune 2>/dev/null
+    rm -f "$launch_tmp" "$launch" 2>/dev/null
+    return 0
+  }
+
   # Transaction boundary. A spawn that dies between here and the .meta write
   # leaves a worktree the supervisor cannot count, cannot reap, and retries
   # around -- it leaked three before this existed. Undo the worktree on any
@@ -654,13 +668,14 @@ print(" ".join(re.findall(r"`([A-Z]{2}(?:-[A-Z0-9]{1,3})?)`", m.group(1))) if m 
 # a locale's PR touches locales/ while a species record touches species/. Without
 # it a finished locale agent reads as "no PR", its worktree is destroyed and its
 # issue is retried from scratch.
-printf 'workspace=none\nagent=%s\nworktree=%s\nbranch=%s\nissue=%s\nslug=%s\nkind=%s\nscientific=%s\nmodel=%s\nvariant=%s\nregions=%s\nlog=%s\nstatus=%s\nbrief=%s\nmain=%s\n' \
-    "$slug" "$wpath" "$branch" "$issue" "$slug" "$kind" "$sci" "$model" "$variant" "$regions" "$log" "$status" "$brief" "$REPO" \
-    > "$STATE_DIR/$slug.meta"
-  # The spawn is committed: the supervisor can now see and reap this agent.
-  trap - EXIT
-
-  cat > "$launch" <<LAUNCHER
+# Build and verify the launcher BEFORE publishing the agent. Writing .meta first
+# meant a launcher that could not be created -- `$launch` already a directory,
+# say -- still left a .meta behind and logged "spawned" with no process behind it.
+# errexit does not catch that: cmd_spawn runs inside `if ! spawn_err=$( ... )`,
+# and bash suspends `set -e` in a condition context. The phantom was reaped on
+# the next poll, which died tailing a log that was never created.
+  local launch_tmp="$launch.building"
+  cat > "$launch_tmp" <<LAUNCHER
 #!/usr/bin/env bash
 # Drop the supervisor's lock fd before doing anything else. bash does not set
 # close-on-exec on it, so every agent inherited the open file description and
@@ -677,13 +692,58 @@ cd "$wpath" || exit 9
 rc=\$?
 echo "=== agent exited rc=\$rc \$(date -u +%FT%TZ)"
 LAUNCHER
-  chmod +x "$launch"
+  # Each step checked by hand, for the same reason. The EXIT trap still owns the
+  # worktree here, because .meta has deliberately not been written yet, so any
+  # failure unwinds cleanly instead of leaving debris behind.
+  if [ ! -s "$launch_tmp" ]; then
+    say "could not write the launcher for $slug"
+    rm -f "$launch_tmp"
+    spawn_rollback
+    return 1
+  fi
+  if ! chmod +x "$launch_tmp" 2>/dev/null; then
+    say "could not make the launcher executable for $slug"
+    rm -f "$launch_tmp"
+    spawn_rollback
+    return 1
+  fi
+  # -T is load-bearing. Plain `mv -f src dst` where dst is an existing directory
+  # moves src *into* it and still exits 0, so a launcher path that was really a
+  # directory installed successfully and the spawn logged "spawned" with no agent
+  # behind it. -T treats dst as a file and fails instead.
+  if ! mv -fT "$launch_tmp" "$launch" 2>/dev/null; then
+    say "could not install the launcher for $slug"
+    rm -f "$launch_tmp"
+    spawn_rollback
+    return 1
+  fi
+  # -f as well as -x: a directory is "executable" because it is searchable, so an
+  # -x-only check passed a launcher path that was really a directory.
+  if [ ! -f "$launch" ] || [ ! -x "$launch" ]; then
+    say "the launcher for $slug is not an executable file"
+    rm -f "$launch"
+    spawn_rollback
+    return 1
+  fi
 
   # Detached, so one fleet member's exit cannot take the supervisor down with it.
   # 9>&- closes the lock for this spawn too: the launcher closes it as its first
   # act, but setsid holds it in between.
   setsid nohup "$launch" 9>&- </dev/null >/dev/null 2>&1 &
   disown 2>/dev/null || true
+
+  # Publish the agent only now, once everything needed to run it exists. This is
+  # the commit point: from here the supervisor can see and reap it, and the EXIT
+  # trap stops unwinding the worktree.
+  printf 'workspace=none\nagent=%s\nworktree=%s\nbranch=%s\nissue=%s\nslug=%s\nkind=%s\nscientific=%s\nmodel=%s\nvariant=%s\nregions=%s\nlog=%s\nstatus=%s\nbrief=%s\nmain=%s\n' \
+    "$slug" "$wpath" "$branch" "$issue" "$slug" "$kind" "$sci" "$model" "$variant" "$regions" "$log" "$status" "$brief" "$REPO" \
+    > "$STATE_DIR/$slug.meta"
+  trap - EXIT
+
+  # Step the provider cursor once per committed spawn, so the next one is served
+  # by the other provider. Removing this while reordering the spawn left the
+  # cursor frozen: one model would be used forever and the rotation the task
+  # actually asks for would stop happening.
   advance_model
 
   printf '%s\t%s\t%s\n' "$issue" "$kind" "$slug" >> "$STATE_DIR/queue.tsv"
@@ -816,7 +876,7 @@ supervisor_alive() {  # pid -> 0/1
 }
 
 cmd_supervise() {
-  local once=0 holder waited
+  local once=0 holder waited reclaim_owner
   while [ $# -gt 0 ]; do
     case "$1" in --once) once=1; shift;; --min) FLEET_MIN=$2; shift 2;; --max) FLEET_MAX=$2; shift 2;; *) shift;; esac
   done
@@ -846,10 +906,23 @@ cmd_supervise() {
     local waited=0
     until mkdir "$STATE_DIR/supervisor.reclaim" 2>/dev/null; do
       waited=$((waited + 1))
-      [ "$waited" -gt 30 ] \
-        && die "another supervisor is reclaiming $STATE_DIR/supervisor.lock"
+      # A contender killed between this mkdir and its rm -rf leaves the directory
+      # behind. A dead owner is therefore detected on the FIRST iteration rather
+      # than after the full wait, which had made every restart burn 30s before
+      # recovering; a live owner still gets the whole grace period.
+      reclaim_owner=$(tr -dc '0-9' < "$STATE_DIR/supervisor.reclaim/owner" 2>/dev/null)
+      if [ -n "$reclaim_owner" ] && ! kill -0 "$reclaim_owner" 2>/dev/null; then
+        say "clearing a reclaim mutex orphaned by dead pid $reclaim_owner"
+        rm -rf "$STATE_DIR/supervisor.reclaim"
+        waited=0
+        continue
+      fi
+      if [ "$waited" -gt 30 ]; then
+        die "another supervisor is reclaiming $STATE_DIR/supervisor.lock"
+      fi
       sleep 1 9>&-
     done
+    printf '%s\n' "$$" > "$STATE_DIR/supervisor.reclaim/owner" 2>/dev/null || true
     # Re-test under the mutex: the contender that won the race may already hold
     # the lock, in which case this one must stand down rather than break it.
     if ! flock -n 9; then
@@ -861,11 +934,11 @@ cmd_supervise() {
           || die "cannot reopen lock file in $STATE_DIR"
         flock -n 9 || die "another supervisor already holds $STATE_DIR/supervisor.lock"
       else
-        rmdir "$STATE_DIR/supervisor.reclaim" 2>/dev/null
+        rm -rf "$STATE_DIR/supervisor.reclaim" 2>/dev/null
         die "another supervisor already holds $STATE_DIR/supervisor.lock"
       fi
     fi
-    rmdir "$STATE_DIR/supervisor.reclaim" 2>/dev/null
+    rm -rf "$STATE_DIR/supervisor.reclaim" 2>/dev/null
   fi
   # Named .owner, deliberately NOT .pid. The orphan sweep below globs *.pid and
   # treats any pidfile without a matching .meta as a dead agent to reap; a
@@ -989,7 +1062,11 @@ cmd_supervise() {
                  refund_attempt "$(meta_get "$slug" kind)" "$slug"
                fi
                echo "[$(date -u +%FT%TZ)] $slug stopped with NO PR (model $(meta_get "$slug" model)); log tail:"
-               tail -5 "$STATE_DIR/$slug.log" | sed 's/^/    /'
+               # Guarded: a phantom or salvaged agent can have a .meta with no log, and an
+              # unguarded tail made the supervisor exit on the reap -- which is
+              # how a false spawn killed the following poll.
+              tail -5 "$STATE_DIR/$slug.log" 2>/dev/null | sed 's/^/    /' \
+                || echo "    (no agent log)"
                cmd_teardown "$slug" --force || true ;;
       esac
     done
