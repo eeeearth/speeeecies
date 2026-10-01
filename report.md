@@ -1,6 +1,6 @@
 # speeeecies validation report
 
-## Locale `nm-albuquerque` ❌
+## Locale `nm-albuquerque` ✅
 
 An Albuquerque courtyard: US, activity region `US-NM`, plot `courtyard`, Köppen `BSk`, 12 species, flora catalog of 8 taxa (4 evergreen).
 
@@ -16,11 +16,9 @@ An Albuquerque courtyard: US, activity region `US-NM`, plot `courtyard`, Köppen
 | astur-cooperii | yes | fsm-seabird-predator-v1 | fly, glide, walk | 65 | 0 |
 | sylvilagus-audubonii | yes | fsm-ground-forager-v1 | hop, walk | 65 | 0 |
 | otospermophilus-variegatus | yes | fsm-ground-forager-v1 | trot, walk | 65 | 0 |
-| tadarida-brasiliensis | yes | fsm-nocturnal-aerial-hunter-v1 | fly, glide | 68 | 1 |
+| tadarida-brasiliensis | yes | fsm-nocturnal-aerial-hunter-v1 | fly, glide | 68 | 0 |
 | sceloporus-cowlesi | yes | fsm-ground-forager-v1 | walk | 82 | 0 |
 
-### Errors
-- `LocaleSpeciesInvalid` species[tadarida-brasiliensis]: species/tadarida-brasiliensis has 1 validation error(s); see its section of the report
 
 | species | status | errors | warnings | cleanliness | provenance |
 |---|---|---|---|---|---|
@@ -34,7 +32,7 @@ An Albuquerque courtyard: US, activity region `US-NM`, plot `courtyard`, Köppen
 | astur-cooperii | ⚠️ | 0 | 1 | 65 | 37/37 |
 | sylvilagus-audubonii | ⚠️ | 0 | 1 | 65 | 37/37 |
 | otospermophilus-variegatus | ⚠️ | 0 | 1 | 65 | 37/37 |
-| tadarida-brasiliensis | ❌ | 1 | 0 | 68 | 40/40 |
+| tadarida-brasiliensis | ✅ | 0 | 0 | 68 | 40/40 |
 | sceloporus-cowlesi | ✅ | 0 | 0 | 82 | 34/34 |
 
 ## geococcyx-californianus
@@ -224,8 +222,6 @@ An Albuquerque courtyard: US, activity region `US-NM`, plot `courtyard`, Köppen
 | fsm-ground-forager-v1 | fsm | 8 |
 
 ## tadarida-brasiliensis
-### Errors
-- `UnknownParamOverride` behavior.params.food_m: program does not declare param 'food_m'
 ### Licence mix
 | tier | datums |
 |---|---|
