@@ -1,0 +1,487 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Astur cooperii",
+  "slug": "astur-cooperii",
+  "common_names": {
+    "en": "Cooper's hawk"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Accipitriformes",
+    "family": "Accipitridae",
+    "genus": "Astur",
+    "authority": "(Bonaparte, 1828)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2480621,
+    "inat_taxon_id": 1579017,
+    "itis_tsn": 175309,
+    "wikidata": "Q862896",
+    "ncbi_taxon_id": 261198
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "CA",
+      "US",
+      "MX"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Walk",
+      "Fly",
+      "Glide"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Platform",
+    "perching": true,
+    "size_class": "Small",
+    "mass_kg": 0.52664,
+    "mass_range_kg": [
+      0.22,
+      0.7
+    ],
+    "length_m": 0.425,
+    "wingspan_m": 0.84,
+    "lifespan_y": 20.3,
+    "diet": {
+      "vertebrate": 0.95,
+      "carrion": 0.05
+    },
+    "social": {
+      "structure": "Pair",
+      "group_size": [
+        1,
+        2
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.75
+  },
+  "habitat": {
+    "use": {
+      "arboreal": 0.45,
+      "aerial": 0.45,
+      "ground": 0.1
+    },
+    "shelter_tag": "perch",
+    "resources": [
+      {
+        "tag": "small_vertebrate",
+        "kind": "Predation",
+        "weight": 0.95
+      },
+      {
+        "tag": "carrion",
+        "kind": "Scavenging",
+        "weight": 0.05
+      },
+      {
+        "tag": "nest_platform",
+        "kind": "Nesting",
+        "weight": 1.0,
+        "months": [
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 1.0
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "flight_distance_m": 12,
+      "notes": "Uses wooded suburbs and urban parks where trees and bird prey are available; hunts agilely through canopy and around yards, but remains a wary raptor."
+    }
+  },
+  "seasonal": {
+    "strategy": "PartialMigration",
+    "winter_fraction": 0.7,
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "03-01",
+        "end": "07-31",
+        "note": "Pairs nest in tall trees with extensive canopy cover; clutch size averages about four and young fledge in early summer."
+      },
+      {
+        "name": "moult",
+        "start": "04-20",
+        "end": "08-31",
+        "note": "Molt begins in late April-May and takes about four months."
+      },
+      {
+        "name": "absent",
+        "start": "10-01",
+        "end": "03-31",
+        "region": "CA",
+        "fraction": 0.35,
+        "note": "Northern birds migrate south; many southern and urban birds remain year-round."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg"
+      },
+      {
+        "stage": "Juvenile",
+        "duration_days": 365,
+        "scale": 0.85
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US-NM",
+        "monthly": [
+          0.47,
+          1.0,
+          0.52,
+          0.43,
+          0.25,
+          0.44,
+          0.68,
+          0.67,
+          0.56,
+          0.48,
+          0.39,
+          0.48
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 2407,
+        "sources": [
+          "inat-activity-us-nm",
+          "gbif-activity-us-nm"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 9,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=1579017&place_id=9&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=9&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 1837,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.32_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2480621&gadmGid=USA.32_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.32_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 570,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-seabird-predator-v1",
+    "params": {
+      "live_food_m": 60,
+      "flee_m": 12,
+      "calm_m": 35
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "alarm",
+      "context": "Alarm",
+      "season_months": [
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 20,
+      "loudness": "Loud",
+      "description": "Loud, harsh repeated 'cak-cak-cak' alarm call, especially near the nest or when disturbed."
+    },
+    {
+      "call_id": "contact",
+      "context": "Contact",
+      "season_months": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "time_windows": [
+        "Day",
+        "DawnChorus"
+      ],
+      "cooldown_s": 45,
+      "loudness": "Moderate",
+      "description": "Higher, nasal kekking and contact notes around the nesting territory and pair interactions."
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.7,
+      "leg_length_ratio": 0.38,
+      "head_scale": 0.82,
+      "neck_angle_deg": 18,
+      "tail_ratio": 0.95,
+      "wing_aspect": 2.8,
+      "beak_ratio": 0.55,
+      "girth_ratio": 0.95
+    },
+    "palette": {
+      "body": "#6f7880",
+      "belly": "#e5ddd0",
+      "markings": "#9b4f34",
+      "accent": "#2b2a28",
+      "eye": "#d96b1d"
+    },
+    "part_colors": {
+      "breast": "belly",
+      "head": "accent",
+      "beak": "accent",
+      "tail": "body",
+      "leg_*": "eye"
+    },
+    "extra_parts": [
+      {
+        "name": "rufous_barring",
+        "parent": "breast",
+        "offset": [
+          0,
+          0,
+          0
+        ],
+        "size": [
+          1.03,
+          0.7,
+          1.06
+        ],
+        "color": "markings"
+      },
+      {
+        "name": "tail_tip",
+        "parent": "tail",
+        "offset": [
+          -0.45,
+          0,
+          0
+        ],
+        "size": [
+          0.18,
+          1.05,
+          1.05
+        ],
+        "color": "belly"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "fly": {},
+      "glide": {},
+      "perched": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2480621",
+      "title": "GBIF Backbone Taxonomy: Accipiter cooperii",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-09-30",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q862896",
+      "title": "Wikidata: Cooper's hawk (Q862896)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-09-30",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Cooper%27s_hawk",
+      "title": "Wikipedia: Cooper's hawk",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-09-30",
+      "attribution": "Wikipedia contributors, \"Cooper's hawk\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "anage",
+      "url": "https://genomics.senescence.info/species/entry.php?species=Accipiter_cooperii",
+      "title": "AnAge: Accipiter cooperii, HAGRID 00215",
+      "license": "CC-BY-3.0",
+      "kind": "database",
+      "accessed": "2026-09-30",
+      "attribution": "Human Ageing Genomic Resources, AnAge database, version 15",
+      "license_url": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=175309",
+      "title": "ITIS: Accipiter cooperii, TSN 175309",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-09-30",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "inat-activity-us-nm",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=1579017&place_id=9&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Astur cooperii in US-NM",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-nm",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2480621&gadmGid=USA.32_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Astur cooperii in US-NM",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia",
+        "itis"
+      ],
+      "confidence": "High",
+      "note": "GBIF still uses Accipiter cooperii; Wikipedia/IOC place the accepted current name in Astur."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata",
+        "anage",
+        "itis"
+      ],
+      "confidence": "High",
+      "note": "GBIF key is for Accipiter cooperii; iNaturalist taxon id supplied by issue for current Astur cooperii."
+    },
+    "common_names": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata",
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikipedia",
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Native from southern Canada through the United States to Mexico."
+    },
+    "traits": {
+      "sources": [
+        "wikipedia",
+        "anage"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Mass and maximum wild longevity from AnAge; length and wingspan from Wikipedia ranges/average; required simulation choices such as wariness and diet shares are authored from Wikipedia's description of mainly bird prey, small mammals, diurnal raptor behavior, tall-tree nesting, and agile flight."
+    },
+    "habitat": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Canopy nesting, perching, woodland/suburban habitat use, and bird/small-mammal prey are from Wikipedia; stratum and resource weights are simulation judgments."
+    },
+    "seasonal": {
+      "sources": [
+        "wikipedia",
+        "anage"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Breeding season, clutch/nesting notes, molt timing, and partial migration summarized from Wikipedia; juvenile duration is authored from first-year plumage/maturity information."
+    },
+    "vocalizations": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Call descriptions summarized from Wikipedia's voice/nesting descriptions; months, cooldowns and windows are authored."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Palette follows adult blue-gray/brown-gray upperparts, blackish crown, rufous/cinnamon barring, pale underside, orange-red eyes and white tail tip; proportions and extra parts are authored."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared predator program; live_food_m, flee_m and calm_m use the issue-specified values."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies maintainers",
+      "agent": "opencode"
+    }
+  ]
+}
