@@ -2161,3 +2161,27 @@ def test_the_reclaim_mutex_cannot_wedge_forever():
     clear = loop.index("clearing a reclaim mutex orphaned")
     giveup = loop.index('die "another supervisor is reclaiming')
     assert clear < giveup, "staleness must be checked before giving up"
+
+
+def test_the_orphan_worktree_sweep_spares_a_worktree_with_a_live_agent():
+    """The sweep reclaimed any worktree with no `.meta` and a clean tree, and
+    "no meta" is not evidence a slug is unused. A supervisor killed between
+    creating the worktree and writing the meta leaves exactly that state, so the
+    sweep pulled the tree out from under a running agent: its cwd became deleted,
+    it could never commit, and with no meta and no pidfile nothing could ever find
+    it again. Three agents lost their work that way while the fleet reported
+    live=3 -- the count matched the metas, not the processes."""
+    text = FLEET.read_text(encoding="utf-8")
+    sweep = text.split("# Reclaim orphans first.", 1)[1].split("# Orphans.", 1)[0]
+    assert "agent_for_worktree" in sweep, (
+        "the sweep must check for a live agent before removing a worktree"
+    )
+    assert "leaving it alone" in sweep, "and say why it is skipping one"
+    # The glob yields a trailing slash; --dir does not, so an unstripped path
+    # would never match and the guard would silently do nothing.
+    assert 'agent_for_worktree "${w%/}"' in sweep, (
+        "the worktree path must be compared without the glob's trailing slash"
+    )
+    guard = sweep.index("agent_for_worktree")
+    remove = sweep.index("worktree remove --force")
+    assert guard < remove, "the liveness check must precede the removal"

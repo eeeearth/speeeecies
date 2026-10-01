@@ -969,6 +969,17 @@ cmd_supervise() {
       case "$wbase" in species-*|locale-*) ;; *) continue ;; esac
       oslug=${wbase#species-}; oslug=${oslug#locale-}
       [ -f "$STATE_DIR/$oslug.meta" ] && continue
+      # Never reclaim a worktree an agent is still running in. "No meta" is not
+      # sufficient evidence that a slug is unused: a supervisor that died between
+      # creating the worktree and writing the meta leaves exactly that state, and
+      # the sweep then pulled the tree out from under a live agent. Its cwd became
+      # deleted, it could never commit, and nothing could find it again -- three
+      # agents lost their work that way, while the fleet reported live=3.
+      # ${w%/} because the glob leaves a trailing slash and --dir does not.
+      agent_for_worktree "${w%/}" && {
+        say "orphan worktree $wbase still has a live agent in it; leaving it alone"
+        continue
+      }
       if [ -z "$(git -C "$w" status --porcelain 2>/dev/null)" ]; then
         git -C "$REPO" worktree remove --force "$w" 2>/dev/null \
           && echo "[$(date -u +%FT%TZ)] reclaimed orphan worktree $wbase (no meta, clean)"
