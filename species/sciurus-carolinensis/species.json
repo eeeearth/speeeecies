@@ -323,6 +323,55 @@
             "gbif"
           ]
         }
+      },
+      {
+        "region": "IE",
+        "monthly": [
+          0.9,
+          0.69,
+          0.82,
+          0.53,
+          0.45,
+          0.44,
+          0.63,
+          0.36,
+          0.8,
+          1.0,
+          0.89,
+          0.96
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 2585,
+        "sources": [
+          "inat-activity-ie",
+          "gbif-activity-ie"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 6718,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=46017&place_id=6718&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=6718&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 558,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "country",
+              "IE"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5219681&country=IE&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&country=IE&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 2027,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
       }
     ]
   },
@@ -617,6 +666,24 @@
       "license": "CC-BY-4.0",
       "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
       "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "inat-activity-ie",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=46017&place_id=6718&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Sciurus carolinensis in IE",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-ie",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5219681&country=IE&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Sciurus carolinensis in IE",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
       "kind": "api"
     }
   ],
