@@ -1,0 +1,625 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Procyon lotor",
+  "slug": "procyon-lotor",
+  "common_names": {
+    "en": "Common raccoon",
+    "es": "Mapache_common",
+    "fr": "Raton laveur"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Mammalia",
+    "order": "Carnivora",
+    "family": "Procyonidae",
+    "genus": "Procyon",
+    "authority": "(Linnaeus, 1758)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 5218786,
+    "inat_taxon_id": 41663,
+    "wikidata": "Q121439"
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "CA",
+      "US",
+      "MX"
+    ],
+    "introduced": [
+      "DE",
+      "RU",
+      "JP",
+      "GE"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk",
+      "Trot",
+      "Climb"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Fur",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Cavity",
+    "perching": false,
+    "shoulder_height_m": 0.265,
+    "size_class": "Medium",
+    "mass_kg": 15.5,
+    "mass_range_kg": [
+      2,
+      26
+    ],
+    "length_m": 0.55,
+    "lifespan_y": 2.5,
+    "diet": {
+      "fruit": 0.35,
+      "invertebrate": 0.2,
+      "seed": 0.15,
+      "vertebrate": 0.15,
+      "carrion": 0.15
+    },
+    "social": {
+      "structure": "Solitary",
+      "group_size": [
+        1,
+        4
+      ]
+    },
+    "activity_pattern": "Nocturnal",
+    "defense": "Flee",
+    "wariness": 0.1
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.8,
+      "arboreal": 0.2
+    },
+    "shelter_tag": "cavity",
+    "resources": [
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.35
+      },
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.2
+      },
+      {
+        "tag": "seed",
+        "kind": "Herbivory",
+        "weight": 0.15
+      },
+      {
+        "tag": "small_vertebrate",
+        "kind": "Predation",
+        "weight": 0.15
+      },
+      {
+        "tag": "carrion",
+        "kind": "Scavenging",
+        "weight": 0.15
+      },
+      {
+        "tag": "cavity",
+        "kind": "Shelter",
+        "weight": 0.9
+      },
+      {
+        "tag": "compost",
+        "kind": "Herbivory",
+        "weight": 0.5
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Exploiter",
+      "uses_gardens": true,
+      "light_max": 0.8,
+      "road_mortality": "High",
+      "notes": "Raccoons 'depend on vertical structures to climb when they feel threatened' and sleep in hollows in old oaks, cottages, garages, abandoned houses and attics. Because it eats human garbage in urban environments it is colloquially a 'trash panda', and urban home ranges are only 3 to 40 hectares."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "01-01",
+        "end": "06-30",
+        "note": "After a gestation of about 65 days a litter of typically two to five kits is born in spring, raised by the mother until dispersal in late fall."
+      },
+      {
+        "name": "territorial",
+        "start": "07-01",
+        "end": "12-31",
+        "note": "Non-breeding. At the beginning of winter a raccoon can weigh twice as much as in spring because of fat storage."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Juvenile",
+        "duration_days": 210,
+        "scale": 0.08
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US-MS",
+        "monthly": [
+          0.55,
+          0.71,
+          0.52,
+          0.64,
+          0.87,
+          0.79,
+          0.82,
+          0.81,
+          0.89,
+          0.84,
+          0.83,
+          1.0
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 1163,
+        "sources": [
+          "inat-activity-us-ms",
+          "gbif-activity-us-ms"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 37,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=41663&place_id=37&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=37&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 609,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "C",
+            "area": [
+              "gadmGid",
+              "USA.25_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5218786&gadmGid=USA.25_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.25_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "total": 554,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-ground-forager-v1",
+    "params": {
+      "flee_m": 18,
+      "calm_m": 35,
+      "food_tag": "fruit",
+      "food_m": 30,
+      "flee_gait": "trot",
+      "forage_gait": "walk",
+      "rest_sun_lo_deg": 10,
+      "rest_sun_hi_deg": 90
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "chitter",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [
+        "Night"
+      ],
+      "cooldown_s": 10,
+      "loudness": "Moderate",
+      "description": "A low chittering or trilling, used between individuals and by mothers summoning kits; at night a drawn-out version is one of the commonest sounds of a wooded suburb."
+    },
+    {
+      "call_id": "scream",
+      "context": "Scream",
+      "season_months": [],
+      "time_windows": [
+        "Night"
+      ],
+      "cooldown_s": 8,
+      "loudness": "Loud",
+      "description": "A piercing scream given when a raccoon is cornered or disturbed, usually followed by a low growl; in areas where they are hunted, screaming is the sound people learn first."
+    }
+  ],
+  "look": {
+    "body_plan": "quadruped",
+    "proportions": {
+      "torso_aspect": 1.45,
+      "leg_length_ratio": 0.38,
+      "head_scale": 0.72,
+      "neck_angle_deg": 10,
+      "tail_ratio": 0.75,
+      "ear_ratio": 0.45,
+      "girth_ratio": 1.15
+    },
+    "palette": {
+      "body": "#8d8577",
+      "belly": "#d6d1c6",
+      "markings": "#3f3a33",
+      "accent": "#5d564c",
+      "eye": "#171310"
+    },
+    "part_colors": {
+      "snout": "markings",
+      "tail": "markings",
+      "leg_front_left": "markings",
+      "leg_front_right": "markings",
+      "leg_rear_left": "markings",
+      "leg_rear_right": "markings"
+    },
+    "extra_parts": [
+      {
+        "name": "face_band",
+        "parent": "head",
+        "offset": [
+          0.28,
+          0.05,
+          0
+        ],
+        "size": [
+          0.5,
+          0.28,
+          1.1
+        ],
+        "color": "markings"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "trot": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/5218786",
+      "title": "GBIF Backbone Taxonomy: Raccoon",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q121439",
+      "title": "Wikidata: Raccoon (Q121439)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Raccoon",
+      "title": "Wikipedia: Raccoon",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Raccoon\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "inat-activity-us-ms",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=41663&place_id=37&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Procyon lotor in US-MS",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-ms",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5218786&gadmGid=USA.25_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+      "title": "GBIF occurrence search for Procyon lotor in US-MS",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared ground-forager program; the default daytime rest window suits a nocturnal species that den by day."
+    },
+    "conservation": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "IUCN Red List category via Wikidata P141 (Q211005, least concern)."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "GBIF usage key 5218786 from the GBIF Backbone Taxonomy; iNaturalist taxon id 41663 and Wikidata Q121439 via Wikidata."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Vertical structure use, urban denning sites, garbage feeding and urban home range sizes are from Wikipedia; the rest are judgements."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The food resources follow the diet shares; cavity and compost are authored from the denning and garbage-feeding behaviour described."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "A hollow or attic, which is where it sleeps and where the litter is born."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Shares authored: it forages on the ground and climbs mainly to den or to escape."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "A grizzled grey-brown coat of dense underfur, the pale face band through the eyes that gives the 'masked bandit', a ringed tail, dark legs and paws and dark eyes; proportions and palette are authored."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Native to North America from southern Canada through the United States into northern Mexico. The article records that 'raccoons are now also distributed across central Europe, the Caucasus, and Japan' and refers to 'its introduced range in the former Soviet Union', so Germany, Russia, Georgia and Japan are recorded as introduced; the individual European Union states are not enumerated in the article."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Kits are born at 60-75 g and are raised by the mother until dispersal in late fall. The schema's life-stage enum has no term for a mammalian newborn, so the stage list starts at Juvenile and its duration and scale cover the period from birth to dispersal."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "A spring litter after about 65 days of gestation, dispersal in late fall and the winter fat store are from Wikipedia; the phase dates are judgements."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "No hibernation is described; it is active in winter and stores fat for it."
+    },
+    "taxonomy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "It climbs a tree or structure to escape a threat, avoiding open terrain; it will also growl and scream when cornered."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Weights authored from an omnivore whose spring and early summer diet 'consists mostly of insects, worms, and other animals already available early in the year' but which otherwise takes 'such a variety of different foods' that it 'may well be one of the world's most omnivorous animals'; plant material is given the larger share."
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of the 40-70 cm body length, which excludes the ringed tail."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'The species' life expectancy in the wild is only 1.8 to 3.1 years, depending on the local conditions such as traffic volume, hunting, and weather severity'; 2.5 is the midpoint. Captive raccoons have lived over 20 years."
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "It walks and trots on the ground and climbs to escape, 'depend[ing] on vertical structures to climb when they feel threatened'; the three modes are authored from that."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Midpoint of the 5-26 kg body weight given in the lead. 'The body weight of an adult raccoon varies considerably with habitat, making the raccoon one of the most variably sized mammals': it can range from 2 to 26 kg, and at the beginning of winter weighs twice as much as in spring because of fat storage."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "2-26 kg is the full range given in the Description section; the lead quotes 5-26 kg."
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'Tree hollows in old oaks or other trees and rock crevices are preferred by raccoons as sleeping, winter, and litter dens', with burrows, dense undergrowth and tree crotches as fallbacks and attics and garages in towns."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.shoulder_height_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of the 23-30 cm height at the shoulder."
+    },
+    "traits.size_class": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg."
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'Though raccoons were previously thought to be generally solitary, there is now evidence that they engage in sex-specific social behavior ... unrelated males live together in groups of up to four raccoons'."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "It thrives in cities, eating human garbage and denning in houses, and urban home ranges are only 3 to 40 hectares; 0.1 is a judgement."
+    },
+    "vocalizations.chitter": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "The chitter is standard for Procyon and consistent with the social behaviour described; no recording is cited."
+    },
+    "vocalizations.scream": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "The cornered scream and growl are standard for the species; no recording is cited."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies contributors",
+      "agent": "opencode-go/space-bunny-free"
+    }
+  ]
+}
