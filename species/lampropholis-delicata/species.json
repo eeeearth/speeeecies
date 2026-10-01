@@ -1,0 +1,577 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Lampropholis delicata",
+  "slug": "lampropholis-delicata",
+  "common_names": {
+    "en": "Dark-flecked garden sunskink"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Squamata",
+    "order": "Squamata",
+    "family": "Scincidae",
+    "genus": "Lampropholis",
+    "authority": "(De Vis, 1888)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 5225256,
+    "inat_taxon_id": 38293,
+    "itis_tsn": 173996,
+    "wikidata": "Q3009924",
+    "ncbi_taxon_id": 316451
+  },
+  "conservation": {
+    "iucn": "LC",
+    "notes": "Least concern in its native eastern Australia, but accidentally introduced and invasive in New Zealand and Hawaii, where it is more common in suburban gardens than in adjacent native bushland."
+  },
+  "range": {
+    "native": [
+      "AU"
+    ],
+    "introduced": [
+      "NZ",
+      "US"
+    ],
+    "invasive_in": [
+      "NZ",
+      "US"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk",
+      "Trot",
+      "Climb"
+    ],
+    "thermoregulation": "Ectotherm",
+    "skin": "Scales",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Ground",
+    "perching": false,
+    "size_class": "Tiny",
+    "mass_kg": 0.00118,
+    "length_m": 0.05,
+    "lifespan_y": 5,
+    "diet": {
+      "invertebrate": 1.0
+    },
+    "social": {
+      "structure": "Solitary",
+      "group_size": [
+        1,
+        1
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.35
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.85,
+      "arboreal": 0.15
+    },
+    "shelter_tag": "leaf_litter",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 1.0
+      },
+      {
+        "tag": "leaf_litter",
+        "kind": "Shelter",
+        "weight": 0.9
+      },
+      {
+        "tag": "nest_ground",
+        "kind": "Nesting",
+        "weight": 0.8
+      },
+      {
+        "tag": "shelter",
+        "kind": "Shelter",
+        "weight": 0.5
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Exploiter",
+      "uses_gardens": true,
+      "impervious_max": 0.75,
+      "light_max": 0.7,
+      "flight_distance_m": 1.5,
+      "notes": "More common in suburban gardens than in adjacent native bushland, and the species' New Zealand and Hawaiian spread is a suburban one."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "09-01",
+        "end": "02-28",
+        "region": "NZ",
+        "note": "Mating occurs in late summer and each female produces a single clutch a year, of two to four eggs on average. In females, follicle growth runs from late winter into spring (August to October), one or two follicles per ovary become vitellogenic and are ovulated in October or November, and the corpora lutea are maintained until oviposition about a month later. Communal egg nests holding anywhere from 11 to over 200 eggs are common. Spermatogenesis in males restarts in early spring, with mature sperm packed into the seminiferous tubules by the end of September and depleted over October and November, and a second wave producing mature sperm during February."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg",
+        "duration_days": 53
+      },
+      {
+        "stage": "Juvenile"
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "NZ-AUK",
+        "monthly": [
+          0.74,
+          0.6,
+          0.94,
+          1.0,
+          0.85,
+          0.36,
+          0.42,
+          0.55,
+          0.64,
+          0.94,
+          0.58,
+          0.64
+        ],
+        "method": "mean(inat_raw, gbif_raw)",
+        "observations": 1551,
+        "sources": [
+          "inat-activity-nz-auk",
+          "gbif-activity-nz-auk"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 8345,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=38293&place_id=8345&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": null,
+            "total": 1219,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "NZL.1_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5225256&gadmGid=NZL.1_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": null,
+            "total": 332,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-ground-forager-v1",
+    "params": {
+      "flee_m": 2.5,
+      "calm_m": 6,
+      "food_tag": "invertebrate",
+      "food_m": 5,
+      "flee_gait": "trot",
+      "forage_gait": "walk",
+      "rest_sun_lo_deg": -90,
+      "rest_sun_hi_deg": -6
+    }
+  },
+  "vocalizations": [],
+  "look": {
+    "body_plan": "quadruped",
+    "proportions": {
+      "torso_aspect": 2.6,
+      "leg_length_ratio": 0.22,
+      "head_scale": 0.5,
+      "neck_angle_deg": 5,
+      "tail_ratio": 1.2,
+      "ear_ratio": 0.08,
+      "beak_ratio": 0.35,
+      "girth_ratio": 0.8
+    },
+    "palette": {
+      "body": "#6b5844",
+      "belly": "#9c8a72",
+      "markings": "#3a2f26",
+      "accent": "#a8894f",
+      "eye": "#141210"
+    },
+    "extra_parts": [
+      {
+        "name": "dorsal_stripe",
+        "parent": "body",
+        "offset": [
+          -0.1,
+          0.42,
+          0
+        ],
+        "size": [
+          0.9,
+          0.14,
+          0.34
+        ],
+        "color": "markings"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "trot": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/5225256",
+      "title": "GBIF Backbone Taxonomy: Lampropholis delicata",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "gbif-vernacular",
+      "url": "https://api.gbif.org/v1/species/5225256/vernacularNames",
+      "title": "GBIF vernacular names for Lampropholis delicata",
+      "license": "CC-BY-4.0",
+      "kind": "api",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Vernacular Names (via the Catalogue of Life), https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q3009924",
+      "title": "Wikidata: Lampropholis delicata (Q3009924)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Lampropholis_delicata",
+      "title": "Wikipedia: Lampropholis delicata",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Lampropholis delicata\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "amniote",
+      "url": "https://doi.org/10.6084/m9.figshare.3563457.v1",
+      "title": "Amniote life-history database (Myhrvold et al. 2015), full archive",
+      "license": "CC0-1.0",
+      "kind": "dataset",
+      "accessed": "2026-10-01",
+      "note": "Ecological Archives E096-269; the figshare deposit is released under CC0.",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=173996",
+      "title": "ITIS: Lampropholis delicata, TSN 173996",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "inat-activity-nz-auk",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=38293&place_id=8345&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Lampropholis delicata in NZ-AUK",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-nz-auk",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5225256&gadmGid=NZL.1_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Lampropholis delicata in NZ-AUK",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "itis"
+      ],
+      "confidence": "High",
+      "note": "GBIF backbone gives Lampropholis delicata (De Vis, 1888) in Scincidae; the backbone leaves the order unresolved on this taxon, so the order is recorded as Squamata, which the article's own higher-taxon line gives directly ('a skink of the subfamily Lygosominae') and which GBIF does resolve at class level."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "iNaturalist (P3151) and NCBI (P685) ids via Wikidata; GBIF usage key 5225256 matches the GBIF backbone and the ITIS TSN comes from Wikidata P815."
+    },
+    "common_names": {
+      "sources": [
+        "gbif-vernacular",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Wikidata carries no English name for this taxon (P1843 is absent), so the English name is taken from GBIF's vernacular names, where the Catalogue of Life gives 'Dark-flecked garden sunskink'. The article and GBIF also list delicate skink, garden skink, delicate garden skink, rainbow skink, plague skink and metallic skink."
+    },
+    "conservation": {
+      "sources": [
+        "wikipedia",
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Habitat and distribution section: 'a skink of the subfamily Lygosominae, originally from Eastern Australia. Accidentally introduced and invasive in New Zealand, Hawaii, and Lord Howe Island.' Australia is native; New Zealand (NZ) and Hawaii (US) are introduced and invasive. Lord Howe Island has no ISO 3166-1 alpha-2 code of its own, so that introduction is recorded in this note rather than in the country list."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The autotomy section describes a lizard that moves with increased stride lengths when it has its full tail and loses locomotor performance after shedding it, which is a walking animal that also dashes; the microhabitat section describes it moving within litter and climbing into cover. Walk and trot are therefore the two ground gaits, and Climb is included for movement into low vegetation and woody debris. This is a derived reading of the locomotion the article describes rather than a list it states."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Microhabitat selection section: 'Because lizards are ectothermic, thermal conditions and subsequent impacts on physiological performance must also be taken into consideration for habitat selection.'"
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Description section: 'Its scales are smooth.'"
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Authored from the microhabitat and foraging description: the animal works the leaf litter and low cover, and takes aerial and arboreal prey, but it is not a perching animal in the sense the field means for birds, so perching is false. The block model has no perched pose for this reason."
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored judgement. The article states only that these lizards lay 'a single clutch per year of about two to four eggs' and that 'communal egg nests are also common, with anywhere between 11 and over 200 eggs', without saying where a nest is placed. Ground is inferred from the sourced microhabitat preference for leaf litter over bare substrate; a burrow nest is not claimed because no source describes one."
+    },
+    "traits.size_class": {
+      "sources": [
+        "amniote"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg: 0.00118 kg falls in the Tiny band."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "amniote"
+      ],
+      "confidence": "High",
+      "note": "Amniote Database adult_body_mass_g = 1.18 g (female_body_mass_g = 1.18 g). The article gives no weight. mass_range_kg was left unset because the Amniote Database records a single value rather than a range."
+    },
+    "traits.length_m": {
+      "sources": [
+        "amniote",
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Honest gap in total length. The Amniote Database gives adult snout-vent length only (adult_svl_cm = 4.02 cm, no_sex_svl_cm = 5.1 cm); no openly licensed source consulted gives a head-to-tail length. The no-sex figure of 5.1 cm is used, and this is body length excluding the tail, which the article describes as 'a medium length, slender tail'. Total length is therefore longer than length_m and the field should be read that way."
+    },
+    "traits.lifespan_y": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Honest gap: the article gives no longevity figure and the Amniote Database records -999 (no data) for maximum_longevity_y for this species. 5 years is an informed estimate for a small diurnal skink of this size, offered explicitly as a judgement rather than a sourced value."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Diet and foraging behavior section: 'diurnal, terrestrial, arthropod feeders' that 'primarily consumes spiders, insects, snails, and crustaceans', with gut analysis showing a preference for bees, wasps and springtails over beetles, termites and ants, and a diet described as primarily carnivorous. No plant food is recorded anywhere in the article, so invertebrate is the whole of the diet."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The article describes no social grouping of any kind, only communal egg nests, which are a shared site rather than a group. Solitary with group_size 1-1 is therefore the honest reading; the one aggregation the article does record is nesting, carried in the habitat resources instead."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'They are a diurnal species whose activity varies seasonally, in which activity peaks during the months of November and December.'"
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Autotomy section: 'Caudal autotomy has developed as a last resort anti-predator behavior, when other anti-predator behaviors like fleeing and crypsis fail.' Fleeing is the primary behaviour and the only one the schema's defense enum can carry; tail autotomy, which the article describes as the last resort, is noted here rather than forced into the enum."
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: 0.35. The microhabitat and predation sections describe a prey species that seeks refuge, prefers open litter for its escape routes, and is eaten by red-back spiders, but the species is also described as readily encountered in suburban gardens."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Diet and foraging behavior section calls the species terrestrial, and the microhabitat section places it in the leaf litter over woodland, heath, sclerophyll forest, rainforest fringes and suburban gardens. ground 0.85 / arboreal 0.15 reflects that, with the arboreal share covering the aerial and arboreal prey it also takes and movement into low cover."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Microhabitat selection section: 'Experimental evidence suggests that L. delicata prefer leaf litters to bare substrate, with more nuanced preferences for different types of leaves', and 'the structure of the leaf litter layer influences thermoregulation, feeding, and refuge seeking'. leaf_litter is the matching shelter tag."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Diet and foraging behavior section for the arthropod prey; microhabitat selection for the preferred leaf litter and the open structure it selects for thermoregulation, foraging movement and access to refuge; Reproduction and life cycle for the communal ground egg nests."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Description and identification opens with 'The delicate skink is more common in suburban gardens than in adjacent native bushland', and the habitat section has it 'making appearances in suburban gardens near the eastern coast', so Exploiter is the matching affinity and uses_gardens is supported. impervious_max, light_max and flight_distance_m are authored judgements."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "The article describes a year-round resident with seasonally varying activity and a single annual clutch, and no movement or migration of any kind: ActiveYearRound."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia",
+        "amniote"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Reproduction and life cycle section for mating in late summer, the single annual clutch of two to four eggs on average (Amniote Database litter_or_clutch_size_n = 3.1 and litters_or_clutches_per_y = 1 agree), the female reproductive calendar from August through ovulation in October or November to oviposition about a month later, the communal nests of 11 to over 200 eggs, and the two waves of spermatogenesis in males. The phase is restricted to NZ because the reproductive study it comes from was run on the Australian population."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "amniote",
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Egg duration of 53 days is the Amniote Database incubation_d for this species; the article does not state an incubation period, though it does say the eggs are ovipositioned about a month after ovulation. Juvenile duration was left unset because no source gives a time to first breeding or a juvenile period."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Description and identification for the plumage: a moderate body with a medium-length slender tail, smooth scales, a back and sides greyish-brown to rich brown with darker and paler flecks, and a narrow yellowish-brown stripe usually present on the outer edge of the back; two forms exist with a prominent or a less prominent pale stripe, and males have broader, longer heads while females have larger abdomens. Proportions are authored against the quadruped body plan for a small, long, low-bodied lizard: a small head, very short legs, and a tail about as long as the body. The dark dorsal stripe is carried as an extra part along the spine because it is the species' diagnostic marking. traits.shoulder_height_m was left unset rather than guessed: no openly licensed source consulted gives a standing height for this species, and the quadruped body plan would otherwise raise a MissingShoulderHeight warning."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared ground-forager program. The program is described as being for ground-dwelling mammals, so the fit is loose and is stated here rather than glossed: what carries over is the wander-forage-drink-flee-rest cycle of a small animal working a small home range. food_tag is invertebrate, the whole of the sourced diet. forage_gait walk and flee_gait trot match the sourced picture of an animal that moves with increased stride lengths and dashes when escaping. rest_sun_lo_deg -90 and rest_sun_hi_deg -6 make it shelter only after dark, which is what a diurnal ectotherm needs: the microhabitat section is explicit that it basks in open litter to manage its temperature. flee_m 2.5 and calm_m 6 are judgements for a wary but bold small lizard. This record declares no vocalizations because the shared program makes no calls and no openly licensed source consulted transcribes the species' sounds."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies maintainers",
+      "agent": "claude-code"
+    }
+  ]
+}
