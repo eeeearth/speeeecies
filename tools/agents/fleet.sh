@@ -1074,6 +1074,10 @@ cmd_supervise() {
     # fleet_state is recomputed each pass; prev_state alone carries history.
     # Resetting it here is what lets a recovered fleet report OK again.
     fleet_state=OK
+    # Rebuilt from scratch every pass. Declared outside the loop and appended to
+    # without ever being cleared, one sighting pinned the fleet to BLOCKED for the
+    # lifetime of the process: removing the worktree did not unblock it.
+    foreign_now=""
     # Reclaim orphans first. A worktree with no .meta belongs to no agent: the
     # fleet cannot count it, cannot reap it, and every retry of its slug dies on
     # "worktree path already exists". Two of those blocked all remaining species
@@ -1099,7 +1103,6 @@ cmd_supervise() {
       if [ -z "$(git -C "$w" status --porcelain 2>/dev/null)" ]; then
         if git -C "$REPO" worktree remove --force "$w" 2>/dev/null; then
           echo "[$(date -u +%FT%TZ)] reclaimed orphan worktree $wbase (no meta, clean)"
-          [ "$warned_foreign" = "$wbase" ] && warned_foreign=""
         elif [ -n "$(git -C "$w" rev-parse --git-dir 2>/dev/null)" ]; then
           # Clean, and a real git worktree, but this repository cannot remove it:
           # its .git points into a different checkout, so this repo holds no

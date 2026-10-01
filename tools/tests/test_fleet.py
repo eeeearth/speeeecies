@@ -2396,3 +2396,54 @@ def test_a_removed_foreign_worktree_clears_the_blocker_and_the_state():
     finally:
         for d in (root, other, state):
             subprocess.run(["rm", "-rf", d], check=False)
+
+
+@pytest.mark.skipif(
+    os.environ.get("FLEET_SLOW_TESTS") != "1",
+    reason="runs one long-lived supervisor and mutates the tree mid-run",
+)
+def test_a_blocker_removed_mid_run_unblocks_the_same_supervisor():
+    """`foreign_now` was declared outside the poll loop and appended to without ever
+    being cleared, so one sighting pinned the fleet to BLOCKED for the lifetime of
+    the process -- removing the worktree did not unblock it. Every other test here
+    started a fresh supervisor per scenario, so nothing could see the accumulation;
+    this one keeps a single supervisor running and removes the blocker underneath
+    it."""
+    import tempfile as _tf
+    root, other, state = _tf.mkdtemp(), _scratch_repo(), _tf.mkdtemp()
+    outdir = _tf.mkdtemp()
+    out = os.path.join(outdir, "supervisor.out")
+    env = dict(os.environ, WORKTREE_ROOT=root, GH_REPO="jt55401/speeeecies",
+               FLEET_STATE_DIR=state, POLL_SECONDS="2")
+    with open(out, "w", encoding="utf-8") as fh:
+        proc = subprocess.Popen(["bash", str(FLEET), "supervise", "--min", "0", "--max", "0"],
+                                stdout=fh, stderr=subprocess.STDOUT, text=True,
+                                env=env, start_new_session=True)
+    try:
+        time.sleep(5)                                    # a poll or two with no blocker
+        _foreign_worktree(other, root, "locale-alpha", "alpha")
+        time.sleep(6)                                    # polls that see the blocker
+        subprocess.run(["git", "-C", other, "worktree", "remove", "--force",
+                        f"{root}/locale-alpha"], check=True,
+                       stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        subprocess.run(["git", "-C", other, "worktree", "prune"], check=True)
+        time.sleep(7)                                    # polls after it is gone
+    finally:
+        os.killpg(os.getpgid(proc.pid), signal.SIGKILL)
+        proc.wait(timeout=30)
+
+    text = Path(out).read_text(encoding="utf-8")
+    states = re.findall(r"fleet=0 \(min 0 max 0\) state=([A-Z_]+)", text)
+    assert states, f"the supervisor never polled: {text!r}"
+    assert text.count("could not be reclaimed") == 1, (
+        f"expected one warning for one blocker, got {text.count('could not be reclaimed')}"
+    )
+    assert "BLOCKED_BY_FOREIGN_WORKTREE" in states, (
+        f"the blocker was never reported while it existed: {states}"
+    )
+    # The whole point: the state has to come back on its own, in this same process.
+    assert states[-1] == "OK", (
+        f"the fleet stayed blocked after the blocker was removed: {states}"
+    )
+    for d in (root, other, state, outdir):
+        subprocess.run(["rm", "-rf", d], check=False)
