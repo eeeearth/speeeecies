@@ -1216,3 +1216,67 @@ def test_liveness_and_attempts_use_consistent_keys():
     assert 'FILENAME == q { if ($3 != "") n[$2 "/" $3]++; next }' in loop, (
         "attempts must still be counted per kind/slug"
     )
+
+
+def test_supervisor_reverts_a_status_file_edit_whatever_the_brief_says():
+    """Containment cannot rest on the prompt. A root STATUS.md already exists on
+    origin/main from an earlier agent, so an agent reading the tree sees an
+    invitation, and two live agents were launched before the briefs forbade
+    touching it. One PR already shipped that file."""
+    text = FLEET.read_text(encoding="utf-8")
+    guard = text.split("# STATUS.md guard.", 1)
+    assert len(guard) == 2, "no STATUS.md guard in the poll loop"
+    block = guard[1].split("# Reap:", 1)[0]
+    assert "checkout -q -- STATUS.md" in block, (
+        "the guard must restore the file, not merely warn about it"
+    )
+    assert "ls-files --error-unmatch STATUS.md" in block, (
+        "the guard must only touch a tracked STATUS.md"
+    )
+    # It has to run every poll, before the reap that would declare the PR done.
+    loop = text.split("cmd_supervise() {", 1)[1]
+    assert loop.index("# STATUS.md guard.") < loop.index("# Reap:"), (
+        "the guard must run before a finished agent's PR is accepted"
+    )
+
+
+def test_route_detection_only_reads_the_tail_of_the_log():
+    """Grepping the whole log refunded an issue attempt whenever an agent merely
+    mentioned a rate limit while researching, which is not a routing death."""
+    text = FLEET.read_text(encoding="utf-8")
+    fn = text.split("note_route_failure() {", 1)[1].split("\n}\n", 1)[0]
+    assert "tail -40" in fn, (
+        "route detection must scope to the end of the log, where the death is"
+    )
+    # The path still appears, but only as tail's argument: grep must never see
+    # the whole file.
+    assert re.search(r'tail -40 "\$STATE_DIR/\$1\.log" \\\s*\n?\s*\| grep -qiE', fn), (
+        "the log must be tailed before grepping, or a passing mention refunds"
+    )
+    assert not re.search(r'grep -qiE[^\n]*\$STATE_DIR/\$1\.log', fn), (
+        "grep is still being handed the whole log"
+    )
+
+
+def test_the_provider_tally_can_be_reconciled_against_the_log():
+    """note_spawn_provider ran before the queue append and before the `spawned`
+    line, so the tally sat permanently ahead of anything visible in the log."""
+    text = FLEET.read_text(encoding="utf-8")
+    spawn = text.split("cmd_spawn() {", 1)[1].split("\n}\n", 1)[0]
+    tally = spawn.index("note_spawn_provider")
+    logged = spawn.index('say "spawned $slug')
+    queued = spawn.index('>> "$STATE_DIR/queue.tsv"')
+    assert queued < logged < tally, (
+        "the tally must be recorded after the row and the log line it should match"
+    )
+
+
+def test_only_one_supervisor_may_run_per_state_directory():
+    """Two supervisors race each other through the orphan scan and the STATUS.md
+    sweep, each reverting worktrees it does not own."""
+    text = FLEET.read_text(encoding="utf-8")
+    loop = text.split("cmd_supervise() {", 1)[1]
+    assert "flock -n 9" in loop, "the supervisor takes no exclusive lock"
+    assert 'exec 9>"$STATE_DIR/supervisor.lock"' in loop, (
+        "the lock must live in the state directory so it is per-run"
+    )

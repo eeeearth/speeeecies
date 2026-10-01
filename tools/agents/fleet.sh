@@ -136,8 +136,11 @@ note_route_failure() {  # slug; 0 when the agent died on routing, 1 otherwise
   local model
   model=$(meta_get "$1" model)
   [ -n "$model" ] && [ -f "$STATE_DIR/$1.log" ] || return 1
-  if grep -qiE 'cannot find any route|rate limit|429|too many requests|quota exceeded' \
-       "$STATE_DIR/$1.log"; then
+  # Tail only. Grepping the whole log refunded the attempt whenever an agent so
+  # much as mentioned a rate limit while researching, which is not a routing
+  # death and must not give the issue a free pass.
+  if tail -40 "$STATE_DIR/$1.log" \
+       | grep -qiE 'cannot find any route|rate limit|429|too many requests|quota exceeded'; then
     provider_note_failure "$(provider_of_model "$model")"
     return 0
   fi
@@ -471,9 +474,11 @@ LAUNCHER
   disown 2>/dev/null || true
   advance_model
 
-    note_spawn_provider "$model"
   printf '%s\t%s\t%s\n' "$issue" "$kind" "$slug" >> "$STATE_DIR/queue.tsv"
   say "spawned $slug (issue $issue, model $model)"
+  # After the log line: the tally is meant to be auditable against supervisor.log,
+  # and counting first left it permanently one ahead of what the log showed.
+  note_spawn_provider "$model"
 }
 
 cmd_status() {
@@ -569,6 +574,12 @@ cmd_supervise() {
     case "$1" in --once) once=1; shift;; --min) FLEET_MIN=$2; shift 2;; --max) FLEET_MAX=$2; shift 2;; *) shift;; esac
   done
   [ "$FLEET_MAX" -ge "$FLEET_MIN" ] || die "--max must be >= --min"
+  # One supervisor per state directory. Two would race each other through the
+  # orphan scan and the STATUS.md sweep, each undoing the other's work on
+  # worktrees it does not own. flock is released automatically when this exits.
+  exec 9>"$STATE_DIR/supervisor.lock" \
+    || die "cannot open lock file in $STATE_DIR"
+  flock -n 9 || die "another supervisor already holds $STATE_DIR/supervisor.lock"
   # Outside the loop on purpose: reset per pass and the transition-only
   # reporting below can never fire.
   local fleet_state=OK prev_state=OK
@@ -596,6 +607,22 @@ cmd_supervise() {
       fi
     done
     git -C "$REPO" worktree prune
+
+    # STATUS.md guard. The briefs forbid touching it, but two live agents were
+    # launched before that wording existed and the repository already carries a
+    # root STATUS.md from an even earlier one, so an agent reading the tree sees
+    # an invitation. Containment cannot rely on the prompt: restore the file and
+    # say so. A PR that carried it shipped once already.
+    for m in "$STATE_DIR"/*.meta; do
+      [ -f "$m" ] || continue
+      gslug=$(basename "$m" .meta)
+      gwt=$(meta_get "$gslug" worktree)
+      [ -n "$gwt" ] && [ -d "$gwt" ] || continue
+      git -C "$gwt" ls-files --error-unmatch STATUS.md >/dev/null 2>&1 || continue
+      git -C "$gwt" diff --quiet HEAD -- STATUS.md 2>/dev/null && continue
+      git -C "$gwt" checkout -q -- STATUS.md 2>/dev/null \
+        && echo "[$(date -u +%FT%TZ)] $gslug: reverted a STATUS.md edit; that file is not part of the contribution"
+    done
 
     # Reap: an agent that finished with a PR leaves the fleet.
     shopt -s nullglob
