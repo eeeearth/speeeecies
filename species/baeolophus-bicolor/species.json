@@ -1,0 +1,628 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Baeolophus bicolor",
+  "slug": "baeolophus-bicolor",
+  "common_names": {
+    "en": "tufted titmouse"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Passeriformes",
+    "family": "Paridae",
+    "genus": "Baeolophus",
+    "authority": "Linnaeus, 1766",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2487887,
+    "inat_taxon_id": 13632,
+    "itis_tsn": 554138,
+    "wikidata": "Q738534"
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "US",
+      "CA"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Hop",
+      "Fly",
+      "Glide"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Cavity",
+    "perching": true,
+    "size_class": "Tiny",
+    "mass_kg": 0.022,
+    "mass_range_kg": [
+      0.018,
+      0.026
+    ],
+    "length_m": 0.16,
+    "wingspan_m": 0.26,
+    "lifespan_y": 2.1,
+    "diet": {
+      "invertebrate": 0.66,
+      "seed": 0.19,
+      "fruit": 0.15
+    },
+    "social": {
+      "structure": "Group",
+      "group_size": [
+        2,
+        8
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.3
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.4,
+      "arboreal": 0.6
+    },
+    "shelter_tag": "cavity",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.66,
+        "months": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      {
+        "tag": "seed",
+        "kind": "Herbivory",
+        "weight": 0.19,
+        "months": [
+          10,
+          11,
+          12,
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.15
+      },
+      {
+        "tag": "cavity",
+        "kind": "Nesting",
+        "weight": 0.8
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.7
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Exploiter",
+      "uses_gardens": true,
+      "notes": "Nonmigratory, and originally native to the Ohio and Mississippi river basins, but bird feeders have carried it into a much larger range across the United States and into Ontario and Quebec; it takes readily to nest boxes."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "03-01",
+        "end": "08-31",
+        "note": "Nests in a hole in a tree - a natural cavity, a human-made nest box or sometimes an old woodpecker nest - lined with soft materials, sometimes hair plucked from live mammals. Average clutch size is five to seven eggs, white or cream with brownish or purplish spots and under an inch long; eggs have an incubation period of 12-14 days and the young remain nestlings for 15-16 days."
+      },
+      {
+        "name": "flocking",
+        "start": "01-01",
+        "end": "12-31",
+        "note": "Nonmigratory and sociable year-round, forming small flocks known as troupes or banditries that often associate with chickadees and other passerines while foraging."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg"
+      },
+      {
+        "stage": "Juvenile",
+        "duration_days": 60,
+        "scale": 0.75,
+        "requires_tag": "cavity"
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US-GA",
+        "monthly": [
+          1.0,
+          0.98,
+          0.87,
+          0.76,
+          0.78,
+          0.76,
+          0.7,
+          0.7,
+          0.91,
+          0.74,
+          0.86,
+          0.95
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 585087,
+        "sources": [
+          "inat-activity-us-ga",
+          "gbif-activity-us-ga"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 23,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=13632&place_id=23&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=23&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 1754,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.11_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2487887&gadmGid=USA.11_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.11_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 583333,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "bt-perching-songbird-v1",
+    "params": {
+      "flee_m": 4,
+      "food_tag": "invertebrate",
+      "song": "song",
+      "alarm": "alarm",
+      "song_cooldown_s": 8,
+      "nest_m1": 3,
+      "nest_m2": 7
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "song",
+      "context": "Song",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 8,
+      "loudness": "Moderate",
+      "description": "A whistled peter-peter-peter, which varies in about 20 notable ways."
+    },
+    {
+      "call_id": "alarm",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [],
+      "cooldown_s": 10,
+      "loudness": "Moderate",
+      "description": "Wikipedia describes no separate alarm call for this species; it records only that the titmouse is vocally active and responds to sounds of agitation in other birds. The peter-peter-peter call is the one it is heard making in that context, so it stands in here and the cooldown is authored judgement."
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.5,
+      "leg_length_ratio": 0.35,
+      "head_scale": 0.85,
+      "neck_angle_deg": 15,
+      "tail_ratio": 0.6,
+      "wing_aspect": 2.5,
+      "beak_ratio": 0.3,
+      "girth_ratio": 1.0
+    },
+    "palette": {
+      "body": "#9aa0a4",
+      "belly": "#f0eee8",
+      "markings": "#1f1e1c",
+      "accent": "#a8591f",
+      "eye": "#141312"
+    },
+    "part_colors": {
+      "head": "markings",
+      "breast": "belly",
+      "beak": "markings"
+    },
+    "extra_parts": [
+      {
+        "name": "crest",
+        "parent": "head",
+        "offset": [
+          0.2,
+          0.85,
+          0
+        ],
+        "size": [
+          0.45,
+          0.6,
+          0.4
+        ],
+        "color": "markings"
+      },
+      {
+        "name": "flanks",
+        "parent": "body",
+        "offset": [
+          0,
+          -0.1,
+          0
+        ],
+        "size": [
+          0.9,
+          0.5,
+          1.1
+        ],
+        "color": "accent"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "hop": {},
+      "fly": {},
+      "glide": {},
+      "perched": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2487887",
+      "title": "GBIF Backbone Taxonomy: Baeolophus bicolor",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q738534",
+      "title": "Wikidata: tufted titmouse (Q738534)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Tufted_titmouse",
+      "title": "Wikipedia: Tufted titmouse",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Tufted titmouse\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=554138",
+      "title": "ITIS: Baeolophus bicolor, TSN 554138",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "inat-activity-us-ga",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=13632&place_id=23&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Baeolophus bicolor in US-GA",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-ga",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2487887&gadmGid=USA.11_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Baeolophus bicolor in US-GA",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "itis"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata",
+        "itis"
+      ],
+      "confidence": "High"
+    },
+    "common_names": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Wikipedia's speciesbox gives the IUCN 3.1 status least concern and records that the species has been assessed since 1988."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Nonmigratory and native to eastern North America; originally the Ohio and Mississippi river basins, now occupying a larger range across the United States and stretching into Ontario and Quebec, which Wikipedia attributes to bird feeders."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Hopping through foliage and short flights between perches are the authored mapping of a small passerine's movement; Wikipedia records the species foraging in mixed flocks with chickadees, which move in short hops."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'Tufted titmice nest in a hole in a tree, either a natural cavity, a human-made nest box, or sometimes an old woodpecker nest', lined with soft materials."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.size_class": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Midpoint of Wikipedia's 18-26 g weight."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Midpoint of Wikipedia's 14-16 cm length."
+    },
+    "traits.wingspan_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Midpoint of Wikipedia's 20-26 cm wingspan."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'The lifespan of the tufted titmouse is roughly 2.1 years, although it can live for more than 10 years.'"
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Wikipedia states that annually nearly two-thirds of the diet consists of insects, with caterpillars essential in summer. Two thirds is carried over as invertebrate 0.66; the remaining third is split 0.19 seed and 0.15 fruit as authored judgement, since no open source splits the plant share."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'This species readily forms small flocks, known as troupes or banditries, which often associate with chickadees and other passerine species when foraging'; the upper bound of 8 is authored judgement."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Wikipedia records day-flocking foraging, a whistled daytime song and nest watching; Diurnal is the judgement mapping, as the article describes no nocturnal activity."
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Withdraws from a nest box or cavity when it is inspected and flies off when startled; Flee is the judgement mapping to the schema's single-value field."
+    },
+    "traits.wariness": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: bold at feeders and quick to take a nest box, but it leaves a cavity readily when the box is opened."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "The split is authored judgement: a cavity-nesting, foliage-foraging passerine that also comes to ground feeders. Wikipedia describes wooded habitat and feeder use without giving shares."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Food weights follow traits.diet; the windows mark the summer caterpillar peak and the winter plant share, both judgement; the cavity and perch weights follow the documented nest sites and perching habit."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Wikipedia states the species is nonmigratory, that bird feeders have expanded its range into Ontario and Quebec, and that it nests in human-made nest boxes."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'Although it is nonmigratory', and it holds troupes through the year."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Nest sites, clutch size, egg description, incubation of 12-14 days and the 15-16 day nestling period are all from the Breeding and nesting section; the month range is authored judgement, as the article gives no calendar dates."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "The 15-16 day nestling period is from Wikipedia; the rest of the 60-day juvenile duration, from fledging to independence, is authored judgement, as is the scale."
+    },
+    "vocalizations": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The peter-peter-peter song and its roughly 20 variants are from Wikipedia. Wikipedia describes no distinct alarm call for this species, so the alarm entry says so and reuses the song; the cooldowns are authored judgement."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Colours from Wikipedia's description of a grey upper body, white front, rust-coloured flanks, and the species' black forehead and pointed crest. The crest and flanks parts and the proportions are authored judgement to render the crest and flank colour the description names."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared perching-songbird program. food_tag is 'invertebrate' because nearly two thirds of the annual diet is insects and caterpillars are essential in summer; flee_m is judgement."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies maintainers",
+      "agent": "opencode"
+    }
+  ]
+}
