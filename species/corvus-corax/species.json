@@ -1,0 +1,438 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Corvus corax",
+  "slug": "corvus-corax",
+  "common_names": {
+    "en": "Common raven"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Passeriformes",
+    "family": "Corvidae",
+    "genus": "Corvus",
+    "authority": "Linnaeus, 1758",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2482492,
+    "inat_taxon_id": 8010,
+    "wikidata": "Q25357"
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "US",
+      "CA",
+      "MX"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Walk",
+      "Hop",
+      "Fly"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Platform",
+    "perching": true,
+    "size_class": "Medium",
+    "mass_kg": 1.47,
+    "mass_range_kg": [
+      0.69,
+      2.25
+    ],
+    "length_m": 0.63,
+    "wingspan_m": 1.35,
+    "lifespan_y": 10,
+    "diet": {
+      "carrion": 0.4,
+      "invertebrate": 0.2,
+      "vertebrate": 0.15,
+      "seed": 0.15,
+      "fruit": 0.1
+    },
+    "social": {
+      "structure": "Pair",
+      "group_size": [
+        2,
+        10
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Mob",
+    "wariness": 0.5
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.5,
+      "arboreal": 0.5
+    },
+    "shelter_tag": "perch",
+    "resources": [
+      {
+        "tag": "carrion",
+        "kind": "Predation",
+        "weight": 0.4
+      },
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.2
+      },
+      {
+        "tag": "small_vertebrate",
+        "kind": "Predation",
+        "weight": 0.15
+      },
+      {
+        "tag": "seed",
+        "kind": "Herbivory",
+        "weight": 0.15
+      },
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.1
+      },
+      {
+        "tag": "nest_platform",
+        "kind": "Nesting",
+        "weight": 1.0
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 1.0
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "notes": "Resident pairs hold large territories in open and mountain country and visit towns to scavenge; wary of people on foot but habitual around ranch and suburban food sources."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "02-15",
+        "end": "06-30",
+        "note": "One of the earliest breeders: pairs build or reuse large stick nests on cliffs and in tall trees and lay 3 to 7 eggs."
+      },
+      {
+        "name": "young",
+        "start": "04-01",
+        "end": "07-31",
+        "note": "Eggs hatch after about 20 days; the young fledge at 5 to 6 weeks and stay with the parents for months."
+      },
+      {
+        "name": "flocking",
+        "start": "10-01",
+        "end": "02-28",
+        "note": "Territorial pairs stay put, but juveniles and non-breeders gather in foraging flocks and communal winter roosts."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg",
+        "duration_days": 20
+      },
+      {
+        "stage": "Juvenile",
+        "duration_days": 40,
+        "scale": 0.7
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US-WY",
+        "monthly": [
+          1.0,
+          0.96,
+          0.5,
+          0.32,
+          0.33,
+          0.47,
+          0.43,
+          0.49,
+          0.68,
+          0.7,
+          0.43,
+          0.68
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 91792,
+        "sources": [
+          "inat-activity-us-wy",
+          "gbif-activity-us-wy"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 15,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=8010&place_id=15&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=15&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "total": 302,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.51_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2482492&gadmGid=USA.51_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.51_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 91490,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "bt-perching-songbird-v1",
+    "params": {
+      "flee_m": 30,
+      "food_tag": "carrion",
+      "song": "croak",
+      "alarm": "alarm",
+      "nest_m1": 2,
+      "nest_m2": 4
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "croak",
+      "context": "Song",
+      "season_months": [
+        1,
+        2,
+        3
+      ],
+      "time_windows": [
+        "DawnChorus",
+        "Day"
+      ],
+      "cooldown_s": 45,
+      "loudness": "Loud",
+      "description": "A deep resonant croaking 'prruk-prruk' and hollow knocking notes, given in territorial display flights; the aerial tumbling display of early spring."
+    },
+    {
+      "call_id": "alarm",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [],
+      "cooldown_s": 10,
+      "loudness": "Loud",
+      "description": "A harsh grating 'kraa' repeated while mobbing eagles, coyotes and other threats, often drawing in other ravens."
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.7,
+      "leg_length_ratio": 0.45,
+      "head_scale": 0.8,
+      "neck_angle_deg": 10,
+      "tail_ratio": 1.0,
+      "wing_aspect": 3.0,
+      "beak_ratio": 0.55,
+      "girth_ratio": 1.1
+    },
+    "palette": {
+      "body": "#17171a",
+      "belly": "#232327",
+      "markings": "#3d3d46",
+      "accent": "#2b2b30",
+      "eye": "#0d0c0a"
+    },
+    "part_colors": {
+      "leg_*": "accent",
+      "beak": "accent",
+      "breast": "belly"
+    },
+    "extra_parts": [
+      {
+        "name": "throat_hackles",
+        "parent": "head",
+        "offset": [
+          0.0,
+          -0.25,
+          0.3
+        ],
+        "size": [
+          0.3,
+          0.25,
+          0.2
+        ],
+        "color": "markings",
+        "mirror": false
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "hop": {},
+      "fly": {},
+      "perched": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2482492",
+      "title": "GBIF Backbone Taxonomy: Corvus corax",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q25357",
+      "title": "Wikidata: Common raven (Q25357)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Common_raven",
+      "title": "Wikipedia: Common raven",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Common raven\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "inat-activity-us-wy",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=8010&place_id=15&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Corvus corax in US-WY",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-wy",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2482492&gadmGid=USA.51_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Corvus corax in US-WY",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Described by Linnaeus, 1758; GBIF usage key 2482492."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "iNaturalist taxon id 8010 from the issue's data pointers, cross-checked against the GBIF usage key."
+    },
+    "common_names": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "Wikidata P141 = least concern (Q211005)."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Holarctic breeder across the Northern Hemisphere; the manifest lists the North American countries and the article carries the full Eurasian range. Vagrant records are omitted."
+    },
+    "traits": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Description section records 54-71 cm length, 116-153 cm wingspan and 0.69-2.25 kg weights with the lead averaging 63 cm and 1.47 kg; length_m 0.63, wingspan_m 1.35 and mass_kg 1.47 with the documented span follow directly. Diet shares follow the omnivorous scavenger description (carrion, insects, small vertebrates, seeds, fruit). Pair structure with 2-10 group follows mated pairs holding territories while juveniles travel in flocks. Mob defense and wariness 0.5 are judgement for a bold, wary scavenger."
+    },
+    "habitat": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Ground foraging for carrion and refuse with tree and cliff perches and large stick nests split evenly between ground and arboreal use; nest_platform, perch and food tags are authored from the described habits. Adapter follows town and ranch scavenging."
+    },
+    "seasonal": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Resident pairs with early breeding (large stick nests, 3-7 eggs, about 20 days incubation, fledging at 5-6 weeks) and winter flocking of non-breeders are from the Breeding and Behavior sections; exact dates and the juvenile duration are authored for Wyoming latitude."
+    },
+    "vocalizations": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Croaking territorial calls, display flights and mobbing of predators are from the Behavior section; call ids, seasons, windows and cooldowns are authored."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared perching-songbird program: wary (flees at 30 m), scavenges carrion, croaks in late winter territory establishment, builds stick nests February to April."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "All-black plumage with shaggy throat hackles and a heavy bill from the Description section; exact hex values, proportions and the hackle box are authored judgement for a large heavy-billed corvid."
+    }
+  }
+}

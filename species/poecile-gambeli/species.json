@@ -1,0 +1,423 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Poecile gambeli",
+  "slug": "poecile-gambeli",
+  "common_names": {
+    "en": "Mountain chickadee"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Passeriformes",
+    "family": "Paridae",
+    "genus": "Poecile",
+    "authority": "(Ridgway, 1886)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2487825,
+    "inat_taxon_id": 144816,
+    "wikidata": "Q973320"
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "US",
+      "CA"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Walk",
+      "Hop",
+      "Fly"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Cavity",
+    "perching": true,
+    "size_class": "Tiny",
+    "mass_kg": 0.011,
+    "length_m": 0.14,
+    "wingspan_m": 0.19,
+    "lifespan_y": 2,
+    "diet": {
+      "invertebrate": 0.7,
+      "seed": 0.3
+    },
+    "social": {
+      "structure": "Flock",
+      "group_size": [
+        2,
+        10
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.2
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.1,
+      "arboreal": 0.9
+    },
+    "shelter_tag": "cavity",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.7
+      },
+      {
+        "tag": "seed",
+        "kind": "Herbivory",
+        "weight": 0.3
+      },
+      {
+        "tag": "cavity",
+        "kind": "Nesting",
+        "weight": 1.0
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 1.0
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "notes": "Common in montane conifer forest and a quick habituator to suburbs; hangs upside down on garden feeders and nests in boxes and tree holes."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "04-15",
+        "end": "07-31",
+        "note": "Monogamous pairs raise 1-2 broods in cavities; average clutch 5-9 speckled eggs, incubated by the female for 14 days."
+      },
+      {
+        "name": "young",
+        "start": "05-15",
+        "end": "08-31",
+        "note": "Altricial young stay 21 days fed by both parents; juveniles leave adult groups to forage in summer and rejoin flocks in winter."
+      },
+      {
+        "name": "flocking",
+        "start": "09-01",
+        "end": "03-31",
+        "note": "Pairs and families join small winter groups and multi-species feeding flocks; food-caching with spatial memory carries them through."
+      },
+      {
+        "name": "caching",
+        "start": "08-15",
+        "end": "11-30",
+        "note": "Caches conifer seeds in bark crevices through the autumn, relocating them by spatial memory in winter."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg",
+        "duration_days": 14
+      },
+      {
+        "stage": "Juvenile",
+        "duration_days": 21,
+        "scale": 0.6
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US-WY",
+        "monthly": [
+          0.95,
+          1.0,
+          0.56,
+          0.26,
+          0.26,
+          0.29,
+          0.33,
+          0.53,
+          0.59,
+          0.63,
+          0.54,
+          0.78
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 46909,
+        "sources": [
+          "inat-activity-us-wy",
+          "gbif-activity-us-wy"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 15,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=144816&place_id=15&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=15&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 471,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.51_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2487825&gadmGid=USA.51_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.51_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 46438,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "bt-perching-songbird-v1",
+    "params": {
+      "flee_m": 5,
+      "food_tag": "invertebrate",
+      "song": "song",
+      "alarm": "alarm",
+      "nest_m1": 4,
+      "nest_m2": 5
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "song",
+      "context": "Song",
+      "season_months": [
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "time_windows": [
+        "DawnChorus",
+        "Day"
+      ],
+      "cooldown_s": 25,
+      "loudness": "Moderate",
+      "description": "A 3-4 note descending whistle 'fee-bee-bay', like whistling the word cheeseburger; the song that carries mate choice."
+    },
+    {
+      "call_id": "alarm",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [],
+      "cooldown_s": 8,
+      "loudness": "Moderate",
+      "description": "The throaty namesake 'chick-adee-dee-dee', with more dees for more dangerous predators; flock members mob and freeze by its code."
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.4,
+      "leg_length_ratio": 0.4,
+      "head_scale": 0.85,
+      "neck_angle_deg": 10,
+      "tail_ratio": 0.9,
+      "wing_aspect": 2.2,
+      "beak_ratio": 0.3,
+      "girth_ratio": 1.0
+    },
+    "palette": {
+      "body": "#8d8d90",
+      "belly": "#d9d7d2",
+      "markings": "#f4f2ec",
+      "accent": "#17171a",
+      "eye": "#151210"
+    },
+    "part_colors": {
+      "leg_*": "accent",
+      "beak": "accent",
+      "breast": "belly"
+    },
+    "extra_parts": [
+      {
+        "name": "bib",
+        "parent": "head",
+        "offset": [
+          0.0,
+          -0.3,
+          0.25
+        ],
+        "size": [
+          0.35,
+          0.3,
+          0.2
+        ],
+        "color": "accent",
+        "mirror": false
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "hop": {},
+      "fly": {},
+      "perched": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2487825",
+      "title": "GBIF Backbone Taxonomy: Poecile gambeli",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q973320",
+      "title": "Wikidata: Mountain chickadee (Q973320)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Mountain_chickadee",
+      "title": "Wikipedia: Mountain chickadee",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Mountain chickadee\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "inat-activity-us-wy",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=144816&place_id=15&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Poecile gambeli in US-WY",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-wy",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2487825&gadmGid=USA.51_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Poecile gambeli in US-WY",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Named for William Gambel; moved from Parus to Poecile on mtDNA evidence; sister to the black-capped chickadee; GBIF usage key 2487825."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "iNaturalist taxon id 144816 from the issue's data pointers, cross-checked against the GBIF usage key."
+    },
+    "common_names": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "Wikidata P141 = least concern (Q211005)."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Mountainous western US and Canada from the southern Yukon to California and the Rockies; local altitudinal movements only."
+    },
+    "traits": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Length 13-15 cm and wingspan 19 cm give length_m 0.14 and wingspan_m 0.19; mass_kg 0.011 is authored for a parid of this size (the article states no mass). Diet 70/30 insects to seeds is quoted from the Diet section. Flock 2-10 follows pairs joining winter and mixed-species flocks. Lifespan 2 and wariness 0.2 are judgement for a confiding garden tit."
+    },
+    "habitat": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Bark-gleaning in branches and trunks with cavity nests gives ground 0.1 / arboreal 0.9; tags are authored from the diet and nesting sections. Adapter follows quick habituation to urban stimuli and garden nesting."
+    },
+    "seasonal": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Monogamous 1-2 broods, clutch 5-9, 14-day female incubation and 21-day nestling period are quoted; winter flocking, mixed flocks and autumn caching with spatial memory are from the Vocalization and Behavior sections. Dates are authored for Wyoming."
+    },
+    "vocalizations": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Throaty chick-adee-dee-dee call and fee-bee-bay song are quoted; call ids, seasons, windows and cooldowns are authored."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared perching-songbird program: bold feeder bird that flushes at 5 m, gleans invertebrates, sings spring to summer, uses cavities 1-8 m up."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Black cap and postocular stripe split by white eyebrows, grey back and flanks, paler underparts, short black bill and black bib from the Description section; exact hex values, proportions and the bib box are authored judgement."
+    }
+  }
+}

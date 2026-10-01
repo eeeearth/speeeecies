@@ -1,0 +1,433 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Urocitellus armatus",
+  "slug": "urocitellus-armatus",
+  "common_names": {
+    "en": "Uinta ground squirrel"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Mammalia",
+    "order": "Rodentia",
+    "family": "Sciuridae",
+    "genus": "Urocitellus",
+    "authority": "(Kennicott, 1863)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 8151861,
+    "inat_taxon_id": 179994,
+    "wikidata": "Q21729942"
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "US"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk",
+      "Trot",
+      "Gallop"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Fur",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Burrow",
+    "perching": false,
+    "size_class": "Small",
+    "mass_kg": 0.3,
+    "length_m": 0.29,
+    "lifespan_y": 4,
+    "diet": {
+      "graze": 0.5,
+      "seed": 0.3,
+      "browse": 0.1,
+      "invertebrate": 0.1
+    },
+    "social": {
+      "structure": "Group",
+      "group_size": [
+        5,
+        20
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.4
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.8,
+      "fossorial": 0.2
+    },
+    "shelter_tag": "burrow",
+    "resources": [
+      {
+        "tag": "graze",
+        "kind": "Herbivory",
+        "weight": 0.5
+      },
+      {
+        "tag": "seed",
+        "kind": "Herbivory",
+        "weight": 0.3
+      },
+      {
+        "tag": "browse",
+        "kind": "Herbivory",
+        "weight": 0.1
+      },
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.1
+      },
+      {
+        "tag": "burrow",
+        "kind": "Shelter",
+        "weight": 1.0
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "notes": "Colonies live in meadows, pasture and lawns at 1,220-2,440 m; the 'chisler' of Jackson lawns, fond of dandelions and bold around garden edges."
+    }
+  },
+  "seasonal": {
+    "strategy": "Hibernation",
+    "triggers": {
+      "enter": {
+        "temperature_below_c": 5,
+        "days": 7
+      },
+      "exit": {
+        "temperature_above_c": 8,
+        "days": 5
+      }
+    },
+    "phases": [
+      {
+        "name": "dormancy",
+        "start": "08-10",
+        "end": "03-15",
+        "note": "Active only a few months: adult males wake around mid-March and emerge by weather, females and yearlings later; adults return to hibernate late July to mid-August."
+      },
+      {
+        "name": "mating",
+        "start": "03-20",
+        "end": "04-10",
+        "note": "Females enter estrus for a single afternoon 2-4 days after emerging; mating is underground and males may mate several females."
+      },
+      {
+        "name": "young",
+        "start": "05-01",
+        "end": "06-15",
+        "note": "Gestation 23-26 days with average litters of five born in early May; weaned at 22 days at about 60 g, then mostly abandoned to found their own territories."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Juvenile",
+        "duration_days": 22,
+        "scale": 0.3
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US-WY",
+        "monthly": [
+          0.01,
+          0.0,
+          0.03,
+          0.59,
+          0.9,
+          1.0,
+          0.74,
+          0.4,
+          0.0,
+          0.01,
+          0.03,
+          0.02
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 2366,
+        "sources": [
+          "inat-activity-us-wy",
+          "gbif-activity-us-wy"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 15,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=179994&place_id=15&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=15&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 1938,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.51_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=8151861&gadmGid=USA.51_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.51_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 428,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-ground-forager-v1",
+    "params": {
+      "flee_m": 15,
+      "calm_m": 30,
+      "food_tag": "graze",
+      "food_m": 30,
+      "flee_gait": "gallop",
+      "forage_gait": "walk",
+      "rest_sun_lo_deg": -90,
+      "rest_sun_hi_deg": -6
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "chirp",
+      "context": "Alarm",
+      "season_months": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 12,
+      "loudness": "Moderate",
+      "description": "Sharp chirps warning of aerial predators; hearers snap to alert posture or bolt for their burrows."
+    },
+    {
+      "call_id": "trill",
+      "context": "Alarm",
+      "season_months": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 12,
+      "loudness": "Moderate",
+      "description": "A rolling trill warning of ground predators such as coyotes, badgers and weasels, answered by squeals, squawks and teeth-clattering in disputes."
+    }
+  ],
+  "look": {
+    "body_plan": "quadruped",
+    "proportions": {
+      "torso_aspect": 1.9,
+      "leg_length_ratio": 0.35,
+      "head_scale": 0.7,
+      "neck_angle_deg": 20,
+      "tail_ratio": 0.35,
+      "ear_ratio": 0.25,
+      "beak_ratio": 0.35,
+      "girth_ratio": 0.9
+    },
+    "palette": {
+      "body": "#9a6b42",
+      "belly": "#d9c9ae",
+      "markings": "#7a7d80",
+      "accent": "#c9b183",
+      "eye": "#241a10"
+    },
+    "part_colors": {
+      "leg_*": "body",
+      "ear_*": "markings",
+      "snout": "body"
+    },
+    "extra_parts": [
+      {
+        "name": "tail_flag",
+        "parent": "tail",
+        "offset": [
+          -0.2,
+          0.0,
+          0.0
+        ],
+        "size": [
+          0.35,
+          0.3,
+          0.3
+        ],
+        "color": "accent"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "trot": {},
+      "gallop": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/8151861",
+      "title": "GBIF Backbone Taxonomy: Urocitellus armatus",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q21729942",
+      "title": "Wikidata: Uinta ground squirrel (Q21729942)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Uinta_ground_squirrel",
+      "title": "Wikipedia: Uinta ground squirrel",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Uinta ground squirrel\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "inat-activity-us-wy",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=179994&place_id=15&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Urocitellus armatus in US-WY",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-wy",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=8151861&gadmGid=USA.51_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Urocitellus armatus in US-WY",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Described from the Uinta Mountains; no recognised subspecies; GBIF usage key 8151861."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "iNaturalist taxon id 179994 from the issue's data pointers, cross-checked against the GBIF usage key."
+    },
+    "common_names": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "Wikidata P141 = least concern (Q211005)."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Wyoming west of the Green River, southwestern Montana, eastern Idaho and northern and central Utah, in meadows, pasture and shrub-steppe at 1,220-2,440 m."
+    },
+    "traits": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Length 28-30 cm gives length_m 0.29; mass_kg 0.3 is authored as the active-season mean from 210 g at emergence rising toward fall. Diet follows the herbivorous description (grass, seeds, forb leaves, few earthworms). Colonial Group 5-20 with diurnal activity and burrow flight are quoted; lifespan 4 is authored below the cited 7-year maximum."
+    },
+    "habitat": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Open meadow and pasture colonies with burrow shelter give ground 0.8 / fossorial 0.2; tags follow the diet and burrowing sections. Adapter follows pasture and lawn use."
+    },
+    "seasonal": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Mid-March emergence, late-July to mid-August return, single-afternoon estrus, 23-26 day gestation, litters of five and 22-day weaning are quoted. Exact phase dates are set for Jackson."
+    },
+    "vocalizations": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Six calls with chirps for aerial and trills for ground predators are quoted; call ids, seasons, windows and cooldowns are authored."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared ground-forager program: diurnal colony animal that bolts for burrows at 15 m and grazes lawns by day."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Brown to cinnamon fur, paler underside, grey head sides and buff tail from the Description section; exact hex values, proportions and the tail box are authored judgement."
+    }
+  }
+}

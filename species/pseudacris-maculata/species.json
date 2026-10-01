@@ -1,0 +1,434 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Pseudacris maculata",
+  "slug": "pseudacris-maculata",
+  "common_names": {
+    "en": "Boreal chorus frog"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Amphibia",
+    "order": "Anura",
+    "family": "Hylidae",
+    "genus": "Pseudacris",
+    "authority": "(Agassiz, 1850)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2428169,
+    "inat_taxon_id": 24255,
+    "wikidata": "Q2275366"
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "US",
+      "CA"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk",
+      "Hop",
+      "Swim"
+    ],
+    "thermoregulation": "Ectotherm",
+    "skin": "Moist",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "Complete",
+    "nest_type": "None",
+    "perching": false,
+    "size_class": "Tiny",
+    "mass_kg": 0.003,
+    "length_m": 0.03,
+    "lifespan_y": 3,
+    "diet": {
+      "invertebrate": 1.0
+    },
+    "social": {
+      "structure": "Group",
+      "group_size": [
+        5,
+        50
+      ]
+    },
+    "activity_pattern": "Nocturnal",
+    "defense": "Hide",
+    "wariness": 0.6
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.7,
+      "arboreal": 0.3
+    },
+    "shelter_tag": "leaf_litter",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 1.0
+      },
+      {
+        "tag": "pond",
+        "kind": "Shelter",
+        "weight": 1.0
+      },
+      {
+        "tag": "leaf_litter",
+        "kind": "Shelter",
+        "weight": 0.8
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "notes": "Breeds in garden ponds, ditches and flooded meadows; among the first amphibians out while snow and ice remain, calling from grasses at the water's edge."
+    }
+  },
+  "seasonal": {
+    "strategy": "Hibernation",
+    "triggers": {
+      "enter": {
+        "temperature_below_c": 5,
+        "days": 5
+      },
+      "exit": {
+        "temperature_above_c": 6,
+        "days": 3
+      }
+    },
+    "phases": [
+      {
+        "name": "dormancy",
+        "start": "10-01",
+        "end": "03-15",
+        "note": "Overwinters terrestrially under leaf litter and logs; tiger salamanders sharing the water can carry chytrid fungus through the cold months."
+      },
+      {
+        "name": "spawning_migration",
+        "start": "03-15",
+        "end": "05-01",
+        "note": "Moves to permanent water with snow-melt, often while ice is still present; one of the first amphibians to emerge in spring."
+      },
+      {
+        "name": "breeding",
+        "start": "04-01",
+        "end": "05-31",
+        "note": "Annual breeder calling April to September; females lay 500-1500 eggs with 37-87% hatching, tadpoles metamorphosing around June-July."
+      },
+      {
+        "name": "young",
+        "start": "06-01",
+        "end": "08-31",
+        "note": "Tadpoles metamorphose in June-July with wildly variable 10-100% survival; tadpoles learn new predators by cultural observation."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg",
+        "duration_days": 14
+      },
+      {
+        "stage": "Tadpole",
+        "duration_days": 60,
+        "scale": 0.4
+      },
+      {
+        "stage": "Juvenile",
+        "duration_days": 60,
+        "scale": 0.6
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US-WY",
+        "monthly": [
+          0.0,
+          0.0,
+          0.03,
+          0.12,
+          0.78,
+          0.95,
+          1.0,
+          0.56,
+          0.26,
+          0.01,
+          0.0,
+          0.0
+        ],
+        "method": "mean(inat_raw, gbif_raw)",
+        "observations": 710,
+        "sources": [
+          "inat-activity-us-wy",
+          "gbif-activity-us-wy"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 15,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=24255&place_id=15&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": null,
+            "total": 306,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "C",
+            "area": [
+              "gadmGid",
+              "USA.51_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2428169&gadmGid=USA.51_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "baseline_url": null,
+            "total": 404,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-anuran-nocturnal-v1",
+    "params": {
+      "flee_m": 1.0,
+      "freeze_m": 3,
+      "food_tag": "invertebrate",
+      "call": "creek",
+      "min_temp_c": 3,
+      "max_temp_c": 25,
+      "call_m1": 2,
+      "call_m2": 5
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "creek",
+      "context": "Croak",
+      "season_months": [
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "time_windows": [
+        "Dusk",
+        "Night"
+      ],
+      "cooldown_s": 15,
+      "loudness": "Moderate",
+      "description": "A rising trilled 'reeeek' like a fingernail on a fine-toothed comb, chorused from grasses around the pond from April into September."
+    }
+  ],
+  "look": {
+    "body_plan": "anuran",
+    "proportions": {
+      "torso_aspect": 1.2,
+      "leg_length_ratio": 0.55,
+      "head_scale": 0.75,
+      "neck_angle_deg": 5,
+      "girth_ratio": 1.0
+    },
+    "palette": {
+      "body": "#6b5a3e",
+      "belly": "#d8d0bd",
+      "markings": "#3a2f22",
+      "accent": "#7a9a5a",
+      "eye": "#b8732a"
+    },
+    "part_colors": {
+      "leg_*": "body"
+    },
+    "extra_parts": [
+      {
+        "name": "stripe_left",
+        "parent": "body",
+        "offset": [
+          0.1,
+          0.35,
+          0.3
+        ],
+        "size": [
+          0.6,
+          0.12,
+          0.1
+        ],
+        "color": "markings",
+        "mirror": true
+      },
+      {
+        "name": "eye_band",
+        "parent": "head",
+        "offset": [
+          0.0,
+          0.3,
+          0.35
+        ],
+        "size": [
+          0.5,
+          0.15,
+          0.1
+        ],
+        "color": "markings",
+        "mirror": true
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "hop": {},
+      "swim": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2428169",
+      "title": "GBIF Backbone Taxonomy: Pseudacris maculata",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q2275366",
+      "title": "Wikidata: Boreal chorus frog (Q2275366)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Boreal_chorus_frog",
+      "title": "Wikipedia: Boreal chorus frog",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Boreal chorus frog\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "inat-activity-us-wy",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=24255&place_id=15&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Pseudacris maculata in US-WY",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-wy",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2428169&gadmGid=USA.51_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+      "title": "GBIF occurrence search for Pseudacris maculata in US-WY",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Chorus frog of genus Pseudacris, distinguished from the western chorus frog by shorter legs; GBIF usage key 2428169."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "iNaturalist taxon id 24255 from the issue's data pointers, cross-checked against the GBIF usage key."
+    },
+    "common_names": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "Wikidata P141 = least concern (Q211005)."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Canada from Quebec to BC and north to the Yukon; in the US through Montana, Minnesota, Wisconsin, Arizona, New Mexico and Utah, including Wyoming."
+    },
+    "traits": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Length 30 mm gives length_m 0.03; mass_kg 0.003 is authored for a 30 mm hylid since the article states no mass. Nocturnal insectivore in calling choruses gives Nocturnal with Group 5-50. Defense Hide with wariness 0.6 is judgement for a tiny frog that freezes and slips away. Lifespan 3 is judgement."
+    },
+    "habitat": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Permanent water in cleared land and forest with climbing on grasses gives ground 0.7 / arboreal 0.3; pond, leaf-litter and invertebrate tags are authored. Adapter follows ditch and garden-pond breeding."
+    },
+    "seasonal": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Snow-melt emergence with ice present, annual breeding late February to April, 500-1500 eggs, June-July metamorphosis and terrestrial overwintering are quoted. Dates are shifted for Jackson's elevation."
+    },
+    "vocalizations": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Trilled reeeek chorus April to September in the static-call group is quoted; call id, windows and cooldown are authored."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared nocturnal-anuran program: freezes to 3 m, hops at 1 m, calls near water on warm damp nights above 3 C."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Brown or green back with three broken dorsal stripes, dark snout-to-side band and slightly enlarged toe pads from the Description section; exact hex values, proportions and the stripe boxes are authored judgement."
+    }
+  }
+}

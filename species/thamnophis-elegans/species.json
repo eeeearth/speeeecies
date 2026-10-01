@@ -1,0 +1,399 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Thamnophis elegans",
+  "slug": "thamnophis-elegans",
+  "common_names": {
+    "en": "Western terrestrial garter snake"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Reptilia",
+    "order": "Squamata",
+    "family": "Colubridae",
+    "genus": "Thamnophis",
+    "authority": "(Baird & Girard, 1853)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2457545,
+    "inat_taxon_id": 28398,
+    "wikidata": "Q819220"
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "US",
+      "CA",
+      "MX"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 0,
+    "locomotion_modes": [
+      "Slither",
+      "Swim"
+    ],
+    "thermoregulation": "Ectotherm",
+    "skin": "Scales",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "None",
+    "perching": false,
+    "size_class": "Small",
+    "mass_kg": 0.15,
+    "length_m": 0.75,
+    "lifespan_y": 8,
+    "diet": {
+      "vertebrate": 0.5,
+      "invertebrate": 0.3,
+      "fish": 0.2
+    },
+    "social": {
+      "structure": "Solitary",
+      "group_size": [
+        1,
+        1
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.4
+  },
+  "habitat": {
+    "use": {
+      "ground": 1.0
+    },
+    "shelter_tag": "log_pile",
+    "resources": [
+      {
+        "tag": "small_vertebrate",
+        "kind": "Predation",
+        "weight": 0.7
+      },
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.3
+      },
+      {
+        "tag": "log_pile",
+        "kind": "Shelter",
+        "weight": 1.0
+      },
+      {
+        "tag": "shrub_thicket",
+        "kind": "Shelter",
+        "weight": 0.6
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "notes": "Hunts frogs and worms along Flat Creek and garden ponds; basks on rock walls and compost heaps and winters communally in burrows."
+    }
+  },
+  "seasonal": {
+    "strategy": "Brumation",
+    "triggers": {
+      "enter": {
+        "temperature_below_c": 7,
+        "days": 7
+      },
+      "exit": {
+        "temperature_above_c": 10,
+        "days": 5
+      }
+    },
+    "phases": [
+      {
+        "name": "dormancy",
+        "start": "10-01",
+        "end": "04-30",
+        "note": "Brumates through the long Jackson winter in burrows and rock crevices, often communally."
+      },
+      {
+        "name": "mating",
+        "start": "05-01",
+        "end": "06-15",
+        "note": "Mates soon after spring emergence; males follow female pheromone trails to the hibernacula."
+      },
+      {
+        "name": "young",
+        "start": "08-01",
+        "end": "09-30",
+        "note": "Ovoviviparous broods of 8-12 live young are born in August and September and hunt on their own at once."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Juvenile",
+        "duration_days": 365,
+        "scale": 0.35
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US-WY",
+        "monthly": [
+          0.0,
+          0.0,
+          0.01,
+          0.05,
+          0.35,
+          0.73,
+          0.85,
+          1.0,
+          0.45,
+          0.09,
+          0.0,
+          0.0
+        ],
+        "method": "mean(inat_raw, gbif_raw)",
+        "observations": 1463,
+        "sources": [
+          "inat-activity-us-wy",
+          "gbif-activity-us-wy"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 15,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=28398&place_id=15&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": null,
+            "total": 957,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.51_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2457545&gadmGid=USA.51_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": null,
+            "total": 506,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-ground-forager-v1",
+    "params": {
+      "flee_m": 3,
+      "calm_m": 8,
+      "food_tag": "small_vertebrate",
+      "food_m": 20,
+      "flee_gait": "slither",
+      "forage_gait": "slither",
+      "rest_sun_lo_deg": -90,
+      "rest_sun_hi_deg": -6
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "hiss",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [],
+      "cooldown_s": 20,
+      "loudness": "Quiet",
+      "description": "A faint hiss when handled; garter snakes are effectively silent and warn by musking and striking instead."
+    }
+  ],
+  "look": {
+    "body_plan": "serpentine",
+    "proportions": {
+      "torso_aspect": 6,
+      "head_scale": 1.3,
+      "segments": 10,
+      "girth_ratio": 1.0
+    },
+    "palette": {
+      "body": "#4a4438",
+      "belly": "#cfc39a",
+      "markings": "#d8b93a",
+      "accent": "#6b3a2a",
+      "eye": "#0d0c0a"
+    },
+    "part_colors": {
+      "head": "body",
+      "segment*": "body"
+    },
+    "extra_parts": [
+      {
+        "name": "dorsal_stripe",
+        "parent": "head",
+        "offset": [
+          -0.5,
+          0.4,
+          0.0
+        ],
+        "size": [
+          1.5,
+          0.1,
+          0.15
+        ],
+        "color": "markings",
+        "mirror": false
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "slither": {},
+      "swim": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2457545",
+      "title": "GBIF Backbone Taxonomy: Thamnophis elegans",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q819220",
+      "title": "Wikidata: Western terrestrial garter snake (Q819220)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Western_terrestrial_garter_snake",
+      "title": "Wikipedia: Western terrestrial garter snake",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Western terrestrial garter snake\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "inat-activity-us-wy",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=28398&place_id=15&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Thamnophis elegans in US-WY",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-wy",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2457545&gadmGid=USA.51_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Thamnophis elegans in US-WY",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Western North American colubrid with at least five recognised subspecies; GBIF usage key 2457545."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "iNaturalist taxon id 28398 from the issue's data pointers, cross-checked against the GBIF usage key."
+    },
+    "common_names": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "Wikidata P141 = least concern (Q211005)."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Western Canada through the western US to an isolated Baja California population; Jackson animals are inland montane populations."
+    },
+    "traits": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Length 46-104 cm gives length_m 0.75 (midpoint); mass_kg 0.15 is authored for a 75 cm adult colubrid since the article states no mass. Inland-diet shares follow the diet section (frogs, salamanders, larvae, leeches, earthworms, small fish). Solitary, diurnal basking hunter; wariness 0.4 and lifespan 8 are judgement."
+    },
+    "habitat": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Grassland to coniferous forest up to 3,962 m, primarily terrestrial with semi-aquatic Rocky Mountain populations, gives ground 1.0 with shoreline hunting in the notes. Tags follow the inland amphibious diet and cover use. Adapter follows garden pond and compost use."
+    },
+    "seasonal": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Ovoviviparous broods of 8-12 born August-September are quoted; Brumation with October-April dormancy and spring mating are authored for Wyoming winters. Juvenile duration and scale are judgement."
+    },
+    "vocalizations": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored: garter snakes are effectively silent, so a single quiet handled-hiss stands in for the required vocalization entry."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared ground-forager program with both gaits set to slither: basks by day, shelters at night, hunts frogs chemically and visually. An imperfect but honest fit, explained in the PR."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Yellow to orange dorsal stripe with side stripes on a variable brown ground, 46-104 cm, from the Description section; serpentine proportions, hex values and the stripe box are authored judgement."
+    }
+  }
+}

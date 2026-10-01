@@ -1,0 +1,428 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Sialia currucoides",
+  "slug": "sialia-currucoides",
+  "common_names": {
+    "en": "Mountain bluebird"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Passeriformes",
+    "family": "Turdidae",
+    "genus": "Sialia",
+    "authority": "(Bechstein, 1798)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2490935,
+    "inat_taxon_id": 12936,
+    "wikidata": "Q819825"
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "US",
+      "CA",
+      "MX"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Walk",
+      "Hop",
+      "Fly"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Cavity",
+    "perching": true,
+    "size_class": "Tiny",
+    "mass_kg": 0.03,
+    "mass_range_kg": [
+      0.024,
+      0.037
+    ],
+    "length_m": 0.168,
+    "wingspan_m": 0.32,
+    "lifespan_y": 4,
+    "diet": {
+      "invertebrate": 0.6,
+      "fruit": 0.4
+    },
+    "social": {
+      "structure": "Pair",
+      "group_size": [
+        2,
+        20
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.3
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.6,
+      "arboreal": 0.4
+    },
+    "shelter_tag": "cavity",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.6
+      },
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.2
+      },
+      {
+        "tag": "berry",
+        "kind": "Herbivory",
+        "weight": 0.2
+      },
+      {
+        "tag": "cavity",
+        "kind": "Nesting",
+        "weight": 1.0
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 1.0
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "notes": "Breeds in open sagebrush and mountain meadows and readily takes nest boxes on ranch fences and garden posts; hovers over lawns and perches on wires to drop on insects."
+    }
+  },
+  "seasonal": {
+    "strategy": "PartialMigration",
+    "winter_fraction": 0.9,
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "05-01",
+        "end": "07-31",
+        "note": "Monogamous pairs nest in pre-existing cavities or boxes; the female lays one egg a day to a clutch of 4-5 pale blue eggs."
+      },
+      {
+        "name": "young",
+        "start": "05-20",
+        "end": "08-31",
+        "note": "Incubation about two weeks; the naked young leave the nest at about 21 days and need up to two months to fend for themselves."
+      },
+      {
+        "name": "absent",
+        "start": "10-15",
+        "end": "03-31",
+        "fraction": 0.9,
+        "note": "Most birds winter south to Mexico while a few linger in mild valleys; Jackson birds are essentially gone from mid-October."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg",
+        "duration_days": 14
+      },
+      {
+        "stage": "Juvenile",
+        "duration_days": 21,
+        "scale": 0.6
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US-WY",
+        "monthly": [
+          0.02,
+          0.05,
+          1.0,
+          0.83,
+          0.79,
+          0.9,
+          0.79,
+          0.69,
+          0.83,
+          0.52,
+          0.08,
+          0.0
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 34928,
+        "sources": [
+          "inat-activity-us-wy",
+          "gbif-activity-us-wy"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 15,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=12936&place_id=15&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=15&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 1410,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.51_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2490935&gadmGid=USA.51_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.51_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 33518,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "bt-perching-songbird-v1",
+    "params": {
+      "flee_m": 10,
+      "food_tag": "invertebrate",
+      "song": "song",
+      "alarm": "alarm",
+      "nest_m1": 4,
+      "nest_m2": 5
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "song",
+      "context": "Song",
+      "season_months": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "time_windows": [
+        "DawnChorus",
+        "Day"
+      ],
+      "cooldown_s": 30,
+      "loudness": "Moderate",
+      "description": "A warbled high 'chur chur' sung by the male from bare branches right at dawn; the thin 'few' call carries through the breeding season."
+    },
+    {
+      "call_id": "alarm",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [],
+      "cooldown_s": 10,
+      "loudness": "Moderate",
+      "description": "Sharp chattering notes given at cats, raccoons and other nest threats while both parents fiercely defend the cavity."
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.6,
+      "leg_length_ratio": 0.4,
+      "head_scale": 0.75,
+      "neck_angle_deg": 12,
+      "tail_ratio": 0.8,
+      "wing_aspect": 2.8,
+      "beak_ratio": 0.3,
+      "girth_ratio": 0.95
+    },
+    "palette": {
+      "body": "#2fb3d6",
+      "belly": "#bfe6ef",
+      "markings": "#8a8d90",
+      "accent": "#1d1d20",
+      "eye": "#151210"
+    },
+    "part_colors": {
+      "leg_*": "accent",
+      "beak": "accent",
+      "breast": "body"
+    },
+    "extra_parts": [
+      {
+        "name": "belly_patch",
+        "parent": "body",
+        "offset": [
+          0.0,
+          -0.3,
+          0.1
+        ],
+        "size": [
+          0.5,
+          0.3,
+          0.4
+        ],
+        "color": "belly",
+        "mirror": false
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "hop": {},
+      "fly": {},
+      "perched": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2490935",
+      "title": "GBIF Backbone Taxonomy: Sialia currucoides",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q819825",
+      "title": "Wikidata: Mountain bluebird (Q819825)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Mountain_bluebird",
+      "title": "Wikipedia: Mountain bluebird",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Mountain bluebird\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "inat-activity-us-wy",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=12936&place_id=15&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Sialia currucoides in US-WY",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-wy",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2490935&gadmGid=USA.51_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Sialia currucoides in US-WY",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Described by Bechstein, 1798; monotypic, placed in Sialia by Swainson 1827; GBIF usage key 2490935."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "iNaturalist taxon id 12936 from the issue's data pointers, cross-checked against the GBIF usage key."
+    },
+    "common_names": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "Wikidata P141 = least concern (Q211005)."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Breeds across open western North America north to Alaska and winters south to Mexico; state bird of Idaho and Nevada."
+    },
+    "traits": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Length 15.5-18 cm, mass 24-37 g and wingspan 28-36 cm give length_m 0.168, mass_kg 0.03 with the documented range and wingspan_m 0.32 (midpoints). Diet follows the feeding section (summer arthropods, winter berries and fruit taken as fruit; the species eats no seeds). Monogamous pairs with winter flocking give Pair 2-20. Lifespan 4 is authored below the cited 6-10 achievable years as the typical adult mean."
+    },
+    "habitat": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Hover-and-drop insect hunting from perches with cavity nesting gives ground 0.6 / arboreal 0.4; cavity, perch and food tags are authored from the breeding and feeding sections. Adapter follows nest-box use on ranches and gardens."
+    },
+    "seasonal": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Clutch of 4-5, two-week incubation, fledging at 21 days and two months to independence are quoted; PartialMigration with winter_fraction 0.9 is authored for Wyoming, where almost all birds leave for Mexico. Dates are set for Jackson latitude."
+    },
+    "vocalizations": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Thin 'few' call, warbled 'chur chur' dawn song and fierce nest defense are from the lead and breeding sections; call ids, seasons, windows and cooldowns are authored."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared perching-songbird program: confiding cavity nester that flushes at 10 m, hawks insects from perches, sings at dawn through the short mountain summer."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Male bright turquoise-blue with lighter underparts and white lower belly from the Description section; exact hex values, proportions and the belly box are authored judgement."
+    }
+  }
+}

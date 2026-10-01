@@ -1,0 +1,427 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Tamiasciurus hudsonicus",
+  "slug": "tamiasciurus-hudsonicus",
+  "common_names": {
+    "en": "American red squirrel"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Mammalia",
+    "order": "Rodentia",
+    "family": "Sciuridae",
+    "genus": "Tamiasciurus",
+    "authority": "(Erxleben, 1777)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2437282,
+    "inat_taxon_id": 46260,
+    "wikidata": "Q326976"
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "US",
+      "CA"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk",
+      "Trot",
+      "Gallop"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Fur",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Cavity",
+    "perching": false,
+    "size_class": "Small",
+    "mass_kg": 0.225,
+    "mass_range_kg": [
+      0.2,
+      0.25
+    ],
+    "length_m": 0.315,
+    "lifespan_y": 3,
+    "diet": {
+      "seed": 0.6,
+      "mast": 0.15,
+      "fruit": 0.15,
+      "browse": 0.05,
+      "vertebrate": 0.05
+    },
+    "social": {
+      "structure": "Solitary",
+      "group_size": [
+        1,
+        1
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.3
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.3,
+      "arboreal": 0.7
+    },
+    "shelter_tag": "cavity",
+    "resources": [
+      {
+        "tag": "seed",
+        "kind": "Herbivory",
+        "weight": 0.6
+      },
+      {
+        "tag": "mast",
+        "kind": "Herbivory",
+        "weight": 0.15
+      },
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.15
+      },
+      {
+        "tag": "browse",
+        "kind": "Herbivory",
+        "weight": 0.05
+      },
+      {
+        "tag": "small_vertebrate",
+        "kind": "Predation",
+        "weight": 0.05
+      },
+      {
+        "tag": "cavity",
+        "kind": "Nesting",
+        "weight": 0.7
+      },
+      {
+        "tag": "cavity",
+        "kind": "Shelter",
+        "weight": 1.0
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "notes": "Holds year-round territories in conifer stands and raids garden feeders; scolds from a trunk at anything crossing its midden."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "mating",
+        "start": "03-15",
+        "end": "05-01",
+        "note": "Females enter estrus for a single day and are chased by several males in an extended mating chase, mating with 4-16 of them."
+      },
+      {
+        "name": "young",
+        "start": "05-01",
+        "end": "08-31",
+        "note": "Gestation 31-35 days with litters of 1-5 (usually 3-4); pink hairless young emerge at 42 days and nurse to about 70 days."
+      },
+      {
+        "name": "territorial",
+        "start": "08-01",
+        "end": "02-28",
+        "note": "Cone harvest in August-September fills the central midden that fuels winter survival and next spring's breeding; intruders are chased off year-round."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Juvenile",
+        "duration_days": 70,
+        "scale": 0.5
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US-WY",
+        "monthly": [
+          0.4,
+          0.22,
+          0.29,
+          0.18,
+          0.41,
+          0.46,
+          0.59,
+          0.77,
+          0.95,
+          1.0,
+          0.77,
+          0.8
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 2098,
+        "sources": [
+          "inat-activity-us-wy",
+          "gbif-activity-us-wy"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 15,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=46260&place_id=15&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=15&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 1305,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.51_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2437282&gadmGid=USA.51_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.51_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 793,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-ground-forager-v1",
+    "params": {
+      "flee_m": 10,
+      "calm_m": 25,
+      "food_tag": "seed",
+      "food_m": 40,
+      "flee_gait": "gallop",
+      "forage_gait": "walk",
+      "rest_sun_lo_deg": -90,
+      "rest_sun_hi_deg": -6
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "rattle",
+      "context": "Chirp",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 20,
+      "loudness": "Moderate",
+      "description": "The territorial 'chickaree' rattle chattered from a favorite trunk, announcing the midden holder against every intruder."
+    },
+    {
+      "call_id": "bark",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [],
+      "cooldown_s": 10,
+      "loudness": "Loud",
+      "description": "Harsh barks stamped with foot-thumps at martens, goshawks and people, kept up until the threat leaves the territory."
+    }
+  ],
+  "look": {
+    "body_plan": "quadruped",
+    "proportions": {
+      "torso_aspect": 1.7,
+      "leg_length_ratio": 0.4,
+      "head_scale": 0.7,
+      "neck_angle_deg": 20,
+      "tail_ratio": 0.7,
+      "ear_ratio": 0.35,
+      "beak_ratio": 0.35,
+      "girth_ratio": 0.85
+    },
+    "palette": {
+      "body": "#a03d22",
+      "belly": "#f1ece2",
+      "markings": "#1d1a17",
+      "accent": "#7a2f1a",
+      "eye": "#241a10"
+    },
+    "part_colors": {
+      "leg_*": "accent",
+      "ear_*": "accent",
+      "snout": "body"
+    },
+    "extra_parts": [
+      {
+        "name": "tail_flag",
+        "parent": "tail",
+        "offset": [
+          -0.25,
+          0.1,
+          0.0
+        ],
+        "size": [
+          0.4,
+          0.25,
+          0.35
+        ],
+        "color": "accent"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "trot": {},
+      "gallop": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2437282",
+      "title": "GBIF Backbone Taxonomy: Tamiasciurus hudsonicus",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q326976",
+      "title": "Wikidata: American red squirrel (Q326976)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/American_red_squirrel",
+      "title": "Wikipedia: American red squirrel",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"American red squirrel\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "inat-activity-us-wy",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=46260&place_id=15&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Tamiasciurus hudsonicus in US-WY",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-wy",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2437282&gadmGid=USA.51_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Tamiasciurus hudsonicus in US-WY",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "First catalogued by Erxleben, 1777 from Hudson Bay; pine squirrel of genus Tamiasciurus, distinct from the southwestern red squirrel since 2016; GBIF usage key 2437282."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "iNaturalist taxon id 46260 from the issue's data pointers, cross-checked against the GBIF usage key."
+    },
+    "common_names": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "Wikidata P141 = least concern (Q211005)."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Much of Canada and the US wherever conifers grow, including the Rockies; expanding into hardwoods. Eurasian red squirrels are a different species."
+    },
+    "traits": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Mass 200-250 g and total length 28-35 cm give mass_kg 0.225 with the documented range and length_m 0.315 (midpoints). Granivorous diet follows the feeding section (white spruce seeds over half the Yukon diet, plus buds, mushrooms, berries and occasional eggs). Solitary territorial structure is quoted; lifespan 3 is authored from the cited 3.5-year expectancy for females surviving to one year."
+    },
+    "habitat": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Cone harvesting in spruce crowns with midden-centered territories gives ground 0.3 / arboreal 0.7; cavity nesting covers trunk cavities alongside branch dreys, the closest available nest value. Adapter follows feeder and dwelling use."
+    },
+    "seasonal": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "One-day estrus with mating chases, 31-35 day gestation, litters of 3-4, emergence at 42 days and nursing to 70 days are quoted, as are August-September cone harvests and year-round territorial defense. Dates are set for Wyoming."
+    },
+    "vocalizations": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "The chickaree name and chasing of intruders imply the territorial rattle and bark alarms; call ids, contexts, seasons, windows and cooldowns are authored judgement, since the cited article does not detail calls."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared ground-forager program: diurnal midden defender that bolts up a trunk at 10 m and harvests conifer seed."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Smaller than other tree squirrels with reddish fur and white underparts from the Description section; exact hex values, proportions and the tail box are authored judgement."
+    }
+  }
+}

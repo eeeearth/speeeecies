@@ -1,0 +1,427 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Junco hyemalis",
+  "slug": "junco-hyemalis",
+  "common_names": {
+    "en": "Dark-eyed junco"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Passeriformes",
+    "family": "Passerellidae",
+    "genus": "Junco",
+    "authority": "(Linnaeus, 1758)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 9362842,
+    "inat_taxon_id": 10094,
+    "wikidata": "Q525818"
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "US",
+      "CA",
+      "MX"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Walk",
+      "Hop",
+      "Fly"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Ground",
+    "perching": true,
+    "size_class": "Tiny",
+    "mass_kg": 0.024,
+    "mass_range_kg": [
+      0.018,
+      0.03
+    ],
+    "length_m": 0.15,
+    "wingspan_m": 0.215,
+    "lifespan_y": 3,
+    "diet": {
+      "seed": 0.65,
+      "invertebrate": 0.35
+    },
+    "social": {
+      "structure": "Flock",
+      "group_size": [
+        4,
+        30
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.25
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.85,
+      "arboreal": 0.15
+    },
+    "shelter_tag": "shrub_thicket",
+    "resources": [
+      {
+        "tag": "seed",
+        "kind": "Herbivory",
+        "weight": 0.65
+      },
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.35
+      },
+      {
+        "tag": "nest_ground",
+        "kind": "Nesting",
+        "weight": 1.0
+      },
+      {
+        "tag": "shrub_thicket",
+        "kind": "Shelter",
+        "weight": 1.0
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.5
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "notes": "Breeds in conifer forest and winters down into towns, where it is often the commonest feeder bird; flashes white outer tail feathers hopping under shrubs."
+    }
+  },
+  "seasonal": {
+    "strategy": "PartialMigration",
+    "winter_fraction": 0.9,
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "05-01",
+        "end": "08-15",
+        "note": "Cup nests hidden on the ground or in low shrubs; normally two clutches of four spotted eggs, incubated by the female 12-13 days."
+      },
+      {
+        "name": "young",
+        "start": "05-20",
+        "end": "08-31",
+        "note": "Young leave the nest 11-14 days after hatching; fledglings show pale-streaked underparts for their first months."
+      },
+      {
+        "name": "flocking",
+        "start": "09-15",
+        "end": "04-15",
+        "note": "Winter flocks (a blizzard of juncos) of several subspecies forage together on the valley floor; northern birds arrive mid-September to November and leave from mid-March."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg",
+        "duration_days": 13
+      },
+      {
+        "stage": "Juvenile",
+        "duration_days": 13,
+        "scale": 0.6
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US-WY",
+        "monthly": [
+          0.62,
+          0.65,
+          1.0,
+          0.54,
+          0.28,
+          0.37,
+          0.43,
+          0.4,
+          0.51,
+          0.68,
+          0.65,
+          0.59
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 49272,
+        "sources": [
+          "inat-activity-us-wy",
+          "gbif-activity-us-wy"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 15,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=10094&place_id=15&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=15&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 564,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.51_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=9362842&gadmGid=USA.51_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.51_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 48708,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "bt-perching-songbird-v1",
+    "params": {
+      "flee_m": 8,
+      "food_tag": "seed",
+      "song": "trill",
+      "alarm": "tick",
+      "nest_m1": 5,
+      "nest_m2": 7
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "trill",
+      "context": "Song",
+      "season_months": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "time_windows": [
+        "DawnChorus",
+        "Day"
+      ],
+      "cooldown_s": 20,
+      "loudness": "Moderate",
+      "description": "A flat musical trill much like a chipping sparrow's, sung from a conifer perch through the mountain breeding season."
+    },
+    {
+      "call_id": "tick",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [],
+      "cooldown_s": 8,
+      "loudness": "Moderate",
+      "description": "Sharp tick notes and very high tinkling chips that stitch the winter flock together and scold cats at the feeder."
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.5,
+      "leg_length_ratio": 0.45,
+      "head_scale": 0.8,
+      "neck_angle_deg": 12,
+      "tail_ratio": 0.9,
+      "wing_aspect": 2.4,
+      "beak_ratio": 0.3,
+      "girth_ratio": 1.0
+    },
+    "palette": {
+      "body": "#4a4d52",
+      "belly": "#f2efe8",
+      "markings": "#f2efe8",
+      "accent": "#e8c8c0",
+      "eye": "#151210"
+    },
+    "part_colors": {
+      "leg_*": "accent",
+      "beak": "accent",
+      "breast": "body"
+    },
+    "extra_parts": [
+      {
+        "name": "tail_flash",
+        "parent": "tail",
+        "offset": [
+          0.15,
+          0.0,
+          0.2
+        ],
+        "size": [
+          0.12,
+          0.06,
+          0.5
+        ],
+        "color": "markings",
+        "mirror": true
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "hop": {},
+      "fly": {},
+      "perched": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/9362842",
+      "title": "GBIF Backbone Taxonomy: Junco hyemalis",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q525818",
+      "title": "Wikidata: Dark-eyed junco (Q525818)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Dark-eyed_junco",
+      "title": "Wikipedia: Dark-eyed junco",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Dark-eyed junco\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "inat-activity-us-wy",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=10094&place_id=15&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Junco hyemalis in US-WY",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-wy",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=9362842&gadmGid=USA.51_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Junco hyemalis in US-WY",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Described by Linnaeus, 1758 as Fringilla hyemalis; 14-15 interbreeding subspecies in several groups; GBIF usage key 9362842."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "iNaturalist taxon id 10094 from the issue's data pointers, cross-checked against the GBIF usage key."
+    },
+    "common_names": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "Wikidata P141 = least concern (Q211005)."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Breeds in coniferous and mixed forest across North America; northern birds migrate south while many populations are resident or altitudinal migrants."
+    },
+    "traits": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Length 13-17.5 cm, wingspan 18-25 cm and mass 18-30 g give length_m 0.15, wingspan_m 0.215 and mass_kg 0.024 with the documented range (midpoints). Diet follows the ecology section (seeds three-quarters year-round, insects near half in breeding). Flock 4-30 follows winter flocks of mixed subspecies. Lifespan 3 and wariness 0.25 are judgement for a confiding feeder bird."
+    },
+    "habitat": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Ground foraging with ground or low-shrub cup nests gives ground 0.85 / arboreal 0.15; tags are authored from the diet and breeding sections. Adapter follows town and feeder use in winter."
+    },
+    "seasonal": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Two clutches of four, 12-13 day female incubation and fledging at 11-14 days are quoted; PartialMigration with winter_fraction 0.9 is authored for Wyoming, where mountain breeders descend to the valleys and northern birds arrive. Dates are set for Jackson latitude."
+    },
+    "vocalizations": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Trilled song, tick calls and tinkling chips are from the Description section; call ids, seasons, windows and cooldowns are authored."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared perching-songbird program: ground-seed forager flushing at 8 m, trilling through summer, nests on or near the ground."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Grey head, breast and upperparts with white belly, pale pinkish bill and flashing white outer tail feathers from the Description section; exact hex values, proportions and the tail-flash boxes are authored judgement."
+    }
+  }
+}
