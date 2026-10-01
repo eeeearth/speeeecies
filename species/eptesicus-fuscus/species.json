@@ -1,0 +1,688 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Eptesicus fuscus",
+  "slug": "eptesicus-fuscus",
+  "common_names": {
+    "en": "big brown bat"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Mammalia",
+    "order": "Chiroptera",
+    "family": "Vespertilionidae",
+    "genus": "Eptesicus",
+    "authority": "(Palisot de Beauvois, 1796)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2432352,
+    "inat_taxon_id": 40509,
+    "itis_tsn": 180008,
+    "wikidata": "Q301254"
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "US",
+      "CA",
+      "MX",
+      "GT",
+      "BZ",
+      "SV",
+      "HN",
+      "NI",
+      "CR",
+      "PA",
+      "CU",
+      "JM",
+      "HT",
+      "DO",
+      "PR",
+      "BS",
+      "CO",
+      "VE"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Fly",
+      "Walk"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Fur",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Cavity",
+    "perching": false,
+    "size_class": "Tiny",
+    "mass_kg": 0.02,
+    "mass_range_kg": [
+      0.015,
+      0.026
+    ],
+    "length_m": 0.12,
+    "shoulder_height_m": 0.03,
+    "wingspan_m": 0.34,
+    "lifespan_y": 6.5,
+    "diet": {
+      "invertebrate": 1.0
+    },
+    "social": {
+      "structure": "Colony",
+      "group_size": [
+        1,
+        75
+      ]
+    },
+    "activity_pattern": "Nocturnal",
+    "defense": "Flee",
+    "wariness": 0.7
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.2,
+      "arboreal": 0.2,
+      "aerial": 0.6
+    },
+    "shelter_tag": "cavity",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 1.0
+      },
+      {
+        "tag": "cavity",
+        "kind": "Shelter",
+        "weight": 1.0
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.5
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "light_max": 0.8,
+      "road_mortality": "Low",
+      "notes": "Roosts in caves, tunnels, tree cavities and human structures; forages in cities around street lamps; many maternity colonies are in buildings."
+    }
+  },
+  "seasonal": {
+    "strategy": "Hibernation",
+    "triggers": {
+      "enter": {
+        "temperature_below_c": 10,
+        "days": 14
+      },
+      "exit": {
+        "temperature_above_c": 10,
+        "days": 7
+      }
+    },
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "09-01",
+        "end": "10-31",
+        "note": "Mating season is in the fall, shortly before the annual hibernation. Dates are a judgement."
+      },
+      {
+        "name": "dormancy",
+        "start": "11-01",
+        "end": "04-30",
+        "note": "Enters hibernation around November, often in a location less than 80 km from the summer roost; comes out in spring."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Juvenile",
+        "duration_days": 35,
+        "scale": 0.4
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US-OK",
+        "monthly": [
+          0.68,
+          0.71,
+          0.2,
+          0.2,
+          0.18,
+          0.41,
+          0.37,
+          0.31,
+          0.13,
+          0.5,
+          0.8,
+          1.0
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 650,
+        "sources": [
+          "inat-activity-us-ok",
+          "gbif-activity-us-ok"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 12,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40509&place_id=12&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=12&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 318,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "C",
+            "area": [
+              "gadmGid",
+              "USA.37_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2432352&gadmGid=USA.37_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.37_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "total": 332,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-ground-forager-v1",
+    "params": {
+      "flee_m": 15,
+      "calm_m": 30,
+      "food_tag": "invertebrate",
+      "food_m": 60,
+      "flee_gait": "fly",
+      "forage_gait": "fly",
+      "rest_sun_lo_deg": 10,
+      "rest_sun_hi_deg": 90
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "echolocation",
+      "context": "Chirp",
+      "season_months": [],
+      "time_windows": [
+        "Night"
+      ],
+      "cooldown_s": 2,
+      "loudness": "Quiet",
+      "description": "Echolocation calls emitted to navigate and locate insect prey at night; mostly beyond human hearing."
+    },
+    {
+      "call_id": "social",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [
+        "Night"
+      ],
+      "cooldown_s": 10,
+      "loudness": "Quiet",
+      "description": "Social calls varying with behavioural context, given between roosting bats; exact call text is a judgement."
+    }
+  ],
+  "look": {
+    "body_plan": "quadruped",
+    "proportions": {
+      "torso_aspect": 1.5,
+      "leg_length_ratio": 0.35,
+      "head_scale": 0.85,
+      "neck_angle_deg": 20,
+      "tail_ratio": 0.4,
+      "ear_ratio": 0.45,
+      "beak_ratio": 0.4,
+      "girth_ratio": 0.9
+    },
+    "palette": {
+      "body": "#7a4a2a",
+      "belly": "#a88a6a",
+      "markings": "#1a1a1a",
+      "accent": "#3a2a1a",
+      "eye": "#1a1a1a"
+    },
+    "part_colors": {
+      "ear_*": "markings"
+    },
+    "extra_parts": [
+      {
+        "name": "wing_left",
+        "parent": "body",
+        "offset": [
+          0,
+          0.1,
+          0.55
+        ],
+        "size": [
+          0.9,
+          0.08,
+          0.7
+        ],
+        "color": "markings"
+      },
+      {
+        "name": "wing_right",
+        "parent": "body",
+        "offset": [
+          0,
+          0.1,
+          -0.55
+        ],
+        "size": [
+          0.9,
+          0.08,
+          0.7
+        ],
+        "color": "markings"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "fly": {
+        "cycle_s": 0.8,
+        "keyframes": [
+          {
+            "t": 0,
+            "parts": {
+              "wing_left": {
+                "rot_deg": [
+                  0,
+                  0,
+                  -30
+                ]
+              },
+              "wing_right": {
+                "rot_deg": [
+                  0,
+                  0,
+                  30
+                ]
+              }
+            }
+          },
+          {
+            "t": 0.5,
+            "parts": {
+              "wing_left": {
+                "rot_deg": [
+                  0,
+                  0,
+                  30
+                ]
+              },
+              "wing_right": {
+                "rot_deg": [
+                  0,
+                  0,
+                  -30
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2432352",
+      "title": "GBIF Backbone Taxonomy: Eptesicus fuscus",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q301254",
+      "title": "Wikidata: Big Brown Bat (Q301254)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Big_brown_bat",
+      "title": "Wikipedia: Big brown bat",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Big brown bat\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=180008",
+      "title": "ITIS: Eptesicus fuscus, TSN 180008",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "inat-activity-us-ok",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40509&place_id=12&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Eptesicus fuscus in US-OK",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-ok",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2432352&gadmGid=USA.37_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+      "title": "GBIF occurrence search for Eptesicus fuscus in US-OK",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "itis"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "common_names": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "Wikidata P141 = least concern."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Country list derived from the described range: widely throughout North America, the Caribbean and the northern portion of South America, as far south as Colombia and Venezuela."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Nocturnal, foraging for prey at night on the wing; crawls on the ground when needed."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Roosts in sheltered areas during the day such as caves, tunnels, tree cavities and human structures."
+    },
+    "traits.size_class": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "From mass_kg (< 0.05 kg)."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Midpoint of the described 15-26 g weight."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Described weight 15-26 g."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Described adult body length 110-130 mm."
+    },
+    "traits.shoulder_height_m": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "No open source gives a shoulder height; 0.03 m is a judgement from the described 11-13 cm body length."
+    },
+    "traits.wingspan_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Midpoint of the described 32.5-35 cm wingspan."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Wikipedia gives lifespans of 6.5 years as average, with some banded bats living up to 20 years."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Insectivorous, consuming a diverse array of night-flying insects, especially beetles."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Females form maternity colonies of 5-700 individuals (frequently 25-75 adults in the eastern US); summer males are most often solitary."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Nocturnal, foraging for prey at night and roosting in sheltered areas during the day."
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Judgement: flees from predators; relatively resistant to white-nose syndrome."
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Judgement from the described behaviour: roosts in sheltered, hidden places and forages at night."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Forages in flight at night, including in cities around street lamps; roosts in cavities and crawls on the ground."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Roosts in caves, tunnels, tree cavities, bat boxes, storm drains, wood piles, rock crevices and buildings."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Weights follow the described diet: night-flying insects, especially beetles; roosts in cavities."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Adaptable to many habitats; many maternity colonies are in buildings; forages in cities around street lamps."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Enters hibernation around November and comes out in spring."
+    },
+    "seasonal.triggers": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "The article describes hibernation from around November to spring but gives no temperature trigger; the trigger values are a judgement."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Mating in the fall and hibernation from November are from Wikipedia; exact phase dates are a judgement."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Pups nurse for about one month and begin flying at three to five weeks old; duration_days and scale are a judgement approximation."
+    },
+    "vocalizations.echolocation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Uses echolocation to navigate, emitting calls and listening to the echoes."
+    },
+    "vocalizations.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The article notes that vocalizations vary with behavioural context but gives no call text; the description is a judgement."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Reddish-brown glossy dorsal fur, lighter brown ventral fur, black hairless wing membranes, snout and ears. Wing boxes are authored to suggest the flight membrane. Proportions are judgement."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared ground-forager program: insect foraging on the wing (forage and flee gaits set to fly), and daytime rest (sun between 10 and 90 degrees) reflecting a nocturnal species."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies maintainers",
+      "agent": "claude-code"
+    }
+  ]
+}
