@@ -52,21 +52,28 @@ VISUAL_CHECK=${VISUAL_CHECK:-0}
 mkdir -p "$WORKTREE_ROOT" "$STATE_DIR"
 
 # --- the free-tier model pool ------------------------------------------------
-# Nine buckets, probed working. The same model published under two provider ids
-# is TWO buckets with separate quotas, so interleaving providers spreads load
-# across both aggregate limits instead of exhausting one. Extend the pool after
-# `probe-models` finds a model that works; never add one you have not probed.
+# Probed working. The same model published under two provider ids is two routes
+# with separate quotas, so using both spreads load across both aggregate limits
+# instead of exhausting one. Extend a pool after `probe-models` finds a model
+# that works; never add one you have not probed.
 # DEAD: ling-3.0-flash-fin-free returns "Not Found: Cannot find any route".
-MODEL_POOL=(
-  "opencode/nemotron-3-ultra-free"            # zen, largest free model
-  "opencode-go/space-bunny-free"              # go
-  "opencode/space-bunny-free"                 # zen, same model as above
-  "opencode-go/longcat-2.5-preview-free"      # go
-  "opencode/nemotron-3.5-lightning-free"      # zen, fast
-  "opencode/longcat-2.5-preview-free"         # zen
-  "opencode/mimo-v2.6-flash-free"             # zen
-  "opencode/muse-spark-1.3-contributor-free"  # zen, contributor tier
+#
+# Zen and Go are cycled independently rather than as one list. A single cursor
+# over a combined list cannot balance them: with six zen routes and two go ones
+# it serves three zen spawns per go one, which is what it did (17 zen, 6 go).
+MODEL_POOL_ZEN=(
+  "opencode/nemotron-3-ultra-free"            # largest free model
+  "opencode/space-bunny-free"                 # same model as the go route
+  "opencode/nemotron-3.5-lightning-free"      # fast
+  "opencode/longcat-2.5-preview-free"
+  "opencode/mimo-v2.6-flash-free"
+  "opencode/muse-spark-1.3-contributor-free"  # contributor tier
 )
+MODEL_POOL_GO=(
+  "opencode-go/space-bunny-free"
+  "opencode-go/longcat-2.5-preview-free"
+)
+MODEL_POOL=( "${MODEL_POOL_ZEN[@]}" "${MODEL_POOL_GO[@]}" )
 model_variant() {
   case "$1" in
     *nemotron-3.5-lightning*) echo "medium" ;;
@@ -84,15 +91,62 @@ need_repo() { [ -n "$REPO" ] || die "not inside a git repository; run this from 
 
 meta_get() { sed -n "s/^$2=//p" "$STATE_DIR/$1.meta" 2>/dev/null | head -1; }
 
-next_model() {
-  local i n
-  i=$(cat "$STATE_DIR/model_cursor" 2>/dev/null || echo 0)
-  n=${#MODEL_POOL[@]}
-  printf '%s' "${MODEL_POOL[$(( i % n ))]}"
+provider_of() {  # which provider the cursor points at, honouring a backoff marker
+  local p
+  p=$(cat "$STATE_DIR/provider_cursor" 2>/dev/null || echo zen)
+  if [ -f "$STATE_DIR/provider_fail_$p" ]; then
+    case "$p" in zen) p=go;; *) p=zen;; esac
+  fi
+  printf '%s' "$p"
 }
-advance_model() {
-  local i; i=$(cat "$STATE_DIR/model_cursor" 2>/dev/null || echo 0)
-  printf '%s\n' "$(( (i + 1) % ${#MODEL_POOL[@]} ))" > "$STATE_DIR/model_cursor"
+
+provider_note_failure() {  # provider; skip it for one turn after a route failure
+  : > "$STATE_DIR/provider_fail_$1"
+}
+
+provider_of_model() {  # model id -> zen|go
+  case "$1" in opencode-go/*) echo go;; *) echo zen;; esac
+}
+
+note_route_failure() {  # slug; back off the provider if the agent died on routing
+  local model
+  model=$(meta_get "$1" model)
+  [ -n "$model" ] && [ -f "$STATE_DIR/$1.log" ] || return 0
+  if grep -qiE 'cannot find any route|rate limit|429|too many requests|quota exceeded' \
+       "$STATE_DIR/$1.log"; then
+    provider_note_failure "$(provider_of_model "$model")"
+  fi
+}
+
+next_model() {  # peek only, never mutates: the status line calls this every poll
+  local p i n
+  p=$(provider_of)
+  i=$(cat "$STATE_DIR/model_cursor_$p" 2>/dev/null || echo 0)
+  if [ "$p" = zen ]; then
+    n=${#MODEL_POOL_ZEN[@]}
+    if [ "$n" -gt 0 ]; then printf '%s' "${MODEL_POOL_ZEN[$(( i % n ))]}"; return 0; fi
+  else
+    n=${#MODEL_POOL_GO[@]}
+    if [ "$n" -gt 0 ]; then printf '%s' "${MODEL_POOL_GO[$(( i % n ))]}"; return 0; fi
+  fi
+  case "$p" in
+    zen) n=${#MODEL_POOL_GO[@]}; [ "$n" -gt 0 ] && printf '%s' "${MODEL_POOL_GO[0]}" && return 0 ;;
+    *)   n=${#MODEL_POOL_ZEN[@]}; [ "$n" -gt 0 ] && printf '%s' "${MODEL_POOL_ZEN[0]}" && return 0 ;;
+  esac
+  return 1
+}
+
+advance_model() {  # step that provider's own cursor, then hand over to the other
+  local p i n other
+  p=$(provider_of)
+  i=$(cat "$STATE_DIR/model_cursor_$p" 2>/dev/null || echo 0)
+  if [ "$p" = zen ]; then n=${#MODEL_POOL_ZEN[@]}; else n=${#MODEL_POOL_GO[@]}; fi
+  if [ "$n" -gt 0 ]; then
+    printf '%s\n' "$(( (i + 1) % n ))" > "$STATE_DIR/model_cursor_$p"
+  fi
+  rm -f "$STATE_DIR"/provider_fail_* 2>/dev/null || true
+  case "$p" in zen) other=go;; *) other=zen;; esac
+  printf '%s\n' "$other" > "$STATE_DIR/provider_cursor"
 }
 
 agent_running() {  # slug -> 0 running, 1 not
@@ -264,6 +318,7 @@ cmd_spawn() {
 
   # Region hints come from the issue body, so the agent does not have to guess.
   local regions
+  # shellcheck disable=SC2016
   regions=$(gh issue view "$issue" --repo "$GH_REPO" --json body \
             | python3 -c 'import json,re,sys
 b=json.load(sys.stdin)["body"] or ""
@@ -378,7 +433,8 @@ cmd_supervise() {
       pr=$(pr_field "$slug" number,state '"#\(.number) \(.state)"')
       case "$pr" in \#*) echo "[$(date -u +%T)] $slug finished: $pr -> teardown"
                         cmd_teardown "$slug" --force || true ;;
-           *)   echo "[$(date -u +%T)] $slug stopped with NO PR (model $(meta_get "$slug" model)); log tail:"
+           *)   note_route_failure "$slug"
+          echo "[$(date -u +%T)] $slug stopped with NO PR (model $(meta_get "$slug" model)); log tail:"
                 tail -5 "$STATE_DIR/$slug.log" | sed 's/^/    /'
                 cmd_teardown "$slug" --force || true ;;
       esac

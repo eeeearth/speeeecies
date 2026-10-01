@@ -102,11 +102,108 @@ def test_recipe_bodies_are_unescaped(tmp_path):
     assert "leg_length_ratio" in brief
 
 
-def model_pool() -> list[str]:
-    """The model ids in MODEL_POOL, in rotation order."""
-    pool = re.search(r"MODEL_POOL=\((.*?)\n\)", FLEET.read_text(encoding="utf-8"), re.S)
-    assert pool is not None, "MODEL_POOL not found"
+def model_pool(provider: str | None = None) -> list[str]:
+    """The model ids in one provider pool, in rotation order."""
+    text = FLEET.read_text(encoding="utf-8")
+    if provider is not None:
+        pool = re.search(rf"MODEL_POOL_{provider.upper()}=\((.*?)\n\)", text, re.S)
+    else:
+        pools = re.findall(r"MODEL_POOL_(?:ZEN|GO)=\((.*?)\n\)", text, re.S)
+        assert pools, "no provider pools found"
+        return [m for p in pools for m in re.findall(r'"([^"]+)"', p)]
+    assert pool is not None, f"MODEL_POOL_{provider.upper()} not found"
     return re.findall(r'"([^"]+)"', pool.group(1))
+
+
+def test_provider_pool_ratio_is_usable():
+    """Zen holds six routes and Go only two, so the pool cannot be even. Rotation
+    has to alternate providers rather than walk one list, or the fleet serves
+    three zen spawns per go one and exhausts the zen quota first."""
+    zen, go = model_pool("zen"), model_pool("go")
+    assert zen and go, "one provider pool is empty"
+    assert len(go) >= 2, "go pool too small to alternate against a large zen pool"
+
+
+def _rotation(tmp_path, body: str) -> str:
+    """Run the real provider rotation against a throwaway state dir."""
+    text = FLEET.read_text(encoding="utf-8")
+    pools = re.findall(r"MODEL_POOL_(?:ZEN|GO)=\((.*?)\n\)", text, re.S)
+    assert len(pools) == 2, "expected exactly one pool per provider"
+    funcs = re.search(
+        r"provider_of\(\) \{.*?\n\}\n.*?advance_model\(\) \{.*?\n\}\n", text, re.S
+    )
+    assert funcs, "could not find the provider rotation functions"
+    script = (
+        "set -euo pipefail\n"
+        f'STATE_DIR="{tmp_path}"\n'
+        + "MODEL_POOL_ZEN=(\n" + pools[0] + "\n)\n"
+        + "MODEL_POOL_GO=(\n" + pools[1] + "\n)\n"
+        + funcs.group(0)
+        + body
+    )
+    out = subprocess.run(
+        ["bash", "-c", script], capture_output=True, text=True, check=True
+    ).stdout
+    return out
+
+
+def test_rotation_alternates_providers_across_spawns(tmp_path):
+    """One zen and one go spawn per cycle, whatever the pool sizes."""
+    picks = _rotation(tmp_path, "for i in 1 2 3 4 5 6; do next_model; echo; advance_model; done")
+    providers = ["go" if m.startswith("opencode-go/") else "zen" for m in picks.split()]
+    assert providers == ["zen", "go", "zen", "go", "zen", "go"], providers
+
+
+def test_next_model_does_not_consume_a_turn(tmp_path):
+    """The status line calls next_model every poll to show the next model. If
+    that advanced the rotation, merely looking at the fleet would skew it."""
+    picks = _rotation(tmp_path, "next_model; echo; next_model; echo")
+    first, second = picks.split()
+    assert first == second, f"peek consumed a turn: {first} then {second}"
+
+
+def test_a_failing_provider_is_skipped_for_one_turn(tmp_path):
+    """A rate-limited provider must not stall the fleet; the other one takes the
+    slot and the rotation resumes on the original provider afterwards."""
+    out = _rotation(
+        tmp_path,
+        'touch "$STATE_DIR/provider_fail_zen"\n'
+        'next_model; echo\nadvance_model\nnext_model; echo',
+    )
+    skipped, resumed = out.split()
+    assert skipped.startswith("opencode-go/"), f"did not back off: {skipped}"
+    assert resumed.startswith("opencode/") and not resumed.startswith("opencode-go/"), (
+        f"did not resume zen: {resumed}"
+    )
+
+
+def test_route_failure_backs_off_the_provider_that_hit_it(tmp_path):
+    """A delegate that dies on routing must not cost the next slot the same dead
+    route. The reap marks the provider from the model that failed."""
+    text = FLEET.read_text(encoding="utf-8")
+    funcs = re.search(
+        r"provider_note_failure\(\) \{.*?\n\}\n.*?note_route_failure\(\) \{.*?\n\}\n", text, re.S
+    )
+    assert funcs, "could not find the route-failure helpers"
+    state = tmp_path / "state"
+    state.mkdir()
+    (state / "leptonychotes-weddellii.meta").write_text("model=opencode-go/space-bunny-free\n")
+    (state / "leptonychotes-weddellii.log").write_text(
+        "Error: Cannot find any route matching opencode-go/space-bunny-free\n"
+    )
+    meta_get = 'meta_get() { sed -n "s/^$2=//p" "$STATE_DIR/$1.meta" 2>/dev/null | head -1; }\n'
+    script = (
+        "set -euo pipefail\n"
+        f'STATE_DIR="{state}"\n'
+        + meta_get
+        + funcs.group(0)
+        + 'note_route_failure leptonychotes-weddellii\n'
+        + 'ls "$STATE_DIR" | grep provider_fail | sed "s/provider_fail_//"\n'
+    )
+    out = subprocess.run(
+        ["bash", "-c", script], capture_output=True, text=True, check=True
+    ).stdout
+    assert out.strip() == "go", f"backed off the wrong provider: {out.strip()!r}"
 
 
 def test_model_pool_excludes_proven_dead_model():
