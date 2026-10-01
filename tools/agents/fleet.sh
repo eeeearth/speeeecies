@@ -449,7 +449,7 @@ echo "=== fleet.sh spawn \$(date -u +%FT%TZ) model=$model variant=$variant"
 cd "$wpath" || exit 9
 [ -f "$PERMISSIONS" ] && export OPENCODE_CONFIG="$PERMISSIONS"
 "$AGENT_BIN" run --model "$model" --variant "$variant" --dir "$wpath" \
-  --title "species $sci #$issue" --auto "\$(cat "$brief")"
+  --title "$kind $sci #$issue" --auto "\$(cat "$brief")"
 rc=\$?
 echo "=== agent exited rc=\$rc \$(date -u +%FT%TZ)"
 LAUNCHER

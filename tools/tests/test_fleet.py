@@ -1127,3 +1127,13 @@ def test_a_species_and_a_locale_sharing_a_slug_are_distinct_candidates():
     name into one, while attempts and busy agents are counted by kind/slug."""
     tried = _walk_candidates("4\tshared\tspecies\tS\n9\tshared\tlocale\tL\n")
     assert sorted(tried) == ["shared", "shared"], f"a same-slug pair collapsed to {tried}"
+
+
+def test_launch_title_names_the_work_kind():
+    """Every run was titled "species <name> #<issue>", including locales, so the
+    agent list and logs mislabelled locale work as species records."""
+    text = FLEET.read_text(encoding="utf-8")
+    assert '--title "$kind $sci #$issue"' in text, (
+        "the launch title hardcodes species, mislabelling locale agents"
+    )
+    assert '--title "species $sci' not in text, "the hardcoded species title is back"
