@@ -2506,3 +2506,81 @@ def test_a_slug_removed_and_recreated_mid_run_warns_again():
     assert "OK" in states[1:-1], f"the blocker was never lifted: {states}"
     for d in (root, other, state, outdir):
         subprocess.run(["rm", "-rf", d], check=False)
+
+
+# --- provider balance and model capability -------------------------------------
+# These run the real shell functions, extracted verbatim from fleet.sh, instead of
+# asserting on the source text. The bugs fixed in this loop were all invisible to
+# source assertions: one made two tests pass against a supervisor that had died
+# before reaching the code, and the tally skew survived because nothing ever
+# executed the selection.
+
+def _shell_function(name: str) -> str:
+    text = FLEET.read_text(encoding="utf-8")
+    start = text.index(f"\n{name}() {{")
+    end = text.index("\n}\n", start) + 3
+    return text[start:end]
+
+
+def _run_provider_selection(counts: str, cursor: str) -> str:
+    """Drive the real provider_of/advance_model with a crafted tally; return the
+    provider cursor they hand over to."""
+    state = tempfile.mkdtemp()
+    if counts is not None:
+        Path(state, "provider_counts").write_text(counts, encoding="utf-8")
+    Path(state, "provider_cursor").write_text(cursor + "\n", encoding="utf-8")
+    pool = FLEET.read_text(encoding="utf-8")
+    zen = pool.split("MODEL_POOL_ZEN=(", 1)[1].split(")", 1)[0]
+    go = pool.split("MODEL_POOL_GO=(", 1)[1].split(")", 1)[0]
+    script = (
+        f'STATE_DIR={state}\n'
+        f"MODEL_POOL_ZEN=({zen})\n"
+        f"MODEL_POOL_GO=({go})\n"
+        f"{_shell_function('provider_of')}"
+        f"{_shell_function('provider_tally')}"
+        f"{_shell_function('advance_model')}\n"
+        "advance_model\n"
+        'cat "$STATE_DIR/provider_cursor"\n'
+    )
+    p = subprocess.run(["bash", "-c", script], capture_output=True, text=True, timeout=30)
+    subprocess.run(["rm", "-rf", state], check=False)
+    assert p.returncode == 0, f"selection failed: {p.stderr}"
+    return p.stdout.strip()
+
+
+def test_a_skewed_tally_is_converged_rather_than_frozen():
+    """Strict alternation preserved a lifetime skew instead of closing it: the tally
+    read zen 40 / go 25 and every handover kept that 15-spawn gap. Whoever is behind
+    has to be served next, or "balance their usage" is not actually happening."""
+    # go is behind, so go is served next; zen is behind in the mirror case.
+    assert _run_provider_selection("zen 40\ngo 25\n", "zen") == "go"
+    assert _run_provider_selection("zen 25\ngo 40\n", "zen") == "zen"
+
+
+def test_provider_selection_alternates_once_the_tally_is_level():
+    assert _run_provider_selection("zen 40\ngo 40\n", "zen") == "go"
+    assert _run_provider_selection("zen 40\ngo 40\n", "go") == "zen"
+
+
+def test_provider_selection_survives_a_missing_tally():
+    """A fresh state dir has no provider_counts at all. The poll must not abort on
+    it, and both providers have to read as level rather than one of them winning by
+    default."""
+    assert _run_provider_selection(None, "zen") == "go"
+    assert _run_provider_selection(None, "go") == "zen"
+
+
+def test_the_default_rotation_only_serves_larger_routes():
+    """The brief asks for larger, research-capable free routes. Flash and lightning
+    models shared one list with nemotron-3-ultra, so the cursor served them just as
+    often -- the opposite of the preference. They stay available, off the rotation."""
+    text = FLEET.read_text(encoding="utf-8")
+    rotated = text.split("MODEL_POOL_ZEN=(", 1)[1].split(")", 1)[0]
+    rotated += text.split("MODEL_POOL_GO=(", 1)[1].split(")", 1)[0]
+    for small in ("flash", "lightning"):
+        assert small not in rotated, (
+            f"a {small} route is in the auto-rotated pool: {rotated}"
+        )
+    assert "nemotron-3-ultra-free" in rotated, "the largest free route must stay"
+    # Kept, not deleted: an operator still needs them when a primary route is down.
+    assert "MODEL_POOL_ZEN_FALLBACK=(" in text

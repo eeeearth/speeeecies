@@ -39,6 +39,14 @@ STATE_DIR=${FLEET_STATE_DIR:-$HOME/.local/state/speeeecies-fleet}
 AGENT_BIN=${AGENT_BIN:-opencode}
 BASE_REF=${BASE_REF:-origin/main}
 FLEET_MIN=${FLEET_MIN:-3}
+# FLEET_MAX is a CEILING, never a target, and the refill loop deliberately aims at
+# FLEET_MIN. Growing toward the ceiling is a host decision, not a fleet decision:
+# this box runs a 79C CPU package with no fan telemetry at all (hwmon exposes zero
+# fan*_input nodes, so the machine broker cannot prove cooling is working either),
+# and it reports state DEGRADED. The brief asks for "3-5 agents"; running the floor
+# is inside that range and is the safe end of it. Raise FLEET_MIN to use the rest of
+# the range once the host can show it has thermal headroom -- do not raise it because
+# the queue is deep.
 FLEET_MAX=${FLEET_MAX:-5}
 POLL_SECONDS=${POLL_SECONDS:-60}
 FLEET_MAX_ATTEMPTS=${FLEET_MAX_ATTEMPTS:-3}
@@ -68,19 +76,33 @@ mkdir -p "$WORKTREE_ROOT" "$STATE_DIR"
 # Zen and Go are cycled independently rather than as one list. A single cursor
 # over a combined list cannot balance them: with six zen routes and two go ones
 # it serves three zen spawns per go one, which is what it did (17 zen, 6 go).
+# Split by capability, not just by provider. These two lists were one list, so the
+# cursor served a *flash* and a *lightning* route as often as the largest free model
+# -- the brief asks for larger, research-capable routes, and rotating a 1B-class
+# model against nemotron-3-ultra at equal frequency is the opposite of that. The
+# small ones are kept, probed and known-good, but are not auto-rotated: they are
+# here for an operator to reach for when a primary route is failing and the work
+# does not need the capability.
 MODEL_POOL_ZEN=(
   "opencode/nemotron-3-ultra-free"            # largest free model
   "opencode/space-bunny-free"                 # same model as the go route
-  "opencode/nemotron-3.5-lightning-free"      # fast
   "opencode/longcat-2.5-preview-free"
-  "opencode/mimo-v2.6-flash-free"
   "opencode/muse-spark-1.3-contributor-free"  # contributor tier
+)
+MODEL_POOL_ZEN_FALLBACK=(
+  "opencode/nemotron-3.5-lightning-free"      # fast, small
+  "opencode/mimo-v2.6-flash-free"             # flash, small
 )
 MODEL_POOL_GO=(
   "opencode-go/space-bunny-free"
   "opencode-go/longcat-2.5-preview-free"
 )
-MODEL_POOL=( "${MODEL_POOL_ZEN[@]}" "${MODEL_POOL_GO[@]}" )
+# No probed go route is both large and cheap enough to displace the two above, so
+# the go fallback list is deliberately empty rather than invented.
+MODEL_POOL_GO_FALLBACK=()
+# Everything probed, for `probe-models`. Not the rotation order.
+MODEL_POOL=( "${MODEL_POOL_ZEN[@]}" "${MODEL_POOL_GO[@]}" \
+             "${MODEL_POOL_ZEN_FALLBACK[@]}" "${MODEL_POOL_GO_FALLBACK[@]}" )
 model_variant() {
   case "$1" in
     *nemotron-3.5-lightning*) echo "medium" ;;
@@ -114,6 +136,14 @@ provider_of() {  # which provider the cursor points at, honouring a backoff mark
 
 provider_note_failure() {  # provider; skip it for one turn after a route failure
   : > "$STATE_DIR/provider_fail_$1"
+}
+
+# Spawns served per provider, straight from the tally. Returns 0 for a provider
+# with no row yet, so a fresh state dir compares as level instead of erroring.
+provider_tally() {  # provider -> integer
+  local v
+  v=$(awk -v k="$1" '$1==k {print $2}' "$STATE_DIR/provider_counts" 2>/dev/null | tail -1) || v=""
+  printf '%s' "${v:-0}"
 }
 
 provider_of_model() {  # model id -> zen|go
@@ -251,7 +281,18 @@ advance_model() {  # step that provider's own cursor, then hand over to the othe
     printf '%s\n' "$(( (i + 1) % n ))" > "$STATE_DIR/model_cursor_$p"
   fi
   rm -f "$STATE_DIR"/provider_fail_* 2>/dev/null || true
-  case "$p" in zen) other=go;; *) other=zen;; esac
+  # Serve whoever is behind, not simply the other one. Strict alternation froze a
+  # lifetime skew in place: the tally read zen 40 / go 25 and every handover since
+  # preserved that 15-spawn gap instead of closing it. Going by the lower count
+  # converges the skew and then degrades to plain alternation once they are level,
+  # which is what "balance their usage" actually asks for.
+  local z_tally g_tally
+  z_tally=$(provider_tally zen) || z_tally=0
+  g_tally=$(provider_tally go) || g_tally=0
+  if [ "$z_tally" -lt "$g_tally" ]; then other=zen
+  elif [ "$g_tally" -lt "$z_tally" ]; then other=go
+  else case "$p" in zen) other=go;; *) other=zen;; esac
+  fi
   printf '%s\n' "$other" > "$STATE_DIR/provider_cursor"
 }
 
@@ -1226,7 +1267,10 @@ cmd_supervise() {
       esac
     done
 
-    # Refill to the floor, never past --max. A slug is skipped only once it has
+    # Refill to the floor, never past --max, and never past the floor either: the
+    # loop below grows to FLEET_MIN only. See the note on FLEET_MAX for why the
+    # ceiling is not a target.
+    # A slug is skipped only once it has
     # burned FLEET_MAX_ATTEMPTS tries, so a flaky model route or a dropped
     # connection does not retire an issue for the life of the queue, while a
     # genuinely broken issue still stops being retried.
