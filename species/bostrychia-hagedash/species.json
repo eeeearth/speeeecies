@@ -66,7 +66,7 @@
     "mass_kg": 1.238,
     "length_m": 0.76,
     "wingspan_m": 0.9,
-    "lifespan_y": 16,
+    "lifespan_y": 2.1,
     "diet": {
       "invertebrate": 0.85,
       "vertebrate": 0.15
@@ -303,7 +303,7 @@
       "alarm": "alarm",
       "song_cooldown_s": 12,
       "nest_m1": 10,
-      "nest_m2": 12,
+      "nest_m2": 11,
       "song": "call"
     }
   },
@@ -367,7 +367,22 @@
       "perched": {}
     }
   },
+  "extensions": {
+    "life_history": {
+      "max_longevity_captive_y": 16
+    }
+  },
   "sources": [
+    {
+      "id": "hadeda-demography",
+      "url": "https://opus.sanbi.org/items/4a56bca4-3ffb-4f13-b087-67430a9b9fae/full",
+      "title": "Demography and population ecology of the hadeda ibis at its expanding range edge in South Africa",
+      "license": "CC-BY-SA-4.0",
+      "kind": "literature",
+      "accessed": "2026-09-30",
+      "attribution": "Duckworth, Altwegg and Harebottle (2012), Journal of Ornithology 153:421-430, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
     {
       "id": "gbif-backbone",
       "url": "https://api.gbif.org/v1/species/5229203",
@@ -469,11 +484,12 @@
     "traits": {
       "sources": [
         "anage",
-        "wikipedia"
+        "wikipedia",
+        "hadeda-demography"
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "AnAge reports 1,238 g adult mass and a 16-year maximum captive longevity. The 0.76 m length is reported in the licensed species description; 0.9 m wingspan is an approximate model estimate based on body length and broad wings. Diet shares, group size, and wariness are authored simulation values."
+      "note": "AnAge reports 1,238 g adult mass and a 16-year maximum captive longevity, retained under extensions.life_history.max_longevity_captive_y. Typical lifespan is estimated from survival in the Cape study population: 1 + 0.27/(1 - 0.75) = 2.08 years, rounded to 2.1. The 0.76 m length is reported in the licensed species description; 0.9 m wingspan is an approximate model estimate based on body length and broad wings. Diet shares, group size, and wariness are authored simulation values."
     },
     "habitat": {
       "sources": [
