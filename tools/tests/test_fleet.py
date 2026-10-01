@@ -390,7 +390,7 @@ def test_queue_filter_keeps_candidates_when_queue_file_is_empty(tmp_path):
     whole queue is swallowed as already-tried: the fleet never spawns anything."""
     queue = tmp_path / "queue.tsv"
     queue.write_text("", encoding="utf-8")
-    candidates = "39\tweddellii\ta\n38\temperor\tb\n37\tadeliae\tc\n"
+    candidates = "39\tweddellii\tspecies\ta\n38\temperor\tspecies\tb\n37\tadeliae\tspecies\tc\n"
 
     filtered = subprocess.run(
         [
@@ -464,15 +464,45 @@ def _queue_filter(
     ).stdout
 
 
+def test_queue_filter_keys_attempts_on_kind_not_just_slug(tmp_path):
+    """A locale and a species can carry the same slug. Keyed on slug alone, the
+    species burning its three attempts would silently retire the locale too, and
+    the locale's own attempts would retire the species. They are separate issues
+    on separate branches and must have separate budgets."""
+    queue = tmp_path / "queue.tsv"
+    queue.write_text("4\tspecies\tshared\n4\tspecies\tshared\n4\tspecies\tshared\n", encoding="utf-8")
+    candidates = "4\tshared\tspecies\ta\n9\tshared\tlocale\tb\n"
+
+    filtered = _queue_filter(queue, candidates, max_attempts=3)
+
+    assert "locale" in filtered, (
+        "an exhausted species slug retired the same-named locale"
+    )
+    assert "species" not in filtered, "the exhausted species should be retired"
+
+
+def test_a_live_locale_does_not_block_the_same_named_species(tmp_path):
+    queue = tmp_path / "queue.tsv"
+    queue.write_text("", encoding="utf-8")
+    candidates = "9\tshared\tlocale\ta\n4\tshared\tspecies\tb\n"
+
+    filtered = _queue_filter(queue, candidates, busy="locale/shared")
+
+    assert "species" in filtered, (
+        "a live locale blocked the same-named species from being spawned"
+    )
+    assert "locale" not in filtered
+
+
 def test_queue_filter_never_offers_a_slug_with_a_live_agent(tmp_path):
     """A running agent is under its attempt budget, so the retry filter made its
     own slug a candidate. Respawning it hit "worktree path already exists",
     and die() there exits the whole supervisor. The fleet died this way."""
     queue = tmp_path / "queue.tsv"
-    queue.write_text("37\tadeliae\n", encoding="utf-8")
-    candidates = "37\tadeliae\ta\n38\temperor\tb\n"
+    queue.write_text("37\tspecies\tadeliae\n", encoding="utf-8")
+    candidates = "37\tadeliae\tspecies\ta\n38\temperor\tspecies\tb\n"
 
-    filtered = _queue_filter(queue, candidates, max_attempts=3, busy="adeliae")
+    filtered = _queue_filter(queue, candidates, max_attempts=3, busy="species/adeliae")
 
     assert "adeliae" not in filtered, "a live agent was offered its own slug"
     assert "emperor" in filtered
@@ -482,8 +512,8 @@ def test_queue_filter_excludes_a_slug_that_exhausted_its_attempts(tmp_path):
     """A slug is skipped only once it has burned the whole budget, so a flaky
     model route does not retire an issue for the life of the queue."""
     queue = tmp_path / "queue.tsv"
-    queue.write_text("39\tweddellii\n39\tweddellii\n39\tweddellii\n", encoding="utf-8")
-    candidates = "39\tweddellii\ta\n38\temperor\tb\n"
+    queue.write_text("39\tspecies\tweddellii\n39\tspecies\tweddellii\n39\tspecies\tweddellii\n", encoding="utf-8")
+    candidates = "39\tweddellii\tspecies\ta\n38\temperor\tspecies\tb\n"
 
     filtered = _queue_filter(queue, candidates, max_attempts=3)
 
@@ -496,8 +526,8 @@ def test_queue_filter_retries_a_slug_that_failed_under_budget(tmp_path):
     presence-only filter retired it forever, which starved the pool over a
     long run."""
     queue = tmp_path / "queue.tsv"
-    queue.write_text("38\temperor\n38\temperor\n", encoding="utf-8")
-    candidates = "38\temperor\tb\n"
+    queue.write_text("38\tspecies\temperor\n38\tspecies\temperor\n", encoding="utf-8")
+    candidates = "38\temperor\tspecies\tb\n"
 
     filtered = _queue_filter(queue, candidates, max_attempts=3)
 
@@ -507,8 +537,8 @@ def test_queue_filter_retries_a_slug_that_failed_under_budget(tmp_path):
 def test_queue_filter_allows_exactly_max_attempts_then_stops(tmp_path):
     """The budget is a boundary: max-1 tries stays pickable, max does not."""
     queue = tmp_path / "queue.tsv"
-    queue.write_text("38\temperor\n38\temperor\n", encoding="utf-8")
-    candidates = "38\temperor\tb\n"
+    queue.write_text("38\tspecies\temperor\n38\tspecies\temperor\n", encoding="utf-8")
+    candidates = "38\temperor\tspecies\tb\n"
 
     assert "emperor" in _queue_filter(queue, candidates, max_attempts=3)
     assert "emperor" not in _queue_filter(queue, candidates, max_attempts=2)

@@ -110,6 +110,19 @@ provider_of_model() {  # model id -> zen|go
   case "$1" in opencode-go/*) echo go;; *) echo zen;; esac
 }
 
+# Running counts per provider. The status line only shows which model is next,
+# which cannot answer "is this fleet actually balanced over time"; that needs a
+# tally of what was really served.
+note_spawn_provider() {  # model id; tally what was really served per provider
+  local p f cur
+  p=$(provider_of_model "$1")
+  f="$STATE_DIR/provider_counts"
+  cur=$(awk -v k="$p" '$1==k {print $2}' "$f" 2>/dev/null | tail -1)
+  printf '%s %s\n' "$p" "$(( ${cur:-0} + 1 ))" > "$f.tmp"
+  awk -v k="$p" '$1!=k' "$f" 2>/dev/null >> "$f.tmp"
+  mv "$f.tmp" "$f"
+}
+
 note_route_failure() {  # slug; back off the provider if the agent died on routing
   local model
   model=$(meta_get "$1" model)
@@ -349,7 +362,7 @@ cmd_spawn() {
 
   local branch wpath
   branch="$BRANCH_PREFIX/$kind-$issue-$slug"
-  wpath="$WORKTREE_ROOT/$slug"
+  wpath="$WORKTREE_ROOT/$kind-$slug"
   [ -e "$wpath" ] && die "worktree path already exists: $wpath"
   # A leftover branch is a retry, not a fatal collision. cmd_spawn is called
   # directly from the refill loop, so die() here would exit the whole supervisor
@@ -408,7 +421,8 @@ LAUNCHER
   disown 2>/dev/null || true
   advance_model
 
-  printf '%s\t%s\n' "$issue" "$slug" >> "$STATE_DIR/queue.tsv"
+    note_spawn_provider "$model"
+  printf '%s\t%s\t%s\n' "$issue" "$kind" "$slug" >> "$STATE_DIR/queue.tsv"
   say "spawned $slug (issue $issue, model $model)"
 }
 
@@ -423,15 +437,17 @@ cmd_status() {
 }
 
 row() {
-  local slug="$1" model br run age last pr ci
+  local slug="$1" model br run age last pr ci kind
   [ -f "$STATE_DIR/$slug.meta" ] || { printf '%-26s %-40s %s\n' "$slug" "-" "no meta"; return; }
   model=$(meta_get "$slug" model); br=$(meta_get "$slug" branch)
+  # Pre-kind metadata has no kind= line; those agents were all species.
+  kind=$(meta_get "$slug" kind); [ -n "$kind" ] || kind=species
   if agent_running "$slug"; then run=running; else run=stopped; fi
   age=$(( ( $(date -u +%s) - $(date -u -d "$(sed -n 's/^started: //p' "$STATE_DIR/$slug.status.md" | head -1)" +%s 2>/dev/null || date -u +%s) ) / 60 ))
-    pr=$(pr_field "$slug" number,state "#\(.number) \(.state)")
+  pr=$(pr_field "$slug" number,state "#\(.number) \(.state)")
   ci=$(pr_field "$slug" statusCheckRollup '[.statusCheckRollup[]?.conclusion] | if length==0 then "none" else (join(" ")) end')
   last=$(tail -2 "$STATE_DIR/$slug.log" 2>/dev/null | tr -d '\r' | grep -v '^$' | tail -1 | cut -c1-70)
-  printf '%-26s %-40s %-8s %-6s %-3s %-8s %s\n' "$slug" "$model" "$run" "${age}m" "$pr" "$ci" "$last"
+  printf '%-26s %-7s %-40s %-8s %-6s %-3s %-8s %s\n' "$slug" "$kind" "$model" "$run" "${age}m" "$pr" "$ci" "$last"
 }
 
 cmd_teardown() {
@@ -461,9 +477,9 @@ cmd_teardown() {
         "$STATE_DIR/$slug.brief.md" "$STATE_DIR/$slug.launch.sh"
   # Say which of the two happened. "because it is the PR" on its own let an
   # agent that died with no PR look delivered, so its issue went unclaimed.
-if pr_for_slug "$slug" "$kind"; then
-      rm -f "$STATE_DIR/$slug.log"
-      say "torn down $slug; branch kept ($br) because it is the PR"
+  if pr_for_slug "$slug" "$kind"; then
+    rm -f "$STATE_DIR/$slug.log"
+    say "torn down $slug; branch kept ($br) because it is the PR"
   else
     say "torn down $slug; NO PR was opened, branch $br kept for salvage, issue still needs work"
     say "  agent log kept for diagnosis: $STATE_DIR/$slug.log"
@@ -485,15 +501,15 @@ cmd_supervise() {
       agent_running "$slug" && continue
       pr=$(pr_field "$slug" number,state '"#\(.number) \(.state)"')
       case "$pr" in
-        \#*) echo "[$(date -u +%T)] $slug finished: $pr -> teardown"
+        \#*) echo "[$(date -u +%FT%TZ)] $slug finished: $pr -> teardown"
              cmd_teardown "$slug" --force || true ;;
         # GitHub could not be reached. Leave the agent and its worktree alone and
         # ask again next poll: reaping here would destroy finished work on a
         # transient outage and burn a retry.
         GHERR) fleet_state=GH_UNREACHABLE
-               echo "[$(date -u +%T)] $slug: PR lookup failed (GitHub unreachable); leaving it for the next poll" ;;
+               echo "[$(date -u +%FT%TZ)] $slug: PR lookup failed (GitHub unreachable); leaving it for the next poll" ;;
         *)     note_route_failure "$slug"
-               echo "[$(date -u +%T)] $slug stopped with NO PR (model $(meta_get "$slug" model)); log tail:"
+               echo "[$(date -u +%FT%TZ)] $slug stopped with NO PR (model $(meta_get "$slug" model)); log tail:"
                tail -5 "$STATE_DIR/$slug.log" | sed 's/^/    /'
                cmd_teardown "$slug" --force || true ;;
       esac
@@ -511,13 +527,11 @@ cmd_supervise() {
     local metas=("$STATE_DIR"/*.meta)
     live=${#metas[@]}
     if [ "$live" -lt "$FLEET_MIN" ]; then
-      # `|| true`: a gh outage must not kill the loop. Without an issue list the
-      # fleet just waits a poll and tries again.
       # A gh outage must not kill the loop, but it must not masquerade as an
       # empty queue either: report it and keep whatever is already running.
       if ! pick=$(cmd_list_issues); then
         fleet_state=GH_UNREACHABLE
-        echo "[$(date -u +%T)] issue listing failed (GitHub unreachable); not refilling this poll"
+        echo "[$(date -u +%FT%TZ)] issue listing failed (GitHub unreachable); not refilling this poll"
         pick=""
       fi
       # Key on FILENAME, not NR==FNR. queue.tsv is empty on a first run, and with
@@ -526,13 +540,16 @@ cmd_supervise() {
       # A slug with a live agent is always skipped, whatever its attempt count:
       # the retry budget would otherwise offer a running agent its own slug.
       local busy
-      busy=$(for m in "${metas[@]}"; do basename "$m" .meta; done | paste -sd' ' -)
+      busy=$(for m in "${metas[@]}"; do
+               s=$(basename "$m" .meta); k=$(meta_get "$s" kind); [ -n "$k" ] || k=species
+               printf '%s/%s\n' "$k" "$s"
+             done | paste -sd' ' -)
       if [ -f "$STATE_DIR/queue.tsv" ]; then
         pick=$(printf '%s\n' "$pick" | awk -F'\t' -v q="$STATE_DIR/queue.tsv" \
           -v max="$FLEET_MAX_ATTEMPTS" -v busy="$busy" '
           BEGIN { k = split(busy, b, " "); for (i = 1; i <= k; i++) if (b[i] != "") live[b[i]] = 1 }
-          FILENAME == q { if ($2 != "") n[$2]++; next }
-          { s = $2; if (s == "" || (s in live)) next; if ((s in n) && n[s] >= max) next; print }
+          FILENAME == q { if ($3 != "") n[$2 "/" $3]++; next }
+          { if ($2 == "" || $3 == "") next; key = $3 "/" $2; if (key in live) next; if ((key in n) && n[key] >= max) next; print }
         ' "$STATE_DIR/queue.tsv" -)
       fi
       row_pick=$(printf '%s\n' "$pick" | head -1)
@@ -540,7 +557,7 @@ cmd_supervise() {
         # Only say STARVED on the transition. Repeating it every poll turns a
         # one-line state change into log spam that hides real events.
         if [ "$fleet_state" = OK ]; then
-          echo "[$(date -u +%T)] STARVED: live=$live below floor $FLEET_MIN, no eligible issue left"
+          echo "[$(date -u +%FT%TZ)] STARVED: live=$live below floor $FLEET_MIN, no eligible issue left"
         fi
         fleet_state=STARVED
       fi
@@ -558,10 +575,13 @@ cmd_supervise() {
         row_pick=$(printf '%s\n' "$pick" | awk -F'\t' -v s="$sl" 'NR>1 && $2 != s' | head -1)
       done
     fi
-    printf 'live=%s floor=%s max=%s state=%s at=%s\n' \
-      "$live" "$FLEET_MIN" "$FLEET_MAX" "$fleet_state" "$(date -u +%FT%TZ)" \
-      > "$STATE_DIR/heartbeat"
-    echo "[$(date -u +%T)] fleet=$live (min $FLEET_MIN max $FLEET_MAX) state=$fleet_state next-model=$(next_model)"
+    local zen_n go_n
+    zen_n=$(awk '$1=="zen" {print $2}' "$STATE_DIR/provider_counts" 2>/dev/null | tail -1)
+    go_n=$(awk '$1=="go" {print $2}' "$STATE_DIR/provider_counts" 2>/dev/null | tail -1)
+    printf 'live=%s floor=%s max=%s state=%s zen=%s go=%s at=%s\n' \
+      "$live" "$FLEET_MIN" "$FLEET_MAX" "$fleet_state" "${zen_n:-0}" "${go_n:-0}" \
+      "$(date -u +%FT%TZ)" > "$STATE_DIR/heartbeat"
+    echo "[$(date -u +%FT%TZ)] fleet=$live (min $FLEET_MIN max $FLEET_MAX) state=$fleet_state next-model=$(next_model)"
     [ "$once" = 1 ] && return 0
     sleep "$POLL_SECONDS"
   done
