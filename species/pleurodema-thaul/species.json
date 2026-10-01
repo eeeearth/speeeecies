@@ -1,0 +1,531 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Pleurodema thaul",
+  "slug": "pleurodema-thaul",
+  "common_names": {
+    "en": "Chilean four-eyed frog",
+    "es": "Sapo de cuatro ojos"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Amphibia",
+    "order": "Anura",
+    "family": "Leptodactylidae",
+    "genus": "Pleurodema",
+    "authority": "Lesson, 1826",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2423479,
+    "inat_taxon_id": 23214,
+    "itis_tsn": 207987,
+    "wikidata": "Q2210269",
+    "amphibiaweb_id": 3432
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "CL",
+      "AR"
+    ],
+    "koppen": [
+      "Csb",
+      "Cfb",
+      "Cfc",
+      "BSk"
+    ],
+    "elevation_m": [
+      0,
+      2000
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Hop",
+      "Swim"
+    ],
+    "thermoregulation": "Ectotherm",
+    "skin": "Moist",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "Complete",
+    "nest_type": "None",
+    "perching": false,
+    "size_class": "Tiny",
+    "mass_kg": 0.01,
+    "length_m": 0.04,
+    "lifespan_y": 3,
+    "diet": {
+      "invertebrate": 1.0
+    },
+    "social": {
+      "structure": "Solitary",
+      "group_size": [
+        1,
+        1
+      ]
+    },
+    "activity_pattern": "Nocturnal",
+    "defense": "Toxin",
+    "wariness": 0.5
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.5,
+      "aquatic": 0.5
+    },
+    "shelter_tag": "pond",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 1.0
+      },
+      {
+        "tag": "pond",
+        "kind": "Water",
+        "weight": 0.8
+      },
+      {
+        "tag": "shelter",
+        "kind": "Shelter",
+        "weight": 0.6
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "light_max": 0.4,
+      "notes": "Found in almost any body of water; reproduction occurs almost throughout the year; found from Antofagasta to Aysén in Chile."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "01-01",
+        "end": "12-31",
+        "region": "CL",
+        "note": "Reproduction occurs almost throughout the year; can reproduce in almost any body of water."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg"
+      },
+      {
+        "stage": "Tadpole",
+        "duration_days": 60,
+        "scale": 0.4
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "CL-RM",
+        "monthly": [
+          0.58,
+          0.5,
+          0.17,
+          0.5,
+          0.42,
+          0.17,
+          0.25,
+          0.42,
+          0.33,
+          0.67,
+          0.17,
+          1.0
+        ],
+        "method": "gbif_raw",
+        "observations": 62,
+        "sources": [
+          "gbif-activity-cl-rm"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 12691,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=23214&place_id=12691&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": null,
+            "total": 61,
+            "usable": false
+          },
+          "gbif": {
+            "tier": "C",
+            "area": [
+              "gadmGid",
+              "CHL.14_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2423479&gadmGid=CHL.14_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "baseline_url": null,
+            "total": 62,
+            "usable": false
+          },
+          "used": [
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-anuran-nocturnal-v1",
+    "params": {
+      "flee_m": 2,
+      "freeze_m": 5,
+      "food_tag": "invertebrate",
+      "call": "croak",
+      "min_temp_c": 5,
+      "max_temp_c": 25,
+      "call_m1": 9,
+      "call_m2": 2
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "croak",
+      "context": "Croak",
+      "season_months": [
+        9,
+        10,
+        11,
+        12,
+        1,
+        2
+      ],
+      "time_windows": [
+        "Night"
+      ],
+      "cooldown_s": 5,
+      "loudness": "Moderate",
+      "description": "Croaking call given near water in the breeding months."
+    }
+  ],
+  "look": {
+    "body_plan": "anuran",
+    "proportions": {
+      "torso_aspect": 1.3,
+      "leg_length_ratio": 0.6,
+      "head_scale": 0.8,
+      "neck_angle_deg": 10,
+      "girth_ratio": 1.1
+    },
+    "palette": {
+      "body": "#5a8c3a",
+      "belly": "#e8e8e0",
+      "markings": "#4a3a2a",
+      "accent": "#5a8c3a",
+      "eye": "#111111"
+    },
+    "part_colors": {
+      "leg_rear_left": "markings",
+      "leg_rear_right": "markings"
+    },
+    "poses": {
+      "idle": {},
+      "hop": {},
+      "swim": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2423479",
+      "title": "GBIF Backbone Taxonomy: Pleurodema thaul",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q2210269",
+      "title": "Wikidata: Pleurodema thaul (Q2210269)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Pleurodema_thaul",
+      "title": "Wikipedia: Pleurodema thaul",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Pleurodema thaul\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=207987",
+      "title": "ITIS: Pleurodema thaul, TSN 207987",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "gbif-activity-cl-rm",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2423479&gadmGid=CHL.14_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+      "title": "GBIF occurrence search for Pleurodema thaul in CL-RM",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "itis"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "common_names": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikidata",
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Found in Argentina and Chile."
+    },
+    "traits.mass_kg": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored: estimated from small frog body size; no specific source found."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of 3-5 cm snout-vent length."
+    },
+    "traits.lifespan_y": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored: typical small frog lifespan 2-4 years; no specific source found."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Feeds on arthropods such as flies and spiders."
+    },
+    "traits.social": {
+      "sources": [],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Authored: solitary by default; no specific source found."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Authored: nocturnal by default for the anuran-nocturnal program."
+    },
+    "traits.defense": {
+      "sources": [],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Authored: skin toxins common in frogs; no specific source found."
+    },
+    "traits.wariness": {
+      "sources": [],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Authored: moderate wariness for a small frog."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Found near water; reproduction in almost any body of water."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Arthropods from Wikipedia; water and shelter from habitat."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Found in various habitats including near human areas."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Reproduction occurs almost throughout the year."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Reproduction almost throughout the year."
+    },
+    "vocalizations.croak": {
+      "sources": [],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Authored: typical frog croak; no specific source found."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Yellow, green, or dark green dorsum with symmetrical brown spots; white belly; proportions authored."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared anuran-nocturnal program."
+    },
+    "habitat.shelter_tag": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Life stages from Wikipedia; durations authored."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Nest type from Wikipedia."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.size_class": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg."
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies maintainers",
+      "agent": "claude-code"
+    }
+  ]
+}
