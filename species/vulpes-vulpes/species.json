@@ -65,7 +65,8 @@
       "LY",
       "TN",
       "DZ",
-      "MA"
+      "MA",
+      "US"
     ],
     "introduced": [
       "AU"
@@ -356,6 +357,53 @@
             "gbif"
           ]
         }
+      },
+      {
+        "region": "US-LA",
+        "monthly": [
+          0.29,
+          0.07,
+          0.46,
+          1.0,
+          0.48,
+          0.2,
+          0.16,
+          0.15,
+          0.29,
+          0.15,
+          0.16,
+          0.12
+        ],
+        "method": "gbif_share",
+        "observations": 195,
+        "sources": [
+          "gbif-activity-us-la"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 27,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=42069&place_id=27&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=27&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 183,
+            "usable": false
+          },
+          "gbif": {
+            "tier": "C",
+            "area": [
+              "gadmGid",
+              "USA.19_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5219243&gadmGid=USA.19_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.19_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "total": 195,
+            "usable": false
+          },
+          "used": [
+            "gbif"
+          ]
+        }
       }
     ]
   },
@@ -615,6 +663,15 @@
       "attribution": "GBIF.org (2026-09-26) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
       "accessed": "2026-09-26",
       "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-la",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5219243&gadmGid=USA.19_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+      "title": "GBIF occurrence search for Vulpes vulpes in US-LA",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
+      "accessed": "2026-09-30",
+      "kind": "api"
     }
   ],
   "provenance": {
@@ -653,7 +710,7 @@
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "Country list derived from 'present across the entire Northern Hemisphere ... Europe and Asia, as well as parts of North Africa' and the Australian introduction. This record is framed for Eurasia; the species is also native to North America."
+      "note": "Country list derived from 'present across the entire Northern Hemisphere ... Europe and Asia, as well as parts of North Africa' and the Australian introduction. This record is framed for Eurasia; the species is also native to North America, so the United States was added for the US-LA activity curve."
     },
     "traits.body_plan": {
       "sources": [
