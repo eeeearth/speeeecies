@@ -1,0 +1,608 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Lithobates pipiens",
+  "slug": "lithobates-pipiens",
+  "common_names": {
+    "en": "northern leopard frog"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Amphibia",
+    "order": "Anura",
+    "family": "Ranidae",
+    "genus": "Lithobates",
+    "authority": "(Schreber, 1782)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2427185,
+    "inat_taxon_id": 66003,
+    "itis_tsn": 775108,
+    "wikidata": "Q1819586"
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "CA",
+      "US",
+      "PA"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk",
+      "Hop",
+      "Swim"
+    ],
+    "thermoregulation": "Ectotherm",
+    "skin": "Moist",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "Complete",
+    "nest_type": "None",
+    "perching": false,
+    "size_class": "Tiny",
+    "mass_kg": 0.039,
+    "length_m": 0.11,
+    "lifespan_y": 9.0,
+    "diet": {
+      "invertebrate": 0.85,
+      "vertebrate": 0.15
+    },
+    "social": {
+      "structure": "Solitary",
+      "group_size": [
+        1,
+        4
+      ]
+    },
+    "activity_pattern": "Nocturnal",
+    "defense": "Freeze",
+    "wariness": 0.7
+  },
+  "habitat": {
+    "use": {
+      "aquatic": 0.6,
+      "ground": 0.4
+    },
+    "shelter_tag": "pond",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 1.0
+      },
+      {
+        "tag": "small_vertebrate",
+        "kind": "Predation",
+        "weight": 0.2
+      },
+      {
+        "tag": "pond",
+        "kind": "Nesting",
+        "weight": 1.0
+      },
+      {
+        "tag": "water",
+        "kind": "Water",
+        "weight": 0.7
+      },
+      {
+        "tag": "shrub_thicket",
+        "kind": "Shelter",
+        "weight": 0.3
+      },
+      {
+        "tag": "leaf_litter",
+        "kind": "Shelter",
+        "weight": 0.2
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "notes": "Found in permanent ponds, swamps, marshes and slow-moving streams through forest, open and urban country, and in summer it moves out onto grassy areas and lawns."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "winter_fraction": 1.0,
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "03-01",
+        "end": "06-30",
+        "note": "Breeds in the spring, March to June; males make a short, snore-like call from the water and up to 6500 eggs are laid in water, with the tadpoles completing development inside the breeding pond."
+      },
+      {
+        "name": "young",
+        "start": "07-01",
+        "end": "09-30",
+        "note": "Tadpoles take 70 to 110 days to develop depending on conditions, so metamorphs of 2 to 3 cm appear through the second half of summer and then feed on the land."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg"
+      },
+      {
+        "stage": "Tadpole",
+        "duration_days": 90,
+        "scale": 0.3
+      },
+      {
+        "stage": "Juvenile",
+        "duration_days": 60,
+        "scale": 0.7
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US-ND",
+        "monthly": [
+          0.0,
+          0.0,
+          0.0,
+          0.04,
+          0.16,
+          0.53,
+          1.0,
+          0.7,
+          0.68,
+          0.07,
+          0.0,
+          0.0
+        ],
+        "method": "mean(inat_raw, gbif_raw)",
+        "observations": 681,
+        "sources": [
+          "inat-activity-us-nd",
+          "gbif-activity-us-nd"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 13,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=66003&place_id=13&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": null,
+            "total": 330,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.35_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2427185&gadmGid=USA.35_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": null,
+            "total": 351,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-anuran-nocturnal-v1",
+    "params": {
+      "flee_m": 2,
+      "freeze_m": 5,
+      "food_tag": "invertebrate",
+      "call": "snore",
+      "min_temp_c": 5,
+      "max_temp_c": 27,
+      "call_m1": 3,
+      "call_m2": 6
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "snore",
+      "context": "Croak",
+      "season_months": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "time_windows": [
+        "Night",
+        "Dusk"
+      ],
+      "cooldown_s": 6,
+      "loudness": "Moderate",
+      "description": "A short, snore-like call made by the male from the water, through the spring and summer breeding season."
+    }
+  ],
+  "look": {
+    "body_plan": "anuran",
+    "proportions": {
+      "torso_aspect": 1.3,
+      "leg_length_ratio": 0.72,
+      "head_scale": 0.9,
+      "neck_angle_deg": 4,
+      "beak_ratio": 0.1,
+      "girth_ratio": 1.05
+    },
+    "palette": {
+      "body": "#6f7d3a",
+      "belly": "#e6ebd6",
+      "markings": "#2b2a17",
+      "accent": "#c8a340",
+      "eye": "#c8a340"
+    },
+    "part_colors": {
+      "head": "body"
+    },
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "hop": {},
+      "swim": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2427185",
+      "title": "GBIF Backbone Taxonomy: Lithobates pipiens",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q1819586",
+      "title": "Wikidata: Lithobates pipiens (Q1819586)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Northern_leopard_frog",
+      "title": "Wikipedia: Northern leopard frog",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Northern leopard frog\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "amphibio",
+      "url": "https://doi.org/10.6084/m9.figshare.4644424",
+      "title": "AmphiBIO_v1 (figshare dataset), record Anf4889 for Lithobates pipiens",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "Oliveira, Brunno Freire; São-Pedro, Vinícius Avelar; Santos-Barrera, Georgina; Penone, Caterina; C. Costa, Gabriel (2017). AmphiBIO_v1. figshare. Dataset. https://doi.org/10.6084/m9.figshare.4644424.v5",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "note": "Consulted for Body_mass_g, Body_size_mm, Longevity_max_y and Litter_size for this species; no other datum here comes from it."
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=775108",
+      "title": "ITIS: Lithobates pipiens, TSN 775108",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "inat-activity-us-nd",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=66003&place_id=13&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Lithobates pipiens in US-ND",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-nd",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2427185&gadmGid=USA.35_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Lithobates pipiens in US-ND",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "itis"
+      ],
+      "confidence": "High",
+      "note": "Both databases and AmphiBIO record the species in the genus Lithobates; the article notes it was 'formerly Rana pipiens' and that the two genus names are both in use."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "GBIF usage key and ITIS TSN read directly from the two databases; the iNaturalist taxon id via Wikidata (P3151)."
+    },
+    "common_names": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "Wikidata and Wikipedia both give northern leopard frog."
+    },
+    "conservation": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "Wikidata P141 = least concern (Q211005). The article describes population declines since the 1970s in parts of the range, which is a local pattern and not a change of global status."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'Northern leopard frogs occur from Great Slave Lake and Hudson Bay, Canada, south to the U.S. states of Kentucky and New Mexico.' Panama is left off: the article calls the Panamanian population 'most likely an undescribed species'."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'the reliance of the frog on two major modes of locomotion (jumping and swimming)'; walking is the slow overland movement implied by frogs leaving ponds for grass and lawns."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "An amphibian: ectothermic body temperature is the base assumption for the group, and AmphiBIO's cold-climate fields for the species are all NA, so the cold tolerance the article notes ('They are well adapted to cold and can be found above 3,000 m') is tolerance of low temperature rather than of a regulated one."
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "A frog has no wings and no gliding structure; 'None' follows from the description."
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The article does not describe respiration. 'Lungs' is recorded as the primary mode a ranid frog of this size uses; its moist skin also exchanges gas, but the record's single value names the lungs as the organ."
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia",
+        "amphibio"
+      ],
+      "confidence": "High",
+      "note": "'Tadpoles are dark brown or grey, with light blotches on the underside... Metamorph frogs are 2-3 cm long and resemble the adult', and AmphiBIO records Lar 1 (larval stage present) and Viv 0 for this species: a full metamorphosis."
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'None' is exact rather than a compromise: 'Up to 6500 eggs are laid in water' and the tadpoles develop in the pond, so this species builds no nest of any of the kinds the enum lists."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "False: a frog never perches, and the anuran body plan has no perched pose."
+    },
+    "traits.size_class": {
+      "sources": [
+        "wikipedia",
+        "amphibio"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg 0.039 (< 0.05 kg)."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "amphibio"
+      ],
+      "confidence": "High",
+      "note": "AmphiBIO_v1 record Anf4889 for Lithobates pipiens, Body_mass_g 39.2. The article gives no weight, which is why the database was used."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'reaching about 11 cm (4.3 in) in snout-to-vent length.' AmphiBIO's Body_size_mm of 165 is a whole-body figure and is not used here."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "amphibio"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "AmphiBIO_v1 record Anf4889, Longevity_max_y 9. That is the database's maximum, not a mean, and no typical wild lifespan appears in the sources reached; the value is the best sourced figure available rather than an estimate of the average."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'They eat a wide variety of animals, including crickets, flies, worms, and smaller frogs. Using their large mouths, they can even swallow birds and garter snakes', and one mouse-eared bat was recorded as prey; insects dominate, so the split is a judgement."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "The article describes males calling from the water and nothing about aggregation, so 'Solitary' is the judgement recorded; a small group size covers a calling male and the frogs around a breeding pond."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "The article does not state an activity pattern. It says the male call is made from the water in spring and summer and that in summer the frogs abandon ponds for grassy areas and lawns, which together place most feeding outside the hottest, brightest part of the day. 'Nocturnal' is a judgement, and the shared anuran program is built for an amphibian that is active in mild, damp, dark hours."
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'They do not produce distasteful skin secretions and rely on speed to evade predation', against a long predator list from bass and pike to herons, snakes, foxes, mink, otters and dragonfly larvae; going still and then bolting is the behaviour described."
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Unarmoured, palatable, and preyed on by a very long list of animals in both water and on land, which is why it leaves the pond for grass in summer; a high wariness follows directly."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'They are found in permanent ponds, swamps, marshes, and slow-moving streams' and 'In the summer, they often abandon ponds and move to grassy areas and lawns'; the split between water and land time is a judgement from those two sentences."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'They normally inhabit water bodies with abundant aquatic vegetation', and the eggs are laid in water; 'pond' is the matching drawable shelter tag."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Insect-dominated predation taken at the water's edge and on lawns, a vegetated pond for spawning and cover, and damp ground with leaf litter in summer; weights are judgement."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'throughout forest, open, and urban areas' and the summer movement onto lawns are both explicit."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The article describes cold tolerance and a frog found in shallow water bodies year-round but does not describe a hibernation or a migration. ActiveYearRound with a low winter activity curve from the observation data is the honest reading: asserting a dormant phase would mean putting words in the source's mouth, and the fetched activity curve for this region already falls away in the cold months."
+    },
+    "seasonal.winter_fraction": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "1.0 records presence rather than activity: the species is not described as leaving, and its winter foraging is not described at all, so the year-round population stays and the cold months are expressed through the activity curve instead."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'The northern leopard frog breeds in the spring (March-June)' and 'Tadpoles... development takes 70-110 days, depending on conditions', so metamorphs appear through the second half of summer."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia",
+        "amphibio"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "'Up to 6500 eggs are laid in water, and tadpoles complete development within the breeding pond' with development taking '70-110 days'; 90 days is the midpoint of that sourced range. AmphiBIO independently records Litter_size 3045 to 8000, an even sex ratio is not given, and the post-metamorph Juvenile stage and its 60 days are a judgement with no sourced duration; the record's stage enum names the recently metamorphosed frog a Juvenile rather than a Metamorph."
+    },
+    "vocalizations.snore": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'Males make a short, snore-like call from water during spring and summer', which fixes both the description and the season."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'It varies from green to brown in dorsal color, with large, dark, circular spots on its back, sides, and legs. Each spot is normally bordered by a lighter ring... A pair of dorsolateral folds starting from the back of the eye runs parallel to each other down the back... a pale stripe runs from the nostril, under the eye and tympanum, terminating at the shoulder. The ventral surface is white or pale green. The iris is golden and toes are webbed.' The green morph is the one drawn, with the dark spots in the markings slot and the golden iris in the eye slot; proportions and box placement are judgement."
+    },
+    "behavior": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The shared fsm-anuran-nocturnal-v1 program is reused: this frog hides in cover by day, forages among invertebrates, calls from water in the breeding months, and bolts when a threat comes near. call is set to the snore rather than the default croak because the article describes a snore, and call_m1 and call_m2 are set to 3 and 6 because the article gives the breeding season as March to June rather than the program's defaults."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies maintainers",
+      "agent": "opencode"
+    }
+  ]
+}
