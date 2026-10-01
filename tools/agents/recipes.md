@@ -29,6 +29,29 @@ Common to all recipes:
   saying which part is wrong. Reviewers would rather read an honest note
   than spot the mismatch.
 
+### Two things the maintainer sends back on every record
+
+Both were found in review on #96 and #102 and became non-blocking follow-ups
+(#114, #116) rather than requested changes, because the validate job passes
+either way. Passing CI is not the bar.
+
+- **`traits.lifespan_y` is the *typical* lifespan, not the record maximum.**
+  The schema wants what an average member of the species lives. Most sources
+  publish a maximum-longevity figure and call it a lifespan. If that is all you
+  can source, keep the ceiling in `traits` extension and provenance, and either
+  omit `lifespan_y` or set a defensible typical value with a `derived` note.
+  Copying a sourced 25-year maximum straight into `lifespan_y` passed CI and
+  still came back.
+- **A `derived` note has to describe what you actually did.** The possum diet
+  was an authored reweighting of a browse/fruit/invertebrate dataset. The first
+  note credited "eggs/chicks" as supporting the invertebrate allowance; they are
+  vertebrate prey. Say which operation the source did and which one you did, and
+  do not let an authored adjustment borrow the source's justification.
+
+Also check country-code provenance against the ISO 3166-1 list: `GS` is South
+Georgia and the South Sandwich Islands, not "Antarctica", and a population from
+there may belong in the range as well as in `AQ`.
+
 ## Europe
 
 <!-- recipe:2 -->

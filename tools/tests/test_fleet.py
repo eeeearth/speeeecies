@@ -9,6 +9,7 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[2]
 FLEET = REPO / "tools" / "agents" / "fleet.sh"
+BRIEF = REPO / "tools" / "agents" / "brief-species.md"
 RECIPES = REPO / "tools" / "agents" / "recipes.md"
 
 PLACEHOLDER = re.compile(r"\{\{[A-Z_]+\}\}")
@@ -174,6 +175,35 @@ def test_a_failing_provider_is_skipped_for_one_turn(tmp_path):
     assert skipped.startswith("opencode-go/"), f"did not back off: {skipped}"
     assert resumed.startswith("opencode/") and not resumed.startswith("opencode-go/"), (
         f"did not resume zen: {resumed}"
+    )
+
+
+def test_brief_makes_the_agent_prove_the_pr_exists():
+    """A delegate reported success with a /pull/new/<branch> compare URL, which is
+    the page shown when the PR was never opened, and exited rc=0. The supervisor
+    caught it, but only after a wasted slot and a wasted retry."""
+    brief = BRIEF.read_text(encoding="utf-8")
+    assert "gh pr view --json number,url,state" in brief, (
+        "the brief never asks the agent to verify the PR opened"
+    )
+    assert "/pull/new/" in brief, (
+        "the brief should name the compare-URL trap that produced a false success"
+    )
+
+
+def test_supervisor_survives_a_gh_outage_and_reports_starvation():
+    """Under `set -euo pipefail` an unguarded `gh` call turns a network blip into
+    permanent death, which is how this fleet kept stopping. And a fleet sitting
+    below its floor must say STARVED rather than log fleet=2 as if that were fine.
+    """
+    text = FLEET.read_text(encoding="utf-8")
+    loop = text.split("cmd_supervise() {", 1)[1]
+    assert re.search(r"pick=\$\(cmd_list_issues\s*\|\|\s*true\)", loop), (
+        "an unguarded issue listing can kill the supervisor on a gh outage"
+    )
+    assert "STARVED" in loop, "starvation is not reported"
+    assert "state=$fleet_state" in loop, (
+        "the status line hides whether the fleet is below its floor"
     )
 
 

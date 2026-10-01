@@ -215,6 +215,19 @@ Work through these in order. Do not skip ahead to opening the PR.
    done. Justify any share-alike or non-commercial source in the
    "Non-CC0/CC-BY sources" section.
 
+   Then confirm the PR really exists before you go any further. A branch pushed
+   is not a PR: `gh pr create` can fail, and one of these delegates reported
+   success with a `…/pull/new/<branch>` compare URL, which is the page you land
+   on when the PR was never opened. Prove it:
+
+   ```
+   gh pr view --json number,url,state
+   ```
+
+   A real PR returns a `number` and a `/pull/<number>` URL. If that command
+   errors with "no pull requests found", the PR is not open — fix it or report
+   `BLOCKED:`. Do not write `I'm done boss` on the strength of a push.
+
 9. **Get CI green, then stop.**
 
    ```

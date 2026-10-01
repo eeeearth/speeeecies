@@ -444,7 +444,7 @@ cmd_supervise() {
     # burned FLEET_MAX_ATTEMPTS tries, so a flaky model route or a dropped
     # connection does not retire an issue for the life of the queue, while a
     # genuinely broken issue still stops being retried.
-    local live pick row_pick n sl ti sc
+    local live pick row_pick n sl ti sc fleet_state=OK
     # Count via array glob, not `ls "$STATE_DIR"/*.meta`. nullglob is set above,
     # so an unmatched glob expands to zero words and bare `ls` would list the
     # current directory instead, reporting the repo root's entry count as the
@@ -452,7 +452,9 @@ cmd_supervise() {
     local metas=("$STATE_DIR"/*.meta)
     live=${#metas[@]}
     if [ "$live" -lt "$FLEET_MIN" ]; then
-      pick=$(cmd_list_issues)
+      # `|| true`: a gh outage must not kill the loop. Without an issue list the
+      # fleet just waits a poll and tries again.
+      pick=$(cmd_list_issues || true)
       # Key on FILENAME, not NR==FNR. queue.tsv is empty on a first run, and with
       # an empty first file NR and FNR advance in lockstep, so NR==FNR stays true
       # for every candidate row and the whole queue is swallowed as "already tried".
@@ -469,18 +471,26 @@ cmd_supervise() {
         ' "$STATE_DIR/queue.tsv" -)
       fi
       row_pick=$(printf '%s\n' "$pick" | head -1)
-      [ -n "$row_pick" ] || { echo "[$(date -u +%T)] queue empty; nothing to spawn"; }
+      if [ -z "$row_pick" ]; then
+        if [ "$fleet_state" = OK ]; then
+          echo "[$(date -u +%T)] STARVED: live=$live below floor $FLEET_MIN, no eligible issue left"
+        fi
+        fleet_state=STARVED
+      fi
       while [ -n "$row_pick" ] && [ "$live" -lt "$FLEET_MIN" ]; do
         IFS=$'\t' read -r n sl ti <<<"$row_pick"
-        sc=$(gh issue view "$n" --repo "$GH_REPO" --json title \
-             | python3 -c 'import json,sys;t=json.load(sys.stdin)["title"];print(t[t.rindex("(")+1:-1].strip() if "(" in t else "")')
+        sc=$(gh issue view "$n" --repo "$GH_REPO" --json title 2>/dev/null \
+             | python3 -c 'import json,sys;t=json.load(sys.stdin)["title"];print(t[t.rindex("(")+1:-1].strip() if "(" in t else "")' 2>/dev/null || true)
         [ -n "$sc" ] || sc="$ti"
         ( cmd_spawn --issue "$n" --slug "$sl" --scientific "$sc" ) || break
         live=$(( live + 1 ))
         row_pick=$(printf '%s\n' "$pick" | awk -F'\t' -v s="$sl" 'NR>1 && $2 != s' | head -1)
       done
     fi
-    echo "[$(date -u +%T)] fleet=$live (min $FLEET_MIN max $FLEET_MAX) next-model=$(next_model)"
+    printf 'live=%s floor=%s max=%s state=%s at=%s\n' \
+      "$live" "$FLEET_MIN" "$FLEET_MAX" "$fleet_state" "$(date -u +%FT%TZ)" \
+      > "$STATE_DIR/heartbeat"
+    echo "[$(date -u +%T)] fleet=$live (min $FLEET_MIN max $FLEET_MAX) state=$fleet_state next-model=$(next_model)"
     [ "$once" = 1 ] && return 0
     sleep "$POLL_SECONDS"
   done
