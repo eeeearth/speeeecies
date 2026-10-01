@@ -102,12 +102,19 @@ the schema is the authority and a recipe is a human's reading of it.
 
 ## Balancing model usage
 
-`MODEL_POOL` is a round-robin of nine models. The point is not the list, it is
-the shape: the same model published under the `opencode/` and `opencode-go/`
-provider ids is **two separate quota buckets**, so interleaving the two providers
-spreads load across both aggregate limits instead of exhausting one and leaving
-the other idle. A persistent cursor in the state directory keeps usage even over
-a long run, so no single model degrades first.
+`MODEL_POOL_ZEN` and `MODEL_POOL_GO` are cycled **independently**, and the two
+providers alternate: every spawn serves one provider then hands over to the
+other, stepping only that provider's own cursor.
+
+The point is not the list, it is the shape. The same model published under the
+`opencode/` and `opencode-go/` provider ids is **two separate quota buckets**.
+A single round-robin over one combined list cannot balance them — with six zen
+routes and two go routes it serves three zen spawns per go one, which is exactly
+what it did here (17 zen, 6 go over 23 spawns) until the pools were split.
+
+Balance is observable rather than assumed: `provider_counts` in the state
+directory tallied what was actually served, and the `heartbeat` file carries
+`zen=` and `go=`. Check it instead of parsing the log.
 
 Two operational notes. Probe before trusting the pool: a free model can lose its
 route, and `probe-models` is how you find out before five agents stall on it.
@@ -125,6 +132,42 @@ makes "a human merges" true rather than aspirational.
 The agent is also told, in the brief, never to merge, never to push to `main`,
 and never to add itself as a reviewer. The permission file is the enforcement;
 the brief is the explanation.
+
+## Why this does not drive herdr
+
+The brief for this fleet asked for `herdr-delegate`. This driver does not invoke
+herdr, and that substitution was reviewed and accepted rather than assumed.
+
+herdr is a terminal workspace manager with a socket API, and it does expose
+`worktree create`, `agent start --kind opencode --pane <id>` and `agent prompt`,
+so a model choice would be expressible. The blocker is lifetime, not capability:
+`agent start` requires an **existing pane at an interactive shell prompt inside a
+live herdr session**, and waits for the agent to reach interactive readiness.
+
+That makes a herdr-driven fleet a guest of an interactive session — the same one
+a person uses for other work, which on this machine already hosts a
+`speeeecies-maintainer` agent. Closing that session stops the fleet. Running
+agents detached, the way `spawn` does, survives the session and the terminal and
+only depends on the machine. For a driver whose whole purpose is running
+unattended for long stretches, the more capable tool is the wrong one.
+
+This driver does keep herdr's *pattern*: one agent per unit of work, its own git
+worktree off the main checkout, its own branch, and it ends in a pull request for
+a human to merge.
+
+## Durability
+
+The supervisor is a detached process. It survives losing this session or the
+terminal, and it restarts cleanly from its own state directory after a crash:
+agents are tracked in `.meta` files, so a fresh supervisor reaps whatever
+stopped and refills to the floor.
+
+It does **not** survive a reboot. Nothing re-launches it, because that needs an
+init system and this driver deliberately installs nothing. If you want it across
+reboots, wrap the command in a supervisor you already run — a systemd *user*
+unit with `Restart=always` plus lingering, or whatever your session starts. That
+is a deliberate omission, not an oversight: installing a service is not
+something a build tool should do to your machine.
 
 ## Adding a model to the pool
 
@@ -144,14 +187,29 @@ covers, so a second fleet pointed at the same repository will not duplicate work
 Run with `--once` to reconcile a single pass, which is what you want under cron
 or in a test.
 
-It does not retry a failed agent, and it does not merge anything. A pull request
-that keeps failing CI is a signal to read the agent's log and fix the brief, not
-to let the fleet churn on it.
+It does retry a failed agent, up to `FLEET_MAX_ATTEMPTS` (default 3) per
+`kind/slug`. The budget exists because a single failure is usually a dropped
+connection or a lost model route, and retiring an issue for the life of the
+queue on one failure throws away a working issue. Three strikes is a real
+signal: read that agent's log and fix the brief rather than letting the fleet
+churn on it.
+
+It does not merge anything.
+
+Two failures it must not confuse. An unreachable GitHub is reported as
+`GH_UNREACHABLE` and left alone until the next poll, never as "no work left"
+and never as "this agent opened no PR" — reaping on a network blip destroyed
+finished worktrees. A genuinely empty queue is `STARVED`, and that line is
+emitted on the transition only.
 
 ## Extending it
 
-`supervise` currently only refills species records. Locale requests
-(`locale-request` issues) are the obvious next kind of work — they are heavier,
-carrying 8 to 12 species plus a flora catalog — and the same worktree-per-agent
-shape fits them. That needs a second brief template rather than a change to the
-driver.
+Work items carry an explicit `kind`, and both kinds run through the same driver:
+`species-request`+`animal` issues go to `brief-species.md`, `locale-request`
+issues to `brief-locale.md`. Branches are namespaced `<kind>-<issue>-<slug>` and
+worktrees are namespaced by kind, because a locale and a species can carry the
+same slug and must not share a worktree or a retry budget.
+
+Locale work is heavier — 8 to 12 species plus a flora catalog, and a different
+validator (`validate.py --locale <id>`) — which is why it gets its own brief
+rather than a branch in the species one.

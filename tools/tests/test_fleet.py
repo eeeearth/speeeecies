@@ -216,6 +216,34 @@ def test_a_github_outage_is_not_reported_as_no_work():
     )
 
 
+def test_readme_does_not_contradict_the_driver():
+    """The README claimed the supervisor never retried, worked only on species,
+    and round-robined one nine-model pool. All three were false, and all three
+    had been true at some point, so nothing caught the drift. These are the
+    claims a reader uses to decide whether the tool does what they need."""
+    readme = (REPO / "tools" / "agents" / "README.md").read_text(encoding="utf-8")
+    assert "FLEET_MAX_ATTEMPTS" in readme, "README does not document the retry budget"
+    assert "MODEL_POOL_ZEN" in readme and "MODEL_POOL_GO" in readme, (
+        "README still describes a single round-robin pool"
+    )
+    assert "locale" in readme.lower(), "README does not mention locale work"
+    for stale in ("It does not retry a failed agent",
+                  "only refills species records",
+                  "round-robin of nine models"):
+        assert stale not in readme, f"README still claims: {stale!r}"
+
+
+def test_readme_records_the_herdr_substitution_decision():
+    """The brief asked for herdr-delegate and the driver does not use it. That is
+    a substitution someone approved, so it has to be written down where the next
+    coordinator will find it rather than inferred from silence."""
+    readme = (REPO / "tools" / "agents" / "README.md").read_text(encoding="utf-8")
+    assert "herdr" in readme.lower(), "the herdr question is undocumented"
+    assert "accept" in readme.lower(), (
+        "the herdr substitution needs a recorded decision, not just a rationale"
+    )
+
+
 def test_locale_work_is_offered_and_gets_its_own_brief():
     """Species work ran dry with 44 locale-request issues open, so the fleet had
     nothing to pick and sat below its floor. A locale needs a different brief and
