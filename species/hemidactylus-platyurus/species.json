@@ -1,0 +1,404 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Hemidactylus platyurus",
+  "slug": "hemidactylus-platyurus",
+  "common_names": {
+    "en": "flat-tailed house gecko"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Reptilia",
+    "order": "Squamata",
+    "family": "Gekkonidae",
+    "genus": "Hemidactylus",
+    "authority": "(Schneider, 1797)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 5816059,
+    "inat_taxon_id": 33376,
+    "wikidata": "Q2573099",
+    "ncbi_taxon_id": 498596
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "IN",
+      "TH",
+      "MY",
+      "SG",
+      "ID",
+      "PH",
+      "VN",
+      "LA",
+      "KH",
+      "MM",
+      "CN",
+      "TW",
+      "LK",
+      "BD",
+      "NP"
+    ],
+    "introduced": [
+      "US"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk",
+      "Climb"
+    ],
+    "thermoregulation": "Ectotherm",
+    "skin": "Scales",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "None",
+    "perching": false,
+    "size_class": "Tiny",
+    "mass_kg": 0.00392,
+    "length_m": 0.056,
+    "shoulder_height_m": 0.012,
+    "lifespan_y": 5,
+    "diet": {
+      "invertebrate": 1.0
+    },
+    "social": {
+      "structure": "Solitary",
+      "group_size": [
+        1,
+        1
+      ]
+    },
+    "activity_pattern": "Nocturnal",
+    "defense": "Hide",
+    "wariness": 0.3
+  },
+  "habitat": {
+    "use": {
+      "arboreal": 0.5,
+      "ground": 0.5
+    },
+    "shelter_tag": "cavity",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 1.0
+      },
+      {
+        "tag": "cavity",
+        "kind": "Shelter",
+        "weight": 1.0
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.6
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Exploiter",
+      "uses_gardens": true,
+      "light_max": 1.0,
+      "notes": "A house gecko that hunts insects on walls and ceilings, often around artificial lights; flattened body and skin flaps let it shelter in narrow crevices."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "03-01",
+        "end": "10-31",
+        "note": "Lays small clutches of hard-shelled eggs through the warm season, often in a shared crevice."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg",
+        "duration_days": 60,
+        "scale": 0.3
+      },
+      {
+        "stage": "Juvenile",
+        "duration_days": 120,
+        "scale": 0.5
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "TH-50",
+        "monthly": [
+          1.0,
+          0.27,
+          0.24,
+          0.27,
+          0.18,
+          0.19,
+          0.47,
+          0.37,
+          0.79,
+          0.2,
+          0.27,
+          0.89
+        ],
+        "method": "mean(inat_raw, gbif_raw)",
+        "observations": 1328,
+        "sources": [
+          "inat-activity-th-50",
+          "gbif-activity-th-50"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 13320,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=33376&place_id=13320&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": null,
+            "total": 976,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "C",
+            "area": [
+              "gadmGid",
+              "THA.10_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5816059&gadmGid=THA.10_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "baseline_url": null,
+            "total": 352,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-ground-forager-v1",
+    "params": {
+      "flee_m": 2,
+      "calm_m": 4,
+      "food_tag": "invertebrate",
+      "food_m": 8,
+      "flee_gait": "walk",
+      "forage_gait": "walk",
+      "rest_sun_lo_deg": 10,
+      "rest_sun_hi_deg": 90
+    }
+  },
+  "vocalizations": [],
+  "look": {
+    "body_plan": "quadruped",
+    "proportions": {
+      "torso_aspect": 2.4,
+      "leg_length_ratio": 0.3,
+      "head_scale": 0.9,
+      "neck_angle_deg": 15,
+      "tail_ratio": 0.9,
+      "ear_ratio": 0.15,
+      "beak_ratio": 0.5,
+      "girth_ratio": 1.1
+    },
+    "palette": {
+      "body": "#8a8175",
+      "belly": "#d8d2c4",
+      "markings": "#5a544a",
+      "accent": "#6b655a",
+      "eye": "#111111"
+    },
+    "part_colors": {
+      "snout": "belly",
+      "tail": "body",
+      "leg_*": "body"
+    },
+    "extra_parts": [
+      {
+        "name": "side_flap",
+        "parent": "body",
+        "offset": [
+          0,
+          -0.2,
+          0.5
+        ],
+        "size": [
+          0.9,
+          0.2,
+          0.3
+        ],
+        "color": "accent",
+        "mirror": true
+      },
+      {
+        "name": "tail_flap",
+        "parent": "tail",
+        "offset": [
+          0,
+          -0.2,
+          0.5
+        ],
+        "size": [
+          0.7,
+          0.2,
+          0.3
+        ],
+        "color": "accent",
+        "mirror": true
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/5816059",
+      "title": "GBIF Backbone Taxonomy: Hemidactylus platyurus",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q2573099",
+      "title": "Wikidata: flat-tailed house gecko (Q2573099)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Flat-tailed_house_gecko",
+      "title": "Wikipedia: Flat-tailed house gecko",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Flat-tailed house gecko\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "inat-activity-th-50",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=33376&place_id=13320&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Hemidactylus platyurus in TH-50",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-th-50",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5816059&gadmGid=THA.10_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+      "title": "GBIF occurrence search for Hemidactylus platyurus in TH-50",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High",
+      "note": "GBIF's backbone places Squamata at class rank with no order; the record uses the standard class Reptilia, order Squamata."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "iNaturalist and NCBI ids via Wikidata (P3151, P685)."
+    },
+    "common_names": {
+      "sources": [
+        "wikidata",
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "IUCN Red List category (P141): least concern."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Native countries inferred from the article's range (southeastern and southern Asia); the United States is listed as introduced from the article's Florida records."
+    },
+    "traits": {
+      "sources": [
+        "wikidata",
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Body mass 3.92 g and snout-vent length 56 mm from Wikidata (P2067, P2043); the article's description of the flattened body, skin flaps and insect diet supports the traits. length_m is the sourced snout-vent length because total length with the tail is not stated. lifespan_y and wariness are judgement. size_class derived from mass_kg. shoulder_height_m is judgement."
+    },
+    "habitat": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Patagia and flattened body used for gliding and crevice shelter from the article; arboreal/ground split, shelter tag and weights are judgement."
+    },
+    "seasonal": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Active year round; the article gives no breeding season, so the breeding window and life-stage durations are judgement."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Uniform small dorsal granules, a depressed body and dermal expansions along the sides and tail from the article's description; the grey-brown palette, proportions and part placement are authored for the block mesh."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared ground-forager program, set to a nocturnal rest window and a walking gait."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies locale agent",
+      "agent": "opencode"
+    }
+  ]
+}
