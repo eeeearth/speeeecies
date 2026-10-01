@@ -1057,14 +1057,18 @@ cmd_supervise() {
   # supervisor.pid matched it, and the supervisor promptly called stop_agent on
   # itself and signalled its own process group. Nothing stops a name from being
   # reused carelessly, so the sweep also refuses to act on this file.
-  printf '%s\n' "$$" > "$STATE_DIR/supervisor.owner"
+  # Guarded, and fatal by design: the stale-lock reclaim reads this to decide
+  # whether a lock holder is alive, so without it a crashed supervisor's lock can
+  # never be broken. Die with a named reason rather than a raw redirection error.
+  printf '%s\n' "$$" | write_state "$STATE_DIR/supervisor.owner" \
+    || die "cannot record the lock owner in $STATE_DIR/supervisor.owner (state dir full or read-only?)"
   # Only now, having proved exclusivity. Reconciling first meant a second
   # supervisor rewrote the tally on its way to being refused, which is a write
   # by a process that had not yet established it was allowed to write.
   reconcile_provider_counts
   # Outside the loop on purpose: reset per pass and the transition-only
   # reporting below can never fire.
-  local fleet_state=OK prev_state=OK warned_foreign=""
+  local fleet_state=OK prev_state=OK warned_foreign="" foreign_now=""
 
   while :; do
     # fleet_state is recomputed each pass; prev_state alone carries history.
@@ -1105,17 +1109,26 @@ cmd_supervise() {
           # Transition-only, like the STARVED report below. This condition
           # persists until a human removes the directory, so logging it every poll
           # wrote 1440 identical lines a day and buried everything else.
-          if [ "$warned_foreign" != "$wbase" ]; then
-            echo "[$(date -u +%FT%TZ)] WARNING orphan worktree $wbase could not be reclaimed: it is registered to another checkout and will block its slug until removed by hand"
-            warned_foreign="$wbase"
-            fleet_state=BLOCKED_BY_FOREIGN_WORKTREE
-          fi
+          # Recorded whether or not we log it. The state belongs outside the
+          # latch: setting it inside meant the heartbeat said OK on every poll
+          # after the first warning, while the slug was still wedged.
+          foreign_now="$foreign_now $wbase"
+          # Space-delimited and matched with case, so two blockers cannot re-arm
+          # each other -- a single scalar compared for equality logged all six.
+          case " $warned_foreign " in
+            *" $wbase "*) : ;;
+            *) echo "[$(date -u +%FT%TZ)] WARNING orphan worktree $wbase could not be reclaimed: it is registered to another checkout and will block its slug until removed by hand" ;;
+          esac
         fi
       else
         say "orphan worktree $wbase has uncommitted work; leaving it for inspection"
       fi
     done
     git -C "$REPO" worktree prune
+    # The latch is rebuilt from what this pass actually saw. A blocker that
+    # persists stays quiet; one that is removed and later reappears warns again,
+    # because its name is no longer in the list.
+    [ "$foreign_now" != "$warned_foreign" ] && warned_foreign="$foreign_now"
 
     # Orphans. An agent process outliving its metadata is the failure that made
     # the fleet report five members while holding three: the retired one keeps
@@ -1305,6 +1318,11 @@ cmd_supervise() {
     # path got us here. This is the check a future edit cannot quietly bypass.
     if [ "$live" -lt "$FLEET_MIN" ] && [ "$fleet_state" = OK ]; then
       fleet_state=BELOW_FLOOR
+    fi
+    # And never report OK while a known blocker is still wedging a slug. Only
+    # upgrades an otherwise-OK state, so a more urgent one still wins.
+    if [ -n "$foreign_now" ] && [ "$fleet_state" = OK ]; then
+      fleet_state=BLOCKED_BY_FOREIGN_WORKTREE
     fi
     zen_n=$(awk '$1=="zen" {print $2}' "$STATE_DIR/provider_counts" 2>/dev/null | tail -1) || true
     go_n=$(awk '$1=="go" {print $2}' "$STATE_DIR/provider_counts" 2>/dev/null | tail -1) || true

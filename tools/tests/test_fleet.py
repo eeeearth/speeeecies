@@ -6,6 +6,7 @@ from __future__ import annotations
 import os
 import re
 import subprocess
+import tempfile
 import sys
 from pathlib import Path
 import signal
@@ -1844,11 +1845,16 @@ def test_the_supervisor_lock_records_its_owner():
     child that inherited fd 9, so it has to say who holds it."""
     text = FLEET.read_text(encoding="utf-8")
     loop = text.split("cmd_supervise() {", 1)[1]
-    assert '> "$STATE_DIR/supervisor.owner"' in loop, (
+    assert 'write_state "$STATE_DIR/supervisor.owner"' in loop, (
         "the lock must record its owner, or a stale holder is indistinguishable"
     )
-    assert loop.index("flock -n 9") < loop.index('> "$STATE_DIR/supervisor.owner"'), (
+    assert loop.index("flock -n 9") < loop.index('write_state "$STATE_DIR/supervisor.owner"'), (
         "the owner can only be recorded once the lock is actually held"
+    )
+    # Guarded: an unwritable state dir used to abort the supervisor on a raw
+    # redirection error, so the fleet died silently instead of reporting why.
+    assert '|| die "cannot record the lock owner' in loop, (
+        "a failed owner write must be fatal with a named reason, not a bare redirect"
     )
 
 
@@ -1913,7 +1919,7 @@ def test_the_orphan_sweep_can_never_reap_the_supervisor_itself():
     assert '> "$STATE_DIR/supervisor.pid"' not in text, (
         "the owner record must not use the .pid extension the orphan sweep globs"
     )
-    assert '> "$STATE_DIR/supervisor.owner"' in loop, (
+    assert 'write_state "$STATE_DIR/supervisor.owner"' in loop, (
         "the owner record must be written under a name the sweep cannot match"
     )
 
@@ -2263,3 +2269,121 @@ def test_an_unreclaimable_orphan_worktree_is_reported_not_silently_skipped():
     assert "worktree remove --force" not in sweep[warned:], (
         "a foreign worktree must never be deleted automatically"
     )
+
+
+# --- dynamic tests for the foreign-worktree blocker ------------------------------
+# Static assertions missed the state-lie regression entirely: `fleet_state` had
+# been assigned inside the "have I warned yet" branch, so the heartbeat said OK on
+# every poll after the first warning while the slug was still wedged. These drive
+# the real supervisor against a real second checkout.
+
+def _foreign_worktree(other_repo: str, root: str, name: str, branch: str) -> None:
+    subprocess.run(["git", "-C", other_repo, "worktree", "add", "-q",
+                    f"{root}/{name}", "-b", branch], check=True,
+                   stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+
+
+def _scratch_repo() -> str:
+    d = tempfile.mkdtemp()
+    subprocess.run(["git", "init", "-q", d], check=True)
+    Path(d, "f").write_text("x\n", encoding="utf-8")
+    subprocess.run(["git", "-C", d, "add", "-A"], check=True)
+    subprocess.run(["git", "-C", d, "-c", "user.email=a@a", "-c", "user.name=a",
+                    "commit", "-qm", "base"], check=True)
+    return d
+
+
+def _poll(worktree_root: str, state: str, seconds: float = 6.0) -> str:
+    """Run the supervisor for a few polls, then stop it and return what it said.
+
+    `supervise` is a poll loop, so it has to be killed rather than awaited, and
+    `subprocess.run(timeout=...)` discards the output when it fires. Popen plus
+    killpg keeps the several polls of output we are asserting on.
+    """
+    env = dict(os.environ, WORKTREE_ROOT=worktree_root, GH_REPO="jt55401/speeeecies",
+               FLEET_STATE_DIR=state, POLL_SECONDS="2")
+    proc = subprocess.Popen(["bash", str(FLEET), "supervise", "--min", "0", "--max", "0"],
+                            stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+                            text=True, env=env, start_new_session=True)
+    try:
+        out, _ = proc.communicate(timeout=seconds)
+    except subprocess.TimeoutExpired:
+        os.killpg(os.getpgid(proc.pid), signal.SIGKILL)
+        out, _ = proc.communicate()
+    return out or ""
+
+
+@pytest.mark.skipif(
+    os.environ.get("FLEET_SLOW_TESTS") != "1",
+    reason="builds real git worktrees and runs supervisor passes",
+)
+def test_a_foreign_worktree_blocks_the_reported_state_on_every_poll():
+    """The heartbeat said OK on every poll after the first warning, because
+    `fleet_state` was assigned inside the "have I warned yet" branch. The fleet
+    reported healthy while a slug stayed wedged on "worktree path already
+    exists"."""
+    import tempfile as _tf
+    root, other, state = _tf.mkdtemp(), _scratch_repo(), _tf.mkdtemp()
+    try:
+        _foreign_worktree(other, root, "locale-alpha", "alpha")
+        out = _poll(root, state)
+        assert "could not be reclaimed" in out, f"the blocker was not reported: {out!r}"
+        states = re.findall(r"state=([A-Z_]+)", out)
+        polls = [s for s in states if s in ("OK", "BLOCKED_BY_FOREIGN_WORKTREE")]
+        assert polls, f"no poll lines found: {out!r}"
+        assert all(s == "BLOCKED_BY_FOREIGN_WORKTREE" for s in polls), (
+            f"a poll reported {set(polls)} while a foreign worktree was wedging a slug"
+        )
+    finally:
+        for d in (root, other, state):
+            subprocess.run(["rm", "-rf", d], check=False)
+
+
+@pytest.mark.skipif(
+    os.environ.get("FLEET_SLOW_TESTS") != "1",
+    reason="builds real git worktrees and runs supervisor passes",
+)
+def test_two_foreign_worktrees_warn_once_each_and_do_not_re_arm():
+    """A single scalar latch compared for equality logged all six times: alpha
+    was warned, then beta reset the latch, then alpha was no longer 'warned'."""
+    import tempfile as _tf
+    root, other, state = _tf.mkdtemp(), _scratch_repo(), _tf.mkdtemp()
+    try:
+        _foreign_worktree(other, root, "locale-alpha", "alpha")
+        _foreign_worktree(other, root, "locale-beta", "beta")
+        out = _poll(root, state)
+        assert out.count("could not be reclaimed") == 2, (
+            f"expected one warning per blocker, got {out.count('could not be reclaimed')}"
+        )
+        assert "locale-alpha could not" in out and "locale-beta could not" in out
+    finally:
+        for d in (root, other, state):
+            subprocess.run(["rm", "-rf", d], check=False)
+
+
+@pytest.mark.skipif(
+    os.environ.get("FLEET_SLOW_TESTS") != "1",
+    reason="builds real git worktrees and runs supervisor passes",
+)
+def test_a_removed_foreign_worktree_clears_the_blocker_and_the_state():
+    """The latch must be rebuilt from what each pass actually sees: a blocker that
+    is gone stops being reported, and the fleet returns to OK."""
+    import tempfile as _tf
+    root, other, state = _tf.mkdtemp(), _scratch_repo(), _tf.mkdtemp()
+    try:
+        _foreign_worktree(other, root, "locale-alpha", "alpha")
+        assert "could not be reclaimed" in _poll(root, state)
+        subprocess.run(["git", "-C", other, "worktree", "remove", "--force",
+                        f"{root}/locale-alpha"], check=True,
+                       stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        subprocess.run(["git", "-C", other, "worktree", "prune"], check=True)
+        out = _poll(root, state)
+        assert "could not be reclaimed" not in out, (
+            f"a removed worktree is still being reported: {out!r}"
+        )
+        assert "state=BLOCKED_BY_FOREIGN_WORKTREE" not in out, (
+            "the fleet is still reporting blocked after the blocker was removed"
+        )
+    finally:
+        for d in (root, other, state):
+            subprocess.run(["rm", "-rf", d], check=False)
