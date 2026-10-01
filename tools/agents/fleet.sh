@@ -646,9 +646,16 @@ cmd_spawn() {
   # 0 when the launched agent published its pidfile. Bounded, so a slow start
   # cannot stall the refill loop while it waits for an agent that never comes.
   spawn_started() {
-    local slug="$1" i
+    local slug="$1" i p
     for i in $(seq 1 10); do
-      [ -s "$STATE_DIR/$slug.pid" ] && return 0
+      p="$STATE_DIR/$slug.pid"
+      # -f as well as -s: `-s` is TRUE for a directory (it has a nonzero size),
+      # so a directory at the pidfile path satisfied this check and a launch that
+      # never happened was reported as started. Also require a numeric pid, since
+      # anything truncated to digits could come from a partially written file.
+      if [ -f "$p" ] && [ -s "$p" ] && tr -dc '0-9' < "$p" | grep -q '[0-9]'; then
+        return 0
+      fi
       sleep 0.2 9>&-
     done
     return 1
@@ -789,8 +796,11 @@ printf 'workspace=none\nagent=%s\nworktree=%s\nbranch=%s\nissue=%s\nslug=%s\nkin
 # 9>&- closes the lock for this spawn too: the launcher closes it as its first
 # act, but setsid holds it in between.
 # A pidfile left by a previous agent with this slug would satisfy spawn_started and
-# make a launch that never happened look successful.
-rm -f "$STATE_DIR/$slug.pid"
+# make a launch that never happened look successful. rm -rf, not rm -f: a directory
+# at this path is corrupt state in a directory the harness owns, and `rm -f` fails
+# on a directory -- which aborted the spawn here, before the rollback, leaking the
+# worktree this whole mechanism exists to clean up.
+rm -rf "$STATE_DIR/$slug.pid"
 setsid nohup "$launch" 9>&- </dev/null >/dev/null 2>&1 &
 disown 2>/dev/null || true
 
