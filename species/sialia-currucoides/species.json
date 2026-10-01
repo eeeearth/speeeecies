@@ -1,0 +1,593 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Sialia currucoides",
+  "slug": "sialia-currucoides",
+  "common_names": {
+    "en": "mountain bluebird"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Passeriformes",
+    "family": "Turdidae",
+    "genus": "Sialia",
+    "authority": "(Bechstein, 1798)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2490935,
+    "inat_taxon_id": 12936
+  },
+  "conservation": {
+    "iucn": "LC",
+    "notes": "Least Concern. The North American Breeding Bird Survey recorded a decline of about 26% between 1966 and 2014; Partners in Flight estimates a global breeding population of 4.6 million."
+  },
+  "range": {
+    "native": [
+      "US",
+      "CA",
+      "MX"
+    ],
+    "koppen": [
+      "BSk",
+      "Csa",
+      "Csb",
+      "Dfb",
+      "Dfc"
+    ],
+    "elevation_m": [
+      0,
+      3500
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Walk",
+      "Hop",
+      "Fly"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Cavity",
+    "perching": true,
+    "size_class": "Tiny",
+    "mass_kg": 0.0305,
+    "mass_range_kg": [
+      0.024,
+      0.037
+    ],
+    "length_m": 0.1675,
+    "wingspan_m": 0.32,
+    "lifespan_y": 8,
+    "diet": {
+      "invertebrate": 0.7,
+      "fruit": 0.25,
+      "seed": 0.05
+    },
+    "social": {
+      "structure": "Pair",
+      "group_size": [
+        1,
+        2
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.35
+  },
+  "habitat": {
+    "use": {
+      "arboreal": 0.55,
+      "ground": 0.4,
+      "aerial": 0.05
+    },
+    "shelter_tag": "cavity",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.7
+      },
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.25,
+        "months": [
+          9,
+          10,
+          11,
+          12,
+          1,
+          2
+        ]
+      },
+      {
+        "tag": "berry",
+        "kind": "Herbivory",
+        "weight": 0.25,
+        "months": [
+          9,
+          10,
+          11,
+          12,
+          1,
+          2
+        ]
+      },
+      {
+        "tag": "cavity",
+        "kind": "Nesting",
+        "weight": 1.0
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.9
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "light_max": 0.4,
+      "flight_distance_m": 30,
+      "notes": "Nests in pre-existing cavities and nest boxes and does not abandon a nest when human activity is detected close by, so nest boxes in open country with scattered trees raise its local numbers. It is described as fairly common but sensitive to noise from natural gas wells near nest sites."
+    }
+  },
+  "seasonal": {
+    "strategy": "Migration",
+    "phases": [
+      {
+        "name": "absent",
+        "start": "09-01",
+        "end": "04-15",
+        "region": "US",
+        "note": "Winters in Mexico; the lead gives a breeding population of 4.6 million of which 31% winter in Mexico."
+      },
+      {
+        "name": "nesting",
+        "start": "04-15",
+        "end": "07-15",
+        "region": "US",
+        "note": "Clutch of four or five pale blue eggs; about two weeks of incubation and about 21 days in the nest before the young leave."
+      },
+      {
+        "name": "young",
+        "start": "05-15",
+        "end": "08-15",
+        "region": "US",
+        "note": "Fledglings take up to two months to become independent."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg",
+        "duration_days": 14
+      },
+      {
+        "stage": "Juvenile",
+        "duration_days": 81,
+        "scale": 0.85
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US-OR",
+        "monthly": [
+          0.14,
+          0.13,
+          0.6,
+          0.6,
+          0.64,
+          1.0,
+          0.79,
+          0.68,
+          0.55,
+          0.41,
+          0.12,
+          0.13
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 36053,
+        "sources": [
+          "inat-activity-us-or",
+          "gbif-activity-us-or"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 10,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=12936&place_id=10&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=10&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 1047,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.38_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2490935&gadmGid=USA.38_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.38_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 35006,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "bt-perching-songbird-v1",
+    "params": {
+      "flee_m": 8,
+      "food_tag": "invertebrate",
+      "song": "chur_chur",
+      "alarm": "few",
+      "song_cooldown_s": 10,
+      "nest_m1": 4,
+      "nest_m2": 7
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "few",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [],
+      "cooldown_s": 6,
+      "loudness": "Quiet",
+      "description": "A thin 'few', the species' ordinary contact call, heard year-round."
+    },
+    {
+      "call_id": "chur_chur",
+      "context": "Song",
+      "season_months": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "time_windows": [
+        "DawnChorus",
+        "Day",
+        "Dusk"
+      ],
+      "cooldown_s": 10,
+      "loudness": "Moderate",
+      "description": "A warbled, high 'chur chur', delivered from a song perch."
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.7,
+      "leg_length_ratio": 0.3,
+      "head_scale": 0.8,
+      "neck_angle_deg": 12,
+      "tail_ratio": 0.55,
+      "wing_aspect": 2.8,
+      "beak_ratio": 0.32,
+      "girth_ratio": 0.95
+    },
+    "palette": {
+      "body": "#2f7fc4",
+      "belly": "#d8e6ee",
+      "markings": "#20303c",
+      "accent": "#0f1a22",
+      "eye": "#0b0f14"
+    },
+    "part_colors": {
+      "beak": "accent",
+      "leg_left": "accent",
+      "leg_right": "accent"
+    },
+    "extra_parts": [
+      {
+        "name": "crown_sheen",
+        "parent": "head",
+        "offset": [
+          -0.1,
+          0.3,
+          0
+        ],
+        "size": [
+          0.7,
+          0.28,
+          0.95
+        ],
+        "color": "body"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "hop": {},
+      "fly": {},
+      "perched": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2490935",
+      "title": "GBIF Backbone Taxonomy: Sialia currucoides",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Mountain_bluebird",
+      "title": "Wikipedia: Mountain bluebird",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Mountain bluebird\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "inat-activity-us-or",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=12936&place_id=10&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Sialia currucoides in US-OR",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-or",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2490935&gadmGid=USA.38_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Sialia currucoides in US-OR",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High",
+      "note": "gbif_usage_key is the ACCEPTED key returned by the GBIF species match for Sialia currucoides. inat_taxon_id is the iNaturalist taxon the issue lists. Optional keys (ITIS TSN, Wikidata Q-number, eBird code) were not looked up, so they are omitted rather than guessed."
+    },
+    "common_names": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "en is the article title, 'The mountain bluebird (Sialia currucoides)'. No other-language label was verified against an openly licensed source, so only en is given."
+    },
+    "conservation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "IUCN status and the Breeding Bird Survey decline and Partners in Flight population estimate are quoted from the article's conservation section."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The article describes a migratory small thrush of mountainous districts of western North America that winters in Mexico, so US, CA and MX are given as native (the record covers the whole species' annual range, not one population). koppen and elevation_m are omitted: the article names mountainous districts but gives neither a climate classification nor an elevation figure."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of 'weighs 24-37 g'."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'weighs 24-37 g (0.85-1.31 oz)'."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of '15.5-18 cm'."
+    },
+    "traits.wingspan_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of the article's 'wingspan of 11.0-14.2 in (28-36 cm)'."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "'it can live 6 to 10 years in the wild'; midpoint 8 years."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "'During the summer, the diet of Mountain bluebirds predominately consists of arthropods such as grasshoppers, insect larvae, beetles, spiders, and cicadas; while, in the winter months they eat mostly berries ... and fruit seeds'. The article also states 'Mountain Bluebirds do not eat seeds', so the seed share is small and follows the winter fruit-and-seed statement. Shares are a judgement split, not a measurement."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'Mountain bluebirds are monogamous'; the female builds the nest while the male defends the area."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "'Their call is a thin 'few' while their song is a warbled high 'chur chur'' and the male is described protecting the nest area; all described activity is by day. Judgement: diurnal."
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "'both males and females fiercely protect the nest' against unwelcome visitors; a small bird's response to a distant threat is to drop away from the perch, so Flee is recorded here and Mob is noted in the human_tolerance note instead."
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'Mountain bluebirds nest in pre-existing cavities or in nest boxes'."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'also flying from a perch to catch them'; the species is named as the state bird of Idaho and Nevada and routinely sits on fences and posts."
+    },
+    "traits": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Grouped entries. body_plan Vertebrate, limb_count 2, thermoregulation Endotherm, skin Feathers and respiration Lungs are the standard bird values the article's description of a passerine implies. flight Powered from 'they hover over the ground and fly down to catch insects'. metamorphosis None is the bird life cycle. size_class Tiny is derived from mass_kg (under 0.05 kg). locomotion_modes Walk, Hop and Fly: the article describes birds hovering and flying down onto insects, which is the hover-to-pounce gait of a thrush, and perching-hopping on the ground; Glide is folded into Fly because the schema treats a gliding bird as one flight mode."
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Judgement set low: 'These birds will not abandon a nest if human activity is detected close by or at the nest' shows tolerance of people near a nest, and flight_distance_m 30 m reflects a bird that leaves a perch and re-perches rather than flying off."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored split from the article's account: much time is spent in the air ('hover over the ground and fly down to catch insects', a flycatching aerial strategy), on open ground at short sallies, and perched in the scattered trees it needs for cavities. Judgement, not a sourced fraction."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "The species nests and roosts in cavities; 'cavity' is the matching ResourceTag."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Invertebrate weight follows the summer diet; fruit and berry weights follow the winter diet and are given winter months, since the article separates the two seasons explicitly. cavity weight 1.0 reflects nest dependence on pre-existing cavities and nest boxes; perch weight reflects the sit-and-wait foraging the same sentence describes."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "urban_affinity Adapter and uses_gardens follow 'can become very partial to a nest box' and 'Construction of nest boxes in suitable habitat has also provided a population boost'. light_max 0.4 and flight_distance_m 30 m are authored judgements: the species is described as tolerant of people at the nest but as a bird of open country with scattered trees. The notes sentence also records the reported sensitivity to industrial noise near nest sites."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'The mountain bluebird (Sialia currucoides) is a migratory small thrush'; Partners in Flight is cited for 31% of the population wintering in Mexico."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Breeding-season windows come from 'she will incubate them for about two weeks' and 'The young will usually take about 21 days before they leave the nest'; the absent window is the complement of the stated migration. Exact month boundaries are an authored judgement placed around those dates."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Egg duration is the stated 'about two weeks' of incubation; Juvenile duration is 'up to two months to raise fledglings to a stage of development at which they are able to fend and provide for themselves', plus the 21 days in the nest. scale is authored."
+    },
+    "vocalizations.few": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'Their call is a thin 'few''. Mapped to the schema's Contact context, the closest enum value to a species' ordinary call."
+    },
+    "vocalizations.chur_chur": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'their song is a warbled high 'chur chur''. Months are restricted to the nesting season on the article's evidence; time windows and the cooldown are authored, as no open source gives them. No open source gives frequency bands."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Colours from the article's plumage description: 'Adult males have thin bills and are bright turquoise-blue and somewhat lighter underneath', with 'a white lower belly', black eyes, and adult females duller blue. The record is modelled on the adult male, the more distinctive of the sexes. Proportions and the crown_sheen box are authored."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared perching-songbird program: ground foraging on invertebrates caught by flycatching sallies, a moderate flee distance for a cavity-nesting open-country bird, a nest window matching the April-July nesting season, and call ids matching the few/chur_chur vocalizations above."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies maintainers",
+      "agent": "claude-code"
+    }
+  ]
+}

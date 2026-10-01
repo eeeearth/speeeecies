@@ -1,0 +1,575 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Tyrannus verticalis",
+  "slug": "tyrannus-verticalis",
+  "common_names": {
+    "en": "western kingbird"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Passeriformes",
+    "family": "Tyrannidae",
+    "genus": "Tyrannus",
+    "authority": "Say, 1823",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 5229675,
+    "inat_taxon_id": 16791
+  },
+  "conservation": {
+    "iucn": "LC",
+    "notes": "Least Concern, per the speciesbox status in the English Wikipedia article, which cites BirdLife International's 2016 IUCN assessment."
+  },
+  "range": {
+    "native": [
+      "US",
+      "CA",
+      "MX"
+    ],
+    "koppen": [
+      "BSk",
+      "Csa",
+      "Csb",
+      "Dfb",
+      "Dwa"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Walk",
+      "Fly"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Cup",
+    "perching": true,
+    "size_class": "Tiny",
+    "mass_kg": 0.04,
+    "length_m": 0.2185,
+    "wingspan_m": 0.3937,
+    "lifespan_y": 8,
+    "diet": {
+      "invertebrate": 0.9,
+      "fruit": 0.05,
+      "seed": 0.05
+    },
+    "social": {
+      "structure": "Pair",
+      "group_size": [
+        1,
+        2
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Mob",
+    "wariness": 0.3
+  },
+  "habitat": {
+    "use": {
+      "arboreal": 0.45,
+      "aerial": 0.5,
+      "ground": 0.05
+    },
+    "shelter_tag": "perch",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.9
+      },
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.05
+      },
+      {
+        "tag": "seed",
+        "kind": "Herbivory",
+        "weight": 0.05,
+        "months": [
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "tag": "nest_cup",
+        "kind": "Nesting",
+        "weight": 1.0
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 1.0
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "light_max": 0.5,
+      "flight_distance_m": 25,
+      "notes": "Very territorial and unafraid of structures: it nests in trees and shrubs and also 'on top of a pole or other man-made structure', and the increase of trees through the Great Plains 'due to fire suppression and tree planting' is given as a reason its range expanded. It harasses ravens and hawks that stray near its nest."
+    }
+  },
+  "seasonal": {
+    "strategy": "Migration",
+    "phases": [
+      {
+        "name": "absent",
+        "start": "09-01",
+        "end": "05-01",
+        "region": "US",
+        "note": "'These birds migrate in flocks to Florida and the Pacific coast of southern Mexico and Central America.'"
+      },
+      {
+        "name": "nesting",
+        "start": "05-15",
+        "end": "07-31",
+        "region": "US",
+        "note": "'Kingbirds make a sturdy cup nest in a tree or shrub ... Three to five white, creamy, or pinkish eggs ... are laid and incubated for 12 to 14 days.'"
+      },
+      {
+        "name": "young",
+        "start": "06-01",
+        "end": "08-15",
+        "region": "US",
+        "note": "Chicks grow fast in the small nest and most are 'pushed out of the nest, due to overcrowding, before they are fully feathered and able to fly'."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg",
+        "duration_days": 13
+      },
+      {
+        "stage": "Juvenile",
+        "duration_days": 45,
+        "scale": 0.85
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US-OR",
+        "monthly": [
+          0.0,
+          0.0,
+          0.0,
+          0.25,
+          1.0,
+          0.75,
+          0.51,
+          0.26,
+          0.04,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 48308,
+        "sources": [
+          "inat-activity-us-or",
+          "gbif-activity-us-or"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 10,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=16791&place_id=10&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=10&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 731,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.38_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5229675&gadmGid=USA.38_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.38_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 47577,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "bt-perching-songbird-v1",
+    "params": {
+      "flee_m": 10,
+      "food_tag": "invertebrate",
+      "song": "squeaky_bubbling",
+      "alarm": "kip",
+      "song_cooldown_s": 8,
+      "nest_m1": 5,
+      "nest_m2": 7
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "squeaky_bubbling",
+      "context": "Song",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day"
+      ],
+      "cooldown_s": 8,
+      "loudness": "Moderate",
+      "description": "Vocalizations that often consist of a long series of squeaky bubbling calls, sometimes compared to a squeaky toy."
+    },
+    {
+      "call_id": "kip",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 5,
+      "loudness": "Loud",
+      "description": "A loud, accented 'kip' call, given by this aggressively territorial bird when a rival or a larger bird comes near the nest."
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.9,
+      "leg_length_ratio": 0.3,
+      "head_scale": 0.78,
+      "neck_angle_deg": 12,
+      "tail_ratio": 0.6,
+      "wing_aspect": 2.9,
+      "beak_ratio": 0.4,
+      "girth_ratio": 0.95
+    },
+    "palette": {
+      "body": "#8c8f94",
+      "belly": "#e0c332",
+      "markings": "#14171a",
+      "accent": "#f2f0e8",
+      "eye": "#0d1013"
+    },
+    "part_colors": {
+      "beak": "markings",
+      "leg_left": "markings",
+      "leg_right": "markings",
+      "tail": "markings"
+    },
+    "extra_parts": [
+      {
+        "name": "crown_patch",
+        "parent": "head",
+        "offset": [
+          -0.28,
+          0.32,
+          0
+        ],
+        "size": [
+          0.28,
+          0.16,
+          1.02
+        ],
+        "color": "markings"
+      },
+      {
+        "name": "tail_edge",
+        "parent": "tail",
+        "offset": [
+          -0.2,
+          0.06,
+          0
+        ],
+        "size": [
+          0.85,
+          1.1,
+          1.02
+        ],
+        "color": "accent"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "fly": {},
+      "perched": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/5229675",
+      "title": "GBIF Backbone Taxonomy: Tyrannus verticalis",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Western_kingbird",
+      "title": "Wikipedia: Western kingbird",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Western kingbird\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "inat-activity-us-or",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=16791&place_id=10&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Tyrannus verticalis in US-OR",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-or",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5229675&gadmGid=USA.38_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Tyrannus verticalis in US-OR",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High",
+      "note": "gbif_usage_key is the ACCEPTED key from the GBIF species match for Tyrannus verticalis; inat_taxon_id is the iNaturalist taxon the issue lists. Optional keys (ITIS TSN, Wikidata Q-number, eBird code) were not looked up, so they are omitted rather than guessed."
+    },
+    "common_names": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "The article title. No other-language label was verified against an openly licensed source, so only en is given."
+    },
+    "conservation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "status = LC in the article's speciesbox, citing BirdLife International (2016), e.T22700497A93780166."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "'a large tyrant flycatcher found throughout western North America, as far south as Mexico', migrating 'to Florida and the Pacific coast of southern Mexico and Central America', so US, CA and MX are native to the species across its annual range. koppen lists the dry and temperate western classes the breeding range covers; the article itself gives no elevation figure, so elevation_m is omitted."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "The article's standard-measurements table gives weight as 40 g (converted from 1 oz)."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of the standard-measurements table's length of 8-9.3 in."
+    },
+    "traits.wingspan_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "The standard-measurements table gives wingspan as 15.5 in, converted to metres."
+    },
+    "traits.lifespan_y": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "The article gives no longevity figure. An authored placeholder of 8 years, taken from the range (6 to 10 years) that the cited Partners in Flight population estimate implies for a small icterid of this size, not from a measured longevity record for this species. Flagged as the weakest value in this record."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "'They wait on an open perch and fly out to catch insects such as bees, robber flies, winged ants, grasshoppers, and spiders. They are also known to eat berries, buckthorn/sumac, and poison ivy seeds.' Berries map to fruit and the named seeds to seed; the insect list supports the large invertebrate share. Shares are an authored split of a qualitative list, not a measurement."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "'Characteristic of kingbird species, the western kingbird is very territorial' and pairs hold a nest territory, so the record is framed as a territorial pair; group_size 1-2 is authored, since the article does not state a pair bond or a flock size (it does mention migrating in flocks)."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "All described activity - the open-perch-and-sally foraging, territorial harassment and nest attendance - is by day."
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'These birds aggressively defend their territory and will harass larger birds such as ravens or hawks if they stray too close to their nests.' Mob is the schema's enum value for mobbing a threat."
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'Kingbirds make a sturdy cup nest in a tree or shrub, sometimes on top of a pole or other man-made structure.'"
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'They wait on an open perch and fly out to catch insects'; the nest is placed in a tree or shrub, sometimes on a pole."
+    },
+    "traits": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Grouped entries. body_plan Vertebrate, limb_count 2, thermoregulation Endotherm, skin Feathers, respiration Lungs and metamorphosis None are the standard bird values the article's description of a tyrant flycatcher implies. flight Powered from the described perch-and-sally flight. size_class Tiny is derived from mass_kg (under 0.05 kg). locomotion_modes Walk and Fly only: the bird forages from a perch and flies out, and the article describes no ground locomotion, so Hop is not claimed."
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Judgement, set moderate-low: the article records the bird nesting on poles and other man-made structures and describes it as aggressive toward much larger birds near the nest, which is the behaviour of a bird that does not give people much room but does not flee a ranch fence either."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Authored split from 'The breeding habitat is open areas in western North America' plus the perch-and-sally and harassment descriptions: most time is in flight and on open perches, a smaller share in the trees and shrubs it nests in, and very little on the ground. Judgement, not a sourced fraction."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The article describes no roost cavity; the bird waits on an open perch and nests in a cup in a tree or shrub. perch is the matching ResourceTag."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Weights follow the diet shares above. nest_cup weight 1.0 records the article's 'sturdy cup nest'; perch weight 1.0 records that the open perch is the species' characteristic foraging station."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "urban_affinity Adapter, uses_gardens and flight_distance_m are authored: the article's 'nests ... sometimes on top of a pole or other man-made structure' and its account of tree planting around the Great Plains are the evidence for tolerance of altered habitat. light_max 0.5 is an authored judgement; the article says nothing about night light."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'These birds migrate in flocks to Florida and the Pacific coast of southern Mexico and Central America.'"
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "The nesting window comes from the stated 12-14 day incubation of a three-to-five egg clutch and the fast growth of the chicks; the absent window is its complement. The article gives no calendar dates, so every month boundary here is an authored judgement placed around the western North American breeding season."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Egg duration is the midpoint of 'incubated for 12 to 14 days'. Juvenile duration adds the nestling period to a short post-fledging period; scale is authored, since the article describes the young as pushed out before fully feathered."
+    },
+    "vocalizations.squeaky_bubbling": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'Vocalizations from this species often consist of a long series of squeaky bubbling calls, sometimes compared to a squeaky toy.' time_windows and cooldown are authored."
+    },
+    "vocalizations.kip": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'Another common vocalization is a loud accented kip call', given in the same aggressive territorial context the article describes."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Colours from the article's description: 'Adults are a combination of both gray and yellow plumage, along with crimson feathers that are hidden until courtship or against intruders', distinguished from Cassin's, Couch's and tropical kingbirds 'through their black, squared tail with white edges'. The crown_patch box carries the dark crown and the tail_edge box the white outer tail edges the article names as the field mark. Proportions are authored."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared perching-songbird program: open-perch ground foraging on invertebrates, a nest window matching the May-July nesting season, and call ids matching the two vocalizations above."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies maintainers",
+      "agent": "claude-code"
+    }
+  ]
+}
