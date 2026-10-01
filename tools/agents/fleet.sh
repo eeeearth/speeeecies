@@ -309,7 +309,11 @@ stop_signal() {  # pid -> 0. Signals the pid's process group, waits, escalates.
   else
     kill -TERM -- "-$pid" 2>/dev/null || kill -TERM "$pid" 2>/dev/null || return 0
   fi
-  for i in $(seq 1 10); do kill -0 "$pid" 2>/dev/null || break; sleep 1; done
+  # `sleep 9>&-`: children spawned here inherit the lock fd otherwise. An
+  # orphaned poll sleep, reparented to init when the supervisor was killed, kept
+  # holding it, so an immediate restart was refused with "another supervisor
+  # already holds" while no supervisor existed.
+  for i in $(seq 1 10); do kill -0 "$pid" 2>/dev/null || break; sleep 1 9>&-; done
   if kill -0 "$pid" 2>/dev/null; then
     say "  pid $pid ignored SIGTERM; sending SIGKILL to the group"
     if [ -n "$pgid" ] && [ "$pgid" != "$pid" ]; then
@@ -317,7 +321,7 @@ stop_signal() {  # pid -> 0. Signals the pid's process group, waits, escalates.
     else
       kill -KILL -- "-$pid" 2>/dev/null || kill -KILL "$pid" 2>/dev/null
     fi
-    sleep 1
+    sleep 1 9>&-
   fi
   return 0
 }
@@ -642,7 +646,9 @@ LAUNCHER
   chmod +x "$launch"
 
   # Detached, so one fleet member's exit cannot take the supervisor down with it.
-  setsid nohup "$launch" </dev/null >/dev/null 2>&1 &
+  # 9>&- closes the lock for this spawn too: the launcher closes it as its first
+  # act, but setsid holds it in between.
+  setsid nohup "$launch" 9>&- </dev/null >/dev/null 2>&1 &
   disown 2>/dev/null || true
   advance_model
 
@@ -983,7 +989,7 @@ cmd_supervise() {
 
     echo "[$(date -u +%FT%TZ)] fleet=$live (min $FLEET_MIN max $FLEET_MAX) state=$fleet_state next-model=$(next_model)"
     [ "$once" = 1 ] && return 0
-    sleep "$POLL_SECONDS"
+    sleep "$POLL_SECONDS" 9>&-
   done
 }
 

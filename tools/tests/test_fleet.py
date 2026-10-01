@@ -1722,3 +1722,26 @@ def test_the_supervisor_lock_is_taken_before_any_state_is_written():
     assert loop.index("flock -n 9") < loop.index("reconcile_provider_counts"), (
         "exclusivity must be established before the tally is rewritten"
     )
+
+
+def test_no_child_of_the_supervisor_inherits_its_lock_fd():
+    """An orphaned poll sleep, reparented to init after the supervisor was
+    killed, still held the lock, so an immediate restart was refused with
+    "another supervisor already holds" while no supervisor was running. I hit
+    exactly that: zero supervisors, one lock holder, a `sleep` with ppid 1."""
+    text = FLEET.read_text(encoding="utf-8")
+    code = "\n".join(l for l in text.splitlines() if not l.strip().startswith("#"))
+
+    # Every sleep the supervisor runs, and the launcher spawn, must drop the fd.
+    for line in code.splitlines():
+        stripped = line.strip()
+        if stripped.startswith("sleep ") or "setsid nohup" in stripped:
+            assert "9>&-" in stripped, (
+                f"a child spawned here inherits the supervisor's lock fd: {stripped!r}"
+            )
+    assert 'sleep "$POLL_SECONDS" 9>&-' in code, (
+        "the poll sleep outliving the supervisor is the exact orphan observed"
+    )
+    assert 'setsid nohup "$launch" 9>&-' in code, (
+        "setsid holds the lock in between fork and the launcher closing it"
+    )
