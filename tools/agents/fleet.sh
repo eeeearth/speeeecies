@@ -42,6 +42,11 @@ FLEET_MIN=${FLEET_MIN:-3}
 FLEET_MAX=${FLEET_MAX:-5}
 POLL_SECONDS=${POLL_SECONDS:-60}
 FLEET_MAX_ATTEMPTS=${FLEET_MAX_ATTEMPTS:-3}
+# A locale is one manifest plus 8-12 species records and a flora catalog, so
+# it exhausts an agent's budget far more often than a single species does.
+# Retiring a locale after three tries was throwing away unfinished work that a
+# fourth would have finished; four locales have now burned all three.
+FLEET_MAX_ATTEMPTS_LOCALE=${FLEET_MAX_ATTEMPTS_LOCALE:-5}
 BRANCH_PREFIX=${BRANCH_PREFIX:-$(gh api user -q .login 2>/dev/null || echo contributor)}
 BRIEF_SPECIES=${BRIEF_SPECIES:-$SCRIPT_DIR/brief-species.md}
 BRIEF_LOCALE=${BRIEF_LOCALE:-$SCRIPT_DIR/brief-locale.md}
@@ -567,10 +572,12 @@ cmd_supervise() {
              done | paste -sd' ' -)
       if [ -f "$STATE_DIR/queue.tsv" ]; then
         pick=$(printf '%s\n' "$pick" | awk -F'\t' -v q="$STATE_DIR/queue.tsv" \
-          -v max="$FLEET_MAX_ATTEMPTS" -v busy="$busy" '
+          -v max="$FLEET_MAX_ATTEMPTS" -v maxloc="$FLEET_MAX_ATTEMPTS_LOCALE" -v busy="$busy" '
           BEGIN { k = split(busy, b, " "); for (i = 1; i <= k; i++) if (b[i] != "") live[b[i]] = 1 }
           FILENAME == q { if ($3 != "") n[$2 "/" $3]++; next }
-          { if ($2 == "" || $3 == "") next; key = $3 "/" $2; if (key in live) next; if ((key in n) && n[key] >= max) next; print }
+          { if ($2 == "" || $3 == "") next; key = $3 "/" $2; if (key in live) next;
+            lim = ($3 == "locale") ? maxloc : max;
+            if ((key in n) && n[key] >= lim) next; print }
         ' "$STATE_DIR/queue.tsv" -)
       fi
       row_pick=$(printf '%s\n' "$pick" | head -1)

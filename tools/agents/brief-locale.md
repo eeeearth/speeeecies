@@ -166,6 +166,11 @@ uv run tools/validate.py --self-check
 Both must pass. Fix errors and rerun until they do not. Warnings are allowed but
 justify them in the PR.
 
+When you put the report in the pull request body, paste what the command
+**printed**. Do not write `$(cat report.md)` or any other shell substitution into
+the body — that reaches the reviewer as literal text, which is what happened in
+PR #118. If you redirected to a file, read it and paste the contents.
+
 ### 8. Preview
 
 ```

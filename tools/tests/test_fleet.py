@@ -217,6 +217,31 @@ def test_a_github_outage_is_not_reported_as_no_work():
 
 
 
+def test_locale_gets_a_larger_retry_budget_than_a_species():
+    """A locale is one manifest plus 8-12 species records and a flora catalog, so
+    it exhausts an agent's budget far more often. Four locales burned all three
+    attempts and were retired with the work unfinished."""
+    text = FLEET.read_text(encoding="utf-8")
+    assert "FLEET_MAX_ATTEMPTS_LOCALE" in text, "no kind-specific retry budget"
+    m = re.search(r"FLEET_MAX_ATTEMPTS_LOCALE=\$\{FLEET_MAX_ATTEMPTS_LOCALE:-(\d+)\}", text)
+    assert m, "FLEET_MAX_ATTEMPTS_LOCALE has no default"
+    assert int(m.group(1)) > 3, "locale budget is not larger than the species budget"
+    assert 'lim = ($3 == "locale") ? maxloc : max' in text, (
+        "the filter must pick the budget by kind, not apply one cap to both"
+    )
+
+
+def test_briefs_forbid_pasting_a_shell_substitution_into_the_pr_body():
+    """PR #118 shipped a literal `$(cat report.md)` in its body, which reaches the
+    reviewer as text rather than as the report."""
+    for brief in (BRIEF, BRIEF_LOCALE):
+        low = " ".join(brief.read_text(encoding="utf-8").lower().split())
+        assert "$(cat report.md)" in low, f"{brief.name} does not name the trap"
+        assert "literal text" in low, (
+            f"{brief.name} must say the substitution arrives as literal text"
+        )
+
+
 def test_a_refused_spawn_cannot_leave_the_fleet_reporting_ok():
     """`( cmd_spawn ... ) || break` ended the refill pass without touching the
     state, so a refused spawn left `live=0` and `state=OK` — the fleet claiming

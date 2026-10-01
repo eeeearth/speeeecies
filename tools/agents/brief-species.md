@@ -197,6 +197,12 @@ Work through these in order. Do not skip ahead to opening the PR.
    Warnings are acceptable, but understand each one and justify it in the PR.
    Errors are not acceptable — fix them and rerun until the error count is zero.
 
+   When you put the report in the pull request body, paste what the command
+   **printed**. Do not write `$(cat report.md)` or any other shell substitution
+   into the body — that reaches the reviewer as literal text, which is what
+   happened in PR #118. If you redirected to a file, read it and paste the
+   contents.
+
 5. **Run the repo's own gates too**, because CI runs them on every PR:
 
    ```
