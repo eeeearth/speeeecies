@@ -1,0 +1,617 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Apalis thoracica",
+  "slug": "apalis-thoracica",
+  "common_names": {
+    "en": "Bar-throated apalis"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Passeriformes",
+    "family": "Cisticolidae",
+    "genus": "Apalis",
+    "authority": "(Shaw, 1811)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2492723,
+    "inat_taxon_id": 7742,
+    "wikidata": "Q2858123"
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "ZA"
+    ],
+    "koppen": [
+      "Csb",
+      "Cwb",
+      "Cfa"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Hop",
+      "Fly"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Cup",
+    "perching": true,
+    "size_class": "Tiny",
+    "mass_kg": 0.01108,
+    "mass_range_kg": [
+      0.009,
+      0.013
+    ],
+    "length_m": 0.12,
+    "wingspan_m": 0.102,
+    "lifespan_y": 5,
+    "diet": {
+      "invertebrate": 1.0
+    },
+    "senses": {
+      "vision_color": true,
+      "olfaction": "Low",
+      "hearing": "Med"
+    },
+    "social": {
+      "structure": "Pair",
+      "group_size": [
+        1,
+        2
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.35
+  },
+  "habitat": {
+    "use": {
+      "arboreal": 0.85,
+      "ground": 0.15
+    },
+    "shelter_tag": "shrub_thicket",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 1.0
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.8
+      },
+      {
+        "tag": "shrub_thicket",
+        "kind": "Shelter",
+        "weight": 0.8
+      },
+      {
+        "tag": "nest_cup",
+        "kind": "Nesting",
+        "weight": 1.0
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "light_max": 0.7,
+      "notes": "A bird of forest and scrub, and in the Cape a familiar voice in suburban gardens and mountain suburbs where dense cover survives."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "08-01",
+        "end": "01-31",
+        "note": "Breeding season lasts from August to January; three bluish-white eggs with reddish-brown spots are laid in an oval, purse-shaped nest of plant material."
+      },
+      {
+        "name": "territorial",
+        "start": "02-01",
+        "end": "07-31",
+        "note": "Pairs hold territory through the non-breeding months and duet year-round."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg",
+        "requires_tag": "nest_cup"
+      },
+      {
+        "stage": "Juvenile",
+        "duration_days": 45,
+        "scale": 0.85
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "ZA-WC",
+        "monthly": [
+          0.75,
+          0.81,
+          0.78,
+          0.75,
+          0.75,
+          0.86,
+          0.9,
+          0.91,
+          1.0,
+          0.98,
+          0.93,
+          0.88
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 39926,
+        "sources": [
+          "inat-activity-za-wc",
+          "gbif-activity-za-wc"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 6987,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=7742&place_id=6987&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=6987&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 883,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "ZAF.9_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2492723&gadmGid=ZAF.9_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=ZAF.9_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 39043,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "bt-perching-songbird-v1",
+    "params": {
+      "flee_m": 5,
+      "food_tag": "invertebrate",
+      "song": "song",
+      "alarm": "song",
+      "song_cooldown_s": 8,
+      "nest_m1": 8,
+      "nest_m2": 1
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "song",
+      "context": "Song",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day",
+        "Dusk"
+      ],
+      "cooldown_s": 8,
+      "loudness": "Loud",
+      "description": "A duetting song given by pairs, the female's call pitched higher than the male's; it is a persistent, far-carrying sound in wooded cover."
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.35,
+      "leg_length_ratio": 0.45,
+      "head_scale": 0.7,
+      "neck_angle_deg": 10,
+      "tail_ratio": 1.0,
+      "wing_aspect": 2.3,
+      "beak_ratio": 0.62,
+      "girth_ratio": 0.85
+    },
+    "palette": {
+      "body": "#8d8f7a",
+      "belly": "#e6e3d6",
+      "markings": "#1c1c1c",
+      "accent": "#e0d060",
+      "eye": "#c9b83c"
+    },
+    "part_colors": {
+      "beak": "markings",
+      "breast": "belly"
+    },
+    "extra_parts": [
+      {
+        "name": "breast_band",
+        "parent": "breast",
+        "offset": [
+          0,
+          0.24,
+          0.0
+        ],
+        "size": [
+          0.34,
+          0.2,
+          1.06
+        ],
+        "color": "markings"
+      },
+      {
+        "name": "tail_flash",
+        "parent": "tail",
+        "offset": [
+          -0.2,
+          0.0,
+          0.0
+        ],
+        "size": [
+          0.5,
+          0.5,
+          1.18
+        ],
+        "color": "belly"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "hop": {},
+      "fly": {},
+      "glide": {},
+      "perched": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2492723",
+      "title": "GBIF Backbone Taxonomy: Apalis thoracica",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q2858123",
+      "title": "Wikidata: Bar-throated apalis (Q2858123)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Bar-throated_apalis",
+      "title": "Wikipedia: Bar-throated apalis",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Bar-throated apalis\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "avonet",
+      "url": "https://doi.org/10.6084/m9.figshare.16586228",
+      "title": "AVONET: morphological, ecological and geographical data for all birds",
+      "license": "CC-BY-4.0",
+      "kind": "dataset",
+      "accessed": "2026-10-01",
+      "attribution": "Tobias, J. A. et al. (2022) AVONET. Ecology Letters 25:581-597",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "inat-activity-za-wc",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=7742&place_id=6987&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Apalis thoracica in ZA-WC",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-za-wc",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2492723&gadmGid=ZAF.9_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Apalis thoracica in ZA-WC",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "GBIF usageKey 2492723 from the species/match endpoint and iNaturalist taxon 7742 from the taxa endpoint; the Wikidata QID is the one the English article's taxobox links to."
+    },
+    "conservation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "The species article's taxobox records IUCN category Least Concern, credited there to BirdLife International."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The article describes a range 'from southern and eastern parts of South Africa north as far as the Chyulu Hills in Kenya', but adds that several of the northern populations are restricted to isolated mountain ranges and are treated as separate species, including the Namuli apalis in Mozambique, the yellow-throated apalis of Malawi and the Taita apalis of Kenya. Rather than assign countries the source itself says may belong to split species, only ZA is recorded. Koppen classes cover the winter-rainfall Cape and the wetter east."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "A small perching passerine that moves through vegetation and flies between perches; recorded from that description rather than stated as gaits."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'The oval, purse-shaped nest is made mainly of plant material', holding three eggs."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia",
+        "avonet"
+      ],
+      "confidence": "High",
+      "note": "An insessorial perching passerine that forages amongst vegetation."
+    },
+    "traits.size_class": {
+      "sources": [
+        "avonet"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "avonet"
+      ],
+      "confidence": "High",
+      "note": "AVONET Mass 11.08 g for Apalis thoracica, sourced by AVONET to Dunning."
+    },
+    "traits.mass_range_kg": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored bracket of 9-13 g around the AVONET mean. No sourced range for this species was found; treat as an estimate."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of 11-13 cm."
+    },
+    "traits.wingspan_m": {
+      "sources": [
+        "avonet"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Twice the AVONET Wing.Length of 51.1 mm, rounded to 0.102 m. AVONET does not give a wingspan directly."
+    },
+    "traits.lifespan_y": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Honest gap. Neither the species article, Wikidata nor GBIF gives a longevity figure for this species, and no openly licensed source with one was found. 5 years is an authored placeholder for a small passerine; it is not a sourced value."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "'This species forages for caterpillars and other insects amongst vegetation' is the only food the article records, so invertebrate is set to 1.0 rather than padding the diet with items the source does not mention."
+    },
+    "traits.senses": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored: diurnal passerine with a pale eye, suggesting a conspicuous light iris; coloured vision and modest olfaction are assumed."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "'Pairs sing a duetting song', and the species joins mixed-species feeding flocks; the pair structure is recorded because the duet is a pair behaviour, and the flocking is captured in habitat.use."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Recorded as diurnal: an active daytime bird that forages amongst vegetation, with no nocturnal behaviour described."
+    },
+    "traits.defense": {
+      "sources": [],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Authored: withdraws into cover."
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement from a bird of forest and scrub that keeps to dense cover, so somewhat warier than an open-garden feeder."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia",
+        "avonet"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "AVONET classifies the habitat as Forest with an insessorial lifestyle; the article says forest and scrub. The 0.85 arboreal / 0.15 ground split is authored."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored from the 'forest and scrub' habitat: rests in dense vegetation."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "The invertebrate tag follows 'forages for caterpillars and other insects'; perch and shrub_thicket follow the forest and scrub habitat, and the nest follows the nest description."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The article does not mention gardens directly. Adapter and uses_gardens are authored, on the basis of a forest-and-scrub insectivore that is well known in suburban Cape gardens and mountain suburbs where woody cover is planted; light_max is authored."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The article describes no migration or dormancy, and the breeding season spans August to January, so ActiveYearRound is recorded by inference from the absence of any stated movement."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'The breeding season lasts from August to January' is stated; the non-breeding window and its 'territorial' label are authored."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The egg stage and its three bluish-white, reddish-brown-spotted eggs come from the article. The 45-day juvenile duration and 0.85 scale are authored; the source gives no incubation or nestling period."
+    },
+    "vocalizations.song": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'Pairs sing a duetting song with the female's call being higher-pitched than that of the male.'"
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Upperparts grey or green depending on subspecies, underparts white or pale yellow, with a narrow black band across the breast, white outer tail-feathers, a pale eye and a fairly long slender slightly curved black bill; juveniles have buffer underparts and may lack a complete breast band. Proportions, including the long tail, are authored."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared perching-songbird program: an insect-gleaning bird of forest and scrub that perches to forage, pairs and duets, and suspends a purse-shaped cup nest between August and January. The program wants both a song and an alarm call, and the source documents only the duetting song, so the same documented call serves both contexts."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies maintainers",
+      "agent": "opencode"
+    }
+  ]
+}
