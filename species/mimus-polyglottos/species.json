@@ -1,0 +1,705 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Mimus polyglottos",
+  "slug": "mimus-polyglottos",
+  "common_names": {
+    "en": "Northern mockingbird",
+    "fr": "Moqueur du Nord",
+    "es": "Mimus northern"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Passeriformes",
+    "family": "Mimidae",
+    "genus": "Mimus",
+    "authority": "(Linnaeus, 1758)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 5231677,
+    "inat_taxon_id": 14886,
+    "itis_tsn": 178620,
+    "wikidata": "Q829683"
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "CA",
+      "US",
+      "MX",
+      "GT",
+      "CU",
+      "JM",
+      "HT",
+      "DO",
+      "BS"
+    ],
+    "introduced": [
+      "VI"
+    ],
+    "koppen": [
+      "Cfa",
+      "Cfb",
+      "Csa",
+      "BSh",
+      "BSk",
+      "Dfa"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Hop",
+      "Walk",
+      "Fly"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Cup",
+    "perching": true,
+    "size_class": "Tiny",
+    "mass_kg": 0.049,
+    "mass_range_kg": [
+      0.04,
+      0.058
+    ],
+    "length_m": 0.2425,
+    "wingspan_m": 0.345,
+    "lifespan_y": 8.0,
+    "diet": {
+      "invertebrate": 0.4,
+      "fruit": 0.45,
+      "seed": 0.1,
+      "vertebrate": 0.05
+    },
+    "social": {
+      "structure": "Pair",
+      "group_size": [
+        2,
+        6
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Mob",
+    "wariness": 0.05
+  },
+  "habitat": {
+    "use": {
+      "arboreal": 0.5,
+      "ground": 0.5
+    },
+    "shelter_tag": "shrub_thicket",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.4
+      },
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.35
+      },
+      {
+        "tag": "berry",
+        "kind": "Herbivory",
+        "weight": 0.1
+      },
+      {
+        "tag": "seed",
+        "kind": "Herbivory",
+        "weight": 0.1
+      },
+      {
+        "tag": "small_vertebrate",
+        "kind": "Predation",
+        "weight": 0.05
+      },
+      {
+        "tag": "shrub_thicket",
+        "kind": "Nesting",
+        "weight": 1.0
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.8
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Exploiter",
+      "uses_gardens": true,
+      "light_max": 0.9,
+      "flight_distance_m": 8.0,
+      "road_mortality": "Medium",
+      "notes": "Common in urbanised areas, frequent in parks and gardens, and it recognises individual people: studies found it recalls which human threatened its nest and retreats further from high-threat individuals."
+    }
+  },
+  "seasonal": {
+    "strategy": "PartialMigration",
+    "winter_fraction": 0.8,
+    "phases": [
+      {
+        "name": "territorial",
+        "start": "02-15",
+        "end": "03-31",
+        "note": "Judgement window: 'The males arrive before the beginning of the season to establish their territories' and contest edges with a boundary dance before the spring and early-summer breeding season."
+      },
+      {
+        "name": "breeding",
+        "start": "04-01",
+        "end": "08-15",
+        "note": "Judgement window around 'The breeding season occurs in the spring and early summer' and 'about two to four broods a year', with the male singing hardest at its start to attract females."
+      },
+      {
+        "name": "flocking",
+        "start": "08-16",
+        "end": "02-14",
+        "note": "Judgement window: post-breeding dispersal and winter, when 'birds that live in the northern portion of its range often move south during the winter season' and the diet 'takes a drastic shift to fruits during the fall and winter'."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg"
+      },
+      {
+        "stage": "Juvenile",
+        "duration_days": 25,
+        "scale": 0.8
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US-AR",
+        "monthly": [
+          0.72,
+          0.84,
+          0.89,
+          0.79,
+          0.68,
+          0.9,
+          0.97,
+          0.72,
+          0.7,
+          1.0,
+          0.79,
+          0.77
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 113610,
+        "sources": [
+          "inat-activity-us-ar",
+          "gbif-activity-us-ar"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 36,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=14886&place_id=36&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=36&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 1427,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.4_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5231677&gadmGid=USA.4_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.4_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 112183,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "bt-perching-songbird-v1",
+    "params": {
+      "flee_m": 8,
+      "food_tag": "fruit",
+      "song": "song",
+      "alarm": "call",
+      "song_cooldown_s": 6,
+      "nest_m1": 3,
+      "nest_m2": 8
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "song",
+      "context": "Song",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day",
+        "Dusk",
+        "Night"
+      ],
+      "cooldown_s": 6,
+      "loudness": "Loud",
+      "description": "A long repertoire of imitative phrases, the species' best-known feature: it mimics bird calls and other sounds 'including artificial and electronic noises', sings from a high perch to carry further, and sings longer and in more directions when unmated."
+    },
+    {
+      "call_id": "call",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day",
+        "Dusk",
+        "Night"
+      ],
+      "cooldown_s": 5,
+      "loudness": "Loud",
+      "description": "Distinct calls given when a nest or the surrounding area is threatened, which neighbouring mockingbirds answer and come in on: 'When a predator is persistent, mockingbirds from neighbouring territories may be summoned by distinct calls to join the defence.'"
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.3,
+      "leg_length_ratio": 0.36,
+      "head_scale": 0.85,
+      "neck_angle_deg": 8,
+      "tail_ratio": 0.95,
+      "wing_aspect": 2.6,
+      "beak_ratio": 0.42,
+      "girth_ratio": 1.1
+    },
+    "palette": {
+      "body": "#8b8a86",
+      "belly": "#d9d7d0",
+      "markings": "#f2f0e8",
+      "accent": "#2b2723",
+      "eye": "#141414"
+    },
+    "part_colors": {
+      "head": "body",
+      "beak": "accent"
+    },
+    "extra_parts": [
+      {
+        "name": "wing_bar",
+        "parent": "wing_left",
+        "offset": [
+          0.15,
+          0.05,
+          0.0
+        ],
+        "size": [
+          0.7,
+          0.12,
+          0.7
+        ],
+        "color": "markings",
+        "mirror": true
+      },
+      {
+        "name": "tail_flash",
+        "parent": "tail",
+        "offset": [
+          0.0,
+          0.0,
+          0.45
+        ],
+        "size": [
+          0.8,
+          1.0,
+          0.5
+        ],
+        "color": "markings",
+        "mirror": true
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "hop": {},
+      "walk": {},
+      "fly": {},
+      "perched": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/5231677",
+      "title": "GBIF Backbone Taxonomy: Mimus polyglottos",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-09-30",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q829683",
+      "title": "Wikidata: Mimus polyglottos (Q829683)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-09-30",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Northern_mockingbird",
+      "title": "Wikipedia: Northern mockingbird",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-09-30",
+      "attribution": "Wikipedia contributors, \"Northern mockingbird\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=178620",
+      "title": "ITIS: Mimus polyglottos, TSN 178620",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-09-30",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "inat-activity-us-ar",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=14886&place_id=36&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Mimus polyglottos in US-AR",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-ar",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5231677&gadmGid=USA.4_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Mimus polyglottos in US-AR",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "itis"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Linnaeus 1758, Mimus polyglottos - 'first described this species in his Systema Naturae in 1758'; family Mimidae per the GBIF backbone and ITIS TSN 178620."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata",
+        "itis"
+      ],
+      "confidence": "High"
+    },
+    "common_names": {
+      "sources": [
+        "wikidata",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "en/fr/es labels; the English name follows the Wikipedia article title, the fr/es labels the Wikidata sitelink titles."
+    },
+    "conservation": {
+      "sources": [
+        "wikipedia",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'It is listed as a species of least concern by the International Union for Conservation of Nature.' Wikidata P141 also gives LC (Q211005)."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From the lead and distribution section: 'It breeds from southeastern Canada throughout the United States to the Greater Antilles' and 'from the Maritime provinces of southern Canada, westwards to southern Oregon, and south through ... the Greater Antilles, and the majority of Mexico to eastern Oaxaca and Veracruz', with 'some parts of the Caribbean, as well as on the Hawaiian Islands' as introductions. Koppen classes are the author's judgement of the described range."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Vertebrate, chordate, feathered, endothermic bird."
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Biped: two legs, the forelimbs modified as wings."
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Foraging on short grass and hopping (the male's territorial 'boundary dance' is described as males 'typically on the ground, face each other and hop side to side'), plus the extensive flight-display and inter-territorial flying the courtship account describes."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Endotherm: a bird that is 'typically a permanent resident across much of its range' and sings for long stretches."
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Feathers: plumage described in detail in the Description section."
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Powered flight: 'The males also engage in flight to showcase their wings', and it 'screams if it sees a predator' from the air in the account of nest defence."
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Lungs: an avian respiratory system."
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "None: 'the juvenile appearance is marked by its streaks on its back, distinguished spots and streaks on its chest', a hatchling plumage rather than a metamorphic stage."
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'The outer part of the nest is composed of twigs, while the inner part is lined with grasses, dead leaves, moss, or artificial fibers', 'built approximately three to ten feet above the ground' in a shrub or tree: a cup nest."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Perches to sing: 'Unmated males are also more likely to use elevated perches to make their songs audible farther away.'"
+    },
+    "traits.size_class": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg: the validator bands a bird under 0.05 kg as Tiny and under 1 kg as Small, and 0.049 kg falls in the first band, so Tiny is the value that matches the mass."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of 'body mass is from 40-58 g (1.4-2.0 oz)'."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'body mass is from 40-58 g (1.4-2.0 oz)'."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of 'Northern mockingbirds measure from 20.5 to 28 cm (8.1 to 11.0 in) including a tail almost as long as its body'."
+    },
+    "traits.wingspan_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of 'The wingspan can range from 31-38 cm (12-15 in)'."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'The northern mockingbird's lifespan is observed to be up to 8 years, but captive birds can live up to 20 years.'"
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'The northern mockingbird is an omnivore', eating 'arthropods (such as spiders, grasshoppers, wasps, bees, ants, beetles, butterflies, and caterpillars), earthworms, berries, fruits, seeds, and occasionally flowers, small crustaceans, and lizards'. 'Its diet heavily consists of animal prey during the breeding season, but takes a drastic shift to fruits during the fall and winter', so the shares are a year-round average weighted toward the animal prey the article names first and toward the fruit-and-berry winter diet; the percentages are the author's judgement."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'Northern mockingbirds are socially monogamous' and 'The species can remain monogamous for many years', with 'incidents of polygyny and bigamy ... during a single bird's lifetime'; group_size is a judgement of a pair, its fledged young and the neighbours drawn in by a call."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Diurnal: it forages by day and the whole behavioural account is daytime activity, from the boundary dance to the nest-defence flights."
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Mob: 'The birds aggressively defend their nests and surrounding areas against other birds and animals', they 'harass domestic cats and dogs' and 'will at times target humans', and 'will attack much larger birds, even hawks'."
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Judgement, close to the bottom of the scale: 'The birds are bold', they 'harass domestic cats and dogs that they consider a threat', 'will at times target humans' and 'will attack much larger birds, even hawks', against the fact that the article also records them nesting near people and treating a non-threatening human as uninteresting."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'It prefers open areas with sparse vegetation ... It has an affinity for mowed lawns with shrubs within proximity for shade and nesting', foraging on short grass and singing and nesting in shrubs and trees; ground and arboreal use are balanced, which is the author's judgement from that description."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Nests in a shrub or small tree 'three to ten feet above the ground', in the sparse vegetation it prefers, and roosts in the same cover."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "The invertebrate, fruit, seed and small_vertebrate weights follow the diet shares, with the article's separate berries folded into the fruit share (a berry is a fruit, and the schema has one plant-fruit key) while a separate berry resource tag is still offered to the animals, since the garden plants supply berries as well as larger fruit, with shrub_thicket for the nesting shrub and perch for the song perch."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "urban_affinity and uses_gardens from 'it is quite common in urbanized areas' and 'In the eastern regions, suburban and urban areas such as parks and gardens are frequent residential areas', and from eating 'garden fruits such as tomatoes, apples, and berries'; light_max, flight_distance_m and road_mortality are judgement values, the article giving no figures, with a very short flight distance for a bird that attacks rather than flees."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "'The mockingbird is generally a year-round resident of its range, but birds that live in the northern portion of its range often move south during the winter season' and it 'is thought to be at least partly migratory in the northern portions of its range, but the migratory behavior is not well understood'. Recorded as a partial migration because the southern and mid-range birds, which is where the simulation will place it, stay put; winter_fraction 0.8 is the author's judgement of the share of the continental population that overwinters where it breeds, not a sourced figure."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "The article gives 'The breeding season occurs in the spring and early summer' and 'about two to four broods a year' without naming months, plus males arriving ahead of the season and a winter dietary shift. All three boundaries are the author's judgement, placed to bracket the spring and early-summer breeding season and the autumn-winter fruit period."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "'They hatch after about 11 to 14 days of incubation by the female. After about 10 to 15 days of life, the offspring become independent.' duration_days is the sum of the incubation span and the age at independence, and scale is a judgement of a recently independent young bird."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Plumage from the lead and Description section: 'gray to brown upper feathers and a paler belly', 'Its tail and wings have white patches which are visible in flight', 'parallel wing bars on the half of the wings connected near the white patch', 'The black central rectrices and typical white lateral rectrices are also noticeable in flight', with 'The bill is black'. Proportions are judgement, with a long tail as the article's 'tail almost as long as its body' requires; the wing_bar and tail_flash parts carry the white patches that show in flight."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared perching-songbird program: fruit-led foraging matching the year-round diet, a near-continuous song for a bird that sings in long strings and at night, an April-August nest window, and a very short flee distance for a bird that attacks rather than runs."
+    },
+    "vocalizations.song": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "vocalizations.call": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium"
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies contributors",
+      "agent": "opencode"
+    }
+  ]
+}

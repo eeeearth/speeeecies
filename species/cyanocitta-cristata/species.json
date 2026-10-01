@@ -1,0 +1,713 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Cyanocitta cristata",
+  "slug": "cyanocitta-cristata",
+  "common_names": {
+    "en": "Blue jay",
+    "fr": "Geai bleu",
+    "es": "Chlorociste azul"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Passeriformes",
+    "family": "Corvidae",
+    "genus": "Cyanocitta",
+    "authority": "(Linnaeus, 1758)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2482593,
+    "inat_taxon_id": 8229,
+    "itis_tsn": 179680,
+    "wikidata": "Q199758"
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "CA",
+      "US",
+      "BM",
+      "GL"
+    ],
+    "introduced": [],
+    "koppen": [
+      "Cfa",
+      "Cfb",
+      "Dfa",
+      "Dfb",
+      "Dfc"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Hop",
+      "Fly"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Cup",
+    "perching": true,
+    "size_class": "Small",
+    "mass_kg": 0.085,
+    "mass_range_kg": [
+      0.07,
+      0.1
+    ],
+    "length_m": 0.26,
+    "wingspan_m": 0.385,
+    "lifespan_y": 7.0,
+    "diet": {
+      "mast": 0.3,
+      "seed": 0.27,
+      "fruit": 0.18,
+      "invertebrate": 0.22,
+      "vertebrate": 0.03
+    },
+    "social": {
+      "structure": "Pair",
+      "group_size": [
+        2,
+        12
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Mob",
+    "wariness": 0.3
+  },
+  "habitat": {
+    "use": {
+      "arboreal": 0.7,
+      "ground": 0.3
+    },
+    "shelter_tag": "nest_cup",
+    "resources": [
+      {
+        "tag": "mast",
+        "kind": "Herbivory",
+        "weight": 0.3
+      },
+      {
+        "tag": "seed",
+        "kind": "Herbivory",
+        "weight": 0.27
+      },
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.18
+      },
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.22
+      },
+      {
+        "tag": "small_vertebrate",
+        "kind": "Predation",
+        "weight": 0.03
+      },
+      {
+        "tag": "nest_cup",
+        "kind": "Nesting",
+        "weight": 1.0
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.7
+      },
+      {
+        "tag": "cavity",
+        "kind": "Shelter",
+        "weight": 0.3
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Exploiter",
+      "uses_gardens": true,
+      "light_max": 0.8,
+      "flight_distance_m": 25.0,
+      "road_mortality": "Medium",
+      "notes": "Common in residential areas and at feeders, but territorial: it will chase other birds off a feeder and may raid a neighbour's nest, and it is often dominated at feeders by eastern gray squirrels and grackles."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "03-15",
+        "end": "07-31",
+        "note": "Judgement window. Wikipedia gives '3 and 6 (averaging 4 or 5) eggs laid and incubated over 16-18 days' and 'the young fledge usually between 17 and 21 days after hatching', plus a family group together 'until early fall', but no calendar months."
+      },
+      {
+        "name": "caching",
+        "start": "08-01",
+        "end": "11-30",
+        "note": "Judgement window. 'Blue jays will sometimes cache food' and the young disperse 'to avoid competition for food during the winter'."
+      },
+      {
+        "name": "flocking",
+        "start": "12-01",
+        "end": "02-28",
+        "note": "Judgement window for the winter months, when the species is gregarious and 'mostly gregarious' is how the family describes it generally."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg"
+      },
+      {
+        "stage": "Juvenile",
+        "duration_days": 38,
+        "scale": 0.8
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US-AR",
+        "monthly": [
+          0.72,
+          0.9,
+          0.7,
+          0.69,
+          0.72,
+          0.72,
+          0.73,
+          0.92,
+          1.0,
+          1.0,
+          0.56,
+          0.67
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 185102,
+        "sources": [
+          "inat-activity-us-ar",
+          "gbif-activity-us-ar"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 36,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=8229&place_id=36&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=36&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 1141,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.4_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2482593&gadmGid=USA.4_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.4_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 183961,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "bt-perching-songbird-v1",
+    "params": {
+      "flee_m": 25,
+      "food_tag": "mast",
+      "song": "jayer",
+      "alarm": "scream",
+      "song_cooldown_s": 10,
+      "nest_m1": 3,
+      "nest_m2": 7
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "jayer",
+      "context": "Song",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day",
+        "Dusk"
+      ],
+      "cooldown_s": 10,
+      "loudness": "Loud",
+      "description": "A varied, garrulous vocal repertoire used as this corvid's song: a high-pitched 'jayer-jayer' call that increases in speed as the bird becomes more agitated, plus imitation of local hawks, sometimes so well that the two are hard to tell apart."
+    },
+    {
+      "call_id": "scream",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day"
+      ],
+      "cooldown_s": 6,
+      "loudness": "Loud",
+      "description": "The most commonly recognised sound, a loud, almost gull-like scream, given when a predator such as a hawk or owl is near the nest and used with other jays to mob the predator away; smaller birds recognise it and hide."
+    },
+    {
+      "call_id": "rusty_pump",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day",
+        "Dusk"
+      ],
+      "cooldown_s": 14,
+      "loudness": "Quiet",
+      "description": "A quiet call used among jays in close proximity, named for its squeaky resemblance to an old hand-operated water pump."
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.3,
+      "leg_length_ratio": 0.32,
+      "head_scale": 0.95,
+      "neck_angle_deg": 8,
+      "tail_ratio": 0.85,
+      "wing_aspect": 2.7,
+      "beak_ratio": 0.5,
+      "girth_ratio": 1.2
+    },
+    "palette": {
+      "body": "#2f6fb0",
+      "belly": "#eceae4",
+      "markings": "#151515",
+      "accent": "#4d95dd",
+      "eye": "#141414"
+    },
+    "part_colors": {
+      "head": "accent",
+      "beak": "markings"
+    },
+    "extra_parts": [
+      {
+        "name": "crest",
+        "parent": "head",
+        "offset": [
+          -0.22,
+          0.45,
+          0.0
+        ],
+        "size": [
+          0.55,
+          0.6,
+          0.5
+        ],
+        "color": "accent"
+      },
+      {
+        "name": "necklace",
+        "parent": "breast",
+        "offset": [
+          -0.1,
+          0.42,
+          0.0
+        ],
+        "size": [
+          1.0,
+          0.35,
+          1.05
+        ],
+        "color": "markings"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "hop": {},
+      "fly": {},
+      "perched": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2482593",
+      "title": "GBIF Backbone Taxonomy: Cyanocitta cristata",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-09-30",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q199758",
+      "title": "Wikidata: Cyanocitta cristata (Q199758)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-09-30",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Blue_jay",
+      "title": "Wikipedia: Blue jay",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-09-30",
+      "attribution": "Wikipedia contributors, \"Blue jay\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=179680",
+      "title": "ITIS: Cyanocitta cristata, TSN 179680",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-09-30",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "inat-activity-us-ar",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=8229&place_id=36&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Cyanocitta cristata in US-AR",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-ar",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2482593&gadmGid=USA.4_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Cyanocitta cristata in US-AR",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "itis"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Linnaeus 1758, Cyanocitta cristata; family Corvidae per the GBIF backbone and ITIS TSN 179680."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata",
+        "itis"
+      ],
+      "confidence": "High"
+    },
+    "common_names": {
+      "sources": [
+        "wikidata",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "en/fr/es labels; the English name follows the Wikipedia article title, the fr/es labels the Wikidata sitelink titles."
+    },
+    "conservation": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Wikidata P141 (conservation status) = LC, Q211005."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From the lead: 'native to eastern North America. It lives in most of the eastern and central United States; some eastern populations may be migratory. Resident populations are also in Newfoundland, Canada; breeding populations are found across southern Canada.' Koppen classes are the author's judgement of the described range."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Vertebrate, chordate, feathered, endothermic bird."
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Biped: two legs, the forelimbs modified as wings."
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'It typically gleans food from trees, shrubs, and the ground, and sometimes hawks insects from the air', so it hops on the ground and flies between perches."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Endotherm: a bird, active by day."
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Feathers: plumage described in detail in the Description section."
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Powered flight between trees, feeders and roosts."
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Lungs: an avian respiratory system."
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "None: 'Young are altricial, and are brooded by the female for 8-12 days after hatching' - hatch as featherless chicks."
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'It builds an open cup nest in the branches of a tree; both sexes participate.'"
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Perches in the canopy to call, mob and cache, and roosts in foliage."
+    },
+    "traits.size_class": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg (0.085 kg, in the Small band)."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of 'weighs 70-100 g (2.5-3.5 oz)'; the article also gives regional means (Connecticut 92.4 g, Florida 73.7 g)."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'weighs 70-100 g (2.5-3.5 oz)'."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of 'measures 22-30 cm (9-12 in) from bill to tail'."
+    },
+    "traits.wingspan_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of 'a wingspan of 34-43 cm (13-17 in)'."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'A more common lifespan for wild birds that survive to adulthood is around 7 years.' (The oldest known wild banded jay was at least 26 years 11 months.)"
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "The Audubon estimate that '75% of their diet is vegetable matter' is used for the plant total; within that the split between acorns and beech mast, weed seeds and grain, and fruit and berries follows the article's own ordering of its food list. The remainder is the 'small invertebrates of many types' plus 'rarely eggs and nestlings'."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'Blue jays typically form monogamous pair bonds for life' and 'After the juveniles fledge, the family travels and forages together until early fall'; group_size covers a pair, its grown young and a feeder group."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Diurnal: the whole behavioural account is daytime canopy activity, and the description of the West Nile virus as a major cause of mortality implies no significant nocturnal behaviour."
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Mob: 'it may chase predatory birds, such as hawks and owls, and will scream if it sees a predator within its territory', 'Blue jays will use these calls to band together to mob potential predators such as hawks and drive them away from the jays' nests', and it mobs an owl that roosts near the nest. It also raids nests, which the Mob value does not cover, so the schema's single defence value is the best fit for its anti-predator behaviour."
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Judgement: 'It is common in residential areas' and feeds at 'bird-table food' and feeders, against 'it may also be aggressive towards humans who come close to its nest'."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'It breeds in both deciduous and coniferous forests, and is common in residential areas', with food 'sought both on the ground and in trees' and 'gleans food from trees, shrubs, and the ground'. The arboreal share is the larger one because nesting, calling and mobbing all happen in the canopy; the split is judgement."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "An open cup nest built in the branches of a tree."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Mast, seed, fruit and invertebrate weights follow the diet shares, with small_vertebrate for the occasional eggs and nestlings; nest_cup, perch and cavity come from the nest, calling and roost descriptions."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "urban_affinity and uses_gardens from 'common in residential areas' and the food list including 'scraps in town parks, bird-table food'; the rest are judgement values, the article giving no figures, tempered by 'it will chase others from a feeder for an easier meal' and the frequent dominance by squirrels and grackles at feeders."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Mostly resident: 'Resident populations are also in Newfoundland, Canada; breeding populations are found across southern Canada' and the lead says only that 'some eastern populations may be migratory', so the record is year-round activity."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Wikipedia gives the incubation span ('16-18 days'), the fledging span ('17 and 21 days after hatching') and that the family stays together 'until early fall' when the young disperse for winter, but no calendar months for any of it. All three phase windows are the author's judgement, placed so that breeding and the post-fledging family period overlap with the stated dispersal into autumn."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "'3 and 6 (averaging 4 or 5) eggs laid and incubated over 16-18 days' and 'The young fledge usually between 17 and 21 days after hatching'. duration_days is the incubation span plus a typical nestling span, and scale is a judgement of a nearly grown fledgling."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Plumage from the lead and Description section: 'Its coloration is predominantly blue, with a white chest and underparts, and a blue crest; it has a black, U-shaped collar around its neck and a black border behind the crest', with 'strong black bills'. Proportions are judgement, scaled for a long-tailed, big-crested corvid; the crest part carries the raised crest and the necklace part the black collar."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared perching-songbird program: mast-led foraging from the canopy and feeders, a near-year-round vocal programme, a spring-summer nest window, and a long flee distance for a bird that watches from high perches."
+    },
+    "vocalizations.jayer": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "vocalizations.scream": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "vocalizations.rusty_pump": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies contributors",
+      "agent": "opencode"
+    }
+  ]
+}

@@ -1,0 +1,714 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Turdus migratorius",
+  "slug": "turdus-migratorius",
+  "common_names": {
+    "en": "American robin",
+    "fr": "rouge d'Amérique",
+    "es": "zoral"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Passeriformes",
+    "family": "Turdidae",
+    "genus": "Turdus",
+    "authority": "Linnaeus, 1766",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 9510564,
+    "inat_taxon_id": 12727,
+    "itis_tsn": 179759,
+    "wikidata": "Q460967"
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "CA",
+      "US",
+      "MX",
+      "GT",
+      "BZ",
+      "SV",
+      "HN",
+      "NI",
+      "CR",
+      "PA",
+      "CU",
+      "JM",
+      "HT",
+      "DO",
+      "BS",
+      "PM"
+    ],
+    "introduced": [],
+    "koppen": [
+      "Cfa",
+      "Cfb",
+      "Cfc",
+      "Dfb",
+      "Dfc",
+      "BSk"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Hop",
+      "Walk",
+      "Fly"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Cup",
+    "perching": true,
+    "size_class": "Small",
+    "mass_kg": 0.077,
+    "mass_range_kg": [
+      0.059,
+      0.094
+    ],
+    "length_m": 0.255,
+    "wingspan_m": 0.36,
+    "lifespan_y": 6.0,
+    "diet": {
+      "invertebrate": 0.4,
+      "fruit": 0.45,
+      "seed": 0.05,
+      "nectar": 0.1
+    },
+    "social": {
+      "structure": "Flock",
+      "group_size": [
+        2,
+        400
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.35
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.7,
+      "arboreal": 0.3
+    },
+    "shelter_tag": "nest_cup",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.4
+      },
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.45
+      },
+      {
+        "tag": "berry",
+        "kind": "Herbivory",
+        "weight": 0.3
+      },
+      {
+        "tag": "nest_cup",
+        "kind": "Nesting",
+        "weight": 1.0
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.7
+      },
+      {
+        "tag": "shrub_thicket",
+        "kind": "Shelter",
+        "weight": 0.5
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Exploiter",
+      "uses_gardens": true,
+      "light_max": 0.6,
+      "flight_distance_m": 30.0,
+      "road_mortality": "Medium",
+      "notes": "Breeds in urban areas and 'is not shy about nesting close to human habitations'; gathers on lawns soon after mowing or where sprinklers run."
+    }
+  },
+  "seasonal": {
+    "strategy": "PartialMigration",
+    "winter_fraction": 0.7,
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "04-01",
+        "end": "07-31",
+        "note": "Wikipedia: 'normally has two to three broods per breeding season, which lasts from April to July'. The exact day boundaries are a judgement placed around that window."
+      },
+      {
+        "name": "flocking",
+        "start": "08-01",
+        "end": "03-31",
+        "note": "Post-breeding and winter. Wikipedia: 'on its winter grounds, it assembles in large flocks at night to roost in trees', and 'Most depart south by the end of August and begin to return north in February and March'. The day boundaries are a judgement."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg"
+      },
+      {
+        "stage": "Juvenile",
+        "duration_days": 42,
+        "scale": 0.8
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US-AR",
+        "monthly": [
+          0.45,
+          1.0,
+          1.0,
+          0.76,
+          0.66,
+          0.85,
+          0.67,
+          0.48,
+          0.36,
+          0.47,
+          0.53,
+          0.43
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 120995,
+        "sources": [
+          "inat-activity-us-ar",
+          "gbif-activity-us-ar"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 36,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=12727&place_id=36&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=36&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 2495,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.4_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=9510564&gadmGid=USA.4_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.4_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 118500,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "bt-perching-songbird-v1",
+    "params": {
+      "flee_m": 25,
+      "food_tag": "invertebrate",
+      "song": "song",
+      "alarm": "alarm",
+      "nest_m1": 3,
+      "nest_m2": 7
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "song",
+      "context": "Song",
+      "season_months": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "time_windows": [
+        "DawnChorus",
+        "Day",
+        "Dusk"
+      ],
+      "cooldown_s": 9,
+      "loudness": "Loud",
+      "description": "Complex, almost continuous song of discrete repeated units spliced into a string with brief pauses, a 'cheery carol'; among the earliest songbirds to sing at dawn and often the last at dusk, sung from a high perch."
+    },
+    {
+      "call_id": "call",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day",
+        "Dusk"
+      ],
+      "cooldown_s": 12,
+      "loudness": "Moderate",
+      "description": "A number of calls carrying specific information, used when a ground predator approaches and when a nest or another robin is directly threatened; robins also band together to drive a predator off."
+    },
+    {
+      "call_id": "alarm",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day"
+      ],
+      "cooldown_s": 6,
+      "loudness": "Loud",
+      "description": "Used when a ground predator approaches or a nest is threatened, and given in the mobbing of hawks and other predators."
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.3,
+      "leg_length_ratio": 0.38,
+      "head_scale": 0.9,
+      "neck_angle_deg": 10,
+      "tail_ratio": 0.62,
+      "wing_aspect": 2.8,
+      "beak_ratio": 0.4,
+      "girth_ratio": 1.15
+    },
+    "palette": {
+      "body": "#5a4634",
+      "belly": "#e6e2d8",
+      "markings": "#b3441c",
+      "accent": "#2f2b28",
+      "eye": "#141210"
+    },
+    "part_colors": {
+      "head": "accent",
+      "beak": "markings"
+    },
+    "extra_parts": [
+      {
+        "name": "breastplate",
+        "parent": "breast",
+        "offset": [
+          0.0,
+          -0.1,
+          0.0
+        ],
+        "size": [
+          1.0,
+          0.8,
+          1.0
+        ],
+        "color": "markings"
+      },
+      {
+        "name": "eyebrow",
+        "parent": "head",
+        "offset": [
+          0.25,
+          0.35,
+          0.35
+        ],
+        "size": [
+          0.35,
+          0.12,
+          0.7
+        ],
+        "color": "belly",
+        "mirror": true
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "hop": {},
+      "walk": {},
+      "fly": {},
+      "perched": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/9510564",
+      "title": "GBIF Backbone Taxonomy: Turdus migratorius",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-09-30",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q460967",
+      "title": "Wikidata: Turdus migratorius (Q460967)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-09-30",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/American_robin",
+      "title": "Wikipedia: American robin",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-09-30",
+      "attribution": "Wikipedia contributors, \"American robin\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=179759",
+      "title": "ITIS: Turdus migratorius, TSN 179759",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-09-30",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "inat-activity-us-ar",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=12727&place_id=36&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Turdus migratorius in US-AR",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-ar",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=9510564&gadmGid=USA.4_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Turdus migratorius in US-AR",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "itis"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Linnaeus 1766, Turdus migratorius; family Turdidae per the GBIF backbone and ITIS TSN 179759."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata",
+        "itis"
+      ],
+      "confidence": "High"
+    },
+    "common_names": {
+      "sources": [
+        "wikidata",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "en/fr/es labels; the English name follows the Wikipedia article title, the fr/es labels the Wikidata sitelink titles."
+    },
+    "conservation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'the species does not approach the vulnerable species thresholds under the population trend criterion ... and therefore International Union for Conservation of Nature evaluated it as least concern'."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Country list derived from the distribution and habitat section: breeds 'throughout most of North America, from Alaska and Canada southward to northern Florida and Mexico', winters 'from Florida and the Gulf Coast to central Mexico, as well as along the Pacific Coast', with the resident subspecies T. m. phillipsi in Mexico south to central Oaxaca and vagrants to Greenland, Sweden, Jamaica, Hispaniola, Puerto Rico and Belize. Koppen classes are the author's judgement of the described range."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Vertebrate, chordate, feathered, endothermic bird."
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Biped: two legs, the forelimbs modified as wings."
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'It is frequently seen running across lawns picking up earthworms'; 'It typically will take several short hops and then cock its head left, right or forward'; robins fly between winter and summer grounds, so all three gaits are declared."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Endotherm: a bird, 'active mostly during the day'."
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Feathers: plumage described in detail in the Description section."
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Powered flight: a migratory bird commuting between summer and winter ranges."
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Lungs: an avian respiratory system."
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "None: the young hatch as chicks, 'paler in color than adult males', with no metamorphic stage."
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'The nest is most commonly located 1.5-4.5 m above the ground in a dense bush or in a fork between two tree branches', built of coarse grass, twigs, paper and feathers with a mud lining: a cup nest."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Perches to sing: 'It usually sings from a high perch in a tree.'"
+    },
+    "traits.size_class": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg (0.077 kg, in the Small band)."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'The species averages about 77 g (2.7 oz) in weight.'"
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'males ranging from 72 to 94 g ... and females ranging from 59 to 91 g'."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of 'The eastern subspecies (T. m. migratorius) is 23 to 28 cm long'."
+    },
+    "traits.wingspan_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of 'a wingspan ranging from 31 to 41 cm'."
+    },
+    "traits.lifespan_y": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Wikipedia gives no mean lifespan for this species, only the large population and a stable trend. Authored as a rough figure of 6 years for a songbird that reaches breeding age; not a sourced number."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'The diet generally consists of around 40 percent small invertebrates (mainly insects) ... and 60 percent wild and cultivated fruits and berries.' The invertebrate share is used directly; the plant share is split between fruit, berry, a little seed and some nectar, which Wikipedia does not separate, so that split is the author's judgement."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'on its winter grounds, it assembles in large flocks at night to roost' and 'The flocks break up during the day when the birds feed ... in smaller groups'; 'During the summer, males defend a breeding territory and are less social'. group_size upper bound is a judgement of what 'large flocks' means."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'The species is active mostly during the day, and on its winter grounds, it assembles in large flocks at night to roost.'"
+    },
+    "traits.defense": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored: 'The adult's main predator is the domestic cat; other predators include hawks and snakes', and robins 'flee', including the collective mobbing drive described in the vocalization section."
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Judgement, from 'The species is not shy about nesting close to human habitations' and from feeding in numbers on urban lawns, against the alertness described ('When feeding in flocks, it can be vigilant')."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Robins forage on the ground for earthworms and perch in trees to sing and roost: 'The breeding habitat is woodland and more open farmland and urban areas', with 'The species ... prefers large shade trees on lawns'. Foraging is the dominant activity, so the ground share is the larger one; the split is judgement."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Nests in a dense bush or a tree fork: a cup nest."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "The invertebrate and fruit weights follow the stated diet shares; berry and shrub_thickel are folded into the fruit share, and nest_cup, perch and shrub_thicket from the nest, song-perch and roost descriptions."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "urban_affinity and uses_gardens from 'The breeding habitat is woodland and more open farmland and urban areas' and 'is not shy about nesting close to human habitations'; road_mortality is a judgement (cats, hawks and snakes are the stated predators, and window strikes are common in robins, but the article does not give a road figure); flight_distance_m and light_max are judgement values for a bird that flees a person at a few tens of metres and is tolerant of lit suburbs."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The species migrates, so the record is a partial migration rather than a full one: 'While robins occasionally overwinter in the northern part of the United States and southern Canada, most migrate to winter south of Canada from Florida and the Gulf Coast to central Mexico', and the nominate subspecies winters in 'most of the U.S.'. winter_fraction 0.7 is the author's judgement of the share of the continental population that is still in place through winter, not a sourced figure."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Breeding window from 'normally has two to three broods per breeding season, which lasts from April to July'; the flocking window from the winter-roost description and the stated departure and return months. The exact day boundaries are the author's judgement. The song window (late February or early March to late July or early August) is carried in vocalizations.song.season_months rather than as a phase, because the shared perching-songbird program has no song-season parameter to override."
+    },
+    "seasonal.life_stages": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Incubation 12-14 days plus a nestling period of about two weeks before fledging; duration_days and scale are an approximate judgement, not a sourced figure."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Plumage from the Description section: 'The head varies from jet black to gray, with white eye arcs and white supercilia. The throat is white with black streaks, and the belly and undertail coverts are white. The adult has a brown back and a reddish-orange breast, varying from a rich red maroon to peachy orange. The bill is mainly yellow with a variably dark tip'. Proportions and extra-part placement are judgement: the breast plate carries the red-orange, the eyebrow strips the white supercilium and eye arc."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared perching-songbird program: an invertebrate-led ground forage matching the diet, the February-August song window, the April-July nest-building window, and a long flee distance for a wary bird that flushes at tens of metres."
+    },
+    "vocalizations.song": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "vocalizations.call": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium"
+    },
+    "vocalizations.alarm": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium"
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies contributors",
+      "agent": "opencode"
+    }
+  ]
+}
