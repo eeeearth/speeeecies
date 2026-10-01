@@ -1,0 +1,611 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Didelphis virginiana",
+  "slug": "didelphis-virginiana",
+  "common_names": {
+    "en": "Virginia opossum",
+    "es": "Zarigüeya norteña"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Mammalia",
+    "order": "Didelphimorphia",
+    "family": "Didelphidae",
+    "genus": "Didelphis",
+    "authority": "Kerr, 1792",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2439923,
+    "inat_taxon_id": 42652,
+    "wikidata": "Q147267"
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "CA",
+      "US",
+      "MX",
+      "GT",
+      "HN",
+      "BZ",
+      "NI",
+      "CR"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk",
+      "Trot"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Fur",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Cavity",
+    "perching": false,
+    "size_class": "Medium",
+    "mass_kg": 2.35,
+    "mass_range_kg": [
+      1.9,
+      2.8
+    ],
+    "length_m": 0.44,
+    "lifespan_y": 2,
+    "diet": {
+      "fruit": 0.35,
+      "invertebrate": 0.3,
+      "vertebrate": 0.15,
+      "carrion": 0.15,
+      "fish": 0.05
+    },
+    "social": {
+      "structure": "Solitary",
+      "group_size": [
+        1,
+        1
+      ]
+    },
+    "activity_pattern": "Nocturnal",
+    "defense": "Freeze",
+    "wariness": 0.15
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.85,
+      "arboreal": 0.15
+    },
+    "shelter_tag": "cavity",
+    "resources": [
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.35
+      },
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.3
+      },
+      {
+        "tag": "small_vertebrate",
+        "kind": "Predation",
+        "weight": 0.2
+      },
+      {
+        "tag": "carrion",
+        "kind": "Scavenging",
+        "weight": 0.15
+      },
+      {
+        "tag": "cavity",
+        "kind": "Shelter",
+        "weight": 0.9
+      },
+      {
+        "tag": "compost",
+        "kind": "Herbivory",
+        "weight": 0.6
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Exploiter",
+      "uses_gardens": true,
+      "light_max": 0.8,
+      "road_mortality": "High",
+      "notes": "Frequents settled areas near food sources such as trash cans, pet food, compost piles and gardens. Its attraction to roadside carrion makes it more likely than most animals in its range to become roadkill."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "02-01",
+        "end": "06-30",
+        "note": "Most young are born between February and June; a female has one to three litters a year, gestation lasting 11 to 13 days and the average litter being 8 to 9 young."
+      },
+      {
+        "name": "territorial",
+        "start": "07-01",
+        "end": "01-31",
+        "note": "Outside the main birth period. It does not hibernate but reduces its activity in winter and may not leave its den for several days below -4 to -7 degrees Celsius."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Juvenile",
+        "duration_days": 160,
+        "scale": 0.06
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US-MS",
+        "monthly": [
+          0.25,
+          0.55,
+          0.57,
+          0.71,
+          0.48,
+          0.27,
+          0.33,
+          0.38,
+          0.56,
+          0.78,
+          1.0,
+          0.95
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 848,
+        "sources": [
+          "inat-activity-us-ms",
+          "gbif-activity-us-ms"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 37,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=42652&place_id=37&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=37&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 427,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "C",
+            "area": [
+              "gadmGid",
+              "USA.25_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2439923&gadmGid=USA.25_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.25_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "total": 421,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-ground-forager-v1",
+    "params": {
+      "flee_m": 12,
+      "calm_m": 30,
+      "food_tag": "fruit",
+      "food_m": 25,
+      "flee_gait": "trot",
+      "forage_gait": "walk",
+      "rest_sun_lo_deg": 10,
+      "rest_sun_hi_deg": 90
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "hiss",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Night"
+      ],
+      "cooldown_s": 8,
+      "loudness": "Moderate",
+      "description": "A sharp hiss with the jaw snapped and the fur raised, bared teeth and drooling, given as a threat display before it commits to fleeing."
+    },
+    {
+      "call_id": "click",
+      "context": "Contact",
+      "season_months": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "time_windows": [
+        "Night"
+      ],
+      "cooldown_s": 10,
+      "loudness": "Quiet",
+      "description": "A dry clicking with the mouth that the male uses to attract the female during the mating season."
+    }
+  ],
+  "look": {
+    "body_plan": "quadruped",
+    "proportions": {
+      "torso_aspect": 1.5,
+      "leg_length_ratio": 0.34,
+      "head_scale": 0.7,
+      "neck_angle_deg": 8,
+      "tail_ratio": 0.72,
+      "ear_ratio": 0.5,
+      "girth_ratio": 1.0
+    },
+    "palette": {
+      "body": "#6f6a63",
+      "belly": "#c9c3b6",
+      "markings": "#3b352d",
+      "accent": "#8a8276",
+      "eye": "#1a1614"
+    },
+    "part_colors": {
+      "snout": "markings",
+      "tail": "markings"
+    },
+    "extra_parts": [
+      {
+        "name": "face",
+        "parent": "head",
+        "offset": [
+          0.3,
+          -0.05,
+          0
+        ],
+        "size": [
+          0.45,
+          0.6,
+          0.9
+        ],
+        "color": "belly"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "trot": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2439923",
+      "title": "GBIF Backbone Taxonomy: Virginia opossum",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q147267",
+      "title": "Wikidata: Virginia opossum (Q147267)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Virginia_opossum",
+      "title": "Wikipedia: Virginia opossum",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Virginia opossum\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "inat-activity-us-ms",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=42652&place_id=37&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Didelphis virginiana in US-MS",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-ms",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2439923&gadmGid=USA.25_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+      "title": "GBIF occurrence search for Didelphis virginiana in US-MS",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared ground-forager program; the default daytime rest window suits a nocturnal species."
+    },
+    "conservation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "IUCN Red List category via Wikidata P141 (Q211005, least concern)."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "GBIF usage key 2439923 from the GBIF Backbone Taxonomy; iNaturalist taxon id 42652 and Wikidata Q147267 via Wikidata."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Settled areas, food sources, gardens and roadkill risk are from Wikipedia; the rest are judgements."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The food resources follow the diet shares, with the 0.05 fish share folded into small_vertebrate because the schema's resource-tag list has no fish tag; cavity and compost are authored from the denning and scavenging behaviour described."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "A den in a cavity, which is where it shelters by day and in cold weather."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Shares authored: it is a ground animal that climbs and uses its prehensile tail for the remainder."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Dull grayish-brown coat with a white face, a long hairless prehensile tail and a long flat hairless nose; proportions and palette are authored."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Country list derived from 'found from southern Canada to northern Costa Rica', the northernmost marsupial in the world; the intermediate countries are the ones that range crosses."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "The young are born alive and tiny, and only one in ten survive to reproductive adulthood. The schema's life-stage enum has no term for a mammalian newborn, so the stage list starts at Juvenile and its duration and scale cover the period from birth to independence."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Birth timing, litter size, gestation and the winter denning threshold are from Wikipedia; the phase boundary dates are judgements."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'It does not hibernate but reduces its activity during the winter.'"
+    },
+    "taxonomy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'If threatened, an opossum will either flee or take a stand ... the Virginia opossum is noted for feigning death in response to extreme fear', which is why Freeze is recorded rather than Flee alone."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Weights authored from 'omnivorous and eat a wide range of plant-based food, as well as animal-based food', with 'insects such as grasshoppers, crickets, and beetles make up the bulk of the animal foods'."
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of 33-55 cm from snout to the base of the tail; the tail adds a further 25-54 cm."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'A maximal lifespan in the wild of only about two years. Even in captivity, opossums live only about four years.'"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "It travels along the ground at a brisk walk and can trot; the gaits are authored from that behaviour."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of the combined male (2.1-2.8 kg) and female (1.9-2.1 kg) ranges."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "1.9-2.8 kg across both sexes."
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "It dens alone in a hollow, an abandoned burrow or a space under a building, rather than building a nest."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.size_class": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg."
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'It is a solitary nocturnal animal about the size of a domestic cat'."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'Frequently inhabit settled areas near food sources'; 0.15 is a judgement."
+    },
+    "vocalizations.click": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "'During the mating season, the male attracts the female by making clicking sounds with his mouth.'"
+    },
+    "vocalizations.hiss": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The threat display is described in the article; the hiss as the audible component is a judgement."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies contributors",
+      "agent": "opencode-go/space-bunny-free"
+    }
+  ]
+}
