@@ -683,7 +683,8 @@ cmd_spawn() {
             | python3 -c 'import json,re,sys
 b=json.load(sys.stdin)["body"] or ""
 m=re.search(r"[Ss]uggested regions.*?\n(.*?)(\n\n|\Z)", b, re.S)
-print(" ".join(re.findall(r"`([A-Z]{2}(?:-[A-Z0-9]{1,3})?)`", m.group(1))) if m else "")')
+print(" ".join(re.findall(r"`([A-Z]{2}(?:-[A-Z0-9]{1,3})?)`", m.group(1))) if m else "")') \
+    || regions=""
 
   local log="$STATE_DIR/$slug.log" status="$STATE_DIR/$slug.status.md" launch="$STATE_DIR/$slug.launch.sh"
   # Declared before first use: render_brief takes the status path, and reading it
