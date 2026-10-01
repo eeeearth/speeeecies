@@ -43,7 +43,9 @@ FLEET_MAX=${FLEET_MAX:-5}
 POLL_SECONDS=${POLL_SECONDS:-60}
 FLEET_MAX_ATTEMPTS=${FLEET_MAX_ATTEMPTS:-3}
 BRANCH_PREFIX=${BRANCH_PREFIX:-$(gh api user -q .login 2>/dev/null || echo contributor)}
-BRIEF_TEMPLATE=${BRIEF_TEMPLATE:-$SCRIPT_DIR/brief-species.md}
+BRIEF_SPECIES=${BRIEF_SPECIES:-$SCRIPT_DIR/brief-species.md}
+BRIEF_LOCALE=${BRIEF_LOCALE:-$SCRIPT_DIR/brief-locale.md}
+BRIEF_TEMPLATE=${BRIEF_TEMPLATE:-}
 PERMISSIONS=${PERMISSIONS:-$SCRIPT_DIR/agent-permissions.json}
 RECIPES=${RECIPES:-$SCRIPT_DIR/recipes.md}
 VISUAL_CHECK=${VISUAL_CHECK:-0}
@@ -169,9 +171,13 @@ recipe_for_issue() {  # issue -> recipe text on stdout, empty if none
   ' "$RECIPES"
 }
 
-render_brief() {  # issue slug sci regions worktree branch outfile
+render_brief() {  # issue slug sci regions worktree branch outfile [kind] [template]
   local issue="$1" slug="$2" sci="$3" regions="$4" wpath="$5" branch="$6" out="$7" recipe
-  [ -f "$BRIEF_TEMPLATE" ] || die "brief template not found: $BRIEF_TEMPLATE"
+  local kind="${8:-species}" template="${9:-}"
+  if [ -z "$template" ]; then
+    if [ "$kind" = locale ]; then template="$BRIEF_LOCALE"; else template="$BRIEF_SPECIES"; fi
+  fi
+  [ -f "$template" ] || die "brief template not found: $template"
   recipe=$(recipe_for_issue "$issue")
   [ -n "$recipe" ] || recipe="No researched recipe for issue #$issue. Use the general table in this brief, and say in the PR that you had no recipe."
 
@@ -179,8 +185,8 @@ render_brief() {  # issue slug sci regions worktree branch outfile
   # meaningful in a sed replacement.
   ISSUE="$issue" SLUG="$slug" SCIENTIFIC="$sci" REGIONS="$regions" \
   WORKTREE="$wpath" BRANCH="$branch" BASE_REF="$BASE_REF" REPO="$REPO" \
-  GH_REPO="$GH_REPO" VISUAL_CHECK="$VISUAL_CHECK" RECIPE="$recipe" \
-  python3 -c '
+GH_REPO="$GH_REPO" VISUAL_CHECK="$VISUAL_CHECK" RECIPE="$recipe" KIND="$kind" \
+    python3 -c '
 import os, sys
 tpl, out = sys.argv[1], sys.argv[2]
 with open(tpl, encoding="utf-8") as fh:
@@ -189,7 +195,7 @@ for key, val in os.environ.items():
     text = text.replace("{{%s}}" % key, val)
 with open(out, "w", encoding="utf-8") as fh:
     fh.write(text)
-' "$BRIEF_TEMPLATE" "$out"
+' "$template" "$out"
 
   local leftover
   leftover=$(grep -o '{{[A-Z_]*}}' "$out" 2>/dev/null | sort -u | tr '\n' ' ' || true)
@@ -209,46 +215,55 @@ pr_field() {  # slug field jq-expr
 
 cmd_list_issues() {
   need_repo
-  # Open animal species-request issues, unassigned, with the scientific name and
-  # the regions the issue suggests for activity curves. Skips anything with an
-  # open PR so a second fleet never duplicates work.
+  # Open, unassigned work: species-request+animal and locale-request. Skips
+  # anything already carried by an open PR so two fleets never duplicate work.
+  # Columns: issue, slug, kind, title. A locale slug is the locale id, which the
+  # issue title carries in its final parentheses.
   gh issue list --repo "$GH_REPO" --state open --limit 200 --json number,title,labels,assignees \
     | python3 -c '
 import json,sys
 iss=json.load(sys.stdin)
 for i in iss:
     labs={l["name"] for l in i["labels"]}
-    if "species-request" not in labs or "animal" not in labs: continue
-    if "phase-2" in labs: continue
     if i["assignees"]: continue
     t=i["title"]
-    sci=""
-    if "(" in t and t.rstrip().endswith(")"):
-        sci=t[t.rindex("(")+1:-1].strip()
-    print(f'"'"'{i["number"]}\t{sci}\t{t}'"'"')
-' | while IFS=$'\t' read -r n sci title; do
-      slug=$(printf '%s' "$sci" | tr '[:upper:]' '[:lower:]' | tr ' ' '-')
-      if pr_for_slug "$slug" >/dev/null 2>&1; then continue; fi
-      record_exists "$slug" && continue
-      printf '%s\t%s\t%s\n' "$n" "$slug" "$title"
+    kind=None
+    if "species-request" in labs and "animal" in labs and "phase-2" not in labs:
+        kind="species"
+    elif "locale-request" in labs and "phase-2" not in labs:
+        kind="locale"
+    if kind is None: continue
+    tail=t[t.rindex("(")+1:-1].strip() if "(" in t and t.rstrip().endswith(")") else ""
+    slug=tail.lower().replace(" ","-") if tail else ""
+    if kind=="locale" and not slug: continue
+    print(f'"'"'{i["number"]}\t{slug}\t{kind}\t{t}'"'"')
+' | while IFS=$'\t' read -r n slug kind title; do
+      [ -n "$slug" ] || { slug=$(printf '%s' "$title" | tr '[:upper:]' '[:lower:]' | tr ' ' '-'); }
+      pr_for_slug "$slug" "$kind" >/dev/null 2>&1 && continue
+      record_exists "$slug" "$kind" && continue
+      printf '%s\t%s\t%s\t%s\n' "$n" "$slug" "$kind" "$title"
     done
 }
 
 # Is there already an open PR touching species/<slug>/ ?
-pr_for_slug() {
-  local slug="$1"
+pr_for_slug() {  # slug kind; a locale lives under locales/, a species under species/
+  local slug="$1" kind="${2:-species}" dir n
   [ -n "$slug" ] || return 1
-  local n
+  case "$kind" in locale) dir="locales/$slug/";; *) dir="species/$slug/";; esac
   n=$(gh pr list --repo "$GH_REPO" --state open --limit 100 --json number,files \
-        -q "[.[] | select(any(.files[]; .path | startswith(\"species/$slug/\")))] | length" 2>/dev/null || echo 0)
+          -q "[.[] | select(any(.files[]; .path | startswith(\"$dir\")))] | length" 2>/dev/null || echo 0)
   [ "${n:-0}" != "0" ]
 }
 
 # Some request issues outlive the work that satisfied them: #2 and #3 still ask
 # for records PR #42 already added, so building them again would collide.
-record_exists() {
+record_exists() {  # slug kind; either work type counts as already merged
   need_repo
-  git -C "$REPO" cat-file -e "$BASE_REF:species/$1/species.json" 2>/dev/null
+  local slug="$1" kind="${2:-species}"
+  case "$kind" in
+    locale) git -C "$REPO" cat-file -e "$BASE_REF:locales/$slug/locale.json" 2>/dev/null ;;
+    *)      git -C "$REPO" cat-file -e "$BASE_REF:species/$slug/species.json" 2>/dev/null ;;
+  esac
 }
 
 cmd_probe_models() {
@@ -269,21 +284,37 @@ cmd_probe_models() {
 
 cmd_spawn() {
   need_repo
-  local issue slug sci model variant
-  issue=""; slug=""; sci=""; model=""; variant=""
+  local issue slug sci model variant kind
+  issue=""; slug=""; sci=""; model=""; variant=""; kind="species"
   while [ $# -gt 0 ]; do
     case "$1" in
       --issue) issue=$2; shift 2;;
       --slug) slug=$2; shift 2;;
       --scientific) sci=$2; shift 2;;
+      --kind) kind=$2; shift 2;;
       --model) model=$2; shift 2;;
       --variant) variant=$2; shift 2;;
       *) die "unknown argument: $1";;
     esac
   done
-  [ -n "$issue" ] && [ -n "$slug" ] && [ -n "$sci" ] || die "need --issue --slug --scientific"
+  case "$kind" in species|locale) :;; *) die "--kind must be species or locale: $kind";; esac
+  [ -n "$issue" ] && [ -n "$slug" ] || die "need --issue --slug"
+  # A locale has no scientific name; its slug is the locale id. Species do.
+  if [ "$kind" = species ]; then
+    [ -n "$sci" ] || die "need --scientific for a species"
+  else
+    sci="$slug"
+  fi
   slug_ok "$slug" || die "slug must be lowercase letters, digits and dashes: $slug"
-  [ -f "$BRIEF_TEMPLATE" ] || die "brief template not found: $BRIEF_TEMPLATE"
+  local brief_tpl
+  if [ -n "$BRIEF_TEMPLATE" ]; then
+    brief_tpl="$BRIEF_TEMPLATE"
+  elif [ "$kind" = locale ]; then
+    brief_tpl="$BRIEF_LOCALE"
+  else
+    brief_tpl="$BRIEF_SPECIES"
+  fi
+  [ -f "$brief_tpl" ] || die "brief template not found: $brief_tpl"
   slug=$(printf '%s' "$slug" | tr '[:upper:]' '[:lower:]' | tr ' ' '-')
   slug_ok "$slug" || die "slug must normalise to lowercase letters, digits and dashes: $slug"
 
@@ -295,14 +326,19 @@ cmd_spawn() {
     OPEN\|*) die "issue $issue is already assigned to ${state#OPEN|}; leave it to them";;
     *) die "issue $issue is not an open species-request animal issue (got '$state')";;
   esac
-  pr_for_slug "$slug" && die "an open PR already touches species/$slug/; pick another issue"
-  record_exists "$slug" && die "species/$slug/species.json already exists on $BASE_REF; the issue is stale"
+  pr_for_slug "$slug" "$kind" && die "an open PR already touches $kind/$slug/; pick another issue"
+  if record_exists "$slug" "$kind"; then
+    case "$kind" in
+      locale) die "locales/$slug/locale.json already exists on $BASE_REF; the issue is stale";;
+      *) die "species/$slug/species.json already exists on $BASE_REF; the issue is stale";;
+    esac
+  fi
 
   [ -n "$model" ] || model=$(next_model)
   [ -n "$variant" ] || variant=$(model_variant "$model")
 
   local branch wpath
-  branch="$BRANCH_PREFIX/species-$issue-$slug"
+  branch="$BRANCH_PREFIX/$kind-$issue-$slug"
   wpath="$WORKTREE_ROOT/$slug"
   [ -e "$wpath" ] && die "worktree path already exists: $wpath"
   # A leftover branch is a retry, not a fatal collision. cmd_spawn is called
@@ -331,7 +367,7 @@ print(" ".join(re.findall(r"`([A-Z]{2}(?:-[A-Z0-9]{1,3})?)`", m.group(1))) if m 
 b=json.load(sys.stdin)["body"] or ""
 print(" ".join(re.findall(r"\b([A-Z]{2}(?:-[A-Z0-9]{1,3})?)\b", b))[:40])')
 
-  render_brief "$issue" "$slug" "$sci" "$regions" "$wpath" "$branch" "$brief"
+  render_brief "$issue" "$slug" "$sci" "$regions" "$wpath" "$branch" "$brief" "$kind" "$brief_tpl"
 
   local log="$STATE_DIR/$slug.log" status="$STATE_DIR/$slug.status.md" launch="$STATE_DIR/$slug.launch.sh"
   printf '# %s\nissue: %s\nscientific: %s\nbranch: %s\nworktree: %s\nmodel: %s\nregions: %s\nstarted: %s\n\n' \
@@ -478,11 +514,15 @@ cmd_supervise() {
         fleet_state=STARVED
       fi
       while [ -n "$row_pick" ] && [ "$live" -lt "$FLEET_MIN" ]; do
-        IFS=$'\t' read -r n sl ti <<<"$row_pick"
-        sc=$(gh issue view "$n" --repo "$GH_REPO" --json title 2>/dev/null \
-             | python3 -c 'import json,sys;t=json.load(sys.stdin)["title"];print(t[t.rindex("(")+1:-1].strip() if "(" in t else "")' 2>/dev/null || true)
-        [ -n "$sc" ] || sc="$ti"
-        ( cmd_spawn --issue "$n" --slug "$sl" --scientific "$sc" ) || break
+        IFS=$'\t' read -r n sl kind ti <<<"$row_pick"
+        if [ "$kind" = locale ]; then
+          sc="$sl"
+        else
+          sc=$(gh issue view "$n" --repo "$GH_REPO" --json title 2>/dev/null \
+               | python3 -c 'import json,sys;t=json.load(sys.stdin)["title"];print(t[t.rindex("(")+1:-1].strip() if "(" in t else "")' 2>/dev/null || true)
+          [ -n "$sc" ] || sc="$ti"
+        fi
+        ( cmd_spawn --issue "$n" --slug "$sl" --scientific "$sc" --kind "$kind" ) || break
         live=$(( live + 1 ))
         row_pick=$(printf '%s\n' "$pick" | awk -F'\t' -v s="$sl" 'NR>1 && $2 != s' | head -1)
       done
@@ -497,22 +537,24 @@ cmd_supervise() {
 }
 
 cmd_render_brief() {
-  local issue slug sci regions out
-  issue=""; slug=""; sci=""; regions=""; out=""
+  local issue slug sci regions out kind
+  issue=""; slug=""; sci=""; regions=""; out=""; kind="species"
   while [ $# -gt 0 ]; do
     case "$1" in
       --issue) issue=$2; shift 2;;
       --slug) slug=$2; shift 2;;
       --scientific) sci=$2; shift 2;;
+      --kind) kind=$2; shift 2;;
       --regions) regions=$2; shift 2;;
       --out) out=$2; shift 2;;
       *) die "unknown argument: $1";;
     esac
   done
-  [ -n "$issue" ] && [ -n "$slug" ] && [ -n "$sci" ] || die "need --issue --slug --scientific"
+  [ -n "$issue" ] && [ -n "$slug" ] || die "need --issue --slug"
+  [ "$kind" = species ] && { [ -n "$sci" ] || die "need --scientific for a species"; }
   [ -n "$out" ] || out="/dev/stdout"
   render_brief "$issue" "$slug" "$sci" "$regions" \
-    "$WORKTREE_ROOT/$slug" "$BRANCH_PREFIX/species-$issue-$slug" "$out"
+    "$WORKTREE_ROOT/$slug" "$BRANCH_PREFIX/$kind-$issue-$slug" "$out" "$kind"
   [ "$out" = "/dev/stdout" ] || say "wrote $out"
 }
 

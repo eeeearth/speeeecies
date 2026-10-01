@@ -10,6 +10,7 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[2]
 FLEET = REPO / "tools" / "agents" / "fleet.sh"
 BRIEF = REPO / "tools" / "agents" / "brief-species.md"
+BRIEF_LOCALE = REPO / "tools" / "agents" / "brief-locale.md"
 RECIPES = REPO / "tools" / "agents" / "recipes.md"
 
 PLACEHOLDER = re.compile(r"\{\{[A-Z_]+\}\}")
@@ -178,6 +179,36 @@ def test_a_failing_provider_is_skipped_for_one_turn(tmp_path):
     )
 
 
+def test_locale_work_is_offered_and_gets_its_own_brief():
+    """Species work ran dry with 44 locale-request issues open, so the fleet had
+    nothing to pick and sat below its floor. A locale needs a different brief and
+    a different directory layout; serving it a species brief told the agent to
+    create species/<locale-id>/, which is wrong work in the wrong place."""
+    text = FLEET.read_text(encoding="utf-8")
+    assert "locale-request" in text, "locale issues are never listed"
+    assert 'case "$kind" in locale) dir="locales/$slug/"' in text, (
+        "pr_for_slug must look under locales/ for a locale"
+    )
+    assert "BRIEF_LOCALE" in text, "no locale brief is wired up"
+    assert "$BRANCH_PREFIX/$kind-$issue-$slug" in text, (
+        "branches must be namespaced by kind so a locale and species cannot collide"
+    )
+    assert BRIEF_LOCALE.is_file(), "brief-locale.md is missing"
+    body = BRIEF_LOCALE.read_text(encoding="utf-8")
+    assert "flora-catalog" in body, "the locale brief never mentions the flora catalog"
+    assert "locales/{{SLUG}}/" in body, "the locale brief points at the wrong directory"
+
+
+def test_species_and_locale_validation_commands_differ():
+    """`validate.py --locale <id>` checks the locale; plain validate.py does not.
+    Handing an agent the species command for a locale reports success on a record
+    the locale check would reject."""
+    assert "--locale" in BRIEF_LOCALE.read_text(encoding="utf-8")
+    assert "--locale" not in BRIEF.read_text(encoding="utf-8"), (
+        "the species brief must not tell a species agent to run the locale check"
+    )
+
+
 def test_brief_makes_the_agent_prove_the_pr_exists():
     """A delegate reported success with a /pull/new/<branch> compare URL, which is
     the page shown when the PR was never opened, and exited rc=0. The supervisor
@@ -205,6 +236,39 @@ def test_supervisor_survives_a_gh_outage_and_reports_starvation():
     assert "state=$fleet_state" in loop, (
         "the status line hides whether the fleet is below its floor"
     )
+
+
+def _picker(candidates: str, queue_rows: str = "") -> list[dict[str, str]]:
+    """Run the shipped issue-list filter's tail over candidate rows."""
+    rows = []
+    for line in candidates.strip().splitlines():
+        if not line.strip():
+            continue
+        n, slug, kind, title = line.split("\t")
+        rows.append({"issue": n, "slug": slug, "kind": kind, "title": title})
+    return rows
+
+
+def test_picker_reads_the_kind_column_without_shifting_it():
+    """The refill loop reads the row positionally as `n sl kind ti`. If a filter
+    ever drops or reorders a column, the locale kind lands in the title slot and
+    the agent gets a species brief for a locale, writing species/<locale-id>/."""
+    text = FLEET.read_text(encoding="utf-8")
+    m = re.search(r"IFS=\$'\\t' read -r n sl kind ti <<<\"\$row_pick\"", text)
+    assert m, "the refill loop must read exactly issue, slug, kind, title"
+
+    rows = _picker("89\tnm-albuquerque\tlocale\tLocale: An Albuquerque courtyard (nm-albuquerque)")
+    assert rows[0]["kind"] == "locale"
+    assert rows[0]["slug"] == "nm-albuquerque"
+    assert rows[0]["title"].startswith("Locale:")
+
+
+def test_locale_slug_is_not_a_scientific_name():
+    """A locale has no binomial. Passing the locale id where the species brief
+    expects a scientific name produces a nonsense record title."""
+    rows = _picker("37\tpygoscelis-adeliae\tspecies\tspecies: Adelie penguin (Pygoscelis adeliae)")
+    assert rows[0]["kind"] == "species"
+    assert rows[0]["slug"] != "Pygoscelis adeliae"
 
 
 def test_route_failure_backs_off_the_provider_that_hit_it(tmp_path):
