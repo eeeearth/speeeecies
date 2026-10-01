@@ -1,0 +1,623 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Procyon lotor",
+  "slug": "procyon-lotor",
+  "common_names": {
+    "en": "raccoon",
+    "fr": "raton laveur",
+    "de": "Waschbär",
+    "nl": "wasbeer",
+    "es": "mapache"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Mammalia",
+    "order": "Carnivora",
+    "family": "Procyonidae",
+    "genus": "Procyon",
+    "authority": "(Linnaeus, 1758)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 5218786,
+    "inat_taxon_id": 41663,
+    "itis_tsn": 180575,
+    "wikidata": "Q121439",
+    "ncbi_taxon_id": 9654
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "US",
+      "CA",
+      "MX",
+      "GT",
+      "BZ",
+      "HN",
+      "SV",
+      "NI",
+      "CR",
+      "PA"
+    ],
+    "introduced": [
+      "DE",
+      "FR",
+      "ES",
+      "IT",
+      "BY",
+      "AZ",
+      "JP"
+    ],
+    "invasive_in": [
+      "DE",
+      "JP"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk",
+      "Trot",
+      "Climb"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Fur",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Cavity",
+    "perching": false,
+    "size_class": "Medium",
+    "mass_kg": 8.5,
+    "mass_range_kg": [
+      5,
+      12
+    ],
+    "length_m": 0.85,
+    "shoulder_height_m": 0.265,
+    "lifespan_y": 2.45,
+    "home_range_ha": 20,
+    "diet": {
+      "invertebrate": 0.4,
+      "fruit": 0.2,
+      "mast": 0.13,
+      "vertebrate": 0.27
+    },
+    "social": {
+      "structure": "Solitary",
+      "group_size": [
+        1,
+        1
+      ]
+    },
+    "activity_pattern": "Nocturnal",
+    "defense": "Flee",
+    "wariness": 0.35
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.7,
+      "arboreal": 0.3
+    },
+    "shelter_tag": "cavity",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.4
+      },
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.2
+      },
+      {
+        "tag": "mast",
+        "kind": "Herbivory",
+        "weight": 0.13
+      },
+      {
+        "tag": "small_vertebrate",
+        "kind": "Predation",
+        "weight": 0.27
+      },
+      {
+        "tag": "cavity",
+        "kind": "Nesting",
+        "weight": 0.6
+      },
+      {
+        "tag": "shrub_thicket",
+        "kind": "Shelter",
+        "weight": 0.4
+      },
+      {
+        "tag": "water",
+        "kind": "Water",
+        "weight": 1.0
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Exploiter",
+      "uses_gardens": true,
+      "notes": "Since the 1950s raccoons have lived in large North American cities; in towns and suburbs they sleep in garden tree hollows, garages and attics and forage on garden fruit, insects and waste. Urban home ranges are only 3-40 ha for females and 8-80 ha for males."
+    },
+    "density_per_ha": {
+      "min": 0.05,
+      "typical": 0.5,
+      "max": 1.5
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "mating",
+        "start": "01-01",
+        "end": "03-15",
+        "note": "Mating is triggered by increasing daylight between late January and mid-March, later in the southern states."
+      },
+      {
+        "name": "young",
+        "start": "03-01",
+        "end": "09-30",
+        "note": "Gestation is usually 63-65 days; a litter of typically two to five kits is weaned by about 16 weeks and the juvenile group splits up in the fall."
+      },
+      {
+        "name": "caching",
+        "start": "09-01",
+        "end": "11-30",
+        "note": "Late-summer and autumn fruits and nuts are eaten heavily to build the fat stores for winter."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Juvenile",
+        "duration_days": 120,
+        "scale": 0.5,
+        "requires_tag": "cavity"
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": []
+  },
+  "behavior": {
+    "program": "fsm-ground-forager-v1",
+    "params": {
+      "food_tag": "invertebrate",
+      "flee_m": 15,
+      "calm_m": 35,
+      "food_m": 50,
+      "flee_gait": "gallop",
+      "forage_gait": "walk",
+      "rest_sun_lo_deg": 10,
+      "rest_sun_hi_deg": 90
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "chitter",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [
+        "Night"
+      ],
+      "cooldown_s": 20,
+      "loudness": "Moderate",
+      "description": "A rapid series of chirps and whistles given while feeding or moving together; one of the most social of the raccoon's calls."
+    },
+    {
+      "call_id": "growl",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Night",
+        "Dusk"
+      ],
+      "cooldown_s": 12,
+      "loudness": "Moderate",
+      "description": "A low, rumbling growl used when threatened or in a dispute over food, often with the body hunched and the fur raised."
+    },
+    {
+      "call_id": "scream",
+      "context": "Scream",
+      "season_months": [],
+      "time_windows": [
+        "Night"
+      ],
+      "cooldown_s": 30,
+      "loudness": "Loud",
+      "description": "A piercing shriek, most often heard in fights between males during the mating season and sometimes mistaken for a bird or a human cry."
+    },
+    {
+      "call_id": "whine",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [
+        "Night"
+      ],
+      "cooldown_s": 25,
+      "loudness": "Quiet",
+      "description": "A soft, high whine and purr-like sound exchanged between a mother and her kits."
+    }
+  ],
+  "look": {
+    "body_plan": "quadruped",
+    "proportions": {
+      "torso_aspect": 1.6,
+      "leg_length_ratio": 0.35,
+      "head_scale": 0.6,
+      "neck_angle_deg": 10,
+      "tail_ratio": 0.7,
+      "ear_ratio": 0.25,
+      "beak_ratio": 0.3,
+      "girth_ratio": 0.95
+    },
+    "palette": {
+      "body": "#8a8a82",
+      "belly": "#d8d4c8",
+      "markings": "#2b2b2b",
+      "accent": "#cfc9bb",
+      "eye": "#1a1512"
+    },
+    "part_colors": {
+      "snout": "belly",
+      "ear_*": "markings"
+    },
+    "extra_parts": [
+      {
+        "name": "mask",
+        "parent": "head",
+        "offset": [
+          0.3,
+          0.0,
+          0
+        ],
+        "size": [
+          0.55,
+          0.5,
+          1.05
+        ],
+        "color": "markings"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "trot": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/5218786",
+      "title": "GBIF Backbone Taxonomy: Procyon lotor",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q121439",
+      "title": "Wikidata: raccoon (Q121439)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Raccoon",
+      "title": "Wikipedia: Raccoon",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Raccoon\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=180575",
+      "title": "ITIS: Procyon lotor, TSN 180575",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "note": "US federal government database; public domain in the United States."
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "itis"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "iNaturalist and NCBI ids via Wikidata P3151 and P685; ITIS TSN via Wikidata P815 and the ITIS database."
+    },
+    "common_names": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "Wikidata P141 = least concern (Q211005)."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Native throughout North America from southern Canada to Panama, so the country list covers the continental range; the island forms (Bahamas, Guadeloupe, Tres Marias) are omitted as extinct or endangered. Introduced by escapes and releases in Germany, northern France, Spain, Italy, Belarus, Azerbaijan and Japan; Germany and Japan are the established populations treated as invasive/problematic. Country codes are ISO 3166-1 alpha-2."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Plantigrade walker with a top speed of 16-24 km/h, and an unusual ability to climb down a tree headfirst by rotating the hind feet; judgement mapping to Walk, Trot and Climb."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Tree hollows in old oaks and rock crevices are preferred as sleeping, winter and litter dens; burrows of other mammals, dense undergrowth and tree crotches are used when hollows are unavailable."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Climbs and rests in tree crotches, but does not perch like a bird; set to false."
+    },
+    "traits.size_class": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Midpoint of the usual adult range of 5-12 kg; the species spans 2-26 kg, and males are 15-20% heavier than females."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "The usual adult range given as 5-12 kg; the full recorded range is 2-26 kg."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Head to hindquarters 40-70 cm plus a tail of 20-40 cm, midpoints summed to 85 cm."
+    },
+    "traits.shoulder_height_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of the stated 23-30 cm shoulder height."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "wikipedia",
+        "wikidata"
+      ],
+      "confidence": "Medium",
+      "note": "Wikidata P2250 gives 1.8-3.1 years in the wild (2.45 used); Wikipedia adds that captive animals have lived more than 20 years."
+    },
+    "traits.home_range_ha": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Urban home ranges are 3-40 ha for females and 8-80 ha for males; 20 ha is a judgement within that band. Rural home ranges are far larger (2-50 km2)."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From the stated diet of about 40% invertebrates, 33% plant material and 27% vertebrates; the plant share is split into fruit (20) and mast (13) as judgement, since the article does not break it down."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Set to Solitary with a single-animal group: related females form fission-fusion societies and unrelated males loose groups of up to four, which the schema's single structure and group_size do not model."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'Though usually nocturnal, the raccoon is sometimes active in daylight to take advantage of available food sources.'"
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Climbs a tree or retreats to a den when threatened; judgement mapping to the schema's single-value field."
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Judgement: urban raccoons are bold around houses and waste, but warier where hunted."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: forages mainly on the ground but climbs to dens, fruit and escape routes; raccoons avoid open terrain because they need vertical structures to climb."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Food weights follow traits.diet. Nesting and shelter weights are judgement; water is included because lakeside and marsh habitats sustain the highest densities."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "From the 'Urban raccoons' section: city populations since the 1950s, dens in garden trees and attics, and garden fruit, insects and waste as food."
+    },
+    "habitat.density_per_ha": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Converted from the stated 0.5-3.2 animals/km2 in prairies, up to 6/km2 in upland hardwood forest, and 50-150/km2 in the densest urban areas; typical is a judgement between the rural and urban figures."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Active year-round in the south; in the northern part of the range raccoons enter a winter rest while permanent snow covers the ground."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Mating window, gestation and weaning timings are from the Reproduction section; the autumn caching window is judgement, tied to the late-summer and autumn fruit and nut diet."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Kits are weaned by about 16 weeks (120 days used) and the juvenile group splits up in the fall; the 0.5 scale is authored judgement."
+    },
+    "vocalizations": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The raccoon has thirteen identified calls; the four here (chitter, growl, scream, whine) are described qualitatively in the article's communication text. Time windows and cooldowns are authored judgement, as no open source quantifies them."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Grizzled grey-brown fur, pale face border with the black bandit mask around the eyes, ringed tail and short legs, from the Description section; proportions and the extra mask part are authored judgement."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared ground-forager program. food_tag invertebrate matches the largest diet share; the default rest window (sun 10-90 degrees) keeps a nocturnal animal resting through the day; flee/food radii are judgement for a medium, urban-tolerant omnivore."
+    }
+  },
+  "contributors": [
+    {
+      "name": "opencode agent (al-birmingham locale, issue #73)",
+      "agent": "opencode"
+    }
+  ]
+}

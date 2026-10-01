@@ -1,0 +1,561 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Tamias striatus",
+  "slug": "tamias-striatus",
+  "common_names": {
+    "en": "eastern chipmunk",
+    "fr": "tamia strié",
+    "de": "Streifenhörnchen"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Mammalia",
+    "order": "Rodentia",
+    "family": "Sciuridae",
+    "genus": "Tamias",
+    "authority": "(Linnaeus, 1758)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2437438,
+    "inat_taxon_id": 46217,
+    "itis_tsn": 180207,
+    "wikidata": "Q692664",
+    "ncbi_taxon_id": 45474
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "US",
+      "CA"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk",
+      "Climb"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Fur",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Burrow",
+    "perching": false,
+    "size_class": "Small",
+    "mass_kg": 0.108,
+    "mass_range_kg": [
+      0.066,
+      0.15
+    ],
+    "length_m": 0.3,
+    "lifespan_y": 3,
+    "diet": {
+      "seed": 0.4,
+      "fruit": 0.2,
+      "browse": 0.2,
+      "invertebrate": 0.2
+    },
+    "social": {
+      "structure": "Solitary",
+      "group_size": [
+        1,
+        1
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.4
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.7,
+      "arboreal": 0.3
+    },
+    "shelter_tag": "burrow",
+    "resources": [
+      {
+        "tag": "seed",
+        "kind": "Herbivory",
+        "weight": 0.4
+      },
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.2
+      },
+      {
+        "tag": "browse",
+        "kind": "Herbivory",
+        "weight": 0.2
+      },
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.2
+      },
+      {
+        "tag": "burrow",
+        "kind": "Nesting",
+        "weight": 1.0
+      },
+      {
+        "tag": "shrub_thicket",
+        "kind": "Shelter",
+        "weight": 0.6
+      },
+      {
+        "tag": "leaf_litter",
+        "kind": "Shelter",
+        "weight": 0.4
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "notes": "Lives in deciduous woods and urban parks throughout the eastern United States; prefers rocky areas, brush or log piles and shrubs for cover, and forages on garden seed and nuts."
+    }
+  },
+  "seasonal": {
+    "strategy": "Hibernation",
+    "phases": [
+      {
+        "name": "mating",
+        "start": "02-01",
+        "end": "04-30",
+        "note": "First breeding season, February to April."
+      },
+      {
+        "name": "mating",
+        "start": "06-01",
+        "end": "08-31",
+        "fraction": 0.5,
+        "note": "Second breeding season, June to August; females usually produce one or two litters of three to five young."
+      },
+      {
+        "name": "young",
+        "start": "03-01",
+        "end": "10-31",
+        "note": "Pups spend about six to eight weeks with their mother after birth."
+      },
+      {
+        "name": "caching",
+        "start": "08-01",
+        "end": "11-30",
+        "note": "Carries food in its cheek pouches to store in the burrow for winter."
+      },
+      {
+        "name": "dormancy",
+        "start": "11-15",
+        "end": "02-28",
+        "note": "May enter long periods of hibernation in winter, waking to feed on cached food."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Juvenile",
+        "duration_days": 56,
+        "scale": 0.5,
+        "requires_tag": "burrow"
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": []
+  },
+  "behavior": {
+    "program": "fsm-ground-forager-v1",
+    "params": {
+      "food_tag": "seed",
+      "flee_m": 6,
+      "calm_m": 15,
+      "food_m": 25,
+      "flee_gait": "walk",
+      "forage_gait": "walk",
+      "rest_sun_lo_deg": -90,
+      "rest_sun_hi_deg": -6
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "chip",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 10,
+      "loudness": "Moderate",
+      "description": "A sharp, repeated 'chip' or 'chuck' given while foraging and as a short-range contact note; the most familiar chipmunk sound."
+    },
+    {
+      "call_id": "trill",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 20,
+      "loudness": "Moderate",
+      "description": "A rapid trill, measured at about 130 trills per minute, given in social encounters and by young animals."
+    },
+    {
+      "call_id": "chatter",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 8,
+      "loudness": "Loud",
+      "description": "A rapid scolding chatter directed at a predator or an intruder near the burrow."
+    }
+  ],
+  "look": {
+    "body_plan": "quadruped",
+    "proportions": {
+      "torso_aspect": 1.6,
+      "leg_length_ratio": 0.35,
+      "head_scale": 0.75,
+      "neck_angle_deg": 10,
+      "tail_ratio": 0.8,
+      "ear_ratio": 0.3,
+      "beak_ratio": 0.3,
+      "girth_ratio": 0.9
+    },
+    "palette": {
+      "body": "#9a5a2b",
+      "belly": "#e8dcc8",
+      "markings": "#3a2415",
+      "accent": "#d8c9a8",
+      "eye": "#1a1210"
+    },
+    "part_colors": {
+      "snout": "belly",
+      "ear_*": "markings"
+    },
+    "extra_parts": [
+      {
+        "name": "back_stripe",
+        "parent": "body",
+        "offset": [
+          0,
+          0.42,
+          0
+        ],
+        "size": [
+          1.0,
+          0.12,
+          0.22
+        ],
+        "color": "markings"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2437438",
+      "title": "GBIF Backbone Taxonomy: Tamias striatus",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q692664",
+      "title": "Wikidata: eastern chipmunk (Q692664)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Eastern_chipmunk",
+      "title": "Wikipedia: Eastern chipmunk",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Eastern chipmunk\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=180207",
+      "title": "ITIS: Tamias striatus, TSN 180207",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "note": "US federal government database; public domain in the United States."
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "itis"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "iNaturalist and NCBI ids via Wikidata P3151 and P685; ITIS TSN via Wikidata P815 and the ITIS database."
+    },
+    "common_names": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "Wikidata P141 = least concern (Q211005)."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Native to deciduous wooded areas of the eastern United States and southern Canada; no established introduced populations are described."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'The eastern chipmunk can climb trees well, but constructs underground nests with extensive tunnel systems.' Walk and Climb."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Underground nests with extensive tunnel systems, often with several entrances."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Climbs trees well but is not a perching animal in the bird sense; set to false."
+    },
+    "traits.size_class": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of the stated 66-150 g."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'about 30 cm (12 in) in length including the tail'."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "'On average, eastern chipmunks live three or more years in the wild, but in captivity they may live as long as eight years'; 3 is used."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Diet is bulbs, seeds, fruits, nuts, green plants, mushrooms, insects, worms and bird eggs; the seed/fruit/browse/invertebrate split is judgement."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'The eastern chipmunk defends its burrow and lives a solitary life, except during mating season'; mothers stay with pups for six to eight weeks."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'The chipmunk is mainly active during the day, spending most of its day foraging.'"
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Bolts for the burrow or a tree when threatened; judgement mapping to the schema's single-value field."
+    },
+    "traits.wariness": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: common in urban parks and gardens and tolerant of people, but quick to dash for cover."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: forages and burrows on the ground but climbs trees well, especially to reach nuts."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Food weights follow traits.diet; the burrow is the documented nest and the shrub/log-pile cover and leaf litter are described under Habitat."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'The eastern chipmunk lives in deciduous wooded areas and urban parks throughout the eastern United States and southern Canada.'"
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "'During the winter, the chipmunk may enter long periods of hibernation.' Set to Hibernation; it wakes to feed on cached food, so it is not a deep continuous hibernator."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "The two breeding seasons (February-April and June-August) and the six-to-eight-week pup period are stated; the caching and winter-dormancy windows are judgement tied to the diet and hibernation text."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Pups spend about six to eight weeks with their mother (56 days used); the 0.5 scale is authored judgement."
+    },
+    "vocalizations": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The article lists five stereotyped sounds (chip, chuck, trills, whistle or squeal, chatter) and measures the trill rate at 130 per minute; the three recorded here are grouped from those, with time windows and cooldowns authored."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Reddish-brown upper body with five dark and light stripes, lighter underside and a tawny face stripe, from the Description; proportions and the single stylised back-stripe part are authored judgement."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared ground-forager program. food_tag seed matches the seed-heavy diet; the rest window (-90/-6) keeps a diurnal animal active by day; flee/food radii are judgement for a small, quick, cover-dependent rodent."
+    }
+  },
+  "contributors": [
+    {
+      "name": "opencode agent (al-birmingham locale, issue #73)",
+      "agent": "opencode"
+    }
+  ]
+}
