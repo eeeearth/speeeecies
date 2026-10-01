@@ -1,0 +1,568 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Sylvilagus floridanus",
+  "slug": "sylvilagus-floridanus",
+  "common_names": {
+    "en": "Eastern cottontail",
+    "fr": "lapin à queue blanche",
+    "es": "conejo oriental",
+    "de": "Östlicher Cottontail"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Mammalia",
+    "order": "Lagomorpha",
+    "family": "Leporidae",
+    "genus": "Sylvilagus",
+    "authority": "Baird, 1858"
+  },
+  "external": {
+    "gbif_usage_key": 2436886,
+    "inat_taxon_id": 43111,
+    "itis_tsn": 180124,
+    "wikidata": "Q774716"
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "CA",
+      "US",
+      "MX",
+      "GT",
+      "BZ",
+      "HN",
+      "NI",
+      "CR",
+      "PA",
+      "CO"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk",
+      "Hop"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Fur",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Ground",
+    "perching": false,
+    "size_class": "Medium",
+    "mass_kg": 1.2,
+    "mass_range_kg": [
+      0.8,
+      2.0
+    ],
+    "length_m": 0.42,
+    "lifespan_y": 1.25,
+    "diet": {
+      "browse": 0.55,
+      "graze": 0.35,
+      "seed": 0.1
+    },
+    "social": {
+      "structure": "Solitary",
+      "group_size": [
+        1,
+        2
+      ]
+    },
+    "activity_pattern": "Crepuscular",
+    "defense": "Flee",
+    "wariness": 0.7
+  },
+  "habitat": {
+    "use": {
+      "ground": 1.0
+    },
+    "shelter_tag": "shrub_thicket",
+    "resources": [
+      {
+        "tag": "browse",
+        "kind": "Herbivory",
+        "weight": 1.0
+      },
+      {
+        "tag": "graze",
+        "kind": "Herbivory",
+        "weight": 0.6
+      },
+      {
+        "tag": "seed",
+        "kind": "Herbivory",
+        "weight": 0.2
+      },
+      {
+        "tag": "water",
+        "kind": "Water",
+        "weight": 0.3
+      },
+      {
+        "tag": "nest_ground",
+        "kind": "Nesting",
+        "weight": 0.8
+      },
+      {
+        "tag": "shrub_thicket",
+        "kind": "Shelter",
+        "weight": 1.0
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "impervious_max": 0.3,
+      "dist_building_min_m": 5,
+      "flight_distance_m": 30,
+      "road_mortality": "High",
+      "uses_gardens": true,
+      "notes": "Feeds in the open but needs brushy cover within a few metres; a lawn, shrub border and fence line in a residential lot is typical cottontail habitat."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "01-01",
+        "end": "09-15",
+        "region": "US-MO",
+        "note": "Breeding begins as early as January in the southern United States and runs through late summer; one to seven litters a year in Missouri."
+      },
+      {
+        "name": "young",
+        "start": "03-01",
+        "end": "09-15",
+        "region": "US-MO",
+        "note": "Nest is a slanted hole in soft soil; kits are born blind, open their eyes at 4-7 days, leave the nest at 12-16 days and are weaned by 4-5 weeks."
+      },
+      {
+        "name": "territorial",
+        "start": "09-15",
+        "end": "12-31",
+        "note": "Does not hibernate; rests in forms through the coldest part of the year and feeds when the weather allows."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Juvenile"
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US-MO",
+        "monthly": [
+          0.22,
+          0.25,
+          0.33,
+          0.73,
+          0.98,
+          1.0,
+          0.93,
+          0.71,
+          0.38,
+          0.19,
+          0.18,
+          0.17
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 4078,
+        "sources": [
+          "inat-activity-us-mo",
+          "gbif-activity-us-mo"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 28,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=43111&place_id=28&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=28&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 2178,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "C",
+            "area": [
+              "gadmGid",
+              "USA.26_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2436886&gadmGid=USA.26_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.26_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "total": 1900,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-ground-forager-v1",
+    "params": {
+      "flee_m": 30,
+      "calm_m": 60,
+      "food_tag": "browse",
+      "food_m": 30,
+      "flee_gait": "hop",
+      "forage_gait": "walk",
+      "rest_sun_lo_deg": 15,
+      "rest_sun_hi_deg": 90
+    }
+  },
+  "vocalizations": [],
+  "look": {
+    "body_plan": "hopper",
+    "proportions": {
+      "torso_aspect": 1.1,
+      "leg_length_ratio": 0.5,
+      "head_scale": 0.62,
+      "neck_angle_deg": 5,
+      "tail_ratio": 0.22,
+      "ear_ratio": 0.95,
+      "girth_ratio": 1.0
+    },
+    "palette": {
+      "body": "#74604a",
+      "belly": "#e0dcd2",
+      "markings": "#f4f2ec",
+      "accent": "#8f5f3c",
+      "eye": "#241a12"
+    },
+    "part_colors": {
+      "tail": "markings"
+    },
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "hop": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2436886",
+      "title": "GBIF Backbone Taxonomy: Sylvilagus floridanus",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q774716",
+      "title": "Wikidata: Eastern cottontail (Q774716)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Eastern_cottontail",
+      "title": "Wikipedia: Eastern cottontail",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Eastern cottontail\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=180124",
+      "title": "ITIS: Sylvilagus floridanus, TSN 180124",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "eltontraits",
+      "url": "https://doi.org/10.6084/m9.figshare.3559887.v1",
+      "title": "EltonTraits 1.0: species-level foraging attributes of the world's birds and mammals (BirdFuncDat)",
+      "license": "CC0-1.0",
+      "kind": "dataset",
+      "accessed": "2026-10-01",
+      "attribution": "Wilman, H. et al. (2014) EltonTraits 1.0. Ecology 95:2027",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "inat-activity-us-mo",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=43111&place_id=28&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Sylvilagus floridanus in US-MO",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-mo",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2436886&gadmGid=USA.26_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+      "title": "GBIF occurrence search for Sylvilagus floridanus in US-MO",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "itis"
+      ],
+      "confidence": "High",
+      "note": "GBIF backbone and ITIS TSN 180124."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "gbif_usage_key from the GBIF match API; itis_tsn and wikidata from Wikidata (P815) confirmed against ITIS."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'from southern Canada throughout most of the United States and into parts of Mexico, Central America, and the northern regions of South America'."
+    },
+    "conservation": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "IUCN status from Wikidata (P141)."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Four legs."
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Moves with a walk and escapes with rapid hops and bounding runs; no climbing or swimming mode is recorded."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'Activity is year-round, as the species does not hibernate.'"
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "A rabbit; it cannot fly."
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Kits are born blind with fine hair, not as tadpoles or larvae; no metamorphosis."
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'The nest is typically a slanted hole in soft soil lined with fur and grasses' - Ground."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "A ground rabbit; it does not perch."
+    },
+    "traits.size_class": {
+      "sources": [
+        "eltontraits"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Derived from mass_kg (1.2 kg is in the Medium band)."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'Adults typically weigh between 1.8 and 4.4 lb (800 and 2,000 g), with an average of around 2.6 lb (1,200 g).'"
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "800-2,000 g."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'measuring 36-48 cm in total length, including a tail that averages 5.3 cm' - midpoint of 42 cm."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'Average lifespan in the wild is about 15 months' - 1.25 years; the longest-lived recorded wild individual reached five years."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'Eastern cottontails feed primarily on a wide variety of plants ... They prefer tender herbaceous vegetation, such as grasses, clovers, crabgrasses and wild rye.'"
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "A territorial species; individuals remain within the same home range throughout life, so Solitary with 1-2 records an adult pair."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'Eastern cottontails are mostly crepuscular and nocturnal, foraging primarily at dawn, dusk, and night.'"
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'When chased, it typically escapes in a zigzag pattern and can reach speeds of up to 18 mph.'"
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'They spend much of the daytime resting under vegetative cover and often remain motionless for extended periods to avoid detection.'"
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Entirely ground-dwelling: forms in grass, open fields and brushy thickets."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Rests in a form, a shallow scratched-out depression, beneath dense vegetation."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Herbaceous browse and grasses from the diet section; water, ground nest and shrub thicket tags from the habitat and nesting descriptions."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Adapted to suburban and agricultural landscapes with nearby cover; numeric tolerances authored from the fast flush distance and speed."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'Activity is year-round, as the species does not hibernate.'"
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Breeding from January in the south through late summer, nest development timings, and no winter hibernation - all from the Behaviour and Reproduction sections."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Blind kits opening their eyes at 4-7 days and weaning by 4-5 weeks, then the adult; there is no egg stage, as the kits are born furred."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Reddish-brown to grayish-brown fur that grays in winter, a white underside, large brown eyes, long ears and a short fluffy white tail; proportions authored (judgement)."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared ground-forager program: browse on the lawn, a 30 m flush, a hop to break cover, and a midday rest window that matches its crepuscular and nocturnal feeding."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies contributors",
+      "agent": "claude-code"
+    }
+  ]
+}
