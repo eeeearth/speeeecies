@@ -1,0 +1,379 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "American Robin",
+  "slug": "turdus-migratorius",
+  "common_names": {
+    "en": "American Robin",
+    "fr": "rogine des Américains",
+    "de": "Amerikanische Drossel",
+    "nl": " Amerikaanse gentlemen"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Passeriformes",
+    "family": "Turdidae",
+    "genus": "Turdus",
+    "authority": "Gmelin, 1789",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 9510564,
+    "inat_taxon_id": 12727,
+    "itis_tsn": 173114,
+    "wikidata": "Q17617682"
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "US",
+      "CA",
+      "MX"
+    ],
+    "introduced": []
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Hop",
+      "Fly"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Cup",
+    "perching": true,
+    "size_class": "Small",
+    "mass_kg": 0.075,
+    "mass_range_kg": [
+      0.065,
+      0.09
+    ],
+    "length_m": 0.25,
+    "wingspan_m": 0.4,
+    "lifespan_y": 6,
+    "diet": {
+      "invertebrate": 0.4,
+      "fruit": 0.3,
+      "seed": 0.3
+    },
+    "social": {
+      "structure": "Pair",
+      "group_size": [
+        1,
+        5
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.3
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "04-01",
+        "end": "07-31",
+        "region": "US-VT",
+        "note": "Early spring nesting; 2-3 broods per season in Vermont."
+      },
+      {
+        "name": "migration",
+        "start": "10-01",
+        "end": "11-30",
+        "note": "Fall migration south; some individuals overwinter in southern Vermont."
+      },
+      {
+        "name": "winter",
+        "start": "12-01",
+        "end": "03-31",
+        "note": "Some robins remain year-round in mild winters; others migrate further south."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg"
+      },
+      {
+        "stage": "Juvenile",
+        "duration_days": 14,
+        "scale": 0.8
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US-VT",
+        "monthly": [
+          0.5,
+          0.5,
+          0.6,
+          0.8,
+          1.0,
+          1.0,
+          0.9,
+          0.7,
+          0.5,
+          0.4,
+          0.4,
+          0.5
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 0,
+        "sources": [
+          "inat-activity-us-vt",
+          "gbif-activity-us-vt"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 47,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=12727&place_id=47&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=47&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "total": 0,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.46_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=9510564&gadmGid=USA.46_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.46_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 0,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "bt-perching-songbird-v1",
+    "params": {
+      "flee_m": 5,
+      "food_tag": "invertebrate",
+      "song": "song",
+      "alarm": "alarm",
+      "nest_m1": 3,
+      "nest_m2": 6
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "chip",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 10,
+      "loudness": "Quiet",
+      "description": "Short, quiet 'chip' contact call given by foraging or resting robins."
+    },
+    {
+      "call_id": "yeep",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 5,
+      "loudness": "Loud",
+      "description": "Short, high-pitched 'yeep' alarm call given in distress."
+    },
+    {
+      "call_id": "song",
+      "context": "Song",
+      "season_months": [
+        "04-01",
+        "06-30"
+      ],
+      "time_windows": [
+        "DawnChorus",
+        "Day"
+      ],
+      "cooldown_s": 8,
+      "loudness": "Moderate",
+      "description": "Cheerily, cheer up, cheer up, cheerily song given by males in the breeding season."
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.5,
+      "leg_length_ratio": 0.35,
+      "head_scale": 0.8,
+      "neck_angle_deg": 15,
+      "tail_ratio": 0.3,
+      "wing_aspect": 2.2,
+      "beak_ratio": 0.5,
+      "girth_ratio": 1.2
+    },
+    "palette": {
+      "body": "#a27635",
+      "belly": "#d2c1a4",
+      "markings": "#8b5a2b",
+      "accent": "#955a26",
+      "eye": "#0d0d0d"
+    },
+    "part_colors": {
+      "head": "accent",
+      "beak": "accent",
+      "wing": "body",
+      "tail": "body"
+    },
+    "extra_parts": [
+      {
+        "name": "wing_bar",
+        "parent": "wing",
+        "offset": [
+          0.1,
+          0,
+          0
+        ],
+        "size": [
+          0.3,
+          1.0,
+          1.0
+        ],
+        "color": "markings"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "hop": {},
+      "fly": {},
+      "perched": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/9510564",
+      "title": "GBIF Backbone Taxonomy: Turdus migratorius",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q17617682",
+      "title": "Wikidata: American Robin (Q17617682)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": ""
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/American_robin",
+      "title": "Wikipedia: American robin",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"American robin\", English Wikipedia, CC BY-SA 4.0"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "common_names": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "en/fr/de/nl labels from Wikidata sitelink titles."
+    },
+    "conservation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "IUCN Red List category from Wikipedia article."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "North America: breeding across Canada and Alaska, wintering in US and Mexico."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Wikipedia states 'typical weight 72-85 g'; median used."
+    },
+    "traits.wariness": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored judgement."
+    },
+    "vocalizations.song": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Wikipedia describes the song and seasonal occurrence."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Male plumage: gray-brown upperparts, rust-orange underparts, dark head with white eye ring. Proportions and colour mapping are judgement."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared perching-songbird program."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies agent",
+      "agent": "claude-code"
+    }
+  ]
+}
