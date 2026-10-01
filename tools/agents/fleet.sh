@@ -237,9 +237,39 @@ agent_running() {  # slug -> 0 running, 1 not
   pgrep -af "$AGENT_BIN run" 2>/dev/null | grep -qF -- "$wt"
 }
 
+stop_signal() {  # pid -> 0. Signals the whole process group, waits, escalates.
+  local pid="$1" i
+  kill -TERM -- "-$pid" 2>/dev/null || kill -TERM "$pid" 2>/dev/null || return 0
+  for i in $(seq 1 10); do kill -0 "$pid" 2>/dev/null || break; sleep 1; done
+  if kill -0 "$pid" 2>/dev/null; then
+    say "  pid $pid ignored SIGTERM; sending SIGKILL to the group"
+    kill -KILL -- "-$pid" 2>/dev/null || kill -KILL "$pid" 2>/dev/null
+    sleep 1
+  fi
+  return 0
+}
+
 stop_agent() {  # slug -> 0. Signals the whole process group and waits it out.
-  local pf="$STATE_DIR/$1.pid" pid i
-  [ -f "$pf" ] || return 0
+  local pf="$STATE_DIR/$1.pid" pid i wt
+  # No pidfile does not mean nothing is running. Agents launched before the
+  # pidfile existed have none, and returning early is how teardown came to
+  # mean "remove the metadata" while the process carried on in a deleted
+  # directory. Fall back to matching the worktree, so an agent of unknown
+  # vintage still gets stopped.
+  if [ ! -f "$pf" ]; then
+    wt=$(meta_get "$1" worktree)
+    if [ -n "$wt" ]; then
+      while read -r pid; do
+        [ -n "$pid" ] || continue
+        say "  no pidfile for $1; stopping the process on $wt (pid $pid)"
+        stop_signal "$pid"
+      done < <(pgrep -af -- "$AGENT_BIN run" 2>/dev/null \
+                 | while read -r l; do
+                     grep -qF -- "$wt" <<<"$l" && printf '%s\n' "${l%% *}"
+                   done)
+    fi
+    return 0
+  fi
   pid=$(tr -dc '0-9' < "$pf" 2>/dev/null)
   if [ -n "$pid" ] && kill -0 "$pid" 2>/dev/null; then
     say "stopping $1 (pid $pid) and its process group"

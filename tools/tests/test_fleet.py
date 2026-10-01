@@ -3,9 +3,14 @@ uv run --with pytest pytest tools/tests -q
 """
 from __future__ import annotations
 
+import os
 import re
 import subprocess
 from pathlib import Path
+import signal
+import time
+
+import pytest
 
 REPO = Path(__file__).resolve().parents[2]
 FLEET = REPO / "tools" / "agents" / "fleet.sh"
@@ -1468,3 +1473,69 @@ def test_no_brief_redirects_the_report_into_the_worktree():
         "the locale brief had no commit step at all, so nothing stopped a "
         "blanket add from sweeping scratch files in"
     )
+
+
+def test_the_pidless_fallback_matches_on_the_whole_command_line():
+    """`pgrep -f` prints bare pids; only `-a` appends the command line. Without
+    the -a the fallback grepped the worktree path against a pid string, matched
+    nothing, and returned success -- so teardown of an agent launched before
+    pidfiles existed still left the process running, which is the leak this
+    fallback exists to close."""
+    text = FLEET.read_text(encoding="utf-8")
+    fn = text.split("stop_agent() {", 1)[1].split("\n}\n", 1)[0]
+    assert 'pgrep -af -- "$AGENT_BIN run"' in fn, (
+        "the fallback needs -a, or there is no command line to match the path against"
+    )
+    assert 'pgrep -f -- "$AGENT_BIN run"' not in fn, (
+        "bare pgrep -f yields no command line, so the path match can never succeed"
+    )
+    assert 'grep -qF -- "$wt" <<<"$l"' in fn, "the worktree must be matched literally"
+    assert "no pidfile for $1" in fn, "the fallback path must be reachable and logged"
+
+
+@pytest.mark.skipif(
+    os.environ.get("FLEET_SLOW_TESTS") != "1",
+    reason="spawns and signals real processes; run with FLEET_SLOW_TESTS=1",
+)
+def test_stopping_an_agent_without_a_pidfile_still_reaches_the_process():
+    """Exercised for real, not asserted structurally: a setsid'd process whose
+    argv[0] mimics `opencode run --dir <worktree>`, no pidfile written, and the
+    fallback has to find and stop it."""
+    import subprocess
+    import tempfile
+
+    with tempfile.TemporaryDirectory() as td:
+        wt = f"{td}/wt"
+        launcher = f"{td}/agent.sh"
+        with open(launcher, "w", encoding="utf-8") as fh:
+            fh.write('#!/usr/bin/env bash\nexec -a "opencode run --dir $1 --title t" sleep 120\n')
+        launcher_chmod = subprocess.run(["chmod", "+x", launcher], check=True)
+        assert launcher_chmod.returncode == 0
+        subprocess.run(["setsid", launcher, wt], check=True,
+                       stdin=subprocess.DEVNULL,
+                       stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        time.sleep(2)
+
+        # The fallback's matching, verbatim.
+        out = subprocess.run(
+            ["bash", "-c",
+             f'pgrep -af -- "opencode run" | while read -r l; do '
+             f'grep -qF -- "{wt}" <<<"$l" && printf "%s\\n" "${{l%% *}}"; done'],
+            capture_output=True, text=True)
+        pids = [p for p in out.stdout.split() if p.strip().isdigit()]
+        assert pids, (
+            "the fallback found no process for a worktree that is demonstrably "
+            "in its command line; teardown would silently leak it"
+        )
+        for pid in pids:
+            try:
+                os.killpg(os.getpgid(int(pid)), signal.SIGTERM)
+            except (ProcessLookupError, PermissionError):
+                pass
+        deadline = time.time() + 10
+        while time.time() < deadline:
+            if not any(Path(f"/proc/{p}").exists() for p in pids):
+                break
+            time.sleep(0.5)
+        for pid in pids:
+            assert not Path(f"/proc/{pid}").exists(), f"pid {pid} survived the stop"
