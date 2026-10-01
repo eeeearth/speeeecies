@@ -1218,24 +1218,30 @@ def test_liveness_and_attempts_use_consistent_keys():
     )
 
 
-def test_supervisor_reverts_a_status_file_edit_whatever_the_brief_says():
+def test_supervisor_reverts_a_scratch_file_edit_whatever_the_brief_says():
     """Containment cannot rest on the prompt. A root STATUS.md already exists on
     origin/main from an earlier agent, so an agent reading the tree sees an
     invitation, and two live agents were launched before the briefs forbade
     touching it. One PR already shipped that file."""
     text = FLEET.read_text(encoding="utf-8")
-    guard = text.split("# STATUS.md guard.", 1)
+    guard = text.split("# Scratch-file guard.", 1)
     assert len(guard) == 2, "no STATUS.md guard in the poll loop"
     block = guard[1].split("# Reap:", 1)[0]
-    assert "restore --staged --worktree --source=HEAD -- STATUS.md" in block, (
+    # The guard iterates a denylist, so the restore targets "$scratch"; the file
+    # names live in the loop header, not in the git command.
+    assert 'restore --staged --worktree --source=HEAD -- "$scratch"' in block, (
         "the guard must restore the file, not merely warn about it"
     )
-    assert "ls-files --error-unmatch STATUS.md" in block, (
-        "the guard must only touch a tracked STATUS.md"
+    # This used to assert the guard skipped untracked files. That was wrong: an
+    # untracked report.md is invisible to `git diff HEAD`, so skipping it left
+    # the file sitting there for the next `git add -A` to sweep into a commit.
+    # The guard now covers untracked scratch too.
+    assert 'cat-file -e "HEAD:$scratch"' in block, (
+        "a base-branch file is reverted; an agent-created one is removed"
     )
     # It has to run every poll, before the reap that would declare the PR done.
     loop = text.split("cmd_supervise() {", 1)[1]
-    assert loop.index("# STATUS.md guard.") < loop.index("# Reap:"), (
+    assert loop.index("# Scratch-file guard.") < loop.index("# Reap:"), (
         "the guard must run before a finished agent's PR is accepted"
     )
 
@@ -1345,13 +1351,16 @@ def test_the_status_guard_also_clears_a_staged_edit():
     """`git checkout -- <path>` restores the worktree from the index, so a staged
     edit survived it and still shipped while the guard logged a false success."""
     text = FLEET.read_text(encoding="utf-8")
-    block = text.split("# STATUS.md guard.", 1)[1].split("# Reap:", 1)[0]
-    assert "restore --staged --worktree --source=HEAD -- STATUS.md" in block, (
+    block = text.split("# Scratch-file guard.", 1)[1].split("# Reap:", 1)[0]
+    assert 'restore --staged --worktree --source=HEAD -- "$scratch"' in block, (
         "a staged STATUS.md edit is not cleared by checkout; it needs the index reset"
     )
     # A guard that logs success without verifying is worse than no guard.
     assert block.index("restore --staged") < block.index("WARNING"), (
         "the warning must be the fallback branch, after the attempt"
+    )
+    assert 'diff --quiet HEAD -- "$scratch"' in block, (
+        "the restore must be confirmed clean before success is reported"
     )
 
 
@@ -1399,3 +1408,63 @@ def test_the_provider_tally_is_rebuilt_from_the_log_and_refuses_to_publish_a_wro
     assert "model=" not in code, "the spawn line has a space, not an equals sign"
     loop = text.split("cmd_supervise() {", 1)[1]
     assert "reconcile_provider_counts" in loop, "reconcile is never called"
+
+
+def test_the_guard_covers_report_as_well_as_status():
+    """A locale PR shipped report.md because the brief told the agent to write
+    one and a blanket `git add` swept it in. Two files, one denylist."""
+    text = FLEET.read_text(encoding="utf-8")
+    block = text.split("# Scratch-file guard.", 1)[1].split("# Reap:", 1)[0]
+    assert "for scratch in STATUS.md report.md" in block, (
+        "the guard must cover the report file the locale agents created"
+    )
+
+
+def test_the_guard_sees_an_untracked_scratch_file():
+    """`git diff HEAD` cannot see an untracked file, so a report.md not yet
+    staged walked past the guard and was swept into the commit by the next
+    `git add -A` -- the exact failure the guard exists to prevent."""
+    text = FLEET.read_text(encoding="utf-8")
+    block = text.split("# Scratch-file guard.", 1)[1].split("# Reap:", 1)[0]
+    assert '[ ! -e "$gwt/$scratch" ]' in block, (
+        "presence must be tested on disk, since an untracked file has no diff"
+    )
+    assert "ls-files --error-unmatch" in block, (
+        "the index must also be consulted, to catch a staged deletion"
+    )
+    assert 'git diff --quiet HEAD -- "$scratch" 2>/dev/null && continue' not in block, (
+        "diffing against HEAD alone silently skips untracked scratch files"
+    )
+
+
+def test_the_guard_handles_a_scratch_file_that_is_not_in_head():
+    """report.md is never on the base branch, so restoring it from HEAD fails
+    and the staged copy would ship. It has to be unstaged and deleted instead,
+    which is a different fix from reverting an edit to a base-branch file."""
+    text = FLEET.read_text(encoding="utf-8")
+    block = text.split("# Scratch-file guard.", 1)[1].split("# Reap:", 1)[0]
+    assert 'cat-file -e "HEAD:$scratch"' in block, (
+        "the two shapes need branching on whether the file exists in HEAD"
+    )
+    assert block.index('cat-file -e "HEAD:$scratch"') < block.index('rm -q --cached'), (
+        "the agent-created branch must unstage and delete"
+    )
+
+
+def test_no_brief_redirects_the_report_into_the_worktree():
+    """The locale brief instructed `> report.md`, which is how two PRs shipped
+    one. Containment in the supervisor is the backstop; the instruction that
+    caused it has to go too."""
+    for path in (BRIEF, BRIEF_LOCALE):
+        text = path.read_text(encoding="utf-8")
+        for line in text.splitlines():
+            if line.strip().startswith(("#", "-", "|", ">")) or "report.md" not in line:
+                continue
+            assert "> report.md" not in line, (
+                f"{path.name} still redirects the report into the worktree: {line.strip()!r}"
+            )
+    locale = BRIEF_LOCALE.read_text(encoding="utf-8")
+    assert "never `git add -A`" in locale, (
+        "the locale brief had no commit step at all, so nothing stopped a "
+        "blanket add from sweeping scratch files in"
+    )

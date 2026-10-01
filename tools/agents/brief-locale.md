@@ -170,17 +170,20 @@ licence each time; it changes.
 ### 7. Validate
 
 ```
-uv run tools/validate.py --locale {{SLUG}} --report > report.md
+uv run tools/validate.py --locale {{SLUG}} --report
 uv run tools/validate.py --self-check
 ```
 
 Both must pass. Fix errors and rerun until they do not. Warnings are allowed but
 justify them in the PR.
 
-When you put the report in the pull request body, paste what the command
-**printed**. Do not write `$(cat report.md)` or any other shell substitution into
-the body — that reaches the reviewer as literal text, which is what happened in
-PR #118. If you redirected to a file, read it and paste the contents.
+The report goes in the pull request body, so let it print to stdout and paste
+what you see. Do not redirect it to a file: an earlier brief told you to write
+`report.md` here, and the scratch file was then swept into the commit by a
+blanket `git add`, so it shipped as part of the contribution.
+
+Do not write `$(cat report.md)` or any other shell substitution into the body —
+that reaches the reviewer as literal text, which is what happened in PR #118.
 
 ### 8. Preview
 
@@ -194,7 +197,27 @@ the garden actually planted, does the plot read as the right kind of place, are
 the animals plausible for the setting. Then open your locale's page and check the
 species entries.
 
-### 9. Open the PR
+### 9. Commit
+
+Conventional commits, one concern per commit, subject under 72 characters, and
+reference the issue: `locale: <the place> (<id>)`.
+
+**Stage paths by name; never `git add -A`.** A blanket add is how scratch files
+reach a pull request. Two locale PRs shipped a `report.md` that way, because an
+earlier version of this brief told the agent to write one.
+
+Before you commit, read what you are about to stage:
+
+```
+git status --porcelain
+git diff --cached --stat
+```
+
+Every path there must be a locale file, a species file this locale genuinely
+needs, or a tool change you can justify. If a path is a scratch note, a status
+file, or anything you cannot explain, unstage it.
+
+### 10. Open the PR
 
 Title exactly `locale: <the place> (<id>)`. The body must contain the validate
 report from step 7 verbatim, a line `Closes #{{ISSUE}}`, the locale rows of the
@@ -214,7 +237,7 @@ A real PR returns a `number` and a `/pull/<number>` URL. If that errors with "no
 pull requests found", the PR is not open — fix it or report `BLOCKED:`. Do not
 write `I'm done boss` on the strength of a push.
 
-### 10. Get CI green, then stop
+### 11. Get CI green, then stop
 
 ```
 gh pr checks --watch

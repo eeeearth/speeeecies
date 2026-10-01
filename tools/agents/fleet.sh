@@ -691,28 +691,55 @@ cmd_supervise() {
       say "reaped an orphaned process for $oslug; its metadata was gone"
     done
 
-    # STATUS.md guard. The briefs forbid touching it, but two live agents were
-    # launched before that wording existed and the repository already carries a
-    # root STATUS.md from an even earlier one, so an agent reading the tree sees
-    # an invitation. Containment cannot rely on the prompt: restore the file and
-    # say so. A PR that carried it shipped once already.
+    # Scratch-file guard. A PR once shipped STATUS.md and two locale PRs shipped
+    # report.md, in both cases because the brief told the agent to write it and a
+    # blanket `git add` swept it in. Prompts have failed repeatedly to hold this
+    # line -- agents launched before a brief edit keep the old brief for their
+    # whole run -- so containment is mechanical: undo the change and say so.
+    # A file that is already on the base branch is not pollution, so only paths
+    # the agent actually modified are touched.
     for m in "$STATE_DIR"/*.meta; do
       [ -f "$m" ] || continue
       gslug=$(basename "$m" .meta)
       gwt=$(meta_get "$gslug" worktree)
       [ -n "$gwt" ] && [ -d "$gwt" ] || continue
-      git -C "$gwt" ls-files --error-unmatch STATUS.md >/dev/null 2>&1 || continue
-      git -C "$gwt" diff --quiet HEAD -- STATUS.md 2>/dev/null && continue
-      # `checkout -- <path>` restores the worktree *from the index*, so a staged
-      # edit survived it and still shipped in the PR while the guard logged a
-      # successful revert. Clear the index and the worktree from HEAD, then
-      # confirm it: a guard that reports success without cleaning is worse.
-      if git -C "$gwt" restore --staged --worktree --source=HEAD -- STATUS.md 2>/dev/null \
-         && git -C "$gwt" diff --quiet HEAD -- STATUS.md 2>/dev/null; then
-        echo "[$(date -u +%FT%TZ)] $gslug: reverted a STATUS.md edit; that file is not part of the contribution"
-      else
-        echo "[$(date -u +%FT%TZ)] $gslug: WARNING could not revert a staged STATUS.md edit; check it before merging"
-      fi
+      for scratch in STATUS.md report.md; do
+        # Presence on disk *or* in the index. `git diff HEAD` cannot see an
+        # untracked file at all, so a scratch file not yet staged walked straight
+        # past the guard and was then swept into the commit by the next
+        # `git add -A` -- the exact failure the guard exists to prevent. The
+        # index check also catches a staged deletion of a base-branch file.
+        if [ ! -e "$gwt/$scratch" ] \
+           && ! git -C "$gwt" ls-files --error-unmatch "$scratch" >/dev/null 2>&1; then
+          continue
+        fi
+        # `checkout -- <path>` restores the worktree *from the index*, so a
+        # staged edit survived it and still shipped while the guard logged a
+        # successful revert. Clear index and worktree from HEAD, then confirm:
+        # a guard that reports success without cleaning is worse than none.
+        # Two different shapes need two different fixes. STATUS.md exists on the
+        # base branch, so it has to be restored to its committed contents. A
+        # report.md the agent created is not in HEAD at all, so restoring it
+        # would fail and the staged copy would ship; it has to be unstaged and
+        # deleted instead. Treating them alike warned instead of cleaning.
+        if git -C "$gwt" cat-file -e "HEAD:$scratch" 2>/dev/null; then
+          if git -C "$gwt" restore --staged --worktree --source=HEAD -- "$scratch" 2>/dev/null \
+             && git -C "$gwt" diff --quiet HEAD -- "$scratch" 2>/dev/null; then
+            echo "[$(date -u +%FT%TZ)] $gslug: reverted a $scratch edit; scratch files are not part of the contribution"
+          else
+            echo "[$(date -u +%FT%TZ)] $gslug: WARNING could not revert a staged $scratch edit; check it before merging"
+          fi
+        else
+          # Not in HEAD: unstage it if it was staged, then remove the file.
+          git -C "$gwt" rm -q --cached --ignore-unmatch -- "$scratch" 2>/dev/null || true
+          rm -f "$gwt/$scratch" 2>/dev/null || true
+          if git -C "$gwt" status --porcelain -- "$scratch" 2>/dev/null | grep -q .; then
+            echo "[$(date -u +%FT%TZ)] $gslug: WARNING $scratch still present; check it before merging"
+          else
+            echo "[$(date -u +%FT%TZ)] $gslug: removed the agent-created scratch file $scratch"
+          fi
+        fi
+      done
     done
 
     # Reap: an agent that finished with a PR leaves the fleet.

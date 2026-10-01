@@ -208,11 +208,14 @@ Work through these in order. Do not skip ahead to opening the PR.
    Warnings are acceptable, but understand each one and justify it in the PR.
    Errors are not acceptable — fix them and rerun until the error count is zero.
 
-   When you put the report in the pull request body, paste what the command
-   **printed**. Do not write `$(cat report.md)` or any other shell substitution
+   The report goes in the pull request body, so let it print to stdout and paste
+   what you see. Do not redirect it to a file inside the worktree: a sibling
+   locale brief did that, and the scratch file was swept into the commit by a
+   blanket `git add` and shipped as part of the contribution.
+
+   Do not write `$(cat report.md)` or any other shell substitution
    into the body — that reaches the reviewer as literal text, which is what
-   happened in PR #118. If you redirected to a file, read it and paste the
-   contents.
+   happened in PR #118.
 
 5. **Run the repo's own gates too**, because CI runs them on every PR:
 
