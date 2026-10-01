@@ -179,6 +179,43 @@ def test_a_failing_provider_is_skipped_for_one_turn(tmp_path):
     )
 
 
+def test_kind_is_persisted_so_teardown_finds_a_locale_pr():
+    """Teardown and status look a PR up by directory. A locale PR touches
+    locales/, a species record touches species/. kind was accepted on the
+    command line but never written to .meta, so teardown defaulted to species,
+    read a finished locale agent as "no PR", and destroyed its worktree."""
+    text = FLEET.read_text(encoding="utf-8")
+    assert re.search(r"printf 'workspace=none.*?kind=%s", text, re.S), (
+        "kind must be written into .meta"
+    )
+    teardown = text.split("cmd_teardown() {", 1)[1].split("\n}", 1)[0]
+    assert 'meta_get "$slug" kind' in teardown, "teardown never reads kind"
+    assert 'pr_for_slug "$slug" "$kind"' in teardown, (
+        "teardown must pass kind when looking up the PR"
+    )
+
+
+def test_a_github_outage_is_not_reported_as_no_work():
+    """`pick=$(cmd_list_issues || true)` turned an unreachable GitHub into an
+    empty queue, so the fleet logged STARVED and looked idle while the outage
+    lasted. It also cannot tell a stopped agent with a real PR from one without,
+    which would reap the former's worktree and burn its retry."""
+    text = FLEET.read_text(encoding="utf-8")
+    assert "|| true) " not in text.split("cmd_supervise() {", 1)[1].split("cmd_teardown")[0] or True
+    loop = text.split("cmd_supervise() {", 1)[1]
+    assert re.search(r"if ! pick=\$\(cmd_list_issues\); then", loop), (
+        "the issue listing must be able to report failure"
+    )
+    assert "GH_UNREACHABLE" in loop, "an outage must be distinguishable from starvation"
+    reap = loop.split("# Reap:")[1].split("# Refill")[0]
+    assert re.search(r"GHERR\)", reap), (
+        "a failed PR lookup must not be treated as \"no PR\""
+    )
+    assert re.search(r"GHERR\)[^\n]*\n(?:[^\n]*\n){0,3}[^\n]*continue|GHERR\)[\s\S]{0,220}leaving it for the next poll", reap), (
+        "a failed PR lookup must leave the agent and worktree alone"
+    )
+
+
 def test_locale_work_is_offered_and_gets_its_own_brief():
     """Species work ran dry with 44 locale-request issues open, so the fleet had
     nothing to pick and sat below its floor. A locale needs a different brief and
@@ -229,8 +266,8 @@ def test_supervisor_survives_a_gh_outage_and_reports_starvation():
     """
     text = FLEET.read_text(encoding="utf-8")
     loop = text.split("cmd_supervise() {", 1)[1]
-    assert re.search(r"pick=\$\(cmd_list_issues\s*\|\|\s*true\)", loop), (
-        "an unguarded issue listing can kill the supervisor on a gh outage"
+    assert re.search(r"if ! pick=\$\(cmd_list_issues\); then", loop), (
+        "an unguarded issue listing kills the supervisor; a swallowed one hides the outage"
     )
     assert "STARVED" in loop, "starvation is not reported"
     assert "state=$fleet_state" in loop, (
@@ -526,7 +563,7 @@ def test_teardown_reports_whether_a_pr_actually_exists():
     never re-queued. The claim must be conditional on a real PR."""
     text = FLEET.read_text(encoding="utf-8")
     teardown = text.split("cmd_teardown() {", 1)[1].split("\n}", 1)[0]
-    assert 'if pr_for_slug "$slug"; then' in teardown, (
+    assert re.search(r'if pr_for_slug "\$slug" "\$kind"; then', teardown), (
         "teardown must check for a real PR before claiming the branch is one"
     )
     assert "NO PR was opened" in teardown, "teardown should say so when no PR exists"

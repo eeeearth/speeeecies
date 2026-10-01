@@ -202,15 +202,23 @@ with open(out, "w", encoding="utf-8") as fh:
   [ -z "$leftover" ] || die "brief still has unsubstituted placeholders: $leftover"
 }
 
-pr_field() {  # slug field jq-expr
-  local br jq
+pr_field() {  # slug field jq-expr; GHERR when the lookup itself failed
+  local br jq err
   br=$(meta_get "$1" branch)
   [ -n "$br" ] || { echo "-"; return; }
   # Default to the bare field rather than $3 bare: `set -u` makes a missing third
   # argument fatal, and that killed the supervisor the first time an agent
   # finished, which is exactly when the reap loop needs to run.
   jq=${3:-".$2"}
-  gh pr view "$br" --repo "$GH_REPO" --json "$2" -q "$jq" 2>/dev/null || echo "-"
+  err=$(gh pr view "$br" --repo "$GH_REPO" --json "$2" -q "$jq" 2>&1) && {
+    printf '%s' "$err"; return 0; }
+  # "no pull requests found" is a real answer: the agent opened nothing. Anything
+  # else is GitHub being unreachable, which must not be read as "no PR" or the
+  # reap destroys a finished agent's worktree and retries its issue.
+  case "$err" in
+    *"no pull requests found"*|*"Could not resolve to a"*|*"not found"*) echo "-" ;;
+    *) echo "GHERR" ;;
+  esac
 }
 
 cmd_list_issues() {
@@ -219,6 +227,8 @@ cmd_list_issues() {
   # anything already carried by an open PR so two fleets never duplicate work.
   # Columns: issue, slug, kind, title. A locale slug is the locale id, which the
   # issue title carries in its final parentheses.
+  # Not `|| true`: the caller must be able to tell a failed query from an empty
+  # result, or a GitHub outage reads as "no work left".
   gh issue list --repo "$GH_REPO" --state open --limit 200 --json number,title,labels,assignees \
     | python3 -c '
 import json,sys
@@ -372,8 +382,12 @@ print(" ".join(re.findall(r"\b([A-Z]{2}(?:-[A-Z0-9]{1,3})?)\b", b))[:40])')
   local log="$STATE_DIR/$slug.log" status="$STATE_DIR/$slug.status.md" launch="$STATE_DIR/$slug.launch.sh"
   printf '# %s\nissue: %s\nscientific: %s\nbranch: %s\nworktree: %s\nmodel: %s\nregions: %s\nstarted: %s\n\n' \
     "$slug" "$issue" "$sci" "$branch" "$wpath" "$model" "$regions" "$(date -u +%FT%TZ)" > "$status"
-  printf 'workspace=none\nagent=%s\nworktree=%s\nbranch=%s\nissue=%s\nslug=%s\nscientific=%s\nmodel=%s\nvariant=%s\nregions=%s\nlog=%s\nstatus=%s\nbrief=%s\nmain=%s\n' \
-    "$slug" "$wpath" "$branch" "$issue" "$slug" "$sci" "$model" "$variant" "$regions" "$log" "$status" "$brief" "$REPO" \
+  # kind is persisted because teardown and status look the PR up by directory, and
+# a locale's PR touches locales/ while a species record touches species/. Without
+# it a finished locale agent reads as "no PR", its worktree is destroyed and its
+# issue is retried from scratch.
+printf 'workspace=none\nagent=%s\nworktree=%s\nbranch=%s\nissue=%s\nslug=%s\nkind=%s\nscientific=%s\nmodel=%s\nvariant=%s\nregions=%s\nlog=%s\nstatus=%s\nbrief=%s\nmain=%s\n' \
+    "$slug" "$wpath" "$branch" "$issue" "$slug" "$kind" "$sci" "$model" "$variant" "$regions" "$log" "$status" "$brief" "$REPO" \
     > "$STATE_DIR/$slug.meta"
 
   cat > "$launch" <<LAUNCHER
@@ -427,7 +441,10 @@ cmd_teardown() {
   slug="$1"; shift || true
   while [ $# -gt 0 ]; do case "$1" in --force) force=1; shift;; *) shift;; esac; done
   [ -f "$STATE_DIR/$slug.meta" ] || die "no metadata for $slug in $STATE_DIR"
-  local wt br; wt=$(meta_get "$slug" worktree); br=$(meta_get "$slug" branch)
+  local wt br kind
+    wt=$(meta_get "$slug" worktree); br=$(meta_get "$slug" branch)
+    # Pre-kind metadata has no kind= line; those agents were all species.
+    kind=$(meta_get "$slug" kind); [ -n "$kind" ] || kind=species
 
   # Never tear down while the agent is mid-flight, unless forced.
   if [ "$force" = 0 ] && agent_running "$slug"; then
@@ -444,9 +461,9 @@ cmd_teardown() {
         "$STATE_DIR/$slug.brief.md" "$STATE_DIR/$slug.launch.sh"
   # Say which of the two happened. "because it is the PR" on its own let an
   # agent that died with no PR look delivered, so its issue went unclaimed.
-  if pr_for_slug "$slug"; then
-    rm -f "$STATE_DIR/$slug.log"
-    say "torn down $slug; branch kept ($br) because it is the PR"
+if pr_for_slug "$slug" "$kind"; then
+      rm -f "$STATE_DIR/$slug.log"
+      say "torn down $slug; branch kept ($br) because it is the PR"
   else
     say "torn down $slug; NO PR was opened, branch $br kept for salvage, issue still needs work"
     say "  agent log kept for diagnosis: $STATE_DIR/$slug.log"
@@ -467,12 +484,18 @@ cmd_supervise() {
       slug=$(basename "$m" .meta)
       agent_running "$slug" && continue
       pr=$(pr_field "$slug" number,state '"#\(.number) \(.state)"')
-      case "$pr" in \#*) echo "[$(date -u +%T)] $slug finished: $pr -> teardown"
-                        cmd_teardown "$slug" --force || true ;;
-           *)   note_route_failure "$slug"
-          echo "[$(date -u +%T)] $slug stopped with NO PR (model $(meta_get "$slug" model)); log tail:"
-                tail -5 "$STATE_DIR/$slug.log" | sed 's/^/    /'
-                cmd_teardown "$slug" --force || true ;;
+      case "$pr" in
+        \#*) echo "[$(date -u +%T)] $slug finished: $pr -> teardown"
+             cmd_teardown "$slug" --force || true ;;
+        # GitHub could not be reached. Leave the agent and its worktree alone and
+        # ask again next poll: reaping here would destroy finished work on a
+        # transient outage and burn a retry.
+        GHERR) fleet_state=GH_UNREACHABLE
+               echo "[$(date -u +%T)] $slug: PR lookup failed (GitHub unreachable); leaving it for the next poll" ;;
+        *)     note_route_failure "$slug"
+               echo "[$(date -u +%T)] $slug stopped with NO PR (model $(meta_get "$slug" model)); log tail:"
+               tail -5 "$STATE_DIR/$slug.log" | sed 's/^/    /'
+               cmd_teardown "$slug" --force || true ;;
       esac
     done
 
@@ -490,7 +513,13 @@ cmd_supervise() {
     if [ "$live" -lt "$FLEET_MIN" ]; then
       # `|| true`: a gh outage must not kill the loop. Without an issue list the
       # fleet just waits a poll and tries again.
-      pick=$(cmd_list_issues || true)
+      # A gh outage must not kill the loop, but it must not masquerade as an
+      # empty queue either: report it and keep whatever is already running.
+      if ! pick=$(cmd_list_issues); then
+        fleet_state=GH_UNREACHABLE
+        echo "[$(date -u +%T)] issue listing failed (GitHub unreachable); not refilling this poll"
+        pick=""
+      fi
       # Key on FILENAME, not NR==FNR. queue.tsv is empty on a first run, and with
       # an empty first file NR and FNR advance in lockstep, so NR==FNR stays true
       # for every candidate row and the whole queue is swallowed as "already tried".
@@ -507,7 +536,9 @@ cmd_supervise() {
         ' "$STATE_DIR/queue.tsv" -)
       fi
       row_pick=$(printf '%s\n' "$pick" | head -1)
-      if [ -z "$row_pick" ]; then
+      if [ -z "$row_pick" ] && [ "$fleet_state" != GH_UNREACHABLE ]; then
+        # Only say STARVED on the transition. Repeating it every poll turns a
+        # one-line state change into log spam that hides real events.
         if [ "$fleet_state" = OK ]; then
           echo "[$(date -u +%T)] STARVED: live=$live below floor $FLEET_MIN, no eligible issue left"
         fi

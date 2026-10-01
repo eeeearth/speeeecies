@@ -121,7 +121,7 @@ garden gets a generic set of large trees for your Köppen class, which is the
 most common reason a locale looks bare.
 
 Only draw from taxa in `schema/v0.1/flora-taxa.json`, and copy each taxon's
-`archetype` exactly. `Shrub`, `Forb`, `Grammoid` and `Fern` are not yet
+`archetype` exactly. `Shrub`, `Forb`, `Graminoid` and `Fern` are not yet
 drawable; the import cannot place them and the validator warns.
 
 ### 6. Facts and sources
