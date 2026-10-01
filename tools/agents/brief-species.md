@@ -17,6 +17,24 @@ the files it points you at. Read carefully and do the whole job.
   line `BLOCKED: <reason>`. A clear `BLOCKED:` is an acceptable outcome; forcing
   something through is not.
 
+## Do the work yourself
+
+You are one of a fixed number of agents running at once, and the fleet's whole
+purpose is to hold that number steady so the loop can run for days. Do not
+launch subagents, background agents, or parallel fan-out: not the `task` tool,
+not `&`, not a batch of scripts in the background. Not for research, and
+especially not to parallelise species or file writes.
+
+It was tried, and it breaks the budget two ways. The extra agents are invisible
+to the supervisor, so nobody counts them, so the fleet silently runs at many
+times its intended size. And they draw from model quotas the rotation is
+balancing, so one agent's fan-out can starve the others.
+
+If a job looks too big — twelve species records, say — do them one at a time in
+this worktree, in order. Slower is fine; that is the whole design. If you truly
+cannot finish in your budget, end with `BLOCKED: <reason>` and say what is left.
+That is a good outcome and costs nothing.
+
 ## What this repository is
 
 A public kit for adding animal species to a live ecological simulation. You add

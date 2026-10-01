@@ -216,6 +216,59 @@ def test_a_github_outage_is_not_reported_as_no_work():
     )
 
 
+
+def test_briefs_forbid_recursive_delegation():
+    """A locale delegate fanned out into six background species agents, and
+    another fired three librarian agents. The supervisor counts three agents and
+    balances three quotas; invisible children break both, and the fleet runs at
+    several times its intended size. opencode silently ignores permission.task=deny
+    (verified: a probe agent launched an Explore subagent anyway), so the brief is
+    the only place this can be stopped."""
+    for brief in (BRIEF, BRIEF_LOCALE):
+        # collapse whitespace: the rule wraps across lines in the source
+        low = " ".join(brief.read_text(encoding="utf-8").lower().split())
+        assert "do not launch subagents" in low, f"{brief.name} permits fan-out"
+        assert "fan-out" in low, f"{brief.name} does not name fan-out"
+        assert "`task` tool" in low, f"{brief.name} does not name the task tool"
+        assert "invisible to the supervisor" in low, (
+            f"{brief.name} must explain why hidden children break the fleet"
+        )
+
+
+def test_a_failed_pr_lookup_never_reads_as_no_pr():
+    """pr_for_slug swallowed a gh failure as zero open PRs, so the fleet would
+    decide the issue was free and spawn a second agent on top of one that
+    already had a pull request open."""
+    text = FLEET.read_text(encoding="utf-8")
+    fn = text.split("pr_for_slug() {", 1)[1].split("\n}\n", 1)[0]
+    assert "|| return 2" in fn, "pr_for_slug must distinguish a failed lookup"
+    assert "|| echo 0" not in fn, "a gh failure is still being read as zero PRs"
+    spawn = text.split("cmd_spawn() {", 1)[1].split("\n}\n", 1)[0]
+    assert re.search(r'case "\$pr_st" in', spawn), (
+        "spawn must handle a lookup failure rather than proceeding or dying on it"
+    )
+    teardown = text.split("cmd_teardown() {", 1)[1].split("\n}\n", 1)[0]
+    assert "could NOT verify" in teardown, (
+        "teardown must not claim either way when GitHub is unreachable"
+    )
+
+
+def test_fleet_state_survives_a_poll():
+    """fleet_state was declared inside the loop, so it reset every pass and the
+    transition-only reporting could never fire: the log filled with the same
+    STARVED line once a minute."""
+    text = FLEET.read_text(encoding="utf-8")
+    fn = text.split("cmd_supervise() {", 1)[1]
+    decl = [ln for ln in fn.splitlines() if "fleet_state=OK" in ln]
+    assert decl, "fleet_state is never initialised"
+    assert len(decl) == 1, "fleet_state is initialised more than once"
+    head = fn.split("while :;", 1)[0]
+    assert any("fleet_state=OK" in ln for ln in head.splitlines()), (
+        "fleet_state must be initialised before the poll loop, not inside it"
+    )
+    assert "prev_state" in fn, "no previous-state tracking for transition reporting"
+
+
 def test_readme_does_not_contradict_the_driver():
     """The README claimed the supervisor never retried, worked only on species,
     and round-robined one nine-model pool. All three were false, and all three
@@ -615,32 +668,41 @@ def test_pr_field_jq_only_touches_requested_fields():
             )
 
 
+
 def test_teardown_reports_whether_a_pr_actually_exists():
     """Teardown used to say "branch kept because it is the PR" unconditionally, so
     an agent that died without opening one looked delivered and its issue was
-    never re-queued. The claim must be conditional on a real PR."""
+    never re-queued. The claim must be conditional on a real PR, and an
+    unverifiable lookup is not a real PR."""
     text = FLEET.read_text(encoding="utf-8")
-    teardown = text.split("cmd_teardown() {", 1)[1].split("\n}", 1)[0]
-    assert re.search(r'if pr_for_slug "\$slug" "\$kind"; then', teardown), (
+    teardown = text.split("cmd_teardown() {", 1)[1].split("\n}\n", 1)[0]
+    assert re.search(r'pr_for_slug "\$slug" "\$kind" \|\| pr_st=\$\?', teardown), (
         "teardown must check for a real PR before claiming the branch is one"
+    )
+    assert 'case "$pr_st" in' in teardown, (
+        "teardown must distinguish confirmed, absent and unverified lookups"
     )
     assert "NO PR was opened" in teardown, "teardown should say so when no PR exists"
 
 
-def test_teardown_keeps_the_log_when_no_pr_was_opened():
+
+def test_teardown_keeps_the_log_unless_a_pr_is_confirmed():
     """Two of four agents died with zero commits and teardown had already
-    destroyed their logs, leaving no way to tell why. A failed agent's log is
-    the only diagnostic record of the failure."""
+    destroyed their logs, leaving no way to tell why. A failed agent's log is the
+    only diagnostic record of the failure, and "GitHub was unreachable" is not
+    evidence that no PR exists, so that case must keep it too."""
     text = FLEET.read_text(encoding="utf-8")
-    teardown = text.split("cmd_teardown() {", 1)[1].split("\n}", 1)[0]
-    bulk_rm, _, branches = teardown.partition("if pr_for_slug")
-    assert "$slug.log" not in bulk_rm, (
-        "the unconditional rm must not delete the agent log"
+    teardown = text.split("cmd_teardown() {", 1)[1].split("\n}\n", 1)[0]
+    rm = 'rm -f "$STATE_DIR/$slug.log"'
+    confirmed = teardown.split("\n    0) ", 1)[1].split("\n    *) ", 1)[0]
+    unverified = teardown.split("\n    2) ", 1)[1].split(";;", 1)[0]
+    absent = teardown.split("\n    *) ", 1)[1]
+    assert rm in confirmed, "a confirmed PR may discard the log"
+    assert rm not in unverified, (
+        "an unverified lookup is not proof of no PR; the log must be kept"
     )
-    assert 'rm -f "$STATE_DIR/$slug.log"' in branches, (
-        "a successful agent's log may be discarded, but only on the PR branch"
-    )
-    assert "log kept for diagnosis" in teardown, (
+    assert rm not in absent, "a no-PR agent's log is the only diagnostic record"
+    assert "log kept for diagnosis" in absent, (
         "a failed teardown should point the operator at the retained log"
     )
 

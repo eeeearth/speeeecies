@@ -262,7 +262,11 @@ for i in iss:
     print(f'"'"'{i["number"]}\t{slug}\t{kind}\t{t}'"'"')
 ' | while IFS=$'\t' read -r n slug kind title; do
       [ -n "$slug" ] || { slug=$(printf '%s' "$title" | tr '[:upper:]' '[:lower:]' | tr ' ' '-'); }
-      pr_for_slug "$slug" "$kind" >/dev/null 2>&1 && continue
+      pr_st=0; pr_for_slug "$slug" "$kind" >/dev/null 2>&1 || pr_st=$?
+      # Propagate a failed lookup so the supervisor reports GH_UNREACHABLE
+      # instead of treating the issue as free and duplicating a live agent.
+      if [ "$pr_st" = 2 ]; then exit 2; fi
+      if [ "$pr_st" = 0 ]; then continue; fi
       record_exists "$slug" "$kind" && continue
       printf '%s\t%s\t%s\t%s\n' "$n" "$slug" "$kind" "$title"
     done
@@ -273,9 +277,14 @@ pr_for_slug() {  # slug kind; a locale lives under locales/, a species under spe
   local slug="$1" kind="${2:-species}" dir n
   [ -n "$slug" ] || return 1
   case "$kind" in locale) dir="locales/$slug/";; *) dir="species/$slug/";; esac
+  # A failed lookup must not read as "no PR": the caller would then spawn a
+  # second agent for an issue whose first agent already has a PR open.
   n=$(gh pr list --repo "$GH_REPO" --state open --limit 100 --json number,files \
-          -q "[.[] | select(any(.files[]; .path | startswith(\"$dir\")))] | length" 2>/dev/null || echo 0)
-  [ "${n:-0}" != "0" ]
+          -q "[.[] | select(any(.files[]; .path | startswith(\"$dir\")))] | length" 2>&1) || return 2
+  case "$n" in
+    ''|*[!0-9]*) return 2 ;;
+  esac
+  [ "$n" != "0" ]
 }
 
 # Some request issues outlive the work that satisfied them: #2 and #3 still ask
@@ -307,7 +316,7 @@ cmd_probe_models() {
 
 cmd_spawn() {
   need_repo
-  local issue slug sci model variant kind
+  local issue slug sci model variant kind pr_st
   issue=""; slug=""; sci=""; model=""; variant=""; kind="species"
   while [ $# -gt 0 ]; do
     case "$1" in
@@ -349,7 +358,11 @@ cmd_spawn() {
     OPEN\|*) die "issue $issue is already assigned to ${state#OPEN|}; leave it to them";;
     *) die "issue $issue is not an open species-request animal issue (got '$state')";;
   esac
-  pr_for_slug "$slug" "$kind" && die "an open PR already touches $kind/$slug/; pick another issue"
+  pr_st=0; pr_for_slug "$slug" "$kind" || pr_st=$?
+  case "$pr_st" in
+    2) die "cannot verify whether $kind/$slug/ already has a PR (GitHub unreachable); refusing to risk a duplicate" ;;
+    0) die "an open PR already touches $kind/$slug/; pick another issue" ;;
+  esac
   if record_exists "$slug" "$kind"; then
     case "$kind" in
       locale) die "locales/$slug/locale.json already exists on $BASE_REF; the issue is stale";;
@@ -452,7 +465,7 @@ row() {
 
 cmd_teardown() {
   need_repo
-  local slug force=0
+  local slug force=0 pr_st
   [ $# -ge 1 ] || die "need a slug"
   slug="$1"; shift || true
   while [ $# -gt 0 ]; do case "$1" in --force) force=1; shift;; *) shift;; esac; done
@@ -477,13 +490,15 @@ cmd_teardown() {
         "$STATE_DIR/$slug.brief.md" "$STATE_DIR/$slug.launch.sh"
   # Say which of the two happened. "because it is the PR" on its own let an
   # agent that died with no PR look delivered, so its issue went unclaimed.
-  if pr_for_slug "$slug" "$kind"; then
-    rm -f "$STATE_DIR/$slug.log"
-    say "torn down $slug; branch kept ($br) because it is the PR"
-  else
-    say "torn down $slug; NO PR was opened, branch $br kept for salvage, issue still needs work"
-    say "  agent log kept for diagnosis: $STATE_DIR/$slug.log"
-  fi
+  pr_st=0; pr_for_slug "$slug" "$kind" || pr_st=$?
+  case "$pr_st" in
+    2) say "torn down $slug; could NOT verify whether a PR exists (GitHub unreachable), so claiming neither way"
+       say "  branch $br and log kept: $STATE_DIR/$slug.log" ;;
+    0) rm -f "$STATE_DIR/$slug.log"
+       say "torn down $slug; branch kept ($br) because it is the PR" ;;
+    *) say "torn down $slug; NO PR was opened, branch $br kept for salvage, issue still needs work"
+       say "  agent log kept for diagnosis: $STATE_DIR/$slug.log" ;;
+  esac
 }
 
 cmd_supervise() {
@@ -492,6 +507,9 @@ cmd_supervise() {
     case "$1" in --once) once=1; shift;; --min) FLEET_MIN=$2; shift 2;; --max) FLEET_MAX=$2; shift 2;; *) shift;; esac
   done
   [ "$FLEET_MAX" -ge "$FLEET_MIN" ] || die "--max must be >= --min"
+  # Outside the loop on purpose: reset per pass and the transition-only
+  # reporting below can never fire.
+  local fleet_state=OK prev_state
 
   while :; do
     # Reap: an agent that finished with a PR leaves the fleet.
@@ -519,7 +537,7 @@ cmd_supervise() {
     # burned FLEET_MAX_ATTEMPTS tries, so a flaky model route or a dropped
     # connection does not retire an issue for the life of the queue, while a
     # genuinely broken issue still stops being retried.
-    local live pick row_pick n sl ti sc fleet_state=OK
+    local live pick row_pick n sl ti sc
     # Count via array glob, not `ls "$STATE_DIR"/*.meta`. nullglob is set above,
     # so an unmatched glob expands to zero words and bare `ls` would list the
     # current directory instead, reporting the repo root's entry count as the
@@ -556,7 +574,7 @@ cmd_supervise() {
       if [ -z "$row_pick" ] && [ "$fleet_state" != GH_UNREACHABLE ]; then
         # Only say STARVED on the transition. Repeating it every poll turns a
         # one-line state change into log spam that hides real events.
-        if [ "$fleet_state" = OK ]; then
+        if [ "$prev_state" != STARVED ]; then
           echo "[$(date -u +%FT%TZ)] STARVED: live=$live below floor $FLEET_MIN, no eligible issue left"
         fi
         fleet_state=STARVED
@@ -581,6 +599,7 @@ cmd_supervise() {
     printf 'live=%s floor=%s max=%s state=%s zen=%s go=%s at=%s\n' \
       "$live" "$FLEET_MIN" "$FLEET_MAX" "$fleet_state" "${zen_n:-0}" "${go_n:-0}" \
       "$(date -u +%FT%TZ)" > "$STATE_DIR/heartbeat"
+    prev_state=$fleet_state
     echo "[$(date -u +%FT%TZ)] fleet=$live (min $FLEET_MIN max $FLEET_MAX) state=$fleet_state next-model=$(next_model)"
     [ "$once" = 1 ] && return 0
     sleep "$POLL_SECONDS"

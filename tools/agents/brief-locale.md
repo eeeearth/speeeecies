@@ -18,6 +18,26 @@ the files it points you at. Read carefully and do the whole job.
   line `BLOCKED: <reason>`. A clear `BLOCKED:` is an acceptable outcome;
   forcing something through is not.
 
+## Do the work yourself
+
+You are one of a fixed number of agents running at once, and the fleet's whole
+purpose is to hold that number steady so the loop can run for days. Do not
+launch subagents, background agents, or parallel fan-out: not the `task` tool,
+not `&`, not a batch of scripts in the background.
+
+A locale is the obvious place to reach for this — it wants 8 to 12 species
+records — and a previous locale agent fanned out into six background species
+agents to get them written quickly. That is exactly the wrong move. The extra
+agents are invisible to the supervisor, so nobody counts them, so the fleet
+silently runs at several times its intended size. And they draw from model
+quotas the rotation is balancing, so one agent's fan-out starves the others.
+
+Write the species records yourself, one at a time, in this worktree. It is more
+tool calls and it takes longer, and that is the design: the fleet is built for
+steady and slow. If you run out of budget with species left, ship the locale and
+the species you finished and end with `BLOCKED: <what is left>`. A partial
+locale with an honest note is a good outcome.
+
 ## What this repository is
 
 A public kit for the live ecological simulation at

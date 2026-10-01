@@ -48,7 +48,8 @@ tools/agents/fleet.sh teardown tiliqua-scincoides
 
 State lives in `~/.local/state/speeeecies-fleet/`: one `.meta` per agent, its
 log, its filled brief, and the cursor into the model pool. Worktrees go to
-`$WORKTREE_ROOT`, default `$HOME/worktrees/<repo-name>`. Nothing is written
+`$WORKTREE_ROOT`, default `$(dirname "$REPO")/worktrees` — a sibling of the
+checkout, not under `$HOME`. Nothing is written
 inside the repository, so no state file can end up in a pull request.
 
 Two things resolve against the **script's own directory**, not the repository:
