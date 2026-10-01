@@ -1,0 +1,440 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Turdus migratorius",
+  "slug": "turdus-migratorius",
+  "common_names": {
+    "en": "American robin"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Passeriformes",
+    "family": "Turdidae",
+    "genus": "Turdus",
+    "authority": "Linnaeus, 1766",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 9510564,
+    "inat_taxon_id": 12727,
+    "wikidata": "Q460967"
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "US",
+      "CA",
+      "MX"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Walk",
+      "Hop",
+      "Fly"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Cup",
+    "perching": true,
+    "size_class": "Small",
+    "mass_kg": 0.077,
+    "mass_range_kg": [
+      0.059,
+      0.094
+    ],
+    "length_m": 0.255,
+    "wingspan_m": 0.36,
+    "lifespan_y": 2,
+    "diet": {
+      "invertebrate": 0.4,
+      "fruit": 0.6
+    },
+    "social": {
+      "structure": "Flock",
+      "group_size": [
+        5,
+        40
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.2
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.7,
+      "arboreal": 0.3
+    },
+    "shelter_tag": "shrub_thicket",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.4
+      },
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.4
+      },
+      {
+        "tag": "berry",
+        "kind": "Herbivory",
+        "weight": 0.2
+      },
+      {
+        "tag": "nest_cup",
+        "kind": "Nesting",
+        "weight": 1.0
+      },
+      {
+        "tag": "shrub_thicket",
+        "kind": "Shelter",
+        "weight": 1.0
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.8
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "notes": "Breeds in woodland, farmland and urban areas with shade trees on lawns; a familiar garden bird that runs across mown grass hunting worms."
+    }
+  },
+  "seasonal": {
+    "strategy": "PartialMigration",
+    "winter_fraction": 0.15,
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "04-01",
+        "end": "07-31",
+        "note": "One of the earliest North American birds to lay eggs; normally two to three broods per season, April to July."
+      },
+      {
+        "name": "young",
+        "start": "04-20",
+        "end": "08-31",
+        "note": "Clutches of three to five eggs hatch after about 14 days; the young leave the nest a further two weeks later."
+      },
+      {
+        "name": "absent",
+        "start": "11-01",
+        "end": "02-28",
+        "fraction": 0.85,
+        "note": "Most robins winter south of Canada (Florida and the Gulf Coast to central Mexico, and along the Pacific coast); some overwinter in the northern United States."
+      },
+      {
+        "name": "flocking",
+        "start": "09-15",
+        "end": "03-31",
+        "note": "On the winter range birds assemble in large flocks that roost in trees by night and break up into small feeding groups by day."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg",
+        "duration_days": 14
+      },
+      {
+        "stage": "Juvenile",
+        "duration_days": 30,
+        "scale": 0.55
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US-WY",
+        "monthly": [
+          0.33,
+          0.39,
+          0.85,
+          0.92,
+          0.86,
+          1.0,
+          0.95,
+          0.69,
+          0.76,
+          0.61,
+          0.23,
+          0.25
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 119784,
+        "sources": [
+          "inat-activity-us-wy",
+          "gbif-activity-us-wy"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 15,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=12727&place_id=15&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=15&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 1182,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.51_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=9510564&gadmGid=USA.51_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.51_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 118602,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "bt-perching-songbird-v1",
+    "params": {
+      "flee_m": 8,
+      "food_tag": "invertebrate",
+      "song": "song",
+      "alarm": "alarm",
+      "nest_m1": 3,
+      "nest_m2": 7
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "song",
+      "context": "Song",
+      "season_months": [
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "time_windows": [
+        "DawnChorus",
+        "Day"
+      ],
+      "cooldown_s": 30,
+      "loudness": "Moderate",
+      "description": "A caroling, muted 'cheerily, cheer up, cheer up, cheerily' in short phrases from a high perch; one of the first birds to sing at dawn."
+    },
+    {
+      "call_id": "alarm",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [],
+      "cooldown_s": 10,
+      "loudness": "Moderate",
+      "description": "A sharp 'tuk' or a descending wiry 'whinny' given at a predator, often repeated while other robins in the flock watch."
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.6,
+      "leg_length_ratio": 0.45,
+      "head_scale": 0.75,
+      "neck_angle_deg": 12,
+      "tail_ratio": 0.8,
+      "wing_aspect": 2.6,
+      "beak_ratio": 0.35,
+      "girth_ratio": 1.0
+    },
+    "palette": {
+      "body": "#4d4239",
+      "belly": "#c96a34",
+      "markings": "#efe9df",
+      "accent": "#d8b03a",
+      "eye": "#151210"
+    },
+    "part_colors": {
+      "leg_*": "body",
+      "beak": "accent",
+      "breast": "belly"
+    },
+    "extra_parts": [
+      {
+        "name": "eye_arc",
+        "parent": "head",
+        "offset": [
+          0.3,
+          0.22,
+          0.38
+        ],
+        "size": [
+          0.22,
+          0.1,
+          0.12
+        ],
+        "color": "markings",
+        "mirror": true
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "hop": {},
+      "fly": {},
+      "perched": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/9510564",
+      "title": "GBIF Backbone Taxonomy: Turdus migratorius",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-09-30",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q460967",
+      "title": "Wikidata: American Robin (Q460967)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-09-30",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/American_robin",
+      "title": "Wikipedia: American robin",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-09-30",
+      "attribution": "Wikipedia contributors, \"American robin\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "inat-activity-us-wy",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=12727&place_id=15&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Turdus migratorius in US-WY",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-wy",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=9510564&gadmGid=USA.51_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Turdus migratorius in US-WY",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Described by Linnaeus, 1766, in the twelfth edition of Systema Naturae; GBIF usage key 9510564."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "iNaturalist taxon id via Wikidata P3151 (12727), matching the GBIF usage key (P846 = 9510564)."
+    },
+    "common_names": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "Wikidata P141 = least concern (Q211005)."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Breeds across most of North America from Alaska and Canada to northern Florida and Mexico; winters from southern Canada to central Mexico and along the Pacific coast. Vagrant records outside the Americas are omitted."
+    },
+    "traits": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Body mass 77 g average (males 72-94 g, females 59-91 g) and length 23-28 cm give mass_kg 0.077 with the documented range and length_m 0.255 (midpoint of 23-28 cm); wingspan_m 0.36 is the midpoint of 31-41 cm. Lifespan is the cited average of about two years in the wild (banding record 14 years). Diet 40% invertebrates / 60% fruit and berries is quoted directly from the Diet section. Social flocking in winter and territorial pairs in summer are both documented; Flock with a 5-40 band is authored for winter scenes. Diurnal, fleeing to cover, with a wariness of 0.2 authored as a confiding garden bird that nonetheless flushes readily."
+    },
+    "habitat": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Forages primarily on the ground for earthworms and insects (ground 0.7) and nests and roosts in trees and dense bushes (arboreal 0.3). Resource weights follow traits.diet; nest_cup, shrub_thicket and perch entries are authored from the cup nest in dense bushes and the habit of singing from perches. Adapter and uses_gardens follow the breeding-habitat description (lawns, shade trees, nesting close to human habitation)."
+    },
+    "seasonal": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Breeding April to July with two to three broods, eggs hatching after 14 days and young leaving the nest two weeks later are quoted from the Breeding section. PartialMigration with winter_fraction 0.15 is authored: most birds migrate south but some overwinter in the northern United States; the absent fraction is 1 minus that value. The flocking phase and juvenile duration (30 days, scale 0.55) are authored from the described post-fledging period."
+    },
+    "vocalizations": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Song description ('cheerily, cheer up'), dawn singing and alarm/watch behaviour are from the lead and Behavior sections; season months, time windows and cooldowns are authored, since no open source quantifies them."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared perching-songbird program: flees at 8 m, forages on invertebrates (worms, grubs) with fruit the other half of the diet, song months March to July to match the early breeding season."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Colours from the Description section: brown back, reddish-orange breast, white eye arcs, mainly yellow bill, dark head and legs. Block proportions, the mirrored eye-arc boxes and exact hex values are authored judgement for a small thrush that runs across lawns."
+    }
+  }
+}
