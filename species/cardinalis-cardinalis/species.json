@@ -1,0 +1,687 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Cardinalis cardinalis",
+  "slug": "cardinalis-cardinalis",
+  "common_names": {
+    "en": "Northern cardinal",
+    "fr": "cardinal rouge",
+    "es": "cardenal rojo"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Passeriformes",
+    "family": "Cardinalidae",
+    "genus": "Cardinalis",
+    "authority": "(Linnaeus, 1758)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2490384,
+    "inat_taxon_id": 9083,
+    "itis_tsn": 179124,
+    "wikidata": "Q726389",
+    "ebird_code": "norcar"
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "CA",
+      "US",
+      "MX",
+      "BZ",
+      "GT"
+    ],
+    "introduced": [
+      "BM",
+      "US-HI"
+    ],
+    "invasive_in": []
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Hop",
+      "Fly"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Cup",
+    "perching": true,
+    "size_class": "Tiny",
+    "mass_kg": 0.0448,
+    "mass_range_kg": [
+      0.0336,
+      0.065
+    ],
+    "length_m": 0.22,
+    "wingspan_m": 0.28,
+    "lifespan_y": 3,
+    "diet": {
+      "seed": 0.7,
+      "fruit": 0.2,
+      "invertebrate": 0.1
+    },
+    "social": {
+      "structure": "Pair",
+      "group_size": [
+        1,
+        2
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Mob",
+    "wariness": 0.25
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.6,
+      "arboreal": 0.4
+    },
+    "shelter_tag": "shrub_thicket",
+    "resources": [
+      {
+        "tag": "seed",
+        "kind": "Herbivory",
+        "weight": 0.7
+      },
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.2
+      },
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.1
+      },
+      {
+        "tag": "nest_cup",
+        "kind": "Nesting",
+        "weight": 1.0
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.5
+      },
+      {
+        "tag": "shrub_thicket",
+        "kind": "Shelter",
+        "weight": 0.5
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Exploiter",
+      "impervious_max": 0.6,
+      "flight_distance_m": 10,
+      "road_mortality": "Low",
+      "uses_gardens": true,
+      "notes": "Gardens are named first among its habitats, and it is 'most abundant ... in areas where dense cover is interspersed with open areas, such as woodland edges, brushy fields, wooded wetlands, parks, and suburban areas'. Feeding by people has extended its range; the population is some 100 million birds over about 5.8 million km2 and is stable or increasing."
+    },
+    "density_per_ha": {
+      "min": 0.017,
+      "typical": 0.17,
+      "max": 1.7
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "territorial",
+        "start": "01-01",
+        "end": "12-31",
+        "note": "A non-migratory year-round resident. The male marks and defends his territory with song all year, singing in a loud clear whistle from the top of a tree or other high location, and chases off other males that enter."
+      },
+      {
+        "name": "breeding",
+        "start": "03-01",
+        "end": "09-30",
+        "note": "Two to four broods a year, the male feeding the female during courtship beak-to-beak and caring for each brood while she incubates the next. The window is authored judgement: the source gives brood counts but no calendar dates."
+      },
+      {
+        "name": "nesting",
+        "start": "03-15",
+        "end": "08-31",
+        "note": "The female builds a well-concealed cup of twigs, bark strips and grasses 1-3 m off the ground in dense shrub or a low tree, taking three to nine days; three or four eggs are laid, incubated 12-13 days, and the young fledge 10-11 days after hatching."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg"
+      },
+      {
+        "stage": "Juvenile",
+        "duration_days": 60,
+        "scale": 0.9
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US-MI",
+        "monthly": [
+          0.94,
+          1.0,
+          0.67,
+          0.54,
+          0.32,
+          0.31,
+          0.38,
+          0.39,
+          0.35,
+          0.42,
+          0.49,
+          0.79
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 1030478,
+        "sources": [
+          "inat-activity-us-mi",
+          "gbif-activity-us-mi"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 29,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=9083&place_id=29&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=29&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "total": 419,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.23_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2490384&gadmGid=USA.23_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.23_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 1030059,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "bt-perching-songbird-v1",
+    "params": {
+      "flee_m": 6,
+      "food_tag": "seed",
+      "song": "song",
+      "alarm": "alarm",
+      "nest_m1": 3,
+      "nest_m2": 6
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "song",
+      "context": "Song",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day"
+      ],
+      "cooldown_s": 8,
+      "loudness": "Loud",
+      "description": "Clear whistled phrases, repeated several times then varied, such as 'cheer, cheer, cheer, what, what, what, what' and 'purdy, purdy, whoit, whoit'. Both sexes sing, the male loudly from a high perch to defend the territory; songs are learned, so they vary regionally."
+    },
+    {
+      "call_id": "alarm",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 12,
+      "loudness": "Moderate",
+      "description": "A short, metallic chip, often given when predators approach the nest, warning the female and the nestlings."
+    },
+    {
+      "call_id": "beg",
+      "context": "Chirp",
+      "season_months": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 6,
+      "loudness": "Quiet",
+      "description": "The begging call of a nestling, which attracts the parents for feeding. Very young nestlings beg if the nest is moved; as they grow older they respond only to their parents' presence or their songs."
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.45,
+      "leg_length_ratio": 0.42,
+      "head_scale": 0.82,
+      "neck_angle_deg": 8,
+      "tail_ratio": 0.85,
+      "wing_aspect": 2.4,
+      "beak_ratio": 0.3,
+      "girth_ratio": 1.05
+    },
+    "palette": {
+      "body": "#b53227",
+      "belly": "#c9584c",
+      "markings": "#16130f",
+      "accent": "#8f8578",
+      "eye": "#0c0a07"
+    },
+    "part_colors": {
+      "beak": "markings",
+      "tail": "belly",
+      "eye_*": "eye"
+    },
+    "extra_parts": [
+      {
+        "name": "crest",
+        "parent": "head",
+        "offset": [
+          -0.05,
+          0.45,
+          0
+        ],
+        "size": [
+          0.35,
+          0.6,
+          0.5
+        ],
+        "color": "body"
+      },
+      {
+        "name": "mask",
+        "parent": "head",
+        "offset": [
+          0.35,
+          -0.05,
+          0
+        ],
+        "size": [
+          0.45,
+          0.55,
+          0.85
+        ],
+        "color": "markings"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "hop": {},
+      "fly": {},
+      "perched": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2490384",
+      "title": "GBIF Backbone Taxonomy: Cardinalis cardinalis",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q726389",
+      "title": "Wikidata: Northern cardinal (Q726389)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Northern_cardinal",
+      "title": "Wikipedia: Northern cardinal",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Northern cardinal\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=179124",
+      "title": "ITIS: Cardinalis cardinalis, TSN 179124",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "eltontraits",
+      "url": "https://doi.org/10.6084/m9.figshare.3559887.v1",
+      "title": "EltonTraits 1.0: species-level foraging attributes of the world's birds and mammals (MamFuncDat)",
+      "license": "CC0-1.0",
+      "kind": "dataset",
+      "accessed": "2026-10-01",
+      "attribution": "Wilman, H. et al. (2014) EltonTraits 1.0. Ecology 95:2027",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "inat-activity-us-mi",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=9083&place_id=29&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Cardinalis cardinalis in US-MI",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-mi",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2490384&gadmGid=USA.23_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Cardinalis cardinalis in US-MI",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "itis"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "eBird code norcar via Wikipedia's infobox."
+    },
+    "common_names": {
+      "sources": [
+        "wikidata",
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "Wikidata P141 = least concern (Q211005)."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Southeastern Canada, the eastern United States from Maine and Minnesota to Texas and southern California, and south through Mexico to northern Guatemala and northern Belize. Introduced to Bermuda in 1700 and to Hawaii in 1929; neither introduction is recorded as invasive, so invasive_in is left empty."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'It is a ground feeder and finds food while hopping on the ground through trees or shrubbery', and it flies."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Sings from the top of a tree or other high location; the record for perching songbirds in this kit treats that as perching."
+    },
+    "traits.size_class": {
+      "sources": [
+        "eltontraits"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia",
+        "eltontraits"
+      ],
+      "confidence": "High",
+      "note": "Wikipedia's average adult weight of 44.8 g."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of Wikipedia's 21-23.5 cm body length."
+    },
+    "traits.wingspan_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of Wikipedia's 25-31 cm wingspan."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Derived, not quoted: Wikipedia reports annual adult survival of 60-65%, which gives an expected remaining adult life of about 1/(1-0.625) = 2.7 years, rounded to 3. The oldest wild bird banded lived 15 years 9 months and a captive bird reached 28.5 years, both far above the typical value the schema asks for."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia",
+        "eltontraits"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Wikipedia's 'mainly (up to 90%) of weed seeds, grains, and fruits' is recorded as seed 0.7 plus fruit 0.2, and the remaining 'snails and insects, including beetles, cicadas, and grasshoppers' as invertebrate 0.1; nestlings are 'fed almost entirely on insects', which is why the insect share is kept in the record at all."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "'Mated pairs often travel together', and the male feeds the female during courtship and cares for each brood."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia",
+        "eltontraits"
+      ],
+      "confidence": "High",
+      "note": "A diurnal territorial songbird singing from a high perch through the day."
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Mob is chosen because territorial aggression is its defining response: the male 'will chase off other males entering his territory' and 'will fight his reflection relentlessly', and it warns the nest against predators with a metallic chip."
+    },
+    "traits.wariness": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: 0.25. Bold around people - it feeds in gardens and suburban areas, its range has grown through feeding, and it attacks its own reflection in glass - but it keeps to dense cover when nesting and gives an alarm call when predators approach."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia",
+        "eltontraits"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "The ground share follows Wikipedia's 'it is a ground feeder ... hopping on the ground'; the arboreal share covers singing from high perches and nesting in low trees and shrubs."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium"
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia",
+        "eltontraits"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Food weights follow traits.diet. nest_cup covers the twig-and-grass cup the female builds; perch and shrub_thicket are shelter, weighted by judgement, since the source describes nesting in dense cover without comparing sites."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Gardens are listed among its natural habitats, it is 'most abundant' in parks and suburban areas, 'feeding by humans has increased the range of this species', and the population is stable or increasing. impervious_max, flight_distance_m and road_mortality are authored judgement on that description and are not quantified in the source."
+    },
+    "habitat.density_per_ha": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Typical from the source's own figures: a global population of some 100 million over an estimated range of 5,800,000 km2 is 17.2 birds per km2, or 0.17 per hectare. min and max are an authored tenfold band either side, following the same convention used for turdus-migratorius and sciurus-carolinensis."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "No migration is described anywhere in the article and it is recorded annually at feeding stations across its range year-round, so it is treated as a resident."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Year-round territorial song, brood counts, courtship feeding, nest height and construction time, clutch size, incubation and fledging times are all from the article; the March-to-September breeding and nesting windows are authored judgement because the article gives no calendar dates for any population."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Juvenile duration is authored: nestlings fledge 10-11 days after hatching and the species learns its song, so 60 days is used to cover fledging through early independence. scale is authored judgement."
+    },
+    "vocalizations": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The whistled song phrases, the year-round territorial singing from a high perch, the learned and regionally variable song, the metallic chip alarm at the nest, and the nestling begging call and its change with age all come from the article's Songs, Territoriality, Nests and Vocalizations sections. Time windows and cooldowns are authored judgement, since no open source quantifies them. No open source gives frequency bands, so freq_hz is omitted."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Colours from the lead and Description: a mid-sized bird with a crest on top of the head, males a vibrant red with a black face mask and a larger crest, females a reddish olive with a grey mask around the beak, and an orange-red bill in adults. The model shows the male: red body with a black bill mask and a peaked crest. accent carries the female's olive tone so the record reads correctly if the host ever mixes sexes. Proportions are authored judgement for a long-tailed, thick-billed, crest-bred bird."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared perching-songbird program. food_tag is seed because the bird is mainly granivorous and hops on the ground to take it; flee_m is raised from the European robin's 4 m to 6 m for a bolder bird that defends a territory; nest_m1 and nest_m2 follow the program's declared params and the 1-3 m nest height the source gives."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies maintainers",
+      "agent": "opencode"
+    }
+  ]
+}
