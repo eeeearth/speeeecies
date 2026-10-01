@@ -2,7 +2,7 @@
   "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
   "format": "speeeecies/species",
   "format_version": "0.1",
-  "id": "Dasypus novemcinctus",
+  "id": "Dasypus mexicanus",
   "slug": "dasypus-mexicanus",
   "common_names": {
     "en": "Nine-banded Armadillo"
@@ -99,7 +99,7 @@
         "weight": 0.85
       },
       {
-        "tag": "vertebrate",
+        "tag": "small_vertebrate",
         "kind": "Predation",
         "weight": 0.1
       },
@@ -290,6 +290,15 @@
       "accessed": "2026-10-01",
       "attribution": "Jones, K. E. et al. (2009) PanTHERIA. Ecology 90:2648",
       "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "inat-activity-us-tn",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=1647419&place_id=45&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Dasypus mexicanus in US-TN",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
     }
   ],
   "provenance": {
@@ -578,5 +587,56 @@
   ],
   "conservation": {
     "iucn": "LC"
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US-TN",
+        "monthly": [
+          0.54,
+          0.77,
+          0.55,
+          0.59,
+          0.63,
+          0.69,
+          0.71,
+          1.0,
+          0.77,
+          0.78,
+          0.56,
+          0.29
+        ],
+        "method": "inat_share",
+        "observations": 584,
+        "sources": [
+          "inat-activity-us-tn"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 45,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=1647419&place_id=45&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=45&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 584,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "C",
+            "area": [
+              "gadmGid",
+              "USA.43_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2440779&gadmGid=USA.43_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.43_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "total": 9,
+            "usable": false
+          },
+          "used": [
+            "inat"
+          ]
+        }
+      }
+    ]
   }
 }

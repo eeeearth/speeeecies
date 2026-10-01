@@ -46,7 +46,7 @@
     "metamorphosis": "None",
     "nest_type": "Cavity",
     "perching": true,
-    "size_class": "Medium",
+    "size_class": "Small",
     "mass_kg": 0.29,
     "mass_range_kg": [
       0.25,
@@ -163,21 +163,21 @@
       {
         "region": "US-TN",
         "monthly": [
-          0.8,
-          0.85,
-          0.9,
+          0.75,
+          0.78,
+          0.94,
           1.0,
           0.95,
-          0.85,
-          0.75,
-          0.7,
-          0.75,
-          0.8,
-          0.8,
-          0.8
+          0.87,
+          0.64,
+          0.81,
+          0.96,
+          0.87,
+          0.91,
+          0.82
         ],
         "method": "mean(inat_share, gbif_share)",
-        "observations": 0,
+        "observations": 134085,
         "sources": [
           "inat-activity-us-tn",
           "gbif-activity-us-tn"
@@ -185,12 +185,12 @@
         "query": {
           "min_obs": 300,
           "inat": {
-            "tier": "A",
+            "tier": "C",
             "place_id": 45,
-            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=17855&place_id=45&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
-            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=45&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
-            "total": 0,
-            "usable": false
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=17855&place_id=45&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=45&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 1040,
+            "usable": true
           },
           "gbif": {
             "tier": "A",
@@ -200,10 +200,13 @@
             ],
             "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5228824&gadmGid=USA.43_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
             "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.43_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
-            "total": 0,
-            "usable": false
+            "total": 133045,
+            "usable": true
           },
-          "used": []
+          "used": [
+            "inat",
+            "gbif"
+          ]
         }
       }
     ]
@@ -291,10 +294,7 @@
       "eye": "#ffffdd"
     },
     "part_colors": {
-      "crown": "accent",
       "crest": "accent",
-      "face_stripe": "markings",
-      "wing_patch": "markings",
       "beak": "markings",
       "leg_*": "markings"
     },
@@ -322,7 +322,6 @@
       "fly": {},
       "glide": {},
       "perched": {},
-      "climb": {},
       "rest": {}
     }
   },
@@ -378,11 +377,11 @@
     },
     {
       "id": "inat-activity-us-tn",
-      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=17855&place_id=45&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=17855&place_id=45&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
       "title": "iNaturalist observations histogram for Dryocopus pileatus in US-TN",
-      "license": "CC-BY-4.0",
-      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
-      "accessed": "2026-09-30",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
       "kind": "api"
     },
     {
@@ -390,8 +389,8 @@
       "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5228824&gadmGid=USA.43_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
       "title": "GBIF occurrence search for Dryocopus pileatus in US-TN",
       "license": "CC-BY-4.0",
-      "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
-      "accessed": "2026-09-30",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
       "kind": "api"
     }
   ],
