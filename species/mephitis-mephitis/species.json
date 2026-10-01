@@ -1,0 +1,646 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Mephitis mephitis",
+  "slug": "mephitis-mephitis",
+  "common_names": {
+    "en": "striped skunk",
+    "fr": "mouffette rayée",
+    "de": "Streifenskunk"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Mammalia",
+    "order": "Carnivora",
+    "family": "Mephitidae",
+    "genus": "Mephitis",
+    "authority": "(Schreber, 1776)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 5219380,
+    "inat_taxon_id": 41880,
+    "itis_tsn": 180562,
+    "wikidata": "Q368495"
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "US",
+      "CA",
+      "MX"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk",
+      "Trot"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Fur",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Burrow",
+    "perching": false,
+    "size_class": "Medium",
+    "mass_kg": 3.15,
+    "mass_range_kg": [
+      1.8,
+      4.5
+    ],
+    "length_m": 0.645,
+    "shoulder_height_m": 0.2,
+    "lifespan_y": 3,
+    "home_range_ha": 30,
+    "diet": {
+      "invertebrate": 0.5,
+      "vertebrate": 0.15,
+      "fruit": 0.15,
+      "seed": 0.1,
+      "carrion": 0.1
+    },
+    "social": {
+      "structure": "Solitary",
+      "group_size": [
+        1,
+        2
+      ]
+    },
+    "activity_pattern": "Nocturnal",
+    "defense": "Spray",
+    "wariness": 0.5
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.9,
+      "fossorial": 0.1
+    },
+    "shelter_tag": "burrow",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.5
+      },
+      {
+        "tag": "small_vertebrate",
+        "kind": "Predation",
+        "weight": 0.15
+      },
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.15
+      },
+      {
+        "tag": "seed",
+        "kind": "Herbivory",
+        "weight": 0.1
+      },
+      {
+        "tag": "carrion",
+        "kind": "Scavenging",
+        "weight": 0.1
+      },
+      {
+        "tag": "burrow",
+        "kind": "Nesting",
+        "weight": 1.0
+      },
+      {
+        "tag": "shelter",
+        "kind": "Shelter",
+        "weight": 0.6
+      },
+      {
+        "tag": "water",
+        "kind": "Water",
+        "weight": 0.5
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "light_max": 0.7,
+      "road_mortality": "High",
+      "notes": "Common around farms, suburbs and city edges, denning under porches, sheds and decks and foraging on lawns and in gardens at night; frequently killed on roads."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "02-01",
+        "end": "04-30",
+        "note": "Mating in late winter and spring, with a single litter a year; exact start/end dates are a judgement placed around the described season."
+      },
+      {
+        "name": "young",
+        "start": "05-01",
+        "end": "08-31",
+        "note": "Young are born in spring and accompany the mother through summer; exact dates are a judgement."
+      },
+      {
+        "name": "dormancy",
+        "start": "12-01",
+        "end": "02-28",
+        "note": "In the north, skunks become inactive in the coldest weather and may den communally, but do not truly hibernate; exact dates are a judgement."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Juvenile",
+        "duration_days": 180,
+        "scale": 0.4,
+        "requires_tag": "burrow"
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US-NJ",
+        "monthly": [
+          0.28,
+          0.89,
+          0.72,
+          0.33,
+          0.51,
+          0.6,
+          0.64,
+          1.0,
+          0.67,
+          0.62,
+          0.7,
+          0.49
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 619,
+        "sources": [
+          "inat-activity-us-nj",
+          "gbif-activity-us-nj"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 51,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=41880&place_id=51&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=51&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 316,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "C",
+            "area": [
+              "gadmGid",
+              "USA.31_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5219380&gadmGid=USA.31_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.31_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "total": 303,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-ground-forager-v1",
+    "params": {
+      "food_tag": "invertebrate",
+      "flee_m": 8,
+      "calm_m": 20,
+      "food_m": 30,
+      "flee_gait": "trot",
+      "forage_gait": "walk",
+      "rest_sun_lo_deg": 10,
+      "rest_sun_hi_deg": 90
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "hiss",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Night"
+      ],
+      "cooldown_s": 10,
+      "loudness": "Moderate",
+      "description": "A harsh hiss or growl, given with a raised tail and stamping forefeet as a warning before the animal sprays."
+    }
+  ],
+  "look": {
+    "body_plan": "quadruped",
+    "proportions": {
+      "torso_aspect": 2.0,
+      "leg_length_ratio": 0.35,
+      "head_scale": 0.7,
+      "neck_angle_deg": 20,
+      "tail_ratio": 0.9,
+      "ear_ratio": 0.2,
+      "beak_ratio": 0.45,
+      "girth_ratio": 0.95
+    },
+    "palette": {
+      "body": "#1a1a1a",
+      "belly": "#242424",
+      "markings": "#f2f2ee",
+      "accent": "#5a5a56",
+      "eye": "#0f0f0f"
+    },
+    "part_colors": {
+      "snout": "markings",
+      "leg_*": "body"
+    },
+    "extra_parts": [
+      {
+        "name": "stripe",
+        "parent": "body",
+        "offset": [
+          0,
+          0.45,
+          0
+        ],
+        "size": [
+          0.9,
+          0.35,
+          0.4
+        ],
+        "color": "markings"
+      },
+      {
+        "name": "tail_stripe",
+        "parent": "tail",
+        "offset": [
+          0,
+          0.1,
+          0
+        ],
+        "size": [
+          0.9,
+          0.5,
+          0.5
+        ],
+        "color": "markings"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "trot": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/5219380",
+      "title": "GBIF Backbone Taxonomy: Mephitis mephitis",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-09-30",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q368495",
+      "title": "Wikidata: Striped Skunk (Q368495)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-09-30",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Striped_skunk",
+      "title": "Wikipedia: Striped skunk",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-09-30",
+      "attribution": "Wikipedia contributors, \"Striped skunk\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=180562",
+      "title": "ITIS: Mephitis mephitis, TSN 180562",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-09-30",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "pantheria",
+      "url": "https://esapubs.org/archive/ecol/E090/184/PanTHERIA_1-0_WR05_Aug2008.txt",
+      "title": "PanTHERIA 1.0: species-level life history, ecology and geography of extant mammals",
+      "license": "CC-BY-4.0",
+      "kind": "dataset",
+      "accessed": "2026-09-30",
+      "attribution": "Jones, K. E. et al. (2009) PanTHERIA. Ecology 90:2648",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "inat-activity-us-nj",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=41880&place_id=51&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Mephitis mephitis in US-NJ",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-nj",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5219380&gadmGid=USA.31_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+      "title": "GBIF occurrence search for Mephitis mephitis in US-NJ",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "itis"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "common_names": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "en label from Wikidata; fr/de labels are Wikidata sitelink-derived labels for Q368495."
+    },
+    "conservation": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "Wikidata P141 = least concern (Q211005)."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Native to North America, from southern Canada through the United States to northern Mexico; given at country level as US, CA, MX."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "A short-limbed, plantigrade walker that can run; Walk and Trot are listed. It does not gallop in the manner of a coursing mammal."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Dens in burrows, often excavated by the skunk itself or taken over from another animal."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.size_class": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg (< 50 kg)."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of 'usually weighing 1.8-4.5 kg (4.0-9.9 lb)'."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Weight 1.8-4.5 kg."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of 'both sexes measuring between 52-77 centimetres (20-30 in) in total body length'."
+    },
+    "traits.shoulder_height_m": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: a stout, short-limbed animal about 20 cm at the shoulder, consistent with its 52-77 cm total body length."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "pantheria"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "PanTHERIA records a maximum longevity of about 5 years for Mephitis mephitis; a typical wild lifespan of about 3 years is used, since most mortality falls on young animals."
+    },
+    "traits.home_range_ha": {
+      "sources": [
+        "pantheria"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "PanTHERIA home-range figure converted to hectares; skunk home ranges vary widely with habitat and season."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The article describes an omnivorous diet of insects and other invertebrates, small vertebrates (rodents, birds, eggs), fruit, seeds and carrion; shares are a rounded judgement weighted toward invertebrates."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Generally solitary outside the breeding season, though several may share a winter den; group_size is judgement."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'Striped skunks are mostly nocturnal.'"
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'Like all skunks, they possess highly developed musk-filled scent glands to ward off predators.'"
+    },
+    "traits.wariness": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: confident and slow to flee because of its chemical defence, but wary of close approach."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement split: forages on the ground and dens underground; little time is spent off the ground."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Dens in burrows."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Food weights follow traits.diet; burrow, shelter and water weights are qualitative."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "urban_affinity, uses_gardens and road_mortality follow the described use of farms, suburbs and city edges and its frequency as roadkill; light_max is judgement."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Active year-round but becomes inactive in the coldest weather in the north; it does not truly hibernate, so the strategy is ActiveYearRound with a dormancy phase."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Mating and birth seasons are from Wikipedia; exact phase dates and the winter dormancy window are judgement."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "A single litter a year, weaned and independent by autumn; duration_days and scale are a judgement approximation."
+    },
+    "vocalizations.hiss": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium"
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Colours from the article: a black base with a white stripe from the head dividing along the shoulders and continuing along the flanks to the rump and tail. Proportions and extra-part placement are judgement."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared ground-forager program: invertebrate-biased foraging, a short flee distance (it relies on spraying rather than flight), a walk gait, and the default daytime rest window for a nocturnal animal."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies maintainers",
+      "agent": "opencode"
+    }
+  ]
+}
