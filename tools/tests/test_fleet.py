@@ -1029,3 +1029,43 @@ def test_regions_come_only_from_the_suggested_section():
     )
     # The brief already covers an empty hint, so dropping the fallback is safe.
     assert "read the" in BRIEF.read_text(encoding="utf-8").lower()
+
+
+def test_refill_cannot_spin_on_a_duplicate_candidate():
+    """The row advance was `awk 'NR>1 && $2 != s'`, which skips only row 1. One
+    duplicate row therefore made the walk oscillate between two slugs forever:
+    two blocked issues produced 434 refusals in about eight minutes and the
+    heartbeat went stale, because the poll never finished."""
+    text = FLEET.read_text(encoding="utf-8")
+    loop = text.split("cmd_supervise() {", 1)[1]
+    assert "awk -F'\\t' '!seen[$2]++'" in loop, (
+        "candidates are not deduplicated by slug, so the walk can revisit one"
+    )
+    assert re.search(r'local budget; budget=.*grep -c', loop), (
+        "the refill loop is unbounded; a bad row advance spins the poll"
+    )
+    assert '[ "$budget" -gt 0 ]' in loop, "the budget is computed but never applied"
+    assert loop.index('[ "$budget" -gt 0 ]') < loop.index("cmd_spawn --issue"), (
+        "the budget must bound the loop, not merely be computed"
+    )
+
+
+def test_orphan_worktrees_are_reclaimed():
+    """The fleet counts agents by .meta, so a worktree with no meta belongs to
+    nobody: it cannot be reaped and its slug dies forever on 'worktree path
+    already exists'. Two of those blocked every remaining species issue."""
+    text = FLEET.read_text(encoding="utf-8")
+    reap = text.split("# Reap: an agent that finished", 1)[0]
+    assert 'species-*|locale-*' in reap, "orphan scan does not recognise fleet worktrees"
+    assert '[ -f "$STATE_DIR/$oslug.meta" ] && continue' in reap, (
+        "orphan scan would delete live agents' worktrees"
+    )
+    assert "worktree remove --force" in reap, "orphans are detected but never removed"
+    # Only clean orphans may be removed automatically.
+    block = reap[reap.index("# Reclaim orphans first."):]
+    assert "orphan worktree $wbase has uncommitted work" in block, (
+        "an orphan holding uncommitted work must be left for a human"
+    )
+    assert block.index("status --porcelain") < block.index("worktree remove --force"), (
+        "the cleanliness check must precede the removal"
+    )

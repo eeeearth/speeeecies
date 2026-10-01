@@ -564,6 +564,26 @@ cmd_supervise() {
     # fleet_state is recomputed each pass; prev_state alone carries history.
     # Resetting it here is what lets a recovered fleet report OK again.
     fleet_state=OK
+    # Reclaim orphans first. A worktree with no .meta belongs to no agent: the
+    # fleet cannot count it, cannot reap it, and every retry of its slug dies on
+    # "worktree path already exists". Two of those blocked all remaining species
+    # work and spun the loop. Anything here is work no live agent is using, so
+    # only remove it when the directory is clean or its branch is already pushed.
+    for w in "$WORKTREE_ROOT"/*/; do
+      [ -d "$w" ] || continue
+      wbase=$(basename "$w")
+      case "$wbase" in species-*|locale-*) ;; *) continue ;; esac
+      oslug=${wbase#species-}; oslug=${oslug#locale-}
+      [ -f "$STATE_DIR/$oslug.meta" ] && continue
+      if [ -z "$(git -C "$w" status --porcelain 2>/dev/null)" ]; then
+        git -C "$REPO" worktree remove --force "$w" 2>/dev/null \
+          && echo "[$(date -u +%FT%TZ)] reclaimed orphan worktree $wbase (no meta, clean)"
+      else
+        say "orphan worktree $wbase has uncommitted work; leaving it for inspection"
+      fi
+    done
+    git -C "$REPO" worktree prune
+
     # Reap: an agent that finished with a PR leaves the fleet.
     shopt -s nullglob
     for m in "$STATE_DIR"/*.meta; do
@@ -624,6 +644,10 @@ cmd_supervise() {
             if ((key in n) && n[key] >= lim) next; print }
         ' "$STATE_DIR/queue.tsv" -)
       fi
+      # Dedupe by slug. The advance below only skips row 1, so a single duplicate
+      # row made the walk oscillate between two slugs and spin the whole poll at
+      # ~1 refusal/second -- two blocked issues produced 434 of them.
+      pick=$(printf '%s\n' "$pick" | awk -F'\t' '!seen[$2]++')
       row_pick=$(printf '%s\n' "$pick" | head -1)
       if [ -z "$row_pick" ] && [ "$fleet_state" != GH_UNREACHABLE ]; then
         # Only say STARVED on the transition. Repeating it every poll turns a
@@ -633,7 +657,11 @@ cmd_supervise() {
         fi
         fleet_state=STARVED
       fi
-      while [ -n "$row_pick" ] && [ "$live" -lt "$FLEET_MIN" ]; do
+      # Bounded by the candidate count so no future bug in the row advance can
+      # spin the poll: each row is tried at most once per pass.
+      local budget; budget=$(printf '%s\n' "$pick" | grep -c . || true)
+      while [ -n "$row_pick" ] && [ "$live" -lt "$FLEET_MIN" ] && [ "$budget" -gt 0 ]; do
+        budget=$(( budget - 1 ))
         IFS=$'\t' read -r n sl kind ti <<<"$row_pick"
         if [ "$kind" = locale ]; then
           sc="$sl"
