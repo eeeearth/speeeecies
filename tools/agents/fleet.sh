@@ -312,12 +312,22 @@ advance_model() {  # step that provider's own cursor, then hand over to the othe
   elif [ "$g_tally" -lt "$z_tally" ]; then other=go
   else case "$p" in zen) other=go;; *) other=zen;; esac
   fi
-  if [ "$other" = "$p" ]; then
-    printf '%s\n' "$(( streak + 1 ))" | write_state "$STATE_DIR/provider_streak"
-  else
-    printf '0\n' | write_state "$STATE_DIR/provider_streak"
+  # Persist the streak, and fail closed if it cannot be recorded. Unguarded, a
+  # failed write aborted advance_model under `set -e` before provider_cursor was
+  # updated -- and advance_model runs after the agent has already launched, so the
+  # next spawn then read a stale cursor and the wedge looked like a route failure.
+  # If the streak cannot be stored, the cap bookkeeping cannot be trusted, so hand
+  # over rather than keep the same provider: that keeps the burst bounded even when
+  # the state dir is unwritable, and still returns a usable cursor.
+  local next_streak=0
+  if [ "$other" = "$p" ]; then next_streak=$(( streak + 1 )); fi
+  if ! printf '%s\n' "$next_streak" | write_state "$STATE_DIR/provider_streak"; then
+    say "WARNING could not persist the provider streak; alternating rather than risk an unbounded run"
+    case "$p" in zen) other=go;; *) other=zen;; esac
   fi
-  printf '%s\n' "$other" > "$STATE_DIR/provider_cursor"
+  # Guarded too: a cursor that cannot be written is survivable, an aborted
+  # advance_model after a committed spawn is not.
+  printf '%s\n' "$other" | write_state "$STATE_DIR/provider_cursor" || true
 }
 
 # The value of a pid's --dir argument, read from NUL-separated argv. Empty when

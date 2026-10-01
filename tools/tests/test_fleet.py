@@ -2516,10 +2516,20 @@ def test_a_slug_removed_and_recreated_mid_run_warns_again():
 # executed the selection.
 
 def _shell_function(name: str) -> str:
+    """One shell function, verbatim, out of fleet.sh.
+
+    Handles both shapes present in the file: the multi-line ones whose closing brace
+    sits at column 0, and the one-liners like `say() { printf '%s\n' "$*"; }` whose
+    brace never reaches column 0 and which previously raised ValueError here.
+    """
     text = FLEET.read_text(encoding="utf-8")
-    start = text.index(f"\n{name}() {{")
-    end = text.index("\n}\n", start) + 3
-    return text[start:end]
+    # Whitespace-tolerant: `say()  {` is spelled with two spaces in the file, so a
+    # literal "\nname() {" missed it.
+    start = re.search(rf"\n{re.escape(name)}\(\)\s*\{{", text).start()
+    opening = text[start:text.index("\n", start + 1)]
+    if "}" in opening:
+        return opening + "\n"
+    return text[start:text.index("\n}\n", start) + 3]
 
 
 def _run_provider_selection(counts: str, cursor: str) -> str:
@@ -2536,6 +2546,8 @@ def _run_provider_selection(counts: str, cursor: str) -> str:
         f'STATE_DIR={state}\n'
         f"MODEL_POOL_ZEN=({zen})\n"
         f"MODEL_POOL_GO=({go})\n"
+        f"{_shell_function('say')}"
+        f"{_shell_function('write_state')}"
         f"{_shell_function('provider_of')}"
         f"{_shell_function('provider_tally')}"
         f"{_shell_function('advance_model')}\n"
@@ -2660,3 +2672,48 @@ def test_provider_balance_stays_even_once_the_tally_is_level():
     for s in served:
         counts[s] += 1
     assert abs(counts["zen"] - counts["go"]) <= 2, f"unbalanced at parity: {counts}"
+
+
+def test_an_unwritable_streak_fails_closed_instead_of_aborting_the_spawn():
+    """advance_model runs AFTER the agent has already launched, so aborting inside it
+    leaves a spawned agent with a stale provider_cursor and the next spawn reading
+    the wrong provider. An unguarded `write_state provider_streak` did exactly that
+    whenever the state dir could not take the write. It has to return a usable
+    cursor, and it must not keep serving the same provider when the streak it relies
+    on cannot be recorded -- otherwise the burst cap silently stops applying."""
+    state = tempfile.mkdtemp()
+    Path(state, "provider_counts").write_text("zen 40\ngo 25\n", encoding="utf-8")
+    Path(state, "provider_cursor").write_text("zen\n", encoding="utf-8")
+    # provider_streak as a directory: every write to it fails.
+    (Path(state) / "provider_streak").mkdir()
+    src = FLEET.read_text(encoding="utf-8")
+    zen = src.split("MODEL_POOL_ZEN=(", 1)[1].split(")", 1)[0]
+    go = src.split("MODEL_POOL_GO=(", 1)[1].split(")", 1)[0]
+    fns = "".join(_shell_function(f) for f in (
+        "say", "write_state", "provider_of", "provider_of_model", "provider_tally",
+        "next_model", "advance_model", "note_spawn_provider"))
+    script = (
+        'set -euo pipefail\n'
+        f'STATE_DIR={state}\n'
+        'FLEET_MAX_PROVIDER_STREAK=2\n'
+        f"MODEL_POOL_ZEN=({zen})\n"
+        f"MODEL_POOL_GO=({go})\n"
+        f"{fns}\n"
+        "advance_model\n"
+        'cat "$STATE_DIR/provider_cursor"\n'
+    )
+    p = subprocess.run(["bash", "-c", script], capture_output=True, text=True, timeout=30)
+    cursor = (Path(state) / "provider_cursor").read_text(encoding="utf-8").strip()
+    subprocess.run(["rm", "-rf", state], check=False)
+
+    assert p.returncode == 0, (
+        f"advance_model aborted on an unwritable streak: rc={p.returncode} {p.stderr}"
+    )
+    assert cursor in ("zen", "go"), f"no usable cursor was written: {cursor!r}"
+    assert cursor == "go", (
+        "with the streak unrecordable the run must hand over rather than keep "
+        f"serving zen, or the burst cap stops applying; cursor={cursor!r}"
+    )
+    assert "could not persist the provider streak" in p.stdout, (
+        f"the degradation was not reported: {p.stdout!r}"
+    )
