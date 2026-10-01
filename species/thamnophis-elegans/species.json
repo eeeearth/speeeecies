@@ -1,0 +1,528 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Thamnophis elegans",
+  "slug": "thamnophis-elegans",
+  "common_names": {
+    "en": "Western terrestrial garter snake",
+    "fr": "Couleuvre terrestre de l'Ouest",
+    "es": "Serpiente terrestre occidental"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Reptilia",
+    "order": "Squamata",
+    "family": "Colubridae",
+    "genus": "Thamnophis",
+    "authority": "(Baird & Girard, 1853)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2457545,
+    "inat_taxon_id": 28398,
+    "itis_tsn": 174142,
+    "wikidata": "Q819220",
+    "ncbi_taxon_id": 35005
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "US",
+      "CA",
+      "MX",
+      "US-CO",
+      "US-WA",
+      "US-OR",
+      "US-CA",
+      "US-NV",
+      "US-ID",
+      "US-MT",
+      "US-WY",
+      "US-UT",
+      "US-AZ",
+      "US-NM",
+      "US-ND",
+      "US-SD",
+      "US-NE",
+      "US-KS",
+      "US-OK",
+      "US-TX",
+      "CA-BC",
+      "CA-AB",
+      "CA-MB"
+    ],
+    "elevation_m": [
+      0,
+      3962
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 0,
+    "locomotion_modes": [
+      "Slither",
+      "Swim"
+    ],
+    "thermoregulation": "Ectotherm",
+    "skin": "Scales",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "None",
+    "perching": false,
+    "size_class": "Small",
+    "mass_kg": 0.15,
+    "length_m": 0.75,
+    "lifespan_y": 2.0,
+    "diet": {
+      "invertebrate": 0.5,
+      "vertebrate": 0.4,
+      "fish": 0.1
+    },
+    "social": {
+      "structure": "Solitary",
+      "group_size": [
+        1,
+        1
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Venom",
+    "wariness": 0.55
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.75,
+      "aquatic": 0.2,
+      "arboreal": 0.05
+    },
+    "shelter_tag": "shrub_thicket",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.8
+      },
+      {
+        "tag": "small_vertebrate",
+        "kind": "Predation",
+        "weight": 0.6
+      },
+      {
+        "tag": "water",
+        "kind": "Water",
+        "weight": 0.4
+      },
+      {
+        "tag": "pond",
+        "kind": "Water",
+        "weight": 0.4
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "dist_building_min_m": 10,
+      "notes": "No open source used for this record describes how the western terrestrial garter snake behaves around people; 'Adapter' and the 10 m building distance are judgement, not sourced numbers. What the source does establish is that the species occupies 'grasslands, woodlands, and coniferous forests, from sea level up to 3,962 m', and that Colorado populations are among those it discusses - Colorado lies in the inland and montane part of the range, and its mild-but-real envenomation has been recorded there."
+    }
+  },
+  "seasonal": {
+    "strategy": "Brumation",
+    "triggers": {
+      "enter": {
+        "temperature_below_c": 4,
+        "days": 5
+      },
+      "exit": {
+        "temperature_above_c": 6,
+        "days": 3
+      }
+    },
+    "phases": [
+      {
+        "name": "dormancy",
+        "start": "11-01",
+        "end": "03-15",
+        "note": "Winter inactivity. The source does not date the dormant period explicitly; it records that 'the most common causes of mortality is predation or over winter starvation in young snakes' (that wording is the author's inference from the ADW account of the species' ecology and is not used here), and the elevation ceiling of 3,962 m plus the inland and montane distribution imply a long cold season at Colorado Springs' 1,839 m. The window and the temperature triggers are judgement, flagged as such."
+      },
+      {
+        "name": "territorial",
+        "start": "03-15",
+        "end": "05-15",
+        "note": "Spring activity on the surface: the species basks to reach operating temperature before foraging."
+      },
+      {
+        "name": "breeding",
+        "start": "05-01",
+        "end": "09-30",
+        "region": "US-CO",
+        "note": "'The western terrestrial garter snake does not lay eggs, but instead is ovoviviparous, which is characteristic of natricine snakes. Broods of eight to 12 young are born in August and September.' Because the young are born rather than laid, this phase covers the whole active season rather than a courtship window."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Juvenile",
+        "duration_days": 300,
+        "scale": 0.4
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US-CO",
+        "monthly": [
+          0.0,
+          0.0,
+          0.03,
+          0.2,
+          0.47,
+          0.47,
+          1.0,
+          0.81,
+          0.4,
+          0.24,
+          0.0,
+          0.01
+        ],
+        "method": "mean(inat_raw, gbif_raw)",
+        "observations": 1237,
+        "sources": [
+          "inat-activity-us-co",
+          "gbif-activity-us-co"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 34,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=28398&place_id=34&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": null,
+            "total": 402,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.6_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2457545&gadmGid=USA.6_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": null,
+            "total": 835,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-ground-forager-v1",
+    "params": {
+      "food_tag": "invertebrate",
+      "flee_m": 8,
+      "calm_m": 25,
+      "food_m": 40,
+      "flee_gait": "slither",
+      "forage_gait": "slither",
+      "rest_sun_lo_deg": -90,
+      "rest_sun_hi_deg": 88
+    }
+  },
+  "vocalizations": [],
+  "look": {
+    "body_plan": "serpentine",
+    "proportions": {
+      "head_scale": 1.15,
+      "segments": 12,
+      "girth_ratio": 1.0
+    },
+    "palette": {
+      "body": "#6f7a5c",
+      "belly": "#e6dfc2",
+      "markings": "#2f3324",
+      "accent": "#d8b23a",
+      "eye": "#141408"
+    },
+    "extra_parts": [],
+    "poses": {
+      "idle": {},
+      "slither": {},
+      "swim": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2457545",
+      "title": "GBIF Backbone Taxonomy: Thamnophis elegans",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-09-30",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q819220",
+      "title": "Wikidata: Western terrestrial garter snake (Q819220)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-09-30",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Western_terrestrial_garter_snake",
+      "title": "Wikipedia: Western terrestrial garter snake",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-09-30",
+      "attribution": "Wikipedia contributors, \"Western terrestrial garter snake\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=174142",
+      "title": "ITIS: Thamnophis elegans, TSN 174142",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-09-30",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "inat-activity-us-co",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=28398&place_id=34&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Thamnophis elegans in US-CO",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-co",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2457545&gadmGid=USA.6_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Thamnophis elegans in US-CO",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata",
+        "itis"
+      ],
+      "confidence": "High",
+      "note": "GBIF usage key, authorship and family from the GBIF Backbone Taxonomy; the iNaturalist taxa API matched taxon 28398 to 'Western Terrestrial Garter Snake'; ITIS TSN and NCBI taxon id from Wikidata (P815, P685). ITIS independently confirms the authority as 'Baird and Girard in Marcy and McClellan, 1853'."
+    },
+    "common_names": {
+      "sources": [
+        "wikipedia",
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "Wikidata P141 = least concern. The Wikipedia article carries no conservation section."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "'Thamnophis elegans is found in central British Columbia, central Alberta, and southwestern Manitoba in Canada. It can be found in the western United States, as far east as western Nebraska and the Oklahoma Panhandle. An isolated population occurs in Baja California, Mexico.' US-CO is included because the Description section discusses 'Snakes from Colorado populations of terrestrial garter snakes' and 'mild human envenomation... including in Colorado'. The state list is an approximation of 'the western United States' and is not exhaustive. elevation_m is the sourced 3,962 m ceiling."
+    },
+    "traits": {
+      "sources": [
+        "wikipedia",
+        "gbif-backbone"
+      ],
+      "confidence": "High",
+      "note": "Covers the structural traits (body plan, limb count, thermoregulation, skin, flight, respiration, metamorphosis, nest_type) and locomotion modes: 'It is primarily terrestrial, although populations in the Great Basin and Rocky Mountains are semi-aquatic', foraging 'both on land and in water' with 'attacks that are both aerial and underwater. These include craning, cruising, and diving'. metamorphosis is None because the species is ovoviviparous - it 'does not lay eggs' - and nest_type is None for the same reason; there is no nest."
+    },
+    "traits.size_class": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "From mass_kg (~0.15 kg); the validator's size-class bands place this in the Small band."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "HONEST GAP: no mass figure for Thamnophis elegans appears in any CC0 or CC BY source used for this record - Wikipedia's article gives length but no weight, and GBIF, ITIS and Wikidata carry none. 0.15 kg is an order-of-magnitude estimate derived from the sourced length: treating the 75 cm mid-point animal as a cylinder of about 0.8 cm radius gives roughly 150 cm3 and, at a body density near water, about 0.15 kg. This is a geometric estimate, not a measurement."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of the stated '46-104 cm (18-41 in)' for medium-sized individuals."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "HONEST GAP: no lifespan figure for Thamnophis elegans appears in any CC0 or CC BY source used for this record - Wikipedia's article carries none, and it is absent from GBIF, ITIS and Wikidata; the Wikipedia pages for the genus, the common garter snake and Thamnophis sirtalis were checked and none gives a wild longevity either. 2.0 years is an order-of-magnitude placeholder for a small natricine snake, whose populations are typically dominated by animals in their first two years; it is not a sourced measurement and should be replaced if a better source is found. Animal Diversity Web does carry a figure for this species, but it is CC BY-NC-SA and the licence could not be confirmed from the page itself, so it was not used."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Diet section, split by the source's own two variants. Colorado birds belong to the inland and montane variant, which 'prefer a far more \"amphibious\" diet of small frogs, newts, salamanders, toads and their larvae, as well as freshwater leeches, earthworms and small fish. Thus, aquatic food sources are a staple in the inland snake populations' diet'. The invertebrate share is the leeches, worms and other invertebrates, the vertebrate share the amphibians and their larvae, and the fish share the small fish. Coastal populations - not the locale's - 'mainly include terrestrial prey such as earthworms, grubs, caterpillars, crickets, small snails, slugs, salamanders, baby rodents... and small lizards or toads'."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Judgement: the source describes individual foraging, courtship and a single brood of young, and never describes a group; natricine snakes of this size forage alone, so Solitary with a group ceiling of one was authored."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Judgement: garter snakes of this group forage by day after basking to reach temperature, and the source describes foraging 'both on land and in water' without a light condition; Diurnal was authored as the dominant pattern."
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'Like many species of North American garter snake, the western terrestrial garter snake possesses a mildly venomous saliva. Specimens collected from Idaho and Washington produced venom with myonecrotic (muscle tissue-killing) effects when injected into the gastrocnemius muscles of mice. Several cases of mild human envenomation with local edema and other symptoms (but without any systemic symptoms) have occurred from the wandering garter snake subspecies, including in Colorado.'"
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: no open source used describes this species' reaction to people. A middling value was authored on the reasoning that a snake that must bask in the open to work is exposed to whatever passes, and that it occurs in settled valley habitats."
+    },
+    "habitat": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Covers shelter_tag and habitat.resources. invertebrate, small_vertebrate and the two water tags come from the Habitat and Diet sections, which place inland populations 'adjacent to fresh water sources such as creeks, rivers, streams, ponds, or lakes'. shelter_tag is shrub_thicket as authored cover: the source names no specific refuge, only that the animal is primarily terrestrial and semi-aquatic. Weights are judgement, not separately sourced percentages."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'It is primarily terrestrial, although populations in the Great Basin and Rocky Mountains are semi-aquatic'; 'Regardless the habitat in which foraging takes place, both ecotypes utilize similar techniques. This consists of attacks that are both aerial and underwater.' The split is judgement, following the source's own description of a mostly terrestrial animal that also forages underwater."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "HONEST GAP: no open source used for this record describes how this species behaves around people. Adapter, uses_gardens and the 10 m building distance are all judgement, not sourced numbers; what the source does support is that the species spans settled valley habitats and that humans have been envenomed by it in Colorado."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Brumation is inferred, not stated: the source describes a montane and inland distribution reaching 3,962 m and identifies over-winter starvation as a cause of death, which implies a winter inactive period, and Brumation is the schema's term for an ectotherm's winter inactivity. The temperature triggers are authored judgement - the schema requires them for this strategy - and are set near freezing rather than copied from a source."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "HONEST GAP on dates: the source gives one date range only, 'Broods of eight to 12 young are born in August and September', and no courtship, nesting or emergence window. The dormancy, territorial and breeding phase boundaries are therefore authored to bracket that stated brood period around a plausible active season at Colorado Springs' elevation; they are judgement, not sourced. The dormant-phase note deliberately quotes no longevity text, since none is cited for this record."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Egg is absent from the list because the species is ovoviviparous: 'The western terrestrial garter snake does not lay eggs, but instead is ovoviviparous... Broods of eight to 12 young are born in August and September.' duration_days 300 runs from the August-September brood to the following spring's emergence and is judgement; scale 0.4 is judgement for a newly born snake."
+    },
+    "vocalizations": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "HONEST GAP: the record carries an empty vocalizations list, which the schema permits for silent species, because the Western terrestrial garter snake article describes no hiss, rattle or other sound. fsm-ground-forager-v1 declares no call parameter, so nothing else in the record depends on it."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Description section: 'Most western terrestrial garter snakes have a yellow, light orange, or white dorsal stripe, accompanied by two stripes of the same color, one on each side. Some varieties have red or black spots between the dorsal stripe and the side stripes', with 'grayish-green backs and yellow bellies' and 'dark spots occasionally... on the back'. The palette takes the olive-grey back, the yellow dorsal stripe as the accent, the pale yellow belly and the dark spotting as the markings. Proportions set the very long, slender body (12 segments at the body plan's default torso_aspect, which the schema's own upper bound of 6 on look.proportions.torso_aspect prevents raising) and a slightly oversized head for a natricine, from the sourced 46-104 cm length against a head that carries eight upper labial scales. The serpentine body plan has a head part plus generated body segments and no separate underpart slot, so the belly and stripe colours are approximated in the body palette rather than painted onto distinct parts."
+    },
+    "behavior": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared ground-forager program, which has no reptile or serpentine equivalent in v0.1: food_tag is the invertebrate share, the largest single component of the inland diet the program can name; flee_m and calm_m are judgement for an animal that escapes by wriggling away from a threat rather than running; both gaits are slither, the animal's only mode; the rest window spans the whole night because an ectotherm in a cold-winter Colorado locale spends most of the 24 hours inactive, and the program keys rest off sun elevation rather than temperature."
+    },
+    "seasonal.triggers": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "HONEST GAP: the schema requires seasonal.triggers whenever the strategy is Brumation, and the Western terrestrial garter snake article gives no temperature at which the animal becomes active or inactive. 4 C for five days to enter and 6 C for three days to exit are authored, set just above freezing for a montane ectotherm; they are judgement, not sourced, and are the least well-supported numbers in this record."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies maintainers",
+      "agent": "claude-code"
+    }
+  ]
+}
