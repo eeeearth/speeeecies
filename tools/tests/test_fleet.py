@@ -6,6 +6,7 @@ from __future__ import annotations
 import os
 import re
 import subprocess
+import sys
 from pathlib import Path
 import signal
 import time
@@ -1529,70 +1530,44 @@ def test_the_pidless_fallback_matches_on_the_whole_command_line():
 
 @pytest.mark.skipif(
     os.environ.get("FLEET_SLOW_TESTS") != "1",
-    reason="spawns and signals real processes; run with FLEET_SLOW_TESTS=1",
+    reason="spawns and signals a real process group",
 )
 def test_stopping_an_agent_without_a_pidfile_still_reaches_the_process():
-    """Exercised for real, not asserted structurally: a setsid'd process whose
-    argv[0] mimics `opencode run --dir <worktree>`, no pidfile written, and the
-    fallback has to find and stop it."""
-    import subprocess
+    """Exercised for real, not asserted structurally: an agent-shaped process with
+    no pidfile anywhere, and the fallback has to find and stop it.
+
+    The previous version of this test blocked. It launched the fake with
+    `subprocess.run(["setsid", launcher, wt])`, and because the launcher exec'd
+    `sleep 120` in the foreground, the call did not return for the sleep's
+    duration -- so the slow-test gate timed out and the claimed "both skipped
+    tests pass" was not reproducible. It also faked argv wrongly: `exec -a
+    "opencode run --dir X"` makes the whole string one argv[0], so `--dir` was
+    never a discrete argument. Both are fixed by the shared helper.
+    """
     import tempfile
 
     with tempfile.TemporaryDirectory() as td:
+        state = f"{td}/state"
+        os.makedirs(state)
         wt = f"{td}/wt"
-        launcher = f"{td}/agent.sh"
-        with open(launcher, "w", encoding="utf-8") as fh:
-            fh.write('#!/usr/bin/env bash\nexec -a "opencode run --dir $1 --title t" sleep 120\n')
-        launcher_chmod = subprocess.run(["chmod", "+x", launcher], check=True)
-        assert launcher_chmod.returncode == 0
-        subprocess.run(["setsid", launcher, wt], check=True,
-                       stdin=subprocess.DEVNULL,
-                       stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-        time.sleep(2)
+        os.makedirs(wt)
+        agent = _spawn_fake_agent(wt, td)
 
-        # The fallback's matching, verbatim.
-        out = subprocess.run(
-            ["bash", "-c",
-             f'pgrep -af -- "opencode run" | while read -r l; do '
-             f'grep -qF -- "{wt}" <<<"$l" && printf "%s\\n" "${{l%% *}}"; done'],
-            capture_output=True, text=True)
-        pids = [p for p in out.stdout.split() if p.strip().isdigit()]
-        assert pids, (
-            "the fallback found no process for a worktree that is demonstrably "
-            "in its command line; teardown would silently leak it"
+        # No pidfile at all: this is the fallback that has to do the work.
+        Path(state, "demo.meta").write_text(f"worktree={wt}\n", encoding="utf-8")
+        assert not list(Path(state).glob("*.pid")), "the pidless case must have no pidfile"
+
+        proc = subprocess.run(["bash", _stop_agent_harness(state)],
+                              capture_output=True, text=True, timeout=90)
+        assert proc.returncode == 0, (
+            f"stop_agent exited {proc.returncode} on the pidless path: {proc.stderr.strip()}"
         )
-        for pid in pids:
-            try:
-                os.killpg(os.getpgid(int(pid)), signal.SIGTERM)
-            except (ProcessLookupError, PermissionError):
-                pass
-        deadline = time.time() + 10
-        while time.time() < deadline:
-            if not any(Path(f"/proc/{p}").exists() for p in pids):
-                break
-            time.sleep(0.5)
-        for pid in pids:
-            assert not Path(f"/proc/{pid}").exists(), f"pid {pid} survived the stop"
-
-
-def test_the_launcher_drops_the_supervisor_lock_fd():
-    """The flock lived on fd 9, which bash does not mark close-on-exec, so every
-    agent inherited the open file description and the lock stayed held for as
-    long as the fleet ran. The exclusion lock was doing the opposite of
-    excluding: a second supervisor could never start while agents were alive.
-    Six holders were observed live with zero supervisors running."""
-    text = FLEET.read_text(encoding="utf-8")
-    spawn = text.split("cmd_spawn() {", 1)[1].split("\n}\n", 1)[0]
-    launcher = spawn.split("<<LAUNCHER", 1)[1]
-    head = launcher.split("\n", 6)
-    assert "exec 9>&-" in "\n".join(head), (
-        "the launcher must close the supervisor's lock fd before exec"
-    )
-    # It has to happen before the agent is started, not after.
-    assert launcher.index("exec 9>&-") < launcher.index('"$AGENT_BIN" run'), (
-        "closing the fd after launching would still pass it to the agent"
-    )
-
+        assert "no pidfile for demo" in proc.stdout, (
+            f"the fallback did not run; output was: {proc.stdout!r}"
+        )
+        assert not _exited(agent), (
+            "stop_agent returned success but the pidless agent is still alive"
+        )
 
 @pytest.mark.skipif(
     os.environ.get("FLEET_SLOW_TESTS") != "1",
@@ -1744,4 +1719,157 @@ def test_no_child_of_the_supervisor_inherits_its_lock_fd():
     )
     assert 'setsid nohup "$launch" 9>&-' in code, (
         "setsid holds the lock in between fork and the launcher closing it"
+    )
+
+
+def _extract_function(name: str) -> str:
+    """Pull one function verbatim out of fleet.sh, so a test drives the shipped
+    code rather than a paraphrase of it."""
+    text = FLEET.read_text(encoding="utf-8")
+    start = text.index(f"{name}() {{")
+    return text[start:text.index("\n}\n", start) + 3]
+
+
+def _spawn_fake_agent(wt: str, tmpdir: str, seconds: int = 90) -> int:
+    """Start something shaped like a real agent: a setsid session leader whose
+    argv has `--dir <wt>` as a discrete argument, exactly as
+    "$AGENT_BIN" run --model M --dir W --title T produces.
+
+    Two things this deliberately avoids. `exec -a "opencode run --dir X"` sets
+    the whole string as a SINGLE argv[0], so `--dir` is never a discrete
+    argument and pid_arg_dir correctly finds nothing -- a fake that would pass
+    for a broken implementation. And the pid comes from the child writing it
+    rather than from pgrep, because any pattern broad enough to find the fake
+    also matches the shell that launched it.
+    """
+    pidfile = f"{tmpdir}/fake-agent.pid"
+    subprocess.Popen(
+        ["setsid", sys.executable, "-c",
+         "import os,sys,time;open(sys.argv[1],'w').write(str(os.getpid()));"
+         f"time.sleep({seconds})",
+         pidfile, "opencode", "run", "--model", "m", "--dir", wt, "--title", "t"],
+        stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    deadline = time.time() + 10
+    while time.time() < deadline:
+        if os.path.exists(pidfile):
+            txt = Path(pidfile).read_text().strip()
+            if txt.isdigit():
+                return int(txt)
+        time.sleep(0.2)
+    raise AssertionError("the fake agent never reported its pid")
+
+
+def _stop_agent_harness(state: str, slug: str = "demo") -> str:
+    """A harness driving the shipped stop_agent against STATE_DIR."""
+    path = f"{state}/../harness.sh"
+    with open(path, "w", encoding="utf-8") as fh:
+        fh.write("set -u\n")
+        fh.write(f'STATE_DIR="{state}"\n')
+        fh.write("AGENT_BIN=opencode\n")
+        fh.write('meta_get() { sed -n "s/^$2=//p" "$STATE_DIR/$1.meta" 2>/dev/null | head -1; }\n')
+        fh.write('say() { printf "%s\\n" "$*"; }\n')
+        for fn in ("pid_arg_dir", "group_serves_worktree", "stop_signal", "stop_agent"):
+            fh.write(_extract_function(fn))
+        fh.write(f"stop_agent {slug}\n")
+    return path
+
+
+def _exited(pid: int, timeout: float = 15.0) -> bool:
+    deadline = time.time() + timeout
+    while time.time() < deadline:
+        if not Path(f"/proc/{pid}").exists():
+            return True
+        time.sleep(0.5)
+    return False
+
+
+@pytest.mark.skipif(
+    os.environ.get("FLEET_SLOW_TESTS") != "1",
+    reason="spawns and signals a real process group",
+)
+def test_stop_agent_stops_a_pidfile_owned_agent():
+    """The ordinary path: a pidfile, a process group, a meta naming the worktree.
+
+    This is the case that regressed. `wt` was assigned only inside the no-pidfile
+    branch, so the pidfile path reached an unbound `wt` under `set -u` and
+    aborted -- and a forced teardown then removed the worktree and the metadata
+    while leaving the agent running, which is the exact failure all the
+    process-ownership work exists to prevent.
+    """
+    import tempfile
+
+    with tempfile.TemporaryDirectory() as td:
+        state = f"{td}/state"
+        os.makedirs(state)
+        wt = f"{td}/wt"
+        os.makedirs(wt)
+        leader = _spawn_fake_agent(wt, td)
+        assert Path(f"/proc/{leader}").exists(), "the fake agent never started"
+
+        Path(state, "demo.meta").write_text(f"worktree={wt}\n", encoding="utf-8")
+        Path(state, "demo.pid").write_text(f"{leader}\n", encoding="utf-8")
+
+        proc = subprocess.run(["bash", _stop_agent_harness(state)],
+                              capture_output=True, text=True, timeout=90)
+        assert proc.returncode == 0, (
+            f"stop_agent exited {proc.returncode} on the pidfile path: {proc.stderr.strip()}"
+        )
+        assert not _exited(leader), (
+            "stop_agent returned success but the process group is still alive"
+        )
+
+
+def test_the_supervisor_lock_records_its_owner():
+    """The lock alone cannot distinguish a running supervisor from an orphan
+    child that inherited fd 9, so it has to say who holds it."""
+    text = FLEET.read_text(encoding="utf-8")
+    loop = text.split("cmd_supervise() {", 1)[1]
+    assert '> "$STATE_DIR/supervisor.pid"' in loop, (
+        "the lock must record its owner, or a stale holder is indistinguishable"
+    )
+    assert loop.index("flock -n 9") < loop.index('> "$STATE_DIR/supervisor.pid"'), (
+        "the owner can only be recorded once the lock is actually held"
+    )
+
+
+def test_a_stale_lock_holder_does_not_block_a_restart():
+    """bash does not set close-on-exec on fd 9, so any child keeps holding the
+    lock after the supervisor dies. I hit this live: zero supervisors running,
+    one lock holder with ppid 1, and a replacement refused. Closing fd 9 at
+    every spawn site cannot be complete across dozens of gh and git calls, so
+    the lock breaks itself when its recorded owner is gone."""
+    text = FLEET.read_text(encoding="utf-8")
+    loop = text.split("cmd_supervise() {", 1)[1]
+    assert "breaking a supervisor lock orphaned by dead pid" in loop, (
+        "a lock whose owner is dead must be reclaimed, not obeyed"
+    )
+    assert "supervisor_alive" in loop, (
+        "liveness of the recorded owner decides whether the lock is stale"
+    )
+
+
+def test_a_live_lock_holder_is_still_refused():
+    """The reclaim must never fire on a pid that is alive, or a second
+    supervisor would start beside a running one and they would race through the
+    orphan scan and the scratch sweep."""
+    text = FLEET.read_text(encoding="utf-8")
+    loop = text.split("cmd_supervise() {", 1)[1]
+    fn = text.split("supervisor_alive() {", 1)[1].split("\n}\n", 1)[0]
+    # The check must confirm the pid is one of OUR supervisors, not merely alive,
+    # so a recycled pid cannot authorise breaking a live supervisor's lock.
+    assert '*/fleet.sh) saw_script=1' in fn, (
+        "argv must contain fleet.sh as a discrete word"
+    )
+    assert "supervise)  saw_supervise=1" in fn, (
+        "argv must contain supervise as a discrete word"
+    )
+    assert fn.index("kill -0") < fn.index("/proc/$pid/cmdline"), (
+        "existence is checked, then identity"
+    )
+    assert '[ "$saw_script" = 1 ] && [ "$saw_supervise" = 1 ]' in fn, (
+        "both words are required before a lock may be broken"
+    )
+    guard = loop.index("! supervisor_alive")
+    assert guard < loop.index("die \"another supervisor already holds"), (
+        "a live or unattributable holder must reach the refusal, not the reclaim"
     )

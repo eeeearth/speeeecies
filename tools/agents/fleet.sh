@@ -328,17 +328,17 @@ stop_signal() {  # pid -> 0. Signals the pid's process group, waits, escalates.
 
 stop_agent() {  # slug -> 0. Signals the whole process group and waits it out.
   local pf="$STATE_DIR/$1.pid" pid i wt
-  # No pidfile does not mean nothing is running. Agents launched before the
-  # pidfile existed have none, and returning early is how teardown came to
-  # mean "remove the metadata" while the process carried on in a deleted
-  # directory. Fall back to matching the worktree, so an agent of unknown
-  # vintage still gets stopped.
+  # Read once, for both branches. It used to be assigned only inside the no-pidfile
+  # branch, so the ordinary pidfile path reached an unbound `wt` under `set -u`
+  # and aborted -- which meant a forced teardown removed the worktree and the
+  # metadata while leaving the agent running, the exact failure all of this
+  # process ownership work exists to prevent.
+  wt=$(meta_get "$1" worktree)
   # No pidfile does not mean nothing is running: agents launched before the
   # pidfile existed have none, and returning early is how teardown came to mean
   # "remove the metadata" while the process carried on in a deleted directory.
   # Matching is exact --dir argv equality for the reason given above pid_arg_dir.
   if [ ! -f "$pf" ]; then
-    wt=$(meta_get "$1" worktree)
     for pid in $(pgrep -f -- "$AGENT_BIN run" 2>/dev/null); do
       [ "$(pid_arg_dir "$pid")" = "$wt" ] || continue
       say "  no pidfile for $1; stopping its agent on $wt (pid $pid)"
@@ -752,8 +752,25 @@ cmd_teardown() {
   esac
 }
 
+# 0 when the pid is a live fleet supervisor. The stale-lock break below must not
+# fire on a recycled pid, or it would break the lock out from under a running
+# supervisor, so argv has to contain fleet.sh and supervise as discrete words.
+supervisor_alive() {  # pid -> 0/1
+  local pid="$1" arg saw_script=0 saw_supervise=0
+  [ -n "$pid" ] || return 1
+  kill -0 "$pid" 2>/dev/null || return 1
+  [ -r "/proc/$pid/cmdline" ] || return 1
+  while IFS= read -r -d '' arg; do
+    case "$arg" in
+      */fleet.sh) saw_script=1 ;;
+      supervise)  saw_supervise=1 ;;
+    esac
+  done < "/proc/$pid/cmdline"
+  [ "$saw_script" = 1 ] && [ "$saw_supervise" = 1 ]
+}
+
 cmd_supervise() {
-  local once=0
+  local once=0 holder
   while [ $# -gt 0 ]; do
     case "$1" in --once) once=1; shift;; --min) FLEET_MIN=$2; shift 2;; --max) FLEET_MAX=$2; shift 2;; *) shift;; esac
   done
@@ -761,9 +778,31 @@ cmd_supervise() {
   # One supervisor per state directory. Two would race each other through the
   # orphan scan and the STATUS.md sweep, each undoing the other's work on
   # worktrees it does not own. flock is released automatically when this exits.
+  #
+  # The flock alone is not enough. bash does not set close-on-exec on fd 9, so
+  # every child inherits the lock's open file description and keeps holding it
+  # after this process dies -- the poll sleep, a `gh` call blocked on the
+  # network, anything. I hit exactly that: zero supervisors running, one lock
+  # holder with ppid 1, and a replacement refused. Closing fd 9 at each spawn
+  # site cannot be complete: there are dozens of gh and git call sites and one
+  # omission reintroduces the whole failure. So the lock records its owner, and
+  # a lock whose owner is gone is treated as stale. That closes the class rather
+  # than the instances.
   exec 9>"$STATE_DIR/supervisor.lock" \
     || die "cannot open lock file in $STATE_DIR"
-  flock -n 9 || die "another supervisor already holds $STATE_DIR/supervisor.lock"
+  if ! flock -n 9; then
+    holder=$(tr -dc '0-9' < "$STATE_DIR/supervisor.pid" 2>/dev/null)
+    if [ -n "$holder" ] && ! supervisor_alive "$holder"; then
+      say "breaking a supervisor lock orphaned by dead pid $holder"
+      rm -f "$STATE_DIR/supervisor.lock"
+      exec 9>"$STATE_DIR/supervisor.lock" \
+        || die "cannot reopen lock file in $STATE_DIR"
+      flock -n 9 || die "another supervisor already holds $STATE_DIR/supervisor.lock"
+    else
+      die "another supervisor already holds $STATE_DIR/supervisor.lock"
+    fi
+  fi
+  printf '%s\n' "$$" > "$STATE_DIR/supervisor.pid"
   # Only now, having proved exclusivity. Reconciling first meant a second
   # supervisor rewrote the tally on its way to being refused, which is a write
   # by a process that had not yet established it was allowed to write.
