@@ -1227,7 +1227,7 @@ def test_supervisor_reverts_a_status_file_edit_whatever_the_brief_says():
     guard = text.split("# STATUS.md guard.", 1)
     assert len(guard) == 2, "no STATUS.md guard in the poll loop"
     block = guard[1].split("# Reap:", 1)[0]
-    assert "checkout -q -- STATUS.md" in block, (
+    assert "restore --staged --worktree --source=HEAD -- STATUS.md" in block, (
         "the guard must restore the file, not merely warn about it"
     )
     assert "ls-files --error-unmatch STATUS.md" in block, (
@@ -1280,3 +1280,122 @@ def test_only_one_supervisor_may_run_per_state_directory():
     assert 'exec 9>"$STATE_DIR/supervisor.lock"' in loop, (
         "the lock must live in the state directory so it is per-run"
     )
+
+
+def test_the_launcher_records_its_own_pid():
+    """Without a recorded PID the supervisor cannot stop what it started, and
+    teardown removed the worktree while the agent kept running out of a deleted
+    directory: five live processes for three agents."""
+    text = FLEET.read_text(encoding="utf-8")
+    spawn = text.split("cmd_spawn() {", 1)[1].split("\n}\n", 1)[0]
+    assert 'echo \\$\\$ > "$STATE_DIR/$slug.pid"' in spawn, (
+        "the launcher must write its own pid; setsid makes it a group leader"
+    )
+
+
+def test_stop_agent_kills_the_whole_process_group_and_waits():
+    """Killing only the recorded pid can leave the agent itself alive, since the
+    launcher runs it as a child rather than exec'ing it."""
+    text = FLEET.read_text(encoding="utf-8")
+    fn = text.split("stop_agent() {", 1)[1].split("\n}\n", 1)[0]
+    assert 'kill -TERM -- "-$pid"' in fn, "SIGTERM must go to the process group"
+    assert 'kill -KILL -- "-$pid"' in fn, "an agent that ignores SIGTERM needs SIGKILL"
+    assert 'kill -0 "$pid"' in fn, "the stop must be waited on, not fired and forgotten"
+    # TERM before KILL, and the wait must come between them.
+    assert fn.index("SIGTERM") < fn.index("SIGKILL"), "escalate in order"
+    assert 'rm -f "$pf"' in fn, "a stale pidfile would resurrect a phantom agent"
+
+
+def test_teardown_stops_the_agent_before_it_salvages():
+    """Otherwise salvage commits files out from under a process still writing
+    them, and the worktree is removed while the agent runs on in it."""
+    text = FLEET.read_text(encoding="utf-8")
+    td = text.split("cmd_teardown() {", 1)[1].split("\n}\n", 1)[0]
+    stop = td.index('stop_agent "$slug"')
+    assert stop < td.index("salvage"), "stop the agent before salvaging its work"
+    assert stop < td.index("worktree remove"), "stop the agent before removing the tree"
+    # Forced teardown is exactly the path that leaked, so it must stop it too.
+    forced = td[td.index('force=1'):]
+    assert 'stop_agent "$slug"' in td, "teardown never signals the agent"
+
+
+def test_liveness_reads_the_pid_not_the_worktree_path():
+    """A retired agent whose slug respawns into the same path matches on path,
+    which is how one agent was counted as two while the stale one kept editing
+    the replacement's tree."""
+    text = FLEET.read_text(encoding="utf-8")
+    fn = text.split("agent_running() {", 1)[1].split("\n}\n", 1)[0]
+    assert fn.index('.pid"') < fn.index("pgrep"), (
+        "the recorded pid must decide liveness before falling back to a path match"
+    )
+    assert 'kill -0 "$pid" 2>/dev/null && return 0' in fn, (
+        "a dead pid means the agent is not running, with no path fallback"
+    )
+
+
+def test_the_poll_loop_reaps_orphaned_processes():
+    """A pidfile with no metadata is an agent nobody owns."""
+    text = FLEET.read_text(encoding="utf-8")
+    loop = text.split("cmd_supervise() {", 1)[1]
+    assert "*.pid" in loop, "the poll loop never looks for orphaned processes"
+    assert 'stop_agent "$oslug"' in loop, "an orphan is detected but never stopped"
+
+
+def test_the_status_guard_also_clears_a_staged_edit():
+    """`git checkout -- <path>` restores the worktree from the index, so a staged
+    edit survived it and still shipped while the guard logged a false success."""
+    text = FLEET.read_text(encoding="utf-8")
+    block = text.split("# STATUS.md guard.", 1)[1].split("# Reap:", 1)[0]
+    assert "restore --staged --worktree --source=HEAD -- STATUS.md" in block, (
+        "a staged STATUS.md edit is not cleared by checkout; it needs the index reset"
+    )
+    # A guard that logs success without verifying is worse than no guard.
+    assert block.index("restore --staged") < block.index("WARNING"), (
+        "the warning must be the fallback branch, after the attempt"
+    )
+
+
+def test_route_detection_requires_provider_context_and_never_matches_bare_429():
+    """Species logs carry Wikidata property ids like P4293, and a data fetch
+    against a rate-limited endpoint is not the agent failing to route."""
+    text = FLEET.read_text(encoding="utf-8")
+    fn = text.split("note_route_failure() {", 1)[1].split("\n}\n", 1)[0]
+    line = [l for l in fn.splitlines() if 'grep -qiE "' in l]
+    assert len(line) == 1, "expected one route pattern"
+    rx = re.compile(line[0].split('grep -qiE "', 1)[1].split('"')[0], re.I)
+
+    # Real routing deaths must still refund the attempt.
+    for dead in (
+        "Cannot find any route for model opencode/space-bunny-free",
+        "ERROR: model opencode/mimo-v2.5 is overloaded",
+        "429 Too Many Requests from provider api",
+        "quota exceeded for model opencode/longcat",
+    ):
+        assert rx.search(dead), f"a real routing death was missed: {dead!r}"
+
+    # A species log is full of numbers and mentions of limits. Neither is the
+    # agent failing to route, and neither may refund an issue attempt.
+    for alive in (
+        "the taxon's circumscription cites P4293 and Q4293",
+        "rate limits at the reserve are 5 visitors per day",
+        "P4293 retrieved 200 OK from the Wikidata API",
+        "the 429 birds counted in the survey were ringed",
+    ):
+        assert not rx.search(alive), f"a non-routing line matched and would refund: {alive!r}"
+
+
+def test_the_provider_tally_is_rebuilt_from_the_log_and_refuses_to_publish_a_wrong_one():
+    """The tally had drifted one above anything derivable from the log, which is
+    the property it exists to provide."""
+    text = FLEET.read_text(encoding="utf-8")
+    fn = text.split("reconcile_provider_counts() {", 1)[1].split("\n}\n", 1)[0]
+    assert "/^spawned " in fn, "the tally must be rebuilt by counting the log's spawn lines"
+    assert "grep -c '^spawned '" in fn, "the log's own spawn count is the cross-check"
+    assert 'ne "$logged"' in fn, "a parse that disagrees with the log must not be published"
+    # The spawn line is "model <id>", not "model=<id>"; matching the wrong one
+    # silently yields zero models and would reset a correct tally.
+    assert r"model \([^)]*\)" in fn, "the parse must match the line as actually written"
+    code = "\n".join(l for l in fn.splitlines() if not l.strip().startswith("#"))
+    assert "model=" not in code, "the spawn line has a space, not an equals sign"
+    loop = text.split("cmd_supervise() {", 1)[1]
+    assert "reconcile_provider_counts" in loop, "reconcile is never called"

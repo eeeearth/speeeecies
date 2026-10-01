@@ -132,6 +132,33 @@ note_spawn_provider() {  # model id; tally what was really served per provider
   mv "$f.tmp" "$f"
 }
 
+reconcile_provider_counts() {
+  # Rebuild the tally from the spawn lines the log already records, so the two
+  # cannot drift. It had drifted: provider_counts read one higher than any
+  # count derivable from supervisor.log, which is exactly the property the tally
+  # exists to provide. Counting the log makes the count auditable by
+  # construction instead of by parallel bookkeeping.
+  local log="$STATE_DIR/supervisor.log" f="$STATE_DIR/provider_counts"
+  local z=0 g=0 m n=0
+  [ -f "$log" ] || return 0
+  # The spawn line reads "... (issue N, model <id>)" -- space, not "model=".
+  while read -r m; do
+    [ -n "$m" ] || continue
+    n=$((n + 1))
+    if [ "$(provider_of_model "$m")" = go ]; then g=$((g + 1)); else z=$((z + 1)); fi
+  done < <(sed -n 's/^spawned .*, model \([^)]*\)).*/\1/p' "$log" 2>/dev/null)
+  # Refuse to publish a tally that contradicts the log's own spawn count. A
+  # pattern typo here would otherwise silently reset a correct tally to zero,
+  # which is precisely the drift this function exists to remove.
+  local logged; logged=$(grep -c '^spawned ' "$log" 2>/dev/null) || logged=0
+  if [ "$logged" -gt 0 ] && [ "$n" -ne "$logged" ]; then
+    say "WARNING: parsed $n models from $logged spawn lines; keeping the existing tally rather than publishing a wrong one"
+    return 0
+  fi
+  printf 'zen %s\ngo %s\n' "$z" "$g" > "$f.tmp" 2>/dev/null && mv "$f.tmp" "$f"
+  say "reconciled the provider tally from the log: zen=$z go=$g"
+}
+
 note_route_failure() {  # slug; 0 when the agent died on routing, 1 otherwise
   local model
   model=$(meta_get "$1" model)
@@ -139,8 +166,13 @@ note_route_failure() {  # slug; 0 when the agent died on routing, 1 otherwise
   # Tail only. Grepping the whole log refunded the attempt whenever an agent so
   # much as mentioned a rate limit while researching, which is not a routing
   # death and must not give the issue a free pass.
+  # 429 only counts as a status, never as a digit run: a species log cites
+  # Wikidata property ids like P4293, and a bare 429 alternative matched inside
+  # it. It now has to look like a status. "api" is deliberately NOT a context
+  # word, because every species log says "the Wikidata API"; the words that
+  # actually indicate the agent's own provider failing are below.
   if tail -40 "$STATE_DIR/$1.log" \
-       | grep -qiE 'cannot find any route|rate limit|429|too many requests|quota exceeded'; then
+       | grep -qiE "cannot find any route|no route (found|to)|model [^ ]+ .{0,24}(not (found|available)|unavailable|overloaded|deprecated)|(rate limit|too many requests|quota exceeded).{0,60}(opencode|provider|router|credential|api key|token|model)|(opencode|provider|router|credential|api key|token|model).{0,60}(rate limit|too many requests|quota exceeded)|(http|status|code|error)[ _-]?429|429[ _]+too many requests"; then
     provider_note_failure "$(provider_of_model "$model")"
     return 0
   fi
@@ -188,9 +220,40 @@ advance_model() {  # step that provider's own cursor, then hand over to the othe
 }
 
 agent_running() {  # slug -> 0 running, 1 not
-  local wt; wt=$(meta_get "$1" worktree)
+  local pf="$STATE_DIR/$1.pid" pid wt
+  # The recorded PID is authoritative. Matching on the worktree path cannot tell
+  # a stale agent from its replacement: when a slug respawns into the same path,
+  # the retired process still matches it, and the fleet counted one agent as two
+  # while the stale one kept editing the replacement's tree.
+  if [ -f "$pf" ]; then
+    pid=$(tr -dc '0-9' < "$pf" 2>/dev/null)
+    if [ -n "$pid" ]; then
+      kill -0 "$pid" 2>/dev/null && return 0
+      return 1
+    fi
+  fi
+  wt=$(meta_get "$1" worktree)
   [ -n "$wt" ] || return 1
   pgrep -af "$AGENT_BIN run" 2>/dev/null | grep -qF -- "$wt"
+}
+
+stop_agent() {  # slug -> 0. Signals the whole process group and waits it out.
+  local pf="$STATE_DIR/$1.pid" pid i
+  [ -f "$pf" ] || return 0
+  pid=$(tr -dc '0-9' < "$pf" 2>/dev/null)
+  if [ -n "$pid" ] && kill -0 "$pid" 2>/dev/null; then
+    say "stopping $1 (pid $pid) and its process group"
+    kill -TERM -- "-$pid" 2>/dev/null || kill -TERM "$pid" 2>/dev/null
+    for i in $(seq 1 10); do kill -0 "$pid" 2>/dev/null || break; sleep 1; done
+    if kill -0 "$pid" 2>/dev/null; then
+      say "  $1 ignored SIGTERM; sending SIGKILL to the group"
+      kill -KILL -- "-$pid" 2>/dev/null || kill -KILL "$pid" 2>/dev/null
+      sleep 1
+    fi
+    say "  $1 stopped"
+  fi
+  rm -f "$pf"
+  return 0
 }
 
 # The researched recipe for one issue, out of recipes.md. Markers are matched
@@ -459,6 +522,7 @@ printf 'workspace=none\nagent=%s\nworktree=%s\nbranch=%s\nissue=%s\nslug=%s\nkin
   cat > "$launch" <<LAUNCHER
 #!/usr/bin/env bash
 exec > "$log" 2>&1
+echo \$\$ > "$STATE_DIR/$slug.pid"
 echo "=== fleet.sh spawn \$(date -u +%FT%TZ) model=$model variant=$variant"
 cd "$wpath" || exit 9
 [ -f "$PERMISSIONS" ] && export OPENCODE_CONFIG="$PERMISSIONS"
@@ -528,6 +592,12 @@ cmd_teardown() {
     say "$wt has uncommitted changes; refusing to tear down. Inspect it, then --force."
     return 1
   fi
+  # Stop the agent before touching its tree. Teardown removed the worktree and
+  # the metadata while leaving the process running, so a retired agent kept
+  # working out of a deleted directory; the live fleet briefly held five
+  # processes for three agents. Salvaging first would also race an agent that
+  # was still writing into the very files being committed.
+  stop_agent "$slug"
   # Salvage before destroying. Teardown promises the branch is kept "for salvage",
   # but worktree remove --force deletes uncommitted files outright, so a locale
   # agent that got part-way through a dozen species lost all of it. Commit it onto
@@ -554,7 +624,7 @@ cmd_teardown() {
   fi
   git -C "$REPO" worktree prune
   rm -f "$STATE_DIR/$slug.meta" "$STATE_DIR/$slug.status.md" \
-        "$STATE_DIR/$slug.brief.md" "$STATE_DIR/$slug.launch.sh"
+        "$STATE_DIR/$slug.brief.md" "$STATE_DIR/$slug.launch.sh" "$STATE_DIR/$slug.pid"
   # Say which of the two happened. "because it is the PR" on its own let an
   # agent that died with no PR look delivered, so its issue went unclaimed.
   pr_st=0; pr_for_slug "$slug" "$kind" || pr_st=$?
@@ -574,6 +644,7 @@ cmd_supervise() {
     case "$1" in --once) once=1; shift;; --min) FLEET_MIN=$2; shift 2;; --max) FLEET_MAX=$2; shift 2;; *) shift;; esac
   done
   [ "$FLEET_MAX" -ge "$FLEET_MIN" ] || die "--max must be >= --min"
+  reconcile_provider_counts
   # One supervisor per state directory. Two would race each other through the
   # orphan scan and the STATUS.md sweep, each undoing the other's work on
   # worktrees it does not own. flock is released automatically when this exits.
@@ -608,6 +679,18 @@ cmd_supervise() {
     done
     git -C "$REPO" worktree prune
 
+    # Orphans. An agent process outliving its metadata is the failure that made
+    # the fleet report five members while holding three: the retired one keeps
+    # working, and once its slug respawns into the same path the two are
+    # indistinguishable by path alone. A pidfile with no meta is unambiguous.
+    for pf in "$STATE_DIR"/*.pid; do
+      [ -f "$pf" ] || continue
+      oslug=$(basename "$pf" .pid)
+      [ -f "$STATE_DIR/$oslug.meta" ] && continue
+      stop_agent "$oslug"
+      say "reaped an orphaned process for $oslug; its metadata was gone"
+    done
+
     # STATUS.md guard. The briefs forbid touching it, but two live agents were
     # launched before that wording existed and the repository already carries a
     # root STATUS.md from an even earlier one, so an agent reading the tree sees
@@ -620,8 +703,16 @@ cmd_supervise() {
       [ -n "$gwt" ] && [ -d "$gwt" ] || continue
       git -C "$gwt" ls-files --error-unmatch STATUS.md >/dev/null 2>&1 || continue
       git -C "$gwt" diff --quiet HEAD -- STATUS.md 2>/dev/null && continue
-      git -C "$gwt" checkout -q -- STATUS.md 2>/dev/null \
-        && echo "[$(date -u +%FT%TZ)] $gslug: reverted a STATUS.md edit; that file is not part of the contribution"
+      # `checkout -- <path>` restores the worktree *from the index*, so a staged
+      # edit survived it and still shipped in the PR while the guard logged a
+      # successful revert. Clear the index and the worktree from HEAD, then
+      # confirm it: a guard that reports success without cleaning is worse.
+      if git -C "$gwt" restore --staged --worktree --source=HEAD -- STATUS.md 2>/dev/null \
+         && git -C "$gwt" diff --quiet HEAD -- STATUS.md 2>/dev/null; then
+        echo "[$(date -u +%FT%TZ)] $gslug: reverted a STATUS.md edit; that file is not part of the contribution"
+      else
+        echo "[$(date -u +%FT%TZ)] $gslug: WARNING could not revert a staged STATUS.md edit; check it before merging"
+      fi
     done
 
     # Reap: an agent that finished with a PR leaves the fleet.
