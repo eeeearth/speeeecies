@@ -1576,7 +1576,7 @@ def test_stopping_an_agent_without_a_pidfile_still_reaches_the_process():
         assert "no pidfile for demo" in proc.stdout, (
             f"the fallback did not run; output was: {proc.stdout!r}"
         )
-        assert not _exited(agent), (
+        assert _exited(agent), (
             "stop_agent returned success but the pidless agent is still alive"
         )
 
@@ -1786,9 +1786,18 @@ def _stop_agent_harness(state: str, slug: str = "demo") -> str:
 
 
 def _exited(pid: int, timeout: float = 15.0) -> bool:
+    """True once the pid is gone OR a zombie. A killed child that has not been
+    reaped keeps its /proc entry with state Z, and a zombie is not a running
+    agent -- counting it as alive made a correct stop look like a failure."""
     deadline = time.time() + timeout
     while time.time() < deadline:
-        if not Path(f"/proc/{pid}").exists():
+        stat = Path(f"/proc/{pid}/stat")
+        if not stat.exists():
+            return True
+        try:
+            if stat.read_text().rsplit(")", 1)[-1].split()[0] == "Z":
+                return True
+        except (OSError, IndexError):
             return True
         time.sleep(0.5)
     return False
@@ -1825,7 +1834,7 @@ def test_stop_agent_stops_a_pidfile_owned_agent():
         assert proc.returncode == 0, (
             f"stop_agent exited {proc.returncode} on the pidfile path: {proc.stderr.strip()}"
         )
-        assert not _exited(leader), (
+        assert _exited(leader), (
             "stop_agent returned success but the process group is still alive"
         )
 

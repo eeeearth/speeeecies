@@ -379,7 +379,24 @@ stop_agent() {  # slug -> 0. Signals the whole process group and waits it out.
       return 0
     fi
     say "stopping $1 (pid $pid) and its process group"
-    stop_signal "$pid"
+    # stop_signal refuses when the target shares our own process group, and can
+    # fail to signal. Ignoring that made a refusal indistinguishable from a
+    # successful stop: the caller logged "stopped" and carried on while the agent
+    # was still running. Report what actually happened.
+    if ! stop_signal "$pid"; then
+      say "  $1 was NOT stopped; it shares this process group or could not be signalled"
+      rm -f "$pf"
+      return 1
+    fi
+    # A killed child that has not been reaped keeps its /proc entry and still
+    # answers `kill -0`, so that alone reports a successful SIGKILL as a survivor.
+    # Read the process state: Z means it is gone.
+    if [ -r "/proc/$pid/stat" ] \
+       && [ "$(awk '{print $3}' "/proc/$pid/stat" 2>/dev/null)" != Z ]; then
+      say "  $1 survived the stop (pid $pid still alive)"
+      rm -f "$pf"
+      return 1
+    fi
     say "  $1 stopped"
   fi
   rm -f "$pf"
@@ -637,13 +654,18 @@ cmd_spawn() {
     return 1
   }
 
+  # launch_tmp is assigned further down, and a failure before that point made this
+  # reference unbound under `set -u`, so the rollback aborted before removing the
+  # worktree it was called to undo.
+  local launch_tmp=""
   spawn_rollback() {
     [ -f "$STATE_DIR/$slug.meta" ] && return 0
     [ -d "$wpath" ] || return 0
     say "rolling back the worktree for $slug"
     git -C "$REPO" worktree remove --force "$wpath" 2>/dev/null
     git -C "$REPO" worktree prune 2>/dev/null
-    rm -f "$launch_tmp" "$launch" 2>/dev/null
+    [ -n "$launch_tmp" ] && rm -f "$launch_tmp" 2>/dev/null
+    rm -f "$launch" 2>/dev/null
     return 0
   }
 
@@ -665,8 +687,11 @@ print(" ".join(re.findall(r"`([A-Z]{2}(?:-[A-Z0-9]{1,3})?)`", m.group(1))) if m 
   # "CC BY-SA US-CO PR CC BY NC"). The brief already tells the agent to read the
   # suggested-regions section itself when this is empty, which is honest.
 
-  render_brief "$issue" "$slug" "$sci" "$regions" "$wpath" "$branch" "$brief" \
-    "$kind" "$brief_tpl" "$status" \
+  # In a subshell: render_brief calls die on a leftover placeholder, and die exits
+  # the shell. Called directly that bypassed this guard entirely and leaked the
+  # worktree -- the `|| spawn_rollback` could never run.
+  ( render_brief "$issue" "$slug" "$sci" "$regions" "$wpath" "$branch" "$brief" \
+      "$kind" "$brief_tpl" "$status" ) \
     || { say "could not render the brief for $slug"; spawn_rollback; return 1; }
 
   printf '# %s\nissue: %s\nscientific: %s\nbranch: %s\nworktree: %s\nmodel: %s\nregions: %s\nstarted: %s\n\n' \
@@ -682,7 +707,7 @@ print(" ".join(re.findall(r"`([A-Z]{2}(?:-[A-Z0-9]{1,3})?)`", m.group(1))) if m 
 # errexit does not catch that: cmd_spawn runs inside `if ! spawn_err=$( ... )`,
 # and bash suspends `set -e` in a condition context. The phantom was reaped on
 # the next poll, which died tailing a log that was never created.
-  local launch_tmp="$launch.building"
+  launch_tmp="$launch.building"
   cat > "$launch_tmp" <<LAUNCHER
 #!/usr/bin/env bash
 # Drop the supervisor's lock fd before doing anything else. bash does not set
@@ -691,7 +716,17 @@ print(" ".join(re.findall(r"`([A-Z]{2}(?:-[A-Z0-9]{1,3})?)`", m.group(1))) if m 
 # never start, because the agents were holding the lock meant to exclude one.
 exec 9>&-
 exec > "$log" 2>&1
-echo \$\$ > "$STATE_DIR/$slug.pid"
+# Fail closed. If the pidfile cannot be published the supervisor cannot see or
+# stop this agent, so it must not run at all: continuing left a live process in a
+# worktree the parent then force-removed, the one failure that loses work outright.
+echo \$\$ > "$STATE_DIR/$slug.pid" || {
+  echo "=== fleet.sh spawn FAILED: could not publish $slug.pid" >&2
+  exit 8
+  }
+[ -s "$STATE_DIR/$slug.pid" ] || {
+  echo "=== fleet.sh spawn FAILED: $slug.pid is empty" >&2
+  exit 8
+  }
 echo "=== fleet.sh spawn \$(date -u +%FT%TZ) model=$model variant=$variant"
 cd "$wpath" || exit 9
 [ -f "$PERMISSIONS" ] && export OPENCODE_CONFIG="$PERMISSIONS"
@@ -745,11 +780,17 @@ LAUNCHER
 printf 'workspace=none\nagent=%s\nworktree=%s\nbranch=%s\nissue=%s\nslug=%s\nkind=%s\nscientific=%s\nmodel=%s\nvariant=%s\nregions=%s\nlog=%s\nstatus=%s\nbrief=%s\nmain=%s\n' \
   "$slug" "$wpath" "$branch" "$issue" "$slug" "$kind" "$sci" "$model" "$variant" "$regions" "$log" "$status" "$brief" "$REPO" \
   > "$STATE_DIR/$slug.meta" \
-  || { say "could not publish metadata for $slug"; rm -f "$STATE_DIR/$slug.meta"; spawn_rollback; return 1; }
+  || { say "could not publish metadata for $slug"
+       spawn_rollback
+       rm -rf "$STATE_DIR/$slug.meta"
+       return 1; }
 
 # Detached, so one fleet member's exit cannot take the supervisor down with it.
 # 9>&- closes the lock for this spawn too: the launcher closes it as its first
 # act, but setsid holds it in between.
+# A pidfile left by a previous agent with this slug would satisfy spawn_started and
+# make a launch that never happened look successful.
+rm -f "$STATE_DIR/$slug.pid"
 setsid nohup "$launch" 9>&- </dev/null >/dev/null 2>&1 &
 disown 2>/dev/null || true
 
