@@ -1,6 +1,6 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "_comment": "Permission rails for a delegated fleet agent. Loaded with OPENCODE_CONFIG so one agent cannot merge its own pull request, push to main, or force-push, even though the account that runs it may have maintainer rights on the repository. Everything else is allowed because the job needs git, gh, uv and a browser.",
+  "_comment": "Permission rails for a delegated fleet agent. Loaded with OPENCODE_CONFIG so one agent cannot merge its own pull request, push to main, or force-push, even though the account that runs it may have maintainer rights on the repository. Everything else is allowed because the job needs git, gh, uv and a browser. NOTE: no config surface gates the `task` tool. permission.task=deny, tools.task=false and agent.task.tools.task=false were each probed with a live agent, and all three were accepted silently and then ignored: the agent launched an Explore subagent anyway. The no-fan-out rule therefore lives in the brief (brief-species.md, brief-locale.md) as an instruction, not as a rail, and is enforced by nothing but the agent reading it. Do not add another config key for it; re-probe only if opencode documents a real gate.",
   "permission": {
     "bash": {
       "*": "allow",

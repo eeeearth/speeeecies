@@ -509,9 +509,12 @@ cmd_supervise() {
   [ "$FLEET_MAX" -ge "$FLEET_MIN" ] || die "--max must be >= --min"
   # Outside the loop on purpose: reset per pass and the transition-only
   # reporting below can never fire.
-  local fleet_state=OK prev_state
+  local fleet_state=OK prev_state=OK
 
   while :; do
+    # fleet_state is recomputed each pass; prev_state alone carries history.
+    # Resetting it here is what lets a recovered fleet report OK again.
+    fleet_state=OK
     # Reap: an agent that finished with a PR leaves the fleet.
     shopt -s nullglob
     for m in "$STATE_DIR"/*.meta; do
@@ -594,8 +597,8 @@ cmd_supervise() {
       done
     fi
     local zen_n go_n
-    zen_n=$(awk '$1=="zen" {print $2}' "$STATE_DIR/provider_counts" 2>/dev/null | tail -1)
-    go_n=$(awk '$1=="go" {print $2}' "$STATE_DIR/provider_counts" 2>/dev/null | tail -1)
+    zen_n=$(awk '$1=="zen" {print $2}' "$STATE_DIR/provider_counts" 2>/dev/null | tail -1) || true
+    go_n=$(awk '$1=="go" {print $2}' "$STATE_DIR/provider_counts" 2>/dev/null | tail -1) || true
     printf 'live=%s floor=%s max=%s state=%s zen=%s go=%s at=%s\n' \
       "$live" "$FLEET_MIN" "$FLEET_MAX" "$fleet_state" "${zen_n:-0}" "${go_n:-0}" \
       "$(date -u +%FT%TZ)" > "$STATE_DIR/heartbeat"

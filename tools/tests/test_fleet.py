@@ -217,6 +217,37 @@ def test_a_github_outage_is_not_reported_as_no_work():
 
 
 
+def test_supervisor_state_survives_the_first_starved_poll():
+    """prev_state was declared without a value and dereferenced under `set -u` on
+    the first starved poll, so the supervisor died exactly when it had nothing to
+    do. fleet_state also has to be recomputed per poll or a recovered fleet keeps
+    reporting the old failure."""
+    text = FLEET.read_text(encoding="utf-8")
+    fn = text.split("cmd_supervise() {", 1)[1]
+    assert re.search(r"local fleet_state=OK prev_state=OK", fn), (
+        "prev_state must be initialised; `set -u` kills the first starved poll"
+    )
+    loop = fn.split("while :;", 1)[1]
+    assert re.search(r"\n\s*fleet_state=OK\n", loop), (
+        "fleet_state must be recomputed each poll, not carried forward stale"
+    )
+    assert loop.index("fleet_state=OK") < loop.index("STARVED"), (
+        "fleet_state must be reset before the starve check reads it"
+    )
+
+
+def test_heartbeat_tolerates_a_missing_provider_tally():
+    """The zen/go counts are read through a pipeline, and `set -o pipefail` turns
+    a missing provider_counts file into a non-zero status that kills the loop
+    before it writes the heartbeat."""
+    text = FLEET.read_text(encoding="utf-8")
+    for var in ("zen_n=", "go_n="):
+        i = text.index(var)
+        line = text[i:text.index("\n", i)]
+        assert "|| true" in line, f"{var} aborts the poll when provider_counts is absent"
+    assert "provider_counts" in text, "the tally should still be the source"
+
+
 def test_briefs_forbid_recursive_delegation():
     """A locale delegate fanned out into six background species agents, and
     another fired three librarian agents. The supervisor counts three agents and
@@ -256,17 +287,26 @@ def test_a_failed_pr_lookup_never_reads_as_no_pr():
 def test_fleet_state_survives_a_poll():
     """fleet_state was declared inside the loop, so it reset every pass and the
     transition-only reporting could never fire: the log filled with the same
-    STARVED line once a minute."""
+    STARVED line once a minute. The fix inverts it — prev_state is the only
+    cross-poll memory, and fleet_state is recomputed fresh each pass so a
+    recovered fleet reports OK again instead of staying stale."""
     text = FLEET.read_text(encoding="utf-8")
     fn = text.split("cmd_supervise() {", 1)[1]
-    decl = [ln for ln in fn.splitlines() if "fleet_state=OK" in ln]
-    assert decl, "fleet_state is never initialised"
-    assert len(decl) == 1, "fleet_state is initialised more than once"
-    head = fn.split("while :;", 1)[0]
-    assert any("fleet_state=OK" in ln for ln in head.splitlines()), (
-        "fleet_state must be initialised before the poll loop, not inside it"
+    head, loop = fn.split("while :;", 1)
+    assert re.search(r"local fleet_state=OK prev_state=OK", head), (
+        "both must be initialised before the loop; an uninitialised prev_state "
+        "is fatal under set -u on the first starved poll"
     )
-    assert "prev_state" in fn, "no previous-state tracking for transition reporting"
+    assert not re.search(r"local .*fleet_state", loop), (
+        "fleet_state must not be re-declared inside the loop"
+    )
+    reset = loop.index("fleet_state=OK")
+    assert reset < loop.index("STARVED"), (
+        "fleet_state must be reset before the starve check reads it"
+    )
+    assert "prev_state=$fleet_state" in loop, (
+        "prev_state must be carried forward at the end of each pass"
+    )
 
 
 def test_readme_does_not_contradict_the_driver():
