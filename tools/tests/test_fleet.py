@@ -2277,10 +2277,20 @@ def test_an_unreclaimable_orphan_worktree_is_reported_not_silently_skipped():
 # every poll after the first warning while the slug was still wedged. These drive
 # the real supervisor against a real second checkout.
 
-def _foreign_worktree(other_repo: str, root: str, name: str, branch: str) -> None:
-    subprocess.run(["git", "-C", other_repo, "worktree", "add", "-q",
-                    f"{root}/{name}", "-b", branch], check=True,
+def _foreign_worktree(other_repo: str, root: str, name: str, branch: str,
+                      force: bool = False) -> None:
+    # -B resets an existing branch so the same slug can be recreated under the
+    # same directory name, which is what the remove-and-recreate case needs.
+    cmd = ["git", "-C", other_repo, "worktree", "add", "-q", f"{root}/{name}"]
+    cmd += ["-B" if force else "-b", branch]
+    subprocess.run(cmd, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+
+
+def _drop_worktree(other_repo: str, root: str, name: str) -> None:
+    subprocess.run(["git", "-C", other_repo, "worktree", "remove", "--force",
+                    f"{root}/{name}"], check=True,
                    stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    subprocess.run(["git", "-C", other_repo, "worktree", "prune"], check=True)
 
 
 def _scratch_repo() -> str:
@@ -2445,5 +2455,54 @@ def test_a_blocker_removed_mid_run_unblocks_the_same_supervisor():
     assert states[-1] == "OK", (
         f"the fleet stayed blocked after the blocker was removed: {states}"
     )
+    for d in (root, other, state, outdir):
+        subprocess.run(["rm", "-rf", d], check=False)
+
+
+@pytest.mark.skipif(
+    os.environ.get("FLEET_SLOW_TESTS") != "1",
+    reason="runs one long-lived supervisor and mutates the tree mid-run",
+)
+def test_a_slug_removed_and_recreated_mid_run_warns_again():
+    """A slug that is blocked, removed, and then recreated inside one supervisor
+    lifetime has to warn a second time. This is the case the latch got wrong twice:
+    first because the state was assigned inside the "have I warned yet" branch, then
+    because the blocker list was only ever appended to. Oracle verified it by hand;
+    this encodes it so the next edit cannot silently undo it."""
+    import tempfile as _tf
+    root, other, state = _tf.mkdtemp(), _scratch_repo(), _tf.mkdtemp()
+    outdir = _tf.mkdtemp()
+    out = os.path.join(outdir, "supervisor.out")
+    env = dict(os.environ, WORKTREE_ROOT=root, GH_REPO="jt55401/speeeecies",
+               FLEET_STATE_DIR=state, POLL_SECONDS="2")
+    with open(out, "w", encoding="utf-8") as fh:
+        proc = subprocess.Popen(["bash", str(FLEET), "supervise", "--min", "0", "--max", "0"],
+                                stdout=fh, stderr=subprocess.STDOUT, text=True,
+                                env=env, start_new_session=True)
+    try:
+        time.sleep(5)
+        _foreign_worktree(other, root, "locale-alpha", "alpha")
+        time.sleep(6)
+        _drop_worktree(other, root, "locale-alpha")
+        time.sleep(6)
+        # Same slug, same path, back again -- the latch must not still hold it.
+        _foreign_worktree(other, root, "locale-alpha", "alpha", force=True)
+        time.sleep(6)
+    finally:
+        os.killpg(os.getpgid(proc.pid), signal.SIGKILL)
+        proc.wait(timeout=30)
+
+    text = Path(out).read_text(encoding="utf-8")
+    states = re.findall(r"fleet=0 \(min 0 max 0\) state=([A-Z_]+)", text)
+    assert states, f"the supervisor never polled: {text!r}"
+    assert text.count("could not be reclaimed") == 2, (
+        f"one warning per appearance of the blocker, want 2, got "
+        f"{text.count('could not be reclaimed')}"
+    )
+    assert states[0] == "OK" and states[-1] == "BLOCKED_BY_FOREIGN_WORKTREE", (
+        f"expected the fleet to end blocked on the recreated slug, got {states}"
+    )
+    # And it must have gone clear in between, or the second warning proves nothing.
+    assert "OK" in states[1:-1], f"the blocker was never lifted: {states}"
     for d in (root, other, state, outdir):
         subprocess.run(["rm", "-rf", d], check=False)
