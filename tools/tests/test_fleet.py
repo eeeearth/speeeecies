@@ -316,7 +316,7 @@ def test_a_refused_spawn_cannot_leave_the_fleet_reporting_ok():
     code wrote `fleet=0 (min 1 max 1) state=OK`."""
     text = FLEET.read_text(encoding="utf-8")
     loop = text.split("cmd_supervise() {", 1)[1]
-    refill = loop.split('while [ -n "$row_pick" ]', 1)[1].split("\n      done", 1)[0]
+    refill = loop.split('while [ -n "$remaining" ]', 1)[1].split("\n      done", 1)[0]
     assert "|| break" not in refill, (
         "a refused spawn still aborts the pass and blocks every later candidate"
     )
@@ -337,7 +337,7 @@ def test_a_refused_spawn_cannot_leave_the_fleet_reporting_ok():
     assert loop.index("BELOW_FLOOR") < loop.index('> "$STATE_DIR/heartbeat"'), (
         "the invariant must run before the heartbeat is written, or it guards nothing"
     )
-    assert loop.index("BELOW_FLOOR") > loop.index('while [ -n "$row_pick" ]'), (
+    assert loop.index("BELOW_FLOOR") > loop.index('while [ -n "$remaining" ]'), (
         "the invariant must run after the refill attempt, not before"
     )
 
@@ -1038,12 +1038,12 @@ def test_refill_cannot_spin_on_a_duplicate_candidate():
     heartbeat went stale, because the poll never finished."""
     text = FLEET.read_text(encoding="utf-8")
     loop = text.split("cmd_supervise() {", 1)[1]
-    assert "awk -F'\\t' '!seen[$2]++'" in loop, (
-        "candidates are not deduplicated by slug, so the walk can revisit one"
+    assert "awk -F'\\t' '!seen[$3 \"/\" $2]++'" in loop, (
+        "candidates are not deduplicated by kind/slug, so the walk can revisit one"
     )
-    assert re.search(r'local budget; budget=.*grep -c', loop), (
-        "the refill loop is unbounded; a bad row advance spins the poll"
-    )
+    assert "local remaining budget" in loop and re.search(
+        r'budget=\$\(printf .*grep -c', loop
+    ), "the refill loop is unbounded; a bad row advance spins the poll"
     assert '[ "$budget" -gt 0 ]' in loop, "the budget is computed but never applied"
     assert loop.index('[ "$budget" -gt 0 ]') < loop.index("cmd_spawn --issue"), (
         "the budget must bound the loop, not merely be computed"
@@ -1069,3 +1069,61 @@ def test_orphan_worktrees_are_reclaimed():
     assert block.index("status --porcelain") < block.index("worktree remove --force"), (
         "the cleanliness check must precede the removal"
     )
+
+
+def _awk_prog(needle: str) -> str:
+    """Pull an awk program out of the quoted tail of the fleet.sh line holding `needle`."""
+    line = next(l for l in FLEET.read_text(encoding="utf-8").splitlines() if needle in l)
+    parts = line.split("awk ", 1)[1].split("'")
+    assert len(parts) > 3, f"no quoted awk program in: {line.strip()}"
+    return parts[3]
+
+
+def _walk_candidates(candidates: str) -> list[str]:
+    """Run the refill walk the supervisor actually ships, over `candidates`.
+
+    The dedupe and the shrink step are pulled out of fleet.sh rather than copied,
+    so this fails if either expression changes underneath it.
+    """
+    dedupe = _awk_prog("!seen[$3")
+    shrink = _awk_prog('-v k="$kind/$sl"')
+    script = (
+        "set -u\n"
+        "remaining=$(cat)\n"
+        f"remaining=$(printf '%s\\n' \"$remaining\" | awk -F'\\t' '{dedupe}')\n"
+        "budget=$(printf '%s\\n' \"$remaining\" | grep -c . || true)\n"
+        'out=""\n'
+        'while [ -n "$remaining" ] && [ "$budget" -gt 0 ]; do\n'
+        '  budget=$(( budget - 1 ))\n'
+        "  row_pick=$(printf '%s\\n' \"$remaining\" | head -1)\n"
+        "  IFS=$'\\t' read -r n sl kind ti <<<\"$row_pick\"\n"
+        f"  remaining=$(printf '%s\\n' \"$remaining\" | awk -F'\\t' -v k=\"$kind/$sl\" '{shrink}')\n"
+        '  out="$out $sl"\n'
+        "done\n"
+        'printf "%s" "$out"\n'
+    )
+    out = subprocess.run(
+        ["bash", "-c", script], input=candidates, capture_output=True, text=True, check=True
+    ).stdout
+    return out.split()
+
+
+def test_refill_walk_reaches_every_candidate_in_order():
+    """The advance used to be `awk 'NR>1 && $2 != s'`, which skips only row 1. For
+    candidates a b c d that walked a -> b -> c -> b, so a stubborn early issue
+    starved everything after it and the per-poll budget ran out before reaching
+    the last candidate. Refusals must still advance."""
+    tried = _walk_candidates("1\ta\tspecies\tA\n2\tb\tspecies\tB\n3\tc\tspecies\tC\n4\td\tspecies\tD\n")
+    assert tried == ["a", "b", "c", "d"], f"walk visited {tried}, expected every candidate in order"
+
+
+def test_refill_walk_terminates_when_every_candidate_refuses():
+    tried = _walk_candidates("1\ta\tspecies\tA\n2\tb\tspecies\tB\n3\tc\tspecies\tC\n")
+    assert tried == ["a", "b", "c"], f"walk visited {tried}"
+
+
+def test_a_species_and_a_locale_sharing_a_slug_are_distinct_candidates():
+    """Dedupe keyed on bare slug collapsed a species and a locale with the same
+    name into one, while attempts and busy agents are counted by kind/slug."""
+    tried = _walk_candidates("4\tshared\tspecies\tS\n9\tshared\tlocale\tL\n")
+    assert sorted(tried) == ["shared", "shared"], f"a same-slug pair collapsed to {tried}"

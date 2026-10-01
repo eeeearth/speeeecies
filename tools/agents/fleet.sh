@@ -644,25 +644,31 @@ cmd_supervise() {
             if ((key in n) && n[key] >= lim) next; print }
         ' "$STATE_DIR/queue.tsv" -)
       fi
-      # Dedupe by slug. The advance below only skips row 1, so a single duplicate
-      # row made the walk oscillate between two slugs and spin the whole poll at
-      # ~1 refusal/second -- two blocked issues produced 434 of them.
-      pick=$(printf '%s\n' "$pick" | awk -F'\t' '!seen[$2]++')
-      row_pick=$(printf '%s\n' "$pick" | head -1)
-      if [ -z "$row_pick" ] && [ "$fleet_state" != GH_UNREACHABLE ]; then
-        # Only say STARVED on the transition. Repeating it every poll turns a
-        # one-line state change into log spam that hides real events.
+      # Candidates are a queue we shrink, not a list we re-scan. The old advance
+      # was `awk 'NR>1 && $2 != s'`, which skips only row 1, so for candidates
+      # a b c d the walk went a -> b -> c -> b and the budget ran out before ever
+      # reaching d: a single stubborn early issue starved every later one.
+      # Keyed by kind/slug, matching how attempts and busy agents are counted.
+      pick=$(printf '%s\n' "$pick" | awk -F'\t' '!seen[$3 "/" $2]++')
+      local remaining budget
+      remaining="$pick"
+      # Report starvation once, on the transition. Repeating it every poll turns a
+      # one-line state change into log spam that hides real events.
+      if [ -z "$remaining" ] && [ "$fleet_state" != GH_UNREACHABLE ]; then
         if [ "$prev_state" != STARVED ]; then
           echo "[$(date -u +%FT%TZ)] STARVED: live=$live below floor $FLEET_MIN, no eligible issue left"
         fi
         fleet_state=STARVED
       fi
-      # Bounded by the candidate count so no future bug in the row advance can
-      # spin the poll: each row is tried at most once per pass.
-      local budget; budget=$(printf '%s\n' "$pick" | grep -c . || true)
-      while [ -n "$row_pick" ] && [ "$live" -lt "$FLEET_MIN" ] && [ "$budget" -gt 0 ]; do
+      budget=$(printf '%s\n' "$remaining" | grep -c . || true)
+      while [ -n "$remaining" ] && [ "$live" -lt "$FLEET_MIN" ] && [ "$budget" -gt 0 ]; do
         budget=$(( budget - 1 ))
+        row_pick=$(printf '%s\n' "$remaining" | head -1)
         IFS=$'\t' read -r n sl kind ti <<<"$row_pick"
+        # Drop the candidate before the attempt, so neither a refusal nor a
+        # success can hand the same row back on the next turn.
+        remaining=$(printf '%s\n' "$remaining" \
+                    | awk -F'\t' -v k="$kind/$sl" '$3 "/" $2 != k')
         if [ "$kind" = locale ]; then
           sc="$sl"
         else
@@ -671,7 +677,7 @@ cmd_supervise() {
           [ -n "$sc" ] || sc="$ti"
         fi
         # A refused spawn must not leave the fleet reporting OK below its floor,
-        # and it must not block every later candidate behind one bad issue. An
+        # and must not block every later candidate behind one bad issue. An
         # unreachable GitHub is the exception: nothing after it will spawn either,
         # so stop the pass rather than walk the whole queue.
         if ! spawn_err=$( ( cmd_spawn --issue "$n" --slug "$sl" \
@@ -683,12 +689,10 @@ cmd_supervise() {
               fleet_state=GH_UNREACHABLE
               break ;;
           esac
-          row_pick=$(printf '%s\n' "$pick" | awk -F'\t' -v s="$sl" 'NR>1 && $2 != s' | head -1)
           continue
         fi
         [ -n "$spawn_err" ] && printf '%s\n' "$spawn_err"
         live=$(( live + 1 ))
-        row_pick=$(printf '%s\n' "$pick" | awk -F'\t' -v s="$sl" 'NR>1 && $2 != s' | head -1)
       done
     fi
     # Invariant, applied last: never report OK while below the floor, whatever
