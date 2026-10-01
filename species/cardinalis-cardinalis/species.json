@@ -1,0 +1,614 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Cardinalis cardinalis",
+  "slug": "cardinalis-cardinalis",
+  "common_names": {
+    "en": "northern cardinal"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Passeriformes",
+    "family": "Cardinalidae",
+    "genus": "Cardinalis",
+    "authority": "(Linnaeus, 1758)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2490384,
+    "inat_taxon_id": 9083,
+    "itis_tsn": 179124,
+    "wikidata": "Q726389"
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "US",
+      "CA",
+      "MX"
+    ],
+    "introduced": [
+      "BM"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Hop",
+      "Fly"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Cup",
+    "perching": true,
+    "size_class": "Tiny",
+    "mass_kg": 0.045,
+    "mass_range_kg": [
+      0.0336,
+      0.065
+    ],
+    "length_m": 0.22,
+    "wingspan_m": 0.28,
+    "lifespan_y": 2.7,
+    "diet": {
+      "seed": 0.6,
+      "invertebrate": 0.25,
+      "fruit": 0.15
+    },
+    "social": {
+      "structure": "Pair",
+      "group_size": [
+        2,
+        6
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.35
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.5,
+      "arboreal": 0.5
+    },
+    "shelter_tag": "shrub_thicket",
+    "resources": [
+      {
+        "tag": "seed",
+        "kind": "Herbivory",
+        "weight": 0.6
+      },
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.25
+      },
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.15
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.5
+      },
+      {
+        "tag": "shrub_thicket",
+        "kind": "Shelter",
+        "weight": 0.5
+      },
+      {
+        "tag": "nest_cup",
+        "kind": "Nesting",
+        "weight": 1.0
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "light_max": 0.7,
+      "road_mortality": "Medium",
+      "notes": "Common at bird feeders and in suburban areas; mated pairs often travel together year-round."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "03-01",
+        "end": "09-30",
+        "note": "Two to four clutches a year, with nests built in dense shrubs; dates are a judgement placed around the described breeding activity."
+      },
+      {
+        "name": "flocking",
+        "start": "10-01",
+        "end": "02-28",
+        "note": "Outside the breeding season; exact boundary dates are a judgement."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg"
+      },
+      {
+        "stage": "Juvenile",
+        "duration_days": 40,
+        "scale": 0.85
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US-OK",
+        "monthly": [
+          0.83,
+          1.0,
+          0.93,
+          0.81,
+          0.66,
+          0.83,
+          0.88,
+          0.81,
+          0.55,
+          0.41,
+          0.56,
+          0.7
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 185944,
+        "sources": [
+          "inat-activity-us-ok",
+          "gbif-activity-us-ok"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 12,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=9083&place_id=12&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=12&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "total": 306,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.37_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2490384&gadmGid=USA.37_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.37_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 185638,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "bt-perching-songbird-v1",
+    "params": {
+      "flee_m": 5,
+      "food_tag": "seed",
+      "song": "song",
+      "alarm": "alarm",
+      "nest_m1": 3,
+      "nest_m2": 9
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "song",
+      "context": "Song",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day",
+        "Dusk"
+      ],
+      "cooldown_s": 8,
+      "loudness": "Loud",
+      "description": "Clear, whistled phrases repeated several times then varied, such as 'cheer-cheer-cheer, what-what-what'; both sexes sing, the male from a high perch to defend his territory."
+    },
+    {
+      "call_id": "alarm",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 5,
+      "loudness": "Moderate",
+      "description": "Short, sharp metallic 'chip' call given when a predator approaches the nest."
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.4,
+      "leg_length_ratio": 0.3,
+      "head_scale": 0.9,
+      "neck_angle_deg": 12,
+      "tail_ratio": 0.55,
+      "wing_aspect": 2.4,
+      "beak_ratio": 0.5,
+      "girth_ratio": 1.1
+    },
+    "palette": {
+      "body": "#b81f2d",
+      "belly": "#d98a7e",
+      "markings": "#1a1a1a",
+      "accent": "#e8572a",
+      "eye": "#2b1d10"
+    },
+    "part_colors": {
+      "beak": "accent"
+    },
+    "extra_parts": [
+      {
+        "name": "crest",
+        "parent": "head",
+        "offset": [
+          0,
+          0.45,
+          0
+        ],
+        "size": [
+          0.35,
+          0.5,
+          0.35
+        ],
+        "color": "body"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "hop": {},
+      "fly": {},
+      "perched": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2490384",
+      "title": "GBIF Backbone Taxonomy: Cardinalis cardinalis",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q726389",
+      "title": "Wikidata: Northern Cardinal (Q726389)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Northern_cardinal",
+      "title": "Wikipedia: Northern cardinal",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Northern cardinal\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=179124",
+      "title": "ITIS: Cardinalis cardinalis, TSN 179124",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "inat-activity-us-ok",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=9083&place_id=12&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Cardinalis cardinalis in US-OK",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-ok",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2490384&gadmGid=USA.37_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Cardinalis cardinalis in US-OK",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "itis"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "common_names": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "Wikidata P141 = least concern."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Country list described from the range: eastern and central United States, southern Canada, Mexico to the Isthmus of Tehuantepec; introduced to Bermuda and Hawaii."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Hops on the ground through trees and shrubbery while feeding; flies between cover."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Cup nest built in a well-concealed spot in dense shrub or a low tree."
+    },
+    "traits.size_class": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "From mass_kg (< 0.05 kg)."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Described adult weight 33.6-65 g with an average of 44.8 g."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Described adult weight range 33.6-65 g."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Midpoint of the described 21-23.5 cm body length."
+    },
+    "traits.wingspan_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Midpoint of the described 25-31 cm wingspan."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Wikipedia gives a oldest wild bird of 15 years 9 months and adult annual survival of 60-65%. Using the midpoint annual survival p=0.625 and the expected-lifespan approximation 1/(1-p) for a constant-hazard population gives about 2.7 years for a bird that reaches breeding age; treated as a rough estimate, not a sourced figure."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Mainly granivorous: up to 90% weed seeds, grains and fruit, plus insects (beetles, cicadas, grasshoppers); the young are fed almost entirely on insects."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Mated pairs generally stay together year-round; group_size is a judgement."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Sings and feeds by day; fluffs down feathers to retain warmth in winter."
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Judgement: flees from predators; the male defends the territory by chasing intruders."
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Judgement from the described behaviour: common and tame at feeders, but flies to cover when disturbed."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Ground feeder that hops through trees or shrubbery; nests in dense shrubs and low trees."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Nests and takes cover in dense shrubs, trees and vine tangles."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Weights follow the described diet: weed seeds, grains and fruit, insects; nests in dense cover."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Numerous in suburban areas, woodland edges, parks and gardens; common at bird feeders."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Year-round resident; no migration described."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Two to four clutches a year with incubation of 12-13 days is from Wikipedia; exact phase dates and the flocking window are a judgement."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Incubation 12-13 days plus fledging at 10-11 days; duration_days and scale are a judgement approximation."
+    },
+    "vocalizations.song": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "vocalizations.alarm": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Adult male: brilliant crimson red with a black face mask, prominent raised crest and coral-orange conical bill; female fawn with reddish tint. Model follows the male. Proportions and crest placement are judgement."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared perching-songbird program: seed-based ground foraging, a long nest-building window reflecting two to four clutches, and a short flee distance reflecting feeder tolerance."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies maintainers",
+      "agent": "claude-code"
+    }
+  ]
+}
