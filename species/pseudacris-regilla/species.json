@@ -1,0 +1,501 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Pseudacris regilla",
+  "slug": "pseudacris-regilla",
+  "common_names": {
+    "en": "Pacific chorus frog"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Amphibia",
+    "order": "Anura",
+    "family": "Hylidae",
+    "genus": "Pseudacris",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2428132,
+    "inat_taxon_id": 24259,
+    "wikidata": "Q2336996",
+    "ncbi_taxon_id": 47562
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "CA",
+      "US",
+      "MX"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk",
+      "Hop",
+      "Swim"
+    ],
+    "thermoregulation": "Ectotherm",
+    "skin": "Moist",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "Complete",
+    "nest_type": "None",
+    "perching": false,
+    "size_class": "Tiny",
+    "mass_kg": 0.005,
+    "mass_range_kg": [
+      0.002,
+      0.009
+    ],
+    "length_m": 0.045,
+    "lifespan_y": 3,
+    "diet": {
+      "invertebrate": 0.95,
+      "vertebrate": 0.05
+    },
+    "social": {
+      "structure": "Solitary",
+      "group_size": [
+        1,
+        1
+      ]
+    },
+    "activity_pattern": "Nocturnal",
+    "defense": "Flee",
+    "wariness": 0.3
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.7,
+      "aquatic": 0.2,
+      "arboreal": 0.1
+    },
+    "shelter_tag": "leaf_litter",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 1.0
+      },
+      {
+        "tag": "pond",
+        "kind": "Nesting",
+        "weight": 1.0,
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      {
+        "tag": "leaf_litter",
+        "kind": "Shelter",
+        "weight": 0.7
+      },
+      {
+        "tag": "log_pile",
+        "kind": "Shelter",
+        "weight": 0.6
+      },
+      {
+        "tag": "water",
+        "kind": "Water",
+        "weight": 0.6
+      }
+    ],
+    "requires": [
+      {
+        "resource_within_m": 200,
+        "tag": "pond"
+      }
+    ],
+    "suitability": {
+      "combine": "GeometricMean",
+      "curves": [
+        {
+          "covariate": "dist_water_m",
+          "curve": [
+            [
+              0,
+              1.0
+            ],
+            [
+              50,
+              0.6
+            ],
+            [
+              200,
+              0.0
+            ]
+          ]
+        }
+      ]
+    },
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "road_mortality": "Medium",
+      "notes": "Common in garden ponds and damp borders; the male's chorus from urban ponds is a familiar winter and spring sound."
+    }
+  },
+  "seasonal": {
+    "strategy": "Hibernation",
+    "triggers": {
+      "enter": {
+        "temperature_below_c": 4,
+        "days": 5
+      },
+      "exit": {
+        "temperature_above_c": 6,
+        "days": 3
+      }
+    },
+    "phases": [
+      {
+        "name": "dormancy",
+        "start": "11-15",
+        "end": "02-15"
+      },
+      {
+        "name": "spawning_migration",
+        "start": "02-15",
+        "end": "04-30"
+      },
+      {
+        "name": "breeding",
+        "start": "01-15",
+        "end": "05-31"
+      },
+      {
+        "name": "young",
+        "start": "03-01",
+        "end": "08-31"
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg",
+        "duration_days": 14,
+        "requires_tag": "pond",
+        "scale": 0.02
+      },
+      {
+        "stage": "Tadpole",
+        "duration_days": 70,
+        "requires_tag": "pond",
+        "scale": 0.1
+      },
+      {
+        "stage": "Juvenile",
+        "duration_days": 300,
+        "scale": 0.3
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-anuran-nocturnal-v1",
+    "params": {
+      "flee_m": 1.5,
+      "freeze_m": 4,
+      "food_tag": "invertebrate",
+      "call": "croak",
+      "min_temp_c": 4,
+      "max_temp_c": 24,
+      "call_m1": 1,
+      "call_m2": 5
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "croak",
+      "context": "Croak",
+      "season_months": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "time_windows": [
+        "Dusk",
+        "Night"
+      ],
+      "cooldown_s": 15,
+      "loudness": "Moderate",
+      "description": "The two-part 'ribbit' (or 'kreek-eeck') that gives the species its old name, the Pacific tree frog; males chorus from ponds from winter into spring."
+    }
+  ],
+  "look": {
+    "body_plan": "anuran",
+    "proportions": {
+      "torso_aspect": 1.25,
+      "leg_length_ratio": 0.6,
+      "head_scale": 0.85,
+      "neck_angle_deg": 8,
+      "girth_ratio": 1.1
+    },
+    "palette": {
+      "body": "#5a8a4a",
+      "belly": "#d8d4c0",
+      "markings": "#2a2a2a",
+      "accent": "#7a9a5a",
+      "eye": "#c9a227"
+    },
+    "part_colors": {
+      "head": "body"
+    },
+    "extra_parts": [
+      {
+        "name": "eye_stripe",
+        "parent": "head",
+        "offset": [
+          0.1,
+          0.1,
+          0.4
+        ],
+        "size": [
+          0.7,
+          0.25,
+          0.4
+        ],
+        "color": "markings",
+        "mirror": true
+      },
+      {
+        "name": "spot",
+        "parent": "body",
+        "offset": [
+          0.1,
+          0.3,
+          0.2
+        ],
+        "size": [
+          0.3,
+          0.15,
+          0.3
+        ],
+        "color": "markings",
+        "mirror": true
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "hop": {},
+      "swim": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2428132",
+      "title": "GBIF Backbone Taxonomy: Pseudacris regilla",
+      "license": "CC-BY-4.0",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "kind": "database",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q2336996",
+      "title": "Wikidata: Pacific tree frog (Q2336996)",
+      "license": "CC0-1.0",
+      "accessed": "2026-10-01",
+      "kind": "database",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Pacific_tree_frog",
+      "title": "Wikipedia: Pacific tree frog",
+      "license": "CC-BY-SA-4.0",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Pacific tree frog\", English Wikipedia, CC BY-SA 4.0",
+      "kind": "webpage",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "amphibio",
+      "url": "https://doi.org/10.6084/m9.figshare.4644424",
+      "title": "AmphiBIO v1: a global database for amphibian ecological traits",
+      "license": "CC-BY-4.0",
+      "accessed": "2026-10-01",
+      "attribution": "Oliveira, B. F. et al. (2017) AmphiBIO. Scientific Data 4:170123",
+      "kind": "dataset",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "inat-activity-ca-bc",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=24259&place_id=7085&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Pseudacris regilla in CA-BC",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-ca-bc",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2428132&gadmGid=CAN.2_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Pseudacris regilla in CA-BC",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "iNaturalist and NCBI ids via Wikidata (P3151, P685)."
+    },
+    "common_names": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "Wikidata P141 = least concern (Q211005)."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Native to the Pacific coast of North America from British Columbia to Baja California; introduced to some other western states."
+    },
+    "traits": {
+      "sources": [
+        "wikipedia",
+        "amphibio"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Mass about 5 g and snout-vent length 2.5-5 cm from Wikipedia, cross-checked against AmphiBIO; diet (small invertebrates) from Wikipedia and AmphiBIO. wariness is authored judgement."
+    },
+    "habitat": {
+      "sources": [
+        "wikipedia",
+        "amphibio"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Breeds and lays eggs in ponds and slow water in winter and spring, and spends the rest of the year in damp leaf litter, logs and low vegetation; resource weights are authored judgement."
+    },
+    "seasonal": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Dormant in cold weather, breeding from late winter; triggers and windows are authored since no open source gives exact thresholds for this region."
+    },
+    "vocalizations": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Call descriptions and contexts from Wikipedia; months, time windows and cooldowns are authored judgement where no open source quantifies them."
+    },
+    "look": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Colours from Wikipedia's description; proportions, palette and any extra parts are authored judgement to render the characteristic shape."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared behaviour program, scaled to the species' size and habits."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies maintainers",
+      "agent": "opencode"
+    }
+  ],
+  "activity": {
+    "regions": [
+      {
+        "region": "CA-BC",
+        "monthly": [
+          0.05,
+          0.1,
+          0.38,
+          0.66,
+          1.0,
+          0.64,
+          0.82,
+          0.89,
+          0.71,
+          0.35,
+          0.09,
+          0.05
+        ],
+        "method": "mean(inat_raw, gbif_raw)",
+        "observations": 3820,
+        "sources": [
+          "inat-activity-ca-bc",
+          "gbif-activity-ca-bc"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 7085,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=24259&place_id=7085&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": null,
+            "total": 1783,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "CAN.2_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2428132&gadmGid=CAN.2_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": null,
+            "total": 2037,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  }
+}
