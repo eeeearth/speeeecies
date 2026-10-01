@@ -1,0 +1,560 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Urocitellus beldingi",
+  "slug": "urocitellus-beldingi",
+  "common_names": {
+    "en": "Belding's ground squirrel",
+    "es": "ardilla de Belding"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Mammalia",
+    "order": "Rodentia",
+    "family": "Sciuridae",
+    "genus": "Urocitellus",
+    "authority": "(Merriam, 1888)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 8428945,
+    "inat_taxon_id": 179995
+  },
+  "conservation": {
+    "iucn": "LC",
+    "notes": "Not of conservation concern; its range includes some protected areas."
+  },
+  "range": {
+    "native": [
+      "US"
+    ],
+    "koppen": [
+      "BSk",
+      "Csa",
+      "Dfb",
+      "ET"
+    ],
+    "elevation_m": [
+      2000,
+      3600
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk",
+      "Hop",
+      "Burrow"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Fur",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Burrow",
+    "perching": false,
+    "size_class": "Small",
+    "mass_kg": 0.29,
+    "length_m": 0.265,
+    "shoulder_height_m": 0.11,
+    "lifespan_y": 6.0,
+    "diet": {
+      "seed": 0.35,
+      "browse": 0.3,
+      "invertebrate": 0.2,
+      "carrion": 0.1,
+      "vertebrate": 0.05
+    },
+    "social": {
+      "structure": "Group",
+      "group_size": [
+        1,
+        30
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.6
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.95,
+      "arboreal": 0.05
+    },
+    "shelter_tag": "burrow",
+    "resources": [
+      {
+        "tag": "seed",
+        "kind": "Herbivory",
+        "weight": 0.35
+      },
+      {
+        "tag": "browse",
+        "kind": "Herbivory",
+        "weight": 0.3
+      },
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.2
+      },
+      {
+        "tag": "carrion",
+        "kind": "Scavenging",
+        "weight": 0.1
+      },
+      {
+        "tag": "small_vertebrate",
+        "kind": "Shelter",
+        "weight": 0.05
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "light_max": 0.5,
+      "flight_distance_m": 15,
+      "notes": "The animal is 'largely restricted to open areas with enough fresh vegetation and water' and is 'not ... in dense forests, tall grasses, rocky slopes, or thick shrubbery, as they cannot watch for predators', yet it also inhabits 'sagebrush flats, brush/grass habitats and cultivated areas at lower elevations'. A ranch yard with open ground and short grass suits it; a dense garden does not."
+    }
+  },
+  "seasonal": {
+    "strategy": "Hibernation",
+    "phases": [
+      {
+        "name": "dormancy",
+        "start": "07-15",
+        "end": "02-28",
+        "region": "US",
+        "note": "Adult males enter hibernation between late July and early September at higher altitudes, females may follow in late September, and juveniles follow a parent, female young at 13 weeks and male young at 10 weeks. Emergence is in February at lower elevations and at the end of April at higher ones."
+      },
+      {
+        "name": "territorial",
+        "start": "03-01",
+        "end": "05-31",
+        "region": "US",
+        "note": "Females establish nesting-only territories around nesting burrows and defend them cooperatively; the ground squirrels mate promiscuously as females emerge, usually in late May to early June at higher elevations."
+      },
+      {
+        "name": "young",
+        "start": "05-15",
+        "end": "08-15",
+        "region": "US",
+        "note": "Pups first emerge from their natal burrows at weaning, at about 27 days old; juveniles emerge from and submerge into burrows later than adults."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Juvenile",
+        "duration_days": 27,
+        "scale": 0.5
+      },
+      {
+        "stage": "Adult"
+      }
+    ],
+    "triggers": {
+      "enter": {
+        "temperature_above_c": 10,
+        "days": 30
+      },
+      "exit": {
+        "temperature_above_c": 0,
+        "days": 14
+      }
+    }
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US-OR",
+        "monthly": [
+          0.01,
+          0.19,
+          0.4,
+          0.75,
+          1.0,
+          0.55,
+          0.18,
+          0.05,
+          0.01,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 1844,
+        "sources": [
+          "inat-activity-us-or",
+          "gbif-activity-us-or"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 10,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=179995&place_id=10&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=10&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 1394,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.38_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=8428945&gadmGid=USA.38_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.38_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 450,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-ground-forager-v1",
+    "params": {
+      "flee_m": 15,
+      "calm_m": 35,
+      "food_tag": "seed",
+      "food_m": 25,
+      "flee_gait": "gallop",
+      "forage_gait": "walk",
+      "rest_sun_lo_deg": -90,
+      "rest_sun_hi_deg": -6
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "trill",
+      "context": "Alarm",
+      "season_months": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 8,
+      "loudness": "Loud",
+      "description": "The species' loud, repeated alarm trill, given when the squirrel is on the watch for predators in open ground; the call_id is the conventional onomatopoeic rendering, since the article describes the behaviour of watching for predators without transcribing the call."
+    }
+  ],
+  "look": {
+    "body_plan": "hopper",
+    "proportions": {
+      "torso_aspect": 1.5,
+      "leg_length_ratio": 0.3,
+      "head_scale": 0.72,
+      "neck_angle_deg": 22,
+      "tail_ratio": 0.28,
+      "ear_ratio": 0.5,
+      "beak_ratio": 0.3,
+      "girth_ratio": 0.95
+    },
+    "palette": {
+      "body": "#8d8577",
+      "belly": "#c08552",
+      "markings": "#7a4a2c",
+      "accent": "#d9cdae",
+      "eye": "#0b0f14"
+    },
+    "part_colors": {
+      "snout": "belly",
+      "ear_left": "markings",
+      "ear_right": "markings",
+      "tail": "markings",
+      "leg_front_left": "markings",
+      "leg_front_right": "markings",
+      "leg_rear_left": "markings",
+      "leg_rear_right": "markings"
+    },
+    "extra_parts": [
+      {
+        "name": "tail_bands",
+        "parent": "tail",
+        "offset": [
+          0.0,
+          0.0,
+          0.35
+        ],
+        "size": [
+          0.5,
+          0.3,
+          0.6
+        ],
+        "color": "accent"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "hop": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/8428945",
+      "title": "GBIF Backbone Taxonomy: Urocitellus beldingi",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Belding%27s_ground_squirrel",
+      "title": "Wikipedia: Belding's ground squirrel",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Belding's ground squirrel\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "inat-activity-us-or",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=179995&place_id=10&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Urocitellus beldingi in US-OR",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-or",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=8428945&gadmGid=USA.38_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Urocitellus beldingi in US-OR",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "GBIF's match returns Urocitellus beldingi (Merriam, 1888) as ACCEPTED; the article's lead uses the same name and authorship. Order Rodentia and family Sciuridae follow the article's description of a ground squirrel with cheek pouches that does not cache food."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High",
+      "note": "gbif_usage_key is the ACCEPTED key from the GBIF species match for Urocitellus beldingi; inat_taxon_id is the iNaturalist taxon the issue lists. Optional keys (ITIS TSN, Wikidata Q-number) were not looked up, so they are omitted rather than guessed."
+    },
+    "conservation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'This species is not of conservation concern, and its range includes some protected areas.' Quoted directly; the IUCN category is recorded as LC on that basis."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'Being native to the northwestern United States, the Belding's ground squirrel ranges covers northeastern Oregon and part of Washington, north California, southwestern Idaho, north and central Nevada and northwestern Utah.' US is the only country in that list. elevation_m follows 'In California, it often is found at 6,500 to 11,800 feet (2,000-3,600 m)', converted from feet to metres; note that this is the Californian part of the range and the article also describes the species at 'lower elevations' on sagebrush flats, so the elevation band is indicative rather than a complete range. koppen is omitted: the article gives altitude bands and habitat, not a climate classification."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'On average, the ground squirrel weighs 290 grams (0.64 lb)'. The article gives an average but no range, so only mass_kg is recorded and mass_range_kg is omitted rather than guessed."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of 'Its body length is 230 to 300 millimetres (9.1-11.8 in)', which excludes the tail."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "From the Tioga Pass mark-recapture demography: 'Few males lived more than 6 years, whereas some females lived more than 11 years; ... in general, females live twice as long as males.' The article gives thresholds by sex rather than a mean, so 6.0 y is recorded at the shorter of the two stated longevity figures and flagged: it understates females and overstates males. Males that survived their first winter were recaptured for 'an additional 1.1 years vs. 1.6 years for females', so most of the population does not reach 6 years. A reviewer should replace this with a mean age if a survival analysis for this species becomes available."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'Belding's ground squirrels have a largely herbivorous diet. However, they will also eat insects, carrion, other vertebrates, and even other ground squirrels. They mostly eat flowers and seeds. They also eat nuts, grains, roots, bulbs, mushrooms, and green vegetation.' seed 0.35 follows 'mostly ... seeds'; browse 0.3 covers the named green vegetation and flowers; invertebrate 0.2 reflects the substantial animal component; carrion 0.1 and vertebrate 0.05 cover the two named animal foods that are not insects. The split is an authored judgement, but the herbivore-dominant statement is the article's."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'Belding's ground squirrels live in a nepotistic society where most interactions occur between females, their offspring, and collateral kin', with females philopatric and cooperative territory defence. Group is the structure that fits a burrow-colony society of this kind; the mating system itself, quoted as 'promiscuous', is recorded here rather than in social.structure."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'Belding's ground squirrels begin to leave their burrows at sunrise. They are most active in the morning ... They typically reenter their burrows in mid-afternoon, reemerge in late-afternoon, and submerge for the night at sunset.' Quoted directly: a strictly diurnal surface animal for eight months of the year."
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "The animal is restricted to open ground precisely 'as they cannot watch for predators', and its activity cycle is built around staying above ground from sunrise to sunset; it bolts for the burrow when a threat appears, so Flee is recorded with the burrow as the destination."
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'The ground squirrels hibernate in burrow chambers called hibernacula', and 'Pregnant females will dig nesting burrows and gather grass and grass roots to make nests'. Burrow is the matching enum value; the animal excavates and occupies its own burrows throughout."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "The species is terrestrial: 'They do not live in dense forests, tall grasses, rocky slopes, or thick shrubbery', and its diet, nesting and activity are all on the ground. When feeding it even 'stands on its back paws', which is an alert posture rather than tree perching."
+    },
+    "traits": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Grouped entries. body_plan Vertebrate, limb_count 4, thermoregulation Endotherm, skin Fur, respiration Lungs and metamorphosis None are the standard mammal values the article's description of a rodent implies. flight None follows the absence of any flying or gliding stage. size_class Small is derived from mass_kg (the validator's 0.05-1 kg band). locomotion_modes Walk, Hop and Burrow: the animal forages on the ground, moves in short hops over open ground, and excavates and enters burrows as a normal part of its daily cycle and its hibernation."
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Judgement set high: the animal's habitat choice is explicitly driven by predator avoidance - it needs open ground to watch for predators and rejects cover it cannot see out of - and its nest predators in the article include rodents, medium-sized mammals and raptors. flight_distance_m 15 m is the bolt to the burrow, which is short because the refuge is always at hand."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Authored from the habitat, feeding and activity sections: the animal is 'largely restricted to open areas with enough fresh vegetation and water', forages on the ground, and spends its active day above ground in alpine and subalpine meadows, sagebrush flats, brush/grass habitats and cultivated areas. Ground use is therefore almost total, with a small arboreal share only for the low shrubs it climbs to watch."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "The animal digs and lives in burrows for nesting, for daytime refuge and for hibernation (hibernacula). burrow is the matching ResourceTag and the dependence is total."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "The weights follow traits.diet,. burrow 1.0 reflects total dependence on a self-excavated burrow for shelter, nesting and hibernation. No perch entry is recorded, because the animal is terrestrial."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Adapter and uses_gardens follow the habitat list, which includes 'cultivated areas at lower elevations' and 'sagebrush flats, brush/grass habitats'; the note records the countervailing requirement for open ground so that a reviewer can see this is not a garden-dense species. light_max 0.5 and flight_distance_m 15 m are authored judgements for a diurnal, open-ground, burrow-refuging animal."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'Belding's ground squirrels hibernate at different times, depending on the sex and age of the individual and the altitude of their environment', entering 'when the grasses begin to dry and turn brown, thus avoiding the hot, dry, late-summer famine'. Hibernation is the enum value for a deep winter dormancy in a burrow chamber."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Dormancy: males enter between late July and early September at higher altitudes, females may follow in late September, and emergence runs from February at lower elevations to the end of April at higher ones. Territorial: females establish nesting-only territories and the promiscuous mating happens as females emerge, 'usually in late May to early June at higher elevations'. Young: pups 'first emerge from their natal burrows at weaning, when they are about 27 days old'. The window boundaries are the article's own; they are placed in the calendar by an authored judgement that pairs the quoted altitude-dependent dates with an eastern Oregon population, which sits at the lower-elevation end of the quoted range."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "'Pups first emerge from their natal burrows at weaning, when they are about 27 days old', and juvenile females first hibernate at 13 weeks and males at 10 weeks. The Juvenile duration of 27 days is that quoted weaning-to-emergence figure; scale 0.5 is authored. No Egg stage is recorded, because the article gives no gestation or litter size."
+    },
+    "vocalizations.trill": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The article describes the animal's behaviour of staying on the watch for predators in open ground and its loud vocal defence of colonies, but does not transcribe its calls, so the call_id is the conventional onomatopoeic rendering and the description is authored from the described function. Months are restricted to the above-ground season, because the animal is underground from late summer to late winter. Loudness, time window and cooldown are authored; no open source gives frequency bands."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Colours from the physical description: 'It has a gray pelage that becomes more cinnamon at the underside and reddish-brown on the back', with 'a relatively short tail, short limbs, and small ears' and tail hairs banded 'one black, one white, and one red'. The palette maps grey to body, cinnamon to belly, reddish-brown to markings and the pale band to accent; the banded tail tip is the tail_bands extra part. The hopper body plan is used rather than quadruped because the short limbs, upright alert posture and bushy-but-flattened short tail are a ground squirrel's build. Proportions are authored from the article's description of relative limb, ear and tail size."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared ground-forager program. rest_sun_lo_deg -90 and rest_sun_hi_deg -6 make it a diurnal animal, which the program documents as the setting for a diurnal species, because this animal is active from sunrise to sunset and then underground. food_tag seed matches the article's 'mostly eat flowers and seeds'. flee_gait gallop and forage_gait walk match a rodent that scurries and bolts. food_m and calm_m are shortened from the program's defaults because a colony squirrel works a small patch near its burrows. The program is a good fit for a diurnal, burrow-dwelling, ground-foraging rodent."
+    },
+    "seasonal.triggers": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Honest gap in the schema's vocabulary: the article gives a phenological trigger, not a temperature one - the animal enters hibernation 'when the grasses begin to dry and turn brown, thus avoiding the hot, dry, late-summer famine', between late July and early September - and the schema's Trigger enum has no phenological or food option. The recorded thresholds are therefore authored placeholders that bracket that window rather than measure it: entry under sustained warm conditions (10 C and above for 30 days) matches the late-summer drought, and emergence under milder post-winter conditions (above 0 C for 14 days) matches the February-to-April emergence the article describes at low elevations. A reviewer with a soil-temperature or snow-pack threshold for this species should replace both."
+    },
+    "traits.shoulder_height_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Honest gap: the article gives body length (230-300 mm) and an average mass (290 g) but no shoulder height. 0.11 m is an authored estimate from those two figures for a short-limbed ground squirrel, and is used only to place the block mesh on the ground. A reviewer should replace it with a measured shoulder height if one becomes available."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies maintainers",
+      "agent": "claude-code"
+    }
+  ]
+}

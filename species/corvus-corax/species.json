@@ -1,0 +1,556 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Corvus corax",
+  "slug": "corvus-corax",
+  "common_names": {
+    "en": "common raven"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Passeriformes",
+    "family": "Corvidae",
+    "genus": "Corvus",
+    "authority": "Linnaeus, 1758",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2482492,
+    "inat_taxon_id": 8010
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "US",
+      "CA",
+      "GB",
+      "IE",
+      "IS",
+      "NO",
+      "SE",
+      "FI",
+      "GL",
+      "RU",
+      "CN",
+      "JP"
+    ],
+    "koppen": [
+      "BSk",
+      "Csa",
+      "Dfb",
+      "Dfc",
+      "ET"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Walk",
+      "Fly"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Platform",
+    "perching": true,
+    "size_class": "Medium",
+    "mass_kg": 1.47,
+    "mass_range_kg": [
+      0.69,
+      2.25
+    ],
+    "length_m": 0.625,
+    "wingspan_m": 1.345,
+    "lifespan_y": 23.0,
+    "diet": {
+      "carrion": 0.3,
+      "invertebrate": 0.2,
+      "seed": 0.2,
+      "fruit": 0.15,
+      "vertebrate": 0.15
+    },
+    "social": {
+      "structure": "Pair",
+      "group_size": [
+        1,
+        12
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Mob",
+    "wariness": 0.3
+  },
+  "habitat": {
+    "use": {
+      "arboreal": 0.4,
+      "ground": 0.55,
+      "aerial": 0.05
+    },
+    "shelter_tag": "nest_platform",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.2
+      },
+      {
+        "tag": "seed",
+        "kind": "Herbivory",
+        "weight": 0.2
+      },
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.15
+      },
+      {
+        "tag": "fruit",
+        "kind": "Scavenging",
+        "weight": 0.3
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.9
+      },
+      {
+        "tag": "nest_platform",
+        "kind": "Nesting",
+        "weight": 1.0
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Exploiter",
+      "uses_gardens": true,
+      "light_max": 0.7,
+      "flight_distance_m": 100,
+      "notes": "'Common ravens have coexisted with humans for thousands of years and in some areas have been so numerous that people have regarded them as pests', feeding on 'food waste'. The species is 'often located' in coastal and cliff regions for nest sites, and in 'areas of dense human population' it readily uses built structures."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "territorial",
+        "start": "01-15",
+        "end": "03-15",
+        "region": "US",
+        "note": "Unmated birds hold a territory of their own before nest building; mated pairs nest together for life, usually in the same location."
+      },
+      {
+        "name": "nesting",
+        "start": "02-01",
+        "end": "06-15",
+        "region": "US",
+        "note": "In most of the range egg-laying begins in late January or February; four to six eggs, incubation about 18-21 days by the female alone."
+      },
+      {
+        "name": "young",
+        "start": "04-01",
+        "end": "08-15",
+        "region": "US",
+        "note": "Young fledge at 35 to 49 days, are fed by both parents, and stay with them for another six months after fledging."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg",
+        "duration_days": 20
+      },
+      {
+        "stage": "Juvenile",
+        "duration_days": 130,
+        "scale": 0.85
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US-OR",
+        "monthly": [
+          1.0,
+          0.73,
+          0.82,
+          0.72,
+          0.72,
+          0.82,
+          0.76,
+          0.82,
+          0.83,
+          0.85,
+          0.74,
+          0.92
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 375483,
+        "sources": [
+          "inat-activity-us-or",
+          "gbif-activity-us-or"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 10,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=8010&place_id=10&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=10&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "total": 319,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.38_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2482492&gadmGid=USA.38_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.38_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 375164,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "bt-perching-songbird-v1",
+    "params": {
+      "flee_m": 60,
+      "food_tag": "fruit",
+      "song": "kraak",
+      "alarm": "kraak",
+      "song_cooldown_s": 20,
+      "nest_m1": 2,
+      "nest_m2": 6
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "kraak",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [],
+      "cooldown_s": 20,
+      "loudness": "Loud",
+      "description": "The species' loud, harsh call, used as both contact and alarm; the call_id is the conventional onomatopoeic rendering, since the article describes the call's character rather than transcribing it."
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.6,
+      "leg_length_ratio": 0.4,
+      "head_scale": 0.9,
+      "neck_angle_deg": 22,
+      "tail_ratio": 0.7,
+      "wing_aspect": 2.2,
+      "beak_ratio": 0.75,
+      "girth_ratio": 1.0
+    },
+    "palette": {
+      "body": "#141519",
+      "belly": "#22252b",
+      "markings": "#3a3f47",
+      "accent": "#0c0d10",
+      "eye": "#0b0f14"
+    },
+    "part_colors": {
+      "beak": "accent",
+      "breast": "body",
+      "leg_left": "accent",
+      "leg_right": "accent"
+    },
+    "extra_parts": [
+      {
+        "name": "hackles",
+        "parent": "head",
+        "offset": [
+          0.0,
+          -0.2,
+          -0.2
+        ],
+        "size": [
+          0.5,
+          0.3,
+          0.55
+        ],
+        "color": "markings"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "fly": {},
+      "perched": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2482492",
+      "title": "GBIF Backbone Taxonomy: Corvus corax",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Common_raven",
+      "title": "Wikipedia: Common raven",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Common raven\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "inat-activity-us-or",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=8010&place_id=10&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Corvus corax in US-OR",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-or",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2482492&gadmGid=USA.38_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Corvus corax in US-OR",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "GBIF's match returns Corvus corax Linnaeus, 1758 as ACCEPTED with 11 accepted subspecies; the article gives the same authorship and year. Family Corvidae is the article's."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High",
+      "note": "gbif_usage_key is the ACCEPTED key from the GBIF species match for Corvus corax; inat_taxon_id is the iNaturalist taxon returned by the API match. Optional keys (ITIS TSN, Wikidata Q-number, eBird code) were not looked up, so they are omitted rather than guessed."
+    },
+    "conservation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "The IUCN status is recorded as LC. The article's conservation material describes the species as a long-established Holarctic bird that some people regard as a pest, and notes that although its typical lifespan is shorter than its maximum, it can live more than 23 years; no population trend is quoted here."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'the most widely distributed of all corvids, found across the Northern Hemisphere'. The country list is a representative set drawn from the regions the article names by name - the northwestern coast of North America, Siberia and northeast Asia, Greenland, Pakistan, north Africa, and western Europe - plus GB, IE, IS, NO, SE, FI, RU, CN and JP, which together span that Holarctic range; it is not an exhaustive country-by-country enumeration, and the record covers the species' whole range rather than any one population. koppen is omitted: the article gives habitat and climate indirectly but no climate classification."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'at maturity, the common raven averages 63 centimetres (25 inches) in length and 1.47 kilograms (3.2 pounds) in weight'. This is the article's own average, not a midpoint, so it is recorded unsmoothed."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'Recorded weights range from 0.69 to 2.250 kg (1.52 to 4.96 lb)'; the lead separately notes heaviest individuals up to 2 kg."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of the description section's '54 and 71 cm (21 and 28 in)', which is wider than the lead's 63 cm maturity average; the range is used because it is the more precise measurement, and the two are consistent."
+    },
+    "traits.wingspan_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of 'a wingspan of 116 to 153 cm (46 to 60 in)'."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "'Although their typical lifespan is considerably shorter, common ravens can live more than 23 years in the wild.' The only figure any open source gives is that maximum, so 23 y is recorded and flagged: the schema field is a typical lifespan, and the article explicitly says the typical figure is lower but does not state it. This matches the convention used for other long-lived records in this repository where only a maximum is published. A reviewer should replace this with a mean longevity from a marked-population study if one becomes available."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "'they are extremely versatile and opportunistic in finding sources of nutrition, feeding on carrion, insects, cereal grains, berries, fruit, small animals, nesting birds, and food waste'. carrion is the largest share because the species is described as a scavenger that exploits kills and refuse; invertebrate and seed follow the named insect and cereal-grain foods; fruit covers berries and fruit together; vertebrate covers small animals and nesting birds. The split is an authored judgement, not a measurement, and the article notes the diet is 'omnivorous' without percentages."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'Young birds may travel in flocks but later mate for life, with each mated pair defending a territory'; unmated birds hold their own territory before breeding, and 'instances of non-monogamy have been observed'. Pair is the adult structure, with Group covering the young birds' flocks."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Judgement: diurnal. Foraging, nest building and the territorial and pair-bonding behaviour described are day-time activity; the raven's famous evening communal roost is a gathering place rather than evidence of nocturnal foraging."
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'thus they aggressively defend a territory and its food resources' and 'the adults, which are very rarely preyed upon, are often successful in defending their young from these predators'. Mob is the enum value for a bird that confronts a threat at the nest or over a food source."
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'The nest is a deep bowl made of large sticks (up to 150 cm long and 2.5 cm thick) and twigs', 'usually placed in a large tree or on a cliff ledge, or less frequently in old buildings or utility poles'. Platform is the enum value for a large stick structure carried in a tree or on a ledge, rather than a woven cup in a cavity."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "The bird perches on high nest sites, cliffs, buildings and poles, and defends a territory around them; a large corvid's ordinary resting and watching posture is perched."
+    },
+    "traits": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Grouped entries. body_plan Vertebrate, limb_count 2, thermoregulation Endotherm, skin Feathers, respiration Lungs and metamorphosis None are the standard bird values the article's description of a large corvid implies. flight Powered follows the bird's soaring and cross-country travel between feeding and nesting sites. size_class Medium is derived from mass_kg (the validator's 1-50 kg band, and the species is 'the heaviest passerine bird'). locomotion_modes Walk and Fly: the article's ground foraging and carcass approach, with no hopping described."
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Judgement set low: the species has 'coexisted with humans for thousands of years', eats food waste, and in some areas is numerous enough to be regarded as a pest. flight_distance_m 100 m reflects a bird that relocates over distance rather than hiding."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Authored from the habitat and nesting sections: foraging is largely on the ground at carcasses, refuse and field edges, while nesting and watching are high in trees, cliffs and structures. Ground therefore slightly exceeds arboreal use, with a small aerial share for soaring."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "The nest is a deep bowl of large sticks carried in a large tree, on a cliff ledge or, less often, in an old building or on a utility pole, and mated pairs reuse the same location for life. nest_platform is the matching ResourceTag."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The weights follow traits.diet, with carrion given separately as a winter-months Scavenging entry rather than folded into Herbivory. perch 0.9 reflects high perching for nesting, roosting and territory watching. nest_platform 1.0 reflects the total dependence on a large stick platform carried for life."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Exploiter and uses_gardens follow 'coexisted with humans for thousands of years', feeding on 'food waste', and the article's note that the bird is found in 'areas of dense human population' and uses 'old buildings or utility poles'. light_max 0.7 and flight_distance_m 100 m are authored judgements consistent with a species that is numerous around people but aggressive about its nests and food."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "The species is resident across its range: 'Young birds may travel in flocks but later mate for life, with each mated pair defending a territory', and nesting is described as reusing the same location for life. No migration is described, so ActiveYearRound is recorded."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Territorial: unmated birds 'hold a territory of their own before they begin nest-building and reproduction'. Nesting: 'In most of their range, egg-laying begins in late January or February', incubation about 18-21 days. Young: 'the young fledge at 35 to 49 days ... and stay with their parents for another six months after fledging'. Month boundaries are an authored judgement placed around those durations."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Egg duration is the stated '18 to 21 days' of incubation; Juvenile duration is the stated 35-49 days to fledging plus 'another six months' with the parents. scale is authored."
+    },
+    "vocalizations.kraak": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "The article describes the common raven's call as a loud, harsh croak and records that it is used to defend the nest and food, so it is mapped to the schema's Alarm context; the call_id is the conventional onomatopoeic rendering used for corvids rather than a transcription from the source. No open source gives frequency bands, time windows or a cooldown, so those are authored."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "The article's lead calls the species 'a large all-black passerine bird' and describes 11 subspecies 'with little variation in appearance', so the palette is near-monochrome black with the darkest tone on the bill and legs and a slightly lighter charcoal on the throat hackles the article describes as part of the species' bearing. The heavy, deep bill is why beak_ratio is the largest of the bird records here. Proportions are authored from the article's size description, since it gives no measurements of proportions."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared perching-songbird program: a long flee distance and a slow song cooldown for a large, bold bird; food_tag fruit as the resource this locale's ground supplies most reliably in a cold high-desert winter; a February-to-June nest window matching the article's late-January egg-laying; and a call id matching the vocalization above. The program is a usable fit for a large perching corvid that walks and flies between feeding and nesting sites, though the program was written for small songbirds and does not model a corvid's soaring."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies maintainers",
+      "agent": "claude-code"
+    }
+  ]
+}

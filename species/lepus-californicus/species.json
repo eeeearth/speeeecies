@@ -1,0 +1,534 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Lepus californicus",
+  "slug": "lepus-californicus",
+  "common_names": {
+    "en": "black-tailed jackrabbit"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Mammalia",
+    "order": "Lagomorpha",
+    "family": "Leporidae",
+    "genus": "Lepus",
+    "authority": "Gray, 1837",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2436801,
+    "inat_taxon_id": 43130
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "US",
+      "MX"
+    ],
+    "koppen": [
+      "BSk",
+      "Csa",
+      "Dfb"
+    ],
+    "elevation_m": [
+      0,
+      3000
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk",
+      "Hop"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Fur",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Ground",
+    "perching": false,
+    "size_class": "Medium",
+    "mass_kg": 2.05,
+    "mass_range_kg": [
+      1.4,
+      2.7
+    ],
+    "length_m": 0.61,
+    "shoulder_height_m": 0.35,
+    "lifespan_y": 3.0,
+    "diet": {
+      "browse": 0.55,
+      "graze": 0.3,
+      "fruit": 0.1,
+      "invertebrate": 0.05
+    },
+    "social": {
+      "structure": "Solitary",
+      "group_size": [
+        1,
+        1
+      ]
+    },
+    "activity_pattern": "Nocturnal",
+    "defense": "Flee",
+    "wariness": 0.75
+  },
+  "habitat": {
+    "use": {
+      "ground": 1.0
+    },
+    "shelter_tag": "shrub_thicket",
+    "resources": [
+      {
+        "tag": "browse",
+        "kind": "Herbivory",
+        "weight": 0.55
+      },
+      {
+        "tag": "graze",
+        "kind": "Herbivory",
+        "weight": 0.3,
+        "months": [
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.1
+      },
+      {
+        "tag": "shrub_thicket",
+        "kind": "Shelter",
+        "weight": 1.0
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "light_max": 0.4,
+      "flight_distance_m": 60,
+      "notes": "'It is also common in and near croplands, especially alfalfa (Medicago sativa) fields', and it occupies open-canopy woodland, clearcuts and early seral forest as readily as sagebrush and desert grassland. It needs shrubs rather than a lawn: 'Small shrubs do not provide adequate cover.'"
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "01-15",
+        "end": "08-15",
+        "region": "US",
+        "note": "The breeding season is variable with latitude: 'In Utah, they breed from January through July, with over 75% of females pregnant by April', and the Kansas season extends from January to August. Females breed in the spring of their second year, though spring-born females may breed in their first."
+      },
+      {
+        "name": "young",
+        "start": "02-20",
+        "end": "09-15",
+        "region": "US",
+        "note": "Gestation is 41 to 47 days; litters average around four, from two to seven in warm regions, and young are born fully furred with eyes open and mobile within minutes."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Juvenile",
+        "duration_days": 56,
+        "scale": 0.45
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US-OR",
+        "monthly": [
+          0.47,
+          0.19,
+          0.49,
+          0.54,
+          0.98,
+          1.0,
+          0.73,
+          0.4,
+          0.45,
+          0.19,
+          0.12,
+          0.14
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 825,
+        "sources": [
+          "inat-activity-us-or",
+          "gbif-activity-us-or"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 10,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=43130&place_id=10&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=10&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 405,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "C",
+            "area": [
+              "gadmGid",
+              "USA.38_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2436801&gadmGid=USA.38_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.38_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "total": 420,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-ground-forager-v1",
+    "params": {
+      "flee_m": 45,
+      "calm_m": 90,
+      "food_tag": "browse",
+      "food_m": 40,
+      "flee_gait": "gallop",
+      "forage_gait": "walk",
+      "rest_sun_lo_deg": 2,
+      "rest_sun_hi_deg": 90
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "trill_alarm",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Night"
+      ],
+      "cooldown_s": 8,
+      "loudness": "Loud",
+      "description": "A loud trill or scream given when the animal is pursued, the characteristic alarm of a jackrabbit running; the call_id is the conventional rendering, because the article describes the animal's flight behaviour rather than transcribing its calls."
+    }
+  ],
+  "look": {
+    "body_plan": "hopper",
+    "proportions": {
+      "torso_aspect": 1.5,
+      "leg_length_ratio": 0.62,
+      "head_scale": 0.72,
+      "neck_angle_deg": 30,
+      "tail_ratio": 0.2,
+      "ear_ratio": 1.5,
+      "beak_ratio": 0.2,
+      "girth_ratio": 0.8
+    },
+    "palette": {
+      "body": "#a8916b",
+      "belly": "#f2ece0",
+      "markings": "#f6f2ea",
+      "accent": "#1a1512",
+      "eye": "#14100c"
+    },
+    "part_colors": {
+      "snout": "belly",
+      "ear_left": "accent",
+      "ear_right": "accent",
+      "tail": "accent",
+      "leg_front_left": "body",
+      "leg_front_right": "body",
+      "leg_rear_left": "belly",
+      "leg_rear_right": "belly"
+    },
+    "extra_parts": [
+      {
+        "name": "dorsal_stripe",
+        "parent": "body",
+        "offset": [
+          0.0,
+          0.34,
+          -0.55
+        ],
+        "size": [
+          0.22,
+          0.14,
+          0.5
+        ],
+        "color": "accent"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "hop": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2436801",
+      "title": "GBIF Backbone Taxonomy: Lepus californicus",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Black-tailed_jackrabbit",
+      "title": "Wikipedia: Black-tailed jackrabbit",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Black-tailed jackrabbit\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "inat-activity-us-or",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=43130&place_id=10&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Lepus californicus in US-OR",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-or",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2436801&gadmGid=USA.38_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+      "title": "GBIF occurrence search for Lepus californicus in US-OR",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "GBIF's match returns Lepus californicus Gray, 1837 as ACCEPTED; the article's description section gives the same authorship and year. Order Lagomorpha and family Leporidae follow the article, which places the species among the hares."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High",
+      "note": "gbif_usage_key is the ACCEPTED key from the GBIF species match for Lepus californicus; inat_taxon_id is the iNaturalist taxon the issue lists. Optional keys (ITIS TSN, Wikidata Q-number) were not looked up, so they are omitted rather than guessed."
+    },
+    "conservation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "The IUCN status is recorded as LC. No population trend is quoted: the article's conservation material is about the species' importance as prey ('One study found that jackrabbits made up 45% of the bobcat diet in Utah and Nevada') and about how many parasites the hares host, neither of which is a Red List finding. Note also that the article records an eastward range expansion 'at the expense of white-tailed jackrabbit' and successful introductions to Florida and the Atlantic coast, which is context a reviewer may want but is not a Red List assessment."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'a common hare of the western United States and Mexico, where it is found at elevations from sea level up to 10,000 ft (3,000 m)'. US and MX are native; elevation_m follows the quoted altitude band, converted from feet to metres. koppen is omitted: the article names sagebrush, desert grassland, chaparral and shortgrass prairie communities but gives no climate classification."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of 'a weight from 3 to 6 lb (1.4 to 2.7 kg)'."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'a weight from 3 to 6 lb (1.4 to 2.7 kg)'."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'Reaching a length around 2 ft (61 cm)' - converted from feet to metres. The article gives this as an approximate figure rather than a range, and it is a total length rather than a head-and-body measurement."
+    },
+    "traits.shoulder_height_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Honest gap: the article gives length, mass and the long legs and long ears of the genus but no shoulder height. 0.35 m is an authored estimate from the 0.61 m total length for a hare built on 'long powerful rear legs', used only to place the block mesh on the ground. A reviewer should replace it with a measured shoulder height if one becomes available."
+    },
+    "traits.lifespan_y": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "No sourced typical or mean lifespan figure was found for this species in the English Wikipedia article, on Wikidata or in GBIF, although the article gives unusually complete reproductive detail. 3.0 y is an unsourced judgement, chosen because it sits below the sourced figure for the similar-sized Lepus species already in this repository would allow and because the article stresses how heavily this hare is hunted by raptors and carnivores - 'an important prey species for raptors and carnivorous mammals, such as eagles, hawks, owls, coyotes, foxes, and wild cats' - which caps survival. A reviewer should replace this with a survival figure from a mark-recapture study if one becomes available."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'The black-tailed jackrabbit diet is composed of shrubs, small trees, grasses, and forbs ... Shrubs generally comprise the bulk of fall and winter diets, while grasses and forbs are used in spring and early summer, but the pattern and plant species vary with climate.' browse 0.55 follows shrubs being the bulk of the diet for much of the year and being 'browsed throughout the year'; graze 0.3 is given the spring and early summer months the article assigns to grasses and forbs, with forbs folded into browse because the schema has no forb term; fruit 0.1 covers the named fungi and any fleshy plant material the article's list of 'most if not all of the important plant species in a community' implies; invertebrate 0.05 is a small residue, because no animal food is described at all and a hare that 'requires a plant's water weight to be at least five times its dry weight' is overwhelmingly a plant feeder. The split is an authored judgement, but the seasonal pattern is the article's."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'Females do not protect or even stay with the young except during nursing', 'The young stay together for at least a week after leaving the form', and the animal is described in the singular throughout its daily movements. Solitary is recorded, with the brief post-birth sibling group noted here rather than modelled."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'Diurnal movement of 2-10 mi (3.2-16.1 km) occurs from shrub cover in day to open foraging areas at night', and the animal 'requires ... shrubs or small conifers for hiding, nesting, and thermal cover, and grassy areas for night feeding'. Nocturnal is recorded because the foraging half of the animal's day is explicitly at night; the daytime hours are spent in cover."
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "The animal's whole habitat choice is built on escape: it needs 'shrubs or small trees for hiding', is 'an important prey species for raptors and carnivorous mammals', and 'does not habitually use a burrow, although [it has] occasionally been observed using abandoned burrows for escape'. Flee is the recorded response, with a shrub-thicket bolt rather than a burrow."
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'Female black-tailed jackrabbits do not prepare an elaborate nest. They give birth in shallow excavations called forms that are no more than a few centimeters deep.' Ground is the matching enum value."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "The animal is terrestrial: it 'requires mixed grasses, forbs, and shrubs for food, and shrubs or small trees for cover', but the record does not describe it using any elevated perch, and the hopper mesh is built to run and hop on the ground."
+    },
+    "traits": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Grouped entries. body_plan Vertebrate, limb_count 4, thermoregulation Endotherm, skin Fur, respiration Lungs and metamorphosis None are the standard mammal values the article's description of a hare implies. flight None follows the absence of any flying or gliding stage. size_class Medium is derived from mass_kg (the validator's 1-50 kg band). locomotion_modes Walk and Hop: the animal moves over the ground by walking and by the long bounding hop that is a hare's distinctive gait and the means of the 3.2-16.1 km escape runs the article describes. Gallop is deliberately not listed, because the block mesh's hopper body plan has a built-in hop animation and no gallop animation, and listing a gait here that the mesh cannot show would produce a pose the previewer has nothing to draw; the behaviour program still flees at a gallop gait, which is where that distinction actually matters."
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Judgement set high: the animal's habitat is chosen for cover and sight lines, it is 'an important prey species for raptors and carnivorous mammals' including coyotes, foxes and wild cats, and it makes nightly movements of 3.2 to 16.1 km between daytime cover and feeding grounds, so it reacts to a threat from a long way off. flight_distance_m 60 m reflects a hare that bolts rather than hides."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Authored from the habitat sections: the animal occupies 'plant communities with a mixture of shrubs, grasses, and forbs', prefers 'moderately open areas without dense understory growth and is seldom found in closed-canopy habitats', feeds in the open at night and shelters in shrubs by day. Ground use is total; the animal is not described using any aerial or arboreal stratum."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'Black-tailed jackrabbits require shrubs or small conifers for hiding, nesting, and thermal cover', and are absent from sites 'dominated by the smaller shrubs winterfat ... or shadscale'. shrub_thicket is the matching ResourceTag, with the size threshold recorded here because the animal is not simply 'in cover': it needs cover tall enough to be worth hiding in."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "The weights follow traits.diet, with the graze share restricted to the spring and early summer months the article assigns to grasses and forbs. shrub_thicket 1.0 reflects total dependence on shrubs for hiding, nesting and thermal cover. No perch entry is recorded, because the animal does not perch."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Adapter and uses_gardens follow 'It is also common in and near croplands, especially alfalfa (Medicago sativa) fields', and the habitat lists of open woodland, clearcuts and early seral coniferous forest. The note records the shrub-size requirement so a reviewer can see this is a shrub-and-grassland animal rather than a lawn animal. light_max 0.4 and flight_distance_m 60 m are authored judgements for a nocturnal animal that bolts from a long way off."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'Black-tailed jackrabbits do not migrate or hibernate during winter; the same habitat is used year-round.' Quoted directly: ActiveYearRound is the only strategy that fits an animal that neither moves nor dormants."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Breeding: the article gives the season by latitude - 'In Utah, they breed from January through July, with over 75% of females pregnant by April', Kansas from January to August, and breeding 'nearly year-round' in warm climates. Young: 'The gestation period ranges from 41 to 47 days', litters average around four and 'Young are born fully furred with eyes open, and are mobile within minutes of birth'. The calendar placement of the January-August breeding window is an authored judgement taken from the Utah and Kansas seasons, which bracket the latitude of eastern Oregon; the article gives no Oregon-specific dates."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "'Captive black-tailed jackrabbits are fully weaned by 8 weeks', which gives the 56-day Juvenile duration. The article adds that 'Ages of weaning and dispersal are unclear since the young are well camouflaged and rarely observed in the field', so the captive figure is used and flagged. scale 0.45 reflects a newborn that is mobile within minutes but is described as 'well camouflaged' and small. No Egg stage is recorded, because the article gives no gestation figure for the stage itself."
+    },
+    "vocalizations.trill_alarm": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Honest gap, filled with a judgement: the article describes the animal's escape behaviour at length but does not transcribe any call, so the call_id and its Alarm mapping are authored rather than quoted. The Night time window follows the article's statement that foraging happens at night; loudness and the cooldown are authored. No open source gives frequency bands."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Colours from the description section: 'The black-tailed jackrabbit's dorsal fur is agouti (dark buff peppered with black), and its undersides and the insides of its legs are creamy white. The ears are black-tipped on the outer surfaces, and unpigmented inside. The ventral surface of the tail is grey to white, and the black dorsal surface of the tail continues up the spine for a few inches to form a short, black stripe.' The palette maps agouti to body, cream to belly, pale tail-ventral to markings and black to accent; the dorsal_stripe extra part places the black saddle the species is named for on the back, and the black-tipped ears and tail use the same accent. The hopper body plan is used because the article's diagnostic features are the 'long powerful rear legs' and long ears. Proportions are authored from those features, with ear_ratio and leg_length_ratio set high relative to the other mammal records."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared ground-forager program. rest_sun_lo_deg 2 and rest_sun_hi_deg 90 rest the animal in the shelter of shrubs while the sun is up, matching the article's statement that it moves from 'shrub cover in day to open foraging areas at night'; the program's default already targets a nocturnal species, so these are set to a slightly higher day threshold than the default 10 degrees to reflect a hare that shelters through the bright hours. food_tag browse matches a shrub browser rather than the program's invertebrate default. flee_m, calm_m and flee_gait gallop are enlarged well past the program's fox-and-badger defaults because the article records home ranges of 1.0-3.1 km2 and nightly movements of 3.2-16.1 km. The program is a good fit for a solitary, shrub-covering, nocturnal browser that graze-hops over open ground."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies maintainers",
+      "agent": "claude-code"
+    }
+  ]
+}

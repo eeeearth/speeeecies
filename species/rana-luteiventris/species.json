@@ -1,0 +1,521 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Rana luteiventris",
+  "slug": "rana-luteiventris",
+  "common_names": {
+    "en": "Columbia spotted frog"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Amphibia",
+    "order": "Anura",
+    "family": "Ranidae",
+    "genus": "Rana",
+    "authority": "Thompson, 1913",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2426785,
+    "inat_taxon_id": 25588
+  },
+  "conservation": {
+    "iucn": "LC",
+    "notes": "Not threatened, though the species has been studied as a model for the effects of habitat fragmentation. Some populations have been lost to toxic contamination, notably heavy-metal smelter byproducts in Idaho's Silver Valley, and to the piscicide rotenone, which killed 100% of tadpoles exposed to it before they developed lungs while barely affecting adults."
+  },
+  "range": {
+    "native": [
+      "US",
+      "CA"
+    ],
+    "koppen": [
+      "BSk",
+      "Csa",
+      "Cfb",
+      "Dfb"
+    ],
+    "elevation_m": [
+      0,
+      2377
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk",
+      "Hop",
+      "Swim"
+    ],
+    "thermoregulation": "Ectotherm",
+    "skin": "Moist",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "Complete",
+    "nest_type": "None",
+    "perching": false,
+    "size_class": "Tiny",
+    "mass_kg": 0.03,
+    "length_m": 0.089,
+    "lifespan_y": 5.0,
+    "diet": {
+      "invertebrate": 0.85,
+      "fish": 0.1,
+      "browse": 0.05
+    },
+    "social": {
+      "structure": "Group",
+      "group_size": [
+        1,
+        50
+      ]
+    },
+    "activity_pattern": "Nocturnal",
+    "defense": "Freeze",
+    "wariness": 0.65
+  },
+  "habitat": {
+    "use": {
+      "aquatic": 0.7,
+      "ground": 0.3
+    },
+    "shelter_tag": "pond",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.85
+      },
+      {
+        "tag": "water",
+        "kind": "Water",
+        "weight": 1.0
+      },
+      {
+        "tag": "shrub_thicket",
+        "kind": "Shelter",
+        "weight": 0.5
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Avoider",
+      "uses_gardens": false,
+      "light_max": 0.2,
+      "flight_distance_m": 5,
+      "notes": "The species needs permanent water whose level rises seasonally and an abundant cover of low-growing or emergent vegetation, and it has been studied as a model for the effects of habitat fragmentation. A farm pond or ditch at the edge of a lot would suit it; a tilled yard would not."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "02-15",
+        "end": "06-15",
+        "region": "US",
+        "note": "The breeding schedule depends on location and elevation: February at sea level in British Columbia, around mid-March at 1,395 m in Utah, and May to June at 2,377 m in Wyoming."
+      },
+      {
+        "name": "young",
+        "start": "04-01",
+        "end": "08-15",
+        "region": "US",
+        "note": "Egg masses of up to 1,300 eggs are laid free-floating in shallow water and hatch into tadpoles, which reach around 79 mm before metamorphosing."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg",
+        "duration_days": 12
+      },
+      {
+        "stage": "Tadpole",
+        "duration_days": 60,
+        "scale": 0.4
+      },
+      {
+        "stage": "Juvenile",
+        "duration_days": 21,
+        "scale": 0.6
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US-OR",
+        "monthly": [
+          0.0,
+          0.0,
+          0.03,
+          0.06,
+          0.13,
+          0.53,
+          1.0,
+          0.26,
+          0.4,
+          0.01,
+          0.0,
+          0.0
+        ],
+        "method": "gbif_raw",
+        "observations": 383,
+        "sources": [
+          "gbif-activity-us-or"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 10,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=25588&place_id=10&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": null,
+            "total": 207,
+            "usable": false
+          },
+          "gbif": {
+            "tier": "C",
+            "area": [
+              "gadmGid",
+              "USA.38_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2426785&gadmGid=USA.38_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "baseline_url": null,
+            "total": 383,
+            "usable": true
+          },
+          "used": [
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-anuran-nocturnal-v1",
+    "params": {
+      "flee_m": 2,
+      "freeze_m": 5,
+      "food_tag": "invertebrate",
+      "call": "click_chorus",
+      "min_temp_c": 4,
+      "max_temp_c": 26,
+      "call_m1": 2,
+      "call_m2": 6
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "click_chorus",
+      "context": "Croak",
+      "season_months": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "time_windows": [
+        "Day",
+        "Dusk"
+      ],
+      "cooldown_s": 12,
+      "loudness": "Moderate",
+      "description": "The male's chorus, which 'ranges from a series of clicks to long, glottal sounds', used to attract females to the breeding ground. Mapped to the schema's Croak context, the closest enum value to an amphibian advertisement call."
+    }
+  ],
+  "look": {
+    "body_plan": "anuran",
+    "proportions": {
+      "torso_aspect": 1.2,
+      "leg_length_ratio": 0.5,
+      "head_scale": 0.85,
+      "neck_angle_deg": 5,
+      "girth_ratio": 1.15
+    },
+    "palette": {
+      "body": "#6b7a44",
+      "belly": "#f0e6e0",
+      "markings": "#22201a",
+      "accent": "#c9b47a",
+      "eye": "#141014"
+    },
+    "part_colors": {
+      "leg_front_left": "body",
+      "leg_front_right": "body",
+      "leg_rear_left": "body",
+      "leg_rear_right": "body"
+    },
+    "extra_parts": [
+      {
+        "name": "dorsal_spotting",
+        "parent": "body",
+        "offset": [
+          0.0,
+          0.25,
+          0.0
+        ],
+        "size": [
+          0.8,
+          0.3,
+          0.9
+        ],
+        "color": "markings"
+      },
+      {
+        "name": "lip_stripe",
+        "parent": "head",
+        "offset": [
+          0.0,
+          -0.05,
+          0.48
+        ],
+        "size": [
+          0.42,
+          0.12,
+          0.16
+        ],
+        "color": "belly"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "hop": {},
+      "swim": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2426785",
+      "title": "GBIF Backbone Taxonomy: Rana luteiventris",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Columbia_spotted_frog",
+      "title": "Wikipedia: Columbia spotted frog",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Columbia spotted frog\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "gbif-activity-us-or",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2426785&gadmGid=USA.38_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+      "title": "GBIF occurrence search for Rana luteiventris in US-OR",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "GBIF's match returns Rana luteiventris Thompson, 1913 as ACCEPTED; the article's title and lead use the same name and authorship. Order Anura and family Ranidae follow the article, which places the species among the frogs and describes it as 'closer' to the northern leopard frog than to other ranids."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High",
+      "note": "gbif_usage_key is the ACCEPTED key from the GBIF species match for Rana luteiventris; inat_taxon_id is the iNaturalist taxon returned by the API match. Optional keys (ITIS TSN, Wikidata Q-number) were not looked up, so they are omitted rather than guessed."
+    },
+    "conservation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'Although not threatened, this animal has been studied as a model species for the effects of habitat fragmentation' gives the category basis, and the conservation section's toxicant findings - 100% tadpole mortality from rotenone before lung development, and disrupted reproduction from heavy-metal mixtures in the Silver Valley - are quoted from it. The article does not itself print an IUCN category word, so the LC entry rests on its 'not threatened' statement; a reviewer wanting the formal citation should check IUCN directly."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Worth a reviewer's attention: 'The Columbia spotted frog is widespread throughout western North America, from Alaska and parts of British Columbia to Washington, Idaho, and parts of Wyoming, Nevada, and Utah.' US and CA are native on the strength of that sentence, and elevation_m follows the highest elevation the article names for breeding, 2,377 m in Wyoming, with 0 as the sea-level end implied by the British Columbia February breeding date. Note that the article's range sentence does not itself name Oregon, even though its external links include Oregon Department of Fish and Wildlife material on this species; the US-OR activity curve attached to this record, drawn from iNaturalist place 10 and the GBIF GADM area USA.38_1, is the record's evidence that the species occurs in the state. koppen is omitted: the article describes elevation bands and aquatic habitat but gives no climate classification."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Honest gap: the article gives a maximum length of 89 mm and a tadpole length of 79 mm but no mass, and none was found on Wikidata or GBIF for this item. 0.03 kg is an authored estimate for a medium ranid frog of that snout-vent length, flagged so a reviewer can replace it with a measured mass. It is used only to set size_class and to scale the block mesh."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The article gives 'lengths of up to 3.5 in (89 mm)' - a maximum, not a range. 0.089 m is that maximum, recorded as given and flagged by the fact that it is an upper bound rather than a typical value; no midpoint can be computed from a single figure."
+    },
+    "traits.lifespan_y": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "No sourced typical or mean lifespan figure was found for this species in the English Wikipedia article, on Wikidata or in GBIF. 5.0 y is an unsourced judgement, set below the sourced figure for the common toad already in this repository (Bufo bufo, 11 y) because this frog is smaller and, per the article, heavily preyed on at every stage - adults are taken by herons, coyotes, ravens, badgers and otters, and tadpoles by trout, carp and diving beetles. A reviewer should replace this with a longevity figure from a marked population if one becomes available."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'This frog is opportunistic at best. It will eat a variety of insects, including grasshoppers, ants, wasps, beetles, and moths. These insects comprise more than 50% of the frog's diet. This frog will also eat seemingly unusual animals, such as crustaceans, mollusks, arthropods, and arachnids. In addition to being an insectivore, the Columbia spotted frog will eat algae, organic debris, a variety of plants, and other smaller, water-dwelling organisms.' invertebrate 0.85 follows the named insects and arthropods and the article's own 'more than 50%' statement, raised because insects are named first and in greatest number; browse 0.05 covers the named algae and plants; fish 0.05 covers the 'smaller, water-dwelling organisms', which in a permanent pond are mostly small fish. The split is an authored judgement, but it is bounded by the article's own statement that insects make up more than half the diet."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'Males present a chorus to the females to try to attract a mate', and 'The male frog arrives at the breeding grounds before the female becomes reproductively active and establishes an oviposition site'. A chorus is an aggregation, so Group is recorded; the female then lays at the site the male has already established. group_size bounds are authored, since the article gives no counts."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Judgement, flagged: the article describes this frog as 'very aquatic', spending 'most of their time in the water', and gives its breeding and behaviour in detail, but it never states the animal's daily activity timing. Nocturnal is recorded partly because that is the shared behaviour program used for anurans in this repository, which forages 'at night when warm and damp enough', and partly because a small frog that must avoid herons, badgers and otters is easier to model as feeding outside daylight hours. A reviewer with a sourced daily-activity figure should replace it."
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'These frogs are a constant victim to predation', and the predator list is long at every stage, with adults taken by herons, coyotes, common ravens, American badgers, river otters and weasels. Freeze is recorded: a small, ground-coloured frog facing a large predator's shadow goes still, which is also what the shared anuran program does by freezing before it hops."
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'The egg masses, once laid, absorb water and become the size of a softball. These eggs are not attached to any type of vegetation, but are left free-floating in a permanent water source.' No nest, cavity, burrow or platform is prepared, so None is the matching enum value; the eggs are simply suspended in water."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "The animal is aquatic or shoreline: it is 'known as a very aquatic amphibian', 'spend[s] most of their time in the water', and uses 'low-growing or emergent vegetation' as shelter rather than perching on it. False."
+    },
+    "traits": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Grouped entries. body_plan Vertebrate, limb_count 4, thermoregulation Ectotherm, skin Moist, respiration Lungs are the standard anuran values the article's description of a frog and its tadpoles implies. flight None follows the absence of any flying or gliding stage. metamorphosis Complete follows the article's own account of eggs hatching into tadpoles that 'reach around 3.1 inches (79 mm) in length before maturing to adults'. size_class Tiny is derived from mass_kg (under 0.05 kg), which rests on the authored mass estimate flagged above. locomotion_modes Walk, Hop and Swim: the animal moves over shore vegetation and shallow water, hops, and swims."
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Judgement set high: 'These frogs are a constant victim to predation', 'a constant victim' being the article's own phrase, with a predator list covering birds, mammals, reptiles and fish, and the species requiring dense emergent vegetation as cover because of it. flight_distance_m 5 m is short because a fleeing frog's best option is the water it is already in."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Authored from the habitat and description sections: the species is 'known as a very aquatic amphibian' that spends 'most of their time in the water' in 'permanent bodies of water, which can include lakes, ponds, slow-moving streams, and marshes', with a minority of time on shore and in emergent vegetation. Aquatic use therefore dominates."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'Their habitats are found generally near permanent bodies of water', and adults 'inhabit mostly seasonally flooded sites, where the water source is constant'. pond is the matching ResourceTag; the dependence is absolute, since the eggs are 'left free-floating in a permanent water source' and reproduce in the same body of water in which the frog lives."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "invertebrate 0.85 follows traits.diet. water 1.0 reflects absolute dependence on permanent water for reproduction and for most of the animal's time. shrub_thicket 0.5 is a deliberately partial entry: the article says the frogs 'require an abundant source of low-growing or emergent vegetation as shelter', which is emergent cover in and beside water rather than a woody thicket, and 0.5 keeps it below the food and water weights because the vegetation is shelter they can leave, not a resource they live in."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Avoider and uses_gardens false follow the species' habitat requirements - permanent water whose level rises seasonally, plus abundant emergent vegetation - and the article's framing of it as 'a model species for the effects of habitat fragmentation'. The notes field records that a farm pond or ditch at a lot's edge would suit it, so a reviewer can see the distinction is about water rather than about people. light_max 0.2 and flight_distance_m 5 m are authored judgements for a small prey animal that hides in emergent vegetation."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "The article describes no dormancy, hibernation or migration for this frog: it is active in the water through the year and breeds in the same permanent water source in which it lives. ActiveYearRound is recorded. It is worth noting against the alternative that a high-desert locale is cold in winter - a reviewer with a sourced overwintering record for this species should add it."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Breeding: 'The Columbia spotted frog's breeding schedule depends heavily on geographical location and elevation. In British Columbia, the frog will breed during February at sea level. In areas around Utah, the frog will breed around mid-March at an elevation of about 1,395 m. At areas of Wyoming, the frog will reproduce from May through June at elevations around 2,377 m.' Young: the egg masses 'range up to 1300 eggs', are laid in shallow water, and 'Soon after, the eggs hatch into tadpoles'. The calendar window is an authored judgement that spans the three quoted breeding periods, which is the widest defensible range for a species whose schedule shifts by two months over 2,400 m of elevation."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Honest gap: the article gives the egg count ('up to 1300 eggs'), the egg mass size and the tadpole length ('around 3.1 inches (79 mm)'), but no incubation period, no time to metamorphosis and no juvenile period. All three durations are authored judgements for a ranid frog, flagged rather than quoted; the Egg and Tadpole values are roughly in the range of the common toad record already in this repository, adjusted for a smaller animal. The scales are authored. The Tadpole stage is used because metamorphosis is Complete and the article describes a free-swimming larval form."
+    },
+    "vocalizations.click_chorus": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'Males present a chorus to the females to try to attract a mate. This song ranges from a series of clicks to long, glottal sounds.' Quoted directly, and mapped to the schema's Croak context, the closest enum value to an amphibian advertisement call. Months span the widest defensible breeding window from the February-to-June schedule above, and the Day time window is authored: the article does not say whether the chorus is given by day or at night, and glottal advertisement calls are audible well beyond dusk. The call_id is the conventional rendering of the click end of the range. Loudness and the cooldown are authored; no open source gives frequency bands."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Colours from the description section: 'It is green to brown in color with spots on the dorsal surface. The belly and upper lip are white in color', 'Its color ranges from a dark, olive green to light brown with irregularly shaped black spots on its back and legs (rendering its name)', and 'the ventral sides of the frog are usually colored either pink or yellow, but only in the adult form'. The palette maps olive to body, white to belly, the black spots to markings and a warm tan to accent; the dorsal_spotting extra part carries the irregular black spots the species is named for, and the lip_stripe extra part carries the diagnostic 'light-colored strip ... along the upper lip'. The anuran body plan is used because that is the mesh the repository draws for frogs, and leg_length_ratio is set below the common toad's because the article notes this frog has 'shorter hind legs' than similar-sized ranids. Proportions are otherwise authored."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared anuran program. min_temp_c 4 and max_temp_c 26 are narrowed from the program's defaults of 3 and 28 because this is a high-desert locale where a frog only forages on a narrower warm window than a lowland one. call_m1 2 and call_m2 6 span the article's February-to-June breeding schedule across elevations. food_tag invertebrate matches an insectivore diet. flee_m and freeze_m keep the program's short distances, which suit a 89 mm animal. The program is a good fit for a small pond frog that freezes then hops from threats and calls near water in the breeding months, though its 'hides in cover by day' assumption is a judgement here rather than something this article supports."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies maintainers",
+      "agent": "claude-code"
+    }
+  ]
+}
