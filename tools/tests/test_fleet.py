@@ -1824,10 +1824,10 @@ def test_the_supervisor_lock_records_its_owner():
     child that inherited fd 9, so it has to say who holds it."""
     text = FLEET.read_text(encoding="utf-8")
     loop = text.split("cmd_supervise() {", 1)[1]
-    assert '> "$STATE_DIR/supervisor.pid"' in loop, (
+    assert '> "$STATE_DIR/supervisor.owner"' in loop, (
         "the lock must record its owner, or a stale holder is indistinguishable"
     )
-    assert loop.index("flock -n 9") < loop.index('> "$STATE_DIR/supervisor.pid"'), (
+    assert loop.index("flock -n 9") < loop.index('> "$STATE_DIR/supervisor.owner"'), (
         "the owner can only be recorded once the lock is actually held"
     )
 
@@ -1873,3 +1873,49 @@ def test_a_live_lock_holder_is_still_refused():
     assert guard < loop.index("die \"another supervisor already holds"), (
         "a live or unattributable holder must reach the refusal, not the reclaim"
     )
+
+
+def test_the_orphan_sweep_can_never_reap_the_supervisor_itself():
+    """The sweep globs *.pid and reaps any pidfile with no matching .meta. Naming
+    the lock's owner record supervisor.pid put it inside that glob: the supervisor
+    found what it took to be a dead agent, called stop_agent on itself, and
+    signalled its own process group. It exited within a poll with no error, which
+    is why it looked like a silent crash rather than self-termination.
+
+    The owner's argv has no --dir, so both wt and pid_arg_dir came back empty,
+    the stale-pid guard compared "" to "" and passed, and stop_signal happily
+    signalled pgid == its own.
+    """
+    text = FLEET.read_text(encoding="utf-8")
+    loop = text.split("cmd_supervise() {", 1)[1]
+
+    # The owner record must not be spelled *.pid, or the glob catches it.
+    assert '> "$STATE_DIR/supervisor.pid"' not in text, (
+        "the owner record must not use the .pid extension the orphan sweep globs"
+    )
+    assert '> "$STATE_DIR/supervisor.owner"' in loop, (
+        "the owner record must be written under a name the sweep cannot match"
+    )
+
+    # And the sweep must refuse that name regardless of extension.
+    sweep = loop.split("# Orphans.", 1)[1].split("# Scratch-file guard.", 1)[0]
+    assert "*/supervisor.pid|*/supervisor.owner" in sweep, (
+        "the sweep must explicitly skip the supervisor's own record"
+    )
+    guard = sweep.index("case \"$pf\" in")
+    reap = sweep.index("stop_agent \"$oslug\"")
+    assert guard < reap, "the skip has to come before the reap, not after"
+
+
+def test_an_empty_worktree_can_never_authorise_killing_a_process_group():
+    """The guard that decides whether to signal compared the recorded --dir
+    against the worktree. Both were empty for a process with no --dir, the
+    comparison passed, and stop_signal signalled whatever group it found. An
+    empty worktree is a failure to identify the process, never a match."""
+    text = FLEET.read_text(encoding="utf-8")
+    for name in ("stop_agent", "agent_running"):
+        body = text.split(f"{name}() {{", 1)[1].split("\n}\n", 1)[0]
+        code = "\n".join(l for l in body.splitlines() if not l.strip().startswith("#"))
+        assert "-z \"$wt\"" in code or "[ -n \"$wt\" ]" in code, (
+            f"{name} must refuse to act when the worktree is unknown"
+        )

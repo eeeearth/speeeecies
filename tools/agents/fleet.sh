@@ -278,6 +278,10 @@ group_serves_worktree() {  # worktree leader -> 0/1
 agent_running() {  # slug -> 0 running, 1 not
   local pf="$STATE_DIR/$1.pid" pid wt
   wt=$(meta_get "$1" worktree)
+  # Without a worktree there is nothing to match a process against, and the
+  # comparison below would be "" = "" -- true for any process with no --dir,
+  # counting it live forever. Unknown means not-running.
+  [ -n "$wt" ] || return 1
   if [ -f "$pf" ]; then
     pid=$(tr -dc '0-9' < "$pf" 2>/dev/null)
     # `kill -0` alone is not proof: a pid can be recycled, and then the fleet
@@ -334,6 +338,16 @@ stop_agent() {  # slug -> 0. Signals the whole process group and waits it out.
   # metadata while leaving the agent running, the exact failure all of this
   # process ownership work exists to prevent.
   wt=$(meta_get "$1" worktree)
+  # An unknown worktree is a failure to identify the process, never a match. A
+  # pidfile whose meta is gone yields wt="", and so does pid_arg_dir for a
+  # process with no --dir; comparing "" to "" passed the ownership guard and
+  # stop_signal then signalled whatever group it was handed, which is how the
+  # supervisor terminated itself.
+  if [ -z "$wt" ]; then
+    say "  no worktree recorded for $1; not signalling anything"
+    rm -f "$pf"
+    return 0
+  fi
   # No pidfile does not mean nothing is running: agents launched before the
   # pidfile existed have none, and returning early is how teardown came to mean
   # "remove the metadata" while the process carried on in a deleted directory.
@@ -791,7 +805,7 @@ cmd_supervise() {
   exec 9>"$STATE_DIR/supervisor.lock" \
     || die "cannot open lock file in $STATE_DIR"
   if ! flock -n 9; then
-    holder=$(tr -dc '0-9' < "$STATE_DIR/supervisor.pid" 2>/dev/null)
+    holder=$(tr -dc '0-9' < "$STATE_DIR/supervisor.owner" 2>/dev/null)
     if [ -n "$holder" ] && ! supervisor_alive "$holder"; then
       say "breaking a supervisor lock orphaned by dead pid $holder"
       rm -f "$STATE_DIR/supervisor.lock"
@@ -802,7 +816,12 @@ cmd_supervise() {
       die "another supervisor already holds $STATE_DIR/supervisor.lock"
     fi
   fi
-  printf '%s\n' "$$" > "$STATE_DIR/supervisor.pid"
+  # Named .owner, deliberately NOT .pid. The orphan sweep below globs *.pid and
+  # treats any pidfile without a matching .meta as a dead agent to reap; a
+  # supervisor.pid matched it, and the supervisor promptly called stop_agent on
+  # itself and signalled its own process group. Nothing stops a name from being
+  # reused carelessly, so the sweep also refuses to act on this file.
+  printf '%s\n' "$$" > "$STATE_DIR/supervisor.owner"
   # Only now, having proved exclusivity. Reconciling first meant a second
   # supervisor rewrote the tally on its way to being refused, which is a write
   # by a process that had not yet established it was allowed to write.
@@ -841,6 +860,7 @@ cmd_supervise() {
     # indistinguishable by path alone. A pidfile with no meta is unambiguous.
     for pf in "$STATE_DIR"/*.pid; do
       [ -f "$pf" ] || continue
+      case "$pf" in */supervisor.pid|*/supervisor.owner) continue;; esac
       oslug=$(basename "$pf" .pid)
       [ -f "$STATE_DIR/$oslug.meta" ] && continue
       stop_agent "$oslug"
