@@ -1,0 +1,603 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Didelphis virginiana",
+  "slug": "didelphis-virginiana",
+  "common_names": {
+    "en": "Virginia opossum",
+    "fr": "opossum d'Amérique",
+    "es": "tlacuache",
+    "de": "Opossum"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Mammalia",
+    "order": "Didelphimorphia",
+    "family": "Didelphidae",
+    "genus": "Didelphis",
+    "authority": "Kerr, 1792"
+  },
+  "external": {
+    "gbif_usage_key": 2439923,
+    "inat_taxon_id": 42652,
+    "itis_tsn": 179921,
+    "wikidata": "Q147267"
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "CA",
+      "US",
+      "MX",
+      "GT",
+      "HN",
+      "NI",
+      "CR"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk",
+      "Climb"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Fur",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Cavity",
+    "perching": false,
+    "size_class": "Medium",
+    "mass_kg": 2.2,
+    "mass_range_kg": [
+      1.9,
+      2.8
+    ],
+    "length_m": 0.702,
+    "lifespan_y": 2.0,
+    "diet": {
+      "invertebrate": 0.4,
+      "fruit": 0.25,
+      "browse": 0.15,
+      "vertebrate": 0.1,
+      "carrion": 0.1
+    },
+    "social": {
+      "structure": "Solitary",
+      "group_size": [
+        1,
+        1
+      ]
+    },
+    "activity_pattern": "Nocturnal",
+    "defense": "Freeze",
+    "wariness": 0.35
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.85,
+      "arboreal": 0.15
+    },
+    "shelter_tag": "cavity",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 1.0
+      },
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.7
+      },
+      {
+        "tag": "browse",
+        "kind": "Herbivory",
+        "weight": 0.4
+      },
+      {
+        "tag": "small_vertebrate",
+        "kind": "Predation",
+        "weight": 0.3
+      },
+      {
+        "tag": "carrion",
+        "kind": "Scavenging",
+        "weight": 0.3
+      },
+      {
+        "tag": "compost",
+        "kind": "Herbivory",
+        "weight": 0.6
+      },
+      {
+        "tag": "cavity",
+        "kind": "Shelter",
+        "weight": 1.0
+      },
+      {
+        "tag": "water",
+        "kind": "Water",
+        "weight": 0.3
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Exploiter",
+      "impervious_max": 0.65,
+      "dist_building_min_m": 0,
+      "light_max": 0.9,
+      "flight_distance_m": 3,
+      "road_mortality": "High",
+      "uses_gardens": true,
+      "notes": "Familiar in settled areas near food sources such as trash cans, pet food, compost piles and gardens; a slow, nocturnal opportunist that scavenges from bird feeders."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "12-01",
+        "end": "10-31",
+        "note": "The breeding season can begin as early as December and run through October, with most young born between February and June; one to three litters a year."
+      },
+      {
+        "name": "young",
+        "start": "02-01",
+        "end": "08-31",
+        "note": "Gestation 11-13 days, average litter of eight to nine very small young, only one in ten of which survive to reproductive adulthood."
+      },
+      {
+        "name": "dormancy",
+        "start": "12-01",
+        "end": "02-28",
+        "note": "'It does not hibernate but reduces its activity during the winter. It may not leave its den for several days if the temperature drops below -7 to -4 C.'"
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Juvenile"
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US-MO",
+        "monthly": [
+          0.86,
+          1.0,
+          0.52,
+          0.41,
+          0.46,
+          0.25,
+          0.43,
+          0.36,
+          0.45,
+          0.57,
+          0.72,
+          0.78
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 1679,
+        "sources": [
+          "inat-activity-us-mo",
+          "gbif-activity-us-mo"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 28,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=42652&place_id=28&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=28&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 850,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "C",
+            "area": [
+              "gadmGid",
+              "USA.26_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2439923&gadmGid=USA.26_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.26_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "total": 829,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-ground-forager-v1",
+    "params": {
+      "flee_m": 8,
+      "calm_m": 20,
+      "food_tag": "fruit",
+      "food_m": 40,
+      "flee_gait": "walk",
+      "forage_gait": "walk",
+      "rest_sun_lo_deg": 10,
+      "rest_sun_hi_deg": 90
+    }
+  },
+  "vocalizations": [],
+  "look": {
+    "body_plan": "quadruped",
+    "proportions": {
+      "torso_aspect": 1.3,
+      "leg_length_ratio": 0.42,
+      "head_scale": 0.62,
+      "neck_angle_deg": 12,
+      "tail_ratio": 0.75,
+      "ear_ratio": 0.7,
+      "girth_ratio": 0.9
+    },
+    "palette": {
+      "body": "#a8a49b",
+      "belly": "#e6e3dc",
+      "markings": "#262019",
+      "accent": "#d4a3a3",
+      "eye": "#141210"
+    },
+    "part_colors": {
+      "snout": "accent"
+    },
+    "extra_parts": [
+      {
+        "name": "eye_mask",
+        "parent": "head",
+        "offset": [
+          0.24,
+          0.06,
+          0
+        ],
+        "size": [
+          0.3,
+          0.4,
+          0.9
+        ],
+        "color": "markings"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2439923",
+      "title": "GBIF Backbone Taxonomy: Didelphis virginiana",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q147267",
+      "title": "Wikidata: Virginia opossum (Q147267)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Virginia_opossum",
+      "title": "Wikipedia: Virginia opossum",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Virginia opossum\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=179921",
+      "title": "ITIS: Didelphis virginiana, TSN 179921",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "eltontraits",
+      "url": "https://doi.org/10.6084/m9.figshare.3559887.v1",
+      "title": "EltonTraits 1.0: species-level foraging attributes of the world's birds and mammals (BirdFuncDat)",
+      "license": "CC0-1.0",
+      "kind": "dataset",
+      "accessed": "2026-10-01",
+      "attribution": "Wilman, H. et al. (2014) EltonTraits 1.0. Ecology 95:2027",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "inat-activity-us-mo",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=42652&place_id=28&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Didelphis virginiana in US-MO",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-mo",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2439923&gadmGid=USA.26_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+      "title": "GBIF occurrence search for Didelphis virginiana in US-MO",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "itis"
+      ],
+      "confidence": "High",
+      "note": "GBIF backbone and ITIS TSN 179921."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "gbif_usage_key from the GBIF match API; itis_tsn and wikidata from Wikidata (P815) confirmed against ITIS."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'found from southern Canada to northern Costa Rica, making it the northernmost marsupial in the world'."
+    },
+    "conservation": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "IUCN status from Wikidata (P141)."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'Virginia opossum tracks generally show five finger-like toes in both the fore and hind prints' - four limbs."
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Paces along the ground ('When pacing, the opossum's stride generally measures 7 to 10 in') and climbs into trees, hollows and attics to den."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "A mammal; it can drop its activity below freezing without hibernating."
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "A mammal; it cannot fly."
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Born live as a tiny marsupial that attaches to a teat; no metamorphosis."
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The article describes denning in settled places rather than a built nest; a hollow, attic or shed den is recorded as Cavity."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "It climbs and may den in trees, but it is not a perching species in the passerine sense."
+    },
+    "traits.size_class": {
+      "sources": [
+        "eltontraits"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Derived from mass_kg (2.2 kg is in the Medium band)."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'Weight for males ranges from 2.1-2.8 kg and for females from 1.9-2.1 kg'; 2.2 kg sits at the top of the male range."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "1.9-2.8 kg across the sexes."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'Males ... with an average body length of 40.8 cm with an average tail length of 29.4 cm' - 70.2 cm nose to tail tip."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'The Virginia opossum has a maximal lifespan in the wild of only about two years. Even in captivity, opossums live only about four years.'"
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'Insects such as grasshoppers, crickets, and beetles make up the bulk of the animal foods eaten by opossums', plus late-summer plant foods, garbage and carrion; the shares are a judgement from those two paragraphs."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'a solitary nocturnal animal about the size of a domestic cat, and a successful opportunist'."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'It is a solitary nocturnal animal.'"
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Its slow pace and immobility when disturbed are the source of its 'playing possum' reputation; Freeze records that immobility."
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: slow and unafraid of people; it scavenges from bird feeders and garbage cans in settled areas."
+    },
+    "habitat.use": {
+      "sources": [
+        "eltontraits",
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Ground foraging is the norm with tree or structure denning; 85/15 is a judgement informed by EltonTraits."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Dens in hollows, attics, sheds and other sheltered structures near food."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Insects, plant foods, refuse and carrion from the diet section, plus the den and water tags; compost reflects its documented use of compost piles."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Frequent in settled areas near food sources and in urban environments; numeric tolerances authored."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'It does not hibernate but reduces its activity during the winter.'"
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Breeding from December through October with most young February to June, and reduced winter activity with cold-induced denning, all from the Behaviour and Reproduction sections."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The young are born as undeveloped marsupials attached to the teat, then ride on the back; there is no egg stage."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Coarse grey-white fur, a white face, a dark eye mask, a pink hairless nose, large pale ears and a long hairless tapering tail; proportions authored (judgement)."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared ground-forager program: fruit and refuse foraging, an 8 m startle distance in a slow walk, and the default daylight rest window for a nocturnal species."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies contributors",
+      "agent": "claude-code"
+    }
+  ]
+}
