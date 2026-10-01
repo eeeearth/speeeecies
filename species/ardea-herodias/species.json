@@ -1,0 +1,685 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Ardea herodias",
+  "slug": "ardea-herodias",
+  "common_names": {
+    "en": "Great blue heron"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Pelecaniformes",
+    "family": "Ardeidae",
+    "genus": "Ardea",
+    "authority": "Linnaeus, 1758",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 9630752,
+    "inat_taxon_id": 4956,
+    "itis_tsn": 174773,
+    "wikidata": "Q333796"
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "US",
+      "CA",
+      "MX",
+      "CU",
+      "PR"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Walk",
+      "Fly",
+      "Glide"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Platform",
+    "perching": true,
+    "size_class": "Medium",
+    "mass_kg": 2.3,
+    "mass_range_kg": [
+      1.82,
+      3.6
+    ],
+    "length_m": 1.14,
+    "wingspan_m": 1.84,
+    "lifespan_y": 24,
+    "diet": {
+      "fish": 0.6,
+      "invertebrate": 0.2,
+      "vertebrate": 0.2
+    },
+    "social": {
+      "structure": "Pair",
+      "group_size": [
+        1,
+        2
+      ]
+    },
+    "activity_pattern": "Cathemeral",
+    "defense": "Flee",
+    "wariness": 0.6
+  },
+  "habitat": {
+    "use": {
+      "aquatic": 0.6,
+      "arboreal": 0.2,
+      "ground": 0.1,
+      "aerial": 0.1
+    },
+    "shelter_tag": "perch",
+    "resources": [
+      {
+        "tag": "small_vertebrate",
+        "kind": "Predation",
+        "weight": 0.7
+      },
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.3
+      },
+      {
+        "tag": "carrion",
+        "kind": "Scavenging",
+        "weight": 0.6
+      },
+      {
+        "tag": "water",
+        "kind": "Water",
+        "weight": 0.4
+      },
+      {
+        "tag": "nest_platform",
+        "kind": "Nesting",
+        "weight": 1.0
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.7
+      }
+    ],
+    "requires": [
+      {
+        "resource_within_m": 500,
+        "tag": "water"
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "light_max": 0.5,
+      "flight_distance_m": 100,
+      "road_mortality": "Low",
+      "uses_gardens": false,
+      "notes": "Colonies are established in trees close to lakes and other wetlands, sometimes inside towns, and herons fish the margins of urban ponds; repeated human intrusion into nesting areas, however, often causes nest failure through abandonment of eggs or chicks."
+    }
+  },
+  "seasonal": {
+    "strategy": "PartialMigration",
+    "winter_fraction": 0.5,
+    "phases": [
+      {
+        "name": "nesting",
+        "start": "03-01",
+        "end": "07-31",
+        "region": "US",
+        "note": "First broods are laid generally in March and April; three to six pale-blue eggs are incubated for around 27 days, and males hold the nest on arrival while courting."
+      },
+      {
+        "name": "dispersal",
+        "start": "08-01",
+        "end": "02-28",
+        "note": "Colonies break up after fledging; southern and lower-Pacific birds stay put while northern birds move south."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg"
+      },
+      {
+        "stage": "Juvenile",
+        "duration_days": 70,
+        "scale": 0.6,
+        "requires_tag": "nest_platform"
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US-OH",
+        "monthly": [
+          0.36,
+          0.3,
+          0.48,
+          0.57,
+          0.55,
+          0.76,
+          0.9,
+          1.0,
+          0.96,
+          0.73,
+          0.62,
+          0.38
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 605217,
+        "sources": [
+          "inat-activity-us-oh",
+          "gbif-activity-us-oh"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 31,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=4956&place_id=31&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=31&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "total": 2263,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.36_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=9630752&gadmGid=USA.36_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.36_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 602954,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-seabird-predator-v1",
+    "params": {
+      "flee_m": 100,
+      "calm_m": 250,
+      "live_food_m": 200,
+      "carrion_m": 120
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "flight_call",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day",
+        "Dusk",
+        "Night"
+      ],
+      "cooldown_s": 8,
+      "loudness": "Loud",
+      "description": "A single harsh, rasping, guttural 'fraaank', given in flight when the bird is flushed or startled; a heron landing or leaving a colony is usually heard before it is seen.",
+      "duration_s": [
+        0.3,
+        0.6
+      ],
+      "recordings": [
+        "commons-heron-call"
+      ]
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.6,
+      "leg_length_ratio": 0.8,
+      "head_scale": 0.5,
+      "neck_angle_deg": 55,
+      "tail_ratio": 0.35,
+      "wing_aspect": 3.2,
+      "beak_ratio": 1.4,
+      "girth_ratio": 0.8
+    },
+    "palette": {
+      "body": "#6d7f8e",
+      "belly": "#c3ccd2",
+      "markings": "#1b2530",
+      "accent": "#dfa32c",
+      "eye": "#d9b53c"
+    },
+    "part_colors": {
+      "head": "belly",
+      "breast": "belly",
+      "beak": "accent",
+      "leg_*": "body"
+    },
+    "extra_parts": [
+      {
+        "name": "crown_stripe",
+        "parent": "head",
+        "offset": [
+          0.22,
+          0.3,
+          0
+        ],
+        "size": [
+          0.72,
+          0.16,
+          0.44
+        ],
+        "color": "markings"
+      },
+      {
+        "name": "plume",
+        "parent": "head",
+        "offset": [
+          -0.24,
+          0.6,
+          0
+        ],
+        "size": [
+          0.22,
+          0.95,
+          0.22
+        ],
+        "color": "markings"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "fly": {},
+      "glide": {},
+      "perched": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/9630752",
+      "title": "GBIF Backbone Taxonomy: Ardea herodias",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q333796",
+      "title": "Wikidata: Great blue heron (Q333796)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Great_blue_heron",
+      "title": "Wikipedia: Great blue heron",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Great blue heron\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/ITISWebService/jsonservice/getFullHierarchyFromTSN?tsn=174773",
+      "title": "ITIS: Ardea herodias, TSN 174773, full hierarchy",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "note": "US federal government database; public domain in the United States.",
+      "attribution": "Integrated Taxonomic Information System (ITIS), US federal government, public domain"
+    },
+    {
+      "id": "usgs-banding-longevity",
+      "url": "https://www.pwrc.usgs.gov/bbl/Bander_portal/login/Longevity.php",
+      "title": "USGS North American Bird Banding Laboratory: longevity records, Ardea herodias, 24 years 06 months",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "note": "US federal government database; public domain in the United States. Record current through December 2025.",
+      "attribution": "U.S. Geological Survey, Bird Banding Laboratory, public domain"
+    },
+    {
+      "id": "commons-heron-call",
+      "url": "https://commons.wikimedia.org/wiki/File:Great_Blue_Heron1.ogg",
+      "title": "Great Blue Heron1.ogg, recorded at Newnans Lake, Gainesville, Florida",
+      "license": "public-domain",
+      "kind": "recording",
+      "accessed": "2026-10-01",
+      "attribution": "G. McGrane, via Wikimedia Commons, public domain"
+    },
+    {
+      "id": "inat-activity-us-oh",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=4956&place_id=31&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Ardea herodias in US-OH",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-oh",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=9630752&gadmGid=USA.36_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Ardea herodias in US-OH",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "itis"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata",
+        "itis"
+      ],
+      "confidence": "High",
+      "note": "GBIF usageKey from an EXACT match on the scientific name; iNaturalist taxon id 4956 from the iNaturalist API; ITIS TSN 174773 from the ITISWebService scientific-name search; Wikidata Q333796 from a Wikidata entity search."
+    },
+    "common_names": {
+      "sources": [
+        "wikidata",
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "IUCN category from Wikidata P141."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Country list derived from the article's North American range plus the resident populations of the southern United States, Cuba and Puerto Rico."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'The heron's stride is around 22 cm, almost in a straight line'; wades on long legs and flies between feeding sites."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'usually breeds in colonies, in trees close to lakes or other wetlands' and 'nests are often reused for many years': a large open stick nest on a tree, not a cup or a cavity."
+    },
+    "traits.size_class": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Rounded from the 2.23 kg both-sex mean for adult herons in Nova Scotia and New England, the closest sampled region to Ohio. Males average heavier: 2.48 kg in British Columbia, 3.02 kg in Florida."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'a weight of 1.82-3.6 kg'."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of 'head-to-tail length of 91-137 cm'."
+    },
+    "traits.wingspan_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of 'a wingspan of 167-201 cm'."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "usgs-banding-longevity"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The USGS Bird Banding Laboratory longevity record for Ardea herodias is 24 years 06 months (birded 1977-06-08 in Texas, encountered 2001-12-15 in Texas). That is an upper bound on wild longevity, not a mean, and no openly licensed source gives a mean; the field is required, so the documented record is used and rounded to 24."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Wikipedia: 'small to medium-sized fish around 10-20 cm are usually preferred', prey up to 60 cm and 900 g is taken, aquatic crustaceans and insects are 'supplementary prey', and one Idaho study found 24-40% of the diet was voles. 0.6/0.2/0.20 keeps fish firmly first while recording the crustacean, insect and small-mammal shares."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'socially monogamous within a single breeding season', though mates and nests are usually changed annually, and the flocking happens at colonies rather than within a feeding pair."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Wikipedia: feeds 'at the water's edge during both the night and the day, but especially around dawn and dusk'. Day-and-night feeding is Cathemeral rather than Crepuscular."
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Authored: a flushed heron leaves rather than standing its ground."
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Judgement. 'Repeated human intrusion into nesting areas often results in nest failure' sets a high figure for a 1.1 m colonial bird that flushes readily."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'feeds in shallow waters, usually less than 50 cm deep, or at the water's edge', also in fields and by dropping from the air, and roosts in colony trees. Authored split."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Roosts in trees, in colonies called a heronry."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Fish, other vertebrates, crustaceans and insects from the diet section, plus the colony trees used for nesting and roosting. `small_vertebrate` and `carrion` are also the two tags fsm-seabird-predator-v1 hunts and scavenges on, so both are declared."
+    },
+    "habitat.requires": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "The article's habitat statements all begin from water: it feeds in shallow water and 'breeds in colonies, in trees close to lakes or other wetlands'. 500 m is an authored radius."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Colonial nesting close to wetlands and the nest-failure sentence from Wikipedia; light_max, flight_distance_m and road_mortality are authored."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'From the Southern United States southwards, and on the lower Pacific coast, they are year-round residents', which leaves northern birds migratory."
+    },
+    "seasonal.winter_fraction": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement, 0.5: the article names the resident southern and lower-Pacific populations but gives no share for northern Ohio."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'First broods are laid generally in March and April' and eggs 'incubated around 27 days'; the month-day boundaries and the post-fledging dispersal window are judgements."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Eggs 'hatch asynchronously over a period of several days' after about 27 days of incubation, and 'Immature birds are duller in color, with a dull blackish-gray crown ... no plumes'; duration_days 70 and scale 0.6 are judgements for the dull streaked juvenile."
+    },
+    "vocalizations.flight_call": {
+      "sources": [
+        "commons-heron-call"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The linked recording is a great blue heron at Newnans Lake, Florida, and documents the harsh rasping flight call. The onomatopoeic rendering and the duration band are authored; the Wikipedia article gives no description of the call."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Blue-grey body, white-streaked head and neck with a blackish crown, dull yellowish bill, grey legs, and long neck plumes at the start of the breeding season; the proportions are authored from the 115-138 cm standing height, 12.3-15.2 cm culmen and 15.7-21.0 cm tarsi in the article."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared territorial-predator program. It is nominally a seabird program, but its states - patrol by flight, take live prey, scavenge carrion, drink, retreat from a threat - are what a heron does between feeding spots on open water, and it is the closest shared fit. flee_m is raised to 100 m because herons flush well before a person reaches them."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies maintainers",
+      "agent": "claude-code"
+    }
+  ]
+}
