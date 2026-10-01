@@ -881,3 +881,151 @@ def test_teardown_keeps_the_log_unless_a_pr_is_confirmed():
 def test_script_is_syntactically_valid():
     result = subprocess.run(["bash", "-n", str(FLEET)], capture_output=True, text=True)
     assert result.returncode == 0, result.stderr
+
+
+def test_spawn_actually_completes_on_a_clean_state_dir(tmp_path):
+    """Fifty-five source-inspecting tests passed while `cmd_spawn` was fatal on
+    every call: it passed `$status` to render_brief one line before declaring it,
+    so `set -u` killed the process. Two more failures hid behind that one (a
+    missing provider_counts killed the tally under pipefail, and a worktree
+    registered by a dead spawn wedged the slug). None were visible without
+    running a spawn end to end, so this does that.
+
+    Uses a scratch repo with a real origin and a stubbed gh and agent, so it
+    touches neither the live fleet nor GitHub.
+    """
+    import os
+    import shutil
+
+    origin = tmp_path / "origin.git"
+    repo = tmp_path / "repo"
+    state = tmp_path / "state"
+    worktrees = tmp_path / "wt"
+    bin_ = tmp_path / "bin"
+    for d in (state, worktrees, bin_):
+        d.mkdir()
+
+    subprocess.run(["git", "init", "-q", "--bare", "-b", "main", str(origin)], check=True)
+    subprocess.run(["git", "clone", "-q", str(origin), str(repo)], check=True)
+    for k, v in (("user.email", "t@t"), ("user.name", "t")):
+        subprocess.run(["git", "-C", str(repo), "config", k, v], check=True)
+    (repo / "README.md").write_text("base\n")
+    subprocess.run(["git", "-C", str(repo), "add", "-A"], check=True)
+    subprocess.run(["git", "-C", str(repo), "commit", "-qm", "base"], check=True)
+    subprocess.run(["git", "-C", str(repo), "push", "-q", "origin", "main"], check=True)
+
+    agent = bin_ / "agentstub"
+    agent.write_text("#!/usr/bin/env bash\nexit 0\n")
+    agent.chmod(0o755)
+    gh = bin_ / "gh"
+    # `gh -q` prints bare values, so the state probe must be unquoted JSON-free text.
+    gh.write_text(
+        "#!/usr/bin/env bash\n"
+        'case "$*" in\n'
+        '  *"issue view"*)\n'
+        '    if [[ "$*" == *"--json state,assignees"* ]]; then printf \'OPEN|\\n\'; else\n'
+        '      printf \'{"body":"Suggested regions\\\\n`US-CO`\\\\n"}\\n\'; fi ;;\n'
+        '  *"issue list"*) printf \'[]\\n\' ;;\n'
+        '  *"pr list"*) printf \'0\\n\' ;;\n'
+        '  *"pr view"*) printf -- \'-\\n\' ;;\n'
+        "  *) printf '\\n' ;;\n"
+        "esac\n"
+    )
+    gh.chmod(0o755)
+
+    env = dict(os.environ)
+    env["PATH"] = f"{bin_}{os.pathsep}{env['PATH']}"
+    env.update(
+        AGENT_BIN=str(agent),
+        GH_REPO="jt55401/speeeecies",
+        WORKTREE_ROOT=str(worktrees),
+        FLEET_STATE_DIR=str(state),
+        BRANCH_PREFIX="test",
+        BASE_REF="origin/main",
+    )
+    proc = subprocess.run(
+        [
+            "bash", str(FLEET), "spawn",
+            "--issue", "7", "--slug", "test-species", "--scientific", "Testus species",
+        ],
+        cwd=repo, env=env, capture_output=True, text=True,
+    )
+    assert proc.returncode == 0, f"spawn failed: {proc.stdout}\n{proc.stderr}"
+
+    for suffix in ("meta", "brief.md", "status.md", "launch.sh"):
+        assert (state / f"test-species.{suffix}").is_file(), f"spawn wrote no {suffix}"
+    assert (worktrees / "species-test-species").is_dir(), "spawn created no worktree"
+
+    # The bug that started this: the status path must be substituted, not empty.
+    brief = (state / "test-species.brief.md").read_text()
+    assert "Your status file is ``" not in brief, (
+        "render_brief received an empty status path"
+    )
+    assert str(state / "test-species.status.md") in brief, (
+        "the brief does not name the real status file"
+    )
+    assert not PLACEHOLDER.search(brief), "the rendered brief still has placeholders"
+
+    # The queue drives retry accounting, so its shape is part of the contract.
+    assert (state / "queue.tsv").is_file(), "spawn never recorded the attempt"
+    row = (state / "queue.tsv").read_text().strip()
+    assert row.split("\t") == ["7", "species", "test-species"], f"bad queue row: {row!r}"
+    assert (state / "provider_counts").is_file(), "the provider tally was never seeded"
+
+    for leftover in (origin, repo, worktrees):
+        shutil.rmtree(leftover, ignore_errors=True)
+
+
+def test_a_failed_spawn_leaves_no_orphaned_worktree():
+    """A spawn that died between `git worktree add` and the .meta write left a
+    worktree the supervisor could not count, could not reap, and retried around;
+    three had accumulated. An EXIT trap undoes the worktree until the metadata
+    makes the spawn real."""
+    text = FLEET.read_text(encoding="utf-8")
+    spawn = text.split("cmd_spawn() {", 1)[1].split("\n}\n", 1)[0]
+    add = spawn.index('"${worktree_add[@]}"')
+    meta = spawn.index('> "$STATE_DIR/$slug.meta"')
+    trap = spawn.index("trap ", add)
+    assert add < trap < meta, (
+        "the cleanup trap must sit between worktree creation and the meta write"
+    )
+    assert "trap - EXIT" in spawn[meta:], (
+        "the trap is never cleared, so a later unrelated exit would delete the worktree"
+    )
+    assert 'git -C "$REPO" worktree remove --force "$wpath"' in spawn[trap:meta], (
+        "the trap must remove the worktree it created"
+    )
+
+
+def test_a_failed_salvage_keeps_the_worktree():
+    """Salvage exists so a stopped agent's files survive. If the salvage commit
+    itself fails, removing the directory throws away the only copy anyway."""
+    text = FLEET.read_text(encoding="utf-8")
+    teardown = text.split("cmd_teardown() {", 1)[1].split("\n}\n", 1)[0]
+    assert "salvage_failed" in teardown, "a failed salvage is not tracked"
+    guard = teardown.index("if [ \"$salvage_failed\" = 1 ]; then")
+    rm = teardown.index('worktree remove --force "$wt"', guard)
+    assert guard < rm, "the removal guard must precede the removal"
+    assert "else" in teardown[guard:rm], (
+        "the worktree must still be removed when salvage succeeded"
+    )
+    assert "will be removed with its changes" not in teardown, (
+        "the old message promised the loss; salvage failure must keep the files"
+    )
+
+
+def test_regions_come_only_from_the_suggested_section():
+    """The fallback scraped every two-letter uppercase token from the issue body,
+    so licence text became regions: an agent was told to fetch activity curves
+    for "CC BY-SA US-CO PR CC BY NC"."""
+    text = FLEET.read_text(encoding="utf-8")
+    spawn = text.split("cmd_spawn() {", 1)[1].split("\n}\n", 1)[0]
+    assert "[Ss]uggested regions" in spawn, "the real region hint parser is gone"
+    assert 'r"\\b([A-Z]{2}' not in spawn, (
+        "the whole-body uppercase-token fallback is back; it mines licence text"
+    )
+    assert '[ -n "$regions" ] || regions=' not in spawn, (
+        "a second, unguessed region source remains"
+    )
+    # The brief already covers an empty hint, so dropping the fallback is safe.
+    assert "read the" in BRIEF.read_text(encoding="utf-8").lower()

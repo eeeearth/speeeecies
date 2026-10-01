@@ -122,9 +122,13 @@ note_spawn_provider() {  # model id; tally what was really served per provider
   local p f cur
   p=$(provider_of_model "$1")
   f="$STATE_DIR/provider_counts"
-  cur=$(awk -v k="$p" '$1==k {print $2}' "$f" 2>/dev/null | tail -1)
+  # A fresh state dir has no tally yet. An awk failure inside a pipeline is fatal
+  # under pipefail even with stderr suppressed, so that killed the first spawn on a
+  # clean state dir -- after the agent launched, before queue.tsv was written.
+  [ -f "$f" ] || : > "$f" 2>/dev/null || return 0
+  cur=$(awk -v k="$p" '$1==k {print $2}' "$f" 2>/dev/null | tail -1) || cur=""
   printf '%s %s\n' "$p" "$(( ${cur:-0} + 1 ))" > "$f.tmp"
-  awk -v k="$p" '$1!=k' "$f" 2>/dev/null >> "$f.tmp"
+  awk -v k="$p" '$1!=k' "$f" 2>/dev/null >> "$f.tmp" || true
   mv "$f.tmp" "$f"
 }
 
@@ -395,7 +399,15 @@ cmd_spawn() {
     worktree_add=(git worktree add -b "$branch" "$wpath" "$BASE_REF")
   fi
 
-  ( cd "$REPO" && git fetch --quiet origin && "${worktree_add[@]}" ) >/dev/null
+  # Prune first: an earlier spawn that died after `git worktree add` left a
+  # registration with no directory, and git then refuses the path forever
+  # with "missing but already registered worktree" -- the slug is wedged.
+  ( cd "$REPO" && git worktree prune && git fetch --quiet origin && "${worktree_add[@]}" ) >/dev/null
+  # Transaction boundary. A spawn that dies between here and the .meta write
+  # leaves a worktree the supervisor cannot count, cannot reap, and retries
+  # around -- it leaked three before this existed. Undo the worktree on any
+  # exit until the metadata makes the spawn real.
+  trap 'if [ ! -f "$STATE_DIR/$slug.meta" ] && [ -d "$wpath" ]; then git -C "$REPO" worktree remove --force "$wpath" 2>/dev/null; git -C "$REPO" worktree prune 2>/dev/null; fi' EXIT
 
   # Region hints come from the issue body, so the agent does not have to guess.
   local regions
@@ -406,16 +418,18 @@ b=json.load(sys.stdin)["body"] or ""
 m=re.search(r"[Ss]uggested regions.*?\n(.*?)(\n\n|\Z)", b, re.S)
 print(" ".join(re.findall(r"`([A-Z]{2}(?:-[A-Z0-9]{1,3})?)`", m.group(1))) if m else "")')
 
+  local log="$STATE_DIR/$slug.log" status="$STATE_DIR/$slug.status.md" launch="$STATE_DIR/$slug.launch.sh"
+  # Declared before first use: render_brief takes the status path, and reading it
+  # one line earlier was an unbound-variable crash under `set -u` that broke every spawn.
   local brief="$STATE_DIR/$slug.brief.md"
-  [ -n "$regions" ] || regions=$(gh issue view "$issue" --repo "$GH_REPO" --json body \
-    | python3 -c 'import json,re,sys
-b=json.load(sys.stdin)["body"] or ""
-print(" ".join(re.findall(r"\b([A-Z]{2}(?:-[A-Z0-9]{1,3})?)\b", b))[:40])')
+  # No fallback scrape of the issue body: it matched every two-letter uppercase
+  # token, so licence text became "regions" (an agent was told to fetch curves for
+  # "CC BY-SA US-CO PR CC BY NC"). The brief already tells the agent to read the
+  # suggested-regions section itself when this is empty, which is honest.
 
   render_brief "$issue" "$slug" "$sci" "$regions" "$wpath" "$branch" "$brief" \
     "$kind" "$brief_tpl" "$status"
 
-  local log="$STATE_DIR/$slug.log" status="$STATE_DIR/$slug.status.md" launch="$STATE_DIR/$slug.launch.sh"
   printf '# %s\nissue: %s\nscientific: %s\nbranch: %s\nworktree: %s\nmodel: %s\nregions: %s\nstarted: %s\n\n' \
     "$slug" "$issue" "$sci" "$branch" "$wpath" "$model" "$regions" "$(date -u +%FT%TZ)" > "$status"
   # kind is persisted because teardown and status look the PR up by directory, and
@@ -425,6 +439,8 @@ print(" ".join(re.findall(r"\b([A-Z]{2}(?:-[A-Z0-9]{1,3})?)\b", b))[:40])')
 printf 'workspace=none\nagent=%s\nworktree=%s\nbranch=%s\nissue=%s\nslug=%s\nkind=%s\nscientific=%s\nmodel=%s\nvariant=%s\nregions=%s\nlog=%s\nstatus=%s\nbrief=%s\nmain=%s\n' \
     "$slug" "$wpath" "$branch" "$issue" "$slug" "$kind" "$sci" "$model" "$variant" "$regions" "$log" "$status" "$brief" "$REPO" \
     > "$STATE_DIR/$slug.meta"
+  # The spawn is committed: the supervisor can now see and reap this agent.
+  trap - EXIT
 
   cat > "$launch" <<LAUNCHER
 #!/usr/bin/env bash
@@ -499,16 +515,25 @@ cmd_teardown() {
   # agent that got part-way through a dozen species lost all of it. Commit it onto
   # the branch first: that is what makes the promise true, and it gives the next
   # attempt something to continue from instead of restarting at zero.
+  local salvage_failed=0
   if [ -d "$wt" ] && [ -n "$(git -C "$wt" status --porcelain 2>/dev/null)" ]; then
     if ( cd "$wt" && git add -A && git -c user.email=fleet@localhost \
            -c user.name=fleet commit -q \
            -m "fleet: salvage work from an agent that stopped without opening a PR" ) 2>/dev/null; then
       say "salvaged uncommitted work from $slug onto $br"
     else
-      say "could not salvage $slug; $wt will be removed with its changes"
+      # Keeping the directory is the point: those files are the only copy, and a
+      # human can still lift them out. Removing it here is the exact data loss
+      # this whole path exists to prevent.
+      salvage_failed=1
+      say "could not salvage $slug; keeping $wt so the files can be recovered"
     fi
   fi
-  [ -d "$wt" ] && git -C "$REPO" worktree remove --force "$wt"
+  if [ "$salvage_failed" = 1 ]; then
+    say "left $wt in place; remove it by hand once the work is recovered"
+  else
+    [ -d "$wt" ] && git -C "$REPO" worktree remove --force "$wt"
+  fi
   git -C "$REPO" worktree prune
   rm -f "$STATE_DIR/$slug.meta" "$STATE_DIR/$slug.status.md" \
         "$STATE_DIR/$slug.brief.md" "$STATE_DIR/$slug.launch.sh"
