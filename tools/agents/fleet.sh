@@ -171,8 +171,25 @@ note_route_failure() {  # slug; 0 when the agent died on routing, 1 otherwise
   # it. It now has to look like a status. "api" is deliberately NOT a context
   # word, because every species log says "the Wikidata API"; the words that
   # actually indicate the agent's own provider failing are below.
-  if tail -40 "$STATE_DIR/$1.log" \
-       | grep -qiE "cannot find any route|no route (found|to)|model [^ ]+ .{0,24}(not (found|available)|unavailable|overloaded|deprecated)|(rate limit|too many requests|quota exceeded).{0,60}(opencode|provider|router|credential|api key|token|model)|(opencode|provider|router|credential|api key|token|model).{0,60}(rate limit|too many requests|quota exceeded)|(http|status|code|error)[ _-]?429|429[ _]+too many requests"; then
+  local recent
+  recent=$(tail -40 "$STATE_DIR/$1.log" 2>/dev/null) || return 1
+
+  # Unambiguous routing deaths.
+  if grep -qiE "cannot find any route|no route (found|to)|model [^ ]+ .{0,24}(not (found|available)|unavailable|overloaded|deprecated)|(rate limit|too many requests|quota exceeded).{0,60}(opencode|provider|router|credential|api key|token|model)|(opencode|provider|router|credential|api key|token|model).{0,60}(rate limit|too many requests|quota exceeded)" <<<"$recent"; then
+    provider_note_failure "$(provider_of_model "$model")"
+    return 0
+  fi
+
+  # A 429 counts as a routing death only when it also names the provider. A real
+  # agent log here carries `FETCH-ERROR: HTTP Error 429: Too Many Requests` when
+  # Wikidata throttles a fetch, and `<urlopen error 429>` when urllib does;
+  # matching those marked a healthy provider as failed and refunded an attempt
+  # the agent had earned. Enumerating the fetchers' own wording does not close
+  # this -- every marker added matched one tool and missed the next -- so the
+  # test is inverted instead: without provider context, a 429 is not the
+  # provider failing. That errs toward missing a backoff rather than blaming a
+  # healthy model and discarding real work.
+  if grep -qiE '(opencode|provider|router|credential|api key|token|model)[^\n]{0,80}(429|too many requests)|(429|too many requests)[^\n]{0,80}(opencode|provider|router|credential|api key|token|model)' <<<"$recent"; then
     provider_note_failure "$(provider_of_model "$model")"
     return 0
   fi
@@ -219,31 +236,87 @@ advance_model() {  # step that provider's own cursor, then hand over to the othe
   printf '%s\n' "$other" > "$STATE_DIR/provider_cursor"
 }
 
-agent_running() {  # slug -> 0 running, 1 not
-  local pf="$STATE_DIR/$1.pid" pid wt
-  # The recorded PID is authoritative. Matching on the worktree path cannot tell
-  # a stale agent from its replacement: when a slug respawns into the same path,
-  # the retired process still matches it, and the fleet counted one agent as two
-  # while the stale one kept editing the replacement's tree.
-  if [ -f "$pf" ]; then
-    pid=$(tr -dc '0-9' < "$pf" 2>/dev/null)
-    if [ -n "$pid" ]; then
-      kill -0 "$pid" 2>/dev/null && return 0
-      return 1
-    fi
-  fi
-  wt=$(meta_get "$1" worktree)
-  [ -n "$wt" ] || return 1
-  pgrep -af "$AGENT_BIN run" 2>/dev/null | grep -qF -- "$wt"
+# The value of a pid's --dir argument, read from NUL-separated argv. Empty when
+# the process has no --dir. This must be exact argv, never a substring of the
+# rendered command line: the whole brief is passed via --auto "$(cat brief)", so
+# every agent's command line names every other agent's worktree, and a substring
+# match reported --dir /wt/species-foo-bar as a hit for /wt/species-foo.
+pid_arg_dir() {
+  local pid="$1" arg prev="" dir=""
+  [ -r "/proc/$pid/cmdline" ] || return 0
+  while IFS= read -r -d '' arg; do
+    [ "$prev" = "--dir" ] && dir="$arg"
+    prev="$arg"
+  done < "/proc/$pid/cmdline"
+  printf '%s' "$dir"
 }
 
-stop_signal() {  # pid -> 0. Signals the whole process group, waits, escalates.
-  local pid="$1" i
-  kill -TERM -- "-$pid" 2>/dev/null || kill -TERM "$pid" 2>/dev/null || return 0
+# 0 when some live agent process has --dir exactly equal to this worktree.
+agent_for_worktree() {  # worktree -> 0/1
+  local wt="$1" p d
+  [ -n "$wt" ] || return 1
+  for p in $(pgrep -f -- "$AGENT_BIN run" 2>/dev/null); do
+    d=$(pid_arg_dir "$p")
+    [ "$d" = "$wt" ] && return 0
+  done
+  return 1
+}
+
+# 0 when a process in the leader's group has --dir exactly equal to the
+# worktree: proof the pid still serves this agent rather than being a recycled,
+# unrelated process.
+group_serves_worktree() {  # worktree leader -> 0/1
+  local wt="$1" leader="$2" p d
+  [ -n "$wt" ] && [ -n "$leader" ] || return 1
+  for p in $(ps -eo pid,pgid --no-headers 2>/dev/null | awk -v g="$leader" '$2==g {print $1}'); do
+    d=$(pid_arg_dir "$p")
+    [ "$d" = "$wt" ] && return 0
+  done
+  return 1
+}
+
+agent_running() {  # slug -> 0 running, 1 not
+  local pf="$STATE_DIR/$1.pid" pid wt
+  wt=$(meta_get "$1" worktree)
+  if [ -f "$pf" ]; then
+    pid=$(tr -dc '0-9' < "$pf" 2>/dev/null)
+    # `kill -0` alone is not proof: a pid can be recycled, and then the fleet
+    # would count an unrelated process as its agent and later signal it.
+    if [ -n "$pid" ] && kill -0 "$pid" 2>/dev/null; then
+      [ "$(pid_arg_dir "$pid")" = "$wt" ] && return 0
+      group_serves_worktree "$wt" "$pid" && return 0
+      return 1
+    fi
+    return 1
+  fi
+  agent_for_worktree "$wt"
+}
+
+stop_signal() {  # pid -> 0. Signals the pid's process group, waits, escalates.
+  local pid="$1" i pgid self
+  [ -n "$pid" ] || return 0
+  pgid=$(awk '{print $5}' "/proc/$pid/stat" 2>/dev/null)
+  self=$(awk '{print $5}' "/proc/$$/stat" 2>/dev/null)
+  # Never signal the group we are in. A stale pidfile whose pid has been
+  # recycled into this shell's own group would otherwise make `kill -- -$pgid`
+  # terminate the supervisor, which is worse than leaking an agent.
+  if [ -n "$pgid" ] && [ -n "$self" ] && [ "$pgid" = "$self" ]; then
+    say "  pid $pid shares this process group; refusing to signal it"
+    return 1
+  fi
+  if [ -n "$pgid" ] && [ "$pgid" != "$pid" ]; then
+    kill -TERM -- "-$pgid" 2>/dev/null || kill -TERM "$pid" 2>/dev/null || return 0
+  else
+    kill -TERM -- "-$pid" 2>/dev/null || kill -TERM "$pid" 2>/dev/null || return 0
+  fi
   for i in $(seq 1 10); do kill -0 "$pid" 2>/dev/null || break; sleep 1; done
   if kill -0 "$pid" 2>/dev/null; then
     say "  pid $pid ignored SIGTERM; sending SIGKILL to the group"
-    kill -KILL -- "-$pid" 2>/dev/null || kill -KILL "$pid" 2>/dev/null
+    if [ -n "$pgid" ] && [ "$pgid" != "$pid" ]; then
+      kill -KILL -- "-$pgid" 2>/dev/null || kill -KILL "$pid" 2>/dev/null
+    else
+      kill -KILL -- "-$pid" 2>/dev/null || kill -KILL "$pid" 2>/dev/null
+    fi
     sleep 1
   fi
   return 0
@@ -256,30 +329,30 @@ stop_agent() {  # slug -> 0. Signals the whole process group and waits it out.
   # mean "remove the metadata" while the process carried on in a deleted
   # directory. Fall back to matching the worktree, so an agent of unknown
   # vintage still gets stopped.
+  # No pidfile does not mean nothing is running: agents launched before the
+  # pidfile existed have none, and returning early is how teardown came to mean
+  # "remove the metadata" while the process carried on in a deleted directory.
+  # Matching is exact --dir argv equality for the reason given above pid_arg_dir.
   if [ ! -f "$pf" ]; then
     wt=$(meta_get "$1" worktree)
-    if [ -n "$wt" ]; then
-      while read -r pid; do
-        [ -n "$pid" ] || continue
-        say "  no pidfile for $1; stopping the process on $wt (pid $pid)"
-        stop_signal "$pid"
-      done < <(pgrep -af -- "$AGENT_BIN run" 2>/dev/null \
-                 | while read -r l; do
-                     grep -qF -- "$wt" <<<"$l" && printf '%s\n' "${l%% *}"
-                   done)
-    fi
+    for pid in $(pgrep -f -- "$AGENT_BIN run" 2>/dev/null); do
+      [ "$(pid_arg_dir "$pid")" = "$wt" ] || continue
+      say "  no pidfile for $1; stopping its agent on $wt (pid $pid)"
+      stop_signal "$pid"
+    done
     return 0
   fi
   pid=$(tr -dc '0-9' < "$pf" 2>/dev/null)
   if [ -n "$pid" ] && kill -0 "$pid" 2>/dev/null; then
-    say "stopping $1 (pid $pid) and its process group"
-    kill -TERM -- "-$pid" 2>/dev/null || kill -TERM "$pid" 2>/dev/null
-    for i in $(seq 1 10); do kill -0 "$pid" 2>/dev/null || break; sleep 1; done
-    if kill -0 "$pid" 2>/dev/null; then
-      say "  $1 ignored SIGTERM; sending SIGKILL to the group"
-      kill -KILL -- "-$pid" 2>/dev/null || kill -KILL "$pid" 2>/dev/null
-      sleep 1
+    # Only signal a group this worktree owns. Trusting a bare kill -0 lets a
+    # recycled pid be counted as our agent and then killed.
+    if [ "$(pid_arg_dir "$pid")" != "$wt" ] && ! group_serves_worktree "$wt" "$pid"; then
+      say "  pid $pid does not serve $wt; treating the pidfile as stale, not signalling"
+      rm -f "$pf"
+      return 0
     fi
+    say "stopping $1 (pid $pid) and its process group"
+    stop_signal "$pid"
     say "  $1 stopped"
   fi
   rm -f "$pf"
@@ -679,13 +752,16 @@ cmd_supervise() {
     case "$1" in --once) once=1; shift;; --min) FLEET_MIN=$2; shift 2;; --max) FLEET_MAX=$2; shift 2;; *) shift;; esac
   done
   [ "$FLEET_MAX" -ge "$FLEET_MIN" ] || die "--max must be >= --min"
-  reconcile_provider_counts
   # One supervisor per state directory. Two would race each other through the
   # orphan scan and the STATUS.md sweep, each undoing the other's work on
   # worktrees it does not own. flock is released automatically when this exits.
   exec 9>"$STATE_DIR/supervisor.lock" \
     || die "cannot open lock file in $STATE_DIR"
   flock -n 9 || die "another supervisor already holds $STATE_DIR/supervisor.lock"
+  # Only now, having proved exclusivity. Reconciling first meant a second
+  # supervisor rewrote the tally on its way to being refused, which is a write
+  # by a process that had not yet established it was allowed to write.
+  reconcile_provider_counts
   # Outside the loop on purpose: reset per pass and the transition-only
   # reporting below can never fire.
   local fleet_state=OK prev_state=OK

@@ -1259,11 +1259,13 @@ def test_route_detection_only_reads_the_tail_of_the_log():
     assert "tail -40" in fn, (
         "route detection must scope to the end of the log, where the death is"
     )
-    # The path still appears, but only as tail's argument: grep must never see
-    # the whole file.
-    assert re.search(r'tail -40 "\$STATE_DIR/\$1\.log" \\\s*\n?\s*\| grep -qiE', fn), (
-        "the log must be tailed before grepping, or a passing mention refunds"
+    # The tail is captured once and every match runs against that. grep must
+    # never see the whole file, or a passing mention somewhere in a long agent
+    # log refunds the attempt.
+    assert re.search(r'recent=\$\(tail -40 "\$STATE_DIR/\$1\.log"', fn), (
+        "the log must be tailed before anything matches against it"
     )
+    assert '<<<"$recent"' in fn, "every pattern must match the tail, not the file"
     assert not re.search(r'grep -qiE[^\n]*\$STATE_DIR/\$1\.log', fn), (
         "grep is still being handed the whole log"
     )
@@ -1308,13 +1310,21 @@ def test_stop_agent_kills_the_whole_process_group_and_waits():
     """Killing only the recorded pid can leave the agent itself alive, since the
     launcher runs it as a child rather than exec'ing it."""
     text = FLEET.read_text(encoding="utf-8")
-    fn = text.split("stop_agent() {", 1)[1].split("\n}\n", 1)[0]
-    assert 'kill -TERM -- "-$pid"' in fn, "SIGTERM must go to the process group"
-    assert 'kill -KILL -- "-$pid"' in fn, "an agent that ignores SIGTERM needs SIGKILL"
+    fn = text.split("stop_signal() {", 1)[1].split("\n}\n", 1)[0]
+    # The group is resolved from /proc, because the pid we hold may be the agent
+    # itself rather than the group leader.
+    assert "/proc/$pid/stat" in fn, "the process group must be read from /proc"
+    assert 'kill -TERM -- "-$pgid"' in fn or 'kill -TERM -- "-$pid"' in fn, (
+        "SIGTERM must go to the process group"
+    )
+    assert 'kill -KILL -- "-$pgid"' in fn or 'kill -KILL -- "-$pid"' in fn, (
+        "an agent that ignores SIGTERM needs SIGKILL"
+    )
     assert 'kill -0 "$pid"' in fn, "the stop must be waited on, not fired and forgotten"
-    # TERM before KILL, and the wait must come between them.
     assert fn.index("SIGTERM") < fn.index("SIGKILL"), "escalate in order"
-    assert 'rm -f "$pf"' in fn, "a stale pidfile would resurrect a phantom agent"
+    stop = text.split("stop_agent() {", 1)[1].split("\n}\n", 1)[0]
+    assert 'stop_signal "$pid"' in stop, "stop_agent must delegate to stop_signal"
+    assert 'rm -f "$pf"' in stop, "a stale pidfile would resurrect a phantom agent"
 
 
 def test_teardown_stops_the_agent_before_it_salvages():
@@ -1336,11 +1346,14 @@ def test_liveness_reads_the_pid_not_the_worktree_path():
     the replacement's tree."""
     text = FLEET.read_text(encoding="utf-8")
     fn = text.split("agent_running() {", 1)[1].split("\n}\n", 1)[0]
-    assert fn.index('.pid"') < fn.index("pgrep"), (
-        "the recorded pid must decide liveness before falling back to a path match"
+    assert fn.index('.pid"') < fn.index("agent_for_worktree"), (
+        "the recorded pid must decide liveness before falling back to a scan"
     )
-    assert 'kill -0 "$pid" 2>/dev/null && return 0' in fn, (
-        "a dead pid means the agent is not running, with no path fallback"
+    assert 'group_serves_worktree "$wt" "$pid" && return 0' in fn, (
+        "a live pid is only this agent if its group still serves the worktree"
+    )
+    assert 'kill -0 "$pid" 2>/dev/null; then' in fn, (
+        "existence must be checked before ownership is inferred from it"
     )
 
 
@@ -1374,9 +1387,17 @@ def test_route_detection_requires_provider_context_and_never_matches_bare_429():
     against a rate-limited endpoint is not the agent failing to route."""
     text = FLEET.read_text(encoding="utf-8")
     fn = text.split("note_route_failure() {", 1)[1].split("\n}\n", 1)[0]
-    line = [l for l in fn.splitlines() if 'grep -qiE "' in l]
-    assert len(line) == 1, "expected one route pattern"
-    rx = re.compile(line[0].split('grep -qiE "', 1)[1].split('"')[0], re.I)
+    # Two stages now, and they quote their patterns differently: unambiguous
+    # routing deaths, then a 429 that must also name the provider.
+    pats = []
+    for line in fn.splitlines():
+        for q in ('"', "'"):
+            tok = f"grep -qiE {q}"
+            if tok in line:
+                pats.append(re.compile(line.split(tok, 1)[1].split(q)[0], re.I))
+    assert len(pats) == 2, f"expected two route patterns, found {len(pats)}"
+    rx = pats[0]
+    rx_prov = pats[1]
 
     # Real routing deaths must still refund the attempt.
     for dead in (
@@ -1385,7 +1406,9 @@ def test_route_detection_requires_provider_context_and_never_matches_bare_429():
         "429 Too Many Requests from provider api",
         "quota exceeded for model opencode/longcat",
     ):
-        assert rx.search(dead), f"a real routing death was missed: {dead!r}"
+        assert rx.search(dead) or rx_prov.search(dead), (
+            f"a real routing death was missed: {dead!r}"
+        )
 
     # A species log is full of numbers and mentions of limits. Neither is the
     # agent failing to route, and neither may refund an issue attempt.
@@ -1394,8 +1417,15 @@ def test_route_detection_requires_provider_context_and_never_matches_bare_429():
         "rate limits at the reserve are 5 visitors per day",
         "P4293 retrieved 200 OK from the Wikidata API",
         "the 429 birds counted in the survey were ringed",
+        # Real lines from this fleet's own logs, which marked a healthy provider
+        # as failed and refunded an attempt the agent had earned.
+        "FETCH-ERROR: HTTP Error 429: Too Many Requests",
+        "<urlopen error 429> while fetching the activity curve",
+        "urllib.error.HTTPError: 429",
     ):
-        assert not rx.search(alive), f"a non-routing line matched and would refund: {alive!r}"
+        assert not (rx.search(alive) or rx_prov.search(alive)), (
+            f"a data-fetch line matched and would refund: {alive!r}"
+        )
 
 
 def test_the_provider_tally_is_rebuilt_from_the_log_and_refuses_to_publish_a_wrong_one():
@@ -1481,15 +1511,19 @@ def test_the_pidless_fallback_matches_on_the_whole_command_line():
     nothing, and returned success -- so teardown of an agent launched before
     pidfiles existed still left the process running, which is the leak this
     fallback exists to close."""
+    # This originally guarded `pgrep -f` printing bare pids, which cannot be
+    # matched against a path. Matching no longer reads the rendered command line
+    # at all, so the fix is structural: pids come from pgrep and the worktree is
+    # compared as an exact --dir argv value.
     text = FLEET.read_text(encoding="utf-8")
     fn = text.split("stop_agent() {", 1)[1].split("\n}\n", 1)[0]
-    assert 'pgrep -af -- "$AGENT_BIN run"' in fn, (
-        "the fallback needs -a, or there is no command line to match the path against"
+    assert 'for pid in $(pgrep -f -- "$AGENT_BIN run"' in fn, (
+        "the fallback must enumerate agent pids"
     )
-    assert 'pgrep -f -- "$AGENT_BIN run"' not in fn, (
-        "bare pgrep -f yields no command line, so the path match can never succeed"
+    assert '[ "$(pid_arg_dir "$pid")" = "$wt" ] || continue' in fn, (
+        "each candidate must be confirmed by exact --dir argv before being signalled"
     )
-    assert 'grep -qF -- "$wt" <<<"$l"' in fn, "the worktree must be matched literally"
+    assert "grep -qF" not in fn, "the fallback must not grep a rendered command line"
     assert "no pidfile for $1" in fn, "the fallback path must be reachable and logged"
 
 
@@ -1615,3 +1649,76 @@ def test_a_child_that_closes_the_lock_fd_does_not_hold_the_lock():
             f"a child that closes fd 9 still holds the lock "
             f"({with_closer} vs baseline {base})"
         )
+
+
+def test_process_matching_uses_exact_argv_not_a_cmdline_substring():
+    """The whole brief is passed via --auto "$(cat brief)", so every agent's
+    rendered command line contains every other agent's worktree path. A
+    substring match therefore reports --dir /wt/species-foo-bar as a hit for
+    /wt/species-foo, and teardown kills an innocent agent's process group."""
+    text = FLEET.read_text(encoding="utf-8")
+    fn = text.split("pid_arg_dir() {", 1)[1].split("\n}\n", 1)[0]
+    assert "/proc/$pid/cmdline" in fn, (
+        "the --dir value must be read from NUL-separated argv, not the rendered line"
+    )
+    assert 'grep' not in fn, "pid_arg_dir must not grep the command line"
+    assert '[ "$prev" = "--dir" ] && dir="$arg"' in fn, (
+        "--dir must be read as a discrete argument, not a substring"
+    )
+    scan = text.split("agent_for_worktree() {", 1)[1].split("\n}\n", 1)[0]
+    assert '[ "$d" = "$wt" ] && return 0' in scan, (
+        "the scan must require an exact --dir match"
+    )
+    stop = text.split("stop_agent() {", 1)[1].split("\n}\n", 1)[0]
+    assert '[ "$(pid_arg_dir "$pid")" = "$wt" ] || continue' in stop, (
+        "teardown must require an exact --dir match before signalling"
+    )
+    for name, body in (("agent_for_worktree", scan), ("stop_agent", stop)):
+        assert "grep -qF -- \"$wt\"" not in body, (
+            f"{name} still substring-matches the worktree against a command line"
+        )
+
+
+def test_a_pid_is_only_trusted_when_it_still_serves_the_worktree():
+    """`kill -0` proves a pid exists, not that it is ours. A recycled pid would
+    be counted as the agent and then have its process group killed."""
+    text = FLEET.read_text(encoding="utf-8")
+    live = text.split("agent_running() {", 1)[1].split("\n}\n", 1)[0]
+    assert 'group_serves_worktree "$wt" "$pid"' in live, (
+        "liveness must prove the pid serves this worktree, not merely exist"
+    )
+    assert live.index("kill -0") < live.index("group_serves_worktree"), (
+        "existence is a precondition, not proof of ownership"
+    )
+    stop = text.split("stop_agent() {", 1)[1].split("\n}\n", 1)[0]
+    assert "treating the pidfile as stale, not signalling" in stop, (
+        "a pid that does not serve the worktree must never be signalled"
+    )
+    assert stop.index("does not serve") < stop.index('say "stopping $1'), (
+        "the ownership check has to precede the signal"
+    )
+
+
+def test_the_supervisor_refuses_to_signal_its_own_process_group():
+    """A stale pidfile whose pid was recycled into the supervisor's own group
+    would make `kill -- -$pgid` terminate the supervisor, which is far worse
+    than leaking an agent."""
+    text = FLEET.read_text(encoding="utf-8")
+    fn = text.split("stop_signal() {", 1)[1].split("\n}\n", 1)[0]
+    assert '"/proc/$$/stat"' in fn, "the supervisor must know its own process group"
+    assert 'refusing to signal it' in fn, "there must be a refusal path"
+    guard = fn.index('"$pgid" = "$self"')
+    assert guard < fn.index("kill -TERM"), (
+        "the self-group check must come before any signal is sent"
+    )
+
+
+def test_the_supervisor_lock_is_taken_before_any_state_is_written():
+    """Reconciling first meant a second supervisor rewrote the provider tally on
+    its way to being refused -- a write by a process that had not yet established
+    it was allowed to write."""
+    text = FLEET.read_text(encoding="utf-8")
+    loop = text.split("cmd_supervise() {", 1)[1]
+    assert loop.index("flock -n 9") < loop.index("reconcile_provider_counts"), (
+        "exclusivity must be established before the tally is rewritten"
+    )
