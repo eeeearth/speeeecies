@@ -1,0 +1,614 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Turdus migratorius",
+  "slug": "turdus-migratorius",
+  "common_names": {
+    "en": "American Robin"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Passeriformes",
+    "family": "Turdidae",
+    "genus": "Turdus",
+    "authority": "Linnaeus, 1766",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 9510564,
+    "inat_taxon_id": 12727,
+    "itis_tsn": 179759,
+    "wikidata": "Q460967",
+    "ncbi_taxon_id": 9188
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "US",
+      "CA"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Hop",
+      "Fly",
+      "Walk"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Cup",
+    "perching": true,
+    "size_class": "Small",
+    "mass_kg": 0.0785,
+    "mass_range_kg": [
+      0.059,
+      0.094
+    ],
+    "length_m": 0.255,
+    "wingspan_m": 0.36,
+    "lifespan_y": 2.0,
+    "diet": {
+      "invertebrate": 0.5,
+      "fruit": 0.5
+    },
+    "social": {
+      "structure": "Flock",
+      "group_size": [
+        1,
+        30
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.3
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.5,
+      "arboreal": 0.5
+    },
+    "shelter_tag": "perch",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.5
+      },
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.3
+      },
+      {
+        "tag": "berry",
+        "kind": "Herbivory",
+        "weight": 0.2
+      },
+      {
+        "tag": "nest_cup",
+        "kind": "Nesting",
+        "weight": 0.8
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.7
+      },
+      {
+        "tag": "shrub_thicket",
+        "kind": "Shelter",
+        "weight": 0.5
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "flight_distance_m": 6,
+      "notes": "Forages on lawns and nests on buildings, in gardens and in woodland; the most abundant landbird in North America."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "04-01",
+        "end": "07-31"
+      },
+      {
+        "name": "young",
+        "start": "05-01",
+        "end": "08-31"
+      },
+      {
+        "name": "flocking",
+        "start": "11-01",
+        "end": "02-28"
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg"
+      },
+      {
+        "stage": "Juvenile",
+        "duration_days": 28,
+        "scale": 0.85
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US-DE",
+        "monthly": [
+          0.59,
+          0.69,
+          1.0,
+          0.99,
+          0.75,
+          0.87,
+          0.58,
+          0.38,
+          0.43,
+          0.53,
+          0.68,
+          0.55
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 142922,
+        "sources": [
+          "inat-activity-us-de",
+          "gbif-activity-us-de"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 4,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=12727&place_id=4&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=4&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 819,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.8_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=9510564&gadmGid=USA.8_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.8_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 142103,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "bt-perching-songbird-v1",
+    "params": {
+      "flee_m": 6,
+      "food_tag": "invertebrate",
+      "song": "song",
+      "alarm": "alarm",
+      "song_cooldown_s": 8,
+      "nest_m1": 2,
+      "nest_m2": 5
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "song",
+      "context": "Song",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day",
+        "Dusk"
+      ],
+      "cooldown_s": 15,
+      "loudness": "Moderate",
+      "description": "A clear, caroling phrase of several discrete units, often rendered 'cheerily, cheer-up, cheerily'; among the earliest birds to sing at dawn."
+    },
+    {
+      "call_id": "alarm",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 5,
+      "loudness": "Moderate",
+      "description": "A sharp 'tut-tut-tut' or high 'tsee' given when a cat or other predator is near."
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.5,
+      "leg_length_ratio": 0.35,
+      "head_scale": 0.8,
+      "neck_angle_deg": 15,
+      "tail_ratio": 0.9,
+      "wing_aspect": 2.6,
+      "beak_ratio": 0.3,
+      "girth_ratio": 1.0
+    },
+    "palette": {
+      "body": "#6b5b4a",
+      "belly": "#d9722c",
+      "markings": "#3a3a3a",
+      "accent": "#f2c94c",
+      "eye": "#111111"
+    },
+    "part_colors": {
+      "breast": "belly",
+      "beak": "accent"
+    },
+    "poses": {
+      "idle": {},
+      "hop": {},
+      "walk": {},
+      "fly": {},
+      "glide": {},
+      "perched": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/9510564",
+      "title": "GBIF Backbone Taxonomy: Turdus migratorius",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q460967",
+      "title": "Wikidata: Turdus migratorius (Q460967)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/American_robin",
+      "title": "Wikipedia: Turdus migratorius",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Turdus migratorius\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=179759",
+      "title": "ITIS: Turdus migratorius, TSN 179759",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "eltontraits",
+      "url": "https://doi.org/10.6084/m9.figshare.3559887.v1",
+      "title": "EltonTraits 1.0: species-level foraging attributes of the world's birds and mammals",
+      "license": "CC0-1.0",
+      "kind": "dataset",
+      "accessed": "2026-10-01",
+      "attribution": "Wilman, H. et al. (2014) EltonTraits 1.0. Ecology 95:2027",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "inat-activity-us-de",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=12727&place_id=4&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Turdus migratorius in US-DE",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-de",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=9510564&gadmGid=USA.8_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Turdus migratorius in US-DE",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "itis"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "ITIS TSN and NCBI taxon id via Wikidata (P815, P685); Wikidata item for this species."
+    },
+    "common_names": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "Wikidata P141 = least concern (Q211005)."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Native to North America, breeding across Canada and the United States; northern birds migrate south for winter while southern populations are resident. Country list from the Wikipedia article's distribution section."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium"
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.size_class": {
+      "sources": [],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg (EltonTraits 1.0)."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "eltontraits"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "EltonTraits BodyMass-Value 78.5 g; consistent with Wikipedia's average 77 g."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of Wikipedia's 23-28 cm body length."
+    },
+    "traits.wingspan_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of Wikipedia's 31-41 cm wingspan."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Wikipedia: the longest known wild lifespan is 14 years and the average is about 2 years; 2 is used."
+    },
+    "traits.diet": {
+      "sources": [
+        "eltontraits",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "EltonTraits records 50% invertebrates and 50% fruit; Wikipedia lists beetle grubs, earthworms and caterpillars, fruits and berries."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "eltontraits",
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.defense": {
+      "sources": [],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Authored: the usual response to a threat."
+    },
+    "traits.wariness": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: how close a person can approach before it flees."
+    },
+    "habitat.use": {
+      "sources": [
+        "eltontraits",
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "EltonTraits ForStrat gives ground 20%, understory 40% and mid-high 40%; the split is authored to reflect ground foraging and tree nesting/roosting."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Roosts and nests in trees and shrubs."
+    },
+    "habitat.resources": {
+      "sources": [
+        "eltontraits",
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Food shares follow traits.diet; nesting and shelter weights are judgement."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Wikipedia: common in gardens, parks and residential areas."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Resident in Delaware and the mid-Atlantic; northern populations migrate south in winter."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Breeding April-July and young May-August from Wikipedia's breeding section; the winter flocking window is judgement."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Egg, then a juvenile period of about four weeks, then adult."
+    },
+    "vocalizations.song": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Call description and context from the Wikipedia article's description/behaviour sections."
+    },
+    "vocalizations.alarm": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Call description and context from the Wikipedia article's description/behaviour sections."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Grey-brown upperparts, a brick-orange breast and a yellow bill, from Wikipedia's description; proportions authored."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared perching-songbird program, scaled to a medium thrush."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies maintainers",
+      "agent": "opencode"
+    }
+  ]
+}
