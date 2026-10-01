@@ -1988,3 +1988,35 @@ def test_a_lock_holder_is_proven_by_the_lock_not_by_its_argv():
     shape = fn.index("saw_supervise=1")
     proof = fn.index('/proc/"$pid"/fd/*')
     assert shape < proof, "argv shape is a precondition, not the proof"
+
+
+def test_a_failed_worktree_add_cannot_report_a_spawn():
+    """`cmd_spawn` is invoked as `if ! spawn_err=$( ( cmd_spawn ... ) 2>&1 )`, and
+    bash suspends `set -e` inside a condition context. So a failed
+    `git worktree add` did not abort: the spawn wrote a .meta and a .pid for an
+    agent that never existed and logged "spawned". The branch was checked out by
+    a worktree outside WORKTREE_ROOT, git refused with `fatal: ... already used
+    by worktree at`, and the fleet counted a phantom -- reporting live=3 with two
+    real agents, and re-spawning the same doomed slug every poll.
+    """
+    text = FLEET.read_text(encoding="utf-8")
+    spawn = text.split("cmd_spawn() {", 1)[1].split("\n}\n", 1)[0]
+
+    # The subshell must be inside an `if !`, not a bare statement.
+    assert 'if ! ( cd "$REPO" && git worktree prune' in spawn, (
+        "the worktree-add subshell must have its status checked explicitly"
+    )
+    assert 'could not create a worktree for' in spawn, (
+        "a failed worktree add must be reported, not swallowed"
+    )
+    # The failure must return before any .meta or pidfile is written.
+    fail = spawn.index("return 1")
+    meta = spawn.index('> "$STATE_DIR/$slug.meta"')
+    assert fail < meta, (
+        "the failure has to return before the metadata is written, or a phantom "
+        "agent is created that the supervisor then counts as live"
+    )
+    # And the real worktree-add line must no longer stand alone.
+    assert "\n  ( cd \"$REPO\" && git worktree prune" not in spawn, (
+        "an unchecked worktree add is what produced the phantom spawn"
+    )

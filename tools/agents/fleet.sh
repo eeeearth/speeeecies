@@ -609,7 +609,18 @@ cmd_spawn() {
   # Prune first: an earlier spawn that died after `git worktree add` left a
   # registration with no directory, and git then refuses the path forever
   # with "missing but already registered worktree" -- the slug is wedged.
-  ( cd "$REPO" && git worktree prune && git fetch --quiet origin && "${worktree_add[@]}" ) >/dev/null
+  # The status must be checked by hand. cmd_spawn is invoked as
+  # `if ! spawn_err=$( ( cmd_spawn ... ) 2>&1 )`, and bash suspends `set -e`
+  # inside a condition context, so a failed `git worktree add` did not abort
+  # anything: the spawn carried on, wrote a .meta and a .pid for an agent that
+  # never existed, and logged "spawned". The branch was already checked out by a
+  # worktree outside WORKTREE_ROOT, git refused, and the fleet counted a phantom
+  # and reported live=3 with two real agents. stderr is deliberately not
+  # redirected: git's own `fatal:` is the useful diagnostic here.
+  if ! ( cd "$REPO" && git worktree prune && git fetch --quiet origin && "${worktree_add[@]}" ) >/dev/null; then
+    say "could not create a worktree for $slug at $wpath"
+    return 1
+  fi
   # Transaction boundary. A spawn that dies between here and the .meta write
   # leaves a worktree the supervisor cannot count, cannot reap, and retries
   # around -- it leaked three before this existed. Undo the worktree on any
