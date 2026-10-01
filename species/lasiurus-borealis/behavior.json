@@ -1,0 +1,195 @@
+{
+  "schema_version": 1,
+  "format": "speeeecies/behavior",
+  "id": "fsm-aerial-night-insectivore-v1",
+  "kind": "fsm",
+  "description": "Night-flying aerial insectivore (microbat): hangs up in tree cover while the sun is above `roost_sun_lo_deg`, leaves the roost after dusk or in mild weather above `min_temp_c`, hunts insects within `prey_m`, and drops back into shelter to rest.",
+  "params": {
+    "roost_sun_lo_deg": -4,
+    "roost_sun_hi_deg": 30,
+    "prey_m": 40,
+    "flee_m": 25,
+    "min_temp_c": 6
+  },
+  "initial": "roost",
+  "states": {
+    "roost": {
+      "action": {
+        "do": "rest",
+        "at": "shelter"
+      },
+      "min_dwell_s": 20
+    },
+    "hang": {
+      "action": {
+        "do": "idle"
+      },
+      "min_dwell_s": 5
+    },
+    "launch": {
+      "action": {
+        "do": "take_off"
+      }
+    },
+    "hunt": {
+      "action": {
+        "do": "fly_to_nearest",
+        "tag": "invertebrate",
+        "gait": "fly"
+      }
+    },
+    "feed": {
+      "action": {
+        "do": "eat_nearest",
+        "tag": "invertebrate",
+        "gait": "fly"
+      },
+      "min_dwell_s": 4
+    },
+    "return": {
+      "action": {
+        "do": "land"
+      }
+    },
+    "flee": {
+      "action": {
+        "do": "flee",
+        "gait": "fly"
+      },
+      "min_dwell_s": 3
+    }
+  },
+  "transitions": [
+    {
+      "from": "*",
+      "to": "flee",
+      "when": {
+        "threat_within_m": "${flee_m}"
+      },
+      "priority": 100
+    },
+    {
+      "from": "flee",
+      "to": "hang",
+      "when": {
+        "not": {
+          "threat_within_m": "${flee_m}"
+        }
+      }
+    },
+    {
+      "from": "*",
+      "to": "roost",
+      "when": {
+        "all": [
+          {
+            "chance": 0.6
+          },
+          {
+            "any": [
+              {
+                "sun_elevation_between_deg": [
+                  "${roost_sun_lo_deg}",
+                  "${roost_sun_hi_deg}"
+                ]
+              },
+              {
+                "temperature_between_c": [
+                  -40,
+                  "${min_temp_c}"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "priority": 20
+    },
+    {
+      "from": "roost",
+      "to": "hang",
+      "when": {
+        "any": [
+          {
+            "not": {
+              "sun_elevation_between_deg": [
+                "${roost_sun_lo_deg}",
+                "${roost_sun_hi_deg}"
+              ]
+            }
+          },
+          {
+            "temperature_between_c": [
+              "${min_temp_c}",
+              50
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "from": "hang",
+      "to": "launch",
+      "when": {
+        "all": [
+          {
+            "need": "hunger",
+            "gt": 0.4
+          },
+          {
+            "not": {
+              "sun_elevation_between_deg": [
+                "${roost_sun_lo_deg}",
+                "${roost_sun_hi_deg}"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "from": "launch",
+      "to": "hunt",
+      "when": {
+        "chance": 0.6
+      }
+    },
+    {
+      "from": "hunt",
+      "to": "feed",
+      "when": {
+        "all": [
+          {
+            "food_within_m": "${prey_m}",
+            "tag": "invertebrate"
+          },
+          {
+            "chance": 0.5
+          }
+        ]
+      }
+    },
+    {
+      "from": "feed",
+      "to": "return",
+      "when": {
+        "any": [
+          {
+            "need": "hunger",
+            "lt": 0.2
+          },
+          {
+            "chance": 0.35
+          }
+        ]
+      }
+    },
+    {
+      "from": "return",
+      "to": "roost",
+      "when": {
+        "chance": 0.5
+      }
+    }
+  ]
+}
