@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "format": "speeeecies/behavior",
+  "id": "fsm-perching-raptor-v1",
+  "kind": "fsm",
+  "description": "Perching bird of prey (hawk, falcon, owl): waits on a high perch watching for prey, drops onto prey within `prey_m`, carries it back up, eats it, and drops back into a perch while the sun is below `perch_sun_hi_deg`. Screams from the perch when a threat comes near.",
+  "params": {
+    "perch_m": 25,
+    "prey_m": 60,
+    "flee_m": 150,
+    "song": "scream"
+  },
+  "initial": "perched",
+  "states": {
+    "perched": {
+      "action": {
+        "do": "idle"
+      },
+      "min_dwell_s": 4
+    },
+    "watch": {
+      "action": {
+        "do": "idle"
+      }
+    },
+    "stoop": {
+      "action": {
+        "do": "fly_to_nearest",
+        "tag": "small_vertebrate",
+        "gait": "fly"
+      }
+    },
+    "catch": {
+      "action": {
+        "do": "eat_nearest",
+        "tag": "small_vertebrate",
+        "gait": "walk"
+      },
+      "min_dwell_s": 5
+    },
+    "carry": {
+      "action": {
+        "do": "perch_nearest",
+        "gait": "fly"
+      }
+    },
+    "soar": {
+      "action": {
+        "do": "wander",
+        "gait": "glide"
+      }
+    },
+    "flee": {
+      "action": {
+        "do": "flee",
+        "gait": "glide"
+      },
+      "min_dwell_s": 3
+    },
+    "mob": {
+      "action": {
+        "do": "sing",
+        "call": "${song}"
+      }
+    },
+    "night": {
+      "action": {
+        "do": "rest",
+        "at": "shelter"
+      },
+      "min_dwell_s": 60
+    }
+  },
+  "transitions": [
+    {
+      "from": "*",
+      "to": "flee",
+      "when": {
+        "threat_within_m": "${flee_m}"
+      },
+      "priority": 100
+    },
+    {
+      "from": "*",
+      "to": "mob",
+      "when": {
+        "all": [
+          {
+            "threat_within_m": "${perch_m}"
+          },
+          {
+            "not": {
+              "threat_within_m": "${flee_m}"
+            }
+          }
+        ]
+      },
+      "priority": 95
+    },
+    {
+      "from": "flee",
+      "to": "perched",
+      "when": {
+        "not": {
+          "threat_within_m": "${flee_m}"
+        }
+      }
+    },
+    {
+      "from": "mob",
+      "to": "perched",
+      "when": {
+        "chance": 0.5
+      }
+    },
+    {
+      "from": "perched",
+      "to": "night",
+      "when": {
+        "not": {
+          "sun_elevation_between_deg": [
+            -20,
+            40
+          ]
+        }
+      },
+      "priority": 40
+    },
+    {
+      "from": "perched",
+      "to": "stoop",
+      "when": {
+        "all": [
+          {
+            "need": "hunger",
+            "gt": 0.35
+          },
+          {
+            "food_within_m": "${prey_m}",
+            "tag": "small_vertebrate"
+          }
+        ]
+      },
+      "priority": 30
+    },
+    {
+      "from": "perched",
+      "to": "watch",
+      "when": {
+        "all": [
+          {
+            "need": "social",
+            "gt": 0.5
+          },
+          {
+            "is_day": true
+          }
+        ]
+      },
+      "priority": 20
+    },
+    {
+      "from": "perched",
+      "to": "soar",
+      "when": {
+        "need": "energy",
+        "gt": 0.6
+      },
+      "priority": 10
+    },
+    {
+      "from": "watch",
+      "to": "perched",
+      "when": {
+        "chance": 0.2
+      }
+    },
+    {
+      "from": "soar",
+      "to": "perched",
+      "when": {
+        "any": [
+          {
+            "chance": 0.3
+          },
+          {
+            "need": "energy",
+            "lt": 0.2
+          }
+        ]
+      }
+    },
+    {
+      "from": "stoop",
+      "to": "catch",
+      "when": {
+        "chance": 0.5
+      }
+    },
+    {
+      "from": "catch",
+      "to": "carry",
+      "when": {
+        "need": "hunger",
+        "lt": 0.2
+      }
+    },
+    {
+      "from": "carry",
+      "to": "perched",
+      "when": {
+        "chance": 0.5
+      }
+    },
+    {
+      "from": "night",
+      "to": "perched",
+      "when": {
+        "chance": 0.3
+      }
+    }
+  ]
+}
