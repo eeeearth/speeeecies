@@ -50,6 +50,12 @@ FLEET_MIN=${FLEET_MIN:-3}
 FLEET_MAX=${FLEET_MAX:-5}
 POLL_SECONDS=${POLL_SECONDS:-60}
 FLEET_MAX_ATTEMPTS=${FLEET_MAX_ATTEMPTS:-3}
+# Longest run of consecutive spawns one provider may serve while it is behind on the
+# lifetime tally. Catching up a 15-spawn skew by serving the lagging route fifteen
+# times in a row is hammering one quota, which is the opposite of the balance the
+# brief asks for. The lagging provider still gets the extra turns -- two of every
+# three while it is behind -- so the skew closes over a long window instead.
+FLEET_MAX_PROVIDER_STREAK=${FLEET_MAX_PROVIDER_STREAK:-2}
 # A locale is one manifest plus 8-12 species records and a flora catalog, so
 # it exhausts an agent's budget far more often than a single species does.
 # Retiring a locale after three tries was throwing away unfinished work that a
@@ -286,12 +292,30 @@ advance_model() {  # step that provider's own cursor, then hand over to the othe
   # preserved that 15-spawn gap instead of closing it. Going by the lower count
   # converges the skew and then degrades to plain alternation once they are level,
   # which is what "balance their usage" actually asks for.
-  local z_tally g_tally
+  local z_tally g_tally streak
   z_tally=$(provider_tally zen) || z_tally=0
   g_tally=$(provider_tally go) || g_tally=0
-  if [ "$z_tally" -lt "$g_tally" ]; then other=zen
+  streak=$(cat "$STATE_DIR/provider_streak" 2>/dev/null || echo 0) || streak=0
+  case "$streak" in ''|*[!0-9]*) streak=0 ;; esac
+  # Defaulted at the point of use as well as at the top of the file: these functions
+  # get exercised by harnesses that supply STATE_DIR and the pools but not every
+  # global, and under `set -u` one unbound knob aborts the caller mid-spawn.
+  local max_streak="${FLEET_MAX_PROVIDER_STREAK:-2}"
+  # next_model serves the current cursor BEFORE advance_model runs, so the run length
+  # if this provider is kept is streak+1, not streak. Comparing streak alone let the
+  # run reach FLEET_MAX_PROVIDER_STREAK+1 -- a cap of 2 permitting 3 in a row.
+  if [ "$(( streak + 1 ))" -ge "$max_streak" ]; then
+    # This provider has had its bounded burst. Alternate even though it is still
+    # behind: closing the remaining skew is worth less than not pinning one route.
+    case "$p" in zen) other=go;; *) other=zen;; esac
+  elif [ "$z_tally" -lt "$g_tally" ]; then other=zen
   elif [ "$g_tally" -lt "$z_tally" ]; then other=go
   else case "$p" in zen) other=go;; *) other=zen;; esac
+  fi
+  if [ "$other" = "$p" ]; then
+    printf '%s\n' "$(( streak + 1 ))" | write_state "$STATE_DIR/provider_streak"
+  else
+    printf '0\n' | write_state "$STATE_DIR/provider_streak"
   fi
   printf '%s\n' "$other" > "$STATE_DIR/provider_cursor"
 }

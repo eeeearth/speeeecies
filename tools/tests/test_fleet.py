@@ -2584,3 +2584,79 @@ def test_the_default_rotation_only_serves_larger_routes():
     assert "nemotron-3-ultra-free" in rotated, "the largest free route must stay"
     # Kept, not deleted: an operator still needs them when a primary route is down.
     assert "MODEL_POOL_ZEN_FALLBACK=(" in text
+
+
+def _simulate_spawns(counts: str, cursor: str, n: int) -> list[str]:
+    """Replay the REAL spawn sequence n times and return the provider served each time.
+
+    The committed order in cmd_spawn is next_model -> advance_model ->
+    note_spawn_provider, so the next cursor is computed from the tally that does not
+    yet include the model just served. Testing advance_model alone missed that: the
+    lifetime catch-up rule it implements serves the lagging provider seventeen times
+    in a row against a 15-spawn skew, which the isolated handoff test cannot see.
+    """
+    state = tempfile.mkdtemp()
+    Path(state, "provider_counts").write_text(counts, encoding="utf-8")
+    Path(state, "provider_cursor").write_text(cursor + "\n", encoding="utf-8")
+    src = FLEET.read_text(encoding="utf-8")
+    zen = src.split("MODEL_POOL_ZEN=(", 1)[1].split(")", 1)[0]
+    go = src.split("MODEL_POOL_GO=(", 1)[1].split(")", 1)[0]
+    # Take the *value* out of ${FLEET_MAX_PROVIDER_STREAK:-2}, not the whole
+    # expansion, or the comparison below runs against a literal "${...}" string.
+    m = re.search(r"FLEET_MAX_PROVIDER_STREAK=\$\{FLEET_MAX_PROVIDER_STREAK:-(\d+)\}", src)
+    assert m, "FLEET_MAX_PROVIDER_STREAK default not found in fleet.sh"
+    streak = m.group(1)
+    # write_state must come along: advance_model persists the streak through it, and
+    # omitting it made the write fail silently, leaving the streak at 0 and the
+    # catch-up unbounded -- a harness gap that looked exactly like a code bug.
+    fns = "".join(_shell_function(f) for f in (
+        "provider_of", "provider_of_model", "provider_tally",
+        "next_model", "advance_model", "note_spawn_provider", "write_state"))
+    script = (
+        f'STATE_DIR={state}\n'
+        f'FLEET_MAX_PROVIDER_STREAK="{streak}"\n'
+        f"MODEL_POOL_ZEN=({zen})\n"
+        f"MODEL_POOL_GO=({go})\n"
+        f"{fns}\n"
+        "for i in $(seq 1 " + str(n) + "); do\n"
+        '  m=$(next_model)\n'
+        "  advance_model\n"
+        '  note_spawn_provider "$m"\n'
+        '  provider_of_model "$m"\n'
+        "done\n"
+    )
+    p = subprocess.run(["bash", "-c", script], capture_output=True, text=True, timeout=60)
+    subprocess.run(["rm", "-rf", state], check=False)
+    assert p.returncode == 0, f"simulation failed: {p.stderr}"
+    return p.stdout.split()
+
+
+def test_provider_catchup_is_bounded_not_a_single_long_burst():
+    """Serving the lagging provider until a 15-spawn skew is level means fifteen
+    consecutive spawns against one route. That hammers one quota, which is not what
+    "balance their usage ... evenly and consistently" asks for. The catch-up has to
+    be bounded; convergence belongs in the long window, not one burst."""
+    served = _simulate_spawns("zen 40\ngo 25\n", "zen", 90)
+    assert len(served) == 90
+    longest, run = 1, 1
+    for a, b in zip(served, served[1:]):
+        run = run + 1 if a == b else 1
+        longest = max(longest, run)
+    assert longest <= 2, (
+        f"one provider served {longest} spawns consecutively; catch-up must be bounded"
+    )
+    # Still convergent: the lagging provider has to close the gap over the window,
+    # otherwise "bounded" would just mean "gave up on balancing".
+    counts = {"zen": 40, "go": 25}
+    for s in served:
+        counts[s] += 1
+    assert counts["go"] > 40, f"the lagging provider never caught up: {counts}"
+    assert abs(counts["zen"] - counts["go"]) <= 2, f"did not converge: {counts}"
+
+
+def test_provider_balance_stays_even_once_the_tally_is_level():
+    served = _simulate_spawns("zen 47\ngo 47\n", "zen", 40)
+    counts = {"zen": 0, "go": 0}
+    for s in served:
+        counts[s] += 1
+    assert abs(counts["zen"] - counts["go"]) <= 2, f"unbalanced at parity: {counts}"
