@@ -340,7 +340,7 @@ def test_a_refused_spawn_cannot_leave_the_fleet_reporting_ok():
         loop,
     )
     assert inv, "missing the below-floor invariant"
-    assert loop.index("BELOW_FLOOR") < loop.index('> "$STATE_DIR/heartbeat"'), (
+    assert loop.index("BELOW_FLOOR") < loop.index('write_state "$STATE_DIR/heartbeat"'), (
         "the invariant must run before the heartbeat is written, or it guards nothing"
     )
     assert loop.index("BELOW_FLOOR") > loop.index('while [ -n "$remaining" ]'), (
@@ -2223,3 +2223,43 @@ def test_the_orphan_worktree_sweep_spares_a_worktree_with_a_live_agent():
     guard = sweep.index("agent_for_worktree")
     remove = sweep.index("worktree remove --force")
     assert guard < remove, "the liveness check must precede the removal"
+
+
+def test_a_failed_state_write_does_not_kill_the_supervisor():
+    """The heartbeat write runs in the main poll loop where errexit is ACTIVE, so a
+    full or read-only state dir killed the supervisor mid-poll -- and with it every
+    running agent, since nothing reaps or refills without it. A state write failing
+    is a degraded fleet, not a reason to stop working."""
+    text = FLEET.read_text(encoding="utf-8")
+    assert "write_state() {" in text, "there must be a guarded state-write helper"
+    loop = text.split("cmd_supervise() {", 1)[1]
+    assert 'write_state "$STATE_DIR/heartbeat"' in loop, (
+        "the heartbeat must go through the guarded writer"
+    )
+    assert "STATE_WRITE_FAILED" in loop, (
+        "a fleet whose heartbeat cannot be written must say so in its state"
+    )
+    # And the failed write must not skip the sleep, or the loop would spin.
+    guard = loop.index("STATE_WRITE_FAILED")
+    assert "sleep \"$POLL_SECONDS\" 9>&-" in loop[guard:], (
+        "a failed heartbeat must still pace the next poll"
+    )
+
+
+def test_an_unreclaimable_orphan_worktree_is_reported_not_silently_skipped():
+    """The orphan sweep removes a worktree with no meta and a clean tree. If the
+    directory belongs to a *different* checkout, `git worktree remove` fails and
+    the sweep reported nothing at all -- so the slug stayed wedged on "worktree
+    path already exists" with no indication why. It must be named, and it must not
+    be deleted automatically: it belongs to another checkout."""
+    text = FLEET.read_text(encoding="utf-8")
+    sweep = text.split("# Reclaim orphans first.", 1)[1].split("# Orphans.", 1)[0]
+    assert "could not be reclaimed" in sweep or "foreign" in sweep, (
+        "a worktree the sweep cannot remove must be reported, not skipped in silence"
+    )
+    # It must be a warning about a blocker, not a removal.
+    warned = sweep.index("could not be reclaimed") if "could not be reclaimed" in sweep \
+        else sweep.index("foreign")
+    assert "worktree remove --force" not in sweep[warned:], (
+        "a foreign worktree must never be deleted automatically"
+    )

@@ -137,6 +137,20 @@ note_spawn_provider() {  # model id; tally what was really served per provider
   mv "$f.tmp" "$f"
 }
 
+# Write a state file, reporting failure instead of dying. These writes run in the
+# main poll loop where errexit is ACTIVE, so a full or read-only state dir killed
+# the supervisor mid-poll -- and with it every running agent, since nothing
+# reaps or refills without it. A state write failing is a degraded fleet, not a
+# reason to stop working.
+write_state() {  # path; stdin -> path. 0 on success.
+  local path="$1"
+  cat > "$path" 2>/dev/null || {
+    say "WARNING could not write $path (state dir full or read-only?)"
+    return 1
+  }
+  return 0
+}
+
 reconcile_provider_counts() {
   # Rebuild the tally from the spawn lines the log already records, so the two
   # cannot drift. It had drifted: provider_counts read one higher than any
@@ -1079,8 +1093,16 @@ cmd_supervise() {
         continue
       }
       if [ -z "$(git -C "$w" status --porcelain 2>/dev/null)" ]; then
-        git -C "$REPO" worktree remove --force "$w" 2>/dev/null \
-          && echo "[$(date -u +%FT%TZ)] reclaimed orphan worktree $wbase (no meta, clean)"
+        if git -C "$REPO" worktree remove --force "$w" 2>/dev/null; then
+          echo "[$(date -u +%FT%TZ)] reclaimed orphan worktree $wbase (no meta, clean)"
+        elif [ -n "$(git -C "$w" rev-parse --git-dir 2>/dev/null)" ]; then
+          # Clean, and a real git worktree, but this repository cannot remove it:
+          # its .git points into a different checkout, so this repo holds no
+          # registration for it. It is not ours to delete, and it will wedge its
+          # slug on "worktree path already exists". Name it rather than let the
+          # spawn fail for a reason nobody can see.
+          echo "[$(date -u +%FT%TZ)] WARNING orphan worktree $wbase could not be reclaimed: it is registered to another checkout and will block its slug until removed by hand"
+        fi
       else
         say "orphan worktree $wbase has uncommitted work; leaving it for inspection"
       fi
@@ -1278,9 +1300,20 @@ cmd_supervise() {
     fi
     zen_n=$(awk '$1=="zen" {print $2}' "$STATE_DIR/provider_counts" 2>/dev/null | tail -1) || true
     go_n=$(awk '$1=="go" {print $2}' "$STATE_DIR/provider_counts" 2>/dev/null | tail -1) || true
-    printf 'live=%s floor=%s max=%s state=%s zen=%s go=%s at=%s\n' \
-      "$live" "$FLEET_MIN" "$FLEET_MAX" "$fleet_state" "${zen_n:-0}" "${go_n:-0}" \
-      "$(date -u +%FT%TZ)" > "$STATE_DIR/heartbeat"
+    # If even this cannot be written the fleet cannot be observed at all, so
+    # report it on stderr too: stdout is the supervisor log, but a stale
+    # heartbeat is the thing an operator will be watching.
+    if ! printf 'live=%s floor=%s max=%s state=%s zen=%s go=%s at=%s\n' \
+         "$live" "$FLEET_MIN" "$FLEET_MAX" "$fleet_state" "${zen_n:-0}" "${go_n:-0}" \
+         "$(date -u +%FT%TZ)" | write_state "$STATE_DIR/heartbeat"; then
+      fleet_state=STATE_WRITE_FAILED
+      echo "[$(date -u +%FT%TZ)] STATE_WRITE_FAILED: heartbeat not written; the fleet is still running but cannot be observed" >&2
+      prev_state=$fleet_state
+      echo "[$(date -u +%FT%TZ)] fleet=$live (min $FLEET_MIN max $FLEET_MAX) state=$fleet_state next-model=$(next_model)"
+      [ "$once" = 1 ] && return 0
+      sleep "$POLL_SECONDS" 9>&-
+      continue
+    fi
     prev_state=$fleet_state
 
     echo "[$(date -u +%FT%TZ)] fleet=$live (min $FLEET_MIN max $FLEET_MAX) state=$fleet_state next-model=$(next_model)"
