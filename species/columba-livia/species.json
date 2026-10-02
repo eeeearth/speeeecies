@@ -72,7 +72,8 @@
       "AU",
       "NZ",
       "ZA",
-      "JP"
+      "JP",
+      "KE"
     ]
   },
   "traits": {
@@ -334,6 +335,53 @@
             "gbif"
           ]
         }
+      },
+      {
+        "region": "KE-30",
+        "monthly": [
+          0.63,
+          0.63,
+          0.52,
+          0.36,
+          0.53,
+          0.68,
+          1.0,
+          0.53,
+          0.59,
+          0.52,
+          0.53,
+          0.43
+        ],
+        "method": "gbif_share",
+        "observations": 599,
+        "sources": [
+          "gbif-activity-ke-30"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 10957,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3017&place_id=10957&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=10957&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 10,
+            "usable": false
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "KEN.30_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2495414&gadmGid=KEN.30_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=KEN.30_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 599,
+            "usable": true
+          },
+          "used": [
+            "gbif"
+          ]
+        }
       }
     ]
   },
@@ -557,6 +605,24 @@
       "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
       "accessed": "2026-09-30",
       "kind": "api"
+    },
+    {
+      "id": "gbif-activity-ke-30",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2495414&gadmGid=KEN.30_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Columba livia in KE-30",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-occurrence-ke",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2495414&country=KE&limit=0",
+      "title": "GBIF occurrence search for Columba livia in KE",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-02) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-02",
+      "kind": "api"
     }
   ],
   "provenance": {
@@ -592,11 +658,12 @@
     "range": {
       "sources": [
         "wikipedia-rock-dove",
-        "wikipedia-feral-pigeon"
+        "wikipedia-feral-pigeon",
+        "gbif-occurrence-ke"
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "Native list assembled from the Rock dove article's subspecies distributions (the natural, wild range): C. l. livia 'west, central Europe, north Africa to central Asia' (GB, IE, PT, ES, FR, IT, DE, BE, NL, CH, AT, MA, DZ, TN); C. l. gymnocycla 'Mauritania and Senegal to south Mali and Ghana' (MR, SN, ML, GH); C. l. targia 'north Mali and south Algeria to central Sudan' (SD); C. l. schimperi 'east Egypt, south Sudan and Eritrea' (EG, ER); C. l. palaestinae 'Sinai (Egypt) to Syria, to west and south Arabian Peninsula' (SY, SA); C. l. gaddi 'east Turkey to Uzbekistan, to west and north Afghanistan' (TR, UZ, AF); C. l. intermedia 'south India and Sri Lanka' (IN, LK); Pakistan from C. l. neglecta (PK). GB is included because the wild, undomesticated nominate subspecies still breeds on remote coasts and cliffs of northern and western Scotland. Introduced list is a judgement sample from 'introduced into most of the rest of the world aboard European ships from 1603 onwards' (major feral-only regions named or well documented: Americas, Australia, New Zealand, southern Africa, Japan), since Wikipedia does not give an exhaustive country list. This record covers the whole species Columba livia (wild + domestic + feral, which readily interbreed); the urban form this record is tuned for (traits, diet, habitat, human_tolerance) is specifically the feral, human-commensal population, which in GB and most of the modelled range descends from escaped/released domestic stock rather than the wild coastal population."
+      "note": "Native list assembled from the Rock dove article's subspecies distributions (the natural, wild range): C. l. livia 'west, central Europe, north Africa to central Asia' (GB, IE, PT, ES, FR, IT, DE, BE, NL, CH, AT, MA, DZ, TN); C. l. gymnocycla 'Mauritania and Senegal to south Mali and Ghana' (MR, SN, ML, GH); C. l. targia 'north Mali and south Algeria to central Sudan' (SD); C. l. schimperi 'east Egypt, south Sudan and Eritrea' (EG, ER); C. l. palaestinae 'Sinai (Egypt) to Syria, to west and south Arabian Peninsula' (SY, SA); C. l. gaddi 'east Turkey to Uzbekistan, to west and north Afghanistan' (TR, UZ, AF); C. l. intermedia 'south India and Sri Lanka' (IN, LK); Pakistan from C. l. neglecta (PK). GB is included because the wild, undomesticated nominate subspecies still breeds on remote coasts and cliffs of northern and western Scotland. Introduced list is a judgement sample from 'introduced into most of the rest of the world aboard European ships from 1603 onwards' (major feral-only regions named or well documented: Americas, Australia, New Zealand, southern Africa, Japan), since Wikipedia does not give an exhaustive country list. This record covers the whole species Columba livia (wild + domestic + feral, which readily interbreed); the urban form this record is tuned for (traits, diet, habitat, human_tolerance) is specifically the feral, human-commensal population, which in GB and most of the modelled range descends from escaped/released domestic stock rather than the wild coastal population. Kenya (KE) added from 3,257 GBIF occurrences in the country (930 in Nairobi City County), all feral descendants of domestic stock."
     },
     "traits.body_plan": {
       "sources": [
