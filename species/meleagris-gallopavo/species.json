@@ -5,8 +5,9 @@
   "id": "Meleagris gallopavo",
   "slug": "meleagris-gallopavo",
   "common_names": {
-    "en": "Wild Turkey",
-    "fr": "Dindon sauvage",
+    "en": "wild turkey",
+    "fr": "dindon sauvage",
+    "es": "pavo salvaje",
     "de": "Truthuhn"
   },
   "taxonomy": {
@@ -41,7 +42,13 @@
       "SV",
       "NI",
       "CR"
-    ]
+    ],
+    "introduced": [
+      "NZ",
+      "DE",
+      "US-HI"
+    ],
+    "invasive_in": []
   },
   "traits": {
     "body_plan": "Vertebrate",
@@ -56,40 +63,40 @@
     "respiration": "Lungs",
     "metamorphosis": "None",
     "nest_type": "Ground",
-    "perching": true,
-    "senses": {
-      "vision_color": true,
-      "hearing": "High",
-      "night_vision": false,
-      "olfaction": "Low"
-    },
+    "perching": false,
     "size_class": "Medium",
-    "mass_kg": 7.6,
+    "mass_kg": 5.79,
     "mass_range_kg": [
-      2.5,
-      11.0
+      4,
+      11
     ],
-    "length_m": 1.125,
-    "shoulder_height_m": 0.6,
+    "length_m": 1.1,
     "wingspan_m": 1.345,
-    "lifespan_y": 8.0,
+    "lifespan_y": 12,
     "diet": {
-      "mast": 0.4,
+      "browse": 0.4,
       "seed": 0.2,
       "fruit": 0.2,
-      "invertebrate": 0.15,
-      "browse": 0.05
+      "invertebrate": 0.2
     },
     "social": {
       "structure": "Flock",
       "group_size": [
-        2,
-        20
+        1,
+        15
       ]
     },
     "activity_pattern": "Diurnal",
     "defense": "Flee",
-    "wariness": 0.5
+    "wariness": 0.75,
+    "senses": {
+      "hearing": "High",
+      "vibration": true,
+      "vision_color": true,
+      "night_vision": false,
+      "olfaction": "Low"
+    },
+    "shoulder_height_m": 0.6
   },
   "habitat": {
     "use": {
@@ -99,7 +106,7 @@
     "shelter_tag": "shrub_thicket",
     "resources": [
       {
-        "tag": "mast",
+        "tag": "browse",
         "kind": "Herbivory",
         "weight": 0.4
       },
@@ -116,75 +123,310 @@
       {
         "tag": "invertebrate",
         "kind": "Predation",
-        "weight": 0.15
+        "weight": 0.2
       },
       {
-        "tag": "browse",
+        "tag": "mast",
         "kind": "Herbivory",
-        "weight": 0.05
+        "weight": 0.3
+      },
+      {
+        "tag": "leaf_litter",
+        "kind": "Herbivory",
+        "weight": 0.2
       },
       {
         "tag": "nest_ground",
         "kind": "Nesting",
-        "weight": 1.0
-      },
-      {
-        "tag": "perch",
-        "kind": "Shelter",
         "weight": 0.4
       },
       {
         "tag": "shrub_thicket",
         "kind": "Shelter",
-        "weight": 0.5
+        "weight": 0.3
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.8
+      },
+      {
+        "tag": "small_vertebrate",
+        "kind": "Predation",
+        "weight": 0.02
       }
     ],
     "human_tolerance": {
       "urban_affinity": "Adapter",
       "uses_gardens": true,
-      "notes": "Feeds in cow pastures, sometimes visits backyard bird feeders, and favours croplands after harvest to scavenge seeds on the ground; can adapt to virtually any dense native plant community as long as coverage and openings are widely available."
+      "notes": "Wary of people in the woods but confident where food is concentrated: it feeds in pastures, visits backyard feeders and scavenges in harvested cropland. It is heavily hunted, so wild birds keep a long flight distance.",
+      "light_max": 0.5,
+      "impervious_max": 0.2,
+      "flight_distance_m": 60,
+      "road_mortality": "High"
+    },
+    "density_per_ha": {
+      "min": 0.05,
+      "typical": 0.5,
+      "max": 5
     }
   },
   "seasonal": {
     "strategy": "ActiveYearRound",
     "phases": [
       {
+        "name": "breeding",
+        "start": "04-01",
+        "end": "06-30",
+        "note": "In early spring males older than a year gobble to announce their presence to females and competing males; hens nest on the ground in a shallow scrape under cover."
+      },
+      {
+        "name": "flocking",
+        "start": "10-01",
+        "end": "02-28",
+        "note": "Birds gather in flocks on winter range, which is how they can reach large numbers in small areas given the range of foods they exploit."
+      },
+      {
         "name": "mating",
         "start": "03-01",
         "end": "04-30",
-        "note": "Courtship begins during March and April, when the birds are still flocked together in winter areas. Males are polygamous and may court in groups, the dominant male gobbling, strutting with spread tail feathers, drumming/booming and spitting."
+        "note": "Toms gobble and display from March; peak gobbling at the start of the breeding season."
       },
       {
         "name": "nesting",
-        "start": "04-15",
-        "end": "06-15",
-        "note": "When mating is finished females search for nest sites: shallow dirt depressions engulfed with woody vegetation. Hens lay a clutch of 10-14 eggs, usually one per day, which are incubated for at least 28 days."
+        "start": "04-01",
+        "end": "06-30",
+        "note": "Hens lay a ground clutch of about 10-14 eggs from April."
       },
       {
         "name": "young",
-        "start": "05-15",
+        "start": "05-01",
         "end": "08-31",
-        "note": "Poults are precocial and nidifugous, leaving the nest in about 12-24 hours, and are observed eating insects, berries and seeds."
+        "note": "Poults hatch after about 28 days and can fly within two weeks."
+      },
+      {
+        "name": "breeding",
+        "start": "03-01",
+        "end": "06-30",
+        "region": "US-TN",
+        "note": "Males gobble and display from March; hens nest on the ground."
       }
     ],
     "life_stages": [
       {
-        "stage": "Egg",
-        "duration_days": 28,
-        "requires_tag": "nest_ground"
-      },
-      {
         "stage": "Juvenile",
-        "scale": 0.4,
+        "duration_days": 120,
+        "scale": 0.55,
         "requires_tag": "nest_ground"
       },
       {
         "stage": "Adult"
+      },
+      {
+        "stage": "Egg",
+        "duration_days": 28,
+        "requires_tag": "nest_ground"
       }
     ]
   },
   "activity": {
     "regions": [
+      {
+        "region": "US-IN",
+        "monthly": [
+          0.65,
+          0.56,
+          0.67,
+          0.82,
+          0.67,
+          0.78,
+          0.86,
+          1.0,
+          0.79,
+          0.6,
+          0.53,
+          0.63
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 39706,
+        "sources": [
+          "inat-activity-us-in",
+          "gbif-activity-us-in"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 20,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=906&place_id=20&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=20&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 853,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.15_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=9606290&gadmGid=USA.15_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.15_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 38853,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "US-MA",
+        "monthly": [
+          0.45,
+          0.43,
+          0.62,
+          1.0,
+          0.82,
+          0.91,
+          0.89,
+          0.73,
+          0.89,
+          0.68,
+          0.55,
+          0.53
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 147463,
+        "sources": [
+          "inat-activity-us-ma",
+          "gbif-activity-us-ma"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 2,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=906&place_id=2&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=2&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "total": 1222,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.22_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=9606290&gadmGid=USA.22_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.22_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 146241,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "US-TN",
+        "monthly": [
+          0.36,
+          0.43,
+          0.73,
+          0.81,
+          0.74,
+          0.71,
+          0.68,
+          1.0,
+          0.83,
+          0.72,
+          0.53,
+          0.37
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 56210,
+        "sources": [
+          "inat-activity-us-tn",
+          "gbif-activity-us-tn"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 45,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=906&place_id=45&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=45&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "total": 377,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.43_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=9606290&gadmGid=USA.43_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.43_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 55833,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "US-MI",
+        "monthly": [
+          1.0,
+          0.93,
+          0.87,
+          0.94,
+          0.57,
+          0.67,
+          0.8,
+          0.85,
+          0.99,
+          0.81,
+          0.63,
+          0.97
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 148673,
+        "sources": [
+          "inat-activity-us-mi",
+          "gbif-activity-us-mi"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 29,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=906&place_id=29&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=29&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "total": 390,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.23_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=9606290&gadmGid=USA.23_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.23_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 148283,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
       {
         "region": "US-WV",
         "monthly": [
@@ -237,14 +479,15 @@
     ]
   },
   "behavior": {
-    "program": "bt-perching-songbird-v1",
+    "program": "fsm-ground-galliform-v1",
     "params": {
-      "flee_m": 30,
+      "flee_m": 25,
+      "calm_m": 60,
       "food_tag": "mast",
-      "song": "gobble",
-      "alarm": "yelp",
-      "nest_m1": 4,
-      "nest_m2": 6
+      "food_m": 20,
+      "call": "gobble",
+      "gobble_m1": 3,
+      "gobble_m2": 5
     }
   },
   "vocalizations": [
@@ -257,63 +500,163 @@
         5
       ],
       "time_windows": [
-        "DawnChorus",
-        "Day"
+        "DawnChorus"
       ],
       "cooldown_s": 20,
       "loudness": "Loud",
-      "description": "In early spring, males older than a year old gobble to announce their presence to females and competing males; the gobble can be heard up to a mile away. Gobbling is reduced in some seasons by pressure, precipitation and temperature."
+      "description": "A rapid series of hollow, chuffing notes that can be heard up to a mile away, given by males to announce themselves to females and to other males in early spring; gobbling falls off in some seasons with wind, precipitation and temperature."
     },
     {
       "call_id": "yelp",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [],
+      "cooldown_s": 10,
+      "loudness": "Moderate",
+      "description": "A sharp rising yelp, one of a large repertoire that also includes the assembly call, purr, cluck, cutt, fly-down cackle, tree call and putt."
+    },
+    {
+      "call_id": "cluck",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [],
+      "cooldown_s": 5,
+      "loudness": "Quiet",
+      "description": "Soft clucks and purrs that keep a flock or a hen and her poults in contact while feeding."
+    },
+    {
+      "call_id": "putt",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [],
+      "cooldown_s": 3,
+      "loudness": "Moderate",
+      "description": "A sharp, single-syllable alarm 'putt' repeated as the bird stretches its neck and then runs or flies."
+    },
+    {
+      "call_id": "purr",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 15,
+      "loudness": "Quiet",
+      "description": "A low purring sound given on the ground and by a hen to her brood; 'purr, cluck' is the common combined form."
+    },
+    {
+      "call_id": "drumming",
+      "context": "Drum",
+      "season_months": [
+        3,
+        4,
+        5
+      ],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 15,
+      "loudness": "Loud",
+      "description": "A low-pitched booming made by the movement of air in the chest air sac, like a prairie chicken, used with gobbling and spitting as a sign of social dominance and to attract females."
+    },
+    {
+      "call_id": "spit",
       "context": "Alarm",
       "season_months": [],
       "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 12,
+      "loudness": "Moderate",
+      "description": "A sharp expulsion of air from the chest air sac, made by males alongside gobbling and drumming."
+    },
+    {
+      "call_id": "cackle",
+      "context": "Scream",
+      "season_months": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "time_windows": [
         "DawnChorus",
-        "Day",
         "Dusk"
       ],
-      "cooldown_s": 8,
+      "cooldown_s": 10,
       "loudness": "Loud",
-      "description": "One of a large repertoire of calls that also includes the assembly call, plain yelp, purr, cluck, cutt, excited yelp, fly-down cackle, tree call, kee kee run and putt; males also give a low-pitched drumming or booming sound produced by air moving in the chest air sac, and a sharp 'spit'."
+      "description": "The fly-down cackle given by the flock as it comes down off the roost; a hen answers with a 'kee kee run' to call her poults in."
     }
   ],
   "look": {
     "body_plan": "biped_winged",
     "proportions": {
-      "torso_aspect": 1.6,
-      "leg_length_ratio": 0.72,
+      "torso_aspect": 1.7,
+      "leg_length_ratio": 0.5,
       "head_scale": 0.5,
-      "neck_angle_deg": 22,
-      "tail_ratio": 0.75,
-      "wing_aspect": 3.2,
+      "neck_angle_deg": 5,
+      "tail_ratio": 0.45,
+      "wing_aspect": 2.8,
       "beak_ratio": 0.3,
-      "girth_ratio": 1.12
+      "girth_ratio": 1.35
     },
     "palette": {
-      "body": "#4a3a2c",
-      "belly": "#8f7a5c",
-      "markings": "#1e1a16",
-      "accent": "#b03a26",
-      "eye": "#121010"
+      "body": "#4a3524",
+      "belly": "#2f2117",
+      "markings": "#8c2f22",
+      "accent": "#1d150f",
+      "eye": "#141414"
     },
     "part_colors": {
-      "head": "accent",
-      "beak": "accent",
-      "tail": "markings"
+      "breast": "belly",
+      "beak": "markings",
+      "leg_left": "markings",
+      "leg_right": "markings"
     },
     "extra_parts": [
       {
-        "name": "beard",
-        "parent": "breast",
+        "name": "fan_tail",
+        "parent": "tail",
         "offset": [
-          0.1,
-          -0.4,
+          -0.2,
+          0.2,
           0
         ],
         "size": [
-          0.3,
-          0.7,
+          1.1,
+          1.5,
+          1.9
+        ],
+        "color": "accent"
+      },
+      {
+        "name": "caruncle",
+        "parent": "head",
+        "offset": [
+          0.4,
+          -0.3,
+          0
+        ],
+        "size": [
+          0.45,
+          0.4,
+          0.35
+        ],
+        "color": "markings"
+      },
+      {
+        "name": "snood",
+        "parent": "head",
+        "offset": [
+          0.35,
+          0.4,
+          0
+        ],
+        "size": [
+          0.35,
+          0.5,
           0.3
         ],
         "color": "markings"
@@ -323,7 +666,6 @@
       "idle": {},
       "walk": {},
       "fly": {},
-      "perched": {},
       "rest": {}
     }
   },
@@ -341,7 +683,7 @@
     {
       "id": "wikidata",
       "url": "https://www.wikidata.org/wiki/Q26844",
-      "title": "Wikidata: Wild Turkey (Q26844)",
+      "title": "Wikidata: wild turkey (Q26844)",
       "license": "CC0-1.0",
       "kind": "database",
       "accessed": "2026-10-01",
@@ -358,15 +700,6 @@
       "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
     },
     {
-      "id": "itis",
-      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=176136",
-      "title": "ITIS: Meleagris gallopavo, TSN 176136",
-      "license": "public-domain",
-      "kind": "database",
-      "accessed": "2026-10-01",
-      "note": "US federal government database; public domain in the United States."
-    },
-    {
       "id": "eltontraits",
       "url": "https://doi.org/10.6084/m9.figshare.3559887.v1",
       "title": "EltonTraits 1.0: species-level foraging attributes of the world's birds and mammals (BirdFuncDat)",
@@ -377,6 +710,51 @@
       "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
     },
     {
+      "id": "inat-activity-us-in",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=906&place_id=20&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Meleagris gallopavo in US-IN",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-in",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=9606290&gadmGid=USA.15_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Meleagris gallopavo in US-IN",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=176136",
+      "title": "ITIS: Meleagris gallopavo, TSN 176136",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "inat-activity-us-ma",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=906&place_id=2&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Meleagris gallopavo in US-MA",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-ma",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=9606290&gadmGid=USA.22_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Meleagris gallopavo in US-MA",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
       "id": "avonet",
       "url": "https://doi.org/10.6084/m9.figshare.16586228",
       "title": "AVONET: morphological, ecological and geographical data for all birds",
@@ -385,6 +763,42 @@
       "accessed": "2026-10-01",
       "attribution": "Tobias, J. A. et al. (2022) AVONET. Ecology Letters 25:581-597",
       "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "inat-activity-us-tn",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=906&place_id=45&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Meleagris gallopavo in US-TN",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-tn",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=9606290&gadmGid=USA.43_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Meleagris gallopavo in US-TN",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "inat-activity-us-mi",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=906&place_id=29&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Meleagris gallopavo in US-MI",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-mi",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=9606290&gadmGid=USA.23_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Meleagris gallopavo in US-MI",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
     },
     {
       "id": "inat-activity-us-wv",
@@ -408,26 +822,18 @@
   "provenance": {
     "taxonomy": {
       "sources": [
-        "gbif-backbone",
-        "itis"
+        "gbif-backbone"
       ],
       "confidence": "High",
-      "note": "GBIF backbone gives family Phasianidae, order Galliformes and authority Linnaeus, 1758; ITIS scientific-name search returns TSN 176136 with the same authority. Linnaeus described it in the 1758 tenth edition of Systema Naturae with type locality Mexico."
+      "note": "The record is at species level; the six recognised subspecies are not split, since the schema's id is a trinomial at most and no subspecies was needed for a Michigan locale."
     },
     "external": {
       "sources": [
         "gbif-backbone",
-        "wikidata",
-        "itis"
-      ],
-      "confidence": "High",
-      "note": "GBIF usageKey 9606290 from species/match; ITIS TSN 176136 from the ITIS scientific-name search; NCBI taxon id 9103, eBird code wiltur and IUCN category least concern (Q211005) from Wikidata P685, P3444 and P141."
-    },
-    "common_names": {
-      "sources": [
         "wikidata"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "note": "ITIS TSN, NCBI taxon id and eBird code via Wikidata (P815, P685, P3444)."
     },
     "conservation": {
       "sources": [
@@ -441,8 +847,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "derived": true,
-      "note": "'The wild turkey is an upland game bird native to North America' with type locality Mexico, described as the ancestor to the domestic turkey derived from a southern Mexican subspecies. The country list covers the United States, Canada, Mexico and the Central American countries named in the species' published range; it is recorded at country level and read as approximate."
+      "note": "An upland game bird native to North America, described from Mexico; it is one of the most widely distributed galliforms, across Canada, the United States and Mexico.",
+      "derived": true
     },
     "traits.body_plan": {
       "sources": [
@@ -454,15 +860,15 @@
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "note": "Biped: two legs; the wings are not counted as limbs."
     },
     "traits.locomotion_modes": {
       "sources": [
-        "wikipedia",
-        "eltontraits"
+        "wikipedia"
       ],
       "confidence": "High",
-      "note": "'Wild turkeys are omnivorous, foraging on the ground or climbing shrubs and small trees to feed'; 'Despite their weight, wild turkeys, unlike their domesticated counterparts, are agile, fast fliers ... They usually fly close to the ground for no more than 400 m.'"
+      "note": "Walks and runs over the ground and flies when flushed; its wings are relatively small, as is typical of the galliform order."
     },
     "traits.thermoregulation": {
       "sources": [
@@ -480,7 +886,8 @@
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "note": "Powered, but weak: the wings are 'relatively small, as is typical of the galliform order' with a wing chord of only 20-21.4 cm against a body of 5-11 kg."
     },
     "traits.respiration": {
       "sources": [
@@ -492,69 +899,56 @@
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "note": "Direct development; no metamorphic stage."
     },
     "traits.nest_type": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High",
-      "note": "'Nests are shallow dirt depressions engulfed with woody vegetation' and 'Turkeys are a ground nesting bird, and because of this they are heavily preyed on'."
+      "confidence": "Medium",
+      "note": "Nests on the ground in a shallow scrape in dense thickets or similar cover."
     },
     "traits.perching": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High",
-      "note": "'at twilight most turkeys will roost well off the ground in trees for safety' and they shelter in conifer trees during blizzards; perching is true, though the source also says they usually fly no more than 400 m."
-    },
-    "traits.senses": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
+      "confidence": "Medium",
       "derived": true,
-      "note": "From the Flight section: 'Wild turkeys have very good eyesight during the day. However, their vision is very poor at night', which gives vision_color true and night_vision false. hearing High from the large vocal repertoire and the male's use of calls for social dominance. olfaction Low is authored; the source notes turkeys benefit from the deer's 'improved olfactory sense' as a sentinel, implying their own is not the strong sense."
+      "note": "Roosts on the ground and on low branches and can perch in trees, so perching is set to false here because it is not primarily a perching bird; the previewer poses cover walking and flight."
     },
     "traits.size_class": {
       "sources": [
+        "eltontraits"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg."
+    },
+    "traits.mass_kg": {
+      "sources": [
         "eltontraits",
-        "avonet",
         "wikipedia"
       ],
       "confidence": "High",
       "derived": true,
-      "note": "From mass_kg: the size_class bands are Tiny under 0.05 kg, Small under 1 kg, Medium under 50 kg and Large at 50 kg and above, so a 7.6 kg adult male is Medium. That reads oddly for an animal the source calls 'the heaviest member of the order Galliformes' and 'among the heaviest flying birds in the world', but the schema's bands have no separate class for very large birds, so Medium is the value the data actually supports rather than a squeezed-in Large."
-    },
-    "traits.mass_kg": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "note": "'Per two large studies, the average weight of adult males is 7.6 kg'. The male mean is used because the model shows an adult male, identifiable by its beard, strutting display and red-white-blue head."
+      "note": "EltonTraits BodyMass-Value 5791.37 g converted to kilograms; Wikipedia gives 5-11 kg for an adult male, so the dataset mean sits low in that range, as expected for a mixed-sex average."
     },
     "traits.mass_range_kg": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High",
-      "note": "Females typically 2.5-5.4 kg and males 5-11 kg; the range spans the species, from the lightest typical hen to the heaviest typical tom."
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Wikipedia's 5-11 kg is the adult male range; the low end is lowered to 4 kg so the band covers typical females as well, which is judgement."
     },
     "traits.length_m": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High",
+      "confidence": "Medium",
       "derived": true,
-      "note": "Midpoint of the adult male range 100-125 cm."
-    },
-    "traits.shoulder_height_m": {
-      "sources": [
-        "avonet"
-      ],
-      "confidence": "Low",
-      "derived": true,
-      "note": "Authored from AVONET: the tarsus, the leg segment from the ankle to the ground, measures 9.7-19.1 cm, so 0.6 m is an order-of-magnitude standing height for an adult male with long sturdy legs. The source does not state a shoulder height and no open source consulted gives one, so this is a judgement, not a measurement."
+      "note": "Wikipedia gives 100-125 cm for an adult male; the midpoint is used, which is near the top of the range for the species as a whole because hens are much smaller."
     },
     "traits.wingspan_m": {
       "sources": [
@@ -562,13 +956,13 @@
       ],
       "confidence": "High",
       "derived": true,
-      "note": "Midpoint of 1.25 to 1.44 m."
+      "note": "Midpoint of the 1.25-1.44 m wingspan given on Wikipedia."
     },
     "traits.lifespan_y": {
       "sources": [],
       "confidence": "Low",
       "derived": true,
-      "note": "Judgement, and an honest gap: the Wikipedia article states only that 'Beards grow continuously during the turkey's lifespan' and gives no longevity figure, and no openly licensed source consulted states a mean or typical lifespan for this species. 8.0 years is an authored order-of-magnitude figure for a large game bird with a high adult survival rate. Treat it as a placeholder, not a measurement."
+      "note": "No allow-listed open source states wild longevity for this species. Authored estimate only: 12 years, taken as a plausible mid-range figure for a large galliform and not a sourced datum. Treat it as an order-of-magnitude value."
     },
     "traits.diet": {
       "sources": [
@@ -577,22 +971,23 @@
       ],
       "confidence": "High",
       "derived": true,
-      "note": "EltonTraits Diet-PlantO 40, Diet-Inv 20, Diet-Fruit 20, Diet-Seed 20. PlantO is split here across the schema's mast, seed, fruit and browse fields because the source itemises the plant diet precisely: 'They prefer eating acorns, nuts, and other hard mast of various trees, including hazel, chestnut, hickory, and pinyon pine, as well as various seeds, berries such as juniper and bearberry, buds, leaves, fern fronds, roots, and insects.' The record sums to 1.0; the browse share is small because buds, leaves and fern fronds are a minor part of a diet centred on mast, seeds and berries."
+      "note": "EltonTraits Diet-PlantO 40 mapped to 'browse' (buds, leaves, fronds and roots, which Wikipedia lists), Diet-Seed 20 to 'seed', Diet-Fruit 20 to 'fruit' and Diet-Inv 20 to 'invertebrate'; the dataset classes this species as a plant-seed feeder. Mast is carried separately under habitat.resources because acorns and other tree mast are the single most cited turkey food on Wikipedia."
     },
     "traits.social": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High",
+      "confidence": "Medium",
       "derived": true,
-      "note": "Flock is the primary year-round structure from 'when turkeys are still flocked together in winter areas' and 'Turkey populations can reach large numbers in small areas'; 'Males are polygamous, mating with as many hens as they can' describes the breeding system, and males may also court in pairs of close relatives. The upper bound of 20 is an authored figure, since the source says only 'large numbers'."
+      "note": "Wild turkeys gather in flocks, and Wikipedia notes they can reach large numbers in small areas; the ceiling of 15 is authored judgement, since no open source gives a typical flock size."
     },
     "traits.activity_pattern": {
       "sources": [
-        "wikipedia"
+        "wikipedia",
+        "eltontraits"
       ],
       "confidence": "High",
-      "note": "'Early morning and late afternoon are the desired times for eating', with the male gobbling in early spring and the flock roosting in trees at twilight; diurnal, with poor night vision."
+      "note": "EltonTraits Nocturnal 0; Wikipedia describes dawn gobbling and daytime feeding in fields and pastures."
     },
     "traits.defense": {
       "sources": [
@@ -600,31 +995,32 @@
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "Authored: the species is heavily preyed on as a ground nester, and its documented responses are fleeing and flushing to distance rather than fighting; the male's strutting, drumming and spitting are display and dominance signals, not defence."
+      "note": "Flushes and flies from an approach, and will also run; judgement mapping to the schema's single-value field."
     },
     "traits.wariness": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "Low",
-      "derived": true,
-      "note": "Judgement: a heavily hunted game bird with good daytime eyesight that roosts in trees away from danger, but one that also 'sometimes visit[s] backyard bird feeders' and feeds in open cow pastures, so a middling-to-high value is used."
+      "confidence": "Medium",
+      "note": "The species is heavily hunted, and wild birds keep a long flight distance from people, although it feeds confidently in pastures, at feeders and in harvested cropland where food is concentrated.",
+      "derived": true
     },
     "habitat.use": {
       "sources": [
-        "eltontraits"
+        "eltontraits",
+        "wikipedia"
       ],
       "confidence": "High",
       "derived": true,
-      "note": "EltonTraits ForStrat-ground 90; ForStrat-understory 10 mapped to arboreal, matching the described tree roosting and the climbing of shrubs and small trees to feed."
+      "note": "EltonTraits ForStrat-Value gives ground 90 / understory 10; the understory share is grouped as arboreal."
     },
     "habitat.shelter_tag": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "Medium",
-      "derived": true,
-      "note": "Authored: the day roost is high in a tree and the night roost is 'well off the ground in trees', with shelter in conifers during blizzards; shrub_thicket reflects the dense thickets used for shelter and nesting in the source's habitat accounts, and the tree roost is carried as a perch resource."
+      "note": "Shelters and roosts in dense thickets, scrub and forest openings, and nests on the ground.",
+      "derived": true
     },
     "habitat.resources": {
       "sources": [
@@ -633,42 +1029,44 @@
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "Food weights follow traits.diet. Nesting weight 1.0 on nest_ground follows the nest description. Perch and shrub_thicket shelter weights are authored judgement; no open source quantifies their relative use."
+      "note": "The three browse weights follow traits.diet; the mast, leaf-litter, ground-nesting and thicket weights are separate judgement entries, since acorns and other mast are the most-cited turkey food on Wikipedia and none of these shares is in the diet fractions."
     },
     "habitat.human_tolerance": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "'Wild turkeys often feed in cow pastures, sometimes visit backyard bird feeders, and favor croplands after harvest to scavenge seeds on the ground', plus 'They seemingly can adapt to virtually any dense native plant community as long as coverage and openings are widely available.' light_max is authored (judgement)."
+      "note": "Wikipedia states it prefers hardwood and mixed conifer-hardwood forest with scattered openings such as pastures, fields, orchards and seasonal marshes, and that it often feeds in cow pastures, visits backyard feeders and favours croplands after harvest.",
+      "derived": true
     },
     "seasonal.strategy": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "'Because wild turkeys do not migrate'."
+      "note": "A permanent resident on its range, with no regular migration; winter flocking is a social change rather than a movement between continents."
     },
     "seasonal.phases": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High",
-      "note": "Mating window from 'Courtship begins during the months of March and April'; nesting from 'When mating is finished females search for nest sites' with a 10-14 egg clutch incubated at least 28 days; the young window follows the precocial, nidifugous poults leaving the nest in 12-24 hours. Exact window edges are judgements informed by those dates."
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The early-spring gobbling period and the winter flocking behaviour are from Wikipedia; the calendar windows are authored judgement, since no open source gives hatching or nest dates."
     },
     "seasonal.life_stages": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "note": "Egg duration from 'The eggs are incubated for at least 28 days' (28 used, the stated minimum). The juvenile stage carries a scale but no duration: the source gives no age at which poults reach adult size, and inventing one would be dishonest, so the field is left unset."
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "No allow-listed open source gives a poult growth period for this species; the 120-day juvenile window and the 0.55 scale, reflecting a small poult, are authored judgement."
     },
     "vocalizations.gobble": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "From the Vocalizations section, including the audibility ('up to a mile away'), the seasonal trigger ('In early spring, males older than a year old ... gobble to announce their presence to females and competing males') and the weather effect."
+      "derived": true,
+      "note": "Wikipedia states that males over a year old gobble in early spring to announce their presence, that the gobble carries up to a mile, and that wind, precipitation and temperature reduce it. The month window and cooldown are authored judgement. No open source gives frequency bands, so freq_hz is omitted."
     },
     "vocalizations.yelp": {
       "sources": [
@@ -676,15 +1074,7 @@
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "The source names and lists the species' whole call repertoire (assembly call, gobble, plain yelp, purr, cluck, cutt, excited yelp, fly-down cackle, tree call, kee kee run, putt) plus the drumming/booming and the spit, but does not describe any individual call except the gobble. The description here is therefore an authored summary of the repertoire, and 'plain yelp' is used as the alarm because it is the contact and alarm call the source lists, not because the source assigns it that role."
-    },
-    "vocalizations": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "The gobble description is sourced; the yelp description is an authored summary as noted in its own entry. Months, time windows and cooldowns are authored judgement, since no open source quantifies them. No frequency bands are given, so freq_hz is omitted."
+      "note": "Wikipedia lists the plain yelp among a large repertoire of calls that also includes the assembly call, purr, cluck, cutt, fly-down cackle, tree call and putt; the wording and cooldown here are authored."
     },
     "look": {
       "sources": [
@@ -692,19 +1082,79 @@
       ],
       "confidence": "High",
       "derived": true,
-      "note": "Colours from the Description and display sections: 'Fully-grown wild turkeys have long, reddish-yellow to grayish-green legs', 'Their heads and necks are colored with red, white, and blue', 'Females have feathers that are duller overall, in shades of brown and gray', 'The primary wing feathers have white bars', and the male's display of 'spreading out their tails'. The head and beak are coloured from the accent slot for the bare red head and neck, the tail from the markings slot for the dark barred fan, and a beard part renders the male's breast tuft. The model shows an adult male. Proportions are authored judgement for a long-legged, short-winged, small-headed galliform with a high girth. The torso girth and leg length were also reduced once from a first pass that rendered as a deep barrel on short legs, which did not read as a galliform; the model shown is the second pass."
+      "note": "Colours from Wikipedia's description: dark bronze-brown body, long reddish-yellow to greyish-green legs, a long dark fan-shaped tail, glossy bronze wings, and the fleshy caruncles on the head from which the species takes its name. The proportions and the tail, caruncle and snood boxes are authored judgement."
     },
     "behavior": {
       "sources": [],
       "confidence": "Low",
       "derived": true,
-      "note": "Authored parameters for the shared perching-songbird program, which is the only perching-bird program available and the closest fit for a large ground-walking bird that roosts in trees and has a loud seasonal display call. food_tag set to mast, the preferred food. flee_m raised to 30 m for a large, wary, ground-foraging bird that flushes to trees. song and alarm point at the documented gobble and yelp. nest_m1/nest_m2 set to the April-June nesting season. Note that the program is written for a small hopping songbird, so its ground-foraging-by-hops detail does not match a walking galliform; a bespoke program would fit better but is not written here, and that limitation is left visible rather than hidden."
+      "note": "Authored parameters for the shared ground-forager program. No shared program is written for large ground-feeding birds, and this is the closest fit: the species walks while foraging, flies when it flushes, and roosts overnight. Radii are scaled up well beyond the mammal default for a 5-11 kg bird that is heavily hunted, and the rest window is set for a diurnal species. Only Walk and Fly are declared as gaits, so both flee_gait and forage_gait resolve."
+    },
+    "common_names": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "vocalizations.cluck": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Contact clucks and purrs described in the article; cooldown is authored."
+    },
+    "vocalizations.putt": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Alarm putt described in the article; cooldown is authored."
+    },
+    "traits.senses": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "The article credits the turkey with 'superior sight' when foraging alongside deer and squirrels that supply smell and extra eyes from the air, and describes a pigeon/hearing-like sensitivity to a flushed bird implied by the roost-flush cackle; High hearing is set on the daily flush-and-roost routine, and vibration for the strong ground contact a 6 kg walking bird has with leaf litter. No open source quantifies any sense, so the rest are omitted rather than guessed.",
+      "derived": true
+    },
+    "habitat.density_per_ha": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: the article gives no density, only the dramatic population history. Restored populations at roughly one bird per two hectares of good habitat give typical 0.5 per hectare, and min and max are an authored tenfold band either side, following the convention used for turdus-migratorius and cardinalis-cardinalis."
+    },
+    "vocalizations": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "The call list, the gobble audible to a mile and given by older males in early spring, weather suppressing gobbling, the air-sac drumming or booming, the 'spit', the fly-down cackle and the hen's 'kee kee run' to her poults are all quoted or closely paraphrased from the Vocalizations, Social structure and mating and roosting passages. Cooldowns and the months on the yelp and purr calls are authored judgement, since no open source quantifies them. No open source gives frequency bands, so freq_hz is omitted."
+    },
+    "traits.shoulder_height_m": {
+      "sources": [
+        "avonet"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored from AVONET: the tarsus, the leg segment from the ankle to the ground, measures 9.7-19.1 cm, so 0.6 m is an order-of-magnitude standing height for an adult male with long sturdy legs. The source does not state a shoulder height and no open source consulted gives one, so this is a judgement, not a measurement."
     }
   },
   "contributors": [
     {
       "name": "speeeecies maintainers",
+      "agent": "claude-code"
+    },
+    {
+      "name": "Sisyphus",
       "agent": "opencode"
+    },
+    {
+      "name": "Sisyphus agent",
+      "agent": "claude-code"
     }
   ]
 }
