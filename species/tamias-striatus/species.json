@@ -33,7 +33,8 @@
     "native": [
       "US",
       "CA"
-    ]
+    ],
+    "introduced": []
   },
   "traits": {
     "body_plan": "Vertebrate",
@@ -58,7 +59,7 @@
     ],
     "length_m": 0.3,
     "shoulder_height_m": 0.075,
-    "lifespan_y": 3,
+    "lifespan_y": 3.0,
     "diet": {
       "mast": 0.3,
       "seed": 0.3,
@@ -153,7 +154,8 @@
       "urban_affinity": "Adapter",
       "uses_gardens": true,
       "light_max": 0.7,
-      "notes": "Lives in deciduous woodland and urban parks throughout the eastern United States and southern Canada, and turns up in gardens where there is brush, log piles, rocks or shrubs to provide cover. It defends its burrow and darts for cover rather than confronting."
+      "notes": "Lives in deciduous woodland and urban parks throughout the eastern United States and southern Canada, and turns up in gardens where there is brush, log piles, rocks or shrubs to provide cover. It defends its burrow and darts for cover rather than confronting.",
+      "road_mortality": "High"
     },
     "density_per_ha": {
       "min": 0.5,
@@ -211,6 +213,12 @@
         "start": "05-01",
         "end": "06-30",
         "note": "Moult occurs once or twice annually, during May or June and sometimes again in October."
+      },
+      {
+        "name": "breeding",
+        "start": "03-15",
+        "end": "07-31",
+        "note": "Two breeding seasons: late winter/early spring and early summer."
       }
     ],
     "life_stages": [
@@ -313,6 +321,17 @@
       "cooldown_s": 6,
       "loudness": "Moderate",
       "description": "A sharp, single chip given when it is startled or when a predator is near its burrow."
+    },
+    {
+      "call_id": "chirp",
+      "context": "Chirp",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 15,
+      "loudness": "Quiet",
+      "description": "Soft, low 'chirp' or 'chuck' call given while foraging on the ground."
     }
   ],
   "look": {
@@ -532,6 +551,24 @@
       "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
       "accessed": "2026-10-01",
       "kind": "api"
+    },
+    {
+      "id": "inat-activity-us-vt",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=46217&place_id=47&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Tamias striatus in US-VT",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-vt",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2437438&gadmGid=USA.46_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Tamias striatus in US-VT",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
     }
   ],
   "provenance": {
@@ -555,7 +592,8 @@
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "note": "en/fr/de labels from Wikidata sitelink titles."
     },
     "conservation": {
       "sources": [
@@ -569,7 +607,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "A chipmunk species found in eastern North America, throughout the eastern United States and southern Canada."
+      "note": "A chipmunk species found in eastern North America, throughout the eastern United States and southern Canada.",
+      "derived": true
     },
     "traits.body_plan": {
       "sources": [
@@ -844,6 +883,12 @@
       "confidence": "Low",
       "derived": true,
       "note": "No allow-listed open source describes this species' alarm call; the wording and cooldown here are authored."
+    },
+    "vocalizations.chirp": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
     }
   },
   "contributors": [
@@ -866,6 +911,10 @@
     {
       "name": "Sisyphus",
       "agent": "opencode"
+    },
+    {
+      "name": "speeeecies agent",
+      "agent": "claude-code"
     }
   ],
   "activity": {
@@ -1107,6 +1156,55 @@
             "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2437438&gadmGid=USA.22_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
             "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.22_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
             "total": 1177,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "US-VT",
+        "monthly": [
+          0.03,
+          0.18,
+          0.59,
+          0.6,
+          0.97,
+          1.0,
+          0.93,
+          0.87,
+          0.99,
+          0.71,
+          0.31,
+          0.05
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 4870,
+        "sources": [
+          "inat-activity-us-vt",
+          "gbif-activity-us-vt"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 47,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=46217&place_id=47&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=47&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 2369,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.46_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2437438&gadmGid=USA.46_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.46_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 2501,
             "usable": true
           },
           "used": [

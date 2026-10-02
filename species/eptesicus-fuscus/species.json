@@ -176,6 +176,12 @@
         "start": "04-15",
         "end": "08-31",
         "note": "After hibernation ends in spring, pregnant females form maternity colonies, frequently 25 to 75 adults in the eastern United States and Canada. In the eastern United States twins are commonly born between May and July; western females give birth to a single pup. Pups are born blind and helpless at 3 g, nurse for about a month and fledge at three to five weeks old."
+      },
+      {
+        "name": "breeding",
+        "start": "05-01",
+        "end": "08-31",
+        "note": "Maternity colonies in attics and tree cavities; a single pup born in early summer."
       }
     ],
     "life_stages": [
@@ -242,6 +248,28 @@
       "cooldown_s": 1,
       "loudness": "Quiet",
       "description": "The ultrasonic echolocation call the species emits into its environment and listens to the returning echoes of. From it the bat works out how far away an object is, the object's size, shape and density, and the direction in which anything is moving; the buzz is continuous while foraging and is not audible to a human observer."
+    },
+    {
+      "call_id": "social_call",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [
+        "Night"
+      ],
+      "cooldown_s": 8,
+      "loudness": "Quiet",
+      "description": "Low-amplitude social calls (squeaks and chirps) given between roosting bats; mostly below human hearing threshold."
+    },
+    {
+      "call_id": "alarm",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Night"
+      ],
+      "cooldown_s": 4,
+      "loudness": "Moderate",
+      "description": "Harsh, high-pitched distress scream given when handled or threatened."
     }
   ],
   "look": {
@@ -385,6 +413,24 @@
       "license": "CC-BY-NC-4.0",
       "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
       "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "inat-activity-us-vt",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40509&place_id=47&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Eptesicus fuscus in US-VT",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-vt",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2432352&gadmGid=USA.46_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Eptesicus fuscus in US-VT",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
       "kind": "api"
     }
   ],
@@ -702,6 +748,22 @@
         "wikipedia"
       ],
       "confidence": "High"
+    },
+    "vocalizations.social_call": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Social calls described on Wikipedia; loudness and cooldown are judgement."
+    },
+    "vocalizations.alarm": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Distress scream described on Wikipedia; loudness and cooldown are judgement."
     }
   },
   "contributors": [
@@ -716,6 +778,10 @@
     {
       "name": "speeeecies contributors",
       "agent": "opencode"
+    },
+    {
+      "name": "speeeecies agent",
+      "agent": "claude-code"
     }
   ],
   "activity": {
@@ -860,6 +926,53 @@
           },
           "used": [
             "gbif"
+          ]
+        }
+      },
+      {
+        "region": "US-VT",
+        "monthly": [
+          0.11,
+          0.03,
+          0.1,
+          0.12,
+          0.16,
+          0.2,
+          0.67,
+          1.0,
+          0.14,
+          0.17,
+          0.08,
+          0.08
+        ],
+        "method": "inat_share",
+        "observations": 163,
+        "sources": [
+          "inat-activity-us-vt"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 47,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40509&place_id=47&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=47&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 163,
+            "usable": false
+          },
+          "gbif": {
+            "tier": "C",
+            "area": [
+              "gadmGid",
+              "USA.46_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2432352&gadmGid=USA.46_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.46_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "total": 138,
+            "usable": false
+          },
+          "used": [
+            "inat"
           ]
         }
       }

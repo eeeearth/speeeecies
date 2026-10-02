@@ -170,6 +170,11 @@
         "tag": "water",
         "kind": "Water",
         "weight": 0.5
+      },
+      {
+        "tag": "carrion",
+        "kind": "Scavenging",
+        "weight": 0.1
       }
     ],
     "human_tolerance": {
@@ -441,6 +446,53 @@
             "gbif"
           ]
         }
+      },
+      {
+        "region": "US-VT",
+        "monthly": [
+          0.92,
+          0.99,
+          0.66,
+          0.45,
+          0.41,
+          0.39,
+          0.43,
+          0.57,
+          0.8,
+          0.88,
+          1.0,
+          0.99
+        ],
+        "method": "gbif_share",
+        "observations": 371980,
+        "sources": [
+          "gbif-activity-us-vt"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 47,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=4722&place_id=47&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=47&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 0,
+            "usable": false
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.46_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2482593&gadmGid=USA.46_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.46_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 371980,
+            "usable": true
+          },
+          "used": [
+            "gbif"
+          ]
+        }
       }
     ]
   },
@@ -582,6 +634,17 @@
       "cooldown_s": 4,
       "loudness": "Loud",
       "description": "The familiar loud, harsh jeering 'jay-jay-jay' call, often given in chorus by a group and used to advertise a food source or warn of a rival."
+    },
+    {
+      "call_id": "jay_call",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 6,
+      "loudness": "Loud",
+      "description": "The loud, harsh 'jay! jay!' call, the species' signature, given as a contact call and to announce intruders."
     }
   ],
   "look": {
@@ -787,6 +850,24 @@
       "license": "CC-BY-4.0",
       "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
       "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "inat-activity-us-vt",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=4722&place_id=47&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Cyanocitta cristata in US-VT",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-vt",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2482593&gadmGid=USA.46_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Cyanocitta cristata in US-VT",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
       "kind": "api"
     }
   ],
@@ -1152,6 +1233,12 @@
         "wikipedia"
       ],
       "confidence": "High"
+    },
+    "vocalizations.jay_call": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
     }
   },
   "contributors": [
@@ -1170,6 +1257,10 @@
     {
       "name": "speeeecies maintainers",
       "agent": "opencode"
+    },
+    {
+      "name": "speeeecies agent",
+      "agent": "claude-code"
     }
   ]
 }

@@ -1,0 +1,731 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Thamnophis sirtalis",
+  "slug": "thamnophis-sirtalis",
+  "common_names": {
+    "en": "Common Garter Snake",
+    "fr": "Couleuvre rayée",
+    "de": "Gewöhnliche Strumpfbandnatter"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Reptilia",
+    "order": "Squamata",
+    "family": "Colubridae",
+    "genus": "Thamnophis",
+    "authority": "(Linnaeus, 1758)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2457522,
+    "inat_taxon_id": 28362,
+    "itis_tsn": 174136,
+    "wikidata": "Q911786"
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "US",
+      "CA"
+    ],
+    "introduced": []
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 0,
+    "locomotion_modes": [
+      "Slither",
+      "Swim"
+    ],
+    "thermoregulation": "Ectotherm",
+    "skin": "Scales",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "None",
+    "perching": false,
+    "size_class": "Small",
+    "mass_kg": 0.15,
+    "mass_range_kg": [
+      0.05,
+      0.3
+    ],
+    "length_m": 0.6,
+    "lifespan_y": 4.0,
+    "diet": {
+      "invertebrate": 0.3,
+      "vertebrate": 0.5,
+      "fish": 0.2
+    },
+    "social": {
+      "structure": "Solitary",
+      "group_size": [
+        1,
+        1
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.7
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.7,
+      "aquatic": 0.2,
+      "fossorial": 0.1
+    },
+    "shelter_tag": "log_pile",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.3
+      },
+      {
+        "tag": "small_vertebrate",
+        "kind": "Predation",
+        "weight": 0.7
+      },
+      {
+        "tag": "water",
+        "kind": "Water",
+        "weight": 0.4
+      },
+      {
+        "tag": "log_pile",
+        "kind": "Shelter",
+        "weight": 0.8
+      },
+      {
+        "tag": "burrow",
+        "kind": "Shelter",
+        "weight": 0.5
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "light_max": 0.6,
+      "road_mortality": "High",
+      "notes": "Common in gardens, meadows and woodland edges near water; often killed on roads while basking or crossing."
+    }
+  },
+  "seasonal": {
+    "strategy": "Brumation",
+    "triggers": {
+      "enter": {
+        "temperature_below_c": 5,
+        "days": 7
+      },
+      "exit": {
+        "temperature_above_c": 5,
+        "days": 7
+      }
+    },
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "03-15",
+        "end": "06-30",
+        "note": "Emerges from the den in spring and mates; young are born live in late summer."
+      },
+      {
+        "name": "dormancy",
+        "start": "10-01",
+        "end": "03-14",
+        "note": "Brumates communally in a den below the frost line through winter."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Juvenile",
+        "duration_days": 60,
+        "scale": 0.5
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US-VT",
+        "monthly": [
+          0.0,
+          0.0,
+          0.06,
+          0.83,
+          1.0,
+          1.0,
+          0.6,
+          0.74,
+          0.7,
+          0.42,
+          0.05,
+          0.01
+        ],
+        "method": "mean(inat_raw, gbif_raw)",
+        "observations": 889,
+        "sources": [
+          "inat-activity-us-vt",
+          "gbif-activity-us-vt"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 47,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=28362&place_id=47&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": null,
+            "total": 426,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.46_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2457522&gadmGid=USA.46_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": null,
+            "total": 463,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-ground-forager-v1",
+    "params": {
+      "flee_m": 6,
+      "calm_m": 15,
+      "food_tag": "invertebrate",
+      "food_m": 20,
+      "flee_gait": "slither",
+      "forage_gait": "slither",
+      "rest_sun_lo_deg": -90,
+      "rest_sun_hi_deg": -6
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "hiss",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 10,
+      "loudness": "Moderate",
+      "description": "Short, sharp hiss given when threatened or handled, the snake's only regular vocalization."
+    }
+  ],
+  "look": {
+    "body_plan": "serpentine",
+    "proportions": {
+      "segments": 10,
+      "head_scale": 1.3,
+      "girth_ratio": 1.0
+    },
+    "palette": {
+      "body": "#4a5a3a",
+      "belly": "#c8c8a0",
+      "markings": "#e8d84a",
+      "accent": "#2a3a1a",
+      "eye": "#0d0d0d"
+    },
+    "part_colors": {
+      "head": "body",
+      "segment*": "body"
+    },
+    "extra_parts": [
+      {
+        "name": "stripe_0",
+        "parent": "segment0",
+        "offset": [
+          0,
+          0.5,
+          0
+        ],
+        "size": [
+          0.9,
+          0.12,
+          0.3
+        ],
+        "color": "markings"
+      },
+      {
+        "name": "stripe_1",
+        "parent": "segment1",
+        "offset": [
+          0,
+          0.5,
+          0
+        ],
+        "size": [
+          0.9,
+          0.12,
+          0.3
+        ],
+        "color": "markings"
+      },
+      {
+        "name": "stripe_2",
+        "parent": "segment2",
+        "offset": [
+          0,
+          0.5,
+          0
+        ],
+        "size": [
+          0.9,
+          0.12,
+          0.3
+        ],
+        "color": "markings"
+      },
+      {
+        "name": "stripe_3",
+        "parent": "segment3",
+        "offset": [
+          0,
+          0.5,
+          0
+        ],
+        "size": [
+          0.9,
+          0.12,
+          0.3
+        ],
+        "color": "markings"
+      },
+      {
+        "name": "stripe_4",
+        "parent": "segment4",
+        "offset": [
+          0,
+          0.5,
+          0
+        ],
+        "size": [
+          0.9,
+          0.12,
+          0.3
+        ],
+        "color": "markings"
+      },
+      {
+        "name": "stripe_5",
+        "parent": "segment5",
+        "offset": [
+          0,
+          0.5,
+          0
+        ],
+        "size": [
+          0.9,
+          0.12,
+          0.3
+        ],
+        "color": "markings"
+      },
+      {
+        "name": "stripe_6",
+        "parent": "segment6",
+        "offset": [
+          0,
+          0.5,
+          0
+        ],
+        "size": [
+          0.9,
+          0.12,
+          0.3
+        ],
+        "color": "markings"
+      },
+      {
+        "name": "stripe_7",
+        "parent": "segment7",
+        "offset": [
+          0,
+          0.5,
+          0
+        ],
+        "size": [
+          0.9,
+          0.12,
+          0.3
+        ],
+        "color": "markings"
+      },
+      {
+        "name": "stripe_8",
+        "parent": "segment8",
+        "offset": [
+          0,
+          0.5,
+          0
+        ],
+        "size": [
+          0.9,
+          0.12,
+          0.3
+        ],
+        "color": "markings"
+      },
+      {
+        "name": "stripe_9",
+        "parent": "segment9",
+        "offset": [
+          0,
+          0.5,
+          0
+        ],
+        "size": [
+          0.9,
+          0.12,
+          0.3
+        ],
+        "color": "markings"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "slither": {},
+      "swim": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2457522",
+      "title": "GBIF Backbone Taxonomy: Thamnophis sirtalis",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q911786",
+      "title": "Wikidata: Common Garter Snake (Q911786)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Common_garter_snake",
+      "title": "Wikipedia: Common garter snake",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Common garter snake\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=174136",
+      "title": "ITIS: Thamnophis sirtalis, TSN 174136",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "inat-activity-us-vt",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=28362&place_id=47&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Thamnophis sirtalis in US-VT",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-vt",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2457522&gadmGid=USA.46_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Thamnophis sirtalis in US-VT",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "itis"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "common_names": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "en/fr/de labels from Wikidata sitelink titles."
+    },
+    "conservation": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "Wikidata P141 = least concern (Q211005)."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Native across North America: most of Canada and the US."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Slithers on land and swims well in water."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Live-bearing; does not build a nest."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Legless; set to false."
+    },
+    "traits.size_class": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg 0.15 (0.05-1 kg = Small)."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'55-300 g' typical adult mass; 150 g used."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'45-137 cm' total length; 60 cm used as a typical value."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Wikipedia gives a maximum of about 10 years; typical lifespan is shorter, 4 years used as a judgement."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Earthworms and other invertebrates, amphibians, small fish and rodents; shares are judgement from the described diet. Fish are mapped to the small_vertebrate resource tag (no 'fish' tag exists)."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Solitary except when brumating communally in a den."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.defense": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored: flees into water or cover when threatened."
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Quick to retreat when approached."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Ground-dwelling near water; swims; shelters under logs and rocks."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Shelters under logs, rocks and dense cover."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Earthworms, amphibians, fish and small vertebrates; needs water and shelter."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Common in gardens and parks near water; road_mortality High from basking on roads."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Brumates through winter in a communal den."
+    },
+    "seasonal.triggers": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored: enters brumation after a week below 5 C and exits after a week above 5 C; no open source gives exact thresholds."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Spring emergence and mating; exact phase dates are judgement."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Live-bearing; juvenile period about 60 days; duration_days and scale are judgement."
+    },
+    "vocalizations.hiss": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Hiss described on Wikipedia; loudness and cooldown are judgement."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Olive-brown body with three yellow longitudinal stripes (one dorsal, two lateral). The dorsal stripe is approximated with one thin box per segment. Proportions are judgement."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared ground-forager program: slither gait, diurnal (rests while the sun is down)."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies agent",
+      "agent": "claude-code"
+    }
+  ]
+}
