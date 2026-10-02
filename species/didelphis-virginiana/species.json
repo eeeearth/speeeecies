@@ -81,7 +81,7 @@
     ],
     "length_m": 0.69,
     "shoulder_height_m": 0.16,
-    "lifespan_y": 2.0,
+    "lifespan_y": 2,
     "diet": {
       "invertebrate": 0.35,
       "carrion": 0.2,
@@ -233,6 +233,12 @@
         "start": "01-15",
         "end": "07-31",
         "note": "Breeding from mid-winter; two litters a year; young ride on the mother's back."
+      },
+      {
+        "name": "territorial",
+        "start": "07-01",
+        "end": "01-31",
+        "note": "Outside the main birth period. It does not hibernate but reduces its activity in winter and may not leave its den for several days below -4 to -7 degrees Celsius."
       }
     ],
     "life_stages": [
@@ -535,6 +541,55 @@
             "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2439923&gadmGid=USA.11_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
             "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.11_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
             "total": 940,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "US-MS",
+        "monthly": [
+          0.25,
+          0.55,
+          0.57,
+          0.71,
+          0.48,
+          0.27,
+          0.33,
+          0.38,
+          0.56,
+          0.78,
+          1.0,
+          0.95
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 848,
+        "sources": [
+          "inat-activity-us-ms",
+          "gbif-activity-us-ms"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 37,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=42652&place_id=37&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=37&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 427,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "C",
+            "area": [
+              "gadmGid",
+              "USA.25_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2439923&gadmGid=USA.25_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.25_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "total": 421,
             "usable": true
           },
           "used": [
@@ -874,6 +929,24 @@
       "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
       "accessed": "2026-10-01",
       "kind": "api"
+    },
+    {
+      "id": "inat-activity-us-ms",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=42652&place_id=37&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Didelphis virginiana in US-MS",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-ms",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2439923&gadmGid=USA.25_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+      "title": "GBIF occurrence search for Didelphis virginiana in US-MS",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
     }
   ],
   "provenance": {
@@ -1169,7 +1242,9 @@
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "'During the mating season, the male attracts the female by making clicking sounds with his mouth.'"
     },
     "traits.speed_ms": {
       "sources": [],

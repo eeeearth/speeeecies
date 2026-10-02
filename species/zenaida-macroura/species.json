@@ -7,7 +7,8 @@
   "common_names": {
     "en": "mourning dove",
     "fr": "tourterelle triste",
-    "de": "Carolinataube"
+    "de": "Carolinataube",
+    "es": "Paloma de la tristeza"
   },
   "taxonomy": {
     "kingdom": "Animalia",
@@ -24,7 +25,8 @@
     "inat_taxon_id": 3454,
     "itis_tsn": 177125,
     "wikidata": "Q750027",
-    "ncbi_taxon_id": 47245
+    "ncbi_taxon_id": 47245,
+    "ebird_code": "moudov"
   },
   "conservation": {
     "iucn": "LC"
@@ -122,6 +124,11 @@
         "tag": "browse",
         "kind": "Herbivory",
         "weight": 0.1
+      },
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.2
       }
     ],
     "human_tolerance": {
@@ -156,6 +163,12 @@
         "name": "flocking",
         "start": "10-01",
         "end": "02-28"
+      },
+      {
+        "name": "territorial",
+        "start": "11-01",
+        "end": "01-31",
+        "note": "Resident over most of the United States; northern prairie birds and Central American birds are summer or winter visitors only."
       }
     ],
     "life_stages": [
@@ -170,7 +183,8 @@
       {
         "stage": "Adult"
       }
-    ]
+    ],
+    "winter_fraction": 0.5
   },
   "activity": {
     "regions": [
@@ -271,6 +285,55 @@
             "gbif"
           ]
         }
+      },
+      {
+        "region": "US-MS",
+        "monthly": [
+          0.5,
+          0.71,
+          0.75,
+          0.69,
+          0.67,
+          0.8,
+          1.0,
+          0.97,
+          0.73,
+          0.62,
+          0.42,
+          0.43
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 97018,
+        "sources": [
+          "inat-activity-us-ms",
+          "gbif-activity-us-ms"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 37,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3454&place_id=37&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=37&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 650,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.25_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2495347&gadmGid=USA.25_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.25_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 96368,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
       }
     ]
   },
@@ -310,6 +373,18 @@
       "cooldown_s": 5,
       "loudness": "Moderate",
       "description": "A short, sharp alarm note and a noisy wing-clatter on take-off when startled."
+    },
+    {
+      "call_id": "song",
+      "context": "Song",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day"
+      ],
+      "cooldown_s": 20,
+      "loudness": "Loud",
+      "description": "A mournful, rising then falling four-note coo from the male, delivered from a perch, followed by the female's shorter answering coo; also used in the courtship approach."
     }
   ],
   "look": {
@@ -460,6 +535,24 @@
       "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
       "accessed": "2026-10-01",
       "kind": "api"
+    },
+    {
+      "id": "inat-activity-us-ms",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3454&place_id=37&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Zenaida macroura in US-MS",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-ms",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2495347&gadmGid=USA.25_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Zenaida macroura in US-MS",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
     }
   ],
   "provenance": {
@@ -517,7 +610,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "A dove that feeds on the ground and walks rather than hops; a fast, direct flier with the characteristic whistling wing-beat."
+      "note": "A dove that feeds on the ground and walks rather than hops; a fast, direct flier with the characteristic whistling wing-beat.",
+      "derived": true
     },
     "traits.thermoregulation": {
       "sources": [
@@ -731,12 +825,24 @@
       "confidence": "Low",
       "derived": true,
       "note": "Authored parameters for the shared perching-songbird program: seed-based ground foraging, a March-September nest window, a moderate flee distance, and call ids matching the coo/alarm vocalizations above."
+    },
+    "vocalizations.song": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The mournful coo and the courtship sequence are as described in the article."
     }
   },
   "contributors": [
     {
       "name": "speeeecies maintainers",
       "agent": "opencode"
+    },
+    {
+      "name": "speeeecies contributors",
+      "agent": "opencode-go/space-bunny-free"
     }
   ]
 }

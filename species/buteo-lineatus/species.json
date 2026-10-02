@@ -114,12 +114,19 @@
         "tag": "nest_platform",
         "kind": "Nesting",
         "weight": 1.0
+      },
+      {
+        "tag": "cavity",
+        "kind": "Nesting",
+        "weight": 0.4
       }
     ],
     "human_tolerance": {
       "urban_affinity": "Adapter",
       "uses_gardens": true,
-      "notes": "A forest raptor that also nests and hunts in wooded suburbs, where houses are mixed into the trees, and winters sometimes takes birds at backyard feeders."
+      "notes": "A forest raptor that also nests and hunts in wooded suburbs, where houses are mixed into the trees, and winters sometimes takes birds at backyard feeders.",
+      "light_max": 0.4,
+      "road_mortality": "Low"
     }
   },
   "seasonal": {
@@ -259,6 +266,55 @@
             "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2480529&gadmGid=USA.11_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
             "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.11_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
             "total": 204870,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "US-MS",
+        "monthly": [
+          0.87,
+          1.0,
+          0.68,
+          0.5,
+          0.61,
+          0.65,
+          0.59,
+          0.61,
+          0.93,
+          0.93,
+          0.98,
+          0.97
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 21775,
+        "sources": [
+          "inat-activity-us-ms",
+          "gbif-activity-us-ms"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 37,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=5206&place_id=37&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=37&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 435,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.25_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2480529&gadmGid=USA.25_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.25_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 21340,
             "usable": true
           },
           "used": [
@@ -439,6 +495,24 @@
       "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
       "accessed": "2026-10-01",
       "kind": "api"
+    },
+    {
+      "id": "inat-activity-us-ms",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=5206&place_id=37&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Buteo lineatus in US-MS",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-ms",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2480529&gadmGid=USA.25_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Buteo lineatus in US-MS",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
     }
   ],
   "provenance": {
@@ -476,7 +550,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Breeds in eastern North America from southern Canada to Florida, the Gulf Coast and eastern Mexico, with a separate western population in California and northern Baja California."
+      "note": "Breeds in eastern North America from southern Canada to Florida, the Gulf Coast and eastern Mexico, with a separate western population in California and northern Baja California.",
+      "derived": true
     },
     "traits.body_plan": {
       "sources": [
@@ -495,7 +570,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Hunts by soaring and by dropping from a perch or the air onto prey, and stands on prey on the ground; described in the Food and feeding section."
+      "note": "Hunts by soaring and by dropping from a perch or the air onto prey, and stands on prey on the ground; described in the Food and feeding section.",
+      "derived": true
     },
     "traits.thermoregulation": {
       "sources": [
@@ -532,7 +608,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "'The breeding pair builds a stick nest ... in a major fork of a large tree.' A stick nest in a tree fork maps to Platform."
+      "note": "'The breeding pair builds a stick nest ... in a major fork of a large tree.' A stick nest in a tree fork maps to Platform.",
+      "derived": true
     },
     "traits.perching": {
       "sources": [
@@ -601,7 +678,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "'Like almost all raptors, the red-shouldered hawk is monogamous and territorial.' Set to Pair."
+      "note": "'Like almost all raptors, the red-shouldered hawk is monogamous and territorial.' Set to Pair.",
+      "derived": true
     },
     "traits.activity_pattern": {
       "sources": [
@@ -639,7 +717,8 @@
         "wikipedia"
       ],
       "confidence": "Medium",
-      "note": "Rests and roosts on tree branches; the schema tag for that is perch."
+      "note": "Rests and roosts on tree branches; the schema tag for that is perch.",
+      "derived": true
     },
     "habitat.resources": {
       "sources": [
@@ -654,7 +733,8 @@
         "wikipedia"
       ],
       "confidence": "Medium",
-      "note": "'One can find red-shouldered hawks in some suburban areas where houses or other buildings are mixed into woodlands', and in winter they sometimes prey on birds at feeders."
+      "note": "'One can find red-shouldered hawks in some suburban areas where houses or other buildings are mixed into woodlands', and in winter they sometimes prey on birds at feeders.",
+      "derived": true
     },
     "seasonal.strategy": {
       "sources": [
@@ -691,7 +771,9 @@
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "'The distinctive, screaming kee-aah call (usually repeated three to four times) of this bird is heard' while courting or defending territory."
     },
     "vocalizations.alarm": {
       "sources": [
@@ -739,6 +821,10 @@
     {
       "name": "speeeecies maintainers",
       "agent": "opencode"
+    },
+    {
+      "name": "speeeecies contributors",
+      "agent": "opencode-go/space-bunny-free"
     }
   ]
 }

@@ -7,7 +7,8 @@
   "common_names": {
     "en": "green anole",
     "fr": "anolis vert",
-    "de": "Grüner Anolis"
+    "de": "Grüner Anolis",
+    "es": "Anolis carolino"
   },
   "taxonomy": {
     "kingdom": "Animalia",
@@ -32,7 +33,8 @@
   "range": {
     "native": [
       "US",
-      "CU"
+      "CU",
+      "MX"
     ],
     "introduced": [
       "JP",
@@ -134,7 +136,9 @@
     "human_tolerance": {
       "urban_affinity": "Adapter",
       "uses_gardens": true,
-      "notes": "Compared with other lizards, green anoles are the most adapted to human encroachment; they are seen on steps, trellises, fences and railings next to foliage, and live in cities such as Atlanta where there is vegetation and insects."
+      "notes": "Compared with other lizards, green anoles are the most adapted to human encroachment; they are seen on steps, trellises, fences and railings next to foliage, and live in cities such as Atlanta where there is vegetation and insects.",
+      "light_max": 0.6,
+      "road_mortality": "Medium"
     }
   },
   "seasonal": {
@@ -157,6 +161,12 @@
         "start": "11-01",
         "end": "03-31",
         "note": "A refractory non-breeding season from late fall to late winter/early spring; activity continues but depends on sun and temperature."
+      },
+      {
+        "name": "territorial",
+        "start": "10-01",
+        "end": "03-31",
+        "note": "A refractory season from late fall until late winter or early spring, when males patrol their territory and display."
       }
     ],
     "life_stages": [
@@ -273,6 +283,55 @@
             "gbif"
           ]
         }
+      },
+      {
+        "region": "US-MS",
+        "monthly": [
+          0.15,
+          0.3,
+          1.0,
+          0.95,
+          0.57,
+          0.44,
+          0.4,
+          0.41,
+          0.56,
+          0.5,
+          0.33,
+          0.34
+        ],
+        "method": "mean(inat_raw, gbif_raw)",
+        "observations": 2073,
+        "sources": [
+          "inat-activity-us-ms",
+          "gbif-activity-us-ms"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 37,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=36514&place_id=37&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": null,
+            "total": 1753,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.25_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2466939&gadmGid=USA.25_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": null,
+            "total": 320,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
       }
     ]
   },
@@ -289,7 +348,19 @@
       "rest_sun_hi_deg": -6
     }
   },
-  "vocalizations": [],
+  "vocalizations": [
+    {
+      "call_id": "chuck",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 10,
+      "loudness": "Quiet",
+      "description": "A short 'chuck' or 'ch-ch-ch' given by a territorial male, usually with the dewlap extended and the body compressed, and by a female answering a courting male."
+    }
+  ],
   "look": {
     "body_plan": "quadruped",
     "proportions": {
@@ -411,6 +482,24 @@
       "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
       "accessed": "2026-10-01",
       "kind": "api"
+    },
+    {
+      "id": "inat-activity-us-ms",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=36514&place_id=37&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Anolis carolinensis in US-MS",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-ms",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2466939&gadmGid=USA.25_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Anolis carolinensis in US-MS",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
     }
   ],
   "provenance": {
@@ -447,7 +536,8 @@
         "wikipedia"
       ],
       "confidence": "Medium",
-      "note": "Native to the subtropical southeastern United States, abundant on the Gulf Coast in Alabama; introduced to Hawaii (inside the native US code), the Ogasawara Islands, the Northern Mariana Islands, the Bahamas, Anguilla, Palau, Saint Vincent and the Grenadines, the Canary Islands and southern California. The Ogasawara (Japan) population is the one listed as an invasive alien species. Country codes are ISO 3166-1 alpha-2."
+      "note": "Native to the subtropical southeastern United States, abundant on the Gulf Coast in Alabama; introduced to Hawaii (inside the native US code), the Ogasawara Islands, the Northern Mariana Islands, the Bahamas, Anguilla, Palau, Saint Vincent and the Grenadines, the Canary Islands and southern California. The Ogasawara (Japan) population is the one listed as an invasive alien species. Country codes are ISO 3166-1 alpha-2.",
+      "derived": true
     },
     "traits.body_plan": {
       "sources": [
@@ -466,7 +556,8 @@
         "wikipedia"
       ],
       "confidence": "Medium",
-      "note": "A trunk-crown lizard that walks on the ground and climbs with adhesive toe pads, escaping up vertical surfaces; the article also calls jumping its primary means of locomotion, which the quadruped mesh has no pose for."
+      "note": "A trunk-crown lizard that walks on the ground and climbs with adhesive toe pads, escaping up vertical surfaces; the article also calls jumping its primary means of locomotion, which the quadruped mesh has no pose for.",
+      "derived": true
     },
     "traits.thermoregulation": {
       "sources": [
@@ -622,14 +713,16 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "From the Distribution and habitat section: the lizard most adapted to human encroachment, seen on steps, trellises and railings, and living in cities such as Atlanta."
+      "note": "From the Distribution and habitat section: the lizard most adapted to human encroachment, seen on steps, trellises and railings, and living in cities such as Atlanta.",
+      "derived": true
     },
     "seasonal.strategy": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "'The Carolina anole is diurnal and active throughout the year, peaking in spring and fall. Winter activity is dependent on sun and temperature.'"
+      "note": "'The Carolina anole is diurnal and active throughout the year, peaking in spring and fall. Winter activity is dependent on sun and temperature.'",
+      "derived": true
     },
     "seasonal.phases": {
       "sources": [
@@ -673,6 +766,14 @@
       ],
       "confidence": "Medium",
       "note": "Wikipedia states that the colour spectrum arises from three layers of pigment cells - xanthophores for yellow, cyanophores for blue and melanophores for brown and black - and that green anoles are thought to be capable of seeing a larger range of the UV spectrum than humans. Neither colour vision nor UV vision is available as a boolean in the source text beyond that UV statement, so both flags follow it."
+    },
+    "vocalizations.chuck": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "The chuck is the standard display call of a male anole, consistent with the territorial displays described; no recording is cited."
     }
   },
   "contributors": [
@@ -683,6 +784,10 @@
     {
       "name": "speeeecies maintainers",
       "agent": "opencode"
+    },
+    {
+      "name": "speeeecies contributors",
+      "agent": "opencode-go/space-bunny-free"
     }
   ]
 }

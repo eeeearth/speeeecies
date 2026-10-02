@@ -53,7 +53,8 @@
       "IT",
       "BY",
       "AZ",
-      "RU"
+      "RU",
+      "GE"
     ],
     "invasive_in": [
       "DE",
@@ -270,6 +271,12 @@
         "start": "12-01",
         "end": "02-28",
         "note": "\"In the northern parts of their range, raccoons go into a winter rest, reducing their activity drastically as long as a permanent snow cover makes searching for food difficult.\" This is a reduction in activity driven by snow cover, not physiological torpor: an urban raccoon in a Michigan winter keeps feeding through it, which is why the record's strategy is ActiveYearRound."
+      },
+      {
+        "name": "breeding",
+        "start": "01-01",
+        "end": "06-30",
+        "note": "After a gestation of about 65 days a litter of typically two to five kits is born in spring, raised by the mother until dispersal in late fall."
       }
     ],
     "life_stages": [
@@ -570,6 +577,55 @@
             "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5218786&gadmGid=USA.23_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
             "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.23_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
             "total": 307,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "US-MS",
+        "monthly": [
+          0.55,
+          0.71,
+          0.52,
+          0.64,
+          0.87,
+          0.79,
+          0.82,
+          0.81,
+          0.89,
+          0.84,
+          0.83,
+          1.0
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 1163,
+        "sources": [
+          "inat-activity-us-ms",
+          "gbif-activity-us-ms"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 37,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=41663&place_id=37&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=37&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 609,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "C",
+            "area": [
+              "gadmGid",
+              "USA.25_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5218786&gadmGid=USA.25_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.25_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "total": 554,
             "usable": true
           },
           "used": [
@@ -947,6 +1003,24 @@
       "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
       "accessed": "2026-10-01",
       "kind": "api"
+    },
+    {
+      "id": "inat-activity-us-ms",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=41663&place_id=37&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Procyon lotor in US-MS",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-ms",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5218786&gadmGid=USA.25_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+      "title": "GBIF occurrence search for Procyon lotor in US-MS",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
     }
   ],
   "provenance": {
@@ -1082,7 +1156,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "'a body weight of 5 to 26 kg (11 to 57 lb)' from the lead paragraph. The wider '2 to 26 kg' figure is left out of the band so that the pair brackets the usual Ohio animal rather than the whole species' extremes."
+      "note": "'a body weight of 5 to 26 kg (11 to 57 lb)' from the lead paragraph. The wider '2 to 26 kg' figure is left out of the band so that the pair brackets the usual Ohio animal rather than the whole species' extremes.",
+      "derived": true
     },
     "traits.length_m": {
       "sources": [
@@ -1289,6 +1364,14 @@
       "confidence": "Medium",
       "derived": true,
       "note": "The raccoon has thirteen identified calls; the four here (chitter, growl, scream, whine) are described qualitatively in the article's communication text. Time windows and cooldowns are authored judgement, as no open source quantifies them."
+    },
+    "vocalizations.scream": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "The cornered scream and growl are standard for the species; no recording is cited."
     }
   },
   "contributors": [
