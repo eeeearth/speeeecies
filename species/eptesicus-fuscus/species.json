@@ -202,13 +202,20 @@
         "start": "05-01",
         "end": "08-31",
         "note": "Maternity colonies in attics and tree cavities; a single pup born in early summer."
+      },
+      {
+        "name": "nesting",
+        "start": "04-15",
+        "end": "07-31",
+        "note": "After hibernation ends, pregnant females separate into maternity colonies, which range from 5 to 700 individuals and are frequently 25-75 adults in the eastern US and Canada. Oftentimes only one offspring is produced per litter, though twins are common in the Eastern US."
       }
     ],
     "life_stages": [
       {
         "stage": "Juvenile",
         "duration_days": 42,
-        "scale": 0.3
+        "scale": 0.3,
+        "requires_tag": "cavity"
       },
       {
         "stage": "Adult"
@@ -486,6 +493,25 @@
       "title": "GBIF occurrence search for Eptesicus fuscus in US-MI",
       "license": "CC-BY-4.0",
       "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "pantheria",
+      "url": "https://esapubs.org/archive/ecol/E090/184/PanTHERIA_1-0_WR05_Aug2008.txt",
+      "title": "PanTHERIA 1.0: species-level life history, ecology and geography of extant mammals",
+      "license": "CC-BY-4.0",
+      "kind": "dataset",
+      "accessed": "2026-10-01",
+      "attribution": "Jones, K. E. et al. (2009) PanTHERIA. Ecology 90:2648",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "gbif-activity-us-wv",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2432352&gadmGid=USA.49_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+      "title": "GBIF occurrence search for Eptesicus fuscus in US-WV",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
       "accessed": "2026-10-01",
       "kind": "api"
     }
@@ -1144,6 +1170,53 @@
             "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.23_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
             "total": 876,
             "usable": true
+          },
+          "used": [
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "US-WV",
+        "monthly": [
+          1.0,
+          0.37,
+          0.09,
+          0.07,
+          0.05,
+          0.05,
+          0.07,
+          0.05,
+          0.04,
+          0.01,
+          0.03,
+          0.14
+        ],
+        "method": "gbif_share",
+        "observations": 135,
+        "sources": [
+          "gbif-activity-us-wv"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 33,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40509&place_id=33&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=33&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 60,
+            "usable": false
+          },
+          "gbif": {
+            "tier": "C",
+            "area": [
+              "gadmGid",
+              "USA.49_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2432352&gadmGid=USA.49_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.49_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "total": 135,
+            "usable": false
           },
           "used": [
             "gbif"

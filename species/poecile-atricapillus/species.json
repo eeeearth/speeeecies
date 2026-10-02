@@ -81,7 +81,9 @@
     "defense": "Flee",
     "wariness": 0.2,
     "senses": {
-      "hearing": "High"
+      "hearing": "High",
+      "vision_color": true,
+      "olfaction": "Low"
     }
   },
   "habitat": {
@@ -208,7 +210,8 @@
       {
         "stage": "Juvenile",
         "duration_days": 60,
-        "scale": 0.9
+        "scale": 0.9,
+        "requires_tag": "cavity"
       },
       {
         "stage": "Adult"
@@ -360,6 +363,53 @@
           },
           "used": [
             "inat",
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "US-WV",
+        "monthly": [
+          0.76,
+          1.0,
+          0.57,
+          0.42,
+          0.38,
+          0.52,
+          0.53,
+          0.56,
+          0.57,
+          0.63,
+          0.71,
+          0.9
+        ],
+        "method": "gbif_share",
+        "observations": 39551,
+        "sources": [
+          "gbif-activity-us-wv"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 33,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=144815&place_id=33&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=33&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 222,
+            "usable": false
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.49_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2487805&gadmGid=USA.49_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.49_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 39551,
+            "usable": true
+          },
+          "used": [
             "gbif"
           ]
         }
@@ -631,6 +681,25 @@
       "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
       "accessed": "2026-10-01",
       "kind": "api"
+    },
+    {
+      "id": "avonet",
+      "url": "https://doi.org/10.6084/m9.figshare.16586228",
+      "title": "AVONET: morphological, ecological and geographical data for all birds",
+      "license": "CC-BY-4.0",
+      "kind": "dataset",
+      "accessed": "2026-10-01",
+      "attribution": "Tobias, J. A. et al. (2022) AVONET. Ecology Letters 25:581-597",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "gbif-activity-us-wv",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2487805&gadmGid=USA.49_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Poecile atricapillus in US-WV",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
     }
   ],
   "provenance": {
@@ -639,7 +708,8 @@
         "gbif-backbone",
         "itis"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "note": "GBIF backbone gives family Paridae and authority (Linnaeus, 1766); ITIS scientific-name search returns TSN 554382 with the same authority. The species was long placed in the genus Parus (EltonTraits still files it there); Poecile is the current placement."
     },
     "external": {
       "sources": [
@@ -689,7 +759,8 @@
         "wikipedia"
       ],
       "confidence": "Medium",
-      "note": "Hops along twigs and flies in short bursts between cover."
+      "note": "Hops along twigs and flies in short bursts between cover.",
+      "derived": true
     },
     "traits.thermoregulation": {
       "sources": [
@@ -755,7 +826,8 @@
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "note": "'Both sexes weigh 10-14 g'."
     },
     "traits.length_m": {
       "sources": [
@@ -911,20 +983,23 @@
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "note": "The two-note fee-bee whistle from the Vocalization section, which also gives the frequency detail: 'The frequency of their songs typically starts around 400 Hz, and various tones spanning roughly 1 kHz are sung within the song.'"
     },
     "vocalizations.alarm": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "note": "The chick-a-dee-dee-dee call, named in the lead paragraph, plus the incubating female's 'explosive hiss like that of a snake' at the nest entrance."
     },
     "traits.senses": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "Medium",
-      "note": "The article describes 16 distinct vocalizations and notes that flock members are often out of each other's visual range, which supports High hearing. vision_colour, olfaction, uv and vibration are omitted rather than guessed."
+      "note": "The article describes 16 distinct vocalizations and notes that flock members are often out of each other's visual range, which supports High hearing. vision_colour, olfaction, uv and vibration are omitted rather than guessed.",
+      "derived": true
     },
     "habitat.density_per_ha": {
       "sources": [],
@@ -937,7 +1012,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "The two-note fee-bee description, its pitch relationship between the notes, the frequency figures (starting around 400 Hz with tones spanning roughly 1 kHz, recorded here as 400-1400 Hz), the four A-D units of the chick-a-dee-dee, its year-round use by both sexes, the faint version used at the nest and in courtship, the single note of young birds in late summer and the incubating female's snake-like hiss are all from the Vocalization and Breeding sections. The chick-a-dee's 3-8 kHz band is authored: the article gives frequency figures for the song only, and places the call's two components on either side of the song, so the band is set around them and is not a quoted measurement. Cooldowns are authored judgement."
+      "note": "The two-note fee-bee description, its pitch relationship between the notes, the frequency figures (starting around 400 Hz with tones spanning roughly 1 kHz, recorded here as 400-1400 Hz), the four A-D units of the chick-a-dee-dee, its year-round use by both sexes, the faint version used at the nest and in courtship, the single note of young birds in late summer and the incubating female's snake-like hiss are all from the Vocalization and Breeding sections. The chick-a-dee's 3-8 kHz band is authored: the article gives frequency figures for the song only, and places the call's two components on either side of the song, so the band is set around them and is not a quoted measurement. Cooldowns are authored judgement.",
+      "derived": true
     }
   },
   "contributors": [

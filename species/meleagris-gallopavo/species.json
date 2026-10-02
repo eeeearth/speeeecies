@@ -7,7 +7,8 @@
   "common_names": {
     "en": "wild turkey",
     "fr": "dindon sauvage",
-    "es": "pavo salvaje"
+    "es": "pavo salvaje",
+    "de": "Truthuhn"
   },
   "taxonomy": {
     "kingdom": "Animalia",
@@ -22,8 +23,8 @@
   "external": {
     "gbif_usage_key": 9606290,
     "inat_taxon_id": 906,
-    "wikidata": "Q26844",
     "itis_tsn": 176136,
+    "wikidata": "Q26844",
     "ncbi_taxon_id": 9103,
     "ebird_code": "wiltur"
   },
@@ -34,7 +35,13 @@
     "native": [
       "US",
       "CA",
-      "MX"
+      "MX",
+      "GT",
+      "BZ",
+      "HN",
+      "SV",
+      "NI",
+      "CR"
     ],
     "introduced": [
       "NZ",
@@ -84,8 +91,12 @@
     "wariness": 0.75,
     "senses": {
       "hearing": "High",
-      "vibration": true
-    }
+      "vibration": true,
+      "vision_color": true,
+      "night_vision": false,
+      "olfaction": "Low"
+    },
+    "shoulder_height_m": 0.6
   },
   "habitat": {
     "use": {
@@ -212,7 +223,9 @@
         "stage": "Adult"
       },
       {
-        "stage": "Egg"
+        "stage": "Egg",
+        "duration_days": 28,
+        "requires_tag": "nest_ground"
       }
     ]
   },
@@ -406,6 +419,55 @@
             "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=9606290&gadmGid=USA.23_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
             "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.23_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
             "total": 148283,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "US-WV",
+        "monthly": [
+          0.52,
+          0.72,
+          0.73,
+          0.9,
+          0.67,
+          0.57,
+          0.77,
+          1.0,
+          0.98,
+          0.73,
+          0.68,
+          0.69
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 14527,
+        "sources": [
+          "inat-activity-us-wv",
+          "gbif-activity-us-wv"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 33,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=906&place_id=33&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=33&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 672,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.49_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=9606290&gadmGid=USA.49_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.49_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 13855,
             "usable": true
           },
           "used": [
@@ -737,6 +799,24 @@
       "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
       "accessed": "2026-10-01",
       "kind": "api"
+    },
+    {
+      "id": "inat-activity-us-wv",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=906&place_id=33&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Meleagris gallopavo in US-WV",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-wv",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=9606290&gadmGid=USA.49_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Meleagris gallopavo in US-WV",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
     }
   ],
   "provenance": {
@@ -1037,7 +1117,8 @@
         "wikipedia"
       ],
       "confidence": "Medium",
-      "note": "The article credits the turkey with 'superior sight' when foraging alongside deer and squirrels that supply smell and extra eyes from the air, and describes a pigeon/hearing-like sensitivity to a flushed bird implied by the roost-flush cackle; High hearing is set on the daily flush-and-roost routine, and vibration for the strong ground contact a 6 kg walking bird has with leaf litter. No open source quantifies any sense, so the rest are omitted rather than guessed."
+      "note": "The article credits the turkey with 'superior sight' when foraging alongside deer and squirrels that supply smell and extra eyes from the air, and describes a pigeon/hearing-like sensitivity to a flushed bird implied by the roost-flush cackle; High hearing is set on the daily flush-and-roost routine, and vibration for the strong ground contact a 6 kg walking bird has with leaf litter. No open source quantifies any sense, so the rest are omitted rather than guessed.",
+      "derived": true
     },
     "habitat.density_per_ha": {
       "sources": [],
@@ -1052,6 +1133,14 @@
       "confidence": "High",
       "derived": true,
       "note": "The call list, the gobble audible to a mile and given by older males in early spring, weather suppressing gobbling, the air-sac drumming or booming, the 'spit', the fly-down cackle and the hen's 'kee kee run' to her poults are all quoted or closely paraphrased from the Vocalizations, Social structure and mating and roosting passages. Cooldowns and the months on the yelp and purr calls are authored judgement, since no open source quantifies them. No open source gives frequency bands, so freq_hz is omitted."
+    },
+    "traits.shoulder_height_m": {
+      "sources": [
+        "avonet"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored from AVONET: the tarsus, the leg segment from the ankle to the ground, measures 9.7-19.1 cm, so 0.6 m is an order-of-magnitude standing height for an adult male with long sturdy legs. The source does not state a shoulder height and no open source consulted gives one, so this is a judgement, not a measurement."
     }
   },
   "contributors": [
