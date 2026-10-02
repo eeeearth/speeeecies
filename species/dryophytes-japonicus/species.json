@@ -1,0 +1,558 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Dryophytes japonicus",
+  "slug": "dryophytes-japonicus",
+  "common_names": {
+    "en": "Japanese Tree Frog",
+    "ko": "청개구리"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Amphibia",
+    "order": "Anura",
+    "family": "Hylidae",
+    "genus": "Dryophytes",
+    "authority": "(Günther, 1859)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 10857535,
+    "inat_taxon_id": 1668965
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "JP",
+      "KR",
+      "KP",
+      "CN",
+      "RU",
+      "MN"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk",
+      "Hop",
+      "Climb",
+      "Swim"
+    ],
+    "thermoregulation": "Ectotherm",
+    "skin": "Moist",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "Complete",
+    "nest_type": "None",
+    "perching": true,
+    "size_class": "Tiny",
+    "mass_kg": 0.003,
+    "mass_range_kg": [
+      0.002,
+      0.005
+    ],
+    "length_m": 0.033,
+    "speed_ms": {
+      "hop": 0.5,
+      "walk": 0.1
+    },
+    "lifespan_y": 6,
+    "diet": {
+      "invertebrate": 1.0
+    },
+    "social": {
+      "structure": "Solitary",
+      "group_size": [
+        1,
+        1
+      ]
+    },
+    "activity_pattern": "Nocturnal",
+    "defense": "Freeze",
+    "wariness": 0.8
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.3,
+      "arboreal": 0.5,
+      "aquatic": 0.2
+    },
+    "shelter_tag": "shrub_thicket",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 1.0
+      },
+      {
+        "tag": "shrub_thicket",
+        "kind": "Shelter",
+        "weight": 0.8
+      },
+      {
+        "tag": "water",
+        "kind": "Water",
+        "weight": 0.6
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "flight_distance_m": 3,
+      "notes": "Common in rice paddies, wetlands, gardens and urban areas; breeds in shallow water."
+    }
+  },
+  "seasonal": {
+    "strategy": "Hibernation",
+    "triggers": {
+      "enter": {
+        "temperature_below_c": 5,
+        "days": 14
+      },
+      "exit": {
+        "temperature_above_c": 10,
+        "days": 7
+      }
+    },
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "04-01",
+        "end": "07-31",
+        "note": "Breeding season in spring and summer; males call near water."
+      },
+      {
+        "name": "dormancy",
+        "start": "11-01",
+        "end": "03-31",
+        "note": "Hibernation in cold months; can withstand extreme cold."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg",
+        "duration_days": 7
+      },
+      {
+        "stage": "Tadpole",
+        "duration_days": 60
+      },
+      {
+        "stage": "Juvenile",
+        "duration_days": 90,
+        "scale": 0.3
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "KR-11",
+        "monthly": [
+          0.0,
+          0.0,
+          0.0,
+          0.13,
+          1.0,
+          0.97,
+          0.42,
+          0.26,
+          0.18,
+          0.18,
+          0.0,
+          0.0
+        ],
+        "method": "gbif_raw",
+        "observations": 120,
+        "sources": [
+          "gbif-activity-kr-11"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 11005,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=1668965&place_id=11005&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": null,
+            "total": 89,
+            "usable": false
+          },
+          "gbif": {
+            "tier": "C",
+            "area": [
+              "gadmGid",
+              "KOR.16_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=10857535&gadmGid=KOR.16_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "baseline_url": null,
+            "total": 120,
+            "usable": false
+          },
+          "used": [
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-anuran-nocturnal-v1",
+    "params": {
+      "flee_m": 2,
+      "freeze_m": 5,
+      "food_tag": "invertebrate",
+      "call": "croak",
+      "min_temp_c": 3,
+      "max_temp_c": 28,
+      "call_m1": 4,
+      "call_m2": 7
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "croak",
+      "context": "Croak",
+      "season_months": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "time_windows": [
+        "Night",
+        "Dusk"
+      ],
+      "cooldown_s": 5,
+      "loudness": "Loud",
+      "description": "A loud, repetitive croak 'ko-ko-ko', given by males near water in the breeding season."
+    }
+  ],
+  "look": {
+    "body_plan": "anuran",
+    "proportions": {
+      "torso_aspect": 1.2,
+      "leg_length_ratio": 0.8,
+      "head_scale": 0.9,
+      "neck_angle_deg": 0,
+      "tail_ratio": 0,
+      "beak_ratio": 0.1,
+      "girth_ratio": 1.0
+    },
+    "palette": {
+      "body": "#4a8a3a",
+      "belly": "#e8f0d8",
+      "markings": "#2a4a1a",
+      "accent": "#4a8a3a",
+      "eye": "#1a1a0a"
+    },
+    "part_colors": {
+      "leg_*": "markings"
+    },
+    "extra_parts": [],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "hop": {},
+      "swim": {},
+      "perched": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/10857535",
+      "title": "GBIF Backbone Taxonomy: Dryophytes japonicus",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Japanese_tree_frog",
+      "title": "Wikipedia: Japanese tree frog",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Japanese tree frog\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "gbif-activity-kr-11",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=10857535&gadmGid=KOR.16_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+      "title": "GBIF occurrence search for Dryophytes japonicus in KR-11",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High"
+    },
+    "common_names": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "IUCN Least Concern."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Range from Wikipedia: Japan, China, Korea, Russia, Mongolia."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Mass ~2.6g from description."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "SVL ~3.3 cm from Wikipedia."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Diet: insects, spiders."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Lifespan ~6 years."
+    },
+    "vocalizations": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Typical tree frog croaking."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Green or brown dorsal coloration, white ventral; proportions authored."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared anuran-nocturnal program."
+    },
+    "habitat.use": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored: ground, arboreal and aquatic."
+    },
+    "habitat.shelter_tag": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored: uses shrub thicket or water."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Weights are judgement based on diet description."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Adapts to urban and suburban areas."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Hibernation in cold months."
+    },
+    "seasonal.phases": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored: breeding and dormancy phases."
+    },
+    "seasonal.life_stages": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored: egg, tadpole, juvenile, adult."
+    },
+    "traits.activity_pattern": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: nocturnal."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.defense": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: freezes or flees from threats."
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: walks, hops, swims."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Approximate range from description."
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Judgement: no nest; eggs laid in water."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.size_class": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "From mass_kg."
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Solitary."
+    },
+    "traits.speed_ms": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored estimate."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.wariness": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored judgement."
+    },
+    "seasonal.triggers": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored: temperature-based triggers."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies maintainers",
+      "agent": "claude-code"
+    }
+  ]
+}

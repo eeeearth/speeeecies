@@ -1,0 +1,344 @@
+{
+  "schema_version": 1,
+  "format": "speeeecies/behavior",
+  "id": "fsm-bark-climber-v1",
+  "kind": "fsm",
+  "description": "Cavity-nesting woodpecker: roosts in a hole it excavated, flies between trunks, works up the bark probing and gleaning for arthropods, hammers fruit and nuts into bark crevices to hoard them, drums on dead wood to advertise to a mate, incubates in the cavity and feeds nestlings, and harasses a threat with alarm calls rather than simply leaving. No shared program fits: the songbird forages on the ground by hops and has no bark work or drumming, the ground forager walks and rests in burrows or dens rather than climbing a trunk, and the seabird and anuran programs assume water. Gait 'climb' carries the trunk work; 'fly' carries the cover-to-cover moves.",
+  "params": {
+    "flee_m": 10,
+    "calm_m": 25,
+    "food_tag": "invertebrate",
+    "cache_tag": "fruit",
+    "food_m": 3,
+    "cover_m": 25,
+    "call": "churr",
+    "drum_m1": 4,
+    "drum_m2": 6
+  },
+  "initial": "roost",
+  "states": {
+    "roost": {
+      "action": {
+        "do": "rest",
+        "at": "shelter"
+      },
+      "min_dwell_s": 30
+    },
+    "perch_watch": {
+      "action": {
+        "do": "perch_nearest"
+      },
+      "min_dwell_s": 3
+    },
+    "fly_cover": {
+      "action": {
+        "do": "wander",
+        "gait": "fly"
+      }
+    },
+    "probe_bark": {
+      "action": {
+        "do": "eat_nearest",
+        "tag": "${food_tag}",
+        "gait": "climb"
+      },
+      "min_dwell_s": 15
+    },
+    "hoard": {
+      "action": {
+        "do": "eat_nearest",
+        "tag": "${cache_tag}",
+        "gait": "climb"
+      },
+      "min_dwell_s": 10
+    },
+    "drum": {
+      "action": {
+        "do": "emote",
+        "kind": "drum",
+        "call": "${call}"
+      },
+      "min_dwell_s": 3
+    },
+    "incubate": {
+      "action": {
+        "do": "incubate",
+        "at": "nest"
+      },
+      "min_dwell_s": 60
+    },
+    "feed_nestlings": {
+      "action": {
+        "do": "eat_nearest",
+        "tag": "${food_tag}",
+        "at": "nest"
+      },
+      "min_dwell_s": 20
+    },
+    "harass": {
+      "action": {
+        "do": "alarm",
+        "call": "${call}"
+      },
+      "min_dwell_s": 2
+    },
+    "flee": {
+      "action": {
+        "do": "flee",
+        "gait": "fly"
+      },
+      "min_dwell_s": 3
+    },
+    "touched": {
+      "action": {
+        "do": "tolerate_touch"
+      }
+    }
+  },
+  "transitions": [
+    {
+      "from": "*",
+      "to": "flee",
+      "when": {
+        "threat_within_m": "${flee_m}"
+      },
+      "priority": 100
+    },
+    {
+      "from": "*",
+      "to": "touched",
+      "when": {
+        "all": [
+          {
+            "player_touch": true
+          },
+          {
+            "need": "fear",
+            "lt": 0.2
+          }
+        ]
+      },
+      "priority": 60
+    },
+    {
+      "from": "*",
+      "to": "harass",
+      "when": {
+        "all": [
+          {
+            "threat_within_m": "${calm_m}"
+          },
+          {
+            "not": {
+              "threat_within_m": "${flee_m}"
+            }
+          }
+        ]
+      },
+      "priority": 55
+    },
+    {
+      "from": "touched",
+      "to": "roost",
+      "when": {
+        "player_touch": false
+      }
+    },
+    {
+      "from": "harass",
+      "to": "roost",
+      "when": {
+        "not": {
+          "threat_within_m": "${calm_m}"
+        }
+      }
+    },
+    {
+      "from": "flee",
+      "to": "roost",
+      "when": {
+        "not": {
+          "threat_within_m": "${flee_m}"
+        }
+      }
+    },
+    {
+      "from": "roost",
+      "to": "perch_watch",
+      "when": {
+        "all": [
+          {
+            "is_day": true
+          },
+          {
+            "chance": 0.4
+          }
+        ]
+      },
+      "priority": 10
+    },
+    {
+      "from": "roost",
+      "to": "incubate",
+      "when": {
+        "all": [
+          {
+            "need": "nest",
+            "gt": 0.5
+          },
+          {
+            "nest_site_within_m": 30
+          }
+        ]
+      }
+    },
+    {
+      "from": "perch_watch",
+      "to": "probe_bark",
+      "when": {
+        "all": [
+          {
+            "need": "hunger",
+            "gt": 0.35
+          },
+          {
+            "food_within_m": "${food_m}",
+            "tag": "${food_tag}"
+          }
+        ]
+      },
+      "priority": 20
+    },
+    {
+      "from": "perch_watch",
+      "to": "fly_cover",
+      "when": {
+        "not": {
+          "food_within_m": "${food_m}",
+          "tag": "${food_tag}"
+        }
+      }
+    },
+    {
+      "from": "fly_cover",
+      "to": "perch_watch",
+      "when": {
+        "perch_within_m": "${cover_m}"
+      }
+    },
+    {
+      "from": "fly_cover",
+      "to": "probe_bark",
+      "when": {
+        "food_within_m": "${food_m}",
+        "tag": "${food_tag}"
+      }
+    },
+    {
+      "from": "perch_watch",
+      "to": "hoard",
+      "when": {
+        "all": [
+          {
+            "month_in": [
+              9,
+              10,
+              11
+            ]
+          },
+          {
+            "food_within_m": 4,
+            "tag": "${cache_tag}"
+          },
+          {
+            "chance": 0.3
+          }
+        ]
+      },
+      "priority": 18
+    },
+    {
+      "from": "probe_bark",
+      "to": "perch_watch",
+      "when": {
+        "need": "hunger",
+        "lt": 0.2
+      }
+    },
+    {
+      "from": "probe_bark",
+      "to": "fly_cover",
+      "when": {
+        "not": {
+          "food_within_m": "${food_m}",
+          "tag": "${food_tag}"
+        }
+      }
+    },
+    {
+      "from": "hoard",
+      "to": "perch_watch",
+      "when": {
+        "chance": 0.4
+      }
+    },
+    {
+      "from": "perch_watch",
+      "to": "feed_nestlings",
+      "when": {
+        "all": [
+          {
+            "need": "nest",
+            "gt": 0.7
+          },
+          {
+            "food_within_m": 20,
+            "tag": "${food_tag}"
+          }
+        ]
+      },
+      "priority": 30
+    },
+    {
+      "from": "feed_nestlings",
+      "to": "perch_watch",
+      "when": {
+        "need": "nest",
+        "lt": 0.3
+      }
+    },
+    {
+      "from": "incubate",
+      "to": "perch_watch",
+      "when": {
+        "need": "nest",
+        "lt": 0.2
+      }
+    },
+    {
+      "from": "perch_watch",
+      "to": "drum",
+      "when": {
+        "all": [
+          {
+            "month_in": [
+              "${drum_m1}",
+              "${drum_m2}"
+            ]
+          },
+          {
+            "chance": 0.2
+          }
+        ]
+      },
+      "priority": 15
+    },
+    {
+      "from": "drum",
+      "to": "perch_watch",
+      "when": {
+        "chance": 0.35
+      }
+    }
+  ]
+}

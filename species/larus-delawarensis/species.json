@@ -5,7 +5,9 @@
   "id": "Larus delawarensis",
   "slug": "larus-delawarensis",
   "common_names": {
-    "en": "Ring-billed gull"
+    "en": "Ring-billed gull",
+    "fr": "Goéland à bec cerclé",
+    "de": "Ringelmöwe"
   },
   "taxonomy": {
     "kingdom": "Animalia",
@@ -33,7 +35,8 @@
       "CA",
       "MX",
       "GL"
-    ]
+    ],
+    "introduced": []
   },
   "traits": {
     "body_plan": "Vertebrate",
@@ -154,6 +157,12 @@
         "start": "08-01",
         "end": "03-31",
         "note": "After breeding, birds gather in large flocks on the Great Lakes and along the coasts, feeding on refuse and on winter-killed fish."
+      },
+      {
+        "name": "breeding",
+        "start": "04-01",
+        "end": "08-31",
+        "note": "Colonial breeding on islands and gravel rooftops; a few broods."
       }
     ],
     "life_stages": [
@@ -221,6 +230,55 @@
             "gbif"
           ]
         }
+      },
+      {
+        "region": "US-VT",
+        "monthly": [
+          0.35,
+          0.28,
+          0.97,
+          0.81,
+          0.31,
+          0.3,
+          0.49,
+          0.62,
+          0.64,
+          0.76,
+          1.0,
+          0.45
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 96233,
+        "sources": [
+          "inat-activity-us-vt",
+          "gbif-activity-us-vt"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 47,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=4364&place_id=47&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=47&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 1351,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.46_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2481134&gadmGid=USA.46_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.46_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 94882,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
       }
     ]
   },
@@ -266,6 +324,28 @@
         0.4,
         0.9
       ]
+    },
+    {
+      "call_id": "mew",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 6,
+      "loudness": "Loud",
+      "description": "High-pitched, whining 'kyow' mew call, the most common call, given in flight and at feeding sites."
+    },
+    {
+      "call_id": "alarm",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 4,
+      "loudness": "Loud",
+      "description": "Short, sharp 'kak-kak-kak' barking alarm call, repeated rapidly when mobbing a predator or rival."
     }
   ],
   "look": {
@@ -387,6 +467,24 @@
       "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
       "accessed": "2026-10-01",
       "kind": "api"
+    },
+    {
+      "id": "inat-activity-us-vt",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=4364&place_id=47&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Larus delawarensis in US-VT",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-vt",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2481134&gadmGid=USA.46_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Larus delawarensis in US-VT",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
     }
   ],
   "provenance": {
@@ -411,7 +509,8 @@
         "wikidata",
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "note": "en/fr/de labels from Wikidata sitelink titles."
     },
     "conservation": {
       "sources": [
@@ -483,7 +582,9 @@
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "Stands and rests on the ground or water rather than perching on branches; set to false."
     },
     "traits.nest_type": {
       "sources": [
@@ -536,7 +637,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "'The average lifespan of an individual that reaches adulthood is 10.9 years'; the same paragraph records the oldest known bird as 28 years, alive in Cleveland, Ohio in 2021."
+      "note": "'The average lifespan of an individual that reaches adulthood is 10.9 years'; the same paragraph records the oldest known bird as 28 years, alive in Cleveland, Ohio in 2021.",
+      "derived": true
     },
     "traits.diet": {
       "sources": [
@@ -679,11 +781,27 @@
       "confidence": "Low",
       "derived": true,
       "note": "Authored parameters for the shared territorial-predator program, which matches how a gull works: patrol by flight, take live prey, scavenge carrion, drink, retreat from a threat. flee_m is kept low at 30 m because the species is a bold opportunist around people."
+    },
+    "vocalizations.mew": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "vocalizations.alarm": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
     }
   },
   "contributors": [
     {
       "name": "speeeecies maintainers",
+      "agent": "claude-code"
+    },
+    {
+      "name": "speeeecies agent",
       "agent": "claude-code"
     }
   ]
