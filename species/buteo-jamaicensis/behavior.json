@@ -1,74 +1,88 @@
 {
-  "schema_version": 1,
   "format": "speeeecies/behavior",
-  "id": "fsm-perching-raptor-v1",
+  "schema_version": 1,
+  "id": "fsm-perch-hunting-raptor-v1",
   "kind": "fsm",
-  "description": "Perching bird of prey (hawk, falcon, owl): waits on a high perch watching for prey, drops onto prey within `prey_m`, carries it back up, eats it, and drops back into a perch while the sun is below `perch_sun_hi_deg`. Screams from the perch when a threat comes near.",
+  "description": "A large perched raptor (hawk, falcon, owl): spends most of the day on a high perch scanning for prey, drops off the perch to seize small animals, soars between perches, calls from the perch and defends the nest, and goes to roost in a tall tree. Written for Buteo jamaicensis; the shared perching-songbird program is a poor fit because it forages by hopping on the ground and sings a territorial song, neither of which a buteo does.",
   "params": {
-    "perch_m": 25,
-    "prey_m": 60,
-    "flee_m": 150,
-    "song": "scream"
+    "flee_m": 60,
+    "calm_m": 150,
+    "food_tag": "vertebrate",
+    "food_m": 120,
+    "perch_m": 90,
+    "nest_m": 60,
+    "call": "scream",
+    "roost_sun_hi_deg": -6
   },
-  "initial": "perched",
+  "initial": "perch",
   "states": {
-    "perched": {
+    "perch": {
       "action": {
-        "do": "idle"
+        "do": "perch_nearest"
       },
-      "min_dwell_s": 4
+      "min_dwell_s": 20
     },
-    "watch": {
+    "scan": {
       "action": {
-        "do": "idle"
-      }
+        "do": "idle",
+        "kind": "scan"
+      },
+      "min_dwell_s": 15
     },
     "stoop": {
       "action": {
         "do": "fly_to_nearest",
-        "tag": "small_vertebrate",
+        "tag": "${food_tag}",
         "gait": "fly"
       }
     },
-    "catch": {
+    "seize": {
       "action": {
         "do": "eat_nearest",
-        "tag": "small_vertebrate",
-        "gait": "walk"
-      },
-      "min_dwell_s": 5
-    },
-    "carry": {
-      "action": {
-        "do": "perch_nearest",
+        "tag": "${food_tag}",
         "gait": "fly"
-      }
+      },
+      "min_dwell_s": 20
     },
     "soar": {
       "action": {
         "do": "wander",
-        "gait": "glide"
-      }
-    },
-    "flee": {
-      "action": {
-        "do": "flee",
-        "gait": "glide"
+        "gait": "fly"
       },
-      "min_dwell_s": 3
+      "min_dwell_s": 25
     },
-    "mob": {
+    "call_from_perch": {
       "action": {
-        "do": "sing",
-        "call": "${song}"
-      }
+        "do": "alarm",
+        "call": "${call}"
+      },
+      "min_dwell_s": 4
     },
-    "night": {
+    "nest": {
+      "action": {
+        "do": "incubate"
+      },
+      "min_dwell_s": 30
+    },
+    "build": {
+      "action": {
+        "do": "build_nest"
+      },
+      "min_dwell_s": 30
+    },
+    "roost": {
       "action": {
         "do": "rest",
         "at": "shelter"
       },
-      "min_dwell_s": 60
+      "min_dwell_s": 120
+    },
+    "flee": {
+      "action": {
+        "do": "flee",
+        "gait": "fly"
+      },
+      "min_dwell_s": 3
     }
   },
   "transitions": [
@@ -81,143 +95,209 @@
       "priority": 100
     },
     {
+      "from": "flee",
+      "to": "perch",
+      "when": {
+        "not": {
+          "threat_within_m": "${calm_m}"
+        }
+      }
+    },
+    {
       "from": "*",
-      "to": "mob",
+      "to": "call_from_perch",
       "when": {
         "all": [
           {
-            "threat_within_m": "${perch_m}"
+            "need": "fear",
+            "gt": 0.4
           },
           {
-            "not": {
-              "threat_within_m": "${flee_m}"
-            }
+            "perch_within_m": "${perch_m}"
           }
         ]
       },
-      "priority": 95
+      "priority": 80
     },
     {
-      "from": "flee",
-      "to": "perched",
+      "from": "call_from_perch",
+      "to": "perch",
       "when": {
-        "not": {
-          "threat_within_m": "${flee_m}"
-        }
+        "chance": 0.3
       }
     },
     {
-      "from": "mob",
-      "to": "perched",
-      "when": {
-        "chance": 0.5
-      }
-    },
-    {
-      "from": "perched",
-      "to": "night",
-      "when": {
-        "not": {
-          "sun_elevation_between_deg": [
-            -20,
-            40
-          ]
-        }
-      },
-      "priority": 40
-    },
-    {
-      "from": "perched",
+      "from": "perch",
       "to": "stoop",
       "when": {
         "all": [
           {
             "need": "hunger",
-            "gt": 0.35
-          },
-          {
-            "food_within_m": "${prey_m}",
-            "tag": "small_vertebrate"
-          }
-        ]
-      },
-      "priority": 30
-    },
-    {
-      "from": "perched",
-      "to": "watch",
-      "when": {
-        "all": [
-          {
-            "need": "social",
             "gt": 0.5
           },
           {
-            "is_day": true
-          }
-        ]
-      },
-      "priority": 20
-    },
-    {
-      "from": "perched",
-      "to": "soar",
-      "when": {
-        "need": "energy",
-        "gt": 0.6
-      },
-      "priority": 10
-    },
-    {
-      "from": "watch",
-      "to": "perched",
-      "when": {
-        "chance": 0.2
-      }
-    },
-    {
-      "from": "soar",
-      "to": "perched",
-      "when": {
-        "any": [
-          {
-            "chance": 0.3
+            "food_within_m": "${food_m}",
+            "tag": "${food_tag}"
           },
           {
-            "need": "energy",
-            "lt": 0.2
+            "sun_elevation_between_deg": [
+              5,
+              60
+            ]
           }
         ]
+      },
+      "priority": 70
+    },
+    {
+      "from": "stoop",
+      "to": "seize",
+      "when": {
+        "chance": 0.5
       }
     },
     {
       "from": "stoop",
-      "to": "catch",
+      "to": "perch",
       "when": {
         "chance": 0.5
       }
     },
     {
-      "from": "catch",
-      "to": "carry",
+      "from": "seize",
+      "to": "perch",
       "when": {
         "need": "hunger",
-        "lt": 0.2
+        "lt": 0.3
       }
     },
     {
-      "from": "carry",
-      "to": "perched",
+      "from": "perch",
+      "to": "scan",
       "when": {
-        "chance": 0.5
+        "need": "hunger",
+        "lt": 0.5
+      },
+      "priority": 50
+    },
+    {
+      "from": "scan",
+      "to": "perch",
+      "when": {
+        "chance": 0.4
+      },
+      "priority": 50
+    },
+    {
+      "from": "build",
+      "to": "perch",
+      "when": {
+        "month_in": [
+          4,
+          5,
+          6
+        ]
       }
     },
     {
-      "from": "night",
-      "to": "perched",
+      "from": "nest",
+      "to": "perch",
       "when": {
-        "chance": 0.3
+        "month_in": [
+          7,
+          8,
+          9
+        ]
       }
+    },
+    {
+      "from": "soar",
+      "to": "perch",
+      "when": {
+        "chance": 0.4
+      }
+    },
+    {
+      "from": "*",
+      "to": "nest",
+      "when": {
+        "all": [
+          {
+            "month_in": [
+              3,
+              4,
+              5,
+              6
+            ]
+          },
+          {
+            "nest_site_within_m": "${nest_m}"
+          }
+        ]
+      },
+      "priority": 60
+    },
+    {
+      "from": "*",
+      "to": "build",
+      "when": {
+        "all": [
+          {
+            "month_in": [
+              2,
+              3
+            ]
+          },
+          {
+            "nest_site_within_m": "${nest_m}"
+          }
+        ]
+      },
+      "priority": 65
+    },
+    {
+      "from": "*",
+      "to": "roost",
+      "when": {
+        "sun_elevation_between_deg": [
+          -18,
+          "${roost_sun_hi_deg}"
+        ]
+      },
+      "priority": 40
+    },
+    {
+      "from": "roost",
+      "to": "perch",
+      "when": {
+        "sun_elevation_between_deg": [
+          0,
+          90
+        ]
+      },
+      "priority": 40
+    },
+    {
+      "from": "*",
+      "to": "soar",
+      "when": {
+        "all": [
+          {
+            "chance": 0.15
+          },
+          {
+            "sun_elevation_between_deg": [
+              10,
+              70
+            ]
+          },
+          {
+            "need": "energy",
+            "lt": 0.4
+          }
+        ]
+      },
+      "priority": 20
     }
   ]
 }

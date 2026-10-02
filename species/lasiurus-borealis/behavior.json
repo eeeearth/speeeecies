@@ -1,15 +1,14 @@
 {
   "schema_version": 1,
   "format": "speeeecies/behavior",
-  "id": "fsm-aerial-night-insectivore-v1",
+  "id": "fsm-aerial-insectivore-v1",
   "kind": "fsm",
-  "description": "Night-flying aerial insectivore (microbat): hangs up in tree cover while the sun is above `roost_sun_lo_deg`, leaves the roost after dusk or in mild weather above `min_temp_c`, hunts insects within `prey_m`, and drops back into shelter to rest.",
+  "description": "A nocturnal flying insectivore (a bat): hangs in its roost by day, launches after dark, alternates patrol and echolocation while quartering for insects, takes insects in flight, drinks on the wing, and drops clear of a threat. Written for `lasiurus-borealis`, which no shared program fits: `fsm-ground-forager-v1` and `fsm-anuran-nocturnal-v1` have no flight gait, `bt-perching-songbird-v1` needs a song and an alarm call and ends in perch_nearest, and `fsm-seabird-predator-v1` hunts a hard-coded `small_vertebrate` tag by walking and scavenges carrion.",
   "params": {
-    "roost_sun_lo_deg": -4,
-    "roost_sun_hi_deg": 30,
-    "prey_m": 40,
     "flee_m": 25,
-    "min_temp_c": 6
+    "calm_m": 60,
+    "insect_m": 80,
+    "water_m": 120
   },
   "initial": "roost",
   "states": {
@@ -18,37 +17,31 @@
         "do": "rest",
         "at": "shelter"
       },
-      "min_dwell_s": 20
+      "min_dwell_s": 60
     },
-    "hang": {
+    "patrol": {
       "action": {
-        "do": "idle"
-      },
-      "min_dwell_s": 5
+        "do": "wander",
+        "gait": "fly"
+      }
     },
-    "launch": {
+    "echolocate": {
       "action": {
-        "do": "take_off"
+        "do": "sing",
+        "call": "echolocate"
       }
     },
     "hunt": {
       "action": {
-        "do": "fly_to_nearest",
+        "do": "eat_nearest",
         "tag": "invertebrate",
         "gait": "fly"
       }
     },
-    "feed": {
+    "drink": {
       "action": {
-        "do": "eat_nearest",
-        "tag": "invertebrate",
+        "do": "drink_nearest",
         "gait": "fly"
-      },
-      "min_dwell_s": 4
-    },
-    "return": {
-      "action": {
-        "do": "land"
       }
     },
     "flee": {
@@ -69,126 +62,130 @@
       "priority": 100
     },
     {
-      "from": "flee",
-      "to": "hang",
+      "from": "*",
+      "to": "flee",
       "when": {
-        "not": {
-          "threat_within_m": "${flee_m}"
-        }
-      }
+        "need": "fear",
+        "gt": 0.25
+      },
+      "priority": 90
     },
     {
       "from": "*",
       "to": "roost",
       "when": {
-        "all": [
-          {
-            "chance": 0.6
-          },
-          {
-            "any": [
-              {
-                "sun_elevation_between_deg": [
-                  "${roost_sun_lo_deg}",
-                  "${roost_sun_hi_deg}"
-                ]
-              },
-              {
-                "temperature_between_c": [
-                  -40,
-                  "${min_temp_c}"
-                ]
-              }
-            ]
-          }
-        ]
+        "is_day": true
       },
-      "priority": 20
+      "priority": 50
     },
     {
-      "from": "roost",
-      "to": "hang",
+      "from": "flee",
+      "to": "patrol",
       "when": {
-        "any": [
-          {
-            "not": {
-              "sun_elevation_between_deg": [
-                "${roost_sun_lo_deg}",
-                "${roost_sun_hi_deg}"
-              ]
-            }
-          },
-          {
-            "temperature_between_c": [
-              "${min_temp_c}",
-              50
-            ]
-          }
-        ]
+        "not": {
+          "threat_within_m": "${calm_m}"
+        }
       }
     },
     {
-      "from": "hang",
-      "to": "launch",
+      "from": "roost",
+      "to": "patrol",
       "when": {
         "all": [
           {
             "need": "hunger",
-            "gt": 0.4
+            "gt": 0.45
           },
           {
             "not": {
-              "sun_elevation_between_deg": [
-                "${roost_sun_lo_deg}",
-                "${roost_sun_hi_deg}"
-              ]
+              "is_day": true
             }
           }
         ]
       }
     },
     {
-      "from": "launch",
+      "from": "roost",
+      "to": "patrol",
+      "when": {
+        "chance": 0.3
+      }
+    },
+    {
+      "from": "patrol",
+      "to": "echolocate",
+      "when": {
+        "chance": 0.4
+      }
+    },
+    {
+      "from": "echolocate",
       "to": "hunt",
       "when": {
-        "chance": 0.6
+        "all": [
+          {
+            "need": "hunger",
+            "gt": 0.45
+          },
+          {
+            "food_within_m": "${insect_m}",
+            "tag": "invertebrate"
+          }
+        ]
+      }
+    },
+    {
+      "from": "echolocate",
+      "to": "patrol",
+      "when": {
+        "chance": 0.35
+      }
+    },
+    {
+      "from": "patrol",
+      "to": "hunt",
+      "when": {
+        "all": [
+          {
+            "need": "hunger",
+            "gt": 0.45
+          },
+          {
+            "food_within_m": "${insect_m}",
+            "tag": "invertebrate"
+          }
+        ]
       }
     },
     {
       "from": "hunt",
-      "to": "feed",
+      "to": "patrol",
+      "when": {
+        "need": "hunger",
+        "lt": 0.2
+      }
+    },
+    {
+      "from": "patrol",
+      "to": "drink",
       "when": {
         "all": [
           {
-            "food_within_m": "${prey_m}",
-            "tag": "invertebrate"
+            "need": "thirst",
+            "gt": 0.6
           },
           {
-            "chance": 0.5
+            "water_within_m": "${water_m}"
           }
         ]
       }
     },
     {
-      "from": "feed",
-      "to": "return",
+      "from": "drink",
+      "to": "patrol",
       "when": {
-        "any": [
-          {
-            "need": "hunger",
-            "lt": 0.2
-          },
-          {
-            "chance": 0.35
-          }
-        ]
-      }
-    },
-    {
-      "from": "return",
-      "to": "roost",
-      "when": {
-        "chance": 0.5
+        "need": "thirst",
+        "lt": 0.1
       }
     }
   ]
