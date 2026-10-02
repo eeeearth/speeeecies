@@ -7,7 +7,7 @@
   "common_names": {
     "en": "southern flying squirrel",
     "fr": "polatouche",
-    "de": "S\u00fcdlicher Gleith\u00f6rnchen"
+    "de": "Südlicher Gleithörnchen"
   },
   "taxonomy": {
     "kingdom": "Animalia",
@@ -83,8 +83,8 @@
   },
   "habitat": {
     "use": {
-      "arboreal": 0.95,
-      "ground": 0.05
+      "ground": 0.05,
+      "arboreal": 0.95
     },
     "shelter_tag": "cavity",
     "resources": [
@@ -117,12 +117,23 @@
         "tag": "leaf_litter",
         "kind": "Shelter",
         "weight": 0.3
+      },
+      {
+        "tag": "seed",
+        "kind": "Herbivory",
+        "weight": 0.4
+      },
+      {
+        "tag": "nest_platform",
+        "kind": "Nesting",
+        "weight": 0.3
       }
     ],
     "human_tolerance": {
       "urban_affinity": "Adapter",
       "uses_gardens": true,
-      "notes": "Present in heavily wooded suburban regions but never in large numbers there, so a wooded lot with mature hickory, beech, maple or oak suits it. Takes nest boxes readily and can be hand-fed, which is how most people meet it."
+      "notes": "Present in heavily wooded suburban regions but never in large numbers there, so a wooded lot with mature hickory, beech, maple or oak suits it. Takes nest boxes readily and can be hand-fed, which is how most people meet it.",
+      "flight_distance_m": 20
     },
     "density_per_ha": {
       "min": 0.5,
@@ -156,6 +167,12 @@
         "start": "12-01",
         "end": "03-15",
         "note": "Winter communal nesting: animals aggregate in cavities as temperatures decline, and squirrels in aggregates save about 30% more energy than solitary nesters."
+      },
+      {
+        "name": "nesting",
+        "start": "03-01",
+        "end": "08-31",
+        "note": "Two litters a year, of two to seven young; mothers wean the young 65 days after they are born. Cavities are used for breeding and, more intensively, in winter, while leaf nests serve mainly as summer refuges."
       }
     ],
     "life_stages": [
@@ -218,6 +235,53 @@
             "gbif"
           ]
         }
+      },
+      {
+        "region": "US-IN",
+        "monthly": [
+          0.08,
+          0.17,
+          0.31,
+          0.08,
+          0.18,
+          0.17,
+          0.24,
+          0.18,
+          0.09,
+          1.0,
+          0.25,
+          0.77
+        ],
+        "method": "gbif_share",
+        "observations": 101,
+        "sources": [
+          "gbif-activity-us-in"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 20,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=46272&place_id=20&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=20&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 73,
+            "usable": false
+          },
+          "gbif": {
+            "tier": "C",
+            "area": [
+              "gadmGid",
+              "USA.15_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2437338&gadmGid=USA.15_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.15_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "total": 101,
+            "usable": false
+          },
+          "used": [
+            "gbif"
+          ]
+        }
       }
     ]
   },
@@ -267,6 +331,17 @@
       "cooldown_s": 20,
       "loudness": "Quiet",
       "description": "A low, soft clucking or chuckling call used between individuals sharing a nest or a foraging tree, and by a mother calling her kits."
+    },
+    {
+      "call_id": "chatter",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [
+        "Night"
+      ],
+      "cooldown_s": 10,
+      "loudness": "Quiet",
+      "description": "A soft, low murmuring chatter used between pairs at a nest or a feeding tree, most often heard after dark."
     }
   ],
   "look": {
@@ -399,6 +474,25 @@
       "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
       "accessed": "2026-10-01",
       "kind": "api"
+    },
+    {
+      "id": "eltontraits",
+      "url": "https://doi.org/10.6084/m9.figshare.3559887.v1",
+      "title": "EltonTraits 1.0: species-level foraging attributes of the world's birds and mammals (MamFuncDat)",
+      "license": "CC0-1.0",
+      "kind": "dataset",
+      "accessed": "2026-10-01",
+      "attribution": "Wilman, H. et al. (2014) EltonTraits 1.0. Ecology 95:2027",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "gbif-activity-us-in",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2437338&gadmGid=USA.15_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+      "title": "GBIF occurrence search for Glaucomys volans in US-IN",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
     }
   ],
   "provenance": {
@@ -485,7 +579,8 @@
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "note": "Direct development; no metamorphic stage."
     },
     "traits.nest_type": {
       "sources": [
@@ -585,7 +680,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Wikipedia's Gliding section: after landing the squirrel runs round the far side of the trunk or up the tree to avoid predators, and 'if they happen to be on the ground in the presence of danger, they will prefer to hide rather than attempt to escape'. Hide is the schema's closer value; the glide itself is the escape, so the ground response is concealment."
+      "note": "Wikipedia's Gliding section: after landing the squirrel runs round the far side of the trunk or up the tree to avoid predators, and 'if they happen to be on the ground in the presence of danger, they will prefer to hide rather than attempt to escape'. Hide is the schema's closer value; the glide itself is the escape, so the ground response is concealment.",
+      "derived": true
     },
     "traits.wariness": {
       "sources": [
@@ -601,13 +697,15 @@
         "pantheria"
       ],
       "confidence": "High",
-      "note": "PanTHERIA Terrestriality 2.00 (arboreal) sets the primary stratum, and the whole of Wikipedia's Habitat and Gliding sections describe canopy and cavity use; the small ground share reflects only the animal's clumsy walking."
+      "note": "PanTHERIA Terrestriality 2.00 (arboreal) sets the primary stratum, and the whole of Wikipedia's Habitat and Gliding sections describe canopy and cavity use; the small ground share reflects only the animal's clumsy walking.",
+      "derived": true
     },
     "habitat.shelter_tag": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "note": "Roosts in tree cavities in winter and in leaf nests in summer."
     },
     "habitat.resources": {
       "sources": [
@@ -622,7 +720,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Wikipedia's Habitat section: 'Although southern flying squirrels may be present in heavily wooded suburban regions, they never occur in large numbers in these areas' - hence Adapter rather than Exploiter, with uses_gardens true because the habitat features named (large hickory and beech, maple, poplar and oak) are ordinary garden-canopy trees."
+      "note": "Wikipedia's Habitat section: 'Although southern flying squirrels may be present in heavily wooded suburban regions, they never occur in large numbers in these areas' - hence Adapter rather than Exploiter, with uses_gardens true because the habitat features named (large hickory and beech, maple, poplar and oak) are ordinary garden-canopy trees.",
+      "derived": true
     },
     "habitat.density_per_ha": {
       "sources": [
@@ -638,14 +737,16 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "The animal is active year round; communal nesting in winter is an energy-saving behaviour, not dormancy, and no source describes hibernation."
+      "note": "The animal is active year round; communal nesting in winter is an energy-saving behaviour, not dormancy, and no source describes hibernation.",
+      "derived": true
     },
     "seasonal.phases": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "Medium",
-      "note": "Gestation, the two litters a year, the sequence of kit development (ears 2-6 days, fur by 7, eyes 24-30, weaning at 65 days, independence at about 120) and the 30% energy saving from winter aggregation are all from Wikipedia's Description and ecology and Behavior sections. The month windows attached to them are authored, since Wikipedia dates the breeding season only by saying southern populations breed later in spring than northern ones. The caching window is judgement, tied to the autumn nut crop."
+      "note": "Gestation, the two litters a year, the sequence of kit development (ears 2-6 days, fur by 7, eyes 24-30, weaning at 65 days, independence at about 120) and the 30% energy saving from winter aggregation are all from Wikipedia's Description and ecology and Behavior sections. The month windows attached to them are authored, since Wikipedia dates the breeding season only by saying southern populations breed later in spring than northern ones. The caching window is judgement, tied to the autumn nut crop.",
+      "derived": true
     },
     "seasonal.life_stages": {
       "sources": [
@@ -676,12 +777,22 @@
       "confidence": "Low",
       "derived": true,
       "note": "Authored parameters for the shared ground-forager program. The program's default rest window (10 to 90 degrees) is kept because its description gives that as the setting for nocturnal and crepuscular species. food_tag mast follows the largest diet fraction; flee and food radii are judgement, scaled down from the fox example for a 72 g animal. The program is shared rather than bespoke because the foraging loop it describes - seek food, flee a threat, return to shelter - is the animal's, but its glide has no pose in the quadruped plan and is not animated here."
+    },
+    "vocalizations.chatter": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "No allow-listed open source describes this species' calls. The entry exists so the record can carry a nocturnal call at all, and its wording, time window and cooldown are authored, not sourced."
     }
   },
   "contributors": [
     {
       "name": "speeeecies fleet",
       "agent": "opencode"
+    },
+    {
+      "name": "speeeecies maintainers",
+      "agent": "claude-code"
     }
   ]
 }

@@ -77,8 +77,8 @@
     "wingspan_m": 0.285,
     "lifespan_y": 1.0,
     "diet": {
-      "invertebrate": 0.7,
-      "fruit": 0.3
+      "fruit": 0.3,
+      "invertebrate": 0.7
     },
     "social": {
       "structure": "Pair",
@@ -288,6 +288,18 @@
         "region": "CA",
         "fraction": 0.5,
         "note": "Northern and western birds tend to migrate; Canada entry is a coarse authored regional absence fraction, not applied to Louisiana."
+      },
+      {
+        "name": "absent",
+        "start": "12-01",
+        "end": "02-28",
+        "note": "Winters in the southern United States and Mexico; most individuals leave the northern breeding range."
+      },
+      {
+        "name": "breeding",
+        "start": "03-01",
+        "end": "08-31",
+        "note": "Arrives in spring; a mature female typically raises two broods, in a cup nest built in an abandoned woodpecker hole or other cavity, taking about 10 days to build, with 13 to 16 days of incubation and fledging 15 to 20 days after hatching."
       }
     ],
     "life_stages": [
@@ -348,6 +360,55 @@
             "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2490941&gadmGid=USA.19_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
             "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.19_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
             "total": 90616,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "US-IN",
+        "monthly": [
+          0.97,
+          1.0,
+          0.82,
+          0.74,
+          0.58,
+          0.68,
+          0.58,
+          0.45,
+          0.42,
+          0.75,
+          0.73,
+          0.72
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 204055,
+        "sources": [
+          "inat-activity-us-in",
+          "gbif-activity-us-in"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 20,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=12942&place_id=20&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=20&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 1957,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.15_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2490941&gadmGid=USA.15_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.15_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 202098,
             "usable": true
           },
           "used": [
@@ -434,6 +495,15 @@
       "recordings": [
         "xc100032"
       ]
+    },
+    {
+      "call_id": "warning_cry",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [],
+      "cooldown_s": 6,
+      "loudness": "Moderate",
+      "description": "A short, harsh, song-like cry given by the male when a predator approaches, usually with flicking of the wings."
     }
   ],
   "look": {
@@ -604,6 +674,24 @@
       "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
       "accessed": "2026-09-30",
       "kind": "api"
+    },
+    {
+      "id": "inat-activity-us-in",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=12942&place_id=20&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Sialia sialis in US-IN",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-in",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2490941&gadmGid=USA.15_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Sialia sialis in US-IN",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
     }
   ],
   "provenance": {
@@ -658,7 +746,8 @@
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "note": "Biped: two legs; the wings are not counted as limbs."
     },
     "traits.locomotion_modes": {
       "sources": [
@@ -696,7 +785,8 @@
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "note": "Direct development; no metamorphic stage."
     },
     "traits.nest_type": {
       "sources": [
@@ -726,7 +816,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "EltonTraits BodyMass-Value 27.5 g; Wikipedia range 27-34 g."
+      "note": "EltonTraits BodyMass-Value 27.5 g; Wikipedia range 27-34 g.",
+      "derived": true
     },
     "traits.mass_range_kg": {
       "sources": [
@@ -766,7 +857,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "EltonTraits row for Sialia sialis has Diet-Inv 70 and Diet-Fruit 30; Wikipedia says about two thirds invertebrates and the remainder wild fruits or berries."
+      "note": "EltonTraits row for Sialia sialis has Diet-Inv 70 and Diet-Fruit 30; Wikipedia says about two thirds invertebrates and the remainder wild fruits or berries.",
+      "derived": true
     },
     "traits.social": {
       "sources": [
@@ -889,7 +981,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Wikipedia gives soft warbles of jeew/chir-wi and melodious song chiti WEEW wewidoo."
+      "note": "Wikipedia gives soft warbles of jeew/chir-wi and melodious song chiti WEEW wewidoo.",
+      "derived": true
     },
     "vocalizations.alarm": {
       "sources": [
@@ -923,12 +1016,24 @@
       "confidence": "Medium",
       "derived": true,
       "note": "Male has bright blue head/back/wings and brownish-red breast; female is grayer with blue wings/tail and paler orange breast. Palette and block proportions are authored judgement for a stylised model."
+    },
+    "vocalizations.warning_cry": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Wikipedia states the male makes a song-like warning cry when approached by a predator; the wording and cooldown here are authored."
     }
   },
   "contributors": [
     {
       "name": "speeeecies contributors",
       "agent": "opencode"
+    },
+    {
+      "name": "speeeecies maintainers",
+      "agent": "claude-code"
     }
   ]
 }
