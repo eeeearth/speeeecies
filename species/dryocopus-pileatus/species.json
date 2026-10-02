@@ -90,7 +90,15 @@
       {
         "tag": "seed",
         "kind": "Herbivory",
-        "weight": 0.1
+        "weight": 0.1,
+        "months": [
+          10,
+          11,
+          12,
+          1,
+          2,
+          3
+        ]
       },
       {
         "tag": "cavity",
@@ -101,12 +109,31 @@
         "tag": "log_pile",
         "kind": "Nesting",
         "weight": 0.3
+      },
+      {
+        "tag": "berry",
+        "kind": "Herbivory",
+        "weight": 0.25,
+        "months": [
+          9,
+          10,
+          11,
+          12,
+          1,
+          2
+        ]
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.8
       }
     ],
     "human_tolerance": {
       "urban_affinity": "Adapter",
       "uses_gardens": true,
-      "notes": "Adaptable and increasingly common in wooded suburbs and even city parks, where it will excavate in large dead trees and stumps."
+      "notes": "Adaptable and increasingly common in wooded suburbs and even city parks, where it will excavate in large dead trees and stumps.",
+      "light_max": 0.5
     }
   },
   "seasonal": {
@@ -123,6 +150,13 @@
         "start": "03-01",
         "end": "06-30",
         "note": "Pairs excavate a large unlined cavity, usually high in a dead tree; both parents incubate for 12 to 16 days."
+      },
+      {
+        "name": "breeding",
+        "start": "03-01",
+        "end": "07-31",
+        "region": "US-TN",
+        "note": "One brood per season; cavity excavated in dead tree."
       }
     ],
     "life_stages": [
@@ -134,6 +168,9 @@
       },
       {
         "stage": "Adult"
+      },
+      {
+        "stage": "Egg"
       }
     ]
   },
@@ -187,6 +224,55 @@
             "gbif"
           ]
         }
+      },
+      {
+        "region": "US-TN",
+        "monthly": [
+          0.75,
+          0.78,
+          0.94,
+          1.0,
+          0.95,
+          0.87,
+          0.64,
+          0.81,
+          0.96,
+          0.87,
+          0.91,
+          0.82
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 134085,
+        "sources": [
+          "inat-activity-us-tn",
+          "gbif-activity-us-tn"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 45,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=17855&place_id=45&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=45&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 1040,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.43_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5228824&gadmGid=USA.43_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.43_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 133045,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
       }
     ]
   },
@@ -222,6 +308,55 @@
       "cooldown_s": 8,
       "loudness": "Loud",
       "description": "A sharp, short call given in alarm, often repeated in a series while the bird is agitated."
+    },
+    {
+      "call_id": "drum",
+      "context": "Drum",
+      "season_months": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "time_windows": [
+        "DawnChorus",
+        "Day"
+      ],
+      "cooldown_s": 60,
+      "loudness": "Loud",
+      "description": "Slow, powerful, resonant drumming on dead wood; 10-30 taps in 0.5-1 second, used for territory advertisement and pair bonding."
+    },
+    {
+      "call_id": "call",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day",
+        "Dusk"
+      ],
+      "cooldown_s": 10,
+      "loudness": "Loud",
+      "description": "Loud, far-carrying 'cuk-cuk-cuk-cuk-cuk' or 'wuk-wuk-wuk' series, often given in flight or when perched; the classic 'jungle bird' call."
+    },
+    {
+      "call_id": "alarm",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 5,
+      "loudness": "Loud",
+      "description": "Sharp 'kik-kik-kik' or 'peek' notes given rapidly when disturbed near nest or young."
     }
   ],
   "look": {
@@ -347,6 +482,34 @@
       "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
       "accessed": "2026-10-01",
       "kind": "api"
+    },
+    {
+      "id": "avonet",
+      "url": "https://doi.org/10.6084/m9.figshare.16586228",
+      "title": "AVONET: morphological, ecological and geographical data for all birds",
+      "license": "CC-BY-4.0",
+      "kind": "dataset",
+      "accessed": "2026-09-30",
+      "attribution": "Tobias, J. A. et al. (2022) AVONET. Ecology Letters 25:581-597",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "inat-activity-us-tn",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=17855&place_id=45&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Dryocopus pileatus in US-TN",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-tn",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5228824&gadmGid=USA.43_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Dryocopus pileatus in US-TN",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
     }
   ],
   "provenance": {
@@ -361,7 +524,8 @@
         "gbif-backbone",
         "wikidata"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "note": "iNaturalist and Wikidata ids from GBIF match and Wikidata."
     },
     "conservation": {
       "sources": [
@@ -375,7 +539,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Resident across Canada and the United States, with an extensive range and rising numbers; it also inhabits smaller woodlots provided they contain some tall trees."
+      "note": "Resident across Canada and the United States, with an extensive range and rising numbers; it also inhabits smaller woodlots provided they contain some tall trees.",
+      "derived": true
     },
     "traits.body_plan": {
       "sources": [
@@ -462,14 +627,16 @@
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "note": "250-350 g."
     },
     "traits.length_m": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Adults are 40-49 cm long; the midpoint is used."
+      "note": "Adults are 40-49 cm long; the midpoint is used.",
+      "derived": true
     },
     "traits.wingspan_m": {
       "sources": [
@@ -498,7 +665,8 @@
         "wikipedia"
       ],
       "confidence": "Medium",
-      "note": "A territorial pair holds a nest cavity and shares incubation; both parents incubate for 12 to 16 days."
+      "note": "A territorial pair holds a nest cavity and shares incubation; both parents incubate for 12 to 16 days.",
+      "derived": true
     },
     "traits.activity_pattern": {
       "sources": [
@@ -537,7 +705,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Roosts and nests in cavities in dead trees."
+      "note": "Roosts and nests in cavities in dead trees.",
+      "derived": true
     },
     "habitat.resources": {
       "sources": [
@@ -553,7 +722,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Wikipedia calls the species quite adaptable, occupying an extensive range; dead trees and stumps in wooded suburbs provide its nesting and foraging sites."
+      "note": "Wikipedia calls the species quite adaptable, occupying an extensive range; dead trees and stumps in wooded suburbs provide its nesting and foraging sites.",
+      "derived": true
     },
     "seasonal.strategy": {
       "sources": [
@@ -606,11 +776,42 @@
       "confidence": "Low",
       "derived": true,
       "note": "Authored parameters for the shared perching-songbird program. Woodpeckers neither sing nor forage on the ground, so this is a compromise: it is a perching-and-fleeing tree, and the slot the program uses for a song is given to the courtship 'woick' call and drumming."
+    },
+    "common_names": {
+      "sources": [
+        "wikidata",
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "vocalizations.drum": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "vocalizations.call": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "vocalizations.alarm": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Alarm call description from Wikipedia; parameters authored."
     }
   },
   "contributors": [
     {
       "name": "speeeecies maintainers",
+      "agent": "claude-code"
+    },
+    {
+      "name": "Sisyphus agent",
       "agent": "claude-code"
     }
   ]
