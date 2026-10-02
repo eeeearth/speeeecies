@@ -8,7 +8,8 @@
     "en": "Northern cardinal",
     "fr": "cardinal rouge",
     "de": "Rotkardinal",
-    "nl": "rode kardinaal"
+    "nl": "rode kardinaal",
+    "es": "cardenal rojo"
   },
   "taxonomy": {
     "kingdom": "Animalia",
@@ -40,10 +41,15 @@
       "GT"
     ],
     "introduced": [
-      "BM"
+      "BM",
+      "HI"
     ],
     "koppen": [
-      "Cfa"
+      "Cfa",
+      "Cfb",
+      "Cwa",
+      "Dfa",
+      "Dfb"
     ]
   },
   "traits": {
@@ -484,6 +490,55 @@
             "gbif"
           ]
         }
+      },
+      {
+        "region": "US-AR",
+        "monthly": [
+          0.89,
+          1.0,
+          0.83,
+          0.68,
+          0.58,
+          0.67,
+          0.73,
+          0.69,
+          0.68,
+          0.63,
+          0.67,
+          0.71
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 231396,
+        "sources": [
+          "inat-activity-us-ar",
+          "gbif-activity-us-ar"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 36,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=9083&place_id=36&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=36&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 2659,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.4_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2490384&gadmGid=USA.4_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.4_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 228737,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
       }
     ]
   },
@@ -838,6 +893,24 @@
       "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
       "accessed": "2026-10-01",
       "kind": "api"
+    },
+    {
+      "id": "inat-activity-us-ar",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=9083&place_id=36&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Cardinalis cardinalis in US-AR",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-ar",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2490384&gadmGid=USA.4_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Cardinalis cardinalis in US-AR",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-09-30",
+      "kind": "api"
     }
   ],
   "provenance": {
@@ -846,7 +919,9 @@
         "gbif-backbone",
         "itis"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "Linnaeus 1758, Cardinalis cardinalis; family Cardinalidae per the GBIF backbone and ITIS TSN 179124."
     },
     "external": {
       "sources": [
@@ -863,7 +938,8 @@
         "wikidata"
       ],
       "confidence": "High",
-      "note": "Labels and sitelinks for English, French, German and Dutch common names."
+      "note": "Labels and sitelinks for English, French, German and Dutch common names.",
+      "derived": true
     },
     "conservation": {
       "sources": [
@@ -871,7 +947,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Wikidata P141 and the Wikipedia infobox both report least concern."
+      "note": "Wikidata P141 and the Wikipedia infobox both report least concern.",
+      "derived": true
     },
     "range": {
       "sources": [
@@ -886,40 +963,49 @@
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "Vertebrate, chordate, feathered, endothermic bird."
     },
     "traits.limb_count": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Biped: two legs; the wings are not counted as limbs."
+      "note": "Biped: two legs; the wings are not counted as limbs.",
+      "derived": true
     },
     "traits.locomotion_modes": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Wikipedia describes it as a ground feeder that finds food while hopping through trees or shrubbery; flight is implicit in the described bird body and territorial behaviour from tree tops."
+      "note": "Wikipedia describes it as a ground feeder that finds food while hopping through trees or shrubbery; flight is implicit in the described bird body and territorial behaviour from tree tops.",
+      "derived": true
     },
     "traits.thermoregulation": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Winter heat-retention behaviour and shivering are described for this bird."
+      "note": "Winter heat-retention behaviour and shivering are described for this bird.",
+      "derived": true
     },
     "traits.skin": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "Feathers: plumage described in detail in the Description section."
     },
     "traits.flight": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "Powered flight between perches, trees and feeders."
     },
     "traits.respiration": {
       "sources": [
@@ -942,14 +1028,16 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Female builds a cup nest of twigs, bark strips, grasses and fibers."
+      "note": "Female builds a cup nest of twigs, bark strips, grasses and fibers.",
+      "derived": true
     },
     "traits.perching": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Mid-sized perching songbird; males sing from tree tops or high locations."
+      "note": "Mid-sized perching songbird; males sing from tree tops or high locations.",
+      "derived": true
     },
     "traits.size_class": {
       "sources": [
@@ -1022,7 +1110,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "EltonTraits Nocturnal=0; Wikipedia describes song, feeding and territorial behaviour during dawn/day/dusk rather than night."
+      "note": "EltonTraits Nocturnal=0; Wikipedia describes song, feeding and territorial behaviour during dawn/day/dusk rather than night.",
+      "derived": true
     },
     "traits.defense": {
       "sources": [
@@ -1095,7 +1184,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Distribution map and text describe the species as year-round across its range, and pairs may stay together year-round."
+      "note": "Distribution map and text describe the species as year-round across its range, and pairs may stay together year-round.",
+      "derived": true
     },
     "seasonal.phases": {
       "sources": [
@@ -1184,6 +1274,10 @@
     },
     {
       "name": "opencode agent (al-birmingham locale, issue #73)",
+      "agent": "opencode"
+    },
+    {
+      "name": "speeeecies contributors",
       "agent": "opencode"
     }
   ]

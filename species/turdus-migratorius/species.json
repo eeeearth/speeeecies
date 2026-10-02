@@ -7,7 +7,8 @@
   "common_names": {
     "en": "American robin",
     "fr": "Merle d'Amérique",
-    "de": "Amschel"
+    "de": "Amschel",
+    "es": "zoral"
   },
   "taxonomy": {
     "kingdom": "Animalia",
@@ -34,7 +35,20 @@
     "native": [
       "US",
       "CA",
-      "MX"
+      "MX",
+      "GT",
+      "BZ",
+      "SV",
+      "HN",
+      "NI",
+      "CR",
+      "PA",
+      "CU",
+      "JM",
+      "HT",
+      "DO",
+      "BS",
+      "PM"
     ],
     "koppen": [
       "Cfa",
@@ -45,8 +59,10 @@
       "Dfb",
       "Dfc",
       "BSh",
-      "BSk"
-    ]
+      "BSk",
+      "Cfc"
+    ],
+    "introduced": []
   },
   "traits": {
     "body_plan": "Vertebrate",
@@ -208,6 +224,12 @@
         "region": "CA",
         "fraction": 0.3,
         "note": "Northern-breeding robins move south for the winter; the Wikipedia subspecies accounts place T. m. nigrideus wintering in the eastern United States as far south as Louisiana and Mississippi."
+      },
+      {
+        "name": "breeding",
+        "start": "04-01",
+        "end": "07-31",
+        "note": "Wikipedia: 'normally has two to three broods per breeding season, which lasts from April to July'. The exact day boundaries are a judgement placed around that window."
       }
     ],
     "life_stages": [
@@ -323,6 +345,55 @@
             "gbif"
           ]
         }
+      },
+      {
+        "region": "US-AR",
+        "monthly": [
+          0.45,
+          1.0,
+          1.0,
+          0.76,
+          0.66,
+          0.85,
+          0.67,
+          0.48,
+          0.36,
+          0.47,
+          0.53,
+          0.43
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 120995,
+        "sources": [
+          "inat-activity-us-ar",
+          "gbif-activity-us-ar"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 36,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=12727&place_id=36&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=36&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 2495,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.4_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=9510564&gadmGid=USA.4_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.4_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 118500,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
       }
     ]
   },
@@ -376,6 +447,19 @@
       "recordings": [
         "commons-robin-audio"
       ]
+    },
+    {
+      "call_id": "call",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day",
+        "Dusk"
+      ],
+      "cooldown_s": 12,
+      "loudness": "Moderate",
+      "description": "A number of calls carrying specific information, used when a ground predator approaches and when a nest or another robin is directly threatened; robins also band together to drive a predator off."
     }
   ],
   "look": {
@@ -610,6 +694,24 @@
       "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
       "accessed": "2026-10-01",
       "kind": "api"
+    },
+    {
+      "id": "inat-activity-us-ar",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=12727&place_id=36&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Turdus migratorius in US-AR",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-ar",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=9510564&gadmGid=USA.4_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Turdus migratorius in US-AR",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-09-30",
+      "kind": "api"
     }
   ],
   "provenance": {
@@ -618,7 +720,9 @@
         "gbif-backbone",
         "itis"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "Linnaeus 1766, Turdus migratorius; family Turdidae per the GBIF backbone and ITIS TSN 179759."
     },
     "external": {
       "sources": [
@@ -636,7 +740,8 @@
         "itis"
       ],
       "confidence": "High",
-      "note": "English from Wikidata; the French and German names from the GBIF Vernacular Name Service, which lists 'Merle d'Amérique' (ITIS) and 'Amschel' (Catalogue of Life)."
+      "note": "English from Wikidata; the French and German names from the GBIF Vernacular Name Service, which lists 'Merle d'Amérique' (ITIS) and 'Amschel' (Catalogue of Life).",
+      "derived": true
     },
     "conservation": {
       "sources": [
@@ -644,7 +749,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Wikidata P141 and Wikipedia conservation-status box report least concern."
+      "note": "Wikidata P141 and Wikipedia conservation-status box report least concern.",
+      "derived": true
     },
     "range": {
       "sources": [
@@ -658,63 +764,81 @@
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "Vertebrate, chordate, feathered, endothermic bird."
     },
     "traits.limb_count": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "Biped: two legs, the forelimbs modified as wings."
     },
     "traits.locomotion_modes": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Forages with short hops/running stops on lawns and uses powered flight."
+      "note": "Forages with short hops/running stops on lawns and uses powered flight.",
+      "derived": true
     },
     "traits.thermoregulation": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "Endotherm: a bird, 'active mostly during the day'."
     },
     "traits.skin": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "Feathers: plumage described in detail in the Description section."
     },
     "traits.flight": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "Powered flight: a migratory bird commuting between summer and winter ranges."
     },
     "traits.respiration": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "Lungs: an avian respiratory system."
     },
     "traits.metamorphosis": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "None: the young hatch as chicks, 'paler in color than adult males', with no metamorphic stage."
     },
     "traits.nest_type": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Nest is a mud-lined open cup of coarse grass, twigs, paper and feathers."
+      "note": "Nest is a mud-lined open cup of coarse grass, twigs, paper and feathers.",
+      "derived": true
     },
     "traits.perching": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "Perches to sing: 'It usually sings from a high perch in a tree.'"
     },
     "traits.size_class": {
       "sources": [
@@ -729,7 +853,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Wikipedia gives average mass about 77 g."
+      "note": "Wikipedia gives average mass about 77 g.",
+      "derived": true
     },
     "traits.mass_range_kg": {
       "sources": [
@@ -768,7 +893,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Wikipedia gives about 40 percent small invertebrates and 60 percent wild/cultivated fruits and berries."
+      "note": "Wikipedia gives about 40 percent small invertebrates and 60 percent wild/cultivated fruits and berries.",
+      "derived": true
     },
     "traits.social": {
       "sources": [
@@ -783,7 +909,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Wikipedia states the species is active mostly during the day."
+      "note": "Wikipedia states the species is active mostly during the day.",
+      "derived": true
     },
     "traits.defense": {
       "sources": [
@@ -838,7 +965,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Wikipedia describes migration from breeding to wintering range, with some birds overwintering north and Gulf Coast/Mexico wintering."
+      "note": "Wikipedia describes migration from breeding to wintering range, with some birds overwintering north and Gulf Coast/Mexico wintering.",
+      "derived": true
     },
     "seasonal.winter_fraction": {
       "sources": [
@@ -897,6 +1025,12 @@
       "confidence": "Low",
       "derived": true,
       "note": "Authored parameters for the shared perching-songbird program: invertebrate food tag follows the earthworm/insect foraging diet, nest months follow April-July breeding, song/alarm params match local call_ids, and flee/song-cooldown values are judgement."
+    },
+    "vocalizations.call": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium"
     }
   },
   "contributors": [

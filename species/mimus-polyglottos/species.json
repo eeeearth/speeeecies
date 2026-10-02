@@ -42,7 +42,8 @@
       "JM",
       "HT",
       "DO",
-      "PR"
+      "PR",
+      "GT"
     ],
     "koppen": [
       "Cfa",
@@ -50,12 +51,16 @@
       "Csa",
       "BSh",
       "BWh",
-      "Aw"
+      "Aw",
+      "Cfb",
+      "BSk",
+      "Dfa"
     ],
     "introduced": [
       "BB",
       "SH",
-      "PF"
+      "PF",
+      "VI"
     ]
   },
   "traits": {
@@ -80,7 +85,7 @@
     ],
     "length_m": 0.2425,
     "wingspan_m": 0.345,
-    "lifespan_y": 8,
+    "lifespan_y": 8.0,
     "diet": {
       "invertebrate": 0.5,
       "fruit": 0.45,
@@ -176,6 +181,11 @@
           6,
           7
         ]
+      },
+      {
+        "tag": "small_vertebrate",
+        "kind": "Predation",
+        "weight": 0.05
       }
     ],
     "suitability": {
@@ -296,6 +306,18 @@
         "start": "04-01",
         "end": "08-31",
         "note": "Judgement: the article describes several nests per breeding season, an average clutch of four eggs and nestling development to leaving the nest in 11 to 13 days, but dates no season, so late spring to late summer is authored."
+      },
+      {
+        "name": "breeding",
+        "start": "04-01",
+        "end": "08-15",
+        "note": "Judgement window around 'The breeding season occurs in the spring and early summer' and 'about two to four broods a year', with the male singing hardest at its start to attract females."
+      },
+      {
+        "name": "flocking",
+        "start": "08-16",
+        "end": "02-14",
+        "note": "Judgement window: post-breeding dispersal and winter, when 'birds that live in the northern portion of its range often move south during the winter season' and the diet 'takes a drastic shift to fruits during the fall and winter'."
       }
     ],
     "life_stages": [
@@ -412,6 +434,55 @@
             "gbif"
           ]
         }
+      },
+      {
+        "region": "US-AR",
+        "monthly": [
+          0.72,
+          0.84,
+          0.89,
+          0.79,
+          0.68,
+          0.9,
+          0.97,
+          0.72,
+          0.7,
+          1.0,
+          0.79,
+          0.77
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 113610,
+        "sources": [
+          "inat-activity-us-ar",
+          "gbif-activity-us-ar"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 36,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=14886&place_id=36&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=36&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 1427,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.4_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5231677&gadmGid=USA.4_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.4_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 112183,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
       }
     ]
   },
@@ -504,6 +575,20 @@
       "cooldown_s": 8,
       "loudness": "Loud",
       "description": "The chat or chatburst call, given when the birds aggressively defend their nests and surrounding area against other birds and animals."
+    },
+    {
+      "call_id": "call",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day",
+        "Dusk",
+        "Night"
+      ],
+      "cooldown_s": 5,
+      "loudness": "Loud",
+      "description": "Distinct calls given when a nest or the surrounding area is threatened, which neighbouring mockingbirds answer and come in on: 'When a predator is persistent, mockingbirds from neighbouring territories may be summoned by distinct calls to join the defence.'"
     }
   ],
   "look": {
@@ -717,6 +802,24 @@
       "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
       "accessed": "2026-10-01",
       "kind": "api"
+    },
+    {
+      "id": "inat-activity-us-ar",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=14886&place_id=36&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Mimus polyglottos in US-AR",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-ar",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5231677&gadmGid=USA.4_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Mimus polyglottos in US-AR",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-09-30",
+      "kind": "api"
     }
   ],
   "provenance": {
@@ -726,7 +829,9 @@
         "gbif-match",
         "itis"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "Linnaeus 1758, Mimus polyglottos - 'first described this species in his Systema Naturae in 1758'; family Mimidae per the GBIF backbone and ITIS TSN 178620."
     },
     "external.gbif_usage_key": {
       "sources": [
@@ -778,7 +883,9 @@
         "itis",
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "en/fr/es labels; the English name follows the Wikipedia article title, the fr/es labels the Wikidata sitelink titles."
     },
     "conservation": {
       "sources": [
@@ -786,7 +893,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Wikidata P141 and Wikipedia both list least concern."
+      "note": "Wikidata P141 and Wikipedia both list least concern.",
+      "derived": true
     },
     "range": {
       "sources": [
@@ -802,13 +910,17 @@
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "Vertebrate, chordate, feathered, endothermic bird."
     },
     "traits.limb_count": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "Biped: two legs, the forelimbs modified as wings."
     },
     "traits.locomotion_modes": {
       "sources": [
@@ -822,45 +934,57 @@
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "Endotherm: a bird that is 'typically a permanent resident across much of its range' and sings for long stretches."
     },
     "traits.skin": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "Feathers: plumage described in detail in the Description section."
     },
     "traits.flight": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "Powered flight: 'The males also engage in flight to showcase their wings', and it 'screams if it sees a predator' from the air in the account of nest defence."
     },
     "traits.respiration": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "Lungs: an avian respiratory system."
     },
     "traits.metamorphosis": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "None: 'the juvenile appearance is marked by its streaks on its back, distinguished spots and streaks on its chest', a hatchling plumage rather than a metamorphic stage."
     },
     "traits.nest_type": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Nest built in shrubs or trees; outer twigs with an inner lining, mapped to Cup."
+      "note": "Nest built in shrubs or trees; outer twigs with an inner lining, mapped to Cup.",
+      "derived": true
     },
     "traits.perching": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Sings from elevated perches and flies down from a perch to capture food."
+      "note": "Sings from elevated perches and flies down from a perch to capture food.",
+      "derived": true
     },
     "traits.size_class": {
       "sources": [
@@ -884,7 +1008,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "40-58 g converted to kg."
+      "note": "40-58 g converted to kg.",
+      "derived": true
     },
     "traits.length_m": {
       "sources": [
@@ -907,7 +1032,8 @@
         "wikipedia"
       ],
       "confidence": "Medium",
-      "note": "Observed lifespan up to 8 years in wild; captive birds can live up to 20 years. Wild observed value used."
+      "note": "Observed lifespan up to 8 years in wild; captive birds can live up to 20 years. Wild observed value used.",
+      "derived": true
     },
     "traits.diet": {
       "sources": [
@@ -932,7 +1058,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "EltonTraits Nocturnal=0; Wikipedia describes daytime foraging and singing, with some night song under artificial light."
+      "note": "EltonTraits Nocturnal=0; Wikipedia describes daytime foraging and singing, with some night song under artificial light.",
+      "derived": true
     },
     "traits.defense": {
       "sources": [
@@ -997,7 +1124,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Typically permanent resident; northern birds may move south during inclement weather or before winter."
+      "note": "Typically permanent resident; northern birds may move south during inclement weather or before winter.",
+      "derived": true
     },
     "seasonal.winter_fraction": {
       "sources": [
@@ -1087,6 +1215,12 @@
         "wikipedia"
       ],
       "confidence": "High"
+    },
+    "vocalizations.call": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium"
     }
   },
   "contributors": [
@@ -1096,6 +1230,10 @@
     },
     {
       "name": "opencode agent (al-birmingham locale, issue #73)",
+      "agent": "opencode"
+    },
+    {
+      "name": "speeeecies contributors",
       "agent": "opencode"
     }
   ]

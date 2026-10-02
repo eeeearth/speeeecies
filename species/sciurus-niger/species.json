@@ -5,7 +5,9 @@
   "id": "Sciurus niger",
   "slug": "sciurus-niger",
   "common_names": {
-    "en": "Eastern fox squirrel"
+    "en": "Eastern fox squirrel",
+    "fr": "ecureuil de Caroline",
+    "es": "ardilla zorro oriental"
   },
   "taxonomy": {
     "kingdom": "Animalia",
@@ -31,6 +33,16 @@
       "US",
       "CA",
       "MX"
+    ],
+    "introduced": [
+      "CA"
+    ],
+    "koppen": [
+      "Cfa",
+      "Cfb",
+      "Dfa",
+      "Dfb",
+      "BSk"
     ]
   },
   "traits": {
@@ -150,6 +162,11 @@
         "tag": "perch",
         "kind": "Shelter",
         "weight": 0.6
+      },
+      {
+        "tag": "browse",
+        "kind": "Herbivory",
+        "weight": 0.12
       }
     ],
     "human_tolerance": {
@@ -157,7 +174,9 @@
       "impervious_max": 0.75,
       "light_max": 0.7,
       "uses_gardens": true,
-      "notes": "Tolerant of people to the point of thriving in crowded urban and suburban neighbourhoods, exploiting human habitations for food and nesting sites and nesting in an attic as happily as in a hollow tree. It forages on open ground several hundred metres from the nearest woodlot, and takes bird feeders and birdseed with no hesitation."
+      "notes": "Tolerant of people to the point of thriving in crowded urban and suburban neighbourhoods, exploiting human habitations for food and nesting sites and nesting in an attic as happily as in a hollow tree. It forages on open ground several hundred metres from the nearest woodlot, and takes bird feeders and birdseed with no hesitation.",
+      "flight_distance_m": 12.0,
+      "road_mortality": "Medium"
     }
   },
   "seasonal": {
@@ -184,6 +203,30 @@
         "end": "08-31",
         "region": "US-OH",
         "note": "Winter litters are reared in a woodpecker cavity remodelled into a nursery; summer litters are reared on leafy platforms built of twigs, called cooling beds."
+      },
+      {
+        "name": "mating",
+        "start": "12-15",
+        "end": "01-31",
+        "note": "Judgement window around 'Female fox squirrels come into estrus in mid-December or early January, then again in June'."
+      },
+      {
+        "name": "young",
+        "start": "01-25",
+        "end": "03-31",
+        "note": "Judgement window for the first litter: gestation is 44-45 days from the December estrus, so 'the earliest litters appear in late January', and 'most births occur in mid-March'."
+      },
+      {
+        "name": "young",
+        "start": "06-20",
+        "end": "08-10",
+        "note": "Judgement window for the second litter, from the June estrus and a 44-45 day gestation."
+      },
+      {
+        "name": "caching",
+        "start": "08-15",
+        "end": "12-14",
+        "note": "Judgement window: 'Fox squirrels will form caches by burying food items for later consumption ... like to store foods that are shelled and high in fat, such as acorns and nuts', and autumn is when mast is available."
       }
     ],
     "life_stages": [
@@ -195,6 +238,9 @@
       },
       {
         "stage": "Adult"
+      },
+      {
+        "stage": "Egg"
       }
     ]
   },
@@ -248,6 +294,55 @@
             "gbif"
           ]
         }
+      },
+      {
+        "region": "US-AR",
+        "monthly": [
+          1.0,
+          0.82,
+          0.68,
+          0.7,
+          0.61,
+          0.37,
+          0.16,
+          0.2,
+          0.41,
+          0.64,
+          0.73,
+          0.58
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 1946,
+        "sources": [
+          "inat-activity-us-ar",
+          "gbif-activity-us-ar"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 36,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=46020&place_id=36&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=36&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 965,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "C",
+            "area": [
+              "gadmGid",
+              "USA.4_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5219683&gadmGid=USA.4_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.4_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "total": 981,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
       }
     ]
   },
@@ -288,6 +383,39 @@
       "cooldown_s": 10,
       "loudness": "Loud",
       "description": "A distress scream the squirrel uses to warn of approaching threats. Tooth chatters and breathy barks are given under stress and are not modelled separately."
+    },
+    {
+      "call_id": "bark",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 10,
+      "loudness": "Moderate",
+      "description": "A series of barks, the most common vocalization of the species; a squirrel that barks is not usually the one giving a single alarm note but a whole series of them from an exposed perch."
+    },
+    {
+      "call_id": "tooth_chatter",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 8,
+      "loudness": "Moderate",
+      "description": "Tooth chattering and breathy barks, given as an indication of stress."
+    },
+    {
+      "call_id": "grunt",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 12,
+      "loudness": "Quiet",
+      "description": "Grunts and squeals, given by restrained animals and during male-male chases."
     }
   ],
   "look": {
@@ -395,6 +523,33 @@
       "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
       "accessed": "2026-10-01",
       "kind": "api"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=180172",
+      "title": "ITIS: Sciurus niger, TSN 180172",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-09-30",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "inat-activity-us-ar",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=46020&place_id=36&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Sciurus niger in US-AR",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-ar",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5219683&gadmGid=USA.4_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+      "title": "GBIF occurrence search for Sciurus niger in US-AR",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
+      "accessed": "2026-09-30",
+      "kind": "api"
     }
   ],
   "provenance": {
@@ -403,7 +558,9 @@
         "gbif-backbone",
         "us-itis"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "Linnaeus 1758, Sciurus niger; family Sciuridae per the GBIF backbone and ITIS TSN 180172."
     },
     "external": {
       "sources": [
@@ -419,33 +576,41 @@
         "wikidata",
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "en/fr/es labels; the English name is the primary one, 'Eastern fox squirrel' being the alternative given in the Wikipedia lead, and the fr/es labels are the Wikidata sitelink titles."
     },
     "conservation": {
       "sources": [
         "wikidata"
       ],
       "confidence": "High",
-      "note": "IUCN category from Wikidata P141, which points at the IUCN 'Least Concern' item. The article does record local declines from mange mites, severe winter weather and overhunting, but no threat to the species as a whole."
+      "note": "IUCN category from Wikidata P141, which points at the IUCN 'Least Concern' item. The article does record local declines from mange mites, severe winter weather and overhunting, but no threat to the species as a whole.",
+      "derived": true
     },
     "range": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "'The fox squirrel's natural range extends through most of the eastern United States, north into the southern prairie provinces of Canada, west to the Dakotas, Colorado, and Texas, and south to the northern parts of Coahuila, Nuevo Leon and Tamaulipas', which gives the three countries directly. The many cities and states in which it has been introduced are deliberately left out of range.native."
+      "note": "'The fox squirrel's natural range extends through most of the eastern United States, north into the southern prairie provinces of Canada, west to the Dakotas, Colorado, and Texas, and south to the northern parts of Coahuila, Nuevo Leon and Tamaulipas', which gives the three countries directly. The many cities and states in which it has been introduced are deliberately left out of range.native.",
+      "derived": true
     },
     "traits.body_plan": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "Vertebrate, chordate, four-legged, furred, endothermic mammal."
     },
     "traits.limb_count": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "Quadruped: four legs, as a rodent."
     },
     "traits.locomotion_modes": {
       "sources": [
@@ -459,45 +624,57 @@
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "Endotherm: a mammal, active in daylight and denning overnight."
     },
     "traits.skin": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "Fur: 'the upper body is brown-grey to brown-yellow with a typically brownish-orange underside' in the usual morph, with dark brown and black patterned and all-black morphs in parts of the range."
     },
     "traits.flight": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "None: a ground-and-tree rodent that does not glide or fly."
     },
     "traits.respiration": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "Lungs: a mammalian respiratory system."
     },
     "traits.metamorphosis": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "None: 'At birth, the young are blind, without fur, and helpless', with eyes opening at 4-5 weeks."
     },
     "traits.perching": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "The animal denns in and about tree crowns, perches on trunks and branches, and is named and drawn as a tree squirrel that spends more time on the ground than its relatives."
+      "note": "The animal denns in and about tree crowns, perches on trunks and branches, and is named and drawn as a tree squirrel that spends more time on the ground than its relatives.",
+      "derived": true
     },
     "traits.nest_type": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "'Fox squirrels use leaf nests or tree cavities for shelter and litter rearing', preferring tree cavities: 'Tree cavities, usually those formed by woodpeckers, are remodeled into winter dens and often serve as nurseries for late winter litters.' The winter den is the one it holds, so Cavity."
+      "note": "'Fox squirrels use leaf nests or tree cavities for shelter and litter rearing', preferring tree cavities: 'Tree cavities, usually those formed by woodpeckers, are remodeled into winter dens and often serve as nurseries for late winter litters.' The winter den is the one it holds, so Cavity.",
+      "derived": true
     },
     "traits.size_class": {
       "sources": [
@@ -520,7 +697,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "'They range in weight from 1.0 to 2.5 lb (453.6 to 1,134.0 g).'"
+      "note": "'They range in weight from 1.0 to 2.5 lb (453.6 to 1,134.0 g).'",
+      "derived": true
     },
     "traits.length_m": {
       "sources": [
@@ -535,7 +713,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "'Their maximum life expectancy is typically 12.6 years for females and 8.6 years for males.' The female figure is recorded, since the mesh draws one animal and the female is the larger and longer-lived of the two."
+      "note": "'Their maximum life expectancy is typically 12.6 years for females and 8.6 years for males.' The female figure is recorded, since the mesh draws one animal and the female is the larger and longer-lived of the two.",
+      "derived": true
     },
     "traits.diet": {
       "sources": [
@@ -550,14 +729,16 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "'they have been described as solitary and asocial creatures, coming together only in breeding season', with 'Cohabitation of these dens is not uncommon, particularly among breeding pairs'. Solitary, with a pair allowed inside one den."
+      "note": "'they have been described as solitary and asocial creatures, coming together only in breeding season', with 'Cohabitation of these dens is not uncommon, particularly among breeding pairs'. Solitary, with a pair allowed inside one den.",
+      "derived": true
     },
     "traits.activity_pattern": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "'Fox squirrels are strictly diurnal.'"
+      "note": "'Fox squirrels are strictly diurnal.'",
+      "derived": true
     },
     "traits.defense": {
       "sources": [
@@ -677,12 +858,34 @@
       "confidence": "High",
       "derived": true,
       "note": "fsm-ground-forager-v1 is the shared program for a mammal that forages when hungry, wanders, drinks, flees and rests in shelter. rest_sun_lo_deg -90 and rest_sun_hi_deg -6 are the program's documented settings for a diurnal species, which this one strictly is; food_tag is `mast` because acorns, hickory nuts, walnuts and corn are its stated Ohio preference and because the flora catalog's oaks and hickories supply that tag; forage_gait is walk because it spends more time on the ground than any other tree squirrel; flee_gait is gallop because that is how a squirrel bolts. flee_m is set below the 20 m default to 15 m to match how bold this animal is around people, and food_m is widened to 60 m because it forages far from cover."
+    },
+    "vocalizations.bark": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "vocalizations.tooth_chatter": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "vocalizations.grunt": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
     }
   },
   "contributors": [
     {
       "name": "speeeecies maintainers",
       "agent": "claude-code"
+    },
+    {
+      "name": "speeeecies contributors",
+      "agent": "opencode"
     }
   ]
 }

@@ -7,7 +7,8 @@
   "common_names": {
     "en": "Virginia opossum",
     "fr": "opossum d'Amérique",
-    "de": "Nordopossum"
+    "de": "Nordopossum",
+    "es": "Tlacuache de Virginia"
   },
   "taxonomy": {
     "kingdom": "Animalia",
@@ -38,7 +39,9 @@
       "GT",
       "HN",
       "NI",
-      "CR"
+      "CR",
+      "PA",
+      "CO"
     ],
     "koppen": [
       "Cfa",
@@ -46,7 +49,11 @@
       "Dfa",
       "Dfb",
       "Aw",
-      "Am"
+      "Am",
+      "Cwa"
+    ],
+    "introduced": [
+      "US"
     ]
   },
   "traits": {
@@ -72,7 +79,7 @@
     ],
     "length_m": 0.69,
     "shoulder_height_m": 0.16,
-    "lifespan_y": 2,
+    "lifespan_y": 2.0,
     "diet": {
       "invertebrate": 0.35,
       "carrion": 0.2,
@@ -161,13 +168,25 @@
         "tag": "water",
         "kind": "Water",
         "weight": 1.0
+      },
+      {
+        "tag": "browse",
+        "kind": "Herbivory",
+        "weight": 0.05
+      },
+      {
+        "tag": "compost",
+        "kind": "Herbivory",
+        "weight": 0.2
       }
     ],
     "human_tolerance": {
       "urban_affinity": "Adapter",
       "uses_gardens": true,
       "road_mortality": "High",
-      "notes": "Successful opportunist in settled areas near food sources such as trash cans, compost piles, gardens and pet food, but slow nocturnal road foraging makes road mortality common."
+      "notes": "Successful opportunist in settled areas near food sources such as trash cans, compost piles, gardens and pet food, but slow nocturnal road foraging makes road mortality common.",
+      "light_max": 0.9,
+      "flight_distance_m": 5.0
     }
   },
   "seasonal": {
@@ -190,6 +209,12 @@
         "start": "04-01",
         "end": "12-15",
         "note": "Young disperse after pouch and back-riding development; timing follows the long breeding and young-rearing window."
+      },
+      {
+        "name": "dormancy",
+        "start": "12-01",
+        "end": "02-28",
+        "note": "Judgement window for the coldest part of the winter, when 'It does not hibernate but reduces its activity during the winter' and 'It may not leave its den for several days if the temperature drops below -7 to -4 C'. The schema's dormancy name covers the den-bound period only; the animal is not in true hibernation."
       }
     ],
     "life_stages": [
@@ -201,6 +226,9 @@
       },
       {
         "stage": "Adult"
+      },
+      {
+        "stage": "Egg"
       }
     ]
   },
@@ -253,6 +281,55 @@
             "gbif"
           ]
         }
+      },
+      {
+        "region": "US-AR",
+        "monthly": [
+          0.75,
+          0.67,
+          0.46,
+          0.58,
+          0.3,
+          0.2,
+          0.45,
+          0.68,
+          1.0,
+          0.85,
+          0.92,
+          0.7
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 2057,
+        "sources": [
+          "inat-activity-us-ar",
+          "gbif-activity-us-ar"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 36,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=42652&place_id=36&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=36&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 1023,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "C",
+            "area": [
+              "gadmGid",
+              "USA.4_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2439923&gadmGid=USA.4_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.4_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "total": 1034,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
       }
     ]
   },
@@ -279,6 +356,17 @@
       "cooldown_s": 20,
       "loudness": "Moderate",
       "description": "Open-mouthed defensive hiss with jaw snapping and tooth display when threatened at close range."
+    },
+    {
+      "call_id": "click",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [
+        "Night"
+      ],
+      "cooldown_s": 12,
+      "loudness": "Quiet",
+      "description": "Clicking sounds made with the mouth by the male, used to attract the female during the mating season; a quiet, close-range courtship sound rather than a call carried across a garden."
     }
   ],
   "look": {
@@ -461,6 +549,24 @@
       "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
       "accessed": "2026-09-30",
       "kind": "api"
+    },
+    {
+      "id": "inat-activity-us-ar",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=42652&place_id=36&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Didelphis virginiana in US-AR",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-ar",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2439923&gadmGid=USA.4_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+      "title": "GBIF occurrence search for Didelphis virginiana in US-AR",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
+      "accessed": "2026-09-30",
+      "kind": "api"
     }
   ],
   "provenance": {
@@ -469,7 +575,9 @@
         "gbif-backbone",
         "itis"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "Kerr 1792, Didelphis virginiana; family Didelphidae per the GBIF backbone and ITIS TSN 179921."
     },
     "external": {
       "sources": [
@@ -485,7 +593,9 @@
         "wikidata",
         "itis"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "en/fr/es labels; the English name follows the Wikipedia article title, the fr/es labels the Wikidata sitelink titles."
     },
     "conservation": {
       "sources": [
@@ -493,7 +603,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Wikidata P141 = least concern (Q211005); Wikipedia infobox also reports IUCN Least Concern."
+      "note": "Wikidata P141 = least concern (Q211005); Wikipedia infobox also reports IUCN Least Concern.",
+      "derived": true
     },
     "range": {
       "sources": [
@@ -507,50 +618,65 @@
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "Vertebrate, chordate, four-legged, furred, endothermic mammal; a marsupial, 'the northernmost marsupial in the world'."
     },
     "traits.limb_count": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "Quadruped: four legs, with 'opposable, clawless thumbs on their rear limbs'."
     },
     "traits.locomotion_modes": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "Medium",
-      "note": "Walking/pacing gait, climbing with prehensile tail and opposable hind digits, and swimming ability are described in the article."
+      "note": "Walking/pacing gait, climbing with prehensile tail and opposable hind digits, and swimming ability are described in the article.",
+      "derived": true
     },
     "traits.thermoregulation": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "Endotherm: a mammal that is 'a solitary nocturnal animal' and reduces its activity in cold weather."
     },
     "traits.skin": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "Fur: 'Their coats are a dull grayish brown, other than on their faces, which are white', with hairless ears, nose and tail."
     },
     "traits.flight": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "None: a ground mammal."
     },
     "traits.respiration": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "Lungs: a mammalian respiratory system."
     },
     "traits.metamorphosis": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "None: 'Newborns are the size of a honeybee' and 'climb up into the female opossum's pouch and latch onto one of her 13 teats'. The neonate is developmentally very immature, but that is marsupial development rather than metamorphosis, so the schema's None is used."
     },
     "traits.nest_type": {
       "sources": [
@@ -565,7 +691,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Climbs, but does not perch like a bird; set false."
+      "note": "Climbs, but does not perch like a bird; set false.",
+      "derived": true
     },
     "traits.size_class": {
       "sources": [
@@ -588,7 +715,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Combines the stated female and male adult weight ranges, 1.9-2.8 kg."
+      "note": "Combines the stated female and male adult weight ranges, 1.9-2.8 kg.",
+      "derived": true
     },
     "traits.length_m": {
       "sources": [
@@ -611,7 +739,8 @@
         "wikipedia"
       ],
       "confidence": "Medium",
-      "note": "Typical wild lifespan is short for a mammal this size, about 1.5-2 years; 2 years used."
+      "note": "Typical wild lifespan is short for a mammal this size, about 1.5-2 years; 2 years used.",
+      "derived": true
     },
     "traits.diet": {
       "sources": [
@@ -626,14 +755,16 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Described as solitary."
+      "note": "Described as solitary.",
+      "derived": true
     },
     "traits.activity_pattern": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Described as nocturnal."
+      "note": "Described as nocturnal.",
+      "derived": true
     },
     "traits.defense": {
       "sources": [
@@ -678,14 +809,16 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Wikipedia describes frequent settled-area use near trash cans, compost piles, gardens and pet food, plus high roadkill risk from slow nocturnal carrion foraging."
+      "note": "Wikipedia describes frequent settled-area use near trash cans, compost piles, gardens and pet food, plus high roadkill risk from slow nocturnal carrion foraging.",
+      "derived": true
     },
     "seasonal.strategy": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Does not hibernate, but reduces activity in winter."
+      "note": "Does not hibernate, but reduces activity in winter.",
+      "derived": true
     },
     "seasonal.phases": {
       "sources": [
@@ -724,6 +857,12 @@
       "confidence": "Low",
       "derived": true,
       "note": "Judgement: shared ground-forager parameters tuned for a slow nocturnal omnivore; food_tag invertebrate matches habitat.resources."
+    },
+    "vocalizations.click": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
     }
   },
   "contributors": [
