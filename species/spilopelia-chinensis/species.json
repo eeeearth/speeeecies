@@ -1,0 +1,634 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Spilopelia chinensis",
+  "slug": "spilopelia-chinensis",
+  "common_names": {
+    "en": "Spotted dove"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Columbiformes",
+    "family": "Columbidae",
+    "genus": "Spilopelia",
+    "authority": "(Scopoli, 1786)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 6101224,
+    "inat_taxon_id": 1455918,
+    "ncbi_taxon_id": 115700,
+    "ebird_code": "spodov",
+    "wikidata": "Q116686"
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "IN",
+      "NP",
+      "BT",
+      "BD",
+      "LK",
+      "MM",
+      "TH",
+      "LA",
+      "KH",
+      "VN",
+      "CN",
+      "MY",
+      "ID",
+      "PH"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Walk",
+      "Fly"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Platform",
+    "perching": true,
+    "size_class": "Small",
+    "mass_kg": 0.159,
+    "length_m": 0.3,
+    "wingspan_m": 0.42,
+    "lifespan_y": 5,
+    "diet": {
+      "seed": 0.8,
+      "fruit": 0.1,
+      "invertebrate": 0.1
+    },
+    "social": {
+      "structure": "Group",
+      "group_size": [
+        2,
+        6
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.45
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.6,
+      "arboreal": 0.4
+    },
+    "shelter_tag": "perch",
+    "resources": [
+      {
+        "tag": "seed",
+        "kind": "Herbivory",
+        "weight": 0.8
+      },
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.3
+      },
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.2
+      },
+      {
+        "tag": "nest_platform",
+        "kind": "Nesting",
+        "weight": 1.0
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.8
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "light_max": 0.8,
+      "notes": "A common urban bird of streets, parks and gardens; forages on the ground and nests in low vegetation or on structures."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "03-01",
+        "end": "09-30",
+        "region": "IN",
+        "note": "Breeding is spread out in warm regions; more than one brood."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg"
+      },
+      {
+        "stage": "Juvenile",
+        "duration_days": 45,
+        "scale": 0.9
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "behavior": {
+    "program": "bt-perching-songbird-v1",
+    "params": {
+      "flee_m": 5,
+      "food_tag": "seed",
+      "song": "song",
+      "alarm": "alarm",
+      "nest_m1": 3,
+      "nest_m2": 9
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "song",
+      "context": "Song",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day",
+        "Dusk"
+      ],
+      "cooldown_s": 15,
+      "loudness": "Moderate",
+      "description": "Soft cooing, krookruk-krukroo, with several terminal kroos, repeated from a perch."
+    },
+    {
+      "call_id": "alarm",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 5,
+      "loudness": "Moderate",
+      "description": "Abrupt flapping take-off with a sharp note when flushed."
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.7,
+      "leg_length_ratio": 0.25,
+      "head_scale": 0.7,
+      "neck_angle_deg": 10,
+      "tail_ratio": 1.0,
+      "wing_aspect": 2.8,
+      "beak_ratio": 0.4,
+      "girth_ratio": 1.1
+    },
+    "palette": {
+      "body": "#b59a86",
+      "belly": "#d8c3b0",
+      "markings": "#2b2b2b",
+      "accent": "#8a6f5c",
+      "eye": "#3a1f14"
+    },
+    "part_colors": {
+      "breast": "belly",
+      "beak": "markings",
+      "tail": "body"
+    },
+    "extra_parts": [
+      {
+        "name": "collar",
+        "parent": "body",
+        "offset": [
+          -0.35,
+          0.45,
+          0
+        ],
+        "size": [
+          0.4,
+          0.35,
+          1.15
+        ],
+        "color": "markings"
+      },
+      {
+        "name": "tail_tip",
+        "parent": "tail",
+        "offset": [
+          0.4,
+          0,
+          0
+        ],
+        "size": [
+          0.35,
+          0.9,
+          0.9
+        ],
+        "color": "belly"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "fly": {},
+      "perched": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/6101224",
+      "title": "GBIF Backbone Taxonomy: Spilopelia chinensis",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q116686",
+      "title": "Wikidata: Spotted dove (Q116686)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Spotted_dove",
+      "title": "Wikipedia: Spotted dove",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Spotted dove\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "eltontraits",
+      "url": "https://doi.org/10.6084/m9.figshare.3559887.v1",
+      "title": "EltonTraits 1.0: species-level foraging attributes of the world's birds and mammals (BirdFuncDat)",
+      "license": "CC0-1.0",
+      "kind": "dataset",
+      "accessed": "2026-10-01",
+      "attribution": "Wilman, H. et al. (2014) EltonTraits 1.0. Ecology 95:2027",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "avonet",
+      "url": "https://doi.org/10.6084/m9.figshare.16586228",
+      "title": "AVONET: morphological, ecological and geographical data for all birds",
+      "license": "CC-BY-4.0",
+      "kind": "dataset",
+      "accessed": "2026-10-01",
+      "attribution": "Tobias, J. A. et al. (2022) AVONET. Ecology Letters 25:581-597",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "inat-activity-in-ka",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=1455918&place_id=7043&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Spilopelia chinensis in IN-KA",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-in-ka",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=6101224&gadmGid=IND.16_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Spilopelia chinensis in IN-KA",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "NCBI id via Wikidata (P685)."
+    },
+    "common_names": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikidata",
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Native across the Indian subcontinent and East and Southeast Asia, from the distribution section."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Forages on the ground and flies; 'these doves are mostly found on the ground'."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'building a flimsy cup of twigs'."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.size_class": {
+      "sources": [
+        "eltontraits"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "eltontraits",
+        "avonet"
+      ],
+      "confidence": "High",
+      "note": "EltonTraits lists this species as Stigmatopelia chinensis, BodyMass 159 g; AVONET gives the same."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of 'the length ranges from 28 to 32 centimetres'."
+    },
+    "traits.wingspan_m": {
+      "sources": [
+        "avonet"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "No wingspan is given by the sources; estimated as three times AVONET's flattened wing chord (138.8 mm)."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "No lifespan is stated; 5 years is a judgement for a small dove."
+    },
+    "traits.diet": {
+      "sources": [
+        "eltontraits",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Moves around in pairs or small groups."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "eltontraits"
+      ],
+      "confidence": "High",
+      "note": "EltonTraits Nocturnal 0."
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Flushes into the air when disturbed."
+    },
+    "traits.wariness": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement; a fairly approachable urban dove."
+    },
+    "habitat.use": {
+      "sources": [
+        "eltontraits"
+      ],
+      "confidence": "High",
+      "note": "EltonTraits ForStrat-ground 100; a small arboreal share is authored for perching and nesting."
+    },
+    "habitat.shelter_tag": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored."
+    },
+    "habitat.resources": {
+      "sources": [
+        "eltontraits",
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Seeds and grain from EltonTraits; ground foraging and twig nest from the article."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Urban wildlife in streets, parks and gardens; notes authored."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Resident; breeding season spread out in warm regions."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Breeding season spread out in warm regions; dates are judgements."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Eggs hatch after about 13 days and fledge after a fortnight."
+    },
+    "vocalizations.song": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Coo described as krookruk-krukroo."
+    },
+    "vocalizations.alarm": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored, based on the described noisy flush."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Rosy buff below, grey head, black half-collar with white spots and white-tipped tail; proportions authored."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared perching-songbird program."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies maintainers",
+      "agent": "opencode"
+    }
+  ],
+  "activity": {
+    "regions": [
+      {
+        "region": "IN-KA",
+        "monthly": [
+          0.61,
+          0.67,
+          0.72,
+          0.69,
+          0.6,
+          0.82,
+          0.9,
+          0.96,
+          1.0,
+          0.84,
+          0.69,
+          0.68
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 187947,
+        "sources": [
+          "inat-activity-in-ka",
+          "gbif-activity-in-ka"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 7043,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=1455918&place_id=7043&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=7043&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 957,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "IND.16_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=6101224&gadmGid=IND.16_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=IND.16_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 186990,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  }
+}

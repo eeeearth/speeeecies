@@ -1,0 +1,626 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Marmota monax",
+  "slug": "marmota-monax",
+  "common_names": {
+    "en": "Groundhog"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Mammalia",
+    "order": "Rodentia",
+    "family": "Sciuridae",
+    "genus": "Marmota",
+    "authority": "(Linnaeus, 1758)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2437368,
+    "inat_taxon_id": 46095,
+    "itis_tsn": 9995,
+    "wikidata": "Q221612"
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "US",
+      "CA"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk",
+      "Trot",
+      "Gallop",
+      "Climb",
+      "Swim",
+      "Burrow"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Fur",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Burrow",
+    "perching": false,
+    "size_class": "Medium",
+    "mass_kg": 3.8,
+    "mass_range_kg": [
+      2.0,
+      6.3
+    ],
+    "length_m": 0.45,
+    "shoulder_height_m": 0.22,
+    "lifespan_y": 6,
+    "diet": {
+      "graze": 0.55,
+      "browse": 0.2,
+      "fruit": 0.1,
+      "seed": 0.07,
+      "invertebrate": 0.05,
+      "vertebrate": 0.03
+    },
+    "social": {
+      "structure": "Solitary",
+      "group_size": [
+        1,
+        2
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.6
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.9,
+      "arboreal": 0.1
+    },
+    "shelter_tag": "burrow",
+    "resources": [
+      {
+        "tag": "leaf_litter",
+        "kind": "Herbivory",
+        "weight": 0.4
+      },
+      {
+        "tag": "invertebrate",
+        "kind": "Herbivory",
+        "weight": 0.3
+      },
+      {
+        "tag": "seed",
+        "kind": "Herbivory",
+        "weight": 0.2
+      },
+      {
+        "tag": "burrow",
+        "kind": "Shelter",
+        "weight": 1.0
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Exploiter",
+      "uses_gardens": true,
+      "light_max": 0.6,
+      "notes": "Thrives where people give it food and cover: it prefers open country and woodland edges, small woodlots, fields, pastures and hedgerows, digs in well-drained soil, and has become common in residential yards. Shy and wary of observers, and its burrows can undermine residential foundations."
+    }
+  },
+  "seasonal": {
+    "strategy": "Hibernation",
+    "triggers": {
+      "enter": {
+        "temperature_below_c": 6,
+        "days": 14
+      },
+      "exit": {
+        "temperature_above_c": 8,
+        "days": 7
+      }
+    },
+    "phases": [
+      {
+        "name": "dormancy",
+        "start": "10-15",
+        "end": "03-31",
+        "note": "True hibernation in a separate winter burrow dug below the frost line, with periods of torpor and arousal; body temperature falls to about 2 C, the heart to 4-10 beats per minute and breathing to once every six minutes. Body temperature thresholds are authored around 'October to March or April' because the article gives no temperature values."
+      },
+      {
+        "name": "mating",
+        "start": "03-01",
+        "end": "04-30",
+        "note": "The breeding season runs from early March to mid or late April, straight after hibernation; a mated pair stays in the same den through the 31- to 32-day gestation and one litter is produced annually."
+      },
+      {
+        "name": "young",
+        "start": "04-15",
+        "end": "09-30",
+        "note": "Females give birth to one to nine offspring, most litters three to five; young are introduced to the open once their fur has grown in and they can see, and prepare for separation by digging their own holes."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Juvenile",
+        "scale": 0.45
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-ground-forager-v1",
+    "params": {
+      "flee_m": 18,
+      "calm_m": 30,
+      "food_tag": "leaf_litter",
+      "food_m": 40,
+      "flee_gait": "gallop",
+      "forage_gait": "walk",
+      "rest_sun_lo_deg": 12,
+      "rest_sun_hi_deg": 80
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "alarm",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 20,
+      "loudness": "Loud",
+      "description": "A high-pitched whistle used to warn others in the colony when alarmed, the call behind the name whistle-pig and whistler."
+    },
+    {
+      "call_id": "squeal",
+      "context": "Scream",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 15,
+      "loudness": "Moderate",
+      "description": "A squeal given when fighting, seriously injured or caught by a predator, alongside low barks and a grinding-teeth sound."
+    }
+  ],
+  "look": {
+    "body_plan": "quadruped",
+    "proportions": {
+      "torso_aspect": 2.2,
+      "leg_length_ratio": 0.34,
+      "head_scale": 0.62,
+      "neck_angle_deg": 12,
+      "tail_ratio": 0.24,
+      "ear_ratio": 0.24,
+      "girth_ratio": 1.05
+    },
+    "palette": {
+      "body": "#8a6a4a",
+      "belly": "#c8b394",
+      "markings": "#6b4f34",
+      "accent": "#d9c9a8",
+      "eye": "#241a12"
+    },
+    "part_colors": {
+      "snout": "accent",
+      "ear_left": "markings",
+      "ear_right": "markings"
+    },
+    "extra_parts": [
+      {
+        "name": "back_stripe",
+        "parent": "body",
+        "offset": [
+          -0.1,
+          0.35,
+          0
+        ],
+        "size": [
+          0.86,
+          0.16,
+          1.02
+        ],
+        "color": "markings"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "trot": {},
+      "gallop": {},
+      "rest": {},
+      "swim": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2437368",
+      "title": "GBIF Backbone Taxonomy: Marmota monax",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q221612",
+      "title": "Wikidata: Marmota monax (Q221612)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Groundhog",
+      "title": "Wikipedia: Groundhog",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Groundhog\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "inat-activity-us-pa",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=46095&place_id=42&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Marmota monax in US-PA",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-pa",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2437368&gadmGid=USA.39_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Marmota monax in US-PA",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "Sciuridae, Marmota, (Linnaeus, 1758); described by Linnaeus in 1758 as Mus monax."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "GBIF usage key 2437368 and iNaturalist taxon 46095; ITIS TSN 9995 from Wikidata P685."
+    },
+    "common_names": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Groundhog, also known as the woodchuck; whistle-pig, whistler and thickwood badger are among the listed common names."
+    },
+    "conservation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Widespread across much of the eastern United States and Canada and thriving in human-modified habitat, consistent with Least Concern; no IUCN page was consulted because those are not openly licensed."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'A lowland creature of North America, it is found through much of the Eastern United States, across Canada and into Alaska.'"
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'Despite their heavy-bodied appearance, groundhogs are accomplished swimmers and occasionally climb trees when escaping predators'; they walk and trot when foraging, and gallop or retreat underground to escape, using their burrows constantly."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Endotherm with true hibernation, body temperature falling to as low as 2 C in the den."
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Burrow: 'Groundhogs are excellent burrowers, using burrows for sleeping, rearing young, and hibernating', with usually two or more entrances."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "It is a lowland ground animal that only occasionally climbs a tree, so it is not treated as perching."
+    },
+    "traits.size_class": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg: about 3.8 kg is under 50 kg, so Medium."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Adult males average 3.83 kg year-round and females 3.53 kg; the male figure is used."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'Weights of adult groundhogs typically fall between 2 and 6.3 kg', with much higher autumn weights during hyperphagia."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Adults measure 41.8 to 68.5 cm in total length including a 9.5 to 18.7 cm tail; 45 cm is the mid-range total length (nose to tail tip)."
+    },
+    "traits.shoulder_height_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement. The article gives total length (41.8-68.5 cm including tail) and notes powerful short legs but no shoulder height; 22 cm is chosen from the build of a heavy-bodied ground squirrel of that length, so treat it as an estimate."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement, not a measurement. The article reports the weight loss and autumn fat build that govern winter survival but gives no lifespan figure, so a typical lifespan could not be derived from a source. 6 years is an authored estimate for a species that is usually described as long-lived among marmots."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'Mostly herbivorous, groundhogs eat primarily wild grasses and other vegetation, including berries, bark, leaves, and agricultural crops', with dandelion and coltsfoot important in early spring and occasional grubs, grasshoppers, snails, bird eggs and young birds. Graze covers the wild grasses, dandelion, coltsfoot and clover that dominate the diet; browse the leaves, bark and crops; fruit the berries, mulberries and raspberries; seed the buckwheat and grains; invertebrate the grubs, grasshoppers and snails; vertebrate the occasional bird egg and nestling."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'the most solitary of the marmot species'; individuals live in aggregations and several may occupy the same burrow, but do not form stable long-term pair bonds."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'Groundhogs are mostly diurnal and are often active early in the morning or late afternoon.'"
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'They prefer to retreat to their burrows when threatened', and defend tenaciously with the incisors and front claws only if the burrow is invaded."
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "W.J. Schoonmaker reports that groundhogs may hide when they see, smell or hear an observer, and they stand erect and motionless watching for danger, so they are shy but not flighty in a suburban yard."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'The groundhog prefers open country and the edges of woodland, being rarely found far from a burrow entrance. It can typically be found in small woodlots, low-elevation forests, fields and pastures, and hedgerows.'"
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Burrows are the primary shelter for safety, retreat, hibernating, sleeping, mating and rearing young, usually with two to five entrances."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Vegetation, berries, bark, leaves and crops from the diet paragraph. The catalog's leaf_litter, invertebrate and seed tags stand in for grass and low browse, insects and seeds; the weights are authored to match the diet shares."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'Human activity has increased food access and abundance, allowing M. monax to thrive'; burrows threaten farm machinery and can undermine building foundations, and numbers of burrows per groundhog decrease with urbanization."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'Groundhogs are one of the few species that enter into true hibernation, and often build a separate \"winter burrow\" for this purpose... In most areas, groundhogs hibernate from October to March or April.'"
+    },
+    "seasonal.triggers": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored. The article gives the hibernation months and says the winter burrow is dug below the frost line and holds a stable temperature well above freezing, but no temperature thresholds, so 6 C for two weeks to enter and 8 C for a week to exit are chosen to sit either side of the frost line."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Hibernation October to March or April with body temperature down to about 2 C; the breeding season from early March to mid or late April with 31-32 days of gestation and one annual litter of one to nine, most often three to five."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Females give birth to one to nine offspring and introduce them once their fur has grown in and they can see; duration_days is left unset because no sourced weaning interval was found, and scale is an authored juvenile size."
+    },
+    "vocalizations.alarm": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'When alarmed, they use a high-pitched whistle to warn the rest of the colony, hence the name \"whistle-pig\".'"
+    },
+    "vocalizations.squeal": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Groundhogs 'may squeal when fighting, seriously injured, or caught by a predator. Other vocalizations include low barks and a sound produced by grinding their teeth.'"
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Judgement on colours: the article describes the species only in general terms, so the model uses a plain agouti-brown grizzled coat, paler underparts and belly, a short tail about one-quarter of body length, and small rounded ears. Proportions are authored."
+    },
+    "behavior": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The shared ground-forager program fits a mostly herbivorous mammal that forages in the open near a burrow, wanders, drinks, retreats to shelter in the heat of the day and bolts underground when threatened. Parameters are authored: walk to forage, gallop to flee."
+    }
+  },
+  "contributors": [
+    {
+      "name": "sisyphus-agent",
+      "agent": "opencode"
+    }
+  ],
+  "activity": {
+    "regions": [
+      {
+        "region": "US-PA",
+        "monthly": [
+          0.04,
+          0.08,
+          0.53,
+          0.69,
+          1.0,
+          0.77,
+          0.81,
+          0.81,
+          0.9,
+          0.46,
+          0.14,
+          0.08
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 962,
+        "sources": [
+          "inat-activity-us-pa",
+          "gbif-activity-us-pa"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 42,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=46095&place_id=42&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=42&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "total": 460,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.39_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2437368&gadmGid=USA.39_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.39_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 502,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  }
+}
