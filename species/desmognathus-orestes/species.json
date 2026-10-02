@@ -1,0 +1,672 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Desmognathus orestes",
+  "slug": "desmognathus-orestes",
+  "common_names": {
+    "en": "Blue Ridge dusky salamander"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Amphibia",
+    "order": "Urodela",
+    "family": "Plethodontidae",
+    "genus": "Desmognathus",
+    "authority": "Tilley & Mahoney, 1996",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2431207,
+    "inat_taxon_id": 27405,
+    "itis_tsn": 550245,
+    "wikidata": "Q1594187",
+    "ncbi_taxon_id": 179531
+  },
+  "conservation": {
+    "iucn": "LC",
+    "notes": "Endemic to a small part of the Blue Ridge Mountains, and listed as threatened by habitat loss; southern Appalachian headwater streams are acidifying, which is a documented threat to dusky salamanders across the region."
+  },
+  "range": {
+    "native": [
+      "US"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk",
+      "Swim"
+    ],
+    "thermoregulation": "Ectotherm",
+    "skin": "Moist",
+    "flight": "None",
+    "respiration": "Skin",
+    "metamorphosis": "Complete",
+    "nest_type": "Ground",
+    "perching": false,
+    "size_class": "Tiny",
+    "mass_kg": 0.0014,
+    "mass_range_kg": [
+      0.0008,
+      0.003
+    ],
+    "length_m": 0.11,
+    "lifespan_y": 10,
+    "home_range_ha": 0.0002,
+    "diet": {
+      "invertebrate": 1.0
+    },
+    "social": {
+      "structure": "Solitary",
+      "group_size": [
+        1,
+        1
+      ]
+    },
+    "activity_pattern": "Crepuscular",
+    "defense": "Hide",
+    "wariness": 0.5
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.6,
+      "aquatic": 0.4
+    },
+    "shelter_tag": "leaf_litter",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 1.0
+      },
+      {
+        "tag": "leaf_litter",
+        "kind": "Shelter",
+        "weight": 0.5
+      },
+      {
+        "tag": "water",
+        "kind": "Shelter",
+        "weight": 0.5
+      },
+      {
+        "tag": "log_pile",
+        "kind": "Nesting",
+        "weight": 0.4
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Avoider",
+      "dist_building_min_m": 100,
+      "road_mortality": "Medium",
+      "uses_gardens": false,
+      "notes": "Extremely vulnerable to desiccation and therefore reliant on clean, saturated headwater flow; watershed urbanisation, siltation of the streambed and forestry all degrade the microhabitat it needs. It will not be found in a mown garden unless the lot carries a permanent seep or spring."
+    },
+    "density_per_ha": {
+      "min": 50,
+      "typical": 500,
+      "max": 5000
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "03-01",
+        "end": "05-31",
+        "note": "One of the two annual breeding periods; dusky salamanders breed terrestrially in spring or autumn, and the female broods the clutch through an incubation of six to ten weeks."
+      },
+      {
+        "name": "spawning_migration",
+        "start": "09-01",
+        "end": "11-30",
+        "note": "The autumn breeding period, when eggs are laid in logs, under rocks or moss, or in stream-bank cavities in soil saturated with water."
+      },
+      {
+        "name": "young",
+        "start": "05-01",
+        "end": "12-31",
+        "note": "The aquatic larval stage lasts seven to sixteen months among dusky salamanders; larvae live in the interstitial spaces between streambed rocks before metamorphosing into semi-terrestrial juveniles of 2.8-4.4 cm."
+      },
+      {
+        "name": "dormancy",
+        "start": "12-15",
+        "end": "02-15",
+        "fraction": 0.5,
+        "note": "Adults overwinter in subterranean retreats or in the stream, and remain active through winter where the substrate does not freeze."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Juvenile",
+        "duration_days": 400,
+        "scale": 0.5,
+        "requires_tag": "water"
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US-NC",
+        "monthly": [
+          0.03,
+          0.04,
+          0.14,
+          0.89,
+          0.73,
+          0.71,
+          0.94,
+          0.8,
+          1.0,
+          0.29,
+          0.1,
+          0.01
+        ],
+        "method": "mean(inat_raw, gbif_raw)",
+        "observations": 2555,
+        "sources": [
+          "inat-activity-us-nc",
+          "gbif-activity-us-nc"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 30,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=27405&place_id=30&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": null,
+            "total": 951,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.34_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2431207&gadmGid=USA.34_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": null,
+            "total": 1604,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-ground-forager-v1",
+    "params": {
+      "food_tag": "invertebrate",
+      "flee_m": 1.0,
+      "calm_m": 2.0,
+      "food_m": 3.0,
+      "flee_gait": "walk",
+      "forage_gait": "walk",
+      "rest_sun_lo_deg": 10,
+      "rest_sun_hi_deg": 90
+    }
+  },
+  "vocalizations": [],
+  "look": {
+    "body_plan": "anuran",
+    "proportions": {
+      "torso_aspect": 2.6,
+      "leg_length_ratio": 0.2,
+      "head_scale": 0.4,
+      "neck_angle_deg": 2,
+      "girth_ratio": 0.7
+    },
+    "palette": {
+      "body": "#6d4b30",
+      "belly": "#d8cebd",
+      "markings": "#39291b",
+      "accent": "#b6a888",
+      "eye": "#120e0a"
+    },
+    "part_colors": {},
+    "extra_parts": [
+      {
+        "name": "tail",
+        "parent": "body",
+        "offset": [
+          -0.75,
+          0.05,
+          0
+        ],
+        "size": [
+          1.1,
+          0.5,
+          0.55
+        ],
+        "color": "accent",
+        "mirror": false
+      },
+      {
+        "name": "dorsal_stripe",
+        "parent": "body",
+        "offset": [
+          0,
+          0.44,
+          0
+        ],
+        "size": [
+          1.7,
+          0.1,
+          0.22
+        ],
+        "color": "accent"
+      },
+      {
+        "name": "eye_stripe",
+        "parent": "head",
+        "offset": [
+          0.15,
+          0.18,
+          0.36
+        ],
+        "size": [
+          0.9,
+          0.16,
+          0.1
+        ],
+        "color": "accent",
+        "mirror": true
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "swim": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2431207",
+      "title": "GBIF Backbone Taxonomy: Desmognathus orestes",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q1594187",
+      "title": "Wikidata: Blue Ridge dusky salamander (Q1594187)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Blue_Ridge_dusky_salamander",
+      "title": "Wikipedia: Blue Ridge dusky salamander",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Blue Ridge dusky salamander\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "wikipedia-plethodontidae",
+      "url": "https://en.wikipedia.org/wiki/Plethodontidae",
+      "title": "Wikipedia: Plethodontidae (lungless salamanders)",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Plethodontidae\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "wikipedia-desmognathus-fuscus",
+      "url": "https://en.wikipedia.org/wiki/Desmognathus_fuscus",
+      "title": "Wikipedia: Desmognathus fuscus (northern dusky salamander)",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Desmognathus fuscus\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "note": "Used for genus-level and family-level facts - diet, daily activity, breeding and egg attendance, overwintering, longevity - because the D. orestes article is a stub. D. fuscus is a northern congener, so its range does not overlap this species."
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=550245",
+      "title": "ITIS: Desmognathus orestes, TSN 550245",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "amphibio",
+      "url": "https://doi.org/10.6084/m9.figshare.4644424",
+      "title": "AmphiBIO v1: a trait database for amphibians (Oliveira et al.), including the Desmognathus orestes row",
+      "license": "CC-BY-4.0",
+      "kind": "dataset",
+      "accessed": "2026-10-01",
+      "attribution": "Oliveira, G. et al. AmphiBIO v1. figshare, CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "inat-activity-us-nc",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=27405&place_id=30&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Desmognathus orestes in US-NC",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-nc",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2431207&gadmGid=USA.34_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Desmognathus orestes in US-NC",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "itis"
+      ],
+      "confidence": "High",
+      "note": "Authority and order follow the GBIF backbone; the family Plethodontidae is confirmed by the Wikipedia species and family articles."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "GBIF usage key 2431207 from the GBIF backbone match; NCBI taxon id via Wikidata P685."
+    },
+    "common_names": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikidata",
+        "wikipedia",
+        "wikipedia-desmognathus-fuscus"
+      ],
+      "confidence": "Medium",
+      "note": "Wikidata P141 = least concern (Q211005). The IUCN Red List page itself is not openly licensed, so it is not cited; the habitat-loss note is Wikipedia's, and the southern Appalachian stream-acidification threat is from the D. fuscus article's Threats and limiting factors section. Least concern is recorded rather than a Red List category, because a species endemic to a small part of one mountain range is worth the note even where its global status is unremarkable."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Wikipedia's Distribution section: 'endemic to the Blue Ridge Mountains range of the southern Appalachian Mountains, within western Virginia and North Carolina in the south-eastern United States.' Both states are the United States, so the country list is US alone."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia-plethodontidae"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia-plethodontidae"
+      ],
+      "confidence": "High",
+      "note": "'Adult lungless salamanders have four limbs, with four toes on the fore limbs, and usually with five on the hind limbs.'"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia-desmognathus-fuscus",
+        "amphibio"
+      ],
+      "confidence": "Medium",
+      "note": "Walk is the terrestrial foraging gait of the adults; Swim covers the aquatic larval stage, which AmphiBIO records for this species (Lar 1) and which the D. fuscus article describes as 'strictly aquatic, its habitat the interstitial spaces between rocks of the streambed'. The schema has no crawl or swim-only mode below Walk, and the anuran block plan has no tail part, so the tail is drawn as an extra_part."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia-plethodontidae"
+      ],
+      "confidence": "High",
+      "note": "'Due to their modest size and low metabolism' is the same point the family article makes about the ectothermic physiology of lungless salamanders."
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia-plethodontidae"
+      ],
+      "confidence": "High",
+      "note": "Plethodontids 'possess costal grooves on the trunk of their bodies. These help keep the skin moist via water transport over the surface of the body', and the D. fuscus article describes the species as 'extremely vulnerable to desiccation'. Moist is the schema's slot for that."
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia-plethodontidae"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia-plethodontidae",
+        "wikipedia-desmognathus-fuscus"
+      ],
+      "confidence": "High",
+      "note": "'Most significantly, they lack lungs, conducting respiration through their skin, and the tissues lining their mouths' (family article); D. fuscus 'absorbs oxygen through the skin and membranous tissue located in the mouth and throat'. Skin is therefore correct and Lungs would be wrong."
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "amphibio",
+        "wikipedia-desmognathus-fuscus"
+      ],
+      "confidence": "High",
+      "note": "AmphiBIO records a larval stage for D. orestes (Lar 1, Dir 0), so the species is not one of the directly-developing plethodontids the family article describes. The D. fuscus article gives the biphasic detail: aquatic larvae of about 1.5 cm hatching, then 'an aquatic state of seven to 16 months, followed by a semi-terrestrial adult stage'."
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia",
+        "wikipedia-desmognathus-fuscus"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "No nest is built. Wikipedia's own species article says 'Their eggs are laid under logs or rocks', and the Desmognathus genus article records maternal care by brooding, so Ground is the closest single value the schema offers; the log and rock microhabitats are carried under habitat.resources."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia-plethodontidae"
+      ],
+      "confidence": "High"
+    },
+    "traits.size_class": {
+      "sources": [
+        "amphibio"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg: 1.4 g falls in the schema's 'Tiny' band (under 50 g), as do every other amphibian-scale animal in this repository."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "amphibio"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "AmphiBIO carries no Body_mass_g for D. orestes, so the value is inferred from the closest measured congener: AmphiBIO records D. ocoee at 1.4 g and D. ocoee has the same 110 mm Body_size_mm as D. orestes. AmphiBIO's Desmognathus masses are inconsistent (D. monticola at 112.5 mm is recorded as 8.2 g, D. ochrophaeus at 90.5 mm as 0.6 g), so this figure is an order-of-magnitude estimate for a 110 mm lungless salamander, not a measurement."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "amphibio"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored envelope around the congener-derived estimate, spanning the 0.6 g AmphiBIO gives for D. ochrophaeus up to the 3 g that a 110 mm plethodontid of this build can plausibly reach. No open source gives a mass range for this species."
+    },
+    "traits.length_m": {
+      "sources": [
+        "amphibio"
+      ],
+      "confidence": "Medium",
+      "note": "AmphiBIO Body_size_mm 110, i.e. 11 cm snout-vent length. Consistent with the D. fuscus article, where the average adult male is 9.4 cm and the average adult female 8.6 cm, and with AmphiBIO's 7.5 cm juvenile size at maturity in the same genus."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "amphibio",
+        "wikipedia-desmognathus-fuscus"
+      ],
+      "confidence": "Medium",
+      "note": "AmphiBIO Longevity_max_y 10, which sits inside the D. fuscus article's 'Life expectancy is 10 to 15 years'. The shorter AmphiBIO figure is used because it is the one recorded for this species."
+    },
+    "traits.home_range_ha": {
+      "sources": [
+        "wikipedia-desmognathus-fuscus"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "The D. fuscus article gives a home range of 1 to 3.6 square metres, averaging about 1.5 square metres in warmer months; 2 square metres converted to hectares is 0.0002 ha. Transferred from the northern congener because no home-range figure exists for D. orestes, and it is recorded as such because the value is genuinely informative at this animal's scale."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia-desmognathus-fuscus",
+        "wikipedia-plethodontidae",
+        "amphibio"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "AmphiBIO has no diet value for D. orestes, but records arthropods as prey for three other Desmognathus (D. fuscus, D. imitator, D. folkertsi). The D. fuscus article describes the species as 'carnivorous and consumes a variety of aquatic and terrestrial invertebrates', with the adult diet 60-85% terrestrial invertebrates including arthropods, snails, slugs and earthworms, and the family article notes plethodontids take prey as small as springtails. Invertebrate is therefore the whole diet; no plant or carrion component is sourced, so none is asserted."
+    },
+    "traits.social": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: solitary. No open source quantifies group size for this species. The closest sourced fact is that a female broods her clutch alone for six to ten weeks, and no source describes aggregation outside that."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia-desmognathus-fuscus"
+      ],
+      "confidence": "Medium",
+      "note": "The D. fuscus article: 'As a result of desiccation and predators, activity of the northern dusky salamander peaks in the morning, and the evening and early night.' AmphiBIO has no activity value for D. orestes. Crepuscular follows from those two peaks; the transfer from the congener is the weak link, and D. orestes may be more strictly diurnal in the warm months."
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia-desmognathus-fuscus"
+      ],
+      "confidence": "Medium",
+      "note": "D. fuscus 'hide[s] under various objects, such as leaves or rocks, either in or near water. Alternatively, they may enter burrows for protection', and the desiccation and predator pressure named in the same article is what drives the behaviour. Hide is the schema's value for that."
+    },
+    "traits.wariness": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement, at the midpoint: the animal is extremely vulnerable to desiccation and heavy predation, which argues for high wariness of anything that disturbs its cover, but it is a 1.4 g salamander that neither approaches nor avoids a person specifically, so it is not set at the top of the scale."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia-desmognathus-fuscus",
+        "amphibio"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The split follows the biphasic life cycle: AmphiBIO records both the terrestrial (Ter 1) and aquatic (Aqu 1) flags for D. orestes, and the D. fuscus article puts foraging and nesting 'on land close to the water's edge' with an aquatic larval stage of seven to sixteen months. The adult-weighted ratio of 0.6 ground to 0.4 aquatic is judgement: the larval stage is long, but the adult, which is what the scene draws, is the terrestrial animal."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia",
+        "wikipedia-desmognathus-fuscus"
+      ],
+      "confidence": "High"
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia-desmognathus-fuscus"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The single predation weight follows traits.diet. The three shelter and nesting weights are judgement: the D. fuscus article names leaves, rocks, moss, logs and burrows as protective cover and gives no ranking."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia-desmognathus-fuscus"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Avoider from the D. fuscus article's threats: 'contamination of ground water or waterways through pollution ... can be catastrophic', and 'Timber harvesting, wind farms and watershed urbanization reduce water supply, water quality and microhabitat availability'. The 100 m minimum distance from buildings and the Medium road mortality are authored judgement on the same reasoning, and uses_gardens is false because the animal needs a permanent seep or spring rather than a planted bed."
+    },
+    "habitat.density_per_ha": {
+      "sources": [
+        "wikipedia-plethodontidae",
+        "wikipedia-desmognathus-fuscus"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement, and the units are the point: the family article notes that in some places plethodontids 'make up the dominant biomass of vertebrates', while the D. fuscus article says local densities are 'usually low' in absolute terms. No open source gives a density per hectare for D. orestes, so this is an authored band consistent with high local abundance in a few square metres of seep and low density across any hectare."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia-desmognathus-fuscus"
+      ],
+      "confidence": "Medium",
+      "note": "Adults 'overwinter in subterranean retreats or in streams, often remaining active throughout winter if the substrate doesn't freeze', so the species is active year round rather than dormant. Transferred from the congener, as no source describes the winter behaviour of D. orestes."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia-desmognathus-fuscus",
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "note": "All four phases come from the D. fuscus article - spring and autumn terrestrial breeding, egg attendance for 45 to 60 days, a seven-to-sixteen-month aquatic larval stage, and overwintering - with the month windows authored, since that article gives no dates. Wikipedia's own species article contributes only 'Their eggs are laid under logs or rocks'."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "amphibio",
+        "wikipedia-desmognathus-fuscus"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Juvenile duration 400 days is the 7-to-16-month aquatic larval period plus the terrestrial juvenile stage, taken at its longer end; scale 0.5 is authored, roughly matching the D. fuscus juveniles of 2.8-4.4 cm against an 8.6-9.4 cm adult."
+    },
+    "vocalizations": {
+      "sources": [
+        "wikipedia-plethodontidae"
+      ],
+      "confidence": "Low",
+      "note": "Deliberately empty. No open source describes any call for D. orestes or for lungless salamanders, which are not known to vocalise; rather than invent a call, the array is empty, as the schema permits for silent species."
+    },
+    "look": {
+      "sources": [
+        "wikipedia-desmognathus-fuscus",
+        "wikipedia-plethodontidae"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "The genus is described by the D. fuscus article as 'reddish-brown to gray or olive, with a white or grey underside', 'sparsely covered with dark spots or mottling', with a 'pale single stripe outlined in black that extends from the eye and runs diagonally to the rear of the jaw', '14 costal grooves, larger hind limbs than forelimbs, and a keeled (knife-like) tail'. Those colours and the eye stripe and dorsal stripe are drawn; the family article's 'four toes on the fore limbs, and usually with five on the hind limbs' is reflected in the larger hind-limb proportions. Proportions are authored judgement for a long-bodied, short-legged salamander, and the anuran plan's proportions are overridden because that plan's defaults are frog-shaped. The species is named for the Blue Ridge and its congeners vary from reddish-brown to gray, so the palette is a dusky brown midpoint of the genus's range."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared ground-forager program. That program is described for ground-dwelling mammals, but it is the only shared program whose logic fits a solitary invertebrate forager that hides in cover and does not call, so it is used in preference to writing a bespoke program; the nocturnal anuran program was rejected because it requires a breeding call and this animal has no sourced call. The program's default rest window (10 to 90 degrees) is kept because it is the setting its description gives for crepuscular species. flee_m, calm_m and food_m are judgement at the scale of a 1.4 g animal with a home range of a couple of square metres."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies fleet",
+      "agent": "opencode"
+    }
+  ]
+}

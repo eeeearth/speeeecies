@@ -16,14 +16,16 @@
     "order": "Passeriformes",
     "family": "Passerellidae",
     "genus": "Melospiza",
-    "authority": "(Wilson, 1810)",
+    "authority": "(Wilson, 1811)",
     "status": "Accepted"
   },
   "external": {
     "gbif_usage_key": 2492196,
     "inat_taxon_id": 9100,
-    "itis_tsn": 179492,
-    "wikidata": "Q842599"
+    "itis_tsn": 44397,
+    "wikidata": "Q842599",
+    "ncbi_taxon_id": 141842,
+    "ebird_code": "sonspa"
   },
   "conservation": {
     "iucn": "LC"
@@ -48,21 +50,22 @@
     "flight": "Powered",
     "respiration": "Lungs",
     "metamorphosis": "None",
-    "nest_type": "Cup",
+    "nest_type": "Ground",
     "perching": true,
     "size_class": "Tiny",
-    "mass_kg": 0.02,
+    "mass_kg": 0.032,
     "mass_range_kg": [
-      0.016,
-      0.026
+      0.012,
+      0.053
     ],
     "length_m": 0.15,
-    "wingspan_m": 0.2,
+    "wingspan_m": 0.22,
     "lifespan_y": 3.0,
     "diet": {
+      "invertebrate": 0.5,
       "seed": 0.4,
-      "invertebrate": 0.4,
-      "fruit": 0.2
+      "fruit": 0.05,
+      "vertebrate": 0.05
     },
     "social": {
       "structure": "Solitary",
@@ -73,7 +76,7 @@
     },
     "activity_pattern": "Diurnal",
     "defense": "Flee",
-    "wariness": 0.5
+    "wariness": 0.35
   },
   "habitat": {
     "use": {
@@ -83,24 +86,47 @@
     "shelter_tag": "shrub_thicket",
     "resources": [
       {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.5,
+        "months": [
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      {
         "tag": "seed",
         "kind": "Herbivory",
         "weight": 0.4
       },
       {
-        "tag": "invertebrate",
-        "kind": "Predation",
-        "weight": 0.4
+        "tag": "shrub_thicket",
+        "kind": "Nesting",
+        "weight": 1.0
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.5
+      },
+      {
+        "tag": "leaf_litter",
+        "kind": "Shelter",
+        "weight": 0.3
       },
       {
         "tag": "fruit",
         "kind": "Herbivory",
-        "weight": 0.2
-      },
-      {
-        "tag": "shrub_thicket",
-        "kind": "Shelter",
-        "weight": 0.7
+        "weight": 0.1,
+        "months": [
+          9,
+          10,
+          11,
+          12
+        ]
       },
       {
         "tag": "nest_cup",
@@ -116,15 +142,48 @@
     "human_tolerance": {
       "urban_affinity": "Adapter",
       "uses_gardens": true,
-      "light_max": 0.6,
-      "road_mortality": "Medium",
-      "notes": "Common in brushy edges, hedgerows, marshes and suburban gardens."
+      "light_max": 0.75,
+      "notes": "Thrives in human-dominated places: suburbs, agricultural fields, roadsides and gardens. Birds whose territory holds shrub cover away from the intertidal coast overwinter better and breed more successfully. Males hold a territory by song and sing from an exposed perch.",
+      "road_mortality": "Medium"
+    },
+    "density_per_ha": {
+      "min": 0.5,
+      "typical": 3,
+      "max": 15
     }
   },
   "seasonal": {
     "strategy": "PartialMigration",
-    "winter_fraction": 0.5,
+    "winter_fraction": 0.4,
     "phases": [
+      {
+        "name": "breeding",
+        "start": "03-15",
+        "end": "08-15",
+        "region": "US",
+        "note": "Females lay three to five eggs per clutch with 13-15 days of incubation, and hormone levels in both sexes peak in late March and late April before declining through May, which sets the shape of the breeding window. Exact boundaries are authored."
+      },
+      {
+        "name": "territorial",
+        "start": "08-16",
+        "end": "02-28",
+        "note": "Males defend a territory by a fairly complex song and repeat the same song many times before switching; birds learn their songs from a handful of neighbouring males and settle near the birds they learned from."
+      },
+      {
+        "name": "absent",
+        "start": "10-01",
+        "end": "03-14",
+        "region": "CA",
+        "fraction": 0.6,
+        "note": "Southern birds are permanent residents while northern populations migrate to the southern United States or Mexico for the winter and mix with the resident population."
+      },
+      {
+        "name": "breeding",
+        "start": "03-01",
+        "end": "08-31",
+        "region": "US-NC",
+        "note": "Breeds in shrubby areas, forest edges, and gardens; two to three broods per season."
+      },
       {
         "name": "breeding",
         "start": "04-01",
@@ -144,16 +203,686 @@
       },
       {
         "stage": "Juvenile",
-        "duration_days": 11,
-        "scale": 0.8
+        "duration_days": 60,
+        "scale": 0.9
       },
       {
         "stage": "Adult"
       }
     ]
   },
+  "behavior": {
+    "program": "bt-perching-songbird-v1",
+    "params": {
+      "flee_m": 6,
+      "food_tag": "seed",
+      "song": "song",
+      "alarm": "alarm",
+      "song_cooldown_s": 10,
+      "nest_m1": 3,
+      "nest_m2": 6
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "song",
+      "context": "Song",
+      "season_months": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "time_windows": [
+        "DawnChorus",
+        "Day"
+      ],
+      "cooldown_s": 10,
+      "loudness": "Loud",
+      "description": "A fairly complex song of repeated notes, quickly passing isolated notes and trills, crisp and clear. One bird knows as many as 20 tunes with many improvised variations, but usually repeats the same song many times before switching to another. The male sings it to declare ownership of his territory and to attract females."
+    },
+    {
+      "call_id": "alarm",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Day",
+        "DawnChorus"
+      ],
+      "cooldown_s": 6,
+      "loudness": "Moderate",
+      "description": "A short, sharp chip given when a bird is disturbed or a predator approaches the nest."
+    },
+    {
+      "call_id": "contact",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 3,
+      "loudness": "Quiet",
+      "description": "Soft 'seep' or 'tsip' notes given by pair members maintaining contact."
+    },
+    {
+      "call_id": "chimp",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 6,
+      "loudness": "Quiet",
+      "description": "Soft, nasal 'chimp' or 'tseet' contact call given while foraging in cover."
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.7,
+      "leg_length_ratio": 0.3,
+      "head_scale": 0.72,
+      "neck_angle_deg": 18,
+      "tail_ratio": 0.62,
+      "wing_aspect": 2.7,
+      "beak_ratio": 0.42,
+      "girth_ratio": 0.92
+    },
+    "palette": {
+      "body": "#7a6146",
+      "belly": "#e6e0d2",
+      "markings": "#3d3227",
+      "accent": "#9c948a",
+      "eye": "#1b1b1b"
+    },
+    "part_colors": {
+      "head": "body",
+      "breast": "belly",
+      "beak": "eye",
+      "tail": "markings",
+      "wing_*": "markings",
+      "leg_*": "accent"
+    },
+    "extra_parts": [
+      {
+        "name": "breast_spot",
+        "parent": "breast",
+        "offset": [
+          0.55,
+          -0.1,
+          0
+        ],
+        "size": [
+          0.34,
+          0.34,
+          1.05
+        ],
+        "color": "markings"
+      },
+      {
+        "name": "eye_streak",
+        "parent": "head",
+        "offset": [
+          0.42,
+          0,
+          0.42
+        ],
+        "size": [
+          0.12,
+          0.2,
+          0.12
+        ],
+        "color": "markings"
+      },
+      {
+        "name": "malar_stripe",
+        "parent": "head",
+        "offset": [
+          0.3,
+          0.2,
+          0.25
+        ],
+        "size": [
+          0.4,
+          0.3,
+          0.15
+        ],
+        "color": "markings",
+        "mirror": true
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "hop": {},
+      "fly": {},
+      "glide": {},
+      "perched": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2492196",
+      "title": "GBIF Backbone Taxonomy: Melospiza melodia",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q842599",
+      "title": "Wikidata: Song Sparrow (Q842599)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Song_sparrow",
+      "title": "Wikipedia: Song sparrow",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Song sparrow\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "eltontraits",
+      "url": "https://doi.org/10.6084/m9.figshare.3559887.v1",
+      "title": "EltonTraits 1.0: species-level foraging attributes of the world's birds and mammals (BirdFuncDat)",
+      "license": "CC0-1.0",
+      "kind": "dataset",
+      "accessed": "2026-10-01",
+      "attribution": "Wilman, H. et al. (2014) EltonTraits 1.0. Ecology 95:2027",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "inat-activity-us-pa",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=9100&place_id=42&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Melospiza melodia in US-PA",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-pa",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2492196&gadmGid=USA.39_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Melospiza melodia in US-PA",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=179848",
+      "title": "ITIS: Melospiza melodia, TSN 179848",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "inat-activity-us-nc",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=9100&place_id=30&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Melospiza melodia in US-NC",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-nc",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2492196&gadmGid=USA.34_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Melospiza melodia in US-NC",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "inat-activity-us-vt",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=9100&place_id=47&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Melospiza melodia in US-VT",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-vt",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2492196&gadmGid=USA.46_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Melospiza melodia in US-VT",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "Passerellidae, Melospiza, (Wilson, 1811); GBIF backbone and Wikidata agree."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "GBIF usage key 2492196 and iNaturalist taxon 9100 from GBIF and the issue's data pointers; ITIS TSN 44397 from Wikidata P685."
+    },
+    "common_names": {
+      "sources": [
+        "wikidata",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "en/fr/de labels from Wikidata sitelink titles."
+    },
+    "conservation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Among the native sparrows of North America 'it is easily one of the most abundant, variable, and adaptable species', which is consistent with a Least Concern listing; no IUCN page was consulted because those are not openly licensed."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Native across Canada and the United States, with northern birds wintering 'in the southern United States or Mexico'.",
+      "derived": true
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Hops when foraging on the ground and in shrubs, and flies."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "They nest either in a sheltered location on the ground or in trees or shrubs; Ground is used for the common suburban case where the nest is sited low.",
+      "derived": true
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Sings from an exposed perch to defend a territory."
+    },
+    "traits.size_class": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg: 32 g is under 50 g, so Tiny."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "The average of all races is 32 g."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Body mass ranges from 11.9 to 53 g across the subspecies.",
+      "derived": true
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Body length 11 to 18 cm across the subspecies; 15 cm is used as the mid-range value for a Pennsylvania bird."
+    },
+    "traits.wingspan_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of the 18-25.4 cm wingspan range."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement, not a measurement. The article documents only 'The maximum lifespan in the wild is 11.3 years' and gives no annual survival rate, so a typical lifespan could not be derived from a source. 3.0 years is an authored estimate for a small, territorial, ground-foraging songbird and is well under the documented maximum."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia",
+        "eltontraits"
+      ],
+      "confidence": "High",
+      "note": "They eat mainly insects and seeds, with salt-marsh birds also taking small crustaceans; the shares are authored to reflect that the invertebrates are the summer staple and seeds carry more of the winter and early-spring diet.",
+      "derived": true
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Territorial: males hold a territory by song, learn songs from a handful of neighbouring males and choose a territory near or replacing the birds they learned from.",
+      "derived": true
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia",
+        "eltontraits"
+      ],
+      "confidence": "High"
+    },
+    "traits.defense": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored: flies off a short distance when approached, rather than mobbing."
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement, set from 'they thrive in human dominated areas such as in suburbs, agricultural fields, and along roadsides' and from one song frequently heard in suburban locations."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Forage on the ground, in shrubs or in very shallow water.",
+      "derived": true
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Brushland and marsh, and the study finding that territories with shrub cover give better over-winter survival.",
+      "derived": true
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Insects and seeds from the diet line; nesting on the ground or in shrubs. The weights are authored to match the diet shares."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Suburbs, agricultural fields and roadsides, plus the shrub-cover survival and breeding result.",
+      "derived": true
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'Permanent residents of the southern half of their range, northern populations of the song sparrow migrate to the southern United States or Mexico during winter and intermingle with the native, non-migratory population.'"
+    },
+    "seasonal.winter_fraction": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "0.4 is an authored judgement: southern birds are resident and northern birds leave, and no sourced share for any one state was found."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Clutch of three to five eggs, 13-15 days of incubation, and the reported hormone peak in late March and late April; the month boundaries are authored because the article gives no dates."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Eggs are brown with greenish-white spots, and a juvenile is implied by the fledging stage. No sourced juvenile duration or scale was found, so both are left unset rather than guessed."
+    },
+    "vocalizations.song": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Repeated notes, isolated notes and trills; up to 20 tunes per bird with many improvised variations, usually repeated many times before switching; the male uses it to declare ownership of his territory and attract females.",
+      "derived": true
+    },
+    "vocalizations.alarm": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored: a short sharp chip. The article does not describe an alarm call, so only the general form is given."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Brown upperparts with dark streaks on the back, white underneath with dark streaking and a dark brown spot in the middle of the breast, a brown cap, a long brown rounded tail, and a grey face with a brown streak through each eye. Proportions and palette are authored.",
+      "derived": true
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared perching-songbird program: it flees, perches and sings from a perch, nests low in cover, and forages on the ground and in shrubs on seeds and insects."
+    },
+    "habitat.density_per_ha": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored judgement: variable, higher in optimal shrubby habitat."
+    },
+    "vocalizations.contact": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Description from Wikipedia; parameters authored."
+    },
+    "vocalizations.chimp": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    }
+  },
+  "contributors": [
+    {
+      "name": "sisyphus-agent",
+      "agent": "opencode"
+    },
+    {
+      "name": "speeeecies fleet",
+      "agent": "opencode"
+    },
+    {
+      "name": "speeeecies agent",
+      "agent": "claude-code"
+    }
+  ],
   "activity": {
     "regions": [
+      {
+        "region": "US-PA",
+        "monthly": [
+          0.87,
+          0.86,
+          1.0,
+          0.78,
+          0.67,
+          0.92,
+          0.83,
+          0.53,
+          0.42,
+          0.75,
+          0.71,
+          0.73
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 1282508,
+        "sources": [
+          "inat-activity-us-pa",
+          "gbif-activity-us-pa"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 42,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=9100&place_id=42&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=42&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "total": 1228,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.39_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2492196&gadmGid=USA.39_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.39_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 1281280,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "US-NC",
+        "monthly": [
+          0.92,
+          0.82,
+          0.74,
+          0.47,
+          0.37,
+          0.36,
+          0.54,
+          0.35,
+          0.3,
+          0.59,
+          1.0,
+          0.85
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 440243,
+        "sources": [
+          "inat-activity-us-nc",
+          "gbif-activity-us-nc"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 30,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=9100&place_id=30&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=30&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "total": 375,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.34_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2492196&gadmGid=USA.34_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.34_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 439868,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
       {
         "region": "US-VT",
         "monthly": [
@@ -204,456 +933,5 @@
         }
       }
     ]
-  },
-  "behavior": {
-    "program": "bt-perching-songbird-v1",
-    "params": {
-      "flee_m": 5,
-      "food_tag": "seed",
-      "song": "song",
-      "alarm": "alarm",
-      "nest_m1": 4,
-      "nest_m2": 8
-    }
-  },
-  "vocalizations": [
-    {
-      "call_id": "song",
-      "context": "Song",
-      "season_months": [
-        2,
-        3,
-        4,
-        5,
-        6,
-        7
-      ],
-      "time_windows": [
-        "DawnChorus",
-        "Day"
-      ],
-      "cooldown_s": 8,
-      "loudness": "Loud",
-      "description": "Variable song of three to four short notes followed by a trill: 'maids maids maids put on your tea kettle-ettle-ettle'; each male has several song types."
-    },
-    {
-      "call_id": "chimp",
-      "context": "Contact",
-      "season_months": [],
-      "time_windows": [
-        "Day"
-      ],
-      "cooldown_s": 6,
-      "loudness": "Quiet",
-      "description": "Soft, nasal 'chimp' or 'tseet' contact call given while foraging in cover."
-    },
-    {
-      "call_id": "alarm",
-      "context": "Alarm",
-      "season_months": [],
-      "time_windows": [
-        "Day"
-      ],
-      "cooldown_s": 4,
-      "loudness": "Moderate",
-      "description": "Sharp, emphatic 'chimp' or 'tseet' notes, louder and more repeated, given at predators."
-    }
-  ],
-  "look": {
-    "body_plan": "biped_winged",
-    "proportions": {
-      "torso_aspect": 1.4,
-      "leg_length_ratio": 0.32,
-      "head_scale": 0.85,
-      "neck_angle_deg": 12,
-      "tail_ratio": 0.5,
-      "wing_aspect": 2.1,
-      "beak_ratio": 0.4,
-      "girth_ratio": 1.1
-    },
-    "palette": {
-      "body": "#8a6f4b",
-      "belly": "#e8e0d0",
-      "markings": "#5c4033",
-      "accent": "#a08050",
-      "eye": "#0d0d0d"
-    },
-    "part_colors": {
-      "beak": "markings",
-      "wing_*": "body",
-      "tail": "body",
-      "breast": "belly"
-    },
-    "extra_parts": [
-      {
-        "name": "breast_streak",
-        "parent": "breast",
-        "offset": [
-          0.15,
-          -0.1,
-          0
-        ],
-        "size": [
-          0.4,
-          0.5,
-          0.5
-        ],
-        "color": "markings"
-      },
-      {
-        "name": "eye_stripe",
-        "parent": "head",
-        "offset": [
-          0.15,
-          0.1,
-          0.25
-        ],
-        "size": [
-          0.5,
-          0.15,
-          0.2
-        ],
-        "color": "markings",
-        "mirror": true
-      }
-    ],
-    "poses": {
-      "idle": {},
-      "hop": {},
-      "fly": {},
-      "perched": {},
-      "rest": {}
-    }
-  },
-  "sources": [
-    {
-      "id": "gbif-backbone",
-      "url": "https://api.gbif.org/v1/species/2492196",
-      "title": "GBIF Backbone Taxonomy: Melospiza melodia",
-      "license": "CC-BY-4.0",
-      "kind": "database",
-      "accessed": "2026-10-01",
-      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
-      "license_url": "https://creativecommons.org/licenses/by/4.0/"
-    },
-    {
-      "id": "wikidata",
-      "url": "https://www.wikidata.org/wiki/Q842599",
-      "title": "Wikidata: Song Sparrow (Q842599)",
-      "license": "CC0-1.0",
-      "kind": "database",
-      "accessed": "2026-10-01",
-      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
-    },
-    {
-      "id": "wikipedia",
-      "url": "https://en.wikipedia.org/wiki/Song_sparrow",
-      "title": "Wikipedia: Song sparrow",
-      "license": "CC-BY-SA-4.0",
-      "kind": "webpage",
-      "accessed": "2026-10-01",
-      "attribution": "Wikipedia contributors, \"Song sparrow\", English Wikipedia, CC BY-SA 4.0",
-      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
-    },
-    {
-      "id": "itis",
-      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=179492",
-      "title": "ITIS: Melospiza melodia, TSN 179492",
-      "license": "public-domain",
-      "kind": "database",
-      "accessed": "2026-10-01",
-      "note": "US federal government database; public domain in the United States."
-    },
-    {
-      "id": "inat-activity-us-vt",
-      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=9100&place_id=47&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
-      "title": "iNaturalist observations histogram for Melospiza melodia in US-VT",
-      "license": "CC-BY-4.0",
-      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
-      "accessed": "2026-10-01",
-      "kind": "api"
-    },
-    {
-      "id": "gbif-activity-us-vt",
-      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2492196&gadmGid=USA.46_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
-      "title": "GBIF occurrence search for Melospiza melodia in US-VT",
-      "license": "CC-BY-4.0",
-      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
-      "accessed": "2026-10-01",
-      "kind": "api"
-    }
-  ],
-  "provenance": {
-    "taxonomy": {
-      "sources": [
-        "gbif-backbone",
-        "itis"
-      ],
-      "confidence": "High"
-    },
-    "external": {
-      "sources": [
-        "gbif-backbone",
-        "wikidata"
-      ],
-      "confidence": "High"
-    },
-    "common_names": {
-      "sources": [
-        "wikidata"
-      ],
-      "confidence": "High",
-      "note": "en/fr/de labels from Wikidata sitelink titles."
-    },
-    "conservation": {
-      "sources": [
-        "wikidata"
-      ],
-      "confidence": "High",
-      "note": "Wikidata P141 = least concern (Q211005)."
-    },
-    "range": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Native across North America: breeds in Canada and the northern US, winters through the US and into Mexico."
-    },
-    "traits.body_plan": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High"
-    },
-    "traits.limb_count": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High"
-    },
-    "traits.locomotion_modes": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "note": "Hops on the ground, often with tail cocked; flies low between cover."
-    },
-    "traits.thermoregulation": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High"
-    },
-    "traits.skin": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High"
-    },
-    "traits.flight": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High"
-    },
-    "traits.respiration": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High"
-    },
-    "traits.metamorphosis": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High"
-    },
-    "traits.nest_type": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "note": "Cup nest on the ground or low in a shrub; both nest_cup and nest_ground resources listed."
-    },
-    "traits.perching": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High"
-    },
-    "traits.size_class": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "derived": true,
-      "note": "From mass_kg 0.02 (< 0.05 kg = Tiny)."
-    },
-    "traits.mass_kg": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "note": "'11.5-31.5 g' across subspecies; 20 g used as a typical value."
-    },
-    "traits.mass_range_kg": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Narrowed band around the stated typical mass."
-    },
-    "traits.length_m": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "note": "'12-18 cm' total length; lower end used."
-    },
-    "traits.wingspan_m": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Midpoint of the described 18-22 cm wingspan."
-    },
-    "traits.lifespan_y": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Low",
-      "derived": true,
-      "note": "Wikipedia gives a maximum of 11 years in the wild; typical lifespan is shorter, 3 years used as a judgement."
-    },
-    "traits.diet": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "note": "Seeds and invertebrates about equal, some fruit; shares are judgement from the described diet."
-    },
-    "traits.social": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Solitary or in pairs; group_size 1-2."
-    },
-    "traits.activity_pattern": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High"
-    },
-    "traits.defense": {
-      "sources": [],
-      "confidence": "Low",
-      "derived": true,
-      "note": "Authored: flushes into dense cover from threats."
-    },
-    "traits.wariness": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Skulky; stays low in cover and flushes readily."
-    },
-    "habitat.use": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Forages on the ground in and around dense cover; sings from exposed perches."
-    },
-    "habitat.shelter_tag": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "note": "Shelters in dense shrubs and thickets."
-    },
-    "habitat.resources": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Seeds and invertebrates from the ground; cup nests on the ground or low in shrubs."
-    },
-    "habitat.human_tolerance": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Common in brushy suburban edges and gardens; light_max and road_mortality are judgement."
-    },
-    "seasonal.strategy": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "note": "Northern populations migrate, southern birds resident; Vermont holds a mix, so PartialMigration with winter_fraction 0.5."
-    },
-    "seasonal.phases": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Low",
-      "derived": true,
-      "note": "Breeding from April with multiple broods; exact phase dates are judgement."
-    },
-    "seasonal.life_stages": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Low",
-      "derived": true,
-      "note": "Nestling period about 11 days; duration_days and scale are judgement."
-    },
-    "vocalizations.song": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High"
-    },
-    "vocalizations.chimp": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High"
-    },
-    "vocalizations.alarm": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High"
-    },
-    "look": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Brown upperparts with dark streaks, white underparts with heavy dark streaking converging into a central breast spot, brown crown with pale stripe. Proportions and extra-part placement are judgement."
-    },
-    "behavior": {
-      "sources": [],
-      "confidence": "Low",
-      "derived": true,
-      "note": "Authored parameters for the shared perching-songbird program: seed-based diet, long breeding window for multiple broods."
-    }
-  },
-  "contributors": [
-    {
-      "name": "speeeecies agent",
-      "agent": "claude-code"
-    }
-  ]
+  }
 }
