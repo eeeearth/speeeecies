@@ -5,9 +5,9 @@
   "id": "Tamias striatus",
   "slug": "tamias-striatus",
   "common_names": {
-    "en": "Eastern chipmunk",
-    "fr": "tamias struck",
-    "de": "Zwergstrauchhörnchen"
+    "en": "Eastern Chipmunk",
+    "fr": "tamias strié",
+    "de": "Streifenhörnchen"
   },
   "taxonomy": {
     "kingdom": "Animalia",
@@ -16,14 +16,15 @@
     "order": "Rodentia",
     "family": "Sciuridae",
     "genus": "Tamias",
-    "authority": "(Linnaeus, 1751)",
+    "authority": "(Linnaeus, 1758)",
     "status": "Accepted"
   },
   "external": {
     "gbif_usage_key": 2437438,
     "inat_taxon_id": 46217,
-    "itis_tsn": 180207,
-    "wikidata": "Q692664"
+    "itis_tsn": 45474,
+    "wikidata": "Q692664",
+    "ncbi_taxon_id": 45474
   },
   "conservation": {
     "iucn": "LC"
@@ -41,7 +42,8 @@
     "limb_count": 4,
     "locomotion_modes": [
       "Walk",
-      "Climb"
+      "Trot",
+      "Gallop"
     ],
     "thermoregulation": "Endotherm",
     "skin": "Fur",
@@ -51,19 +53,21 @@
     "nest_type": "Burrow",
     "perching": false,
     "size_class": "Small",
-    "mass_kg": 0.112,
+    "mass_kg": 0.1,
     "mass_range_kg": [
       0.066,
       0.15
     ],
     "length_m": 0.3,
-    "shoulder_height_m": 0.11,
+    "shoulder_height_m": 0.075,
     "lifespan_y": 3,
     "diet": {
+      "mast": 0.3,
       "seed": 0.3,
-      "browse": 0.3,
-      "fruit": 0.2,
-      "invertebrate": 0.2
+      "fruit": 0.15,
+      "browse": 0.1,
+      "invertebrate": 0.1,
+      "vertebrate": 0.05
     },
     "social": {
       "structure": "Solitary",
@@ -73,76 +77,106 @@
       ]
     },
     "activity_pattern": "Diurnal",
-    "defense": "Hide",
-    "wariness": 0.35
+    "defense": "Flee",
+    "wariness": 0.55,
+    "home_range_ha": 0.5
   },
   "habitat": {
     "use": {
-      "ground": 0.75,
-      "arboreal": 0.25
+      "ground": 0.8,
+      "arboreal": 0.2
     },
     "shelter_tag": "burrow",
     "resources": [
       {
         "tag": "seed",
         "kind": "Herbivory",
-        "weight": 0.3
+        "weight": 0.4
       },
       {
-        "tag": "browse",
+        "tag": "mast",
         "kind": "Herbivory",
-        "weight": 0.3
+        "weight": 0.3,
+        "months": [
+          8,
+          9,
+          10,
+          11
+        ]
       },
       {
         "tag": "fruit",
         "kind": "Herbivory",
-        "weight": 0.2
+        "weight": 0.15
       },
       {
         "tag": "invertebrate",
         "kind": "Predation",
-        "weight": 0.2
+        "weight": 0.3,
+        "months": [
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
       },
       {
         "tag": "burrow",
-        "kind": "Nesting",
+        "kind": "Shelter",
         "weight": 1.0
       },
       {
         "tag": "log_pile",
         "kind": "Shelter",
-        "weight": 0.6
+        "weight": 0.4
+      },
+      {
+        "tag": "shrub_thicket",
+        "kind": "Shelter",
+        "weight": 0.5
+      },
+      {
+        "tag": "browse",
+        "kind": "Herbivory",
+        "weight": 0.2
       },
       {
         "tag": "leaf_litter",
         "kind": "Shelter",
         "weight": 0.4
+      },
+      {
+        "tag": "cavity",
+        "kind": "Shelter",
+        "weight": 0.3
       }
     ],
     "human_tolerance": {
       "urban_affinity": "Adapter",
-      "impervious_max": 0.4,
-      "flight_distance_m": 8,
-      "road_mortality": "Medium",
       "uses_gardens": true,
-      "notes": "'The eastern chipmunk lives in deciduous wooded areas and urban parks throughout the eastern United States and southern Canada', and it prefers 'locations with rocky areas, brush or log piles, and shrubs to provide cover'. Domestic dogs and cats are listed among its predators."
+      "light_max": 0.7,
+      "notes": "Lives in deciduous woodland and urban parks throughout the eastern United States and southern Canada, and turns up in gardens where there is brush, log piles, rocks or shrubs to provide cover. It defends its burrow and darts for cover rather than confronting.",
+      "road_mortality": "High",
+      "impervious_max": 0.4,
+      "flight_distance_m": 8
     },
     "density_per_ha": {
-      "min": 0.1,
-      "typical": 1,
-      "max": 10
+      "min": 0.5,
+      "typical": 5.0,
+      "max": 50.0
     }
   },
   "seasonal": {
-    "strategy": "Hibernation",
+    "strategy": "Torpor",
     "triggers": {
       "enter": {
-        "temperature_below_c": 0,
-        "days": 14
+        "temperature_below_c": 3,
+        "days": 10
       },
       "exit": {
         "temperature_above_c": 5,
-        "days": 7
+        "days": 3
       }
     },
     "phases": [
@@ -150,46 +184,1210 @@
         "name": "dormancy",
         "start": "12-01",
         "end": "02-28",
-        "note": "\"During the winter, the chipmunk may enter long periods of hibernation.\" The dormancy is not obligate, so the temperature and duration thresholds in seasonal.triggers are authored judgement, since no open source states them."
+        "note": "During the winter the chipmunk may enter long periods of hibernation, modelled here as torpor rather than deep hibernation because it also stores food in its burrow and is active on mild days. The month bounds and temperature thresholds are authored; the article gives no dates or temperatures."
       },
       {
-        "name": "breeding",
+        "name": "mating",
         "start": "02-01",
         "end": "04-30",
-        "note": "First of two breeding seasons, February to April."
+        "note": "The first of two breeding seasons runs from February to April.",
+        "fraction": 0.5
       },
       {
-        "name": "breeding",
+        "name": "mating",
         "start": "06-01",
         "end": "08-31",
-        "note": "Second breeding season, June to August."
+        "note": "The second breeding season runs from June to August; females usually produce one or two litters of three to five young.",
+        "fraction": 0.5
       },
       {
         "name": "young",
-        "start": "04-01",
-        "end": "11-30",
-        "note": "Females usually produce one or two litters of three to five young a year; pups stay with their mothers for around six to eight weeks after birth."
+        "start": "03-15",
+        "end": "10-15",
+        "note": "Pups stay with their mother for around six to eight weeks, which is the only period besides courtship and mating when chipmunks interact with each other."
+      },
+      {
+        "name": "caching",
+        "start": "09-01",
+        "end": "11-15",
+        "note": "Food is transported in the cheek pouches and buried in the shallow underground stores that carry the animal through winter."
       },
       {
         "name": "moult",
         "start": "05-01",
         "end": "06-30",
-        "note": "Moulting occurs once or twice a year, in May or June and sometimes again in October."
+        "note": "Moult occurs once or twice annually, during May or June and sometimes again in October."
+      },
+      {
+        "name": "breeding",
+        "start": "03-15",
+        "end": "07-31",
+        "note": "Two breeding seasons: late winter/early spring and early summer."
+      },
+      {
+        "name": "mating",
+        "start": "03-01",
+        "end": "04-30",
+        "region": "US-TN",
+        "note": "Two breeding seasons, March-April and June-July."
       }
     ],
     "life_stages": [
       {
         "stage": "Juvenile",
-        "duration_days": 56,
-        "scale": 0.5
+        "duration_days": 49,
+        "scale": 0.5,
+        "requires_tag": "burrow"
       },
       {
         "stage": "Adult"
       }
     ]
   },
+  "behavior": {
+    "program": "fsm-ground-forager-v1",
+    "params": {
+      "flee_m": 10,
+      "calm_m": 22,
+      "food_tag": "seed",
+      "food_m": 55,
+      "flee_gait": "gallop",
+      "forage_gait": "walk",
+      "rest_sun_lo_deg": 15,
+      "rest_sun_hi_deg": 70
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "chip",
+      "context": "Chirp",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 8,
+      "loudness": "Moderate",
+      "description": "One of five stereotyped sounds in the chipmunk's repertoire, the chip, a short single note."
+    },
+    {
+      "call_id": "trill",
+      "context": "Buzz",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 12,
+      "loudness": "Loud",
+      "description": "A trill measured at up to 130 trills per minute, used in alarm and in defence of the burrow."
+    },
+    {
+      "call_id": "squeal",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 10,
+      "loudness": "Loud",
+      "description": "The whistle or squeal of the repertoire, a sharp rising note given when an observer or a predator comes close."
+    },
+    {
+      "call_id": "chuck",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 10,
+      "loudness": "Moderate",
+      "description": "A lower, gurgling 'chuck', the second of the five stereotyped calls, given when the animal is wary but not yet fleeing."
+    },
+    {
+      "call_id": "whistle",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 20,
+      "loudness": "Moderate",
+      "description": "A high-pitched whistle or squeal, one of the five stereotyped calls, used as a contact and courtship call between adults."
+    },
+    {
+      "call_id": "chatter",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 12,
+      "loudness": "Moderate",
+      "description": "The fifth stereotyped sound: a rapid chatter given in close social encounters, chiefly between a mother and her pups and between courting adults."
+    },
+    {
+      "call_id": "alarm_chip",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [],
+      "cooldown_s": 6,
+      "loudness": "Moderate",
+      "description": "A sharp, single chip given when it is startled or when a predator is near its burrow."
+    },
+    {
+      "call_id": "chirp",
+      "context": "Chirp",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 15,
+      "loudness": "Quiet",
+      "description": "Soft, low 'chirp' or 'chuck' call given while foraging on the ground."
+    }
+  ],
+  "look": {
+    "body_plan": "quadruped",
+    "proportions": {
+      "torso_aspect": 1.9,
+      "leg_length_ratio": 0.38,
+      "head_scale": 0.72,
+      "neck_angle_deg": 18,
+      "tail_ratio": 0.72,
+      "ear_ratio": 0.42,
+      "girth_ratio": 0.8,
+      "beak_ratio": 0.2
+    },
+    "palette": {
+      "body": "#a9713f",
+      "belly": "#e5d6bd",
+      "markings": "#4a3320",
+      "accent": "#c9a877",
+      "eye": "#1c1410"
+    },
+    "part_colors": {
+      "snout": "belly",
+      "ear_left": "accent",
+      "ear_right": "accent",
+      "tail": "accent",
+      "ear_*": "body",
+      "leg_*": "belly"
+    },
+    "extra_parts": [
+      {
+        "name": "back_stripes",
+        "parent": "body",
+        "offset": [
+          -0.05,
+          0.36,
+          0
+        ],
+        "size": [
+          0.9,
+          0.14,
+          1.03
+        ],
+        "color": "markings",
+        "mirror": true
+      },
+      {
+        "name": "cheek_stripe",
+        "parent": "head",
+        "offset": [
+          0.3,
+          0,
+          0.44
+        ],
+        "size": [
+          0.1,
+          0.34,
+          0.1
+        ],
+        "color": "accent",
+        "mirror": true
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "trot": {},
+      "gallop": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2437438",
+      "title": "GBIF Backbone Taxonomy: Tamias striatus",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q692664",
+      "title": "Wikidata: Tamias striatus (Q692664)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Eastern_chipmunk",
+      "title": "Wikipedia: Eastern chipmunk",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Eastern chipmunk\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "inat-activity-us-pa",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=46217&place_id=42&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Tamias striatus in US-PA",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-pa",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2437438&gadmGid=USA.39_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Tamias striatus in US-PA",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=180207",
+      "title": "ITIS: Tamias striatus, TSN 180207",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "pantheria",
+      "url": "https://esapubs.org/archive/ecol/E090/184/PanTHERIA_1-0_WR05_Aug2008.txt",
+      "title": "PanTHERIA 1.0: species-level life history, ecology and geography of extant mammals",
+      "license": "CC-BY-4.0",
+      "kind": "dataset",
+      "accessed": "2026-10-01",
+      "attribution": "Jones, K. E. et al. (2009) PanTHERIA. Ecology 90:2648",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "inat-activity-us-nc",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=46217&place_id=30&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Tamias striatus in US-NC",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-nc",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2437438&gadmGid=USA.34_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+      "title": "GBIF occurrence search for Tamias striatus in US-NC",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "inat-activity-us-al",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=46217&place_id=19&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Tamias striatus in US-AL",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-al",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2437438&gadmGid=USA.1_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+      "title": "GBIF occurrence search for Tamias striatus in US-AL",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "eltontraits",
+      "url": "https://doi.org/10.6084/m9.figshare.3559887.v1",
+      "title": "EltonTraits 1.0: species-level foraging attributes of the world's birds and mammals (MamFuncDat)",
+      "license": "CC0-1.0",
+      "kind": "dataset",
+      "accessed": "2026-10-01",
+      "attribution": "Wilman, H. et al. (2014) EltonTraits 1.0. Ecology 95:2027",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "inat-activity-us-in",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=46217&place_id=20&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Tamias striatus in US-IN",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-in",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2437438&gadmGid=USA.15_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+      "title": "GBIF occurrence search for Tamias striatus in US-IN",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "inat-activity-us-ma",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=46217&place_id=2&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Tamias striatus in US-MA",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-ma",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2437438&gadmGid=USA.22_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Tamias striatus in US-MA",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "inat-activity-us-vt",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=46217&place_id=47&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Tamias striatus in US-VT",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-vt",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2437438&gadmGid=USA.46_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Tamias striatus in US-VT",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "inat-activity-us-ga",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=46217&place_id=23&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Tamias striatus in US-GA",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-ga",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2437438&gadmGid=USA.11_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+      "title": "GBIF occurrence search for Tamias striatus in US-GA",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "inat-activity-us-tn",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=46217&place_id=45&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Tamias striatus in US-TN",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-tn",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2437438&gadmGid=USA.43_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Tamias striatus in US-TN",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "inat-activity-us-mi",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=46217&place_id=29&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Tamias striatus in US-MI",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-mi",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2437438&gadmGid=USA.23_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Tamias striatus in US-MI",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "Sciuridae, Tamias, (Linnaeus, 1758). Linnaeus classified it as Sciurus striatus; Illiger moved it to Tamias in 1811. It is the only living member of the genus."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "GBIF usage key 2437438 and iNaturalist taxon 46217; ITIS TSN 45474 from Wikidata P685."
+    },
+    "common_names": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "en/fr/de labels from Wikidata sitelink titles."
+    },
+    "conservation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Found throughout the eastern United States and southern Canada, including urban parks, and with no threat described, consistent with Least Concern; no IUCN page was consulted because those are not openly licensed."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "A chipmunk species found in eastern North America, throughout the eastern United States and southern Canada.",
+      "derived": true
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "It climbs trees well and spends most of the day foraging, running along the ground and over logs; it darts away at a gallop when a predator appears. Climb is left out of locomotion_modes because the quadruped body plan has no climb pose to draw."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Direct development; no metamorphic stage."
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Burrow: it constructs underground nests with extensive tunnel systems, often with several entrances, lined with leaves, rocks and sticks."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "It climbs trees well but forages mainly on the ground and lives in a burrow, so it is not treated as a perching animal.",
+      "derived": true
+    },
+    "traits.size_class": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg: about 100 g is over 50 g and under 1 kg, so Small."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "The article gives a range of 66-150 g and no mean; 100 g is the mid-range value, rounded."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "A weight of 66-150 g."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "About 30 cm in length including the tail.",
+      "derived": true
+    },
+    "traits.shoulder_height_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement. The article gives total length (about 30 cm including the tail) and body weight but no shoulder height; 7.5 cm is the shoulder height of a small ground squirrel of that length, so treat it as an estimate."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'On average, eastern chipmunks live three or more years in the wild, but in captivity they may live as long as eight years.'",
+      "derived": true
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'It prefers bulbs, seeds, fruits, nuts, green plants, mushrooms, insects, worms, and bird eggs', transported in cheek pouches. Mast is the nuts, seed the seeds and bulbs, fruit the berries, browse the green plants, invertebrate the insects and worms, vertebrate the bird eggs.",
+      "derived": true
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'The eastern chipmunk defends its burrow and lives a solitary life, except during mating season'; members interact only while courting and mating and for the six to eight weeks pups spend with their mother.",
+      "derived": true
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'The chipmunk is mainly active during the day, spending most of its day foraging.'"
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "It defends its burrow and relies on rocky areas, brush or log piles for cover, running for cover when threatened; hawks, owls, foxes, raccoons, snakes, weasels, coyotes, bobcats, lynx, dogs and cats are all listed predators.",
+      "derived": true
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Judgement, set from its dependence on cover (rocky areas, brush, log piles, shrubs), its solitary burrow defence and its long list of predators, in a species that does live in urban parks."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "It can climb trees well, but constructs underground nests and spends most of the day foraging on the ground.",
+      "derived": true
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Underground burrows with extensive tunnel systems and several entrances, which it defends."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Seed, mast, fruit and invertebrate tags from the diet paragraph; burrow from the nest, and log_pile and shrub_thicket from the habitat line about rocky areas, brush, log piles and shrubs for cover. Weights are authored to match the diet shares."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'The eastern chipmunk lives in deciduous wooded areas and urban parks throughout the eastern United States and southern Canada. It prefers locations with rocky areas, brush or log piles, and shrubs to provide cover.'",
+      "derived": true
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "'During the winter, the chipmunk may enter long periods of hibernation.' The record models this as torpor with authored temperature thresholds rather than as full hibernation, because the same article has the animal storing food in its burrow and describes no deep hibernation; the strategy is a judgement between the two options the format offers."
+    },
+    "seasonal.triggers": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored. The article mentions winter hibernation but gives no dates or temperatures, so 3 C for ten days to enter and 5 C for three days to exit are chosen as a shallow-winter threshold pair."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Two breeding seasons, February to April and June to August, with one or two litters of three to five young; pups stay with their mother around six to eight weeks; and long winter hibernation periods.",
+      "derived": true
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Pups remain with their mother for around six to eight weeks, taken as 49 days; scale is an authored juvenile size because no sourced figure was found."
+    },
+    "vocalizations.chip": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'The vocal repertoire of the chipmunk consists of five more or less stereotyped sounds: the chip, the chuck, the trills, the whistle or squeal, and chatter.'"
+    },
+    "vocalizations.trill": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "The trills of that repertoire, 'measured to occur at the rate of 130 trills per minute'.",
+      "derived": true
+    },
+    "vocalizations.squeal": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "The whistle or squeal of the repertoire, described as one of the five stereotyped sounds."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Reddish-brown fur on the upper body with five dark brown stripes separated by light brown stripes along the back, ending in a dark tail, lighter fur below, a tawny stripe running from the whiskers to below the ears and light stripes over the eyes. Proportions are authored.",
+      "derived": true
+    },
+    "behavior": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The shared ground-forager program fits an animal that spends most of the day foraging on seeds and nuts, drinks and explores near its burrow, rests in cover through the hottest part of the day and bolts for cover when threatened. Parameters are authored: walk to forage, gallop to flee."
+    },
+    "habitat.density_per_ha": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement. No open source found gives a population density for this species and PanTHERIA records none (-999), so this is an authored band consistent with a solitary, territorial burrower: burrows are defended and spaced out, which caps local density well below that of sciurus-carolinensis."
+    },
+    "vocalizations": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Wikipedia's Behavior section quotes the five stereotyped sounds of the repertoire - 'the chip, the chuck, the trills, the whistle or squeal, and chatter' - and gives the trill rate as 130 per minute. Which of the five belongs to which context is authored judgement from the descriptions of the calls' use; time windows and cooldowns are also authored, since no open source quantifies them. No frequency bands are given, so freq_hz is omitted."
+    },
+    "vocalizations.alarm_chip": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "No allow-listed open source describes this species' alarm call; the wording and cooldown here are authored."
+    },
+    "vocalizations.chirp": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.home_range_ha": {
+      "sources": [
+        "pantheria"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "PanTHERIA HomeRange_Indiv_km2 ~0.005 km2 converted to hectares."
+    }
+  },
+  "contributors": [
+    {
+      "name": "sisyphus-agent",
+      "agent": "opencode"
+    },
+    {
+      "name": "speeeecies fleet",
+      "agent": "opencode"
+    },
+    {
+      "name": "opencode agent (al-birmingham locale, issue #73)",
+      "agent": "opencode"
+    },
+    {
+      "name": "speeeecies maintainers",
+      "agent": "claude-code"
+    },
+    {
+      "name": "Sisyphus",
+      "agent": "opencode"
+    },
+    {
+      "name": "speeeecies agent",
+      "agent": "claude-code"
+    },
+    {
+      "name": "Sisyphus agent",
+      "agent": "claude-code"
+    }
+  ],
   "activity": {
     "regions": [
+      {
+        "region": "US-PA",
+        "monthly": [
+          0.02,
+          0.1,
+          0.38,
+          0.45,
+          1.0,
+          0.89,
+          0.57,
+          0.33,
+          0.72,
+          0.68,
+          0.24,
+          0.02
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 1467,
+        "sources": [
+          "inat-activity-us-pa",
+          "gbif-activity-us-pa"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 42,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=46217&place_id=42&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=42&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "total": 636,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.39_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2437438&gadmGid=USA.39_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.39_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 831,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "US-NC",
+        "monthly": [
+          0.14,
+          0.19,
+          0.19,
+          0.65,
+          0.76,
+          0.61,
+          0.33,
+          0.34,
+          0.81,
+          1.0,
+          0.44,
+          0.1
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 3256,
+        "sources": [
+          "inat-activity-us-nc",
+          "gbif-activity-us-nc"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 30,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=46217&place_id=30&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=30&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 1660,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "C",
+            "area": [
+              "gadmGid",
+              "USA.34_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2437438&gadmGid=USA.34_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.34_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "total": 1596,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "US-AL",
+        "monthly": [
+          0.24,
+          0.25,
+          0.3,
+          0.77,
+          0.63,
+          0.39,
+          0.28,
+          0.36,
+          0.53,
+          1.0,
+          0.61,
+          0.24
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 2076,
+        "sources": [
+          "inat-activity-us-al",
+          "gbif-activity-us-al"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 19,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=46217&place_id=19&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=19&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 1036,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "C",
+            "area": [
+              "gadmGid",
+              "USA.1_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2437438&gadmGid=USA.1_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.1_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "total": 1040,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "US-IN",
+        "monthly": [
+          0.1,
+          0.15,
+          0.49,
+          0.58,
+          0.84,
+          0.78,
+          0.51,
+          0.46,
+          0.97,
+          1.0,
+          0.32,
+          0.05
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 3366,
+        "sources": [
+          "inat-activity-us-in",
+          "gbif-activity-us-in"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 20,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=46217&place_id=20&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=20&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 1693,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "C",
+            "area": [
+              "gadmGid",
+              "USA.15_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2437438&gadmGid=USA.15_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.15_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "total": 1673,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "US-MA",
+        "monthly": [
+          0.01,
+          0.11,
+          0.32,
+          0.4,
+          1.0,
+          0.81,
+          0.58,
+          0.38,
+          0.68,
+          0.69,
+          0.11,
+          0.0
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 2027,
+        "sources": [
+          "inat-activity-us-ma",
+          "gbif-activity-us-ma"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 2,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=46217&place_id=2&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=2&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "total": 850,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.22_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2437438&gadmGid=USA.22_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.22_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 1177,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "US-VT",
+        "monthly": [
+          0.03,
+          0.18,
+          0.59,
+          0.6,
+          0.97,
+          1.0,
+          0.93,
+          0.87,
+          0.99,
+          0.71,
+          0.31,
+          0.05
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 4870,
+        "sources": [
+          "inat-activity-us-vt",
+          "gbif-activity-us-vt"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 47,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=46217&place_id=47&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=47&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 2369,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.46_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2437438&gadmGid=USA.46_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.46_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 2501,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "US-GA",
+        "monthly": [
+          0.23,
+          0.28,
+          0.29,
+          0.81,
+          1.0,
+          0.6,
+          0.43,
+          0.34,
+          0.73,
+          0.83,
+          0.48,
+          0.24
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 2991,
+        "sources": [
+          "inat-activity-us-ga",
+          "gbif-activity-us-ga"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 23,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=46217&place_id=23&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=23&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 1517,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "C",
+            "area": [
+              "gadmGid",
+              "USA.11_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2437438&gadmGid=USA.11_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.11_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "total": 1474,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "US-TN",
+        "monthly": [
+          0.47,
+          0.49,
+          0.52,
+          0.98,
+          1.0,
+          0.68,
+          0.83,
+          0.7,
+          0.78,
+          0.89,
+          0.83,
+          0.38
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 1475,
+        "sources": [
+          "inat-activity-us-tn",
+          "gbif-activity-us-tn"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 45,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=46217&place_id=45&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=45&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 1108,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.43_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2437438&gadmGid=USA.43_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.43_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 367,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
       {
         "region": "US-MI",
         "monthly": [
@@ -240,469 +1438,5 @@
         }
       }
     ]
-  },
-  "behavior": {
-    "program": "fsm-ground-forager-v1",
-    "params": {
-      "food_tag": "seed",
-      "flee_m": 5,
-      "calm_m": 15,
-      "food_m": 15,
-      "flee_gait": "gallop",
-      "forage_gait": "walk",
-      "rest_sun_lo_deg": -90,
-      "rest_sun_hi_deg": -6
-    }
-  },
-  "vocalizations": [
-    {
-      "call_id": "chip",
-      "context": "Chirp",
-      "season_months": [],
-      "time_windows": [
-        "Day"
-      ],
-      "cooldown_s": 8,
-      "loudness": "Moderate",
-      "description": "The 'chip', one of five stereotyped sounds in the species' vocal repertoire, and the commonest contact note between individuals."
-    },
-    {
-      "call_id": "chuck",
-      "context": "Bark",
-      "season_months": [],
-      "time_windows": [
-        "Day"
-      ],
-      "cooldown_s": 10,
-      "loudness": "Loud",
-      "description": "The 'chuck', a low, harsh note in the same five-sound repertoire, given in alarm and in the sharp chatter an agitated chipmunk produces."
-    },
-    {
-      "call_id": "trill",
-      "context": "Contact",
-      "season_months": [],
-      "time_windows": [
-        "Day"
-      ],
-      "cooldown_s": 15,
-      "loudness": "Moderate",
-      "description": "The trill, a rapid rolling rattle measured at 130 trills per minute - the one quantified figure in the species' vocal repertoire."
-    },
-    {
-      "call_id": "squeal",
-      "context": "Alarm",
-      "season_months": [],
-      "time_windows": [
-        "Day"
-      ],
-      "cooldown_s": 15,
-      "loudness": "Loud",
-      "description": "A high whistle or squeal, given when a chipmunk is startled or a predator is close; with the chip and the chuck it is one of the five stereotyped sounds of the repertoire."
-    }
-  ],
-  "look": {
-    "body_plan": "quadruped",
-    "proportions": {
-      "torso_aspect": 1.5,
-      "leg_length_ratio": 0.35,
-      "head_scale": 0.75,
-      "neck_angle_deg": 10,
-      "tail_ratio": 0.8,
-      "ear_ratio": 0.3,
-      "beak_ratio": 0.25,
-      "girth_ratio": 0.8
-    },
-    "palette": {
-      "body": "#a8683a",
-      "belly": "#d9c4a4",
-      "markings": "#4a2c18",
-      "accent": "#e2dcc8",
-      "eye": "#141009"
-    },
-    "part_colors": {
-      "snout": "belly",
-      "ear_*": "belly"
-    },
-    "extra_parts": [
-      {
-        "name": "back_stripe",
-        "parent": "body",
-        "offset": [
-          0,
-          0.5,
-          0
-        ],
-        "size": [
-          1.04,
-          0.12,
-          0.42
-        ],
-        "color": "markings"
-      },
-      {
-        "name": "cheek_pouch",
-        "parent": "head",
-        "offset": [
-          0.12,
-          -0.28,
-          0.42
-        ],
-        "size": [
-          0.34,
-          0.34,
-          0.34
-        ],
-        "color": "belly",
-        "mirror": true
-      }
-    ],
-    "poses": {
-      "idle": {},
-      "walk": {},
-      "rest": {}
-    }
-  },
-  "sources": [
-    {
-      "id": "gbif-backbone",
-      "url": "https://api.gbif.org/v1/species/2437438",
-      "title": "GBIF Backbone Taxonomy: Tamias striatus",
-      "license": "CC-BY-4.0",
-      "kind": "database",
-      "accessed": "2026-10-01",
-      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
-      "license_url": "https://creativecommons.org/licenses/by/4.0/"
-    },
-    {
-      "id": "wikidata",
-      "url": "https://www.wikidata.org/wiki/Q692664",
-      "title": "Wikidata: Tamias striatus (Q692664)",
-      "license": "CC0-1.0",
-      "kind": "database",
-      "accessed": "2026-10-01",
-      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
-    },
-    {
-      "id": "wikipedia",
-      "url": "https://en.wikipedia.org/wiki/Eastern_chipmunk",
-      "title": "Wikipedia: Eastern chipmunk",
-      "license": "CC-BY-SA-4.0",
-      "kind": "webpage",
-      "accessed": "2026-10-01",
-      "attribution": "Wikipedia contributors, \"Eastern chipmunk\", English Wikipedia, CC BY-SA 4.0",
-      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
-    },
-    {
-      "id": "itis",
-      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=180207",
-      "title": "ITIS: Tamias striatus, TSN 180207",
-      "license": "public-domain",
-      "kind": "database",
-      "accessed": "2026-10-01",
-      "note": "US federal government database; public domain in the United States."
-    },
-    {
-      "id": "eltontraits",
-      "url": "https://doi.org/10.6084/m9.figshare.3559887.v1",
-      "title": "EltonTraits 1.0: species-level foraging attributes of the world's birds and mammals (MamFuncDat)",
-      "license": "CC0-1.0",
-      "kind": "dataset",
-      "accessed": "2026-10-01",
-      "attribution": "Wilman, H. et al. (2014) EltonTraits 1.0. Ecology 95:2027",
-      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
-    },
-    {
-      "id": "inat-activity-us-mi",
-      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=46217&place_id=29&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
-      "title": "iNaturalist observations histogram for Tamias striatus in US-MI",
-      "license": "CC-BY-4.0",
-      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
-      "accessed": "2026-10-01",
-      "kind": "api"
-    },
-    {
-      "id": "gbif-activity-us-mi",
-      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2437438&gadmGid=USA.23_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
-      "title": "GBIF occurrence search for Tamias striatus in US-MI",
-      "license": "CC-BY-4.0",
-      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
-      "accessed": "2026-10-01",
-      "kind": "api"
-    }
-  ],
-  "provenance": {
-    "taxonomy": {
-      "sources": [
-        "gbif-backbone",
-        "itis"
-      ],
-      "confidence": "High",
-      "note": "The genus was changed from Sciurus to Tamias by Illiger in 1811, per the article's Etymology section."
-    },
-    "external": {
-      "sources": [
-        "gbif-backbone",
-        "wikidata"
-      ],
-      "confidence": "High"
-    },
-    "common_names": {
-      "sources": [
-        "wikidata",
-        "wikipedia"
-      ],
-      "confidence": "High"
-    },
-    "conservation": {
-      "sources": [
-        "wikidata"
-      ],
-      "confidence": "High",
-      "note": "Wikidata P141 = least concern (Q211005)."
-    },
-    "range": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "note": "The article is thin on range: 'a chipmunk species found in eastern North America', with the habitat section adding 'throughout the eastern United States and southern Canada'. That supports US and CA as the native range and nothing more; no introduced range is described. A reviewer wanting the county-level detail should note that the source does not carry it."
-    },
-    "traits.body_plan": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High"
-    },
-    "traits.limb_count": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High"
-    },
-    "traits.locomotion_modes": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "note": "\"The eastern chipmunk can climb trees well, but constructs underground nests with extensive tunnel systems\", and it forages on the ground for most of the day."
-    },
-    "traits.thermoregulation": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High"
-    },
-    "traits.skin": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High"
-    },
-    "traits.flight": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High"
-    },
-    "traits.respiration": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High"
-    },
-    "traits.metamorphosis": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High"
-    },
-    "traits.nest_type": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High"
-    },
-    "traits.perching": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "note": "Climbs well and forages in shrubs, but does not perch on a branch the way a bird does; set to false, matching the treatment of sciurus-carolinensis and sciurus-niger."
-    },
-    "traits.size_class": {
-      "sources": [
-        "eltontraits"
-      ],
-      "confidence": "High",
-      "derived": true,
-      "note": "From mass_kg."
-    },
-    "traits.mass_kg": {
-      "sources": [
-        "eltontraits",
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "derived": true,
-      "note": "EltonTraits MamFuncDat BodyMass-Value 111.91 g, near the middle of Wikipedia's 66-150 g range."
-    },
-    "traits.mass_range_kg": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High"
-    },
-    "traits.length_m": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "note": "Wikipedia's 'about 30 cm (12 in) in length including the tail'. The figure is given as an approximation in the source, so it is recorded as stated rather than as a midpoint of a range."
-    },
-    "traits.shoulder_height_m": {
-      "sources": [],
-      "confidence": "Low",
-      "derived": true,
-      "note": "Judgement: the article gives total length including tail but no shoulder height and no hind-foot length, so there is nothing to compute from. 0.11 m is a scale-consistent estimate for a 30 cm chipmunk standing on its hind limbs. The field is optional and the validator asks for it on a quadruped; a measured value would replace it."
-    },
-    "traits.lifespan_y": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "note": "\"On average, eastern chipmunks live three or more years in the wild, but in captivity they may live as long as eight years.\""
-    },
-    "traits.diet": {
-      "sources": [
-        "eltontraits",
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "derived": true,
-      "note": "EltonTraits Diet-Seed 30, Diet-PlantO 30, Diet-Fruit 20 and Diet-Inv 20 give the fractions directly, with Diet-PlantO mapped to the schema's browse for the bulbs and green plants the article names. The article's mushrooms, worms and bird eggs are folded into the browse and invertebrate shares rather than carried separately, since the schema diet has no fungi key and the sourced fractions already total 100."
-    },
-    "traits.social": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "note": "\"The eastern chipmunk defends its burrow and lives a solitary life, except during mating season\", and it is solitary for the six to eight weeks its pups spend with the mother, so group_size tops out at 2."
-    },
-    "traits.activity_pattern": {
-      "sources": [
-        "eltontraits",
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "note": "EltonTraits Activity-Diurnal 1 with Nocturnal and Crepuscular 0, and the article's 'The chipmunk is mainly active during the day, spending most of its day foraging' agree exactly."
-    },
-    "traits.defense": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "note": "\"The eastern chipmunk defends its burrow\" - with a network of tunnels and several entrances, and burrows further disguised by lining them with leaves, rocks and sticks, its answer to a threat is to get into the tunnel system."
-    },
-    "traits.wariness": {
-      "sources": [],
-      "confidence": "Low",
-      "derived": true,
-      "note": "Judgement: 0.35. It lives in urban parks and gardens and habituates to people, but bolts for its burrow at any approach and domestic cats and dogs are listed among its predators."
-    },
-    "habitat.use": {
-      "sources": [
-        "eltontraits",
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "EltonTraits ForStrat-Value 'G' gives the ground stratum, matching the article's underground nest and day-long ground foraging; the 0.25 arboreal share reflects 'can climb trees well' and foraging in shrubs, but no source quantifies the split."
-    },
-    "habitat.shelter_tag": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High"
-    },
-    "habitat.resources": {
-      "sources": [
-        "eltontraits",
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Food weights follow traits.diet exactly. Nesting weight is entirely on the burrow. log_pile and leaf_litter carry the cover the habitat section names - 'rocky areas, brush or log piles, and shrubs' plus the leaves, rocks and sticks the burrow is lined with - and are weighted by judgement."
-    },
-    "habitat.human_tolerance": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "note": "'Urban parks' is named alongside deciduous woodland as where it lives, and the cover it prefers - brush, log piles and shrubs - is what a garden and its edges provide. impervious_max, flight_distance_m and road_mortality are authored judgement and are not quantified in the source; domestic cats and dogs being listed as predators is the one human-related datum the article gives."
-    },
-    "habitat.density_per_ha": {
-      "sources": [],
-      "confidence": "Low",
-      "derived": true,
-      "note": "Judgement: no open source gives a density. A chipmunk defends a small burrow system and forages over a compact patch of ground and shrubs, giving typical 1 per hectare, and min and max are an authored tenfold band either side, following the convention used for turdus-migratorius and sciurus-carolinensis."
-    },
-    "seasonal.strategy": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "note": "\"During the winter, the chipmunk may enter long periods of hibernation.\" Hibernation is the schema's strategy for that; the caveat is that it is not obligate, which is why the winter dormancy is expressed as a phase with a window rather than a whole-year state."
-    },
-    "seasonal.triggers": {
-      "sources": [],
-      "confidence": "Low",
-      "derived": true,
-      "note": "Authored judgement, flagged as such: the schema requires triggers for a Hibernation strategy and no open source states the weather that starts and ends it for this species. Two weeks below 0 C to enter and a week above 5 C to exit are plausible for a small hibernating rodent in a Michigan winter, and should be replaced if a sourced figure appears."
-    },
-    "seasonal.phases": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "note": "Winter hibernation, the February-April and June-August breeding seasons, one or two litters of three to five young a year, the six to eight weeks pups spend with the mother, and moulting once or twice a year in May or June and sometimes October are all stated in the article."
-    },
-    "seasonal.life_stages": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Juvenile duration is the article's own 'around six to eight weeks' after birth, taken at its midpoint of 56 days. scale is authored judgement."
-    },
-    "vocalizations": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "note": "The five stereotyped sounds - the chip, the chuck, the trills, the whistle or squeal, and chatter - are quoted directly from the article, as is the measured trill rate of 130 trills per minute. Contexts are assigned from that list and from the squeal's stated alarm role; time windows and cooldowns are authored judgement, since no open source quantifies them. No open source gives frequency bands, so freq_hz is omitted."
-    },
-    "look": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "derived": true,
-      "note": "Colours from the Description: reddish-brown fur on the upper body, five dark brown stripes contrasting with light brown stripes along the back ending in a dark tail, lighter fur on the lower body, a tawny stripe running from the whiskers to below the ears, and light stripes over the eyes. The back stripe and eye stripe parts render the two most diagnostic markings and the cheek pouches render what the species is named for. Proportions are authored judgement for a small, low-slung, short-tailed rodent with four toes in front and five behind. No open source describes the eye colour, so eye is a judgement value. The light stripe over the eye was dropped and the cheek pouch cut to a small bulge: at full size both boxes projected past the head and the previewer showed a cluster of pale boxes rather than an animal. The cheek pouch is kept because it is what the species is named for."
-    },
-    "behavior": {
-      "sources": [
-        "eltontraits",
-        "wikipedia"
-      ],
-      "confidence": "Low",
-      "derived": true,
-      "note": "Authored parameters for the shared ground-forager program. food_tag is seed because seeds and nuts are a third of the sourced diet and are what it hoards; rest_sun_lo_deg and rest_sun_hi_deg set to -90 and -6 per the program's description for a diurnal species, which EltonTraits and Wikipedia both confirm; flee_m 5 m, calm_m 15 m and food_m 15 m are scaled down from the fox-squirrel example for a much smaller animal with a small defended home range, with flee_gait gallop for the dash back to the burrow."
-    }
-  },
-  "contributors": [
-    {
-      "name": "speeeecies maintainers",
-      "agent": "opencode"
-    }
-  ]
+  }
 }

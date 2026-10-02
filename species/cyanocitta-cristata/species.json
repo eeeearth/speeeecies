@@ -5,9 +5,10 @@
   "id": "Cyanocitta cristata",
   "slug": "cyanocitta-cristata",
   "common_names": {
-    "en": "Blue jay",
-    "fr": "geai bleu",
-    "es": "ázulón"
+    "en": "Blue Jay",
+    "fr": "Geai bleu",
+    "es": "Chlorociste azul",
+    "de": "Blauhäher"
   },
   "taxonomy": {
     "kingdom": "Animalia",
@@ -22,8 +23,9 @@
   "external": {
     "gbif_usage_key": 2482593,
     "inat_taxon_id": 8229,
-    "itis_tsn": 179680,
+    "itis_tsn": 179738,
     "wikidata": "Q199758",
+    "ncbi_taxon_id": 43889,
     "ebird_code": "blujay"
   },
   "conservation": {
@@ -31,10 +33,19 @@
   },
   "range": {
     "native": [
+      "US",
       "CA",
-      "US"
+      "BM",
+      "GL"
     ],
     "introduced": [],
+    "koppen": [
+      "Cfa",
+      "Cfb",
+      "Dfa",
+      "Dfb",
+      "Dfc"
+    ],
     "invasive_in": []
   },
   "traits": {
@@ -51,73 +62,99 @@
     "metamorphosis": "None",
     "nest_type": "Cup",
     "perching": true,
-    "senses": {
-      "olfaction": "Med",
-      "hearing": "High"
-    },
     "size_class": "Small",
     "mass_kg": 0.085,
     "mass_range_kg": [
       0.07,
       0.1
     ],
-    "length_m": 0.26,
-    "wingspan_m": 0.385,
+    "length_m": 0.28,
+    "wingspan_m": 0.41,
     "lifespan_y": 7,
     "diet": {
+      "seed": 0.3,
       "mast": 0.3,
-      "seed": 0.25,
-      "fruit": 0.2,
       "invertebrate": 0.2,
-      "vertebrate": 0.05
+      "vertebrate": 0.1,
+      "fruit": 0.1
     },
     "social": {
       "structure": "Pair",
       "group_size": [
-        1,
-        2
+        2,
+        8
       ]
     },
     "activity_pattern": "Diurnal",
     "defense": "Mob",
-    "wariness": 0.4
+    "wariness": 0.3,
+    "senses": {
+      "olfaction": "Med",
+      "hearing": "High"
+    }
   },
   "habitat": {
     "use": {
-      "ground": 0.55,
-      "arboreal": 0.45
+      "ground": 0.4,
+      "arboreal": 0.6
     },
-    "shelter_tag": "cavity",
+    "shelter_tag": "shrub_thicket",
     "resources": [
       {
         "tag": "mast",
         "kind": "Herbivory",
-        "weight": 0.3
+        "weight": 0.3,
+        "months": [
+          9,
+          10,
+          11,
+          12,
+          1,
+          2
+        ]
       },
       {
         "tag": "seed",
         "kind": "Herbivory",
-        "weight": 0.25
-      },
-      {
-        "tag": "fruit",
-        "kind": "Herbivory",
-        "weight": 0.2
+        "weight": 0.3
       },
       {
         "tag": "invertebrate",
         "kind": "Predation",
-        "weight": 0.2
+        "weight": 0.2,
+        "months": [
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
       },
       {
         "tag": "small_vertebrate",
         "kind": "Predation",
-        "weight": 0.05
+        "weight": 0.1,
+        "months": [
+          5,
+          6,
+          7
+        ]
       },
       {
-        "tag": "cavity",
-        "kind": "Nesting",
-        "weight": 1.0
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.1,
+        "months": [
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "tag": "shrub_thicket",
+        "kind": "Shelter",
+        "weight": 0.8
       },
       {
         "tag": "perch",
@@ -125,29 +162,91 @@
         "weight": 0.6
       },
       {
-        "tag": "shrub_thicket",
+        "tag": "nest_cup",
+        "kind": "Nesting",
+        "weight": 1.0
+      },
+      {
+        "tag": "cavity",
         "kind": "Shelter",
-        "weight": 0.4
+        "weight": 0.3
+      },
+      {
+        "tag": "water",
+        "kind": "Water",
+        "weight": 0.5
+      },
+      {
+        "tag": "carrion",
+        "kind": "Scavenging",
+        "weight": 0.1
       }
     ],
     "human_tolerance": {
-      "urban_affinity": "Exploiter",
-      "impervious_max": 0.65,
-      "flight_distance_m": 15,
-      "road_mortality": "Medium",
+      "urban_affinity": "Adapter",
       "uses_gardens": true,
-      "notes": "'Common in residential areas', and it eats 'scraps in town parks, bird-table food'. It is frequently subordinate at feeders to gray squirrels, scrub jays, grackles and red-headed woodpeckes, which are occasionally observed to prevent jays feeding altogether. Its westwards range expansion followed fire suppression and tree planting."
+      "light_max": 0.8,
+      "notes": "Common in suburban and urban areas; visits bird feeders; nests in trees in residential yards; known for mobbing predators.",
+      "flight_distance_m": 25.0,
+      "road_mortality": "Medium",
+      "impervious_max": 0.65
     },
     "density_per_ha": {
-      "min": 0.05,
-      "typical": 0.5,
-      "max": 5
+      "min": 0.1,
+      "typical": 1,
+      "max": 4
     }
   },
   "seasonal": {
     "strategy": "PartialMigration",
-    "winter_fraction": 0.6,
+    "winter_fraction": 0.7,
     "phases": [
+      {
+        "name": "breeding",
+        "start": "03-15",
+        "end": "07-31",
+        "region": "US-NC",
+        "note": "Breeds in deciduous and coniferous forests; one brood per season; both parents care for young."
+      },
+      {
+        "name": "caching",
+        "start": "09-01",
+        "end": "11-30",
+        "note": "Intensively caches acorns and other mast; may store thousands of items."
+      },
+      {
+        "name": "flocking",
+        "start": "10-01",
+        "end": "02-28",
+        "note": "Forms loose winter flocks; visits feeders regularly; some populations undertake irruptive movements."
+      },
+      {
+        "name": "absent",
+        "start": "10-15",
+        "end": "03-15",
+        "region": "CA",
+        "fraction": 0.3,
+        "note": "Northern populations may migrate south in large numbers; resident in most of range."
+      },
+      {
+        "name": "breeding",
+        "start": "03-01",
+        "end": "07-31",
+        "note": "Nests from March; both parents build the cup and raise one or two broods."
+      },
+      {
+        "name": "young",
+        "start": "04-15",
+        "end": "09-30",
+        "note": "Young fledge after about 17-18 days and stay with the family group into autumn."
+      },
+      {
+        "name": "breeding",
+        "start": "03-01",
+        "end": "07-31",
+        "region": "US-TN",
+        "note": "One or two broods; nests in a tree cavity or a cup nest."
+      },
       {
         "name": "breeding",
         "start": "03-15",
@@ -176,12 +275,6 @@
         "region": "US-MI",
         "fraction": 0.4,
         "note": "The northernmost subspecies is migratory where necessary and may withdraw several hundred kilometres south; thousands pass in loose daytime flocks along the Great Lakes and Atlantic coasts."
-      },
-      {
-        "name": "flocking",
-        "start": "09-01",
-        "end": "05-15",
-        "note": "Migrating birds travel in loose flocks of 5 to 250."
       }
     ],
     "life_stages": [
@@ -190,8 +283,8 @@
       },
       {
         "stage": "Juvenile",
-        "duration_days": 120,
-        "scale": 0.92
+        "duration_days": 75,
+        "scale": 0.95
       },
       {
         "stage": "Adult"
@@ -200,6 +293,396 @@
   },
   "activity": {
     "regions": [
+      {
+        "region": "US-NC",
+        "monthly": [
+          1.0,
+          0.71,
+          0.57,
+          0.71,
+          0.6,
+          0.5,
+          0.47,
+          0.59,
+          0.86,
+          0.83,
+          0.71,
+          0.64
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 658996,
+        "sources": [
+          "inat-activity-us-nc",
+          "gbif-activity-us-nc"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 30,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=8229&place_id=30&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=30&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "total": 431,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.34_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2482593&gadmGid=USA.34_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.34_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 658565,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "US-MA",
+        "monthly": [
+          0.82,
+          0.84,
+          0.65,
+          0.69,
+          0.56,
+          0.68,
+          0.67,
+          0.68,
+          0.76,
+          1.0,
+          0.9,
+          0.93
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 1165404,
+        "sources": [
+          "inat-activity-us-ma",
+          "gbif-activity-us-ma"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 2,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=8229&place_id=2&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=2&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "total": 1736,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.22_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2482593&gadmGid=USA.22_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.22_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 1163668,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "US-AR",
+        "monthly": [
+          0.72,
+          0.9,
+          0.7,
+          0.69,
+          0.72,
+          0.72,
+          0.73,
+          0.92,
+          1.0,
+          1.0,
+          0.56,
+          0.67
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 185102,
+        "sources": [
+          "inat-activity-us-ar",
+          "gbif-activity-us-ar"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 36,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=8229&place_id=36&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=36&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 1141,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.4_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2482593&gadmGid=USA.4_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.4_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 183961,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "US-NJ",
+        "monthly": [
+          0.81,
+          0.91,
+          0.86,
+          0.91,
+          0.71,
+          1.0,
+          0.9,
+          0.77,
+          0.87,
+          0.8,
+          0.72,
+          0.85
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 703091,
+        "sources": [
+          "inat-activity-us-nj",
+          "gbif-activity-us-nj"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 51,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=8229&place_id=51&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=51&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "total": 481,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.31_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2482593&gadmGid=USA.31_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.31_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 702610,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "US-VT",
+        "monthly": [
+          0.92,
+          0.99,
+          0.66,
+          0.45,
+          0.41,
+          0.39,
+          0.43,
+          0.57,
+          0.8,
+          0.88,
+          1.0,
+          0.99
+        ],
+        "method": "gbif_share",
+        "observations": 371980,
+        "sources": [
+          "gbif-activity-us-vt"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 47,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=4722&place_id=47&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=47&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 0,
+            "usable": false
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.46_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2482593&gadmGid=USA.46_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.46_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 371980,
+            "usable": true
+          },
+          "used": [
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "US-DE",
+        "monthly": [
+          0.74,
+          0.56,
+          0.8,
+          0.85,
+          0.58,
+          0.69,
+          0.4,
+          0.43,
+          1.0,
+          0.98,
+          0.59,
+          0.75
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 115621,
+        "sources": [
+          "inat-activity-us-de",
+          "gbif-activity-us-de"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 4,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=8229&place_id=4&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=4&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 427,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.8_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2482593&gadmGid=USA.8_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.8_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 115194,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "US-OK",
+        "monthly": [
+          0.79,
+          0.72,
+          0.6,
+          0.63,
+          0.56,
+          0.62,
+          0.59,
+          0.66,
+          0.75,
+          1.0,
+          0.72,
+          0.74
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 126414,
+        "sources": [
+          "inat-activity-us-ok",
+          "gbif-activity-us-ok"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 12,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=8229&place_id=12&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=12&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 1065,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.37_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2482593&gadmGid=USA.37_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.37_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 125349,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "US-TN",
+        "monthly": [
+          0.71,
+          0.69,
+          0.64,
+          0.67,
+          0.55,
+          0.54,
+          0.66,
+          0.67,
+          0.75,
+          1.0,
+          0.88,
+          0.73
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 447217,
+        "sources": [
+          "inat-activity-us-tn",
+          "gbif-activity-us-tn"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 45,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=8229&place_id=45&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=45&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "total": 477,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.43_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2482593&gadmGid=USA.43_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.43_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 446740,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
       {
         "region": "US-MI",
         "monthly": [
@@ -254,12 +737,13 @@
   "behavior": {
     "program": "bt-perching-songbird-v1",
     "params": {
-      "flee_m": 12,
+      "flee_m": 8,
       "food_tag": "mast",
       "song": "song",
       "alarm": "alarm",
-      "nest_m1": 4,
-      "nest_m2": 9
+      "song_cooldown_s": 12,
+      "nest_m1": 3,
+      "nest_m2": 7
     }
   },
   "vocalizations": [
@@ -267,31 +751,160 @@
       "call_id": "song",
       "context": "Song",
       "season_months": [
+        2,
         3,
         4,
         5,
         6,
-        7,
-        8
+        7
       ],
       "time_windows": [
         "DawnChorus",
         "Day"
       ],
-      "cooldown_s": 10,
+      "cooldown_s": 15,
       "loudness": "Loud",
-      "description": "A varied jay song, of quiet conversational notes including the squeaky 'rusty pump' phrase, used between jays in company. Corvids are distinct from most other songbirds in using such calls as their song."
+      "description": "Variable song including whistles, clicks, and guttural notes; often mimics hawks and other birds; quieter 'whisper song' given near nest."
     },
     {
       "call_id": "alarm",
       "context": "Alarm",
       "season_months": [],
       "time_windows": [
+        "DawnChorus",
+        "Day",
+        "Dusk"
+      ],
+      "cooldown_s": 4,
+      "loudness": "Loud",
+      "description": "Harsh, loud 'jay-jay-jay' or 'jeer' calls given when mobbing predators or warning of danger; carries long distances."
+    },
+    {
+      "call_id": "contact",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [
         "Day"
       ],
-      "cooldown_s": 12,
+      "cooldown_s": 3,
+      "loudness": "Moderate",
+      "description": "Soft 'kloo-kloo-kloo' or musical whistles given between pair members or in family groups."
+    },
+    {
+      "call_id": "mimic",
+      "context": "Song",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 20,
       "loudness": "Loud",
-      "description": "The most recognized sound: a loud, almost gull-like scream. Given by individuals and by groups driving off potential predators such as hawks near the nest."
+      "description": "Frequently mimics Red-shouldered Hawk, Red-tailed Hawk, and other raptors; may deceive other birds or signal danger."
+    },
+    {
+      "call_id": "jay",
+      "context": "Scream",
+      "season_months": [],
+      "time_windows": [],
+      "cooldown_s": 5,
+      "loudness": "Loud",
+      "description": "The harsh, descending 'jay-jay' scream that gives the bird its name, given at hawks, cats and people near the nest."
+    },
+    {
+      "call_id": "queedle",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day"
+      ],
+      "cooldown_s": 10,
+      "loudness": "Moderate",
+      "description": "A clear, whistled 'queedle-queedle' or bell-like note exchanged between members of a group."
+    },
+    {
+      "call_id": "jayer",
+      "context": "Song",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day",
+        "Dusk"
+      ],
+      "cooldown_s": 10,
+      "loudness": "Loud",
+      "description": "A varied, garrulous vocal repertoire used as this corvid's song: a high-pitched 'jayer-jayer' call that increases in speed as the bird becomes more agitated, plus imitation of local hawks, sometimes so well that the two are hard to tell apart."
+    },
+    {
+      "call_id": "scream",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day"
+      ],
+      "cooldown_s": 6,
+      "loudness": "Loud",
+      "description": "The most commonly recognised sound, a loud, almost gull-like scream, given when a predator such as a hawk or owl is near the nest and used with other jays to mob the predator away; smaller birds recognise it and hide."
+    },
+    {
+      "call_id": "rusty_pump",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day",
+        "Dusk"
+      ],
+      "cooldown_s": 14,
+      "loudness": "Quiet",
+      "description": "A quiet call used among jays in close proximity, named for its squeaky resemblance to an old hand-operated water pump."
+    },
+    {
+      "call_id": "jeer",
+      "context": "Bark",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day",
+        "Dusk"
+      ],
+      "cooldown_s": 4,
+      "loudness": "Loud",
+      "description": "The familiar loud, harsh jeering 'jay-jay-jay' call, often given in chorus by a group and used to advertise a food source or warn of a rival."
+    },
+    {
+      "call_id": "jay_call",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 6,
+      "loudness": "Loud",
+      "description": "The loud, harsh 'jay! jay!' call, the species' signature, given as a contact call and to announce intruders."
+    },
+    {
+      "call_id": "pump",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 10,
+      "loudness": "Quiet",
+      "description": "Quiet, squeaky 'rusty pump' call, resembling an old hand-operated water pump, used among themselves in proximity."
+    },
+    {
+      "call_id": "call",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 6,
+      "loudness": "Loud",
+      "description": "Loud, far-carrying 'jay-jay-jay' call, the species' namesake, given year-round."
     },
     {
       "call_id": "jay_jay",
@@ -317,66 +930,83 @@
   "look": {
     "body_plan": "biped_winged",
     "proportions": {
-      "torso_aspect": 1.4,
-      "leg_length_ratio": 0.45,
-      "head_scale": 0.85,
-      "neck_angle_deg": 10,
-      "tail_ratio": 0.95,
-      "wing_aspect": 2.7,
-      "beak_ratio": 0.4,
-      "girth_ratio": 1.1
+      "torso_aspect": 1.5,
+      "leg_length_ratio": 0.35,
+      "head_scale": 0.9,
+      "neck_angle_deg": 20,
+      "tail_ratio": 0.8,
+      "wing_aspect": 2.8,
+      "beak_ratio": 0.5,
+      "girth_ratio": 1.0
     },
     "palette": {
-      "body": "#5b7fc0",
-      "belly": "#f2f0ea",
-      "markings": "#15130f",
-      "accent": "#2f4d80",
-      "eye": "#0a0907"
+      "body": "#2e5cb8",
+      "belly": "#ffffff",
+      "markings": "#0d1b3a",
+      "accent": "#8bb4e8",
+      "eye": "#1a1a1a"
     },
     "part_colors": {
-      "head": "accent",
+      "head": "body",
       "breast": "belly",
-      "beak": "markings",
-      "wing_*": "body",
       "tail": "body",
-      "eye_*": "eye"
+      "wing_*": "body",
+      "beak": "markings",
+      "leg_*": "markings"
     },
     "extra_parts": [
       {
         "name": "crest",
         "parent": "head",
         "offset": [
-          -0.05,
-          0.45,
+          0.1,
+          0.5,
           0
         ],
         "size": [
           0.4,
-          0.65,
-          0.55
+          0.6,
+          0.6
         ],
         "color": "body"
       },
       {
         "name": "collar",
-        "parent": "body",
+        "parent": "head",
         "offset": [
-          0.25,
-          0.3,
+          0,
+          -0.2,
           0
         ],
         "size": [
-          0.45,
-          0.7,
-          1.1
+          0.8,
+          0.15,
+          0.9
         ],
         "color": "markings"
+      },
+      {
+        "name": "wing_bar",
+        "parent": "wing_left",
+        "offset": [
+          -0.2,
+          0,
+          0
+        ],
+        "size": [
+          0.5,
+          0.1,
+          1.0
+        ],
+        "color": "belly",
+        "mirror": true
       }
     ],
     "poses": {
       "idle": {},
       "hop": {},
       "fly": {},
+      "glide": {},
       "perched": {},
       "rest": {}
     }
@@ -395,7 +1025,7 @@
     {
       "id": "wikidata",
       "url": "https://www.wikidata.org/wiki/Q199758",
-      "title": "Wikidata: Blue jay (Q199758)",
+      "title": "Wikidata: Blue Jay (Q199758)",
       "license": "CC0-1.0",
       "kind": "database",
       "accessed": "2026-10-01",
@@ -413,22 +1043,176 @@
     },
     {
       "id": "itis",
-      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=179680",
-      "title": "ITIS: Cyanocitta cristata, TSN 179680",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=179738",
+      "title": "ITIS: Cyanocitta cristata, TSN 179738",
       "license": "public-domain",
       "kind": "database",
       "accessed": "2026-10-01",
       "note": "US federal government database; public domain in the United States."
     },
     {
+      "id": "inat-activity-us-nc",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=8229&place_id=30&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Cyanocitta cristata in US-NC",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-nc",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2482593&gadmGid=USA.34_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Cyanocitta cristata in US-NC",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "inat-activity-us-ma",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=8229&place_id=2&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Cyanocitta cristata in US-MA",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-ma",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2482593&gadmGid=USA.22_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Cyanocitta cristata in US-MA",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "inat-activity-us-ar",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=8229&place_id=36&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Cyanocitta cristata in US-AR",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-ar",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2482593&gadmGid=USA.4_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Cyanocitta cristata in US-AR",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
       "id": "eltontraits",
       "url": "https://doi.org/10.6084/m9.figshare.3559887.v1",
-      "title": "EltonTraits 1.0: species-level foraging attributes of the world's birds and mammals (MamFuncDat)",
+      "title": "EltonTraits 1.0: species-level foraging attributes of the world's birds and mammals (BirdFuncDat)",
       "license": "CC0-1.0",
       "kind": "dataset",
-      "accessed": "2026-10-01",
+      "accessed": "2026-09-30",
       "attribution": "Wilman, H. et al. (2014) EltonTraits 1.0. Ecology 95:2027",
       "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "inat-activity-us-nj",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=8229&place_id=51&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Cyanocitta cristata in US-NJ",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-nj",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2482593&gadmGid=USA.31_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Cyanocitta cristata in US-NJ",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "inat-activity-us-vt",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=4722&place_id=47&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Cyanocitta cristata in US-VT",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-vt",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2482593&gadmGid=USA.46_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Cyanocitta cristata in US-VT",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "inat-activity-us-de",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=8229&place_id=4&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Cyanocitta cristata in US-DE",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-de",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2482593&gadmGid=USA.8_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Cyanocitta cristata in US-DE",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "inat-activity-us-ok",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=8229&place_id=12&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Cyanocitta cristata in US-OK",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-ok",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2482593&gadmGid=USA.37_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Cyanocitta cristata in US-OK",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "avonet",
+      "url": "https://doi.org/10.6084/m9.figshare.16586228",
+      "title": "AVONET: morphological, ecological and geographical data for all birds",
+      "license": "CC-BY-4.0",
+      "kind": "dataset",
+      "accessed": "2026-10-01",
+      "attribution": "Tobias, J. A. et al. (2022) AVONET. Ecology Letters 25:581-597",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "inat-activity-us-tn",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=8229&place_id=45&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Cyanocitta cristata in US-TN",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-tn",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2482593&gadmGid=USA.43_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Cyanocitta cristata in US-TN",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
     },
     {
       "id": "inat-activity-us-mi",
@@ -455,7 +1239,9 @@
         "gbif-backbone",
         "itis"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "Linnaeus 1758, Cyanocitta cristata; family Corvidae per the GBIF backbone and ITIS TSN 179680."
     },
     "external": {
       "sources": [
@@ -463,90 +1249,374 @@
         "wikidata"
       ],
       "confidence": "High",
-      "note": "eBird code blujay via Wikipedia's infobox."
+      "note": "iNaturalist, NCBI and eBird ids via Wikidata (P3151, P685, P3444)."
     },
     "common_names": {
-      "sources": [
-        "wikidata",
-        "wikipedia"
-      ],
-      "confidence": "High"
-    },
-    "conservation": {
       "sources": [
         "wikidata"
       ],
       "confidence": "High",
-      "note": "Wikidata P141 = least concern (Q211005)."
+      "derived": true,
+      "note": "en/fr/es labels; the English name follows the Wikipedia article title, the fr/es labels the Wikidata sitelink titles."
+    },
+    "conservation": {
+      "sources": [
+        "wikidata",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Wikidata P141 = least concern (Q211005).",
+      "derived": true
     },
     "range": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High",
-      "note": "Southern Canada and the eastern and central United States south to Florida and northeastern Texas; a rare but regular winter visitor now along the northern US and southern Canadian Pacific coast after a twentieth-century westward expansion. Not treated as introduced anywhere."
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Country list derived from 'eastern and central United States; southern Canada; Newfoundland'."
     },
     "traits.body_plan": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "Vertebrate, chordate, feathered, endothermic bird."
     },
     "traits.limb_count": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "note": "Two legs; the wings are not counted as walking limbs.",
+      "derived": true
     },
     "traits.locomotion_modes": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High",
-      "note": "Gleans food from trees, shrubs and the ground and perches; the shared perching-songbird program forages on the ground by hops, which is how this ground-feeding corvid moves."
+      "confidence": "Medium",
+      "note": "Hops on ground and branches; strong flier.",
+      "derived": true
     },
     "traits.thermoregulation": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "Endotherm: a bird, active by day."
     },
     "traits.skin": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "Feathers: plumage described in detail in the Description section."
     },
     "traits.flight": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "Powered flight between trees, feeders and roosts."
     },
     "traits.respiration": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "Lungs: an avian respiratory system."
     },
     "traits.metamorphosis": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
-    },
-    "traits.nest_type": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "None: 'Young are altricial, and are brooded by the female for 8-12 days after hatching' - hatch as featherless chicks."
     },
     "traits.perching": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Gleans from trees and shrubs, perches conspicuously, and raises and flattens its crest according to mood."
+      "derived": true,
+      "note": "Perches in the canopy to call, mob and cache, and roosts in foliage."
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Cup nest in tree crotch or on horizontal branch."
+    },
+    "traits.size_class": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg (70-100 g)."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Body mass 70-100 g, average ~85 g.",
+      "derived": true
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'weighs 70-100 g (2.5-3.5 oz)'."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of 25-30 cm."
+    },
+    "traits.wingspan_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of 34-43 cm."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Average ~7 years in wild; maximum recorded 26+ years.",
+      "derived": true
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Omnivorous: acorns and mast (30%), seeds and grains (30%), insects (20%), small vertebrates including eggs and nestlings (10%), fruit (10%)."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Monogamous pairs; family groups of 2-8 in late summer/winter; forms loose flocks."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Diurnal: the whole behavioural account is daytime canopy activity, and the description of the West Nile virus as a major cause of mortality implies no significant nocturnal behaviour."
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Aggressively mobs predators (hawks, owls, cats); loud alarm calls alert other species.",
+      "derived": true
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Moderately wary; bold at feeders but alert to danger."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Forages on ground (40%) and in trees (60%); nests in tree canopy."
+    },
+    "habitat.shelter_tag": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Mast in autumn/winter; seeds year-round; insects in breeding season; caches acorns; nests in trees."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Common in residential areas; visits feeders; light_max authored."
+    },
+    "habitat.density_per_ha": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored judgement: territorial, lower density than small songbirds."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Largely resident; some northern populations irruptive/migratory in winter.",
+      "derived": true
+    },
+    "seasonal.winter_fraction": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: majority resident in most of range; irruptive movements variable."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Breeding, caching, flocking from Wikipedia; migratory fraction is judgement."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Fledging at 17-21 days; juvenile similar to adult; scale authored."
+    },
+    "vocalizations.song": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Description from Wikipedia; months, windows, cooldown authored."
+    },
+    "vocalizations.alarm": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Description from Wikipedia; parameters authored."
+    },
+    "vocalizations.contact": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Description from Wikipedia; parameters authored."
+    },
+    "vocalizations.mimic": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Hawk mimicry well documented; parameters authored."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Blue upperparts with white wing bars and tail tips, white face and underparts, black collar and crest border, black bill and legs; proportions authored."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared perching-songbird program; food_tag changed to mast; flee_m increased for larger corvid."
+    },
+    "vocalizations.jay": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Call description and context from the Wikipedia article's description/behaviour sections."
+    },
+    "vocalizations.queedle": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Whistled notes described in the article; cooldown is authored."
+    },
+    "vocalizations.jayer": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "vocalizations.scream": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "vocalizations.rusty_pump": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "vocalizations.jeer": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Call description and context from the Wikipedia article's description/behaviour sections."
+    },
+    "vocalizations.jay_call": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "vocalizations.pump": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "vocalizations.call": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
     },
     "traits.senses": {
       "sources": [
@@ -555,159 +1625,6 @@
       "confidence": "Medium",
       "note": "The article describes strong vocal learning: copying hawks so closely that the two are hard to tell apart, and learning human speech. That supports High hearing. Olfaction is set to Med as a mid-range default for a corvid rather than from a source claim, and vision_colour is omitted because the article attributes the blue to feather structure rather than describing colour vision."
     },
-    "traits.size_class": {
-      "sources": [
-        "eltontraits"
-      ],
-      "confidence": "High",
-      "derived": true,
-      "note": "From mass_kg."
-    },
-    "traits.mass_kg": {
-      "sources": [
-        "wikipedia",
-        "eltontraits"
-      ],
-      "confidence": "High",
-      "note": "Midpoint of Wikipedia's 70-100 g range; the article's Connecticut mean of 92.4 g and Florida mean of 73.7 g both fall inside it."
-    },
-    "traits.mass_range_kg": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High"
-    },
-    "traits.length_m": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "derived": true,
-      "note": "Midpoint of Wikipedia's 22-30 cm bill-to-tail length."
-    },
-    "traits.wingspan_m": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "derived": true,
-      "note": "Midpoint of Wikipedia's 34-43 cm wingspan."
-    },
-    "traits.lifespan_y": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "note": "'A more common lifespan for wild birds that survive to adulthood is around 7 years.'"
-    },
-    "traits.diet": {
-      "sources": [
-        "wikipedia",
-        "eltontraits"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "The Audubon estimate that '75% of their diet is vegetable matter' sets the plant share, split across the plant items the article names - acorns and beech mast, weed seeds, grain, and fruit and other berries - as mast 0.3, seed 0.25 and fruit 0.2. The remaining 25% is recorded as invertebrate 0.2 with vertebrate 0.05 for the 'occasionally small vertebrates' and 'rarely eggs and nestlings' the article mentions."
-    },
-    "traits.social": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "note": "'Blue jays typically form monogamous pair bonds for life', and the family forages together until the young disperse in early fall."
-    },
-    "traits.activity_pattern": {
-      "sources": [
-        "wikipedia",
-        "eltontraits"
-      ],
-      "confidence": "High",
-      "note": "Diurnal: it 'migrates during the daytime' and gleans in daylight."
-    },
-    "traits.defense": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "note": "It 'can be very aggressive to other birds', mobs hawks with the 'jay jayer' call to drive them from the nest, and appropriates the nests of other mid-sized songbirds."
-    },
-    "traits.wariness": {
-      "sources": [],
-      "confidence": "Low",
-      "derived": true,
-      "note": "Judgement: 0.4. Comfortable in residential areas and at bird tables, but often gives way at feeders to squirrels and larger birds, and it flushes readily when a person comes close in a nesting tree."
-    },
-    "habitat.use": {
-      "sources": [
-        "wikipedia",
-        "eltontraits"
-      ],
-      "confidence": "Low",
-      "derived": true,
-      "note": "The ground share follows the article's 'its food is sought both on the ground and in trees'; the arboreal share covers gleaning from the canopy, nest building in branches and perching. The article gives no quantified stratum split, so this is judgement."
-    },
-    "habitat.shelter_tag": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "note": "The article notes the bird appropriates the nests of other mid-sized songbirds such as American robins, and will nest in almost any site if nothing better is available."
-    },
-    "habitat.resources": {
-      "sources": [
-        "wikipedia",
-        "eltontraits"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Food weights follow traits.diet. Nesting weight is on the open cup in tree branches, which the host places with nest_cup; cavity is recorded as the shelter tag because it reuses other birds' nests. perch and shrub_thicket are shelter, weighted by judgement."
-    },
-    "habitat.human_tolerance": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "note": "It is 'common in residential areas' and takes 'scraps in town parks, bird-table food'. The account of being dominated at feeders by gray squirrels, scrub jays, grackles and red-headed woodpeckes sets the social end of the tolerance scale. impervious_max, flight_distance_m and road_mortality are authored judgement and are not quantified in the source; West Nile virus is noted as a major mortality factor but is a disease, not a road effect."
-    },
-    "habitat.density_per_ha": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Low",
-      "derived": true,
-      "note": "Judgement: the article reports a mixed trend - a decline along the Atlantic coast from 1966 to 2015 but greater than 1.5% annual growth across the northern range - without a population density. A territorial pair on roughly 2 ha gives typical 0.5 per hectare, and min and max are an authored tenfold band either side, following the convention used for turdus-migratorius and cardinalis-cardinalis."
-    },
-    "seasonal.strategy": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "note": "'Some eastern populations may be migratory' and 'the northernmost subspecies ... is, subject to necessity, migratory', while 'some are present throughout winter in all parts of their range'."
-    },
-    "seasonal.winter_fraction": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Low",
-      "derived": true,
-      "note": "Judgement: set at 0.6 to reflect a partial migrant whose southern and central range birds are largely resident, with the northernmost subspecies withdrawing where necessary."
-    },
-    "seasonal.phases": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Pair bonds, both sexes building, female-only brooding, male feeding the female, three to six eggs (usually four or five) over 16-18 days, fledging at 17-21 days, family association to early fall, dispersal, the partial withdrawal of the northernmost subspecies and the loose daytime flocks of 5 to 250 are all from the article. The calendar windows are authored judgement because the article gives no dates."
-    },
-    "seasonal.life_stages": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Juvenile duration is authored: fledging at 17-21 days plus the one to two months young 'may stay with their parents', rounded to 120 days, and sexual maturity is 'reached after one year of age'. scale is authored judgement."
-    },
     "vocalizations": {
       "sources": [
         "wikipedia"
@@ -715,26 +1632,32 @@
       "confidence": "Medium",
       "derived": true,
       "note": "The gull-like scream alarm, the speeding 'jayer-jayer' call and its confusion with chickadee, the 'rusty pump' conversational call, hawk mimicry, speech mimicry and the corvid use of a call as song all come from the Vocalizations section. Time windows and cooldowns are authored judgement; no open source quantifies them. No open source gives frequency bands, so freq_hz is omitted."
-    },
-    "look": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "derived": true,
-      "note": "Colours from the lead and Description: lavender-blue to mid-blue crest, back, wings and tail, white face, off-white underside, a black collar round the neck extending to the sides of the head, strongly barred black and sky-blue wing primaries and tail, and black bill, legs and eyes. The blue is structural rather than pigment, which is why the palette uses two related blues for body and crest. Proportions are authored judgement for a long-tailed, crested corvid with a heavy bill."
-    },
-    "behavior": {
-      "sources": [],
-      "confidence": "Low",
-      "derived": true,
-      "note": "Authored parameters for the shared perching-songbird program. flee_m raised to 12 m for a large, bold bird that mobs threats instead of fleeing them; food_tag is mast because acorns and beech mast are the staple it cracks with its bill; song and alarm are the two calls the program drives and both are named above; nest_m1 and nest_m2 follow the program's declared params and the article's 'in the branches of a tree'."
     }
   },
   "contributors": [
     {
+      "name": "speeeecies fleet",
+      "agent": "opencode"
+    },
+    {
+      "name": "Sisyphus",
+      "agent": "opencode"
+    },
+    {
+      "name": "speeeecies contributors",
+      "agent": "opencode"
+    },
+    {
       "name": "speeeecies maintainers",
       "agent": "opencode"
+    },
+    {
+      "name": "speeeecies agent",
+      "agent": "claude-code"
+    },
+    {
+      "name": "Sisyphus agent",
+      "agent": "claude-code"
     }
   ]
 }

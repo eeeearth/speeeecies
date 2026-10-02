@@ -5,9 +5,9 @@
   "id": "Thamnophis sirtalis",
   "slug": "thamnophis-sirtalis",
   "common_names": {
-    "en": "Common garter snake",
-    "fr": "couleuvre rayée",
-    "de": "Gewöhnliche Ringelnatter"
+    "en": "Common Garter Snake",
+    "fr": "Couleuvre rayée",
+    "de": "Gewöhnliche Strumpfbandnatter"
   },
   "taxonomy": {
     "kingdom": "Animalia",
@@ -30,8 +30,8 @@
   },
   "range": {
     "native": [
-      "CA",
-      "US"
+      "US",
+      "CA"
     ],
     "introduced": [],
     "invasive_in": []
@@ -50,52 +50,66 @@
     "metamorphosis": "None",
     "nest_type": "None",
     "perching": false,
-    "senses": {
-      "olfaction": "High",
-      "vibration": true
-    },
     "size_class": "Small",
     "mass_kg": 0.15,
-    "length_m": 0.55,
-    "lifespan_y": 5,
+    "mass_range_kg": [
+      0.05,
+      0.3
+    ],
+    "length_m": 0.6,
+    "lifespan_y": 4.0,
     "diet": {
-      "invertebrate": 0.6,
-      "vertebrate": 0.25,
-      "fish": 0.15
+      "invertebrate": 0.3,
+      "vertebrate": 0.5,
+      "fish": 0.2
     },
     "social": {
       "structure": "Solitary",
       "group_size": [
         1,
-        2
+        1
       ]
     },
     "activity_pattern": "Diurnal",
-    "defense": "Spray",
-    "wariness": 0.45
+    "defense": "Flee",
+    "wariness": 0.7,
+    "senses": {
+      "olfaction": "High",
+      "vibration": true
+    }
   },
   "habitat": {
     "use": {
-      "ground": 0.6,
-      "aquatic": 0.35,
-      "arboreal": 0.05
+      "ground": 0.7,
+      "aquatic": 0.2,
+      "fossorial": 0.1
     },
-    "shelter_tag": "shelter",
+    "shelter_tag": "log_pile",
     "resources": [
       {
         "tag": "invertebrate",
         "kind": "Predation",
-        "weight": 0.6
+        "weight": 0.3
       },
       {
         "tag": "small_vertebrate",
         "kind": "Predation",
-        "weight": 0.4
+        "weight": 0.7
       },
       {
         "tag": "water",
         "kind": "Water",
         "weight": 0.4
+      },
+      {
+        "tag": "log_pile",
+        "kind": "Shelter",
+        "weight": 0.8
+      },
+      {
+        "tag": "burrow",
+        "kind": "Shelter",
+        "weight": 0.5
       },
       {
         "tag": "shelter",
@@ -110,11 +124,12 @@
     ],
     "human_tolerance": {
       "urban_affinity": "Adapter",
-      "impervious_max": 0.3,
-      "flight_distance_m": 8,
-      "road_mortality": "High",
       "uses_gardens": true,
-      "notes": "'Water contamination, urban expansion, and residential and industrial development are all threats to the common garter snake', so the species persists in settled country but is not a city exploiter. It ranges over fields, meadows, marshes and ponds, which is what a suburban lot with any damp ground or a garden pond provides."
+      "light_max": 0.6,
+      "road_mortality": "High",
+      "notes": "Common in gardens, meadows and woodland edges near water; often killed on roads while basking or crossing.",
+      "impervious_max": 0.3,
+      "flight_distance_m": 8
     },
     "density_per_ha": {
       "min": 0.05,
@@ -127,19 +142,25 @@
     "triggers": {
       "enter": {
         "temperature_below_c": 5,
-        "days": 21
+        "days": 7
       },
       "exit": {
-        "temperature_above_c": 10,
-        "days": 14
+        "temperature_above_c": 5,
+        "days": 7
       }
     },
     "phases": [
       {
+        "name": "breeding",
+        "start": "03-15",
+        "end": "06-30",
+        "note": "Emerges from the den in spring and mates; young are born live in late summer."
+      },
+      {
         "name": "dormancy",
-        "start": "11-01",
-        "end": "03-31",
-        "note": "'In warmer southern areas, the snake is active year-round; otherwise, it sleeps in common dens, sometimes in great numbers.' On warm winter afternoons some emerge from their hibernacula to bask in the sun. The dormancy is reptile brumation rather than hibernation, and the temperature and duration thresholds in seasonal.triggers are authored judgement, since no open source states them."
+        "start": "10-01",
+        "end": "03-14",
+        "note": "Brumates communally in a den below the frost line through winter."
       },
       {
         "name": "mating",
@@ -157,8 +178,8 @@
     "life_stages": [
       {
         "stage": "Juvenile",
-        "duration_days": 120,
-        "scale": 0.45
+        "duration_days": 60,
+        "scale": 0.5
       },
       {
         "stage": "Adult"
@@ -167,6 +188,55 @@
   },
   "activity": {
     "regions": [
+      {
+        "region": "US-VT",
+        "monthly": [
+          0.0,
+          0.0,
+          0.06,
+          0.83,
+          1.0,
+          1.0,
+          0.6,
+          0.74,
+          0.7,
+          0.42,
+          0.05,
+          0.01
+        ],
+        "method": "mean(inat_raw, gbif_raw)",
+        "observations": 889,
+        "sources": [
+          "inat-activity-us-vt",
+          "gbif-activity-us-vt"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 47,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=28362&place_id=47&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": null,
+            "total": 426,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.46_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2457522&gadmGid=USA.46_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": null,
+            "total": 463,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
       {
         "region": "US-MI",
         "monthly": [
@@ -230,27 +300,40 @@
       "bask_temp_c": 22
     }
   },
-  "vocalizations": [],
+  "vocalizations": [
+    {
+      "call_id": "hiss",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 10,
+      "loudness": "Moderate",
+      "description": "Short, sharp hiss given when threatened or handled, the snake's only regular vocalization."
+    }
+  ],
   "look": {
     "body_plan": "serpentine",
     "proportions": {
-      "segments": 16,
-      "girth_ratio": 0.55,
-      "head_scale": 1.5
+      "segments": 10,
+      "head_scale": 1.3,
+      "girth_ratio": 1.0
     },
     "palette": {
-      "body": "#33362b",
-      "belly": "#c9c2a8",
-      "markings": "#d9c94a",
-      "accent": "#5f7040",
-      "eye": "#0c0a08"
+      "body": "#4a5a3a",
+      "belly": "#c8c8a0",
+      "markings": "#e8d84a",
+      "accent": "#2a3a1a",
+      "eye": "#0d0d0d"
     },
     "part_colors": {
-      "head": "accent"
+      "head": "body",
+      "segment*": "body"
     },
     "extra_parts": [
       {
-        "name": "dorsal_stripe0",
+        "name": "stripe_0",
         "parent": "segment0",
         "offset": [
           0,
@@ -258,14 +341,14 @@
           0
         ],
         "size": [
-          1.02,
-          0.06,
-          0.34
+          0.9,
+          0.12,
+          0.3
         ],
         "color": "markings"
       },
       {
-        "name": "dorsal_stripe1",
+        "name": "stripe_1",
         "parent": "segment1",
         "offset": [
           0,
@@ -273,14 +356,14 @@
           0
         ],
         "size": [
-          1.02,
-          0.06,
-          0.34
+          0.9,
+          0.12,
+          0.3
         ],
         "color": "markings"
       },
       {
-        "name": "dorsal_stripe2",
+        "name": "stripe_2",
         "parent": "segment2",
         "offset": [
           0,
@@ -288,14 +371,14 @@
           0
         ],
         "size": [
-          1.02,
-          0.06,
-          0.34
+          0.9,
+          0.12,
+          0.3
         ],
         "color": "markings"
       },
       {
-        "name": "dorsal_stripe3",
+        "name": "stripe_3",
         "parent": "segment3",
         "offset": [
           0,
@@ -303,14 +386,14 @@
           0
         ],
         "size": [
-          1.02,
-          0.06,
-          0.34
+          0.9,
+          0.12,
+          0.3
         ],
         "color": "markings"
       },
       {
-        "name": "dorsal_stripe4",
+        "name": "stripe_4",
         "parent": "segment4",
         "offset": [
           0,
@@ -318,14 +401,14 @@
           0
         ],
         "size": [
-          1.02,
-          0.06,
-          0.34
+          0.9,
+          0.12,
+          0.3
         ],
         "color": "markings"
       },
       {
-        "name": "dorsal_stripe5",
+        "name": "stripe_5",
         "parent": "segment5",
         "offset": [
           0,
@@ -333,14 +416,14 @@
           0
         ],
         "size": [
-          1.02,
-          0.06,
-          0.34
+          0.9,
+          0.12,
+          0.3
         ],
         "color": "markings"
       },
       {
-        "name": "dorsal_stripe6",
+        "name": "stripe_6",
         "parent": "segment6",
         "offset": [
           0,
@@ -348,14 +431,14 @@
           0
         ],
         "size": [
-          1.02,
-          0.06,
-          0.34
+          0.9,
+          0.12,
+          0.3
         ],
         "color": "markings"
       },
       {
-        "name": "dorsal_stripe7",
+        "name": "stripe_7",
         "parent": "segment7",
         "offset": [
           0,
@@ -363,14 +446,14 @@
           0
         ],
         "size": [
-          1.02,
-          0.06,
-          0.34
+          0.9,
+          0.12,
+          0.3
         ],
         "color": "markings"
       },
       {
-        "name": "dorsal_stripe8",
+        "name": "stripe_8",
         "parent": "segment8",
         "offset": [
           0,
@@ -378,14 +461,14 @@
           0
         ],
         "size": [
-          1.02,
-          0.06,
-          0.34
+          0.9,
+          0.12,
+          0.3
         ],
         "color": "markings"
       },
       {
-        "name": "dorsal_stripe9",
+        "name": "stripe_9",
         "parent": "segment9",
         "offset": [
           0,
@@ -393,114 +476,9 @@
           0
         ],
         "size": [
-          1.02,
-          0.06,
-          0.34
-        ],
-        "color": "markings"
-      },
-      {
-        "name": "dorsal_stripe10",
-        "parent": "segment10",
-        "offset": [
-          0,
-          0.5,
-          0
-        ],
-        "size": [
-          1.02,
-          0.06,
-          0.34
-        ],
-        "color": "markings"
-      },
-      {
-        "name": "dorsal_stripe11",
-        "parent": "segment11",
-        "offset": [
-          0,
-          0.5,
-          0
-        ],
-        "size": [
-          1.02,
-          0.06,
-          0.34
-        ],
-        "color": "markings"
-      },
-      {
-        "name": "dorsal_stripe12",
-        "parent": "segment12",
-        "offset": [
-          0,
-          0.5,
-          0
-        ],
-        "size": [
-          1.02,
-          0.06,
-          0.34
-        ],
-        "color": "markings"
-      },
-      {
-        "name": "dorsal_stripe13",
-        "parent": "segment13",
-        "offset": [
-          0,
-          0.5,
-          0
-        ],
-        "size": [
-          1.02,
-          0.06,
-          0.34
-        ],
-        "color": "markings"
-      },
-      {
-        "name": "dorsal_stripe14",
-        "parent": "segment14",
-        "offset": [
-          0,
-          0.5,
-          0
-        ],
-        "size": [
-          1.02,
-          0.06,
-          0.34
-        ],
-        "color": "markings"
-      },
-      {
-        "name": "dorsal_stripe15",
-        "parent": "segment15",
-        "offset": [
-          0,
-          0.5,
-          0
-        ],
-        "size": [
-          1.02,
-          0.06,
-          0.34
-        ],
-        "color": "markings"
-      },
-      {
-        "name": "head_stripe",
-        "parent": "head",
-        "offset": [
-          0,
-          0.45,
-          0
-        ],
-        "size": [
-          1.02,
-          0.08,
-          0.34
+          0.9,
+          0.12,
+          0.3
         ],
         "color": "markings"
       }
@@ -526,7 +504,7 @@
     {
       "id": "wikidata",
       "url": "https://www.wikidata.org/wiki/Q911786",
-      "title": "Wikidata: common garter snake (Q911786)",
+      "title": "Wikidata: Common Garter Snake (Q911786)",
       "license": "CC0-1.0",
       "kind": "database",
       "accessed": "2026-10-01",
@@ -550,6 +528,24 @@
       "kind": "database",
       "accessed": "2026-10-01",
       "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "inat-activity-us-vt",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=28362&place_id=47&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Thamnophis sirtalis in US-VT",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-vt",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2457522&gadmGid=USA.46_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Thamnophis sirtalis in US-VT",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
     },
     {
       "id": "inat-activity-us-mi",
@@ -589,25 +585,25 @@
     },
     "common_names": {
       "sources": [
-        "wikidata",
-        "wikipedia"
+        "wikidata"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "note": "en/fr/de labels from Wikidata sitelink titles."
     },
     "conservation": {
       "sources": [
-        "wikidata",
-        "wikipedia"
+        "wikidata"
       ],
       "confidence": "High",
-      "note": "Wikidata P141 = least concern (Q211005); the article gives 'least-concern ... due to its wide distribution and high population size'. The endangered San Francisco garter snake is a different subspecies and is not this record."
+      "note": "Wikidata P141 = least concern (Q211005)."
     },
     "range": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High",
-      "note": "Indigenous to North America and 'found widely across the continent', from the southernmost tip of Florida to the southernmost tip of the Northwest Territories in Canada, at altitudes from sea level to mountains. Not treated as introduced anywhere."
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Native across North America: most of Canada and the US."
     },
     "traits.body_plan": {
       "sources": [
@@ -627,7 +623,7 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Slithering is the animal's only terrestrial mode, and it is 'effective at catching fast-moving creatures such as fish and tadpoles', which is swimming and diving; the habitat section puts it constantly in and around water."
+      "note": "Slithers on land and swims well in water."
     },
     "traits.thermoregulation": {
       "sources": [
@@ -665,21 +661,15 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "None: the female is ovoviviparous and 'may give birth ovoviviparously to 12 to 40 young from July through October', so the species builds no nest and lays no clutch."
+      "note": "Live-bearing; does not build a nest."
     },
     "traits.perching": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High",
-      "note": "A ground-and-water reptile; set to false."
-    },
-    "traits.senses": {
-      "sources": [
-        "wikipedia"
-      ],
       "confidence": "Medium",
-      "note": "Chemoreception carries the reproductive behaviour the article describes in detail: a male that mimics a female does so 'luring them with a fake female pheromone'. That supports High olfaction. vibration records the ground contact a snake keeps up with leaf litter and bare soil. The article says nothing about hearing or vision, so those are omitted rather than guessed."
+      "derived": true,
+      "note": "Legless; set to false."
     },
     "traits.size_class": {
       "sources": [
@@ -687,35 +677,43 @@
       ],
       "confidence": "High",
       "derived": true,
-      "note": "From mass_kg."
+      "note": "From mass_kg 0.15 (0.05-1 kg = Small)."
     },
     "traits.mass_kg": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "'The average body mass is 150 g (5.3 oz).'"
+      "note": "'55-300 g' typical adult mass; 150 g used."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
     },
     "traits.length_m": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "'their average total length (including tail) is about 55 cm (22 in)', which is what the schema asks for. The maximum total length is about 137 cm and few grow over 1.2 m; mass_range_kg is omitted because the article gives only an average mass."
+      "note": "'45-137 cm' total length; 60 cm used as a typical value."
     },
     "traits.lifespan_y": {
-      "sources": [],
+      "sources": [
+        "wikipedia"
+      ],
       "confidence": "Low",
       "derived": true,
-      "note": "A placeholder, and the weakest number in this record: the schema requires a lifespan and no openly licensed source found for this species gives one - the article discusses age only through stamina, 'juveniles can only be physically active for 3-5 minutes' against 25 minutes for adults. The value is an order-of-magnitude judgement for a small colubrid and should be replaced if a sourced figure turns up."
+      "note": "Wikipedia gives a maximum of about 10 years; typical lifespan is shorter, 4 years used as a judgement."
     },
     "traits.diet": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High",
+      "confidence": "Medium",
       "derived": true,
-      "note": "'The diet of T. sirtalis consists mainly of amphibians and earthworms, but also leeches, slugs, snails, insects, crayfish, fish, lizards, other snakes, small birds, and rodents.' Amphibians are vertebrates, so the inverts named there - earthworms, leeches, slugs, snails, insects - are the bulk at 0.6, the vertebrate prey - lizards, other snakes, small birds, rodents - take 0.25, and the aquatic prey it is 'effective at catching', crayfish and fish, take 0.15. The shares are authored judgement on a list the source does not quantify."
+      "note": "Earthworms and other invertebrates, amphibians, small fish and rodents; shares are judgement from the described diet. Fish are mapped to the small_vertebrate resource tag (no 'fish' tag exists)."
     },
     "traits.social": {
       "sources": [
@@ -723,7 +721,7 @@
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "Solitary outside the breeding season, with group_size topping out at 2: the mating ball is the one aggregation the article describes and it is a breeding event, not a social unit, so it is recorded as a seasonal phase instead."
+      "note": "Solitary except when brumating communally in a den."
     },
     "traits.activity_pattern": {
       "sources": [
@@ -733,12 +731,10 @@
       "note": "'The common garter snake is a diurnal snake', most active in the morning and late afternoon in summer and restricted to warm afternoons in cooler seasons."
     },
     "traits.defense": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
+      "sources": [],
+      "confidence": "Low",
       "derived": true,
-      "note": "Spray: the article says it is 'more likely that, prior to expending their energy through biting, garter snakes will secrete a foul-smelling fluid' from postanal glands - the fluid release the schema's Spray covers. It also bites, sometimes strikes, freezes until sure it has been seen, and has a greater variety of body postures than other snakes; the schema offers one value and the musking comes first in the source."
+      "note": "Authored: flees into water or cover when threatened."
     },
     "traits.wariness": {
       "sources": [
@@ -746,7 +742,7 @@
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "0.45. 'The first response of the snake to a predator is often a bluff', and 'relying on cryptic coloration for protection, they will freeze until they know they are spotted, then attempt a stealthy departure' - it neither charges nor bolts at once."
+      "note": "Quick to retreat when approached."
     },
     "habitat.use": {
       "sources": [
@@ -754,14 +750,14 @@
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "'The habitat of the common garter snake ranges from forests, fields, and prairies to streams, wetlands, meadows, marshes, and ponds, and it is often found near water.' That justifies a large aquatic share and a large ground share with a token arboreal one; the split is judgement, since the source lists habitats without weighting them."
+      "note": "Ground-dwelling near water; swims; shelters under logs and rocks."
     },
     "habitat.shelter_tag": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "Medium",
-      "note": "It 'sleeps in common dens, sometimes in great numbers' - communal overwintering sites rather than a single burrow or cavity, so the generic shelter tag is used."
+      "note": "Shelters under logs, rocks and dense cover."
     },
     "habitat.resources": {
       "sources": [
@@ -769,14 +765,73 @@
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "Food weights follow traits.diet, with the diet's fish share folded into small_vertebrate because the resource vocabulary has no fish tag. water is recorded because the species 'is often found near water' and takes fish and tadpoles. shelter and leaf_litter carry the communal dens and the ground cover it freezes in; those two are weighted by judgement."
+      "note": "Earthworms, amphibians, fish and small vertebrates; needs water and shelter."
     },
     "habitat.human_tolerance": {
       "sources": [
         "wikipedia"
       ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Common in gardens and parks near water; road_mortality High from basking on roads."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
       "confidence": "High",
-      "note": "Adapter on the source's own list of threats - 'urban expansion, and residential and industrial development are all threats' - together with a habitat list of fields, meadows, marshes and ponds that a settled landscape still contains. impervious_max, flight_distance_m and road_mortality are authored judgement and are not quantified in the source; road_mortality is High because the source names development and industrial activity as threats without ranking them and roadkill is a plausible component."
+      "note": "Brumates through winter in a communal den."
+    },
+    "seasonal.triggers": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored: enters brumation after a week below 5 C and exits after a week above 5 C; no open source gives exact thresholds."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Spring emergence and mating; exact phase dates are judgement."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Live-bearing; juvenile period about 60 days; duration_days and scale are judgement."
+    },
+    "vocalizations.hiss": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Hiss described on Wikipedia; loudness and cooldown are judgement."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Olive-brown body with three yellow longitudinal stripes (one dorsal, two lateral). The dorsal stripe is approximated with one thin box per segment. Proportions are judgement."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared ground-forager program: slither gait, diurnal (rests while the sun is down)."
+    },
+    "traits.senses": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Chemoreception carries the reproductive behaviour the article describes in detail: a male that mimics a female does so 'luring them with a fake female pheromone'. That supports High olfaction. vibration records the ground contact a snake keeps up with leaf litter and bare soil. The article says nothing about hearing or vision, so those are omitted rather than guessed."
     },
     "habitat.density_per_ha": {
       "sources": [
@@ -786,34 +841,6 @@
       "derived": true,
       "note": "Judgement: the article gives 'a wide distribution and high population size' but no density. Communal dens 'sometimes in great numbers' and a typical home ground of a couple of hectares give typical 0.5 per hectare, and min and max are an authored tenfold band either side, following the convention used for turdus-migratorius and sciurus-carolinensis."
     },
-    "seasonal.strategy": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "note": "Brumation, not Hibernation: this is an ectotherm lying up cold, which is what the schema's Brumation covers. The article's own word is that it 'sleeps in common dens' outside the warm southern part of its range."
-    },
-    "seasonal.triggers": {
-      "sources": [],
-      "confidence": "Low",
-      "derived": true,
-      "note": "Authored judgement, flagged as such: the schema requires triggers for a Brumation strategy and no open source states the weather that starts and ends it here. Three weeks below 5 C to enter and a fortnight above 10 C to exit follow the article's own statement that in cooler climates it restricts activity to warm afternoons, and should be replaced if a sourced figure appears."
-    },
-    "seasonal.phases": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "note": "Year-round activity in warm southern areas against communal dens elsewhere, basking on warm winter afternoons, the spring emergence order of males before females with the mating balls, sperm storage over winter, and ovoviviparous birth of 12-40 young from July through October are all stated in the article."
-    },
-    "seasonal.life_stages": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Low",
-      "derived": true,
-      "note": "There is no Egg stage because the young are born live. Juvenile duration is authored: the article gives the 12-40 litter size and the July-October birth window but no age at maturity or independence, so 120 days is used for the period a hatchling spends growing into a functional forager. The 0.45 scale is authored judgement against the article's own statement that juveniles are far less capable than adults - 3-5 minutes of activity against 25 - which reads as a small animal."
-    },
     "vocalizations": {
       "sources": [
         "wikipedia"
@@ -821,25 +848,13 @@
       "confidence": "Medium",
       "derived": true,
       "note": "Deliberately empty, and that is a finding rather than an omission: the article describes the species' whole defensive repertoire - musking, biting, striking, freezing, stealthy departure, and a greater variety of body postures than other snakes - and never mentions a call. The schema allows an empty list for a species with no sounds, and inventing a hiss to fill it would be exactly the kind of plausible invention this kit forbids."
-    },
-    "look": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "derived": true,
-      "note": "Colours from the lead and Anatomy sections: most have longitudinal stripes on a black, brown or green background, the article gives the stripe colour as yellow and the full range the species takes as green, blue, yellow, gold, red, orange, brown and black, and it explicitly says the species relies on cryptic rather than aposematic coloration. The model renders the nominate dark-backed form with a yellow dorsal stripe: a thin stripe box is parented to each of the sixteen body segments and to the head, which is the only way a stripe follows a slithering chain of segments, and the lateral stripes the nominate form also carries are not rendered. The 0.55 girth ratio is for a thin snake - 'Common garter snakes are thin snakes' - against the body plan's 1.0 default, and head_scale 1.5 separates the head from the neck. No open source describes the eye colour, so eye is a judgement value."
-    },
-    "behavior": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Params for the species' own fsm-reptile-basker-v1 program, which ships with this record because no shared program fits an ectotherm whose behaviour is gated by body temperature. cool_temp_c 12 and bask_temp_c 22 bracket the range the article implies between lying up and foraging on warm afternoons; flee_m 3 m and display_m 12 m encode the two-stage response the article gives - the closer the threat the more likely the strike or the bluff, the further off the stealthy departure - with musk as the display action named from the postanal-gland description; food_m 6 m and drink_m 15 m suit a slow-moving animal working a small patch; forage_gait slither is the only gait it has."
     }
   },
   "contributors": [
+    {
+      "name": "speeeecies agent",
+      "agent": "claude-code"
+    },
     {
       "name": "speeeecies maintainers",
       "agent": "opencode"
