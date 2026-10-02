@@ -493,6 +493,55 @@
             "gbif"
           ]
         }
+      },
+      {
+        "region": "US-GA",
+        "monthly": [
+          0.96,
+          0.87,
+          1.0,
+          0.9,
+          0.68,
+          0.3,
+          0.43,
+          0.33,
+          0.5,
+          0.58,
+          0.76,
+          0.56
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 1893,
+        "sources": [
+          "inat-activity-us-ga",
+          "gbif-activity-us-ga"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 23,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=42652&place_id=23&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=23&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 953,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "C",
+            "area": [
+              "gadmGid",
+              "USA.11_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2439923&gadmGid=USA.11_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.11_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "total": 940,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
       }
     ]
   },
@@ -807,6 +856,24 @@
       "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
       "accessed": "2026-10-01",
       "kind": "api"
+    },
+    {
+      "id": "inat-activity-us-ga",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=42652&place_id=23&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Didelphis virginiana in US-GA",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-ga",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2439923&gadmGid=USA.11_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+      "title": "GBIF occurrence search for Didelphis virginiana in US-GA",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
     }
   ],
   "provenance": {
@@ -1117,6 +1184,14 @@
       "confidence": "Medium",
       "derived": true,
       "note": "The article describes defensive behaviour but no scream call text; the description is a judgement."
+    },
+    "vocalizations": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "The open-mouth hiss with bared teeth, jaw-snapping and raised fur, and the male's mating click, are both described in Wikipedia's Behaviour and Reproduction sections; the cooldowns and the night time window are authored judgement."
     }
   },
   "contributors": [

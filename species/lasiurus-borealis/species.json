@@ -170,13 +170,28 @@
         "start": "08-01",
         "end": "10-31",
         "note": "Breeding season starts in the autumn; local males sire the following summer's litter."
+      },
+      {
+        "name": "mating",
+        "start": "09-01",
+        "end": "11-30",
+        "note": "The breeding season starts in the autumn, and multiple males can sire a single litter."
+      },
+      {
+        "name": "absent",
+        "start": "12-01",
+        "end": "04-30",
+        "region": "US-MI",
+        "fraction": 0.9,
+        "note": "In winter the species occurs in the southeastern United States and northeastern Mexico with greatest concentrations in coastal areas, and in spring and summer it can be found in the Great Lakes and Great Plains regions; Michigan stands in here for the Great Lakes part of that statement, which is the northern limit of the summer range."
       }
     ],
     "life_stages": [
       {
         "stage": "Juvenile",
         "duration_days": 30,
-        "scale": 0.4
+        "scale": 0.4,
+        "requires_tag": "perch"
       },
       {
         "stage": "Adult"
@@ -273,6 +288,53 @@
             "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.26_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
             "total": 310,
             "usable": true
+          },
+          "used": [
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "US-GA",
+        "monthly": [
+          0.12,
+          0.15,
+          0.33,
+          0.28,
+          0.51,
+          1.0,
+          0.77,
+          0.37,
+          0.37,
+          0.28,
+          0.1,
+          0.0
+        ],
+        "method": "gbif_share",
+        "observations": 204,
+        "sources": [
+          "gbif-activity-us-ga"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 23,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40522&place_id=23&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=23&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 79,
+            "usable": false
+          },
+          "gbif": {
+            "tier": "C",
+            "area": [
+              "gadmGid",
+              "USA.11_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5218543&gadmGid=USA.11_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.11_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "total": 204,
+            "usable": false
           },
           "used": [
             "gbif"
@@ -465,6 +527,15 @@
       "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
       "accessed": "2026-10-01",
       "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-ga",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5218543&gadmGid=USA.11_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+      "title": "GBIF occurrence search for Lasiurus borealis in US-GA",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
     }
   ],
   "provenance": {
@@ -579,7 +650,8 @@
         "wikipedia-bat"
       ],
       "confidence": "High",
-      "note": "None: this species builds no nest. Pups are born in the autumn breeding season and carried, then hang in foliage and hide in leaf piles rather than in any constructed nest, so the schema's None is the accurate value rather than a cavity or a platform."
+      "note": "None: this species builds no nest. Pups are born in the autumn breeding season and carried, then hang in foliage and hide in leaf piles rather than in any constructed nest, so the schema's None is the accurate value rather than a cavity or a platform.",
+      "derived": true
     },
     "traits.size_class": {
       "sources": [
@@ -640,7 +712,8 @@
         "wikipedia-bat"
       ],
       "confidence": "High",
-      "note": "'Most bats are nocturnal, and many roost in caves or other refuges', and 'Bats are usually nocturnal but are known to exhibit diurnal behaviour in temperate regions during summer to make up for insufficient nighttime feeding'. The named species is a microbat, i.e. one of the echolocating majority, so Nocturnal is recorded."
+      "note": "'Most bats are nocturnal, and many roost in caves or other refuges', and 'Bats are usually nocturnal but are known to exhibit diurnal behaviour in temperate regions during summer to make up for insufficient nighttime feeding'. The named species is a microbat, i.e. one of the echolocating majority, so Nocturnal is recorded.",
+      "derived": true
     },
     "traits.defense": {
       "sources": [
@@ -759,6 +832,12 @@
       "confidence": "Medium",
       "derived": true,
       "note": "Curve from tools/fetch_activity.py at its default min_obs of 300. This is the one record in the oh-sandusky set whose US-OH curve lands on a tier-C, non-commercial source: the species has only 359 GBIF records and 284 iNaturalist observations in Ohio in total, all licences, so neither dataset clears the observation floor for a strictly CC0/CC-BY tier A curve and fetch_activity.py had to fall back to the CC-BY-NC records to build anything at all. Running the fetcher with --min-obs 200 pulls iNaturalist in as a second tier-C source, which was tested and rejected: it doubles the number of tier-4 sources the maintainers would have to isolate later, for a curve that changes the twelve monthly values very little. The shape is robust either way - near zero from November to February, peaking in July - and it agrees with the winter range in seasonal.phases."
+    },
+    "vocalizations": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Deliberately empty. A bat's navigation is by echolocation, which is not one of the schema's vocalisation contexts, and Wikipedia's biology and reproduction sections as used here describe no social call, so none is invented."
     }
   },
   "contributors": [
