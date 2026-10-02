@@ -56,7 +56,34 @@ def test_default_discovery_finds_behaviors_dir(validate_module):
     root = validate_module.default_root()
     result, usage = validate_module.run([], root)
     assert usage == []
-    assert len(result.program_reports) == 4
+    assert len(result.program_reports) == len(list((root / "behaviors").glob("*.json")))
+
+
+def test_hadada_nesting_schedule_matches_breeding_months():
+    import json
+    from pathlib import Path
+
+    root = Path(__file__).resolve().parents[2]
+    behavior = json.loads((root / "behaviors/bt-ground-probing-bird-v1.json").read_text())
+    species = json.loads((root / "species/bostrychia-hagedash/species.json").read_text())
+    months = []
+
+    def find_months(node):
+        if isinstance(node, dict):
+            if "month_in" in node:
+                months.extend(node["month_in"])
+            for value in node.values():
+                find_months(value)
+        elif isinstance(node, list):
+            for value in node:
+                find_months(value)
+
+    find_months(behavior["root"])
+    resolved = [
+        species["behavior"]["params"][month[2:-1]] if isinstance(month, str) and month.startswith("${") else month
+        for month in months
+    ]
+    assert resolved == [10, 11]
 
 
 # ---------------------------------------------------------------------------

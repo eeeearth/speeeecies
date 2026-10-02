@@ -7,7 +7,8 @@
   "common_names": {
     "en": "western terrestrial garter snake",
     "de": "Berg-Strumpfbandnatter",
-    "es": "culebra listonada elegante"
+    "es": "culebra listonada elegante",
+    "fr": "Couleuvre terrestre de l'Ouest"
   },
   "taxonomy": {
     "kingdom": "Animalia",
@@ -33,7 +34,31 @@
     "native": [
       "US",
       "CA",
-      "MX"
+      "MX",
+      "US-CO",
+      "US-WA",
+      "US-OR",
+      "US-CA",
+      "US-NV",
+      "US-ID",
+      "US-MT",
+      "US-WY",
+      "US-UT",
+      "US-AZ",
+      "US-NM",
+      "US-ND",
+      "US-SD",
+      "US-NE",
+      "US-KS",
+      "US-OK",
+      "US-TX",
+      "CA-BC",
+      "CA-AB",
+      "CA-MB"
+    ],
+    "elevation_m": [
+      0,
+      3962
     ]
   },
   "traits": {
@@ -106,12 +131,18 @@
         "tag": "leaf_litter",
         "kind": "Shelter",
         "weight": 0.4
+      },
+      {
+        "tag": "pond",
+        "kind": "Water",
+        "weight": 0.4
       }
     ],
     "human_tolerance": {
       "urban_affinity": "Adapter",
       "uses_gardens": true,
-      "notes": "Occurs in a wide variety of habitats, from grasslands, shrublands and woodlands to coniferous forest, sea level to about 3,960 m, and is a common snake of gardens, lawns, ponds and ditches in settled parts of the western United States."
+      "notes": "Occurs in a wide variety of habitats, from grasslands, shrublands and woodlands to coniferous forest, sea level to about 3,960 m, and is a common snake of gardens, lawns, ponds and ditches in settled parts of the western United States.",
+      "dist_building_min_m": 10
     }
   },
   "seasonal": {
@@ -144,6 +175,19 @@
         "start": "08-01",
         "end": "09-30",
         "note": "Ovoviviparous: broods of eight to twelve young are born in August and September."
+      },
+      {
+        "name": "territorial",
+        "start": "03-15",
+        "end": "05-15",
+        "note": "Spring activity on the surface: the species basks to reach operating temperature before foraging."
+      },
+      {
+        "name": "breeding",
+        "start": "05-01",
+        "end": "09-30",
+        "region": "US-CO",
+        "note": "'The western terrestrial garter snake does not lay eggs, but instead is ovoviviparous, which is characteristic of natricine snakes. Broods of eight to 12 young are born in August and September.' Because the young are born rather than laid, this phase covers the whole active season rather than a courtship window."
       }
     ],
     "life_stages": [
@@ -909,7 +953,8 @@
         "amniote"
       ],
       "confidence": "Medium",
-      "note": "Amniote life-history database adult_body_mass_g = 400 g (median of Behler & King 1979 and Stebbins 2003). Females are much larger than males, and this value sits at the large end of the species' size range."
+      "note": "Amniote life-history database adult_body_mass_g = 400 g (median of Behler & King 1979 and Stebbins 2003). Females are much larger than males, and this value sits at the large end of the species' size range.",
+      "derived": true
     },
     "traits.length_m": {
       "sources": [
@@ -1009,7 +1054,8 @@
         "nps"
       ],
       "confidence": "High",
-      "note": "Brumation (the reptile equivalent of hibernation) in communal hibernacula."
+      "note": "Brumation (the reptile equivalent of hibernation) in communal hibernacula.",
+      "derived": true
     },
     "seasonal.triggers": {
       "sources": [],
@@ -1049,6 +1095,30 @@
       "confidence": "Low",
       "derived": true,
       "note": "Authored bespoke program (fsm-garter-snake-v1). No shared program fits: the ground forager has no basking state and defaults to four-legged gaits, and the other three assume a bird, an anuran or a seabird."
+    },
+    "traits": {
+      "sources": [
+        "wikipedia",
+        "gbif-backbone"
+      ],
+      "confidence": "High",
+      "note": "Covers the structural traits (body plan, limb count, thermoregulation, skin, flight, respiration, metamorphosis, nest_type) and locomotion modes: 'It is primarily terrestrial, although populations in the Great Basin and Rocky Mountains are semi-aquatic', foraging 'both on land and in water' with 'attacks that are both aerial and underwater. These include craning, cruising, and diving'. metamorphosis is None because the species is ovoviviparous - it 'does not lay eggs' - and nest_type is None for the same reason; there is no nest."
+    },
+    "habitat": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Covers shelter_tag and habitat.resources. invertebrate, small_vertebrate and the two water tags come from the Habitat and Diet sections, which place inland populations 'adjacent to fresh water sources such as creeks, rivers, streams, ponds, or lakes'. shelter_tag is shrub_thicket as authored cover: the source names no specific refuge, only that the animal is primarily terrestrial and semi-aquatic. Weights are judgement, not separately sourced percentages."
+    },
+    "vocalizations": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "HONEST GAP: the record carries an empty vocalizations list, which the schema permits for silent species, because the Western terrestrial garter snake article describes no hiss, rattle or other sound. fsm-ground-forager-v1 declares no call parameter, so nothing else in the record depends on it."
     }
   },
   "contributors": [

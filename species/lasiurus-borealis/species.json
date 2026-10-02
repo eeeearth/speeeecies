@@ -5,7 +5,10 @@
   "id": "Lasiurus borealis",
   "slug": "lasiurus-borealis",
   "common_names": {
-    "en": "Eastern Red Bat"
+    "en": "Eastern Red Bat",
+    "fr": "chauve-souris rousse",
+    "es": "murciélago rojo oriental",
+    "de": "Östliche Rote Fledermaus"
   },
   "taxonomy": {
     "kingdom": "Animalia",
@@ -32,6 +35,9 @@
       "US",
       "CA",
       "MX",
+      "BM"
+    ],
+    "introduced": [
       "BM"
     ]
   },
@@ -99,12 +105,22 @@
         "tag": "perch",
         "kind": "Shelter",
         "weight": 0.6
+      },
+      {
+        "tag": "cavity",
+        "kind": "Shelter",
+        "weight": 0.4
       }
     ],
     "human_tolerance": {
       "urban_affinity": "Adapter",
       "uses_gardens": true,
-      "notes": "Widespread across the whole eastern half of the continent, right into cities, and the IUCN records that it tolerates some habitat disturbance. It roosts by hanging in foliage and in leaf piles, so a garden with mature trees and moths overhead suits it, though it is killed in numbers by cars, tall buildings and wind turbines."
+      "notes": "Widespread across the whole eastern half of the continent, right into cities, and the IUCN records that it tolerates some habitat disturbance. It roosts by hanging in foliage and in leaf piles, so a garden with mature trees and moths overhead suits it, though it is killed in numbers by cars, tall buildings and wind turbines.",
+      "impervious_max": 0.4,
+      "dist_building_min_m": 4,
+      "light_max": 0.5,
+      "flight_distance_m": 15,
+      "road_mortality": "High"
     }
   },
   "seasonal": {
@@ -128,13 +144,54 @@
         "end": "02-28",
         "region": "US-OH",
         "note": "Ohio is inside this species' spring and summer range, the Great Lakes and Great Plains region; in winter it occurs in the southeastern United States and northeastern Mexico, with the greatest concentrations in coastal areas. The US-OH activity curve this record carries agrees: it is near zero in November, December, January and February and rises through March and April."
+      },
+      {
+        "name": "absent",
+        "start": "11-01",
+        "end": "04-01",
+        "note": "'In the winter, it occurs in the southeastern United States and northeastern Mexico, with greatest concentrations in coastal areas'; Missouri bats are absent from late autumn to early spring."
+      },
+      {
+        "name": "flocking",
+        "start": "04-01",
+        "end": "05-15",
+        "region": "US-MO",
+        "note": "Return to the eastern United States; leaf litter and tree canopies are the main roosts."
+      },
+      {
+        "name": "young",
+        "start": "05-01",
+        "end": "07-31",
+        "region": "US-MO",
+        "note": "Pups are born between May and July, average three to a litter; they learn to fly about a month after being born, after which they are weaned."
+      },
+      {
+        "name": "territorial",
+        "start": "08-01",
+        "end": "10-31",
+        "note": "Breeding season starts in the autumn; local males sire the following summer's litter."
+      },
+      {
+        "name": "mating",
+        "start": "09-01",
+        "end": "11-30",
+        "note": "The breeding season starts in the autumn, and multiple males can sire a single litter."
+      },
+      {
+        "name": "absent",
+        "start": "12-01",
+        "end": "04-30",
+        "region": "US-MI",
+        "fraction": 0.9,
+        "note": "In winter the species occurs in the southeastern United States and northeastern Mexico with greatest concentrations in coastal areas, and in spring and summer it can be found in the Great Lakes and Great Plains regions; Michigan stands in here for the Great Lakes part of that statement, which is the northern limit of the summer range."
       }
     ],
     "life_stages": [
       {
         "stage": "Juvenile",
         "duration_days": 30,
-        "scale": 0.4
+        "scale": 0.4,
+        "requires_tag": "perch"
       },
       {
         "stage": "Adult"
@@ -184,6 +241,100 @@
             "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.36_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
             "total": 359,
             "usable": true
+          },
+          "used": [
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "US-MO",
+        "monthly": [
+          0.06,
+          0.02,
+          0.19,
+          0.43,
+          0.3,
+          0.63,
+          0.57,
+          1.0,
+          0.47,
+          0.2,
+          0.15,
+          0.02
+        ],
+        "method": "gbif_share",
+        "observations": 310,
+        "sources": [
+          "gbif-activity-us-mo"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 28,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40522&place_id=28&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=28&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 141,
+            "usable": false
+          },
+          "gbif": {
+            "tier": "C",
+            "area": [
+              "gadmGid",
+              "USA.26_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5218543&gadmGid=USA.26_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.26_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "total": 310,
+            "usable": true
+          },
+          "used": [
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "US-GA",
+        "monthly": [
+          0.12,
+          0.15,
+          0.33,
+          0.28,
+          0.51,
+          1.0,
+          0.77,
+          0.37,
+          0.37,
+          0.28,
+          0.1,
+          0.0
+        ],
+        "method": "gbif_share",
+        "observations": 204,
+        "sources": [
+          "gbif-activity-us-ga"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 23,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40522&place_id=23&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=23&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 79,
+            "usable": false
+          },
+          "gbif": {
+            "tier": "C",
+            "area": [
+              "gadmGid",
+              "USA.11_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5218543&gadmGid=USA.11_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.11_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "total": 204,
+            "usable": false
           },
           "used": [
             "gbif"
@@ -348,6 +499,43 @@
       "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
       "accessed": "2026-10-01",
       "kind": "api"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=180016",
+      "title": "ITIS: Lasiurus borealis, TSN 180016",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "eltontraits",
+      "url": "https://doi.org/10.6084/m9.figshare.3559887.v1",
+      "title": "EltonTraits 1.0: species-level foraging attributes of the world's birds and mammals (BirdFuncDat)",
+      "license": "CC0-1.0",
+      "kind": "dataset",
+      "accessed": "2026-10-01",
+      "attribution": "Wilman, H. et al. (2014) EltonTraits 1.0. Ecology 95:2027",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "gbif-activity-us-mo",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5218543&gadmGid=USA.26_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+      "title": "GBIF occurrence search for Lasiurus borealis in US-MO",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-ga",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5218543&gadmGid=USA.11_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+      "title": "GBIF occurrence search for Lasiurus borealis in US-GA",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
     }
   ],
   "provenance": {
@@ -356,7 +544,8 @@
         "gbif-backbone",
         "us-itis"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "note": "GBIF backbone and ITIS TSN 180016; described by Müller in 1776 as Vespertilio borealis."
     },
     "external": {
       "sources": [
@@ -431,7 +620,8 @@
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "note": "Powered flight on long pointed wings."
     },
     "traits.respiration": {
       "sources": [
@@ -443,7 +633,8 @@
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "note": "Born as a pup attached to the mother; no metamorphosis."
     },
     "traits.perching": {
       "sources": [
@@ -459,7 +650,8 @@
         "wikipedia-bat"
       ],
       "confidence": "High",
-      "note": "None: this species builds no nest. Pups are born in the autumn breeding season and carried, then hang in foliage and hide in leaf piles rather than in any constructed nest, so the schema's None is the accurate value rather than a cavity or a platform."
+      "note": "None: this species builds no nest. Pups are born in the autumn breeding season and carried, then hang in foliage and hide in leaf piles rather than in any constructed nest, so the schema's None is the accurate value rather than a cavity or a platform.",
+      "derived": true
     },
     "traits.size_class": {
       "sources": [
@@ -520,7 +712,8 @@
         "wikipedia-bat"
       ],
       "confidence": "High",
-      "note": "'Most bats are nocturnal, and many roost in caves or other refuges', and 'Bats are usually nocturnal but are known to exhibit diurnal behaviour in temperate regions during summer to make up for insufficient nighttime feeding'. The named species is a microbat, i.e. one of the echolocating majority, so Nocturnal is recorded."
+      "note": "'Most bats are nocturnal, and many roost in caves or other refuges', and 'Bats are usually nocturnal but are known to exhibit diurnal behaviour in temperate regions during summer to make up for insufficient nighttime feeding'. The named species is a microbat, i.e. one of the echolocating majority, so Nocturnal is recorded.",
+      "derived": true
     },
     "traits.defense": {
       "sources": [
@@ -639,11 +832,21 @@
       "confidence": "Medium",
       "derived": true,
       "note": "Curve from tools/fetch_activity.py at its default min_obs of 300. This is the one record in the oh-sandusky set whose US-OH curve lands on a tier-C, non-commercial source: the species has only 359 GBIF records and 284 iNaturalist observations in Ohio in total, all licences, so neither dataset clears the observation floor for a strictly CC0/CC-BY tier A curve and fetch_activity.py had to fall back to the CC-BY-NC records to build anything at all. Running the fetcher with --min-obs 200 pulls iNaturalist in as a second tier-C source, which was tested and rejected: it doubles the number of tier-4 sources the maintainers would have to isolate later, for a curve that changes the twelve monthly values very little. The shape is robust either way - near zero from November to February, peaking in July - and it agrees with the winter range in seasonal.phases."
+    },
+    "vocalizations": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Deliberately empty. A bat's navigation is by echolocation, which is not one of the schema's vocalisation contexts, and Wikipedia's biology and reproduction sections as used here describe no social call, so none is invented."
     }
   },
   "contributors": [
     {
       "name": "speeeecies maintainers",
+      "agent": "claude-code"
+    },
+    {
+      "name": "speeeecies contributors",
       "agent": "claude-code"
     }
   ]
