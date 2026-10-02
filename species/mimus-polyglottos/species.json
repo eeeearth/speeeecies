@@ -5,7 +5,10 @@
   "id": "Mimus polyglottos",
   "slug": "mimus-polyglottos",
   "common_names": {
-    "en": "northern mockingbird"
+    "en": "Northern mockingbird",
+    "fr": "Moqueur polyglotte",
+    "de": "Gartenspottdrossel",
+    "es": "sinsonte norteño"
   },
   "taxonomy": {
     "kingdom": "Animalia",
@@ -14,33 +17,60 @@
     "order": "Passeriformes",
     "family": "Mimidae",
     "genus": "Mimus",
-    "authority": "Linnaeus, 1758",
+    "authority": "(Linnaeus, 1758)",
     "status": "Accepted"
   },
   "external": {
     "gbif_usage_key": 5231677,
     "inat_taxon_id": 14886,
     "itis_tsn": 178620,
-    "wikidata": "Q829683"
+    "wikidata": "Q829683",
+    "ncbi_taxon_id": 60713,
+    "ebird_code": "normoc"
   },
   "conservation": {
     "iucn": "LC"
   },
   "range": {
     "native": [
-      "US",
       "CA",
-      "MX"
+      "US",
+      "MX",
+      "BS",
+      "CU",
+      "KY",
+      "JM",
+      "HT",
+      "DO",
+      "PR",
+      "GT"
+    ],
+    "koppen": [
+      "Cfa",
+      "Cwa",
+      "Csa",
+      "BSh",
+      "BWh",
+      "Aw",
+      "Cfb",
+      "BSk",
+      "Dfa"
+    ],
+    "introduced": [
+      "BB",
+      "SH",
+      "PF",
+      "VI",
+      "BM",
+      "US-HI"
     ]
   },
   "traits": {
     "body_plan": "Vertebrate",
     "limb_count": 2,
     "locomotion_modes": [
-      "Walk",
       "Hop",
-      "Fly",
-      "Glide"
+      "Fly"
     ],
     "thermoregulation": "Endotherm",
     "skin": "Feathers",
@@ -50,54 +80,67 @@
     "nest_type": "Cup",
     "perching": true,
     "size_class": "Tiny",
-    "mass_kg": 0.049,
+    "mass_kg": 0.0485,
     "mass_range_kg": [
       0.04,
       0.058
     ],
-    "length_m": 0.28,
-    "wingspan_m": 0.38,
+    "length_m": 0.2425,
+    "wingspan_m": 0.345,
     "lifespan_y": 8.0,
     "diet": {
       "invertebrate": 0.5,
-      "fruit": 0.35,
-      "seed": 0.15
+      "fruit": 0.45,
+      "seed": 0.05
     },
     "social": {
       "structure": "Pair",
       "group_size": [
-        2,
-        4
+        1,
+        2
       ]
     },
     "activity_pattern": "Diurnal",
-    "defense": "Flee",
-    "wariness": 0.3
+    "defense": "Mob",
+    "wariness": 0.25
   },
   "habitat": {
     "use": {
-      "ground": 0.65,
-      "arboreal": 0.35
+      "ground": 0.7,
+      "arboreal": 0.3
     },
     "shelter_tag": "shrub_thicket",
     "resources": [
       {
         "tag": "invertebrate",
         "kind": "Predation",
-        "weight": 0.5,
+        "weight": 0.75,
         "months": [
+          3,
           4,
           5,
           6,
           7,
-          8,
-          9
+          8
         ]
       },
       {
         "tag": "fruit",
         "kind": "Herbivory",
-        "weight": 0.25,
+        "weight": 0.55,
+        "months": [
+          9,
+          10,
+          11,
+          12,
+          1,
+          2
+        ]
+      },
+      {
+        "tag": "berry",
+        "kind": "Herbivory",
+        "weight": 0.45,
         "months": [
           9,
           10,
@@ -110,12 +153,14 @@
       {
         "tag": "seed",
         "kind": "Herbivory",
-        "weight": 0.15
-      },
-      {
-        "tag": "nest_cup",
-        "kind": "Nesting",
-        "weight": 0.7
+        "weight": 0.1,
+        "months": [
+          10,
+          11,
+          12,
+          1,
+          2
+        ]
       },
       {
         "tag": "perch",
@@ -125,29 +170,161 @@
       {
         "tag": "shrub_thicket",
         "kind": "Shelter",
-        "weight": 0.6
+        "weight": 0.8
+      },
+      {
+        "tag": "nest_cup",
+        "kind": "Nesting",
+        "weight": 1.0,
+        "months": [
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      {
+        "tag": "small_vertebrate",
+        "kind": "Predation",
+        "weight": 0.05
+      },
+      {
+        "tag": "water",
+        "kind": "Water",
+        "weight": 0.5
       }
     ],
+    "suitability": {
+      "curves": [
+        {
+          "covariate": "resource:invertebrate",
+          "curve": [
+            [
+              0,
+              0.25
+            ],
+            [
+              2,
+              0.8
+            ],
+            [
+              5,
+              1.0
+            ]
+          ],
+          "weight": 1.0
+        },
+        {
+          "covariate": "resource:berry",
+          "curve": [
+            [
+              0,
+              0.35
+            ],
+            [
+              2,
+              0.85
+            ],
+            [
+              5,
+              1.0
+            ]
+          ],
+          "weight": 0.7
+        },
+        {
+          "covariate": "canopy",
+          "curve": [
+            [
+              0,
+              0.55
+            ],
+            [
+              0.35,
+              1.0
+            ],
+            [
+              0.85,
+              0.65
+            ]
+          ],
+          "weight": 0.6
+        },
+        {
+          "covariate": "impervious",
+          "curve": [
+            [
+              0,
+              0.9
+            ],
+            [
+              0.45,
+              1.0
+            ],
+            [
+              0.85,
+              0.45
+            ]
+          ],
+          "weight": 0.5
+        }
+      ],
+      "combine": "WeightedMean"
+    },
     "human_tolerance": {
-      "urban_affinity": "Exploiter",
+      "urban_affinity": "Adapter",
+      "impervious_max": 0.85,
+      "light_max": 0.9,
+      "noise_max": 0.8,
+      "flight_distance_m": 5,
+      "road_mortality": "Medium",
       "uses_gardens": true,
-      "notes": "A familiar bird in residential areas across the southern United States, singing by day and often through the night in artificially lit streets; it mimics car alarms, unoiled wheels and other artificial sounds as well as birds."
+      "notes": "Common in urbanized open areas, especially eastern parks and gardens with mowed lawns, shrubs for shade and nesting, and short grass for ground foraging; bold nest defense can include attacks on people, cats and dogs. Often sings at night under artificial light."
     }
   },
   "seasonal": {
-    "strategy": "ActiveYearRound",
+    "strategy": "PartialMigration",
+    "winter_fraction": 0.95,
     "phases": [
       {
         "name": "breeding",
-        "start": "04-01",
-        "end": "08-31",
-        "note": "Pairs hatch about two to four broods a year; the female lays three to five eggs and incubates them for nearly two weeks (about 11 to 14 days), and both parents feed the chicks. Parental belligerence increases once the eggs hatch but not during the egg stage."
+        "start": "03-01",
+        "end": "07-31",
+        "region": "US",
+        "note": "Spring and early-summer breeding in the core United States range; exact month-day bounds are judgement around the described season."
       },
       {
         "name": "territorial",
-        "start": "01-01",
-        "end": "12-31",
-        "note": "Males patrol a defended territory through the year, and the song is given day and night, so territorial display is not confined to the breeding season."
+        "start": "08-01",
+        "end": "02-28",
+        "note": "Adults are mostly permanent residents and defend feeding and breeding areas; northern birds may move south in winter weather."
+      },
+      {
+        "name": "absent",
+        "start": "11-15",
+        "end": "03-15",
+        "region": "CA",
+        "fraction": 0.25,
+        "note": "A small northern share may shift south in inclement weather; fraction and dates are conservative judgement for northern Canada only."
+      },
+      {
+        "name": "nesting",
+        "start": "04-01",
+        "end": "08-31",
+        "note": "Judgement: the article describes several nests per breeding season, an average clutch of four eggs and nestling development to leaving the nest in 11 to 13 days, but dates no season, so late spring to late summer is authored."
+      },
+      {
+        "name": "breeding",
+        "start": "04-01",
+        "end": "08-15",
+        "note": "Judgement window around 'The breeding season occurs in the spring and early summer' and 'about two to four broods a year', with the male singing hardest at its start to attract females."
+      },
+      {
+        "name": "flocking",
+        "start": "08-16",
+        "end": "02-14",
+        "note": "Judgement window: post-breeding dispersal and winter, when 'birds that live in the northern portion of its range often move south during the winter season' and the diet 'takes a drastic shift to fruits during the fall and winter'."
       }
     ],
     "life_stages": [
@@ -157,8 +334,8 @@
       {
         "stage": "Juvenile",
         "duration_days": 60,
-        "scale": 0.75,
-        "requires_tag": "nest_cup"
+        "requires_tag": "nest_cup",
+        "scale": 0.85
       },
       {
         "stage": "Adult"
@@ -167,6 +344,251 @@
   },
   "activity": {
     "regions": [
+      {
+        "region": "US-LA",
+        "monthly": [
+          0.7,
+          0.82,
+          0.85,
+          0.67,
+          0.74,
+          1.0,
+          0.76,
+          0.7,
+          0.64,
+          0.69,
+          0.65,
+          0.76
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 257661,
+        "sources": [
+          "inat-activity-us-la",
+          "gbif-activity-us-la"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 27,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=14886&place_id=27&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=27&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "total": 610,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.19_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5231677&gadmGid=USA.19_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.19_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 257051,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "US-AL",
+        "monthly": [
+          0.74,
+          0.92,
+          1.0,
+          0.88,
+          0.77,
+          0.88,
+          0.93,
+          0.7,
+          0.78,
+          0.99,
+          0.81,
+          0.7
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 227791,
+        "sources": [
+          "inat-activity-us-al",
+          "gbif-activity-us-al"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 19,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=14886&place_id=19&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=19&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 3653,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.1_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5231677&gadmGid=USA.1_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.1_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 224138,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "US-AR",
+        "monthly": [
+          0.72,
+          0.84,
+          0.89,
+          0.79,
+          0.68,
+          0.9,
+          0.97,
+          0.72,
+          0.7,
+          1.0,
+          0.79,
+          0.77
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 113610,
+        "sources": [
+          "inat-activity-us-ar",
+          "gbif-activity-us-ar"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 36,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=14886&place_id=36&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=36&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 1427,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.4_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5231677&gadmGid=USA.4_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.4_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 112183,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "US-NJ",
+        "monthly": [
+          0.79,
+          0.69,
+          0.76,
+          0.83,
+          0.57,
+          0.8,
+          0.83,
+          0.75,
+          0.81,
+          0.84,
+          0.94,
+          1.0
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 379210,
+        "sources": [
+          "inat-activity-us-nj",
+          "gbif-activity-us-nj"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 51,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=14886&place_id=51&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=51&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "total": 394,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.31_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5231677&gadmGid=USA.31_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.31_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 378816,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "US-OK",
+        "monthly": [
+          0.61,
+          0.69,
+          0.67,
+          0.66,
+          0.67,
+          0.93,
+          1.0,
+          0.7,
+          0.56,
+          0.66,
+          0.5,
+          0.57
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 98133,
+        "sources": [
+          "inat-activity-us-ok",
+          "gbif-activity-us-ok"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 12,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=14886&place_id=12&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=12&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 1492,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.37_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5231677&gadmGid=USA.37_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.37_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 96641,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
       {
         "region": "US-GA",
         "monthly": [
@@ -221,13 +643,13 @@
   "behavior": {
     "program": "bt-perching-songbird-v1",
     "params": {
-      "flee_m": 6,
+      "flee_m": 5,
       "food_tag": "invertebrate",
       "song": "song",
       "alarm": "alarm",
       "song_cooldown_s": 8,
-      "nest_m1": 4,
-      "nest_m2": 8
+      "nest_m1": 3,
+      "nest_m2": 7
     }
   },
   "vocalizations": [
@@ -236,87 +658,188 @@
       "context": "Song",
       "season_months": [],
       "time_windows": [
+        "DawnChorus",
         "Day",
+        "Dusk",
         "Night"
       ],
       "cooldown_s": 8,
       "loudness": "Loud",
-      "description": "Long strings of varied phrases copied from other birds and from animals and artificial sources, including cats, dogs, frogs, crickets, unoiled wheels and car alarms. Imitation often fails to fool other birds even when convincing to humans, and it is used in male display and in territorial defence."
+      "description": "Long, varied musical phrases repeated several times, incorporating imitations of other birds and artificial sounds; unmated males may sing at night."
     },
     {
       "call_id": "alarm",
       "context": "Alarm",
       "season_months": [],
-      "time_windows": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day",
+        "Dusk"
+      ],
+      "cooldown_s": 5,
+      "loudness": "Loud",
+      "description": "Sharp scolding and nest-defense calls used against persistent predators, often summoning nearby mockingbirds to mob an intruder."
+    },
+    {
+      "call_id": "mimicry",
+      "context": "Song",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day",
+        "Dusk",
+        "Night"
+      ],
+      "cooldown_s": 20,
+      "loudness": "Loud",
+      "description": "Mimicked bird calls and mechanical noises woven into the song repertoire; the scientific name reflects this many-tongued mimicry."
+    },
+    {
+      "call_id": "contact",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [
+        "Day",
+        "Dusk"
+      ],
+      "cooldown_s": 15,
+      "loudness": "Moderate",
+      "description": "Short calls exchanged by mates and neighboring birds during territorial and breeding interactions."
+    },
+    {
+      "call_id": "hew",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Day",
+        "DawnChorus",
+        "Dusk"
+      ],
       "cooldown_s": 10,
       "loudness": "Loud",
-      "description": "The 'hew' call, used by both sexes against potential nest predators, for chasing conspecifics and in interactions between mates. Of four recognised calls - nest relief, hew, chat or chatburst, and begging - chats are year-round while chatbursts occur only in the fall."
+      "description": "One of four recognised calls; used by both sexes against nest predators, in conspecific chasing and in various interactions between mates."
+    },
+    {
+      "call_id": "chat",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 8,
+      "loudness": "Loud",
+      "description": "The chat or chatburst call, given when the birds aggressively defend their nests and surrounding area against other birds and animals."
+    },
+    {
+      "call_id": "call",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day",
+        "Dusk",
+        "Night"
+      ],
+      "cooldown_s": 5,
+      "loudness": "Loud",
+      "description": "Distinct calls given when a nest or the surrounding area is threatened, which neighbouring mockingbirds answer and come in on: 'When a predator is persistent, mockingbirds from neighbouring territories may be summoned by distinct calls to join the defence.'"
+    },
+    {
+      "call_id": "churr",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 4,
+      "loudness": "Loud",
+      "description": "A harsh, rasping churr or chat given when a cat, hawk or other intruder approaches a nest or fledgling; the bird may also dive at the intruder."
     }
   ],
   "look": {
     "body_plan": "biped_winged",
     "proportions": {
-      "torso_aspect": 1.5,
-      "leg_length_ratio": 0.4,
+      "torso_aspect": 1.65,
+      "leg_length_ratio": 0.48,
       "head_scale": 0.78,
       "neck_angle_deg": 15,
-      "tail_ratio": 0.85,
-      "wing_aspect": 2.4,
-      "beak_ratio": 0.32,
+      "tail_ratio": 0.95,
+      "wing_aspect": 3.0,
+      "beak_ratio": 0.45,
       "girth_ratio": 0.95
     },
     "palette": {
-      "body": "#8e8b84",
-      "belly": "#eae6dc",
-      "markings": "#2b2926",
-      "accent": "#c9c5bb",
-      "eye": "#101010"
+      "body": "#7d7d78",
+      "belly": "#e7e4dc",
+      "markings": "#f4f1e8",
+      "accent": "#2f3134",
+      "eye": "#111111"
     },
     "part_colors": {
-      "head": "markings",
       "breast": "belly",
-      "beak": "markings",
-      "wing_left": "body",
-      "wing_right": "body"
+      "wing_*": "body",
+      "tail": "accent",
+      "beak": "eye",
+      "leg_*": "accent"
     },
     "extra_parts": [
       {
-        "name": "shoulder_patch",
+        "name": "wing_patch",
         "parent": "wing_left",
         "offset": [
-          0.1,
-          0,
-          0.4
+          0.05,
+          0.0,
+          0.0
         ],
         "size": [
-          0.8,
-          0.12,
-          0.9
+          0.7,
+          0.22,
+          1.03
         ],
-        "color": "accent"
+        "color": "markings",
+        "mirror": true
       },
       {
-        "name": "wing_bars",
-        "parent": "wing_left_outer",
+        "name": "tail_edge",
+        "parent": "tail",
         "offset": [
-          0.1,
-          0,
-          0
+          0.15,
+          0.0,
+          0.0
         ],
         "size": [
-          0.85,
-          0.1,
+          0.45,
+          0.55,
           1.05
         ],
-        "color": "accent"
+        "color": "markings"
+      },
+      {
+        "name": "pale_throat",
+        "parent": "head",
+        "offset": [
+          0.28,
+          -0.22,
+          0.0
+        ],
+        "size": [
+          0.42,
+          0.28,
+          0.82
+        ],
+        "color": "belly"
       }
     ],
     "poses": {
       "idle": {},
-      "walk": {},
-      "hop": {},
-      "fly": {},
-      "glide": {},
+      "hop": {
+        "cycle_s": 0.55,
+        "amplitude": 0.9
+      },
+      "fly": {
+        "cycle_s": 0.8,
+        "amplitude": 1.15
+      },
       "perched": {},
       "rest": {}
     }
@@ -328,17 +851,37 @@
       "title": "GBIF Backbone Taxonomy: Mimus polyglottos",
       "license": "CC-BY-4.0",
       "kind": "database",
-      "accessed": "2026-10-01",
+      "accessed": "2026-09-30",
       "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "gbif-match",
+      "url": "https://api.gbif.org/v1/species/match?name=Mimus%20polyglottos",
+      "title": "GBIF species match: Mimus polyglottos",
+      "license": "CC-BY-4.0",
+      "kind": "api",
+      "accessed": "2026-09-30",
+      "attribution": "GBIF.org species match API, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "inat-taxon",
+      "url": "https://api.inaturalist.org/v1/taxa/14886",
+      "title": "iNaturalist taxon: Mimus polyglottos",
+      "license": "CC-BY-4.0",
+      "kind": "api",
+      "accessed": "2026-09-30",
+      "attribution": "iNaturalist contributors, taxon data via the iNaturalist API",
       "license_url": "https://creativecommons.org/licenses/by/4.0/"
     },
     {
       "id": "wikidata",
       "url": "https://www.wikidata.org/wiki/Q829683",
-      "title": "Wikidata: northern mockingbird (Q829683)",
+      "title": "Wikidata: Mimus polyglottos (Q829683)",
       "license": "CC0-1.0",
       "kind": "database",
-      "accessed": "2026-10-01",
+      "accessed": "2026-09-30",
       "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
     },
     {
@@ -347,18 +890,137 @@
       "title": "Wikipedia: Northern mockingbird",
       "license": "CC-BY-SA-4.0",
       "kind": "webpage",
-      "accessed": "2026-10-01",
+      "accessed": "2026-09-30",
       "attribution": "Wikipedia contributors, \"Northern mockingbird\", English Wikipedia, CC BY-SA 4.0",
       "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
     },
     {
       "id": "itis",
-      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=178620",
+      "url": "https://www.itis.gov/ITISWebService/jsonservice/getFullRecordFromTSN?tsn=178620",
       "title": "ITIS: Mimus polyglottos, TSN 178620",
       "license": "public-domain",
       "kind": "database",
-      "accessed": "2026-10-01",
+      "accessed": "2026-09-30",
       "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "ncbi-taxonomy",
+      "url": "https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=60713",
+      "title": "NCBI Taxonomy Browser: Mimus polyglottos",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-09-30",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "eltontraits",
+      "url": "https://esapubs.org/archive/ecol/E095/178/BirdFuncDat.txt",
+      "title": "EltonTraits 1.0: BirdFuncDat species-level foraging attributes",
+      "license": "CC0-1.0",
+      "kind": "dataset",
+      "accessed": "2026-09-30",
+      "attribution": "Wilman, H. et al. (2014) EltonTraits 1.0. Ecology 95:2027",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "eltontraits-archive",
+      "url": "https://esapubs.org/archive/ecol/E095/178/",
+      "title": "Ecological Archives E095-178: EltonTraits 1.0 data files and metadata",
+      "license": "CC0-1.0",
+      "kind": "dataset",
+      "accessed": "2026-09-30",
+      "attribution": "Wilman, H. et al. (2014) EltonTraits 1.0. Ecology 95:2027",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "inat-activity-us-la",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=14886&place_id=27&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Mimus polyglottos in US-LA",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-la",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5231677&gadmGid=USA.19_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Mimus polyglottos in US-LA",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "inat-activity-us-al",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=14886&place_id=19&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Mimus polyglottos in US-AL",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-al",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5231677&gadmGid=USA.1_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Mimus polyglottos in US-AL",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "inat-activity-us-ar",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=14886&place_id=36&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Mimus polyglottos in US-AR",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-ar",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5231677&gadmGid=USA.4_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Mimus polyglottos in US-AR",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "inat-activity-us-nj",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=14886&place_id=51&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Mimus polyglottos in US-NJ",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-nj",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5231677&gadmGid=USA.31_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Mimus polyglottos in US-NJ",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "inat-activity-us-ok",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=14886&place_id=12&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Mimus polyglottos in US-OK",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-ok",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5231677&gadmGid=USA.37_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Mimus polyglottos in US-OK",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
     },
     {
       "id": "inat-activity-us-ga",
@@ -383,49 +1045,101 @@
     "taxonomy": {
       "sources": [
         "gbif-backbone",
+        "gbif-match",
         "itis"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "Linnaeus 1758, Mimus polyglottos - 'first described this species in his Systema Naturae in 1758'; family Mimidae per the GBIF backbone and ITIS TSN 178620."
     },
-    "external": {
+    "external.gbif_usage_key": {
       "sources": [
         "gbif-backbone",
-        "wikidata",
-        "itis"
+        "gbif-match"
       ],
       "confidence": "High"
     },
-    "common_names": {
+    "external.inat_taxon_id": {
       "sources": [
+        "inat-taxon"
+      ],
+      "confidence": "High",
+      "note": "API response id 14886 resolves to Mimus polyglottos."
+    },
+    "external.itis_tsn": {
+      "sources": [
+        "itis",
         "wikidata"
       ],
       "confidence": "High"
     },
-    "conservation": {
+    "external.wikidata": {
       "sources": [
+        "wikidata",
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Wikipedia's speciesbox gives the IUCN 3.1 status least concern."
+      "note": "English Wikipedia sitelink points to Q829683."
+    },
+    "external.ncbi_taxon_id": {
+      "sources": [
+        "wikidata",
+        "ncbi-taxonomy"
+      ],
+      "confidence": "High",
+      "note": "Wikidata P685 gives NCBI taxon id 60713."
+    },
+    "external.ebird_code": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "Wikidata P3444 gives eBird code normoc."
+    },
+    "common_names": {
+      "sources": [
+        "wikidata",
+        "itis",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "en/fr/es labels; the English name follows the Wikipedia article title, the fr/es labels the Wikidata sitelink titles."
+    },
+    "conservation": {
+      "sources": [
+        "wikidata",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Wikidata P141 and Wikipedia both list least concern.",
+      "derived": true
     },
     "range": {
       "sources": [
-        "wikipedia"
+        "wikipedia",
+        "itis",
+        "inat-taxon"
       ],
       "confidence": "Medium",
-      "note": "Wikipedia's range map legend distinguishes breeding summer visitors in the north, breeding residents in the south and non-breeding winter visitors further south, covering the United States, Mexico and Central America. Only the United States, Canada and Mexico are listed here, as the three countries where the article describes breeding or resident populations; the Central American wintering range is not itemised country by country."
+      "derived": true,
+      "note": "Country list derived from breeding/native descriptions: southeastern Canada, continental United States south of the northern Plains/Pacific Northwest, most of Mexico, the Bahamas, Greater Antilles, Cayman and Virgin Islands. Country-level schema cannot distinguish introduced Hawaii from native continental United States, so introduced Hawaii is omitted."
     },
     "traits.body_plan": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "Vertebrate, chordate, feathered, endothermic bird."
     },
     "traits.limb_count": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "Biped: two legs, the forelimbs modified as wings."
     },
     "traits.locomotion_modes": {
       "sources": [
@@ -433,182 +1147,308 @@
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "Wikipedia describes ground foraging on lawns and around buildings and perching on wires, shrubs and trees, with flight between them; walking and short hops are the authored mapping of that ground foraging, and gliding follows from the long tail and wing shape."
+      "note": "Forages on the ground and in vegetation, with hop-like ground displays and flight from perches; mapped to Hop and Fly."
     },
     "traits.thermoregulation": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "Endotherm: a bird that is 'typically a permanent resident across much of its range' and sings for long stretches."
     },
     "traits.skin": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "Feathers: plumage described in detail in the Description section."
     },
     "traits.flight": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "Powered flight: 'The males also engage in flight to showcase their wings', and it 'screams if it sees a predator' from the air in the account of nest defence."
     },
     "traits.respiration": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "Lungs: an avian respiratory system."
     },
     "traits.metamorphosis": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "None: 'the juvenile appearance is marked by its streaks on its back, distinguished spots and streaks on its chest', a hatchling plumage rather than a metamorphic stage."
     },
     "traits.nest_type": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "Low",
-      "derived": true,
-      "note": "Wikipedia describes the species as a territorial perching songbird that builds a nest and defends it against predators, and describes altricial chicks, but does not describe the nest structure in the sections used here; Cup is authored judgement from the perching-songbird habit."
+      "confidence": "High",
+      "note": "Nest built in shrubs or trees; outer twigs with an inner lining, mapped to Cup.",
+      "derived": true
     },
     "traits.perching": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "note": "Sings from elevated perches and flies down from a perch to capture food.",
+      "derived": true
     },
     "traits.size_class": {
       "sources": [
-        "wikipedia"
+        "eltontraits"
       ],
       "confidence": "High",
       "derived": true,
-      "note": "From mass_kg."
+      "note": "From mass_kg below 0.05 kg threshold."
     },
     "traits.mass_kg": {
       "sources": [
+        "eltontraits",
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Midpoint of Wikipedia's 40-58 g body mass range."
+      "note": "EltonTraits BodyMass-Value 48.5 g; Wikipedia range 40-58 g.",
+      "derived": true
     },
     "traits.mass_range_kg": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "note": "40-58 g converted to kg.",
+      "derived": true
     },
     "traits.length_m": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Midpoint of Wikipedia's 20.5-28 cm total length, which includes a tail almost as long as the body."
+      "derived": true,
+      "note": "Midpoint of 20.5-28 cm converted to metres."
     },
     "traits.wingspan_m": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Midpoint of Wikipedia's 31-38 cm wingspan."
+      "derived": true,
+      "note": "Midpoint of 31-38 cm converted to metres."
     },
     "traits.lifespan_y": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "Medium",
-      "note": "Wikipedia gives a lifespan observed up to 8 years in the wild, with captive birds living up to 20. No typical wild value is given, so the observed wild maximum is used and flagged here."
+      "note": "Observed lifespan up to 8 years in wild; captive birds can live up to 20 years. Wild observed value used.",
+      "derived": true
     },
     "traits.diet": {
       "sources": [
+        "eltontraits",
         "wikipedia"
       ],
       "confidence": "High",
       "derived": true,
-      "note": "Wikipedia lists arthropods, earthworms, berries, fruits, seeds and occasionally flowers, small crustaceans and lizards, and states the diet is heavily animal prey in the breeding season with a drastic shift to fruits in fall and winter. The 50/35/15 split of invertebrate/fruit/seed is authored judgement across that seasonal shift."
+      "note": "EltonTraits row: Diet-Inv 50, Diet-Fruit 50. A small seed share is split out from the fruit half because Wikipedia explicitly lists seeds; fruit reduced to keep the sum at 1."
     },
     "traits.social": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "Medium",
-      "note": "Territorial, with males patrolling and both parents feeding a brood; Pair is the mapping. The group-size upper bound is authored judgement, as some birds associate in small groups."
+      "derived": true,
+      "note": "Socially monogamous pairs can remain together for years; solitary outside pair interactions is represented as group_size 1-2."
     },
     "traits.activity_pattern": {
       "sources": [
+        "eltontraits",
         "wikipedia"
       ],
-      "confidence": "Medium",
-      "note": "Wikipedia describes daytime song and display and notes that the song is also given at night in artificially lit streets; Diurnal is the judgement mapping of its main activity."
+      "confidence": "High",
+      "note": "EltonTraits Nocturnal=0; Wikipedia describes daytime foraging and singing, with some night song under artificial light.",
+      "derived": true
     },
     "traits.defense": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "Medium",
+      "confidence": "High",
       "derived": true,
-      "note": "The 'hew' call is used against nest predators and conspecifics, and both parents defend the nest; fleeing from a threat is the authored mapping to the schema's single-value field."
+      "note": "Aggressively defends nests, harasses cats, dogs, humans and larger birds; mapped to Mob."
     },
     "traits.wariness": {
-      "sources": [],
-      "confidence": "Low",
-      "derived": true,
-      "note": "Judgement: unafraid in residential streets and gardens, foraging close to people, but it attacks predators near the nest."
-    },
-    "habitat.use": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "The ground share follows the described lawn and building-side ground foraging for insects; the arboreal share covers perching, display and nesting."
+      "note": "Judgement: common in urbanized areas and bold near nests, but still flees/mobs rather than tolerating close approach."
+    },
+    "habitat.use": {
+      "sources": [
+        "eltontraits",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "EltonTraits ForStrat-ground 70 and ForStrat-understory 30; Wikipedia says forages on the ground or in vegetation and flies down from perches.",
+      "derived": true
     },
     "habitat.shelter_tag": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "Low",
+      "confidence": "Medium",
       "derived": true,
-      "note": "Authored judgement: a shrub thicket is the nearest matching shelter for a territorial perching songbird that nests low."
+      "note": "Prefers open areas with shrubs nearby for shade and nesting; shrub_thicket is the closest schema tag."
     },
     "habitat.resources": {
       "sources": [
+        "eltontraits",
         "wikipedia"
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "Food weights follow traits.diet; the windows mark the breeding-season animal prey and the fall-winter shift to fruit that Wikipedia describes; nest and perch weights are judgement."
+      "note": "Food resources follow EltonTraits and Wikipedia: arthropods/earthworms during breeding season, fruit/berries in fall and winter, occasional seeds; perch, shrub cover and cup nest sites follow habitat and breeding descriptions. Monthly resource windows are judgement from stated seasonal shift."
+    },
+    "habitat.suitability": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement curves for suburban open lawns/shrubs/gardens based on stated preference for mowed lawns with shrubs in urban parks and gardens."
     },
     "habitat.human_tolerance": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High",
-      "note": "Wikipedia describes the species as common in residential areas and records imitation of car alarms and other artificial sounds, and night singing in lit streets."
+      "confidence": "Medium",
+      "derived": true,
+      "note": "urban_affinity, uses_gardens and notes are sourced from urban parks/gardens, night singing near artificial light, and bold nest defense; numeric tolerance values and road_mortality are authored judgement."
     },
     "seasonal.strategy": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "Medium",
-      "note": "Wikipedia gives northern populations as breeding summer visitors and southern ones as breeding residents, with northern birds wintering in the southern United States; it records no migration for the resident southern populations that include Georgia."
+      "confidence": "High",
+      "note": "Typically permanent resident; northern birds may move south during inclement weather or before winter.",
+      "derived": true
+    },
+    "seasonal.winter_fraction": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: most birds in the southern target region are resident; 0.95 remains year-round."
     },
     "seasonal.phases": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "Medium",
-      "note": "Brood number, clutch size and incubation length are from the Reproduction section; the month window is authored judgement, as the article gives no calendar dates; the territorial phase follows the year-round territorial display."
+      "derived": true,
+      "note": "Breeding in spring and early summer, resident territorial behavior, and winter movement by northern birds from Wikipedia; exact dates and fractions are judgement."
     },
     "seasonal.life_stages": {
       "sources": [
         "wikipedia"
       ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Eggs hatch after 11-14 days and young become independent after about 10-15 days; juvenile duration and scale are authored judgement for the preview/simulation life-stage model."
+    },
+    "vocalizations.song": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "vocalizations.alarm": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Nest-defense calls can summon neighboring mockingbirds.",
+      "derived": true
+    },
+    "vocalizations.mimicry": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "vocalizations.contact": {
+      "sources": [
+        "wikipedia"
+      ],
       "confidence": "Low",
       "derived": true,
-      "note": "The article describes the young as altricial and immobile at hatching but gives no nestling period; the 60-day juvenile duration and scale are authored judgement for a songbird."
+      "note": "Female assessment and call exchange with males described by Wikipedia; simplified to a generic contact call."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Grey to brown upperparts, pale belly, white wing patches, black-and-white tail, yellowish iris and black bill from Wikipedia; block proportions, colors, extra parts and pose tuning are authored judgement."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared perching-songbird program: invertebrate ground foraging for breeding-season Shreveport lawns, song/alarm call ids matching vocalizations, and March-July nesting window from the breeding-season source."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "gbif-match",
+        "inat-taxon",
+        "itis",
+        "wikidata",
+        "ncbi-taxonomy"
+      ],
+      "confidence": "High",
+      "note": "Parent coverage for external identifier object; individual identifiers also have field-level provenance."
+    },
+    "vocalizations.hew": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "vocalizations.chat": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "vocalizations.call": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Contact-call description authored from the species' described calling behaviour; no open source gives the exact call text."
+    },
+    "vocalizations.churr": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium"
     },
     "vocalizations": {
       "sources": [
@@ -617,23 +1457,21 @@
       "confidence": "Medium",
       "derived": true,
       "note": "The four recognised calls, the hew call's uses and the chat/chatburst seasonal split are from the vocalisation section of Wikipedia; time windows and cooldowns are authored judgement."
-    },
-    "look": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Colours from Wikipedia's description of a grey back, pale underparts, dark wings with two white wing bars and white patches in the wings and tail, and a long tail nearly as long as the body. The shoulder patch and wing bars are authored judgement to render the bars the description names; tail_ratio follows the stated tail-to-body ratio."
-    },
-    "behavior": {
-      "sources": [],
-      "confidence": "Low",
-      "derived": true,
-      "note": "Authored parameters for the shared perching-songbird program. food_tag is 'invertebrate' because the diet is heavily arthropods and earthworms in the breeding season; flee_m is judgement."
     }
   },
   "contributors": [
+    {
+      "name": "OpenCode",
+      "agent": "gpt-5.5"
+    },
+    {
+      "name": "opencode agent (al-birmingham locale, issue #73)",
+      "agent": "opencode"
+    },
+    {
+      "name": "speeeecies contributors",
+      "agent": "opencode"
+    },
     {
       "name": "speeeecies maintainers",
       "agent": "opencode"

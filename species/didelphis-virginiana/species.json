@@ -6,7 +6,9 @@
   "slug": "didelphis-virginiana",
   "common_names": {
     "en": "Virginia opossum",
-    "es": "tlacuache"
+    "fr": "opossum d'Amérique",
+    "de": "Nordopossum",
+    "es": "Tlacuache de Virginia"
   },
   "taxonomy": {
     "kingdom": "Animalia",
@@ -22,16 +24,38 @@
     "gbif_usage_key": 2439923,
     "inat_taxon_id": 42652,
     "itis_tsn": 179921,
-    "wikidata": "Q147267"
+    "wikidata": "Q147267",
+    "ncbi_taxon_id": 9267
   },
   "conservation": {
     "iucn": "LC"
   },
   "range": {
     "native": [
-      "US",
       "CA",
-      "MX"
+      "US",
+      "MX",
+      "BZ",
+      "GT",
+      "HN",
+      "NI",
+      "CR",
+      "PA",
+      "CO",
+      "SV"
+    ],
+    "koppen": [
+      "Cfa",
+      "Cfb",
+      "Dfa",
+      "Dfb",
+      "Aw",
+      "Am",
+      "Cwa"
+    ],
+    "introduced": [
+      "US",
+      "CA"
     ]
   },
   "traits": {
@@ -39,8 +63,8 @@
     "limb_count": 4,
     "locomotion_modes": [
       "Walk",
-      "Trot",
-      "Climb"
+      "Climb",
+      "Swim"
     ],
     "thermoregulation": "Endotherm",
     "skin": "Fur",
@@ -50,48 +74,47 @@
     "nest_type": "Cavity",
     "perching": false,
     "size_class": "Medium",
-    "mass_kg": 2.35,
+    "mass_kg": 2.25,
     "mass_range_kg": [
       1.9,
       2.8
     ],
-    "length_m": 0.84,
-    "shoulder_height_m": 0.25,
+    "length_m": 0.69,
+    "shoulder_height_m": 0.16,
     "lifespan_y": 2.0,
     "diet": {
       "invertebrate": 0.35,
-      "fruit": 0.2,
       "carrion": 0.2,
-      "vertebrate": 0.15,
-      "browse": 0.1
+      "vertebrate": 0.2,
+      "fruit": 0.15,
+      "mast": 0.05,
+      "seed": 0.05
     },
     "social": {
       "structure": "Solitary",
       "group_size": [
         1,
-        2
+        1
       ]
     },
     "activity_pattern": "Nocturnal",
     "defense": "Freeze",
-    "wariness": 0.15
+    "wariness": 0.35,
+    "speed_ms": {
+      "walk": 1.5
+    }
   },
   "habitat": {
     "use": {
-      "ground": 0.85,
-      "arboreal": 0.15
+      "ground": 0.75,
+      "arboreal": 0.25
     },
-    "shelter_tag": "cavity",
+    "shelter_tag": "log_pile",
     "resources": [
       {
         "tag": "invertebrate",
         "kind": "Predation",
         "weight": 0.35
-      },
-      {
-        "tag": "fruit",
-        "kind": "Herbivory",
-        "weight": 0.2
       },
       {
         "tag": "carrion",
@@ -101,29 +124,81 @@
       {
         "tag": "small_vertebrate",
         "kind": "Predation",
-        "weight": 0.15
+        "weight": 0.2
       },
       {
-        "tag": "browse",
+        "tag": "fruit",
         "kind": "Herbivory",
-        "weight": 0.1
+        "weight": 0.15,
+        "months": [
+          8,
+          9,
+          10,
+          11,
+          12
+        ]
+      },
+      {
+        "tag": "mast",
+        "kind": "Herbivory",
+        "weight": 0.05,
+        "months": [
+          9,
+          10,
+          11,
+          12
+        ]
+      },
+      {
+        "tag": "seed",
+        "kind": "Herbivory",
+        "weight": 0.05
+      },
+      {
+        "tag": "log_pile",
+        "kind": "Shelter",
+        "weight": 0.6
       },
       {
         "tag": "cavity",
         "kind": "Shelter",
-        "weight": 0.5
+        "weight": 0.3
+      },
+      {
+        "tag": "burrow",
+        "kind": "Shelter",
+        "weight": 0.1
+      },
+      {
+        "tag": "water",
+        "kind": "Water",
+        "weight": 1.0
+      },
+      {
+        "tag": "browse",
+        "kind": "Herbivory",
+        "weight": 0.05
       },
       {
         "tag": "compost",
-        "kind": "Scavenging",
+        "kind": "Herbivory",
+        "weight": 0.2
+      },
+      {
+        "tag": "shrub_thicket",
+        "kind": "Shelter",
         "weight": 0.4
       }
     ],
     "human_tolerance": {
-      "urban_affinity": "Exploiter",
+      "urban_affinity": "Adapter",
       "uses_gardens": true,
       "road_mortality": "High",
-      "notes": "Familiar in settled areas near food, scavenging from bird feeders, vegetable gardens, compost piles, garbage cans and pet food; because it is slow and nocturnal and is drawn to roadside carrion, it is more likely than other animals in its range to become roadkill."
+      "notes": "Successful opportunist in settled areas near food sources such as trash cans, compost piles, gardens and pet food, but slow nocturnal road foraging makes road mortality common.",
+      "light_max": 0.9,
+      "flight_distance_m": 5.0,
+      "impervious_max": 0.65,
+      "dist_building_min_m": 0
     }
   },
   "seasonal": {
@@ -131,37 +206,294 @@
     "phases": [
       {
         "name": "mating",
-        "start": "12-01",
-        "end": "10-31",
-        "note": "The breeding season can begin as early as December and continue through October, with most young born between February and June; a female may have one to three litters a year, and the male attracts the female with clicking sounds."
+        "start": "01-01",
+        "end": "07-31",
+        "note": "Main breeding season begins in January or February and can extend into June or July; warmer southern populations may breed longer."
       },
       {
         "name": "young",
-        "start": "02-01",
-        "end": "08-31",
-        "note": "Gestation lasts 11-13 days and the average litter is 8-9 infants, though over 20 may be born. The young are born extremely undeveloped, latch onto one of 13 teats, stay latched for two months and in the pouch for two and a half months, then ride on the mother's back, learning survival skills. Only one in ten offspring survive to reproductive adulthood."
+        "start": "01-15",
+        "end": "11-30",
+        "note": "Gestation is about 12-13 days; young remain in the pouch for about two months and are weaned at about 100-105 days."
+      },
+      {
+        "name": "dispersal",
+        "start": "04-01",
+        "end": "12-15",
+        "note": "Young disperse after pouch and back-riding development; timing follows the long breeding and young-rearing window."
       },
       {
         "name": "dormancy",
         "start": "12-01",
         "end": "02-28",
-        "note": "Not true hibernation: the opossum does not hibernate but reduces its activity in winter, and may not leave its den for several days if the temperature falls below about -7 to -4 C."
+        "note": "Judgement window for the coldest part of the winter, when 'It does not hibernate but reduces its activity during the winter' and 'It may not leave its den for several days if the temperature drops below -7 to -4 C'. The schema's dormancy name covers the den-bound period only; the animal is not in true hibernation."
+      },
+      {
+        "name": "breeding",
+        "start": "01-15",
+        "end": "07-31",
+        "note": "Breeding from mid-winter; two litters a year; young ride on the mother's back."
       }
     ],
     "life_stages": [
       {
         "stage": "Juvenile",
-        "duration_days": 120,
-        "scale": 0.5,
+        "duration_days": 150,
+        "scale": 0.55,
         "requires_tag": "cavity"
       },
       {
         "stage": "Adult"
+      },
+      {
+        "stage": "Egg"
       }
     ]
   },
   "activity": {
     "regions": [
+      {
+        "region": "US-LA",
+        "monthly": [
+          0.48,
+          0.28,
+          0.57,
+          0.46,
+          0.55,
+          0.17,
+          0.32,
+          0.37,
+          1.0,
+          0.42,
+          0.36,
+          0.28
+        ],
+        "method": "gbif_share",
+        "observations": 504,
+        "sources": [
+          "gbif-activity-us-la"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 27,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=42652&place_id=27&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=27&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 773,
+            "usable": false,
+            "note": "Fetched by the required activity command, but omitted from the curve because it required non-commercial observations; a CC0/CC BY-only iNaturalist check returned 146 observations, below min_obs."
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.19_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2439923&gadmGid=USA.19_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.19_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 504,
+            "usable": true
+          },
+          "used": [
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "US-AR",
+        "monthly": [
+          0.75,
+          0.67,
+          0.46,
+          0.58,
+          0.3,
+          0.2,
+          0.45,
+          0.68,
+          1.0,
+          0.85,
+          0.92,
+          0.7
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 2057,
+        "sources": [
+          "inat-activity-us-ar",
+          "gbif-activity-us-ar"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 36,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=42652&place_id=36&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=36&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 1023,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "C",
+            "area": [
+              "gadmGid",
+              "USA.4_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2439923&gadmGid=USA.4_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.4_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "total": 1034,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "US-VT",
+        "monthly": [
+          0.82,
+          1.0,
+          0.79,
+          0.4,
+          0.28,
+          0.12,
+          0.07,
+          0.12,
+          0.25,
+          0.38,
+          0.63,
+          0.85
+        ],
+        "method": "gbif_share",
+        "observations": 391,
+        "sources": [
+          "gbif-activity-us-vt"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 47,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=43639&place_id=47&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=47&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 0,
+            "usable": false
+          },
+          "gbif": {
+            "tier": "C",
+            "area": [
+              "gadmGid",
+              "USA.46_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2439923&gadmGid=USA.46_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.46_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "total": 391,
+            "usable": true
+          },
+          "used": [
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "US-OK",
+        "monthly": [
+          0.61,
+          0.64,
+          0.52,
+          0.65,
+          0.4,
+          0.33,
+          0.32,
+          0.48,
+          0.57,
+          0.59,
+          0.61,
+          1.0
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 1326,
+        "sources": [
+          "inat-activity-us-ok",
+          "gbif-activity-us-ok"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 12,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=42652&place_id=12&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=12&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 592,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "C",
+            "area": [
+              "gadmGid",
+              "USA.37_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2439923&gadmGid=USA.37_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.37_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "total": 734,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "US-MO",
+        "monthly": [
+          0.86,
+          1.0,
+          0.52,
+          0.41,
+          0.46,
+          0.25,
+          0.43,
+          0.36,
+          0.45,
+          0.57,
+          0.72,
+          0.78
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 1679,
+        "sources": [
+          "inat-activity-us-mo",
+          "gbif-activity-us-mo"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 28,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=42652&place_id=28&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=28&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 850,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "C",
+            "area": [
+              "gadmGid",
+              "USA.26_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2439923&gadmGid=USA.26_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.26_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "total": 829,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
       {
         "region": "US-GA",
         "monthly": [
@@ -216,11 +548,11 @@
   "behavior": {
     "program": "fsm-ground-forager-v1",
     "params": {
-      "flee_m": 6,
-      "calm_m": 20,
       "food_tag": "invertebrate",
-      "food_m": 25,
-      "flee_gait": "trot",
+      "flee_m": 8,
+      "calm_m": 25,
+      "food_m": 30,
+      "flee_gait": "walk",
       "forage_gait": "walk",
       "rest_sun_lo_deg": 10,
       "rest_sun_hi_deg": 90
@@ -232,66 +564,166 @@
       "context": "Alarm",
       "season_months": [],
       "time_windows": [
+        "Dusk",
         "Night"
       ],
-      "cooldown_s": 15,
-      "loudness": "Loud",
-      "description": "An open-mouth hiss given when frightened, when the animal also bares its 50 teeth, snaps its jaw, drools and stands its fur on end to look bigger. The hiss is widely mistaken for rabid behaviour, though opossums are naturally resistant to rabies."
+      "cooldown_s": 20,
+      "loudness": "Moderate",
+      "description": "Open-mouthed defensive hiss with jaw snapping and tooth display when threatened at close range."
     },
     {
       "call_id": "click",
       "context": "Contact",
       "season_months": [],
-      "time_windows": [],
-      "cooldown_s": 20,
+      "time_windows": [
+        "Night"
+      ],
+      "cooldown_s": 12,
       "loudness": "Quiet",
-      "description": "Clicking sounds made with the mouth, used by the male to attract the female during the mating season."
+      "description": "Clicking sounds made with the mouth by the male, used to attract the female during the mating season; a quiet, close-range courtship sound rather than a call carried across a garden."
+    },
+    {
+      "call_id": "scream",
+      "context": "Scream",
+      "season_months": [],
+      "time_windows": [
+        "Night"
+      ],
+      "cooldown_s": 30,
+      "loudness": "Loud",
+      "description": "High-pitched scream given when the animal is attacked or cornered; exact call text is a judgement."
     }
   ],
   "look": {
     "body_plan": "quadruped",
     "proportions": {
-      "torso_aspect": 1.8,
-      "leg_length_ratio": 0.4,
-      "head_scale": 0.65,
-      "neck_angle_deg": 5,
-      "tail_ratio": 0.85,
-      "ear_ratio": 0.1,
-      "beak_ratio": 0.45,
-      "girth_ratio": 0.8
+      "torso_aspect": 1.9,
+      "leg_length_ratio": 0.32,
+      "head_scale": 0.72,
+      "neck_angle_deg": 12,
+      "tail_ratio": 1.25,
+      "ear_ratio": 0.32,
+      "beak_ratio": 0.65,
+      "girth_ratio": 0.85
     },
     "palette": {
-      "body": "#b6b0a4",
-      "belly": "#e6e1d6",
-      "markings": "#3f3a33",
-      "accent": "#8d8677",
-      "eye": "#141210"
+      "body": "#8f8a80",
+      "belly": "#eee7dc",
+      "markings": "#3d362f",
+      "accent": "#d6a7a2",
+      "eye": "#15110d"
     },
     "part_colors": {
-      "snout": "markings",
-      "ear_*": "accent"
+      "snout": "belly",
+      "head": "belly",
+      "ear_*": "markings",
+      "leg_*": "markings",
+      "tail": "accent"
     },
     "extra_parts": [
       {
-        "name": "tail_fur",
-        "parent": "tail",
+        "name": "dark_guard_hairs",
+        "parent": "body",
         "offset": [
           0,
-          0.05,
+          0.28,
           0
         ],
         "size": [
-          1.0,
-          1.15,
-          1.15
+          0.9,
+          0.16,
+          1.06
+        ],
+        "color": "markings"
+      },
+      {
+        "name": "pink_nose",
+        "parent": "snout",
+        "offset": [
+          0.52,
+          0,
+          0
+        ],
+        "size": [
+          0.18,
+          0.42,
+          0.62
         ],
         "color": "accent"
       }
     ],
     "poses": {
-      "idle": {},
-      "walk": {},
-      "trot": {},
+      "idle": {
+        "keyframes": [
+          {
+            "t": 0,
+            "parts": {
+              "tail": {
+                "rot_deg": [
+                  0,
+                  0,
+                  -25
+                ]
+              }
+            }
+          },
+          {
+            "t": 1,
+            "parts": {
+              "tail": {
+                "rot_deg": [
+                  0,
+                  0,
+                  -25
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "walk": {
+        "cycle_s": 1.4,
+        "amplitude": 0.75,
+        "keyframes": [
+          {
+            "t": 0,
+            "parts": {
+              "tail": {
+                "rot_deg": [
+                  0,
+                  0,
+                  -20
+                ]
+              }
+            }
+          },
+          {
+            "t": 0.5,
+            "parts": {
+              "tail": {
+                "rot_deg": [
+                  0,
+                  0,
+                  20
+                ]
+              }
+            }
+          },
+          {
+            "t": 1,
+            "parts": {
+              "tail": {
+                "rot_deg": [
+                  0,
+                  0,
+                  -20
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "swim": {},
       "rest": {}
     }
   },
@@ -302,17 +734,17 @@
       "title": "GBIF Backbone Taxonomy: Didelphis virginiana",
       "license": "CC-BY-4.0",
       "kind": "database",
-      "accessed": "2026-10-01",
+      "accessed": "2026-09-30",
       "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
       "license_url": "https://creativecommons.org/licenses/by/4.0/"
     },
     {
       "id": "wikidata",
       "url": "https://www.wikidata.org/wiki/Q147267",
-      "title": "Wikidata: Virginia opossum (Q147267)",
+      "title": "Wikidata: Didelphis virginiana (Q147267)",
       "license": "CC0-1.0",
       "kind": "database",
-      "accessed": "2026-10-01",
+      "accessed": "2026-09-30",
       "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
     },
     {
@@ -321,18 +753,109 @@
       "title": "Wikipedia: Virginia opossum",
       "license": "CC-BY-SA-4.0",
       "kind": "webpage",
-      "accessed": "2026-10-01",
+      "accessed": "2026-09-30",
       "attribution": "Wikipedia contributors, \"Virginia opossum\", English Wikipedia, CC BY-SA 4.0",
       "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
     },
     {
       "id": "itis",
-      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=179921",
+      "url": "https://www.itis.gov/ITISWebService/jsonservice/getITISTermsFromScientificName?srchKey=Didelphis%20virginiana",
       "title": "ITIS: Didelphis virginiana, TSN 179921",
       "license": "public-domain",
       "kind": "database",
-      "accessed": "2026-10-01",
+      "accessed": "2026-09-30",
       "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "gbif-activity-us-la",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2439923&gadmGid=USA.19_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Didelphis virginiana in US-LA",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "inat-activity-us-ar",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=42652&place_id=36&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Didelphis virginiana in US-AR",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-ar",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2439923&gadmGid=USA.4_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+      "title": "GBIF occurrence search for Didelphis virginiana in US-AR",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "inat-activity-us-vt",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=43639&place_id=47&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Didelphis virginiana in US-VT",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-vt",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2439923&gadmGid=USA.46_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+      "title": "GBIF occurrence search for Didelphis virginiana in US-VT",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "inat-activity-us-ok",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=42652&place_id=12&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Didelphis virginiana in US-OK",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-ok",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2439923&gadmGid=USA.37_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+      "title": "GBIF occurrence search for Didelphis virginiana in US-OK",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "eltontraits",
+      "url": "https://doi.org/10.6084/m9.figshare.3559887.v1",
+      "title": "EltonTraits 1.0: species-level foraging attributes of the world's birds and mammals (BirdFuncDat)",
+      "license": "CC0-1.0",
+      "kind": "dataset",
+      "accessed": "2026-10-01",
+      "attribution": "Wilman, H. et al. (2014) EltonTraits 1.0. Ecology 95:2027",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "inat-activity-us-mo",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=42652&place_id=28&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Didelphis virginiana in US-MO",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-mo",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2439923&gadmGid=USA.26_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+      "title": "GBIF occurrence search for Didelphis virginiana in US-MO",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
     },
     {
       "id": "inat-activity-us-ga",
@@ -359,7 +882,9 @@
         "gbif-backbone",
         "itis"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "Kerr 1792, Didelphis virginiana; family Didelphidae per the GBIF backbone and ITIS TSN 179921."
     },
     "external": {
       "sources": [
@@ -367,93 +892,114 @@
         "wikidata",
         "itis"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "note": "GBIF usage key verified against the GBIF match API; iNaturalist and NCBI taxon ids via Wikidata (P3151 and P685); ITIS TSN verified against the ITIS JSON service. eBird code omitted because this is not a bird."
     },
     "common_names": {
       "sources": [
-        "wikidata"
+        "wikidata",
+        "itis"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "en/fr/es labels; the English name follows the Wikipedia article title, the fr/es labels the Wikidata sitelink titles."
     },
     "conservation": {
       "sources": [
-        "wikidata"
+        "wikidata",
+        "wikipedia"
       ],
       "confidence": "High",
-      "note": "Wikidata P141 records least concern."
+      "note": "Wikidata P141 = least concern (Q211005); Wikipedia infobox also reports IUCN Least Concern.",
+      "derived": true
     },
     "range": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High",
-      "note": "Found from southern Canada to northern Costa Rica, the northernmost marsupial in the world, and expanding its range northward and northwestward; it was intentionally introduced into the West during the Great Depression and now occupies much of the Pacific coast, which is not recorded as an introduction here because the country is already listed as native."
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Country list derived from the stated range from southern Canada through the United States and Mexico/Central America to northern Costa Rica. Köppen classes are authored from that broad North American/Central American range and the Shreveport Cfa locale target."
     },
     "traits.body_plan": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "Vertebrate, chordate, four-legged, furred, endothermic mammal; a marsupial, 'the northernmost marsupial in the world'."
     },
     "traits.limb_count": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "Quadruped: four legs, with 'opposable, clawless thumbs on their rear limbs'."
     },
     "traits.locomotion_modes": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "Medium",
-      "note": "Wikipedia documents the pacing gait (limbs on one side moved together, then the other) and a faster running pattern from its track measurements; a short trot is the mapping of that run. Climbing is not described in the sections used here and is included as authored judgement from a lightly built, grasping-handed marsupial."
+      "note": "Walking/pacing gait, climbing with prehensile tail and opposable hind digits, and swimming ability are described in the article.",
+      "derived": true
     },
     "traits.thermoregulation": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "Endotherm: a mammal that is 'a solitary nocturnal animal' and reduces its activity in cold weather."
     },
     "traits.skin": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "Fur: 'Their coats are a dull grayish brown, other than on their faces, which are white', with hairless ears, nose and tail."
     },
     "traits.flight": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "None: a ground mammal."
     },
     "traits.respiration": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "Lungs: a mammalian respiratory system."
     },
     "traits.metamorphosis": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Although it is a marsupial, Wikipedia describes newborn opossums as born extremely undeveloped and latching onto a teat, with no larval or pupal stage."
+      "derived": true,
+      "note": "None: 'Newborns are the size of a honeybee' and 'climb up into the female opossum's pouch and latch onto one of her 13 teats'. The neonate is developmentally very immature, but that is marsupial development rather than metamorphosis, so the schema's None is used."
     },
     "traits.nest_type": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "Low",
+      "confidence": "Medium",
       "derived": true,
-      "note": "Authored judgement: the article describes a den that the female may not leave for several days in cold weather but does not describe the den itself in the sections used here; Cavity is the nearest matching value for a den in a hollow or enclosed site rather than a burrow it digs."
+      "note": "Wikipedia describes dens and sheltered sites; Cavity chosen as the closest schema value for hollow logs/tree cavities, with log piles and burrows represented under habitat resources."
     },
     "traits.perching": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Set to false: the species walks and runs on the ground and is described as a ground-going nocturnal animal that takes to the air only in the sense of not hibernate; it is not a perching animal."
+      "confidence": "High",
+      "note": "Climbs, but does not perch like a bird; set false.",
+      "derived": true
     },
     "traits.size_class": {
       "sources": [
@@ -461,20 +1007,23 @@
       ],
       "confidence": "High",
       "derived": true,
-      "note": "From mass_kg."
+      "note": "From mass_kg under the schema threshold: 2.25 kg is Medium."
     },
     "traits.mass_kg": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Midpoint of Wikipedia's weights for males (2.1-2.8 kg) and females (1.9-2.1 kg): the midpoints are 2.45 and 2.0 kg, and their mean is about 2.35 kg."
+      "derived": true,
+      "note": "Typical mass is the midpoint of Wikipedia's sex-specific adult ranges: male 2.1-2.8 kg and female 1.9-2.1 kg, averaged to about 2.25 kg."
     },
     "traits.mass_range_kg": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "note": "Combines the stated female and male adult weight ranges, 1.9-2.8 kg.",
+      "derived": true
     },
     "traits.length_m": {
       "sources": [
@@ -482,7 +1031,7 @@
       ],
       "confidence": "High",
       "derived": true,
-      "note": "The schema wants nose to tail tip. Wikipedia gives 33-55 cm from snout to the base of the tail plus a tail of 25-54 cm; the midpoints of each (44 cm and 39.5 cm) are added to give 0.835 m, rounded to 0.84 m."
+      "note": "Average of Wikipedia's sex-specific average body plus tail lengths: male 40.8 + 29.4 cm and female 40.6 + 28.1 cm, rounded to 0.69 m."
     },
     "traits.shoulder_height_m": {
       "sources": [
@@ -490,14 +1039,15 @@
       ],
       "confidence": "Low",
       "derived": true,
-      "note": "Wikipedia describes the animal as 'about the size of a domestic cat' and gives no measurement. 0.25 m is the shoulder height of an adult domestic cat, used here as the stated reference animal; no open source used here gives the opossum's own shoulder height."
+      "note": "Authored geometry estimate for the required quadruped field: short-legged shoulder height set to 0.16 m, about 39% of the 0.41 m average head-body length stated on Wikipedia."
     },
     "traits.lifespan_y": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High",
-      "note": "'The Virginia opossum has a maximal lifespan in the wild of only about two years', and about four years even in captivity."
+      "confidence": "Medium",
+      "note": "Typical wild lifespan is short for a mammal this size, about 1.5-2 years; 2 years used.",
+      "derived": true
     },
     "traits.diet": {
       "sources": [
@@ -505,50 +1055,53 @@
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "Wikipedia describes an omnivore taking a wide range of plant food and, among animal foods, small invertebrates, carrion, eggs, fish, amphibians, reptiles, birds and small mammals, with insects (grasshoppers, crickets and beetles) making up the bulk of the animal foods. No open source gives percentages, so the 35/20/20/15/10 split across invertebrate, fruit, carrion, small vertebrate and browse is authored judgement within the described bounds."
+      "note": "Shares are authored from the described omnivorous diet: insects and other invertebrates are the bulk of animal foods, with carrion, small vertebrates, fruit, mast and seeds also used."
     },
     "traits.social": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "'a solitary nocturnal animal'; the group size allows two for a female travelling with young on her back."
+      "note": "Described as solitary.",
+      "derived": true
     },
     "traits.activity_pattern": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "'a solitary nocturnal animal', and Wikipedia repeatedly describes its slow nocturnal nature and night foraging."
+      "note": "Described as nocturnal.",
+      "derived": true
     },
     "traits.defense": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High",
-      "note": "When threatened an opossum either flees or takes a stand by baring 50 teeth, snapping its jaw, hissing, drooling and standing its fur on end, and it is well known to feign death or 'play possum'. Freeze is the mapping of the thanatosis response, which is the one the schema records."
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Mapped to Freeze because the species' best-known anti-predator response is feigning death after threat display or failed escape."
     },
     "traits.wariness": {
       "sources": [],
       "confidence": "Low",
       "derived": true,
-      "note": "Judgement: very low wariness - it forages in daylight in some circumstances, scavenges from pet food and compost in settled areas, and famously 'plays possum' rather than bolting."
+      "note": "Judgement: frequently uses settled areas and human food sources but still hisses, flees or feigns death at close threat."
     },
     "habitat.use": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "Medium",
+      "confidence": "Low",
       "derived": true,
-      "note": "The strong ground share follows Wikipedia's account of a slow ground-going animal that takes to the air only as a last resort; the small arboreal share is authored judgement from the grasping hands and prehensile tail of an arboreal marsupial."
+      "note": "Judgement from ground feeding plus climbing ability: mostly ground use, with regular arboreal climbing represented as 25%."
     },
     "habitat.shelter_tag": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "Low",
+      "confidence": "Medium",
       "derived": true,
-      "note": "Authored judgement, following traits.nest_type: the den is an enclosed site rather than a burrow the animal digs."
+      "note": "Log pile chosen for Shreveport garden placement from the described hollow logs, woodpiles, burrows and sheltered sites."
     },
     "habitat.resources": {
       "sources": [
@@ -556,36 +1109,81 @@
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "Food weights follow traits.diet. The compost entry follows Wikipedia's record of urban opossums scavenging from compost piles, garbage cans, bird feeders and vegetable gardens, recorded here as a landscape resource rather than a food type."
+      "note": "Food resources mirror traits.diet; shelter resources map described hollow logs, woodpiles and burrows to log_pile, cavity and burrow. Weights are authored."
     },
     "habitat.human_tolerance": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Wikipedia describes opossums as familiar to many North Americans because they inhabit settled areas near food sources such as trash cans, pet food, compost piles, gardens and houses, and names the scavenging list in the Diet section; road mortality follows the same passage."
+      "note": "Wikipedia describes frequent settled-area use near trash cans, compost piles, gardens and pet food, plus high roadkill risk from slow nocturnal carrion foraging.",
+      "derived": true
     },
     "seasonal.strategy": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "'It does not hibernate but reduces its activity during the winter', so ActiveYearRound with a dormant winter phase is the mapping."
+      "note": "Does not hibernate, but reduces activity in winter.",
+      "derived": true
     },
     "seasonal.phases": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "Medium",
-      "note": "Breeding-season dates, litter size, gestation, pouch and latching durations and the survival figure are from the Reproduction section; the winter denning figure is from the hibernation paragraph. The month bounds of the young phase are authored judgement, as the article gives only the February-June peak."
+      "derived": true,
+      "note": "Breeding and young-rearing windows derived from Wikipedia's reproduction summary and warm-climate note; dispersal window is authored from 100-105 day weaning plus extended southern breeding."
     },
     "seasonal.life_stages": {
       "sources": [
         "wikipedia"
       ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Juvenile duration set to 150 days from pouch residence, back-riding and weaning timing; juvenile scale is authored judgement."
+    },
+    "vocalizations.hiss": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Hissing and jaw snapping are described threat displays; time windows and cooldown are authored judgement for a nocturnal animal."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Colours from the described dull grayish-brown coat, white face, hairless ears, long hairless prehensile tail and long flat nose; proportions and extra parts are authored judgement, using quadruped because the body plan fits a four-legged opossum and its prehensile tail is represented by an elongated tail ratio and pink tail colour."
+    },
+    "behavior": {
+      "sources": [],
       "confidence": "Low",
       "derived": true,
-      "note": "Wikipedia describes about two months latched and two and a half months in the pouch, then learning survival skills on the mother's back, but gives no total weaning age; 120 days and the scale are authored judgement."
+      "note": "Judgement: shared ground-forager parameters tuned for a slow nocturnal omnivore; food_tag invertebrate matches habitat.resources."
+    },
+    "vocalizations.click": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.speed_ms": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "No open source gives a walking speed; 1.5 m/s is a judgement for a slow-moving marsupial."
+    },
+    "vocalizations.scream": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The article describes defensive behaviour but no scream call text; the description is a judgement."
     },
     "vocalizations": {
       "sources": [
@@ -594,26 +1192,20 @@
       "confidence": "High",
       "derived": true,
       "note": "The open-mouth hiss with bared teeth, jaw-snapping and raised fur, and the male's mating click, are both described in Wikipedia's Behaviour and Reproduction sections; the cooldowns and the night time window are authored judgement."
-    },
-    "look": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Colours from Wikipedia's description of a cat-sized animal with coarse greyish-white fur, a white face and a dark muzzle, and a long sparsely furred tail; the palette and proportions are authored judgement to render the pointed snout and long bare tail, and the tail_fur part thins the tail along its length."
-    },
-    "behavior": {
-      "sources": [],
-      "confidence": "Low",
-      "derived": true,
-      "note": "Authored parameters for the shared ground-forager program. The sun band is left at the program's daytime default because the species is nocturnal, so it rests in its den by day; flee_gait is a short trot and food_tag is 'invertebrate' because insects are the bulk of its animal prey. All radii are judgement, set short for a slow, human-tolerant animal."
     }
   },
   "contributors": [
     {
-      "name": "speeeecies maintainers",
+      "name": "speeeecies contributors",
       "agent": "opencode"
+    },
+    {
+      "name": "speeeecies agent",
+      "agent": "claude-code"
+    },
+    {
+      "name": "speeeecies maintainers",
+      "agent": "claude-code"
     }
   ]
 }
