@@ -398,6 +398,55 @@
             "gbif"
           ]
         }
+      },
+      {
+        "region": "IE",
+        "monthly": [
+          0.62,
+          0.79,
+          0.96,
+          0.89,
+          0.81,
+          0.95,
+          0.87,
+          0.88,
+          1.0,
+          0.95,
+          0.6,
+          0.64
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 67843,
+        "sources": [
+          "inat-activity-ie",
+          "gbif-activity-ie"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 6718,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3048&place_id=6718&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=6718&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 1490,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "country",
+              "IE"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2495455&country=IE&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&country=IE&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 66353,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
       }
     ]
   },
@@ -617,6 +666,24 @@
       "id": "gbif-activity-es-md",
       "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2495455&gadmGid=ESP.8_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
       "title": "GBIF occurrence search for Columba palumbus in ES-MD",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "inat-activity-ie",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3048&place_id=6718&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Columba palumbus in IE",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-ie",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2495455&country=IE&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Columba palumbus in IE",
       "license": "CC-BY-4.0",
       "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
       "accessed": "2026-10-01",
