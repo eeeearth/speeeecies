@@ -7,7 +7,8 @@
   "common_names": {
     "en": "Striped skunk",
     "fr": "Mouffette rayée",
-    "es": "Zorrillo rayado"
+    "es": "Zorrillo rayado",
+    "de": "Streifenskunk"
   },
   "taxonomy": {
     "kingdom": "Animalia",
@@ -82,7 +83,9 @@
     },
     "activity_pattern": "Nocturnal",
     "defense": "Spray",
-    "wariness": 0.25
+    "wariness": 0.25,
+    "shoulder_height_m": 0.2,
+    "home_range_ha": 30
   },
   "habitat": {
     "use": {
@@ -129,6 +132,11 @@
         "tag": "leaf_litter",
         "kind": "Shelter",
         "weight": 0.2
+      },
+      {
+        "tag": "shelter",
+        "kind": "Shelter",
+        "weight": 0.6
       }
     ],
     "human_tolerance": {
@@ -160,6 +168,12 @@
         "start": "11-15",
         "end": "02-14",
         "note": "Winter denning. The schema's dormancy name covers 'hibernation or brumation'; the article describes something weaker - 'During this period, the striped skunk saves its energy by lowering its body temperature from 38 C to 32 C' - and notes 'Although it will forage for short periods in winter, it primarily depends on its fat reserves'. The boundaries are the author's judgement."
+      },
+      {
+        "name": "breeding",
+        "start": "02-01",
+        "end": "04-30",
+        "note": "Mating in late winter and spring, with a single litter a year; exact start/end dates are a judgement placed around the described season."
       }
     ],
     "life_stages": [
@@ -169,7 +183,8 @@
       {
         "stage": "Juvenile",
         "duration_days": 75,
-        "scale": 0.6
+        "scale": 0.6,
+        "requires_tag": "burrow"
       },
       {
         "stage": "Adult"
@@ -226,6 +241,55 @@
             "gbif"
           ]
         }
+      },
+      {
+        "region": "US-NJ",
+        "monthly": [
+          0.28,
+          0.89,
+          0.72,
+          0.33,
+          0.51,
+          0.6,
+          0.64,
+          1.0,
+          0.67,
+          0.62,
+          0.7,
+          0.49
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 619,
+        "sources": [
+          "inat-activity-us-nj",
+          "gbif-activity-us-nj"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 51,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=41880&place_id=51&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=51&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 316,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "C",
+            "area": [
+              "gadmGid",
+              "USA.31_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5219380&gadmGid=USA.31_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.31_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "total": 303,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
       }
     ]
   },
@@ -237,10 +301,24 @@
       "food_tag": "invertebrate",
       "food_m": 40,
       "flee_gait": "trot",
-      "forage_gait": "walk"
+      "forage_gait": "walk",
+      "rest_sun_lo_deg": 10,
+      "rest_sun_hi_deg": 90
     }
   },
-  "vocalizations": [],
+  "vocalizations": [
+    {
+      "call_id": "hiss",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Night"
+      ],
+      "cooldown_s": 10,
+      "loudness": "Moderate",
+      "description": "A harsh hiss or growl, given with a raised tail and stamping forefeet as a warning before the animal sprays."
+    }
+  ],
   "look": {
     "body_plan": "quadruped",
     "proportions": {
@@ -370,6 +448,34 @@
       "id": "gbif-activity-us-ar",
       "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5219380&gadmGid=USA.4_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
       "title": "GBIF occurrence search for Mephitis mephitis in US-AR",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "pantheria",
+      "url": "https://esapubs.org/archive/ecol/E090/184/PanTHERIA_1-0_WR05_Aug2008.txt",
+      "title": "PanTHERIA 1.0: species-level life history, ecology and geography of extant mammals",
+      "license": "CC-BY-4.0",
+      "kind": "dataset",
+      "accessed": "2026-09-30",
+      "attribution": "Jones, K. E. et al. (2009) PanTHERIA. Ecology 90:2648",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "inat-activity-us-nj",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=41880&place_id=51&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Mephitis mephitis in US-NJ",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-nj",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5219380&gadmGid=USA.31_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+      "title": "GBIF occurrence search for Mephitis mephitis in US-NJ",
       "license": "CC-BY-NC-4.0",
       "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
       "accessed": "2026-09-30",
@@ -647,11 +753,35 @@
       "confidence": "Low",
       "derived": true,
       "note": "Authored parameters for the shared ground-forager program, the only ground-mammal program available: invertebrate-led foraging, a short flee distance for an animal that relies on its musk rather than speed, and the program's default daytime rest window, which its own description documents as correct for 'nocturnal and crepuscular species'."
+    },
+    "traits.shoulder_height_m": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: a stout, short-limbed animal about 20 cm at the shoulder, consistent with its 52-77 cm total body length."
+    },
+    "traits.home_range_ha": {
+      "sources": [
+        "pantheria"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "PanTHERIA home-range figure converted to hectares; skunk home ranges vary widely with habitat and season."
+    },
+    "vocalizations.hiss": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium"
     }
   },
   "contributors": [
     {
       "name": "speeeecies contributors",
+      "agent": "opencode"
+    },
+    {
+      "name": "speeeecies maintainers",
       "agent": "opencode"
     }
   ]

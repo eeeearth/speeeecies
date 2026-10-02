@@ -7,7 +7,8 @@
   "common_names": {
     "en": "Blue Jay",
     "fr": "Geai bleu",
-    "es": "Chlorociste azul"
+    "es": "Chlorociste azul",
+    "de": "Blauhäher"
   },
   "taxonomy": {
     "kingdom": "Animalia",
@@ -164,6 +165,11 @@
         "tag": "cavity",
         "kind": "Shelter",
         "weight": 0.3
+      },
+      {
+        "tag": "water",
+        "kind": "Water",
+        "weight": 0.5
       }
     ],
     "human_tolerance": {
@@ -386,6 +392,55 @@
             "gbif"
           ]
         }
+      },
+      {
+        "region": "US-NJ",
+        "monthly": [
+          0.81,
+          0.91,
+          0.86,
+          0.91,
+          0.71,
+          1.0,
+          0.9,
+          0.77,
+          0.87,
+          0.8,
+          0.72,
+          0.85
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 703091,
+        "sources": [
+          "inat-activity-us-nj",
+          "gbif-activity-us-nj"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 51,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=8229&place_id=51&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=51&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "total": 481,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.31_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2482593&gadmGid=USA.31_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.31_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 702610,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
       }
     ]
   },
@@ -514,6 +569,19 @@
       "cooldown_s": 14,
       "loudness": "Quiet",
       "description": "A quiet call used among jays in close proximity, named for its squeaky resemblance to an old hand-operated water pump."
+    },
+    {
+      "call_id": "jeer",
+      "context": "Bark",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day",
+        "Dusk"
+      ],
+      "cooldown_s": 4,
+      "loudness": "Loud",
+      "description": "The familiar loud, harsh jeering 'jay-jay-jay' call, often given in chorus by a group and used to advertise a food source or warn of a rival."
     }
   ],
   "look": {
@@ -688,6 +756,34 @@
       "id": "gbif-activity-us-ar",
       "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2482593&gadmGid=USA.4_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
       "title": "GBIF occurrence search for Cyanocitta cristata in US-AR",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "eltontraits",
+      "url": "https://doi.org/10.6084/m9.figshare.3559887.v1",
+      "title": "EltonTraits 1.0: species-level foraging attributes of the world's birds and mammals (BirdFuncDat)",
+      "license": "CC0-1.0",
+      "kind": "dataset",
+      "accessed": "2026-09-30",
+      "attribution": "Wilman, H. et al. (2014) EltonTraits 1.0. Ecology 95:2027",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "inat-activity-us-nj",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=8229&place_id=51&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Cyanocitta cristata in US-NJ",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-nj",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2482593&gadmGid=USA.31_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Cyanocitta cristata in US-NJ",
       "license": "CC-BY-4.0",
       "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
       "accessed": "2026-09-30",
@@ -1050,6 +1146,12 @@
         "wikipedia"
       ],
       "confidence": "High"
+    },
+    "vocalizations.jeer": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
     }
   },
   "contributors": [
@@ -1063,6 +1165,10 @@
     },
     {
       "name": "speeeecies contributors",
+      "agent": "opencode"
+    },
+    {
+      "name": "speeeecies maintainers",
       "agent": "opencode"
     }
   ]
