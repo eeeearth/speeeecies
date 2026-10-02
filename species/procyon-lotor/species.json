@@ -43,7 +43,44 @@
       "SV",
       "NI",
       "CR",
-      "PA"
+      "PA",
+      "US-CO",
+      "US-WY",
+      "US-ND",
+      "US-SD",
+      "US-NE",
+      "US-KS",
+      "US-OK",
+      "US-TX",
+      "US-MN",
+      "US-IA",
+      "US-MO",
+      "US-AR",
+      "US-LA",
+      "US-MS",
+      "US-AL",
+      "US-TN",
+      "US-KY",
+      "US-GA",
+      "US-FL",
+      "US-SC",
+      "US-NC",
+      "US-VA",
+      "US-WV",
+      "US-MD",
+      "US-DE",
+      "US-PA",
+      "US-NJ",
+      "US-CT",
+      "US-RI",
+      "US-MA",
+      "US-NH",
+      "US-VT",
+      "US-NY",
+      "CA-NS",
+      "CA-NB",
+      "CA-QC",
+      "CA-ON"
     ],
     "introduced": [
       "DE",
@@ -54,7 +91,15 @@
       "BY",
       "AZ",
       "RU",
-      "GE"
+      "GE",
+      "DE-BY",
+      "DE-NW",
+      "DE-HE",
+      "DE-SN",
+      "DE-BW",
+      "DE-HB",
+      "DE-TH",
+      "DE-BE"
     ],
     "invasive_in": [
       "DE",
@@ -270,13 +315,20 @@
         "name": "dormancy",
         "start": "12-01",
         "end": "02-28",
-        "note": "\"In the northern parts of their range, raccoons go into a winter rest, reducing their activity drastically as long as a permanent snow cover makes searching for food difficult.\" This is a reduction in activity driven by snow cover, not physiological torpor: an urban raccoon in a Michigan winter keeps feeding through it, which is why the record's strategy is ActiveYearRound."
+        "note": "\"In the northern parts of their range, raccoons go into a winter rest, reducing their activity drastically as long as a permanent snow cover makes searching for food difficult.\" This is a reduction in activity driven by snow cover, not physiological torpor: an urban raccoon in a Michigan winter keeps feeding through it, which is why the record's strategy is ActiveYearRound.",
+        "fraction": 0.4
       },
       {
         "name": "breeding",
         "start": "01-01",
         "end": "06-30",
         "note": "After a gestation of about 65 days a litter of typically two to five kits is born in spring, raised by the mother until dispersal in late fall."
+      },
+      {
+        "name": "dispersal",
+        "start": "09-15",
+        "end": "11-30",
+        "note": "'In the fall, after their mother has shown them dens and feeding grounds, the juvenile group splits up. While many females will stay close to the home range of their mother, males can sometimes move more than 20 km away. This is considered an instinctive behavior, preventing inbreeding.'"
       }
     ],
     "life_stages": [
@@ -626,6 +678,55 @@
             "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5218786&gadmGid=USA.25_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
             "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.25_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
             "total": 554,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "US-CO",
+        "monthly": [
+          0.66,
+          0.57,
+          0.8,
+          1.0,
+          0.58,
+          0.38,
+          0.24,
+          0.35,
+          0.63,
+          0.74,
+          0.86,
+          0.65
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 3094,
+        "sources": [
+          "inat-activity-us-co",
+          "gbif-activity-us-co"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 34,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=41663&place_id=34&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=34&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 1454,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "C",
+            "area": [
+              "gadmGid",
+              "USA.6_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5218786&gadmGid=USA.6_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.6_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "total": 1640,
             "usable": true
           },
           "used": [
@@ -1021,6 +1122,24 @@
       "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
       "accessed": "2026-10-01",
       "kind": "api"
+    },
+    {
+      "id": "inat-activity-us-co",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=41663&place_id=34&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Procyon lotor in US-CO",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-co",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5218786&gadmGid=USA.6_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+      "title": "GBIF occurrence search for Procyon lotor in US-CO",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
+      "accessed": "2026-09-30",
+      "kind": "api"
     }
   ],
   "provenance": {
@@ -1372,6 +1491,22 @@
       "confidence": "Low",
       "derived": true,
       "note": "The cornered scream and growl are standard for the species; no recording is cited."
+    },
+    "traits": {
+      "sources": [
+        "wikipedia",
+        "gbif-backbone"
+      ],
+      "confidence": "High",
+      "note": "Covers the structural traits (body plan, limb count, thermoregulation, skin, flight, respiration, metamorphosis) and locomotion modes: the source says raccoons 'depend on vertical structures to climb when they feel threatened', forage on the ground, and, in the northern part of the range, swim between lake and river shores whose amphibians and crustaceans are 'an important part of the raccoon's diet'. Individual numeric and behavioural traits below carry their own entries."
+    },
+    "habitat": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Covers shelter_tag and habitat.resources. Invertebrate, small_vertebrate, fruit, mast and water tags come from the Diet and Habitat sections; compost from 'leftovers in municipal waste'; cavity and burrow from the den hierarchy in the Habitat section. Weights are judgement, not separately sourced percentages."
     }
   },
   "contributors": [
