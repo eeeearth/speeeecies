@@ -5,7 +5,9 @@
   "id": "Anolis carolinensis",
   "slug": "anolis-carolinensis",
   "common_names": {
-    "en": "Green anole",
+    "en": "green anole",
+    "fr": "anolis vert",
+    "de": "Grüner Anolis",
     "es": "Anolis carolino"
   },
   "taxonomy": {
@@ -21,7 +23,9 @@
   "external": {
     "gbif_usage_key": 2466939,
     "inat_taxon_id": 36514,
-    "wikidata": "Q930252"
+    "itis_tsn": 173885,
+    "wikidata": "Q930252",
+    "ncbi_taxon_id": 28377
   },
   "conservation": {
     "iucn": "LC"
@@ -29,7 +33,19 @@
   "range": {
     "native": [
       "US",
+      "CU",
       "MX"
+    ],
+    "introduced": [
+      "JP",
+      "BS",
+      "AI",
+      "PW",
+      "VC",
+      "ES"
+    ],
+    "invasive_in": [
+      "JP"
     ]
   },
   "traits": {
@@ -55,37 +71,36 @@
     "length_m": 0.164,
     "lifespan_y": 8,
     "diet": {
-      "invertebrate": 0.85,
-      "seed": 0.1,
-      "fruit": 0.05
+      "invertebrate": 0.9,
+      "fruit": 0.05,
+      "seed": 0.05
     },
     "social": {
       "structure": "Solitary",
       "group_size": [
         1,
-        2
+        1
       ]
     },
     "activity_pattern": "Diurnal",
     "defense": "Flee",
-    "wariness": 0.2
+    "wariness": 0.5,
+    "senses": {
+      "vision_color": true,
+      "uv": true
+    }
   },
   "habitat": {
     "use": {
-      "arboreal": 0.9,
-      "ground": 0.1
+      "ground": 0.3,
+      "arboreal": 0.7
     },
-    "shelter_tag": "perch",
+    "shelter_tag": "shrub_thicket",
     "resources": [
       {
         "tag": "invertebrate",
         "kind": "Predation",
-        "weight": 0.85
-      },
-      {
-        "tag": "seed",
-        "kind": "Herbivory",
-        "weight": 0.1
+        "weight": 0.9
       },
       {
         "tag": "fruit",
@@ -93,22 +108,37 @@
         "weight": 0.05
       },
       {
-        "tag": "perch",
-        "kind": "Shelter",
-        "weight": 0.8
+        "tag": "seed",
+        "kind": "Herbivory",
+        "weight": 0.05
       },
       {
         "tag": "shrub_thicket",
         "kind": "Shelter",
+        "weight": 0.6
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.4
+      },
+      {
+        "tag": "leaf_litter",
+        "kind": "Nesting",
+        "weight": 1.0
+      },
+      {
+        "tag": "nest_ground",
+        "kind": "Nesting",
         "weight": 0.5
       }
     ],
     "human_tolerance": {
       "urban_affinity": "Adapter",
       "uses_gardens": true,
+      "notes": "Compared with other lizards, green anoles are the most adapted to human encroachment; they are seen on steps, trellises, fences and railings next to foliage, and live in cities such as Atlanta where there is vegetation and insects.",
       "light_max": 0.6,
-      "road_mortality": "Medium",
-      "notes": "Common on trunks, fences, shrubs and walls around houses, where its adhesive toe pads let it climb. Most abundant on the Gulf Coastal Plain, including Mississippi."
+      "road_mortality": "Medium"
     }
   },
   "seasonal": {
@@ -118,7 +148,19 @@
         "name": "breeding",
         "start": "04-01",
         "end": "09-30",
-        "note": "The breeding season starts as early as April and ends in late September, regulated largely by photoperiod; reproduction is highest in the summer heat."
+        "note": "The breeding season runs from April to late September, regulated by photoperiod; males patrol territories and display the dewlap."
+      },
+      {
+        "name": "young",
+        "start": "05-01",
+        "end": "10-31",
+        "note": "The female lays one or two eggs about every two weeks through the season; eggs hatch in five to seven weeks and the hatchlings fend for themselves."
+      },
+      {
+        "name": "dormancy",
+        "start": "11-01",
+        "end": "03-31",
+        "note": "A refractory non-breeding season from late fall to late winter/early spring; activity continues but depends on sun and temperature."
       },
       {
         "name": "territorial",
@@ -133,8 +175,9 @@
       },
       {
         "stage": "Juvenile",
-        "duration_days": 60,
-        "scale": 0.5
+        "duration_days": 240,
+        "scale": 0.4,
+        "requires_tag": "leaf_litter"
       },
       {
         "stage": "Adult"
@@ -143,6 +186,104 @@
   },
   "activity": {
     "regions": [
+      {
+        "region": "US-AL",
+        "monthly": [
+          0.1,
+          0.27,
+          1.0,
+          0.73,
+          0.7,
+          0.41,
+          0.5,
+          0.49,
+          0.8,
+          0.53,
+          0.32,
+          0.28
+        ],
+        "method": "mean(inat_raw, gbif_raw)",
+        "observations": 1403,
+        "sources": [
+          "inat-activity-us-al",
+          "gbif-activity-us-al"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 19,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=36514&place_id=19&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": null,
+            "total": 602,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.1_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2466939&gadmGid=USA.1_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": null,
+            "total": 801,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "US-GA",
+        "monthly": [
+          0.11,
+          0.39,
+          0.77,
+          1.0,
+          0.62,
+          0.38,
+          0.48,
+          0.69,
+          0.72,
+          0.53,
+          0.3,
+          0.13
+        ],
+        "method": "mean(inat_raw, gbif_raw)",
+        "observations": 3338,
+        "sources": [
+          "inat-activity-us-ga",
+          "gbif-activity-us-ga"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 23,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=36514&place_id=23&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": null,
+            "total": 1620,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.11_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2466939&gadmGid=USA.11_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": null,
+            "total": 1718,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
       {
         "region": "US-MS",
         "monthly": [
@@ -197,9 +338,9 @@
   "behavior": {
     "program": "fsm-ground-forager-v1",
     "params": {
-      "flee_m": 4,
-      "calm_m": 12,
       "food_tag": "invertebrate",
+      "flee_m": 3,
+      "calm_m": 8,
       "food_m": 15,
       "flee_gait": "walk",
       "forage_gait": "walk",
@@ -223,65 +364,40 @@
   "look": {
     "body_plan": "quadruped",
     "proportions": {
-      "torso_aspect": 1.8,
-      "leg_length_ratio": 0.3,
-      "head_scale": 0.62,
-      "neck_angle_deg": 22,
-      "tail_ratio": 1.9,
-      "ear_ratio": 0.2,
-      "girth_ratio": 0.75
+      "torso_aspect": 2.2,
+      "leg_length_ratio": 0.4,
+      "head_scale": 0.7,
+      "neck_angle_deg": 5,
+      "tail_ratio": 1.6,
+      "ear_ratio": 0.15,
+      "beak_ratio": 0.3,
+      "girth_ratio": 0.55
     },
     "palette": {
-      "body": "#5f9e4a",
-      "belly": "#cdd9a4",
-      "markings": "#c85a7a",
-      "accent": "#8b5a2b",
-      "eye": "#101010"
+      "body": "#3fae52",
+      "belly": "#cfe8a8",
+      "markings": "#6b5a34",
+      "accent": "#e0562b",
+      "eye": "#2a2418"
     },
-    "part_colors": {},
+    "part_colors": {
+      "snout": "markings",
+      "eye_left": "eye",
+      "eye_right": "eye"
+    },
     "extra_parts": [
       {
         "name": "dewlap",
-        "parent": "neck",
-        "offset": [
-          0.35,
-          -0.3,
-          0
-        ],
-        "size": [
-          0.5,
-          0.55,
-          0.7
-        ],
-        "color": "markings"
-      },
-      {
-        "name": "dorsal_ridge",
-        "parent": "body",
-        "offset": [
-          -0.1,
-          0.5,
-          0
-        ],
-        "size": [
-          1.1,
-          0.22,
-          0.2
-        ],
-        "color": "markings"
-      },
-      {
-        "name": "head_ridges",
         "parent": "head",
         "offset": [
-          0.1,
-          0.35,
+          0.3,
+          -0.35,
           0
         ],
         "size": [
-          0.8,
-          0.14,
-          0.5
+          0.5,
+          0.35,
+          0.45
         ],
         "color": "accent"
       }
@@ -289,7 +405,6 @@
     "poses": {
       "idle": {},
       "walk": {},
-      "trot": {},
       "rest": {}
     }
   },
@@ -297,7 +412,7 @@
     {
       "id": "gbif-backbone",
       "url": "https://api.gbif.org/v1/species/2466939",
-      "title": "GBIF Backbone Taxonomy: Green anole",
+      "title": "GBIF Backbone Taxonomy: Anolis carolinensis",
       "license": "CC-BY-4.0",
       "kind": "database",
       "accessed": "2026-10-01",
@@ -307,7 +422,7 @@
     {
       "id": "wikidata",
       "url": "https://www.wikidata.org/wiki/Q930252",
-      "title": "Wikidata: Green anole (Q930252)",
+      "title": "Wikidata: Anolis carolinensis (Q930252)",
       "license": "CC0-1.0",
       "kind": "database",
       "accessed": "2026-10-01",
@@ -315,13 +430,58 @@
     },
     {
       "id": "wikipedia",
-      "url": "https://en.wikipedia.org/wiki/Green_anole",
-      "title": "Wikipedia: Green anole",
+      "url": "https://en.wikipedia.org/wiki/Anolis_carolinensis",
+      "title": "Wikipedia: Anolis carolinensis",
       "license": "CC-BY-SA-4.0",
       "kind": "webpage",
       "accessed": "2026-10-01",
-      "attribution": "Wikipedia contributors, \"Green anole\", English Wikipedia, CC BY-SA 4.0",
+      "attribution": "Wikipedia contributors, \"Anolis carolinensis\", English Wikipedia, CC BY-SA 4.0",
       "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=173885",
+      "title": "ITIS: Anolis carolinensis, TSN 173885",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "inat-activity-us-al",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=36514&place_id=19&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Anolis carolinensis in US-AL",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-al",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2466939&gadmGid=USA.1_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Anolis carolinensis in US-AL",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "inat-activity-us-ga",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=36514&place_id=23&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Anolis carolinensis in US-GA",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-ga",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2466939&gadmGid=USA.11_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Anolis carolinensis in US-GA",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
     },
     {
       "id": "inat-activity-us-ms",
@@ -343,18 +503,12 @@
     }
   ],
   "provenance": {
-    "behavior": {
-      "sources": [],
-      "confidence": "Low",
-      "derived": true,
-      "note": "Authored parameters for the shared ground-forager program, with the sun window set for a diurnal species so it rests at night."
-    },
-    "conservation": {
+    "taxonomy": {
       "sources": [
-        "wikipedia"
+        "gbif-backbone",
+        "itis"
       ],
-      "confidence": "High",
-      "note": "IUCN Red List category via Wikidata P141 (Q211005, least concern)."
+      "confidence": "High"
     },
     "external": {
       "sources": [
@@ -362,135 +516,34 @@
         "wikidata"
       ],
       "confidence": "High",
-      "note": "GBIF usage key 2466939 from the GBIF Backbone Taxonomy; iNaturalist taxon id 36514 and Wikidata Q930252 via Wikidata."
+      "note": "iNaturalist and NCBI ids via Wikidata P3151 and P685; ITIS TSN via Wikidata P815 and the ITIS database."
     },
-    "habitat.human_tolerance": {
+    "common_names": {
       "sources": [
-        "wikipedia"
+        "wikidata"
       ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Gulf Coastal Plain abundance including Mississippi, and the adhesive toe pads used to climb, are from Wikipedia; the rest are judgements."
+      "confidence": "High"
     },
-    "habitat.resources": {
+    "conservation": {
       "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "The food resources follow the diet shares; perch and shrub thicket are authored from where it sits."
-    },
-    "habitat.shelter_tag": {
-      "sources": [
-        "wikipedia"
+        "wikidata"
       ],
       "confidence": "High",
-      "derived": true,
-      "note": "Perches and trunk-shrub cover, which is where it settles to rest."
-    },
-    "habitat.use": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Shares authored: it is 'a tree-dwelling species', 'a trunk-crown ecomorph', that comes down to the ground only rarely."
-    },
-    "look": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Green in warm conditions and brown in cool ones, with a long pointed head bearing ridges, a pink to orange-red male dewlap, a crest that inflates when threatened and a long tapering tail; proportions and palette are authored."
+      "note": "Wikidata P141 = least concern (Q211005)."
     },
     "range": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High",
-      "derived": true,
-      "note": "Country list derived from 'native to the southeastern United States ... they have also been recorded in Tamaulipas, Mexico'; it is most abundant on the Gulf Coast in Alabama, Mississippi, Louisiana and Texas. Islands in the Pacific and Caribbean are described as holding introduced populations but are not enumerated, so no introduced entry is recorded."
-    },
-    "seasonal.life_stages": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Low",
-      "derived": true,
-      "note": "The juvenile period is authored; it covers growth from the hatchling to the roughly 7.5 cm adult snout-to-vent length."
-    },
-    "seasonal.phases": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "derived": true,
-      "note": "The April to late-September breeding season, the summer peak and the late-fall to early-spring refractory season are from Wikipedia."
-    },
-    "seasonal.strategy": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "derived": true,
-      "note": "Active all year in its native range; gonadal activity 'largely regulated by photoperiod' with a refractory period in the cool months."
-    },
-    "taxonomy": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High"
-    },
-    "traits.activity_pattern": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High"
+      "confidence": "Medium",
+      "note": "Native to the subtropical southeastern United States, abundant on the Gulf Coast in Alabama; introduced to Hawaii (inside the native US code), the Ogasawara Islands, the Northern Mariana Islands, the Bahamas, Anguilla, Palau, Saint Vincent and the Grenadines, the Canary Islands and southern California. The Ogasawara (Japan) population is the one listed as an invasive alien species. Country codes are ISO 3166-1 alpha-2.",
+      "derived": true
     },
     "traits.body_plan": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High"
-    },
-    "traits.defense": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "derived": true,
-      "note": "'The male will fight other males to defend his territory', compressing its body, extending the dewlap, inflating a dorsal ridge and bobbing its head; a threatened animal drops to the ground and away."
-    },
-    "traits.diet": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "derived": true,
-      "note": "Weights authored from a diet 'consisting primarily of small insects', with occasional molluscs, grains and seeds."
-    },
-    "traits.flight": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High"
-    },
-    "traits.length_m": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "derived": true,
-      "note": "Midpoint of the 12.5-20.3 cm total length of adult males, of which about 60-70% is tail; snout-to-vent length reaches 7.5 cm."
-    },
-    "traits.lifespan_y": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "8 years is the stated captive maximum; wild longevity is shorter."
     },
     "traits.limb_count": {
       "sources": [
@@ -503,39 +556,24 @@
         "wikipedia"
       ],
       "confidence": "Medium",
-      "derived": true,
-      "note": "It climbs trunks and branches with its adhesive toe pads and walks along them. 'Green anoles use jumping for their primary means of locomotion', but the shared quadruped mesh has no hop animation, so Hop is deliberately left out rather than given a pose that does not exist; the jump is recorded under traits.defense and habitat notes instead."
+      "note": "A trunk-crown lizard that walks on the ground and climbs with adhesive toe pads, escaping up vertical surfaces; the article also calls jumping its primary means of locomotion, which the quadruped mesh has no pose for.",
+      "derived": true
     },
-    "traits.mass_kg": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "derived": true,
-      "note": "Midpoint of 3-7 g."
-    },
-    "traits.mass_range_kg": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "note": "3-7 g."
-    },
-    "traits.metamorphosis": {
+    "traits.thermoregulation": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High"
     },
-    "traits.nest_type": {
+    "traits.skin": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "Low",
+      "confidence": "High",
       "derived": true,
-      "note": "Eggs are laid in soil or sheltered vegetation; no nest is built, so Ground is recorded as the nearest of the available classes."
+      "note": "Authored judgement from the order Squamata: a lizard's skin is scaled. The article's colour discussion describes three layers of pigment cells under a typical reptilian skin but does not name the covering."
     },
-    "traits.perching": {
+    "traits.flight": {
       "sources": [
         "wikipedia"
       ],
@@ -547,6 +585,27 @@
       ],
       "confidence": "High"
     },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "The female buries soft-shelled eggs in a shallow depression in soft soil, leaf litter, compost, rotting wood or a tree hole; set to Ground.",
+      "derived": true
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Perches on shrubs, fences and railings, but not in the bird sense; set to false so the quadruped mesh is used."
+    },
     "traits.size_class": {
       "sources": [
         "wikipedia"
@@ -555,25 +614,67 @@
       "derived": true,
       "note": "From mass_kg."
     },
-    "traits.skin": {
+    "traits.mass_kg": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of the stated 3-7 g for adult males."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "3-7 g for adult males; females are smaller."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Midpoint of the stated 12.5-20.3 cm total length for adult males, about 60-70% of it tail; females are smaller."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "note": "'A green anole in captivity, if cared properly, can live up to 8 years'; the article gives no wild figure, so this is the captive maximum.",
+      "derived": true
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Primarily small insects and other arthropods including spiders, with occasional molluscs, grains and seeds; the 90/5/5 split is judgement."
     },
     "traits.social": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "Medium",
-      "derived": true,
-      "note": "'Male anoles are strongly territorial creatures' whose territory 'encompass[es] multiple smaller areas of females', so an animal is seen alone or as a pair."
+      "note": "Males are strongly territorial and defend territories that encompass the smaller areas of two to three females; set to Solitary with a single-animal group.",
+      "derived": true
     },
-    "traits.thermoregulation": {
+    "traits.activity_pattern": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "note": "'The Carolina anole is diurnal and active throughout the year, peaking in spring and fall.'"
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Escapes by climbing vertical walls, trees and fences, and can drop its tail; judgement mapping to the schema's single-value field."
     },
     "traits.wariness": {
       "sources": [
@@ -581,7 +682,90 @@
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "It habitually sits on fences, walls and shrubs around houses and only moves when approached; 0.2 is a judgement."
+      "note": "Judgement: nervous and quick to flee but common around houses, fences and gardens."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Arboreal trunk-crown ecomorph, but 'may be seen on the ground and frequently seen on shrubs'; the split is judgement."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Uses shrubs and vines for cover and perching.",
+      "derived": true
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Food weights follow traits.diet; shrub and perch shelter and the leaf-litter nest site are described in the Habitat and Reproduction sections."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "From the Distribution and habitat section: the lizard most adapted to human encroachment, seen on steps, trellises and railings, and living in cities such as Atlanta.",
+      "derived": true
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'The Carolina anole is diurnal and active throughout the year, peaking in spring and fall. Winter activity is dependent on sun and temperature.'",
+      "derived": true
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The April-September breeding window, the egg-laying and hatching timings and the late-fall-to-spring refractory season are from the Reproduction section; the dormancy phase here marks reduced winter activity rather than true dormancy."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Hatchlings fend for themselves and 'mature in about eight months' (240 days used); the 0.4 scale is authored judgement."
+    },
+    "vocalizations": {
+      "sources": [],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Left empty: green anoles are essentially silent, and the article describes no vocal repertoire. The schema's vocalizations key is present but carries no data rather than an invented call."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Bright green to brown body with a long tail, adhesive toe pads and a pink to orange-red dewlap, from the Description; proportions and the extra dewlap part are authored judgement."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared ground-forager program, the closest shared fit for an insectivorous, diurnal, cover-dependent lizard; the program's description names ground-dwelling mammals, so this is a noted stretch. food_tag invertebrate matches the diet; the rest window (-90/-6) keeps it active by day; the short flee/food radii suit a small territorial lizard."
+    },
+    "traits.senses": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Wikipedia states that the colour spectrum arises from three layers of pigment cells - xanthophores for yellow, cyanophores for blue and melanophores for brown and black - and that green anoles are thought to be capable of seeing a larger range of the UV spectrum than humans. Neither colour vision nor UV vision is available as a boolean in the source text beyond that UV statement, so both flags follow it."
     },
     "vocalizations.chuck": {
       "sources": [
@@ -593,6 +777,14 @@
     }
   },
   "contributors": [
+    {
+      "name": "opencode agent (al-birmingham locale, issue #73)",
+      "agent": "opencode"
+    },
+    {
+      "name": "speeeecies maintainers",
+      "agent": "opencode"
+    },
     {
       "name": "speeeecies contributors",
       "agent": "opencode-go/space-bunny-free"

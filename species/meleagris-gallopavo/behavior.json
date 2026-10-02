@@ -1,0 +1,239 @@
+{
+  "schema_version": 1,
+  "format": "speeeecies/behavior",
+  "id": "fsm-ground-galliform-v1",
+  "kind": "fsm",
+  "description": "Upland game bird of the galliform order (wild turkey): walks over leaf litter picking mast, seeds and invertebrates off the ground, struts and gobbles to advertise to hens in early spring, a hen settles on a ground nest and then leads her brood, and the whole flock drops from a tree roost at dusk and flies up to it again at dawn. No shared program fits: the ground forager is a mammal that rests in burrows or dens and never flies or calls, the songbird is a small perching bird that forages by hops, and the seabird and anuran programs assume water. 'walk' carries the ground foraging and strutting, 'fly' carries the roost and escape flights.",
+  "params": {
+    "flee_m": 25,
+    "calm_m": 60,
+    "food_tag": "mast",
+    "food_m": 20,
+    "call": "gobble",
+    "gobble_m1": 3,
+    "gobble_m2": 5,
+    "forage_gait": "walk"
+  },
+  "initial": "roost",
+  "states": {
+    "roost": {
+      "action": {
+        "do": "rest",
+        "at": "shelter"
+      },
+      "min_dwell_s": 30
+    },
+    "scratch": {
+      "action": {
+        "do": "wander",
+        "gait": "${forage_gait}"
+      }
+    },
+    "forage": {
+      "action": {
+        "do": "eat_nearest",
+        "tag": "${food_tag}",
+        "gait": "${forage_gait}"
+      },
+      "min_dwell_s": 20
+    },
+    "gobble": {
+      "action": {
+        "do": "sing",
+        "call": "${call}"
+      },
+      "min_dwell_s": 3
+    },
+    "strut": {
+      "action": {
+        "do": "emote",
+        "kind": "strut",
+        "call": "${call}"
+      },
+      "min_dwell_s": 5
+    },
+    "brood": {
+      "action": {
+        "do": "follow_flock"
+      },
+      "min_dwell_s": 15
+    },
+    "flee": {
+      "action": {
+        "do": "flee",
+        "gait": "fly"
+      },
+      "min_dwell_s": 3
+    },
+    "touched": {
+      "action": {
+        "do": "tolerate_touch"
+      }
+    }
+  },
+  "transitions": [
+    {
+      "from": "*",
+      "to": "flee",
+      "when": {
+        "threat_within_m": "${flee_m}"
+      },
+      "priority": 100
+    },
+    {
+      "from": "*",
+      "to": "touched",
+      "when": {
+        "all": [
+          {
+            "player_touch": true
+          },
+          {
+            "need": "fear",
+            "lt": 0.2
+          }
+        ]
+      },
+      "priority": 60
+    },
+    {
+      "from": "touched",
+      "to": "roost",
+      "when": {
+        "player_touch": false
+      }
+    },
+    {
+      "from": "flee",
+      "to": "roost",
+      "when": {
+        "not": {
+          "threat_within_m": "${calm_m}"
+        }
+      }
+    },
+    {
+      "from": "roost",
+      "to": "scratch",
+      "when": {
+        "all": [
+          {
+            "is_day": true
+          },
+          {
+            "not": {
+              "need": "energy",
+              "gt": 0.8
+            }
+          }
+        ]
+      },
+      "priority": 10
+    },
+    {
+      "from": "scratch",
+      "to": "forage",
+      "when": {
+        "all": [
+          {
+            "need": "hunger",
+            "gt": 0.35
+          },
+          {
+            "food_within_m": "${food_m}",
+            "tag": "${food_tag}"
+          }
+        ]
+      },
+      "priority": 20
+    },
+    {
+      "from": "scratch",
+      "to": "roost",
+      "when": {
+        "all": [
+          {
+            "is_day": false
+          },
+          {
+            "shelter_within_m": 60
+          }
+        ]
+      }
+    },
+    {
+      "from": "forage",
+      "to": "scratch",
+      "when": {
+        "need": "hunger",
+        "lt": 0.2
+      }
+    },
+    {
+      "from": "forage",
+      "to": "scratch",
+      "when": {
+        "not": {
+          "food_within_m": "${food_m}",
+          "tag": "${food_tag}"
+        }
+      }
+    },
+    {
+      "from": "scratch",
+      "to": "gobble",
+      "when": {
+        "all": [
+          {
+            "month_in": [
+              "${gobble_m1}",
+              "${gobble_m2}"
+            ]
+          },
+          {
+            "chance": 0.15
+          }
+        ]
+      },
+      "priority": 15
+    },
+    {
+      "from": "gobble",
+      "to": "strut",
+      "when": {
+        "chance": 0.4
+      }
+    },
+    {
+      "from": "strut",
+      "to": "scratch",
+      "when": {
+        "chance": 0.5
+      }
+    },
+    {
+      "from": "scratch",
+      "to": "brood",
+      "when": {
+        "all": [
+          {
+            "need": "nest",
+            "gt": 0.6
+          },
+          {
+            "nest_site_within_m": 40
+          }
+        ]
+      },
+      "priority": 25
+    },
+    {
+      "from": "brood",
+      "to": "scratch",
+      "when": {
+        "need": "nest",
+        "lt": 0.2
+      }
+    }
+  ]
+}

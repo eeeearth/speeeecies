@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "format": "speeeecies/behavior",
+  "id": "fsm-perching-raptor-v1",
+  "kind": "fsm",
+  "description": "A perching bird of prey (red-shouldered hawk): watches from a treetop perch, soars and patrols over its territory, stoops on small vertebrate prey, scavenges carrion, drinks, and flies up from nearby threats. Written for Buteo lineatus because no shared program models a perching raptor; the shared seabird predator FSM is named for and tuned to a colonial seabird.",
+  "params": {
+    "flee_m": 15,
+    "calm_m": 45,
+    "prey_m": 70,
+    "carrion_m": 40,
+    "perch_m": 40
+  },
+  "initial": "idle",
+  "states": {
+    "idle": {
+      "action": {
+        "do": "idle"
+      },
+      "min_dwell_s": 2
+    },
+    "perch": {
+      "action": {
+        "do": "perch_nearest",
+        "tag": "perch"
+      },
+      "min_dwell_s": 8
+    },
+    "patrol": {
+      "action": {
+        "do": "wander",
+        "gait": "fly"
+      }
+    },
+    "hunt": {
+      "action": {
+        "do": "eat_nearest",
+        "tag": "small_vertebrate",
+        "gait": "walk"
+      },
+      "min_dwell_s": 4
+    },
+    "scavenge": {
+      "action": {
+        "do": "eat_nearest",
+        "tag": "carrion",
+        "gait": "walk"
+      }
+    },
+    "drink": {
+      "action": {
+        "do": "drink_nearest",
+        "gait": "walk"
+      }
+    },
+    "flee": {
+      "action": {
+        "do": "flee",
+        "gait": "fly"
+      },
+      "min_dwell_s": 3
+    },
+    "rest": {
+      "action": {
+        "do": "rest",
+        "at": "shelter"
+      },
+      "min_dwell_s": 30
+    }
+  },
+  "transitions": [
+    {
+      "from": "*",
+      "to": "flee",
+      "when": {
+        "threat_within_m": "${flee_m}"
+      },
+      "priority": 100
+    },
+    {
+      "from": "*",
+      "to": "flee",
+      "when": {
+        "need": "fear",
+        "gt": 0.25
+      },
+      "priority": 90
+    },
+    {
+      "from": "flee",
+      "to": "idle",
+      "when": {
+        "not": {
+          "threat_within_m": "${calm_m}"
+        }
+      }
+    },
+    {
+      "from": "idle",
+      "to": "hunt",
+      "when": {
+        "all": [
+          {
+            "need": "hunger",
+            "gt": 0.45
+          },
+          {
+            "food_within_m": "${prey_m}",
+            "tag": "small_vertebrate"
+          }
+        ]
+      }
+    },
+    {
+      "from": "idle",
+      "to": "scavenge",
+      "when": {
+        "all": [
+          {
+            "need": "hunger",
+            "gt": 0.45
+          },
+          {
+            "food_within_m": "${carrion_m}",
+            "tag": "carrion"
+          }
+        ]
+      }
+    },
+    {
+      "from": "idle",
+      "to": "drink",
+      "when": {
+        "all": [
+          {
+            "need": "thirst",
+            "gt": 0.6
+          },
+          {
+            "water_within_m": 60
+          }
+        ]
+      }
+    },
+    {
+      "from": "idle",
+      "to": "rest",
+      "when": {
+        "need": "energy",
+        "gt": 0.75
+      }
+    },
+    {
+      "from": "idle",
+      "to": "perch",
+      "when": {
+        "perch_within_m": "${perch_m}"
+      }
+    },
+    {
+      "from": "perch",
+      "to": "patrol",
+      "when": {
+        "chance": 0.3
+      }
+    },
+    {
+      "from": "perch",
+      "to": "idle",
+      "when": {
+        "chance": 0.1
+      }
+    },
+    {
+      "from": "idle",
+      "to": "patrol",
+      "when": {
+        "chance": 0.15
+      }
+    },
+    {
+      "from": "patrol",
+      "to": "idle",
+      "when": {
+        "chance": 0.15
+      }
+    },
+    {
+      "from": "hunt",
+      "to": "idle",
+      "when": {
+        "need": "hunger",
+        "lt": 0.2
+      }
+    },
+    {
+      "from": "scavenge",
+      "to": "idle",
+      "when": {
+        "need": "hunger",
+        "lt": 0.2
+      }
+    },
+    {
+      "from": "drink",
+      "to": "idle",
+      "when": {
+        "need": "thirst",
+        "lt": 0.1
+      }
+    },
+    {
+      "from": "rest",
+      "to": "idle",
+      "when": {
+        "need": "energy",
+        "lt": 0.2
+      }
+    }
+  ]
+}

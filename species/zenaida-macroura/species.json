@@ -5,7 +5,9 @@
   "id": "Zenaida macroura",
   "slug": "zenaida-macroura",
   "common_names": {
-    "en": "Mourning dove",
+    "en": "mourning dove",
+    "fr": "tourterelle triste",
+    "de": "Carolinataube",
     "es": "Paloma de la tristeza"
   },
   "taxonomy": {
@@ -21,7 +23,9 @@
   "external": {
     "gbif_usage_key": 2495347,
     "inat_taxon_id": 3454,
+    "itis_tsn": 177125,
     "wikidata": "Q750027",
+    "ncbi_taxon_id": 47245,
     "ebird_code": "moudov"
   },
   "conservation": {
@@ -29,10 +33,21 @@
   },
   "range": {
     "native": [
-      "CA",
       "US",
+      "CA",
       "MX",
-      "CU"
+      "BS",
+      "CU",
+      "GT",
+      "BZ",
+      "HN",
+      "SV",
+      "NI",
+      "CR",
+      "PA"
+    ],
+    "introduced": [
+      "BM"
     ]
   },
   "traits": {
@@ -57,39 +72,33 @@
     ],
     "length_m": 0.31,
     "wingspan_m": 0.41,
-    "lifespan_y": 7,
+    "lifespan_y": 1.5,
     "diet": {
-      "seed": 0.75,
-      "fruit": 0.2,
+      "seed": 0.95,
       "invertebrate": 0.05
     },
     "social": {
       "structure": "Flock",
       "group_size": [
         2,
-        20
+        30
       ]
     },
     "activity_pattern": "Diurnal",
     "defense": "Flee",
-    "wariness": 0.15
+    "wariness": 0.35
   },
   "habitat": {
     "use": {
-      "arboreal": 0.4,
-      "ground": 0.6
+      "ground": 0.5,
+      "arboreal": 0.5
     },
     "shelter_tag": "perch",
     "resources": [
       {
         "tag": "seed",
         "kind": "Herbivory",
-        "weight": 0.75
-      },
-      {
-        "tag": "fruit",
-        "kind": "Herbivory",
-        "weight": 0.2
+        "weight": 0.95
       },
       {
         "tag": "invertebrate",
@@ -104,7 +113,22 @@
       {
         "tag": "perch",
         "kind": "Shelter",
+        "weight": 0.8
+      },
+      {
+        "tag": "water",
+        "kind": "Water",
         "weight": 0.7
+      },
+      {
+        "tag": "browse",
+        "kind": "Herbivory",
+        "weight": 0.1
+      },
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.2
       }
     ],
     "human_tolerance": {
@@ -112,18 +136,33 @@
       "uses_gardens": true,
       "light_max": 0.8,
       "road_mortality": "High",
-      "notes": "One of the commonest birds of towns and cities across the continent, feeding on weed seeds, bird seed and spilled grain on the ground. Perches with feet on branches and wires."
+      "notes": "Common in gardens, parks, farmland and towns, feeding on the ground and on feeders; nests in garden trees, shrubs and on buildings and hanging baskets.",
+      "flight_distance_m": 8
     }
   },
   "seasonal": {
-    "strategy": "PartialMigration",
-    "winter_fraction": 0.5,
+    "strategy": "ActiveYearRound",
     "phases": [
       {
         "name": "breeding",
-        "start": "02-01",
-        "end": "10-31",
-        "note": "Courtship starts with a noisy flight and a circular glide; the female builds a flimsy platform of twigs and grass and the male carries her material."
+        "start": "03-01",
+        "end": "09-30",
+        "note": "Breeding peaks from spring to late summer, with several broods a year; exact start/end dates are a judgement placed around the described season."
+      },
+      {
+        "name": "nesting",
+        "start": "03-01",
+        "end": "09-30"
+      },
+      {
+        "name": "young",
+        "start": "04-01",
+        "end": "09-30"
+      },
+      {
+        "name": "flocking",
+        "start": "10-01",
+        "end": "02-28"
       },
       {
         "name": "territorial",
@@ -138,16 +177,115 @@
       },
       {
         "stage": "Juvenile",
-        "duration_days": 30,
-        "scale": 0.9
+        "duration_days": 40,
+        "scale": 0.8
       },
       {
         "stage": "Adult"
       }
-    ]
+    ],
+    "winter_fraction": 0.5
   },
   "activity": {
     "regions": [
+      {
+        "region": "US-NJ",
+        "monthly": [
+          0.77,
+          1.0,
+          1.0,
+          0.74,
+          0.52,
+          0.66,
+          0.72,
+          0.77,
+          0.67,
+          0.4,
+          0.61,
+          0.76
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 755948,
+        "sources": [
+          "inat-activity-us-nj",
+          "gbif-activity-us-nj"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 51,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3454&place_id=51&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=51&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "total": 746,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.31_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2495347&gadmGid=USA.31_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.31_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 755202,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "US-DE",
+        "monthly": [
+          0.79,
+          1.0,
+          0.86,
+          1.0,
+          0.64,
+          0.82,
+          0.7,
+          0.77,
+          0.99,
+          0.71,
+          0.63,
+          0.59
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 145698,
+        "sources": [
+          "inat-activity-us-de",
+          "gbif-activity-us-de"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 4,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3454&place_id=4&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=4&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 565,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.8_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2495347&gadmGid=USA.8_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.8_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 145133,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
       {
         "region": "US-MS",
         "monthly": [
@@ -202,15 +340,40 @@
   "behavior": {
     "program": "bt-perching-songbird-v1",
     "params": {
-      "flee_m": 8,
+      "flee_m": 6,
       "food_tag": "seed",
-      "song": "song",
+      "song": "coo",
       "alarm": "alarm",
       "nest_m1": 3,
-      "nest_m2": 6
+      "nest_m2": 9,
+      "song_cooldown_s": 12
     }
   },
   "vocalizations": [
+    {
+      "call_id": "coo",
+      "context": "Song",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day",
+        "Dusk"
+      ],
+      "cooldown_s": 8,
+      "loudness": "Moderate",
+      "description": "A soft, mournful coo, 'coo-OO-oo-oo', with the second note accented; the familiar call of summer mornings and the source of the bird's name."
+    },
+    {
+      "call_id": "alarm",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 5,
+      "loudness": "Moderate",
+      "description": "A short, sharp alarm note and a noisy wing-clatter on take-off when startled."
+    },
     {
       "call_id": "song",
       "context": "Song",
@@ -222,64 +385,68 @@
       "cooldown_s": 20,
       "loudness": "Loud",
       "description": "A mournful, rising then falling four-note coo from the male, delivered from a perch, followed by the female's shorter answering coo; also used in the courtship approach."
-    },
-    {
-      "call_id": "alarm",
-      "context": "Alarm",
-      "season_months": [],
-      "time_windows": [
-        "Day"
-      ],
-      "cooldown_s": 4,
-      "loudness": "Moderate",
-      "description": "A sharp, clipped wing-flutter or a brief alarm cackle when flushed."
     }
   ],
   "look": {
     "body_plan": "biped_winged",
     "proportions": {
       "torso_aspect": 1.6,
-      "leg_length_ratio": 0.3,
-      "head_scale": 0.62,
-      "neck_angle_deg": 20,
-      "tail_ratio": 1.25,
-      "wing_aspect": 3.4,
-      "beak_ratio": 0.3,
-      "girth_ratio": 1.05
+      "leg_length_ratio": 0.2,
+      "head_scale": 0.6,
+      "neck_angle_deg": 10,
+      "tail_ratio": 1.0,
+      "wing_aspect": 2.8,
+      "beak_ratio": 0.28,
+      "girth_ratio": 1.15
     },
     "palette": {
-      "body": "#a89f95",
-      "belly": "#d9c3bd",
-      "markings": "#4b4642",
-      "accent": "#c9a9a4",
-      "eye": "#1b1b1b"
+      "body": "#a99a8a",
+      "belly": "#e3d3c8",
+      "markings": "#3a3230",
+      "accent": "#8a7a72",
+      "eye": "#1a1512"
     },
     "part_colors": {
-      "beak": "eye"
+      "beak": "markings",
+      "leg_*": "accent"
     },
     "extra_parts": [
       {
-        "name": "neck_patch",
-        "parent": "breast",
+        "name": "wing_spot",
+        "parent": "wing_left",
         "offset": [
-          0.2,
-          0.1,
+          -0.2,
+          -0.05,
           0
         ],
         "size": [
-          0.9,
-          0.45,
-          1.1
+          0.15,
+          0.3,
+          0.9
         ],
-        "color": "accent"
+        "color": "markings",
+        "mirror": true
+      },
+      {
+        "name": "tail_edge",
+        "parent": "tail",
+        "offset": [
+          -0.45,
+          0,
+          0
+        ],
+        "size": [
+          0.15,
+          1.05,
+          1.05
+        ],
+        "color": "belly"
       }
     ],
     "poses": {
       "idle": {},
       "walk": {},
-      "hop": {},
       "fly": {},
-      "glide": {},
       "perched": {},
       "rest": {}
     }
@@ -288,20 +455,20 @@
     {
       "id": "gbif-backbone",
       "url": "https://api.gbif.org/v1/species/2495347",
-      "title": "GBIF Backbone Taxonomy: Mourning dove",
+      "title": "GBIF Backbone Taxonomy: Zenaida macroura",
       "license": "CC-BY-4.0",
       "kind": "database",
-      "accessed": "2026-10-01",
+      "accessed": "2026-09-30",
       "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
       "license_url": "https://creativecommons.org/licenses/by/4.0/"
     },
     {
       "id": "wikidata",
       "url": "https://www.wikidata.org/wiki/Q750027",
-      "title": "Wikidata: Mourning dove (Q750027)",
+      "title": "Wikidata: Mourning Dove (Q750027)",
       "license": "CC0-1.0",
       "kind": "database",
-      "accessed": "2026-10-01",
+      "accessed": "2026-09-30",
       "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
     },
     {
@@ -310,9 +477,64 @@
       "title": "Wikipedia: Mourning dove",
       "license": "CC-BY-SA-4.0",
       "kind": "webpage",
-      "accessed": "2026-10-01",
+      "accessed": "2026-09-30",
       "attribution": "Wikipedia contributors, \"Mourning dove\", English Wikipedia, CC BY-SA 4.0",
       "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=177125",
+      "title": "ITIS: Zenaida macroura, TSN 177125",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-09-30",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "eltontraits",
+      "url": "https://doi.org/10.6084/m9.figshare.3559887.v1",
+      "title": "EltonTraits 1.0: species-level foraging attributes of the world's birds and mammals (BirdFuncDat)",
+      "license": "CC0-1.0",
+      "kind": "dataset",
+      "accessed": "2026-09-30",
+      "attribution": "Wilman, H. et al. (2014) EltonTraits 1.0. Ecology 95:2027",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "inat-activity-us-nj",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3454&place_id=51&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Zenaida macroura in US-NJ",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-nj",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2495347&gadmGid=USA.31_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Zenaida macroura in US-NJ",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "inat-activity-us-de",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3454&place_id=4&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Zenaida macroura in US-DE",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-de",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2495347&gadmGid=USA.8_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Zenaida macroura in US-DE",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
     },
     {
       "id": "inat-activity-us-ms",
@@ -334,18 +556,12 @@
     }
   ],
   "provenance": {
-    "behavior": {
-      "sources": [],
-      "confidence": "Low",
-      "derived": true,
-      "note": "Authored parameters for the shared perching-songbird program."
-    },
-    "conservation": {
+    "taxonomy": {
       "sources": [
-        "wikidata"
+        "gbif-backbone",
+        "itis"
       ],
-      "confidence": "High",
-      "note": "IUCN Red List category via Wikidata P141 (Q211005, least concern)."
+      "confidence": "High"
     },
     "external": {
       "sources": [
@@ -353,131 +569,35 @@
         "wikidata"
       ],
       "confidence": "High",
-      "note": "GBIF usage key 2495347 from the GBIF Backbone Taxonomy; iNaturalist taxon id 3454 and Wikidata Q750027 via Wikidata."
+      "note": "ITIS TSN and NCBI taxon id via Wikidata (P815, P685); Wikidata item for this species."
     },
-    "habitat.human_tolerance": {
+    "common_names": {
       "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Perching feet and ground feeding from Wikipedia; the rest are judgements."
-    },
-    "habitat.resources": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "The three food resources follow the diet shares; the nest and perch resources are authored."
-    },
-    "habitat.shelter_tag": {
-      "sources": [
-        "wikipedia"
+        "wikidata"
       ],
       "confidence": "High",
-      "derived": true,
-      "note": "An exposed perch, which is how the species usually spends the night."
+      "note": "en label from Wikidata; fr/de labels are Wikidata sitelink-derived labels for Q750027."
     },
-    "habitat.use": {
+    "conservation": {
       "sources": [
-        "wikipedia"
+        "wikidata"
       ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Shares authored: most feeding is on the ground, with long spells perched on wires and branches."
-    },
-    "look": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Light gray-brown above and pinkish below, with black wing spotting, white outer tail feathers, a dark crescent below the eye and iridescent purple-pink on the neck; proportions and palette are authored."
+      "confidence": "High",
+      "note": "Wikidata P141 = least concern (Q211005)."
     },
     "range": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High",
-      "derived": true,
-      "note": "Country list derived from 'resident throughout the Greater Antilles, most of Mexico, the Continental United States, southern Canada'. The article also lists Bermuda as resident without saying whether it was introduced, so Bermuda is left out rather than guessed."
-    },
-    "seasonal.life_stages": {
-      "sources": [
-        "wikipedia"
-      ],
       "confidence": "Medium",
       "derived": true,
-      "note": "The juvenile period covers fledging to independence."
-    },
-    "seasonal.phases": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "The courtship and nest description are from Wikipedia; the phase dates are judgements."
-    },
-    "seasonal.strategy": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "note": "'Resident throughout the Greater Antilles, most of Mexico, the Continental United States, southern Canada', with northern birds summer-only and Central American birds winter-only."
-    },
-    "taxonomy": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High"
-    },
-    "traits.activity_pattern": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High"
+      "note": "Country list assembled from the Distribution and habitat section: the five subspecies cover Canada and the United States to Mexico, with the species ranging through the Caribbean (Bahamas, Cuba) and Central America (Guatemala, Belize, Honduras, El Salvador, Nicaragua, Costa Rica, Panama). Bermuda listed as introduced. A judgement sample at country level, not an exhaustive political list."
     },
     "traits.body_plan": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High"
-    },
-    "traits.defense": {
-      "sources": [],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Authored: bursts into flight and climbs away."
-    },
-    "traits.diet": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "derived": true,
-      "note": "Weights authored: a granivorous ground feeder that also takes fruit and a little animal food."
-    },
-    "traits.flight": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High"
-    },
-    "traits.length_m": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "note": "Approximately 31 cm."
-    },
-    "traits.lifespan_y": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Low",
-      "derived": true,
-      "note": "Not stated in the article. 7 years is a judgement for a dove of this size."
     },
     "traits.limb_count": {
       "sources": [
@@ -489,39 +609,23 @@
       "sources": [
         "wikipedia"
       ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "It walks and struts on the ground for most of its feeding and flies in strong, direct flight; the two gaits are authored from that."
-    },
-    "traits.mass_kg": {
-      "sources": [
-        "wikipedia"
-      ],
       "confidence": "High",
-      "note": "Usually closer to 128 g, within a range of 112-170 g."
+      "note": "A dove that feeds on the ground and walks rather than hops; a fast, direct flier with the characteristic whistling wing-beat.",
+      "derived": true
     },
-    "traits.mass_range_kg": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "note": "112-170 g."
-    },
-    "traits.metamorphosis": {
+    "traits.thermoregulation": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High"
     },
-    "traits.nest_type": {
+    "traits.skin": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "'Constructed of twigs, conifer needles, or grass blades, and is of flimsy construction', on a branch or ledge."
+      "confidence": "High"
     },
-    "traits.perching": {
+    "traits.flight": {
       "sources": [
         "wikipedia"
       ],
@@ -533,41 +637,57 @@
       ],
       "confidence": "High"
     },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'The nest is constructed of twigs, conifer needles, or grass blades, and is of flimsy construction', i.e. a simple platform.",
+      "derived": true
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'Mourning doves have perching feet, with three toes forward and one reversed.'"
+    },
     "traits.size_class": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High",
       "derived": true,
-      "note": "From mass_kg."
+      "note": "From mass_kg (< 1 kg)."
     },
-    "traits.skin": {
+    "traits.mass_kg": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "note": "'Mourning doves weigh 112-170 g (4.0-6.0 oz), usually closer to 128 g (4.5 oz).'",
+      "derived": true
     },
-    "traits.social": {
+    "traits.mass_range_kg": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Forms flocks outside the breeding season; pairs preen each other and stay together, so the range spans a pair and a small flock."
+      "confidence": "High",
+      "note": "Weight range 112-170 g."
     },
-    "traits.thermoregulation": {
+    "traits.length_m": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
-    },
-    "traits.wariness": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Feeds in open ground among people; 0.15 is a judgement."
+      "confidence": "High",
+      "note": "'approximately 31 cm (12 in) in length'.",
+      "derived": true
     },
     "traits.wingspan_m": {
       "sources": [
@@ -575,7 +695,114 @@
       ],
       "confidence": "High",
       "derived": true,
-      "note": "Midpoint of 37-45 cm."
+      "note": "Midpoint of 'a wingspan of 37-45 cm'."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement from the species' high annual mortality (a heavily hunted game bird with large clutches and multiple broods); no single mean wild lifespan is stated on the article, so a short figure typical of a small game bird is used."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia",
+        "eltontraits"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'Mourning doves eat almost exclusively seeds'; the small remainder is grit and occasional insects taken incidentally. Shares are a rounded judgement."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Generally monogamous and seen in pairs, but gathers in loose flocks at feeding and watering sites; group_size is judgement."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Feeding and breeding behaviour described by day."
+    },
+    "traits.defense": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored: flushes with a noisy wing-clatter when approached."
+    },
+    "traits.wariness": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: fairly tolerant of people in gardens and at feeders, but readily flushed."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement split: feeds and drinks on the ground, but nests, roosts and perches in trees and on structures."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Roosts and rests on branches, wires and ledges; 'perch' is the closest tag.",
+      "derived": true
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Seed and invertebrate weights follow traits.diet; nest_platform, perch and water weights are qualitative from the nest and drinking descriptions."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "urban_affinity, uses_gardens and road_mortality follow the described abundance around towns and farmland; light_max is judgement."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Resident or partially migratory depending on latitude; no dormancy is described."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Breeding season and multiple broods a year are from Wikipedia; exact phase start/end dates are judgement."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Incubation about 14 days and nestling period about 12-15 days; duration_days and scale are a judgement approximation of time to independence."
+    },
+    "vocalizations.coo": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Call description and context from the Wikipedia article's description/behaviour sections."
     },
     "vocalizations.alarm": {
       "sources": [
@@ -583,7 +810,21 @@
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "The wing flutter and alarm cackle on flushing are standard for doves; no recording is cited."
+      "note": "Call description and context from the Wikipedia article's description/behaviour sections."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Colours from the article's plumage description: light grey-brown above and pinkish below, black wing spots, white outer tail feathers and a dark crescent below the eye. Proportions and extra-part placement are judgement."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared perching-songbird program: seed-based ground foraging, a March-September nest window, a moderate flee distance, and call ids matching the coo/alarm vocalizations above."
     },
     "vocalizations.song": {
       "sources": [
@@ -595,6 +836,10 @@
     }
   },
   "contributors": [
+    {
+      "name": "speeeecies maintainers",
+      "agent": "opencode"
+    },
     {
       "name": "speeeecies contributors",
       "agent": "opencode-go/space-bunny-free"
