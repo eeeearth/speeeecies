@@ -1,0 +1,580 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Intellagama lesueurii",
+  "slug": "intellagama-lesueurii",
+  "common_names": {
+    "en": "Australian Water Dragon"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Reptilia",
+    "order": "Squamata",
+    "family": "Agamidae",
+    "genus": "Intellagama",
+    "authority": "(Gray, 1831)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 8161292,
+    "inat_taxon_id": 146186,
+    "wikidata": "Q2568761",
+    "reptile_db_id": "lesueurii"
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "AU"
+    ],
+    "koppen": [
+      "Cfa",
+      "Cfb",
+      "Cwa"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk",
+      "Climb",
+      "Swim"
+    ],
+    "thermoregulation": "Ectotherm",
+    "skin": "Scales",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Burrow",
+    "perching": false,
+    "size_class": "Small",
+    "mass_kg": 0.5,
+    "mass_range_kg": [
+      0.3,
+      0.7
+    ],
+    "length_m": 0.8,
+    "lifespan_y": 20,
+    "diet": {
+      "invertebrate": 0.5,
+      "vertebrate": 0.3,
+      "fruit": 0.2
+    },
+    "social": {
+      "structure": "Solitary",
+      "group_size": [
+        1,
+        1
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.6,
+    "shoulder_height_m": 0.12
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.4,
+      "arboreal": 0.3,
+      "aquatic": 0.3
+    },
+    "shelter_tag": "shrub_thicket",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.5
+      },
+      {
+        "tag": "small_vertebrate",
+        "kind": "Predation",
+        "weight": 0.3
+      },
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.2
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.4
+      },
+      {
+        "tag": "water",
+        "kind": "Water",
+        "weight": 0.6
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "light_max": 0.7,
+      "notes": "Common along urban waterways, parks and gardens with ponds; basks on rocks and branches."
+    }
+  },
+  "seasonal": {
+    "strategy": "Brumation",
+    "triggers": {
+      "enter": {
+        "temperature_below_c": 10,
+        "days": 7
+      },
+      "exit": {
+        "temperature_above_c": 15,
+        "days": 3
+      }
+    },
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "10-01",
+        "end": "01-31",
+        "note": "Breeding from October to January; eggs laid in burrows."
+      },
+      {
+        "name": "dormancy",
+        "start": "06-01",
+        "end": "08-31",
+        "note": "Brumation in winter; activity reduced in cold months."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg"
+      },
+      {
+        "stage": "Juvenile",
+        "duration_days": 365,
+        "scale": 0.4
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "AU-NSW",
+        "monthly": [
+          0.9,
+          0.62,
+          0.71,
+          0.44,
+          0.14,
+          0.08,
+          0.08,
+          0.15,
+          0.62,
+          0.97,
+          1.0,
+          0.92
+        ],
+        "method": "mean(inat_raw, gbif_raw)",
+        "observations": 17871,
+        "sources": [
+          "inat-activity-au-nsw",
+          "gbif-activity-au-nsw"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 6825,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=146186&place_id=6825&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": null,
+            "total": 1751,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "AUS.5_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=8161292&gadmGid=AUS.5_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": null,
+            "total": 16120,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-ground-forager-v1",
+    "params": {
+      "food_tag": "invertebrate",
+      "flee_m": 8,
+      "calm_m": 20,
+      "food_m": 25,
+      "flee_gait": "walk",
+      "forage_gait": "walk"
+    }
+  },
+  "vocalizations": [],
+  "look": {
+    "body_plan": "quadruped",
+    "proportions": {
+      "torso_aspect": 2.5,
+      "leg_length_ratio": 0.35,
+      "head_scale": 0.5,
+      "neck_angle_deg": 25,
+      "tail_ratio": 1.5,
+      "ear_ratio": 0.1,
+      "beak_ratio": 0.2,
+      "girth_ratio": 0.8
+    },
+    "palette": {
+      "body": "#5a6a4a",
+      "belly": "#8a9a7a",
+      "markings": "#2a3a2a",
+      "accent": "#7a8a6a",
+      "eye": "#111111"
+    },
+    "part_colors": {
+      "head": "body",
+      "tail": "markings"
+    },
+    "extra_parts": [
+      {
+        "name": "crest",
+        "parent": "body",
+        "offset": [
+          0,
+          0.3,
+          0
+        ],
+        "size": [
+          0.6,
+          0.3,
+          0.4
+        ],
+        "color": "markings"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "rest": {},
+      "swim": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/8161292",
+      "title": "GBIF Backbone Taxonomy: Intellagama lesueurii",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q2568761",
+      "title": "Wikidata: Intellagama lesueurii (Q2568761)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Australian_water_dragon",
+      "title": "Wikipedia: Australian water dragon",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Australian water dragon\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "inat-activity-au-nsw",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=146186&place_id=6825&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Intellagama lesueurii in AU-NSW",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-au-nsw",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=8161292&gadmGid=AUS.5_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Intellagama lesueurii in AU-NSW",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "common_names": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "Wikidata P141 = least concern."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Walks, climbs and swims."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Eggs laid in burrows."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Basks on branches but does not perch like a bird."
+    },
+    "traits.size_class": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Adult mass ~0.5 kg."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Total length ~0.8 m including tail."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium"
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Invertebrates, vertebrates, fruit from Wikipedia."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Solitary."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Flees into water or up trees when threatened."
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Moderately wary; wariness 0.6."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Ground, arboreal, aquatic shares from Wikipedia."
+    },
+    "habitat.shelter_tag": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Invertebrates, vertebrates, fruit, water from Wikipedia."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Common along urban waterways."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Brumation in winter."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Breeding and dormancy seasons from Wikipedia."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Juvenile duration estimated."
+    },
+    "vocalizations": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "No vocalizations described; silent species."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Grey-green body, dark stripes, spiny crest from Wikipedia; proportions authored."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared ground-forager program."
+    },
+    "seasonal.triggers": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Brumation triggers from Wikipedia; temperature thresholds are judgement."
+    },
+    "traits.shoulder_height_m": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: a low-slung lizard, roughly 15% of body length; no open source gives a shoulder height."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies maintainers",
+      "agent": "opencode"
+    }
+  ]
+}

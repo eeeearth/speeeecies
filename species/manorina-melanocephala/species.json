@@ -1,0 +1,614 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Manorina melanocephala",
+  "slug": "manorina-melanocephala",
+  "common_names": {
+    "en": "Noisy Miner"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Passeriformes",
+    "family": "Meliphagidae",
+    "genus": "Manorina",
+    "authority": "(Latham, 1801)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2487365,
+    "inat_taxon_id": 12231,
+    "wikidata": "Q2528511",
+    "ebird_code": "noimin1"
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "AU"
+    ],
+    "koppen": [
+      "Cfa",
+      "Cfb",
+      "Cwa"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Hop",
+      "Fly"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Cup",
+    "perching": true,
+    "size_class": "Small",
+    "mass_kg": 0.065,
+    "mass_range_kg": [
+      0.055,
+      0.075
+    ],
+    "length_m": 0.25,
+    "wingspan_m": 0.38,
+    "lifespan_y": 8,
+    "diet": {
+      "nectar": 0.5,
+      "invertebrate": 0.3,
+      "fruit": 0.2
+    },
+    "social": {
+      "structure": "Group",
+      "group_size": [
+        5,
+        20
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Mob",
+    "wariness": 0.2
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.3,
+      "arboreal": 0.6,
+      "aerial": 0.1
+    },
+    "shelter_tag": "shrub_thicket",
+    "resources": [
+      {
+        "tag": "nectar",
+        "kind": "Nectarivory",
+        "weight": 0.5
+      },
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.3
+      },
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.2
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.5
+      },
+      {
+        "tag": "nest_cup",
+        "kind": "Nesting",
+        "weight": 0.8
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Exploiter",
+      "uses_gardens": true,
+      "light_max": 0.9,
+      "notes": "Abundant in suburban gardens, parks and woodland edges; aggressive coloniser of disturbed habitat."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "07-01",
+        "end": "12-31",
+        "note": "Breeding from July to December; multiple broods."
+      },
+      {
+        "name": "territorial",
+        "start": "01-01",
+        "end": "06-30",
+        "note": "Territory defence year-round, peaking outside breeding."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg"
+      },
+      {
+        "stage": "Juvenile",
+        "duration_days": 40,
+        "scale": 0.85
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "AU-NSW",
+        "monthly": [
+          0.94,
+          0.9,
+          0.84,
+          0.99,
+          0.93,
+          1.0,
+          0.89,
+          0.93,
+          0.83,
+          0.86,
+          0.93,
+          0.8
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 389280,
+        "sources": [
+          "inat-activity-au-nsw",
+          "gbif-activity-au-nsw"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 6825,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=12231&place_id=6825&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=6825&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "total": 1231,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "AUS.5_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2487365&gadmGid=AUS.5_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=AUS.5_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 388049,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "bt-perching-songbird-v1",
+    "params": {
+      "flee_m": 5,
+      "food_tag": "nectar",
+      "song": "song",
+      "alarm": "alarm",
+      "nest_m1": 7,
+      "nest_m2": 12
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "song",
+      "context": "Song",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day"
+      ],
+      "cooldown_s": 20,
+      "loudness": "Loud",
+      "description": "Loud, repetitive piping and churring calls; highly vocal at dawn."
+    },
+    {
+      "call_id": "alarm",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 5,
+      "loudness": "Loud",
+      "description": "Harsh, scolding churr given when mobbing predators or intruders."
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.5,
+      "leg_length_ratio": 0.35,
+      "head_scale": 0.75,
+      "neck_angle_deg": 15,
+      "tail_ratio": 0.5,
+      "wing_aspect": 2.5,
+      "beak_ratio": 0.3,
+      "girth_ratio": 1.0
+    },
+    "palette": {
+      "body": "#8a8a7a",
+      "belly": "#c8c8b8",
+      "markings": "#2a2a2a",
+      "accent": "#e8c840",
+      "eye": "#111111"
+    },
+    "part_colors": {
+      "head": "markings",
+      "beak": "accent",
+      "breast": "belly"
+    },
+    "extra_parts": [
+      {
+        "name": "yellow_patch",
+        "parent": "head",
+        "offset": [
+          0.2,
+          0.1,
+          0
+        ],
+        "size": [
+          0.4,
+          0.3,
+          1.02
+        ],
+        "color": "accent"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "hop": {},
+      "fly": {},
+      "perched": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2487365",
+      "title": "GBIF Backbone Taxonomy: Manorina melanocephala",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q2528511",
+      "title": "Wikidata: Manorina melanocephala (Q2528511)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Noisy_miner",
+      "title": "Wikipedia: Noisy miner",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Noisy miner\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "eltontraits",
+      "url": "https://doi.org/10.6084/m9.figshare.3559887.v1",
+      "title": "EltonTraits 1.0: species-level foraging attributes of the world's birds and mammals (BirdFuncDat)",
+      "license": "CC0-1.0",
+      "kind": "dataset",
+      "accessed": "2026-10-01",
+      "attribution": "Wilman, H. et al. (2014) EltonTraits 1.0. Ecology 95:2027",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "avonet",
+      "url": "https://doi.org/10.6084/m9.figshare.16586228",
+      "title": "AVONET: morphological, ecological and geographical data for all birds",
+      "license": "CC-BY-4.0",
+      "kind": "dataset",
+      "accessed": "2026-10-01",
+      "attribution": "Tobias, J. A. et al. (2022) AVONET. Ecology Letters 25:581-597",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "inat-activity-au-nsw",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=12231&place_id=6825&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Manorina melanocephala in AU-NSW",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-au-nsw",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2487365&gadmGid=AUS.5_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Manorina melanocephala in AU-NSW",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "common_names": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "Wikidata P141 = least concern."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Cup nest in tree fork."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.size_class": {
+      "sources": [
+        "eltontraits"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "eltontraits",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "EltonTraits BodyMass ~65 g."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of 24-28 cm."
+    },
+    "traits.wingspan_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Estimated from body length."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium"
+    },
+    "traits.diet": {
+      "sources": [
+        "eltontraits",
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Nectar, invertebrates, fruit from EltonTraits and Wikipedia."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Colonial; groups of 5-20."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "eltontraits",
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Mobs predators aggressively."
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Tolerant of people; wariness 0.2."
+    },
+    "habitat.use": {
+      "sources": [
+        "eltontraits",
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Ground, arboreal, aerial shares from EltonTraits."
+    },
+    "habitat.shelter_tag": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored."
+    },
+    "habitat.resources": {
+      "sources": [
+        "eltontraits",
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Nectar, invertebrates, fruit from EltonTraits and Wikipedia."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Abundant in suburban gardens."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Breeding and territorial seasons from Wikipedia."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Juvenile duration estimated."
+    },
+    "vocalizations": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Loud piping and churring from Wikipedia."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Grey body, black head, yellow bill and eye patch from Wikipedia; proportions authored."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared perching-songbird program."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies maintainers",
+      "agent": "opencode"
+    }
+  ]
+}
