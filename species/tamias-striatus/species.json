@@ -5,7 +5,9 @@
   "id": "Tamias striatus",
   "slug": "tamias-striatus",
   "common_names": {
-    "en": "Eastern Chipmunk"
+    "en": "Eastern Chipmunk",
+    "fr": "tamias strié",
+    "de": "Streifenhörnchen"
   },
   "taxonomy": {
     "kingdom": "Animalia",
@@ -21,7 +23,8 @@
     "gbif_usage_key": 2437438,
     "inat_taxon_id": 46217,
     "itis_tsn": 45474,
-    "wikidata": "Q692664"
+    "wikidata": "Q692664",
+    "ncbi_taxon_id": 45474
   },
   "conservation": {
     "iucn": "LC"
@@ -116,6 +119,11 @@
         "tag": "shrub_thicket",
         "kind": "Shelter",
         "weight": 0.5
+      },
+      {
+        "tag": "browse",
+        "kind": "Herbivory",
+        "weight": 0.2
       }
     ],
     "human_tolerance": {
@@ -123,6 +131,11 @@
       "uses_gardens": true,
       "light_max": 0.7,
       "notes": "Lives in deciduous woodland and urban parks throughout the eastern United States and southern Canada, and turns up in gardens where there is brush, log piles, rocks or shrubs to provide cover. It defends its burrow and darts for cover rather than confronting."
+    },
+    "density_per_ha": {
+      "min": 0.5,
+      "typical": 5.0,
+      "max": 50.0
     }
   },
   "seasonal": {
@@ -161,13 +174,20 @@
         "start": "03-15",
         "end": "10-15",
         "note": "Pups stay with their mother for around six to eight weeks, which is the only period besides courtship and mating when chipmunks interact with each other."
+      },
+      {
+        "name": "caching",
+        "start": "09-01",
+        "end": "11-15",
+        "note": "Food is transported in the cheek pouches and buried in the shallow underground stores that carry the animal through winter."
       }
     ],
     "life_stages": [
       {
         "stage": "Juvenile",
         "duration_days": 49,
-        "scale": 0.5
+        "scale": 0.5,
+        "requires_tag": "burrow"
       },
       {
         "stage": "Adult"
@@ -220,6 +240,39 @@
       "cooldown_s": 10,
       "loudness": "Loud",
       "description": "The whistle or squeal of the repertoire, a sharp rising note given when an observer or a predator comes close."
+    },
+    {
+      "call_id": "chuck",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 10,
+      "loudness": "Moderate",
+      "description": "A lower, gurgling 'chuck', the second of the five stereotyped calls, given when the animal is wary but not yet fleeing."
+    },
+    {
+      "call_id": "whistle",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 20,
+      "loudness": "Moderate",
+      "description": "A high-pitched whistle or squeal, one of the five stereotyped calls, used as a contact and courtship call between adults."
+    },
+    {
+      "call_id": "chatter",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 12,
+      "loudness": "Moderate",
+      "description": "The fifth stereotyped sound: a rapid chatter given in close social encounters, chiefly between a mother and her pups and between courting adults."
     }
   ],
   "look": {
@@ -231,7 +284,8 @@
       "neck_angle_deg": 18,
       "tail_ratio": 0.72,
       "ear_ratio": 0.42,
-      "girth_ratio": 0.8
+      "girth_ratio": 0.8,
+      "beak_ratio": 0.2
     },
     "palette": {
       "body": "#a9713f",
@@ -243,7 +297,10 @@
     "part_colors": {
       "snout": "belly",
       "ear_left": "accent",
-      "ear_right": "accent"
+      "ear_right": "accent",
+      "tail": "accent",
+      "ear_*": "body",
+      "leg_*": "belly"
     },
     "extra_parts": [
       {
@@ -259,7 +316,8 @@
           0.14,
           1.03
         ],
-        "color": "markings"
+        "color": "markings",
+        "mirror": true
       },
       {
         "name": "cheek_stripe",
@@ -274,7 +332,8 @@
           0.34,
           0.1
         ],
-        "color": "accent"
+        "color": "accent",
+        "mirror": true
       }
     ],
     "poses": {
@@ -330,6 +389,43 @@
       "title": "GBIF occurrence search for Tamias striatus in US-PA",
       "license": "CC-BY-4.0",
       "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=180207",
+      "title": "ITIS: Tamias striatus, TSN 180207",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "pantheria",
+      "url": "https://esapubs.org/archive/ecol/E090/184/PanTHERIA_1-0_WR05_Aug2008.txt",
+      "title": "PanTHERIA 1.0: species-level life history, ecology and geography of extant mammals",
+      "license": "CC-BY-4.0",
+      "kind": "dataset",
+      "accessed": "2026-10-01",
+      "attribution": "Jones, K. E. et al. (2009) PanTHERIA. Ecology 90:2648",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "inat-activity-us-nc",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=46217&place_id=30&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Tamias striatus in US-NC",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-nc",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2437438&gadmGid=USA.34_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+      "title": "GBIF occurrence search for Tamias striatus in US-NC",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
       "accessed": "2026-10-01",
       "kind": "api"
     }
@@ -432,7 +528,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "It climbs trees well but forages mainly on the ground and lives in a burrow, so it is not treated as a perching animal."
+      "note": "It climbs trees well but forages mainly on the ground and lives in a burrow, so it is not treated as a perching animal.",
+      "derived": true
     },
     "traits.size_class": {
       "sources": [
@@ -484,7 +581,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "'It prefers bulbs, seeds, fruits, nuts, green plants, mushrooms, insects, worms, and bird eggs', transported in cheek pouches. Mast is the nuts, seed the seeds and bulbs, fruit the berries, browse the green plants, invertebrate the insects and worms, vertebrate the bird eggs."
+      "note": "'It prefers bulbs, seeds, fruits, nuts, green plants, mushrooms, insects, worms, and bird eggs', transported in cheek pouches. Mast is the nuts, seed the seeds and bulbs, fruit the berries, browse the green plants, invertebrate the insects and worms, vertebrate the bird eggs.",
+      "derived": true
     },
     "traits.social": {
       "sources": [
@@ -505,7 +603,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "It defends its burrow and relies on rocky areas, brush or log piles for cover, running for cover when threatened; hawks, owls, foxes, raccoons, snakes, weasels, coyotes, bobcats, lynx, dogs and cats are all listed predators."
+      "note": "It defends its burrow and relies on rocky areas, brush or log piles for cover, running for cover when threatened; hawks, owls, foxes, raccoons, snakes, weasels, coyotes, bobcats, lynx, dogs and cats are all listed predators.",
+      "derived": true
     },
     "traits.wariness": {
       "sources": [
@@ -520,7 +619,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "It can climb trees well, but constructs underground nests and spends most of the day foraging on the ground."
+      "note": "It can climb trees well, but constructs underground nests and spends most of the day foraging on the ground.",
+      "derived": true
     },
     "habitat.shelter_tag": {
       "sources": [
@@ -599,7 +699,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Reddish-brown fur on the upper body with five dark brown stripes separated by light brown stripes along the back, ending in a dark tail, lighter fur below, a tawny stripe running from the whiskers to below the ears and light stripes over the eyes. Proportions are authored."
+      "note": "Reddish-brown fur on the upper body with five dark brown stripes separated by light brown stripes along the back, ending in a dark tail, lighter fur below, a tawny stripe running from the whiskers to below the ears and light stripes over the eyes. Proportions are authored.",
+      "derived": true
     },
     "behavior": {
       "sources": [
@@ -608,11 +709,31 @@
       "confidence": "Medium",
       "derived": true,
       "note": "The shared ground-forager program fits an animal that spends most of the day foraging on seeds and nuts, drinks and explores near its burrow, rests in cover through the hottest part of the day and bolts for cover when threatened. Parameters are authored: walk to forage, gallop to flee."
+    },
+    "habitat.density_per_ha": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement. No open source found gives a population density for this species and PanTHERIA records none (-999), so this is an authored band consistent with a solitary, territorial burrower: burrows are defended and spaced out, which caps local density well below that of sciurus-carolinensis."
+    },
+    "vocalizations": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Wikipedia's Behavior section quotes the five stereotyped sounds of the repertoire - 'the chip, the chuck, the trills, the whistle or squeal, and chatter' - and gives the trill rate as 130 per minute. Which of the five belongs to which context is authored judgement from the descriptions of the calls' use; time windows and cooldowns are also authored, since no open source quantifies them. No frequency bands are given, so freq_hz is omitted."
     }
   },
   "contributors": [
     {
       "name": "sisyphus-agent",
+      "agent": "opencode"
+    },
+    {
+      "name": "speeeecies fleet",
       "agent": "opencode"
     }
   ],
@@ -659,6 +780,55 @@
             "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2437438&gadmGid=USA.39_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
             "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.39_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
             "total": 831,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "US-NC",
+        "monthly": [
+          0.14,
+          0.19,
+          0.19,
+          0.65,
+          0.76,
+          0.61,
+          0.33,
+          0.34,
+          0.81,
+          1.0,
+          0.44,
+          0.1
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 3256,
+        "sources": [
+          "inat-activity-us-nc",
+          "gbif-activity-us-nc"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 30,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=46217&place_id=30&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=30&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 1660,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "C",
+            "area": [
+              "gadmGid",
+              "USA.34_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2437438&gadmGid=USA.34_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.34_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "total": 1596,
             "usable": true
           },
           "used": [

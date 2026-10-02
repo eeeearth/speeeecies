@@ -21,7 +21,9 @@
     "gbif_usage_key": 2492196,
     "inat_taxon_id": 9100,
     "itis_tsn": 44397,
-    "wikidata": "Q842599"
+    "wikidata": "Q842599",
+    "ncbi_taxon_id": 141842,
+    "ebird_code": "sonspa"
   },
   "conservation": {
     "iucn": "LC"
@@ -83,7 +85,14 @@
       {
         "tag": "invertebrate",
         "kind": "Predation",
-        "weight": 0.5
+        "weight": 0.5,
+        "months": [
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
       },
       {
         "tag": "seed",
@@ -104,6 +113,22 @@
         "tag": "leaf_litter",
         "kind": "Shelter",
         "weight": 0.3
+      },
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.1,
+        "months": [
+          9,
+          10,
+          11,
+          12
+        ]
+      },
+      {
+        "tag": "nest_cup",
+        "kind": "Nesting",
+        "weight": 1.0
       }
     ],
     "human_tolerance": {
@@ -111,6 +136,11 @@
       "uses_gardens": true,
       "light_max": 0.75,
       "notes": "Thrives in human-dominated places: suburbs, agricultural fields, roadsides and gardens. Birds whose territory holds shrub cover away from the intertidal coast overwinter better and breed more successfully. Males hold a territory by song and sing from an exposed perch."
+    },
+    "density_per_ha": {
+      "min": 0.5,
+      "typical": 3,
+      "max": 15
     }
   },
   "seasonal": {
@@ -137,6 +167,13 @@
         "region": "CA",
         "fraction": 0.6,
         "note": "Southern birds are permanent residents while northern populations migrate to the southern United States or Mexico for the winter and mix with the resident population."
+      },
+      {
+        "name": "breeding",
+        "start": "03-01",
+        "end": "08-31",
+        "region": "US-NC",
+        "note": "Breeds in shrubby areas, forest edges, and gardens; two to three broods per season."
       }
     ],
     "life_stages": [
@@ -144,7 +181,9 @@
         "stage": "Egg"
       },
       {
-        "stage": "Juvenile"
+        "stage": "Juvenile",
+        "duration_days": 60,
+        "scale": 0.9
       },
       {
         "stage": "Adult"
@@ -196,6 +235,17 @@
       "cooldown_s": 6,
       "loudness": "Moderate",
       "description": "A short, sharp chip given when a bird is disturbed or a predator approaches the nest."
+    },
+    {
+      "call_id": "contact",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 3,
+      "loudness": "Quiet",
+      "description": "Soft 'seep' or 'tsip' notes given by pair members maintaining contact."
     }
   ],
   "look": {
@@ -220,7 +270,10 @@
     "part_colors": {
       "head": "body",
       "breast": "belly",
-      "beak": "eye"
+      "beak": "eye",
+      "tail": "markings",
+      "wing_*": "markings",
+      "leg_*": "accent"
     },
     "extra_parts": [
       {
@@ -252,6 +305,22 @@
           0.12
         ],
         "color": "markings"
+      },
+      {
+        "name": "malar_stripe",
+        "parent": "head",
+        "offset": [
+          0.3,
+          0.2,
+          0.25
+        ],
+        "size": [
+          0.4,
+          0.3,
+          0.15
+        ],
+        "color": "markings",
+        "mirror": true
       }
     ],
     "poses": {
@@ -320,6 +389,33 @@
       "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
       "accessed": "2026-10-01",
       "kind": "api"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=179848",
+      "title": "ITIS: Melospiza melodia, TSN 179848",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "inat-activity-us-nc",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=9100&place_id=30&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Melospiza melodia in US-NC",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-nc",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2492196&gadmGid=USA.34_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Melospiza melodia in US-NC",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
     }
   ],
   "provenance": {
@@ -358,7 +454,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Native across Canada and the United States, with northern birds wintering 'in the southern United States or Mexico'."
+      "note": "Native across Canada and the United States, with northern birds wintering 'in the southern United States or Mexico'.",
+      "derived": true
     },
     "traits.body_plan": {
       "sources": [
@@ -414,7 +511,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "They nest either in a sheltered location on the ground or in trees or shrubs; Ground is used for the common suburban case where the nest is sited low."
+      "note": "They nest either in a sheltered location on the ground or in trees or shrubs; Ground is used for the common suburban case where the nest is sited low.",
+      "derived": true
     },
     "traits.perching": {
       "sources": [
@@ -475,14 +573,16 @@
         "eltontraits"
       ],
       "confidence": "High",
-      "note": "They eat mainly insects and seeds, with salt-marsh birds also taking small crustaceans; the shares are authored to reflect that the invertebrates are the summer staple and seeds carry more of the winter and early-spring diet."
+      "note": "They eat mainly insects and seeds, with salt-marsh birds also taking small crustaceans; the shares are authored to reflect that the invertebrates are the summer staple and seeds carry more of the winter and early-spring diet.",
+      "derived": true
     },
     "traits.social": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Territorial: males hold a territory by song, learn songs from a handful of neighbouring males and choose a territory near or replacing the birds they learned from."
+      "note": "Territorial: males hold a territory by song, learn songs from a handful of neighbouring males and choose a territory near or replacing the birds they learned from.",
+      "derived": true
     },
     "traits.activity_pattern": {
       "sources": [
@@ -510,14 +610,16 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Forage on the ground, in shrubs or in very shallow water."
+      "note": "Forage on the ground, in shrubs or in very shallow water.",
+      "derived": true
     },
     "habitat.shelter_tag": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Brushland and marsh, and the study finding that territories with shrub cover give better over-winter survival."
+      "note": "Brushland and marsh, and the study finding that territories with shrub cover give better over-winter survival.",
+      "derived": true
     },
     "habitat.resources": {
       "sources": [
@@ -532,7 +634,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Suburbs, agricultural fields and roadsides, plus the shrub-cover survival and breeding result."
+      "note": "Suburbs, agricultural fields and roadsides, plus the shrub-cover survival and breeding result.",
+      "derived": true
     },
     "seasonal.strategy": {
       "sources": [
@@ -570,7 +673,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Repeated notes, isolated notes and trills; up to 20 tunes per bird with many improvised variations, usually repeated many times before switching; the male uses it to declare ownership of his territory and attract females."
+      "note": "Repeated notes, isolated notes and trills; up to 20 tunes per bird with many improvised variations, usually repeated many times before switching; the male uses it to declare ownership of his territory and attract females.",
+      "derived": true
     },
     "vocalizations.alarm": {
       "sources": [],
@@ -583,18 +687,37 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Brown upperparts with dark streaks on the back, white underneath with dark streaking and a dark brown spot in the middle of the breast, a brown cap, a long brown rounded tail, and a grey face with a brown streak through each eye. Proportions and palette are authored."
+      "note": "Brown upperparts with dark streaks on the back, white underneath with dark streaking and a dark brown spot in the middle of the breast, a brown cap, a long brown rounded tail, and a grey face with a brown streak through each eye. Proportions and palette are authored.",
+      "derived": true
     },
     "behavior": {
       "sources": [],
       "confidence": "Low",
       "derived": true,
       "note": "Authored parameters for the shared perching-songbird program: it flees, perches and sings from a perch, nests low in cover, and forages on the ground and in shrubs on seeds and insects."
+    },
+    "habitat.density_per_ha": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored judgement: variable, higher in optimal shrubby habitat."
+    },
+    "vocalizations.contact": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Description from Wikipedia; parameters authored."
     }
   },
   "contributors": [
     {
       "name": "sisyphus-agent",
+      "agent": "opencode"
+    },
+    {
+      "name": "speeeecies fleet",
       "agent": "opencode"
     }
   ],
@@ -641,6 +764,55 @@
             "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2492196&gadmGid=USA.39_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
             "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.39_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
             "total": 1281280,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "US-NC",
+        "monthly": [
+          0.92,
+          0.82,
+          0.74,
+          0.47,
+          0.37,
+          0.36,
+          0.54,
+          0.35,
+          0.3,
+          0.59,
+          1.0,
+          0.85
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 440243,
+        "sources": [
+          "inat-activity-us-nc",
+          "gbif-activity-us-nc"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 30,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=9100&place_id=30&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=30&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "total": 375,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.34_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2492196&gadmGid=USA.34_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.34_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 439868,
             "usable": true
           },
           "used": [
