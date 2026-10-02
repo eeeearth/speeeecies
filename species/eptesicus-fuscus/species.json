@@ -1,0 +1,868 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Eptesicus fuscus",
+  "slug": "eptesicus-fuscus",
+  "common_names": {
+    "en": "Big Brown Bat",
+    "de": "große Braune Breitflügelfledermaus",
+    "fr": "Chauve-souris brune",
+    "es": "Murciélago café"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Mammalia",
+    "order": "Chiroptera",
+    "family": "Vespertilionidae",
+    "genus": "Eptesicus",
+    "authority": "(Palisot de Beauvois, 1796)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2432352,
+    "inat_taxon_id": 40509,
+    "itis_tsn": 29078,
+    "wikidata": "Q301254",
+    "ncbi_taxon_id": 29078
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "US",
+      "CA",
+      "MX",
+      "GT",
+      "BZ",
+      "CU",
+      "JM",
+      "CO",
+      "VE",
+      "HN",
+      "SV",
+      "NI",
+      "CR",
+      "PA",
+      "DO",
+      "PR",
+      "BS"
+    ],
+    "introduced": [],
+    "koppen": [
+      "Cfa",
+      "Cfb",
+      "Dfa",
+      "Dfb",
+      "BSk"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk",
+      "Fly",
+      "Glide"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Fur",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Cavity",
+    "perching": true,
+    "size_class": "Tiny",
+    "mass_kg": 0.02,
+    "mass_range_kg": [
+      0.015,
+      0.026
+    ],
+    "length_m": 0.12,
+    "wingspan_m": 0.34,
+    "lifespan_y": 6.5,
+    "diet": {
+      "invertebrate": 1.0
+    },
+    "social": {
+      "structure": "Group",
+      "group_size": [
+        1,
+        75
+      ]
+    },
+    "activity_pattern": "Nocturnal",
+    "defense": "Flee",
+    "wariness": 0.7,
+    "senses": {
+      "vision_color": false,
+      "night_vision": true,
+      "olfaction": "Med",
+      "hearing": "High"
+    }
+  },
+  "habitat": {
+    "use": {
+      "aerial": 0.6,
+      "arboreal": 0.3,
+      "ground": 0.1
+    },
+    "shelter_tag": "cavity",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 1.0
+      },
+      {
+        "tag": "cavity",
+        "kind": "Nesting",
+        "weight": 1.0
+      },
+      {
+        "tag": "log_pile",
+        "kind": "Shelter",
+        "weight": 0.2
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.1
+      },
+      {
+        "tag": "water",
+        "kind": "Water",
+        "weight": 0.4
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "light_max": 0.8,
+      "notes": "Roosts readily in human structures: buildings, bat houses, attics, storm drains and tunnels, and many maternity colonies in the modern landscape are in buildings rather than tree cavities. It forages over gardens and even around city street lamps, and it is agriculturally valuable because it takes cucumber beetles.",
+      "flight_distance_m": 8.0,
+      "road_mortality": "Low"
+    }
+  },
+  "seasonal": {
+    "strategy": "Hibernation",
+    "triggers": {
+      "enter": {
+        "temperature_below_c": 5,
+        "days": 21
+      },
+      "exit": {
+        "temperature_above_c": 10,
+        "days": 10
+      }
+    },
+    "phases": [
+      {
+        "name": "dormancy",
+        "start": "11-01",
+        "end": "04-15",
+        "note": "Hibernation begins around November, usually within 80 km of the summer roost, often alone or in small groups, in caves and mines or in warm man-made structures. Big brown bats tolerate cold fairly well and periodically arouse to seek warmer shelter, find water and even mate. The month bounds are authored; the article gives only 'around November' and spring emergence."
+      },
+      {
+        "name": "mating",
+        "start": "09-01",
+        "end": "11-30",
+        "note": "The breeding season is in the fall, shortly before the annual hibernation; conception can also happen during winter arousals."
+      },
+      {
+        "name": "young",
+        "start": "04-15",
+        "end": "08-31",
+        "note": "After hibernation ends in spring, pregnant females form maternity colonies, frequently 25 to 75 adults in the eastern United States and Canada. In the eastern United States twins are commonly born between May and July; western females give birth to a single pup. Pups are born blind and helpless at 3 g, nurse for about a month and fledge at three to five weeks old."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Juvenile",
+        "duration_days": 42,
+        "scale": 0.3
+      },
+      {
+        "stage": "Adult"
+      },
+      {
+        "stage": "Egg"
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-ground-forager-v1",
+    "params": {
+      "flee_m": 15,
+      "calm_m": 35,
+      "food_tag": "invertebrate",
+      "food_m": 40,
+      "flee_gait": "fly",
+      "forage_gait": "fly",
+      "rest_sun_lo_deg": 10,
+      "rest_sun_hi_deg": 90
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "echolocation",
+      "context": "Buzz",
+      "season_months": [],
+      "time_windows": [
+        "Night"
+      ],
+      "cooldown_s": 1,
+      "loudness": "Quiet",
+      "description": "The ultrasonic call emitted into the environment and used with returning echoes to judge distance, size, shape, density and the direction any object is moving, which lets the bat hunt in the dark and exploit night-flying insects with little competition.",
+      "freq_hz": [
+        25000,
+        50000
+      ]
+    },
+    {
+      "call_id": "social",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [
+        "Night"
+      ],
+      "cooldown_s": 5,
+      "loudness": "Quiet",
+      "description": "Lower-frequency social calls between roost-mates, used in the maternity colony and during mating."
+    },
+    {
+      "call_id": "echoloc",
+      "context": "Buzz",
+      "season_months": [],
+      "time_windows": [
+        "Night"
+      ],
+      "cooldown_s": 1,
+      "loudness": "Quiet",
+      "description": "The ultrasonic echolocation call the species emits into its environment and listens to the returning echoes of. From it the bat works out how far away an object is, the object's size, shape and density, and the direction in which anything is moving; the buzz is continuous while foraging and is not audible to a human observer."
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 2.0,
+      "leg_length_ratio": 0.22,
+      "head_scale": 0.68,
+      "neck_angle_deg": 8,
+      "tail_ratio": 0.42,
+      "wing_aspect": 3.6,
+      "beak_ratio": 0.22,
+      "girth_ratio": 0.8
+    },
+    "palette": {
+      "body": "#6d3f22",
+      "belly": "#a97b52",
+      "markings": "#171310",
+      "accent": "#8a5c33",
+      "eye": "#0d0b09"
+    },
+    "part_colors": {
+      "beak": "markings",
+      "wing_left": "markings",
+      "wing_right": "markings",
+      "wing_left_outer": "markings",
+      "wing_right_outer": "markings",
+      "tail": "markings"
+    },
+    "extra_parts": [
+      {
+        "name": "ear_left",
+        "parent": "head",
+        "offset": [
+          0.06,
+          0.34,
+          0.3
+        ],
+        "size": [
+          0.1,
+          0.24,
+          0.1
+        ],
+        "color": "markings"
+      },
+      {
+        "name": "ear_right",
+        "parent": "head",
+        "offset": [
+          0.06,
+          -0.34,
+          0.3
+        ],
+        "size": [
+          0.1,
+          0.24,
+          0.1
+        ],
+        "color": "markings"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "fly": {},
+      "glide": {},
+      "perched": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2432352",
+      "title": "GBIF Backbone Taxonomy: Eptesicus fuscus",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q301254",
+      "title": "Wikidata: Eptesicus fuscus (Q301254)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Big_brown_bat",
+      "title": "Wikipedia: Big brown bat",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Big brown bat\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "inat-activity-us-pa",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40509&place_id=42&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Eptesicus fuscus in US-PA",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-pa",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2432352&gadmGid=USA.39_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+      "title": "GBIF occurrence search for Eptesicus fuscus in US-PA",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=180008",
+      "title": "ITIS: Eptesicus fuscus, TSN 180008",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "gbif-activity-us-ma",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2432352&gadmGid=USA.22_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+      "title": "GBIF occurrence search for Eptesicus fuscus in US-MA",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-ar",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2432352&gadmGid=USA.4_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+      "title": "GBIF occurrence search for Eptesicus fuscus in US-AR",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "Vespertilionidae, Eptesicus, (Palisot de Beauvois, 1796). Described in 1796 as Vespertila fuscus from specimens in the Philadelphia Museum; it is the type species of Eptesicus and fuscus is Latin for brown.",
+      "derived": true
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "GBIF usage key 2432352 and iNaturalist taxon 40509; ITIS TSN 29078 from Wikidata P685."
+    },
+    "common_names": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "en/fr/es labels; the English name follows the Wikipedia article title, the fr/es labels the Wikidata sitelink titles."
+    },
+    "conservation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'The big brown bat is evaluated at the lowest conservation priority by the IUCN - least concern', meeting the criteria because of a wide geographic distribution, a large population size, occurrence in protected areas and tolerance of habitat modification by humans.",
+      "derived": true
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Distributed widely throughout the United States, Canada, Central America and the Caribbean, extending into parts of South America as far south as Colombia and Venezuela.",
+      "derived": true
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Vertebrate, chordate, four-limbed, furred, endothermic mammal with a membrane wing on each forelimb; traits.body_plan records the vertebrate plan the schema uses, and the mesh's body plan is noted under `look`."
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Four: the forelimbs are modified into wings, as in every bat, and the two hind limbs are separate and very short - 'the hind legs are 10 millimetres'."
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Powered flight with a 32.5-35 cm wingspan, gliding between wingbeats, and crawling on the forelimbs and hind limbs in a roost; it roosts hanging, which is what the perched pose shows. Hover is left out of locomotion_modes because the biped_winged body plan has no hover pose.",
+      "derived": true
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Endotherm: a mammal that is 'relatively resistant to the effects of [white-nose syndrome]' and uses 'large deposits of brown fat, which provides the bats with a source of energy to rapidly increase body temperature upon arousal from hibernation'."
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Fur: 'Its dorsal fur is reddish brown and glossy in appearance; its ventral fur is lighter brown. Its snout, uropatagium (flight membrane between the hind limbs), and wing membranes are black and hairless.'"
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Powered flight: 'the species emits a call out into its environment and listens to the echoes of those calls that return from various objects near them' to navigate, and it forages in the air around street lamps."
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Lungs: a mammalian respiratory system, the lungs having to serve the high metabolic demand of echolocation and flight."
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "None: 'At birth, pups are blind, helpless, and only 3 g ... The pup nurses from its mother for approximately one month. Pups fledge, or begin flying, at three to five weeks old.'"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Cavity: mines, caves, tunnels, buildings, bat houses, tree cavities, storm drains, wood piles and rock crevices are all used as roosts, and the animal generally roosts in cavities.",
+      "derived": true
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "It roosts by hanging, so it is treated as perching rather than as a strictly flying species.",
+      "derived": true
+    },
+    "traits.size_class": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg: about 20 g is under 50 g, so Tiny."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Weighing 15-26 g with no mean given; 20 g is the mid-range value, rounded."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Weighing 15-26 g.",
+      "derived": true
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Adult body length is 110-130 mm; 12 cm is the mid-range value."
+    },
+    "traits.wingspan_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of the 32.5-35 cm wingspan."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'Lifespans of 6.5 years are considered average.'",
+      "derived": true
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'Big brown bats are insectivorous', eating many kinds of insects including beetles, flies, stone flies, mayflies, true bugs, scorpionflies, caddisflies and cockroaches; beetles were present in 99.2% of fecal samples in an Ontario study and it is generally considered a beetle specialist.",
+      "derived": true
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Maternity colonies range from 5 to 700 individuals and are frequently 25-75 adults in the eastern United States and Canada; in summer males are most often solitary but may form small all-male colonies, and solitary males and non-pregnant females roost under bark.",
+      "derived": true
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'They are nocturnal, foraging for prey at night and roosting in sheltered areas during the day.'",
+      "derived": true
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Authored: it flies off and away from an observer rather than approaching or mobbing, which is how a bat uses its only real option."
+    },
+    "traits.wariness": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored judgement: bats are skittish around people and avoid being handled, though this species roosts in buildings and is not especially shy about them."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "It is airborne for most of the night while foraging, using echolocation in the dark, and clings in roosts by day; it forages in cities around street lamps.",
+      "derived": true
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "It generally roosts in cavities, and uses a wide variety of structures including mines, caves, tunnels, buildings, bat boxes, tree cavities, storm drains, wood piles and rock crevices.",
+      "derived": true
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "invertebrate from the exclusively insectivorous diet, cavity from the roost list, log_pile from wood piles among the roosts, and perch for hanging. Weights are authored."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "It uses buildings and bat boxes as roosts, historically maternity colonies were probably in tree cavities but many are now in buildings, it forages around city street lamps, and landowners install bat houses to attract it because it eats cucumber beetles that can decimate corn.",
+      "derived": true
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'Big brown bats enter into hibernation around November', often alone or in small groups, sometimes in subterranean locations but most often in warm man-made structures, and they come out in the spring.",
+      "derived": true
+    },
+    "seasonal.triggers": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored. The article says the bats hibernate around November, tolerate cold fairly well but are negatively affected by major changes in temperature, and rely on large brown-fat deposits to warm up on arousal; the 5 C and 10 C thresholds and the day counts are chosen to sit either side of that tolerance."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Breeding season in the fall shortly before hibernation; maternity colonies forming after hibernation ends in spring, with twins commonly born between May and July in the eastern United States; pups blind and helpless at 3 g, nursing about a month and fledging at three to five weeks.",
+      "derived": true
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "The pup nurses for approximately one month and fledges at three to five weeks, so 42 days is taken as the juvenile stage; scale is an authored value, since a newborn pup at 3 g is far smaller than the model's smallest form."
+    },
+    "vocalizations.echolocation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'the species emits a call out into its environment and listens to the echoes of those calls that return from various objects near them', using them to judge distance, size, shape, density and direction of movement."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Dorsal fur reddish brown and glossy, ventral fur lighter brown, and the snout, uropatagium, wing membranes and ears all black and hairless, with short rounded ears. Proportions are authored.",
+      "derived": true
+    },
+    "behavior": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "No shared program models a flying nocturnal mammal, so the ground-forager program is used: its forage, drink, flee and rest-in-shelter cycle matches a bat's, and its daytime rest window is the documented case for nocturnal species. Both gaits are set to fly so the mesh uses the flight poses; the description of the program as ground-dwelling does not match this species and the import would be better served by a dedicated bat program."
+    },
+    "traits.senses": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Echolocation implies acute hearing; bats also have functional night vision. Judgement mapping."
+    },
+    "vocalizations": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Echolocation and social calls described on Wikipedia; the 25-50 kHz band, cooldowns and time windows are authored judgement."
+    },
+    "vocalizations.echoloc": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    }
+  },
+  "contributors": [
+    {
+      "name": "sisyphus-agent",
+      "agent": "opencode"
+    },
+    {
+      "name": "speeeecies maintainers",
+      "agent": "claude-code"
+    },
+    {
+      "name": "speeeecies contributors",
+      "agent": "opencode"
+    }
+  ],
+  "activity": {
+    "regions": [
+      {
+        "region": "US-PA",
+        "monthly": [
+          0.32,
+          0.23,
+          0.25,
+          0.34,
+          0.36,
+          0.53,
+          0.86,
+          1.0,
+          0.35,
+          0.5,
+          0.36,
+          0.3
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 835,
+        "sources": [
+          "inat-activity-us-pa",
+          "gbif-activity-us-pa"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 42,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40509&place_id=42&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=42&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 452,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "C",
+            "area": [
+              "gadmGid",
+              "USA.39_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2432352&gadmGid=USA.39_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.39_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "total": 383,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "US-MA",
+        "monthly": [
+          0.52,
+          0.68,
+          0.73,
+          0.51,
+          0.95,
+          0.33,
+          0.65,
+          1.0,
+          0.32,
+          0.59,
+          0.49,
+          0.38
+        ],
+        "method": "gbif_share",
+        "observations": 274,
+        "sources": [
+          "gbif-activity-us-ma"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 2,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40509&place_id=2&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=2&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 235,
+            "usable": false
+          },
+          "gbif": {
+            "tier": "C",
+            "area": [
+              "gadmGid",
+              "USA.22_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2432352&gadmGid=USA.22_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.22_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "total": 274,
+            "usable": false
+          },
+          "used": [
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "US-AR",
+        "monthly": [
+          0.14,
+          0.12,
+          0.2,
+          0.08,
+          0.15,
+          0.22,
+          1.0,
+          0.53,
+          0.22,
+          0.4,
+          0.37,
+          0.04
+        ],
+        "method": "gbif_share",
+        "observations": 121,
+        "sources": [
+          "gbif-activity-us-ar"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 36,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40509&place_id=36&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=36&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 66,
+            "usable": false
+          },
+          "gbif": {
+            "tier": "C",
+            "area": [
+              "gadmGid",
+              "USA.4_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2432352&gadmGid=USA.4_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.4_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "total": 121,
+            "usable": false
+          },
+          "used": [
+            "gbif"
+          ]
+        }
+      }
+    ]
+  }
+}

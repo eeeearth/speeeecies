@@ -1,0 +1,685 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Poecile carolinensis",
+  "slug": "poecile-carolinensis",
+  "common_names": {
+    "en": "Carolina chickadee",
+    "fr": "Mésange de Caroline",
+    "de": "Carolinameise",
+    "nl": "Carolinamees"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Passeriformes",
+    "family": "Paridae",
+    "genus": "Poecile",
+    "authority": "(Audubon, 1834)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2487844,
+    "inat_taxon_id": 144814,
+    "itis_tsn": 554383,
+    "wikidata": "Q1079441",
+    "ncbi_taxon_id": 48892,
+    "ebird_code": "carchi"
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "US"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Hop",
+      "Fly"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Cavity",
+    "perching": true,
+    "size_class": "Tiny",
+    "mass_kg": 0.01,
+    "mass_range_kg": [
+      0.008,
+      0.012
+    ],
+    "length_m": 0.11,
+    "wingspan_m": 0.175,
+    "lifespan_y": 6,
+    "diet": {
+      "invertebrate": 0.6,
+      "seed": 0.25,
+      "fruit": 0.15
+    },
+    "social": {
+      "structure": "Flock",
+      "group_size": [
+        2,
+        12
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.3
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.2,
+      "arboreal": 0.8
+    },
+    "shelter_tag": "cavity",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 1.0,
+        "months": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      {
+        "tag": "seed",
+        "kind": "Herbivory",
+        "weight": 0.6,
+        "months": [
+          10,
+          11,
+          12,
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.4,
+        "months": [
+          10,
+          11,
+          12,
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "tag": "cavity",
+        "kind": "Nesting",
+        "weight": 1.0
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.5
+      },
+      {
+        "tag": "shrub_thicket",
+        "kind": "Shelter",
+        "weight": 0.5
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Exploiter",
+      "uses_gardens": true,
+      "notes": "Regularly works feeders, usually taking one seed and flying to a branch isolated from other birds to eat it; it stores seeds for later use and is permanent resident rather than migratory."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "flocking",
+        "start": "01-01",
+        "end": "12-31",
+        "note": "Winter flocks hold ranks: in spring the highest-ranked birds keep the flock's territory to breed and lower-ranked birds must find new ground."
+      },
+      {
+        "name": "nesting",
+        "start": "03-01",
+        "end": "07-31",
+        "note": "Judgement: the article gives clutches of three to ten eggs, 12-16 days of incubation and a 16-19 day nestling period but dates no season, so early spring to midsummer is authored."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg"
+      },
+      {
+        "stage": "Juvenile",
+        "duration_days": 34,
+        "scale": 0.7
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US-AL",
+        "monthly": [
+          0.95,
+          1.0,
+          0.8,
+          0.47,
+          0.58,
+          0.53,
+          0.6,
+          0.62,
+          0.79,
+          0.79,
+          0.73,
+          0.92
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 182972,
+        "sources": [
+          "inat-activity-us-al",
+          "gbif-activity-us-al"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 19,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=144814&place_id=19&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=19&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 1366,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.1_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2487844&gadmGid=USA.1_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.1_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 181606,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "bt-perching-songbird-v1",
+    "params": {
+      "flee_m": 5,
+      "food_tag": "invertebrate",
+      "song": "song",
+      "alarm": "gargle",
+      "song_cooldown_s": 10,
+      "nest_m1": 4,
+      "nest_m2": 6
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "song",
+      "context": "Song",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day"
+      ],
+      "cooldown_s": 10,
+      "loudness": "Moderate",
+      "description": "A four-note see-dee-see-dee song, which separates it from the two- or three-note song of the black-capped chickadee; where the two meet they can mimic each other's songs."
+    },
+    {
+      "call_id": "call",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [
+        "Day",
+        "DawnChorus"
+      ],
+      "cooldown_s": 6,
+      "loudness": "Moderate",
+      "description": "The chick-a-dee-dee-dee call, faster and higher-pitched than the black-capped chickadee's. Chickadees call out whenever they find a good source of food, which is what holds a mixed winter flock together."
+    },
+    {
+      "call_id": "gargle",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 8,
+      "loudness": "Loud",
+      "description": "A gargle call made by the dominant bird when another bird encroaches on its individual space of 2-5 ft; rates are higher in high-quality foraging habitats."
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.35,
+      "leg_length_ratio": 0.3,
+      "head_scale": 0.92,
+      "neck_angle_deg": 12,
+      "tail_ratio": 0.65,
+      "wing_aspect": 2.2,
+      "beak_ratio": 0.25,
+      "girth_ratio": 1.05
+    },
+    "palette": {
+      "body": "#7d8288",
+      "belly": "#f6f5f0",
+      "markings": "#1c1c1e",
+      "accent": "#8a5a34",
+      "eye": "#121212"
+    },
+    "part_colors": {
+      "beak": "markings",
+      "eye_left": "eye",
+      "eye_right": "eye"
+    },
+    "extra_parts": [
+      {
+        "name": "cap",
+        "parent": "head",
+        "offset": [
+          0.05,
+          0.3,
+          0
+        ],
+        "size": [
+          0.72,
+          0.42,
+          1.0
+        ],
+        "color": "markings"
+      },
+      {
+        "name": "bib",
+        "parent": "breast",
+        "offset": [
+          0.34,
+          0.16,
+          0
+        ],
+        "size": [
+          0.4,
+          0.44,
+          1.02
+        ],
+        "color": "markings"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "hop": {},
+      "fly": {},
+      "glide": {},
+      "perched": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2487844",
+      "title": "GBIF Backbone Taxonomy: Poecile carolinensis",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "gbif-vernacular",
+      "url": "https://api.gbif.org/v1/species/2487844/vernacularNames",
+      "title": "GBIF vernacular names for Poecile carolinensis",
+      "license": "CC-BY-4.0",
+      "kind": "api",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Vernacular Names, via GBIF.org, CC BY 4.0"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q1079441",
+      "title": "Wikidata: Carolina chickadee (Q1079441)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Carolina_chickadee",
+      "title": "Wikipedia: Carolina chickadee",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Carolina chickadee\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=554383",
+      "title": "ITIS: Poecile carolinensis, TSN 554383",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "inat-activity-us-al",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=144814&place_id=19&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Poecile carolinensis in US-AL",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-al",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2487844&gadmGid=USA.1_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Poecile carolinensis in US-AL",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "itis"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "iNaturalist, NCBI and eBird ids via Wikidata P3151, P685 and P3444."
+    },
+    "common_names": {
+      "sources": [
+        "wikidata",
+        "gbif-vernacular"
+      ],
+      "confidence": "High",
+      "note": "French from Wikidata; German and Dutch from the GBIF vernacular-name list, which Wikidata does not carry for this species."
+    },
+    "conservation": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "Wikidata P141 = least concern (Q211005). The article describes the species as largely found in the southeastern and central United States, without a status statement."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'mixed or deciduous forests in the United States from New Jersey and Pennsylvania west to southern Kansas and south to Florida and Texas', with a gap at high altitude in the Appalachians. It hybridises with the black-capped chickadee where the ranges overlap."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'Carolina chickadees hop along tree branches searching for insects, sometimes hanging upside down or hovering; they may make short flights to catch insects in the air.'"
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'The Carolina chickadee nests in a hole in a tree; mating pairs excavate the nest, using a natural cavity or sometimes an old woodpecker nest.'"
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.size_class": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of 8-12 g."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "8-12 g."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of 10-12 cm."
+    },
+    "traits.wingspan_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of 15-20 cm."
+    },
+    "traits.lifespan_y": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement, not sourced. No openly licensed source used in this record gives a longevity figure for the Carolina chickadee, and the Wikipedia article gives none. 6 years is an authored placeholder on the scale of a small parid and should be treated as unverified; a banded wild bird is very unlikely to reach it."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "'Insects form a large part of their diet, especially in summer; seeds and berries become important in winter.' The 60/25/15 split is judgement inside those bounds."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'During the winter, chickadees often flock together. Each of the birds in a flock has a rank', and mixed flocks with titmice, nuthatches and warblers occur about half the time."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Withdraws to cover and garrles at an encroaching dominant; judgement mapping to the schema's single-value field."
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Tame at feeders and described as a non-migratory permanent resident, though it eats away from other birds on an isolated branch."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "'hop along tree branches searching for insects, sometimes hanging upside down or hovering'; almost entirely in the canopy and understory."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'These birds usually sleep in cavities, though they may sleep in branches. Different members of a flock will sleep in the same cavity from night to night.'"
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Food weights and their months follow traits.diet and the diet sentence's seasonal emphasis; nest sites from the breeding description."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'At feeders, these birds will usually take a seed and fly to a branch isolated from other birds to eat it', and they hammer and store seeds."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'They are permanent residents, not usually moving south even in severe winter weather.'"
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Winter flock ranking and its effect on which birds breed are described. The nesting window is authored: the article gives clutch and incubation figures but no calendar dates."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "12-16 days of incubation plus a 16-19 day nestling period gives about 34 days; the 0.7 scale is authored judgement."
+    },
+    "vocalizations.song": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "vocalizations.call": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "vocalizations.gargle": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Black cap and bib, white sides to the face, grey back, rusty brown flanks, a short dark bill and a moderately long tail, from the Description section; the cap and bib are extra parts and the proportions are authored judgement."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared perching-songbird program. food_tag invertebrate because insects dominate the summer diet and the flock's cohesion call is about finding them; flee_m 5 m is short because the bird drops to cover rather than flying far. The alarm slot uses the documented gargle call."
+    }
+  },
+  "contributors": [
+    {
+      "name": "opencode agent (al-birmingham locale, issue #73)",
+      "agent": "opencode"
+    }
+  ]
+}
