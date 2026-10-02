@@ -1,0 +1,209 @@
+{
+  "schema_version": 1,
+  "format": "speeeecies/behavior",
+  "id": "fsm-vervet-troop-forager-v1",
+  "kind": "fsm",
+  "description": "Vervet monkey troop: the group forages on the ground and in the trees, posts a sentinel that stands watch while the others feed, grooms and rests together, and flees to the trees when a predator is near. Written for this species because none of the three shared programs fits: bt-perching-songbird-v1 is a bird with flight and song, and fsm-ground-forager-v1 models a lone ground forager with no troop, no sentinel and no grooming.",
+  "params": {
+    "flee_m": 12,
+    "calm_m": 30,
+    "food_tag": "invertebrate",
+    "sentinel_interval_s": 300,
+    "social_distance_m": 15
+  },
+  "initial": "forage",
+  "states": {
+    "forage": {
+      "action": {
+        "do": "eat_nearest",
+        "tag": "${food_tag}",
+        "gait": "walk"
+      }
+    },
+    "sentinel": {
+      "action": {
+        "do": "emote",
+        "kind": "alert"
+      },
+      "min_dwell_s": "${sentinel_interval_s}"
+    },
+    "groom": {
+      "action": {
+        "do": "emote",
+        "kind": "groom"
+      }
+    },
+    "rest": {
+      "action": {
+        "do": "rest",
+        "at": "shelter"
+      },
+      "min_dwell_s": 30
+    },
+    "flee": {
+      "action": {
+        "do": "flee",
+        "gait": "walk"
+      },
+      "min_dwell_s": 3
+    },
+    "touched": {
+      "action": {
+        "do": "tolerate_touch"
+      }
+    },
+    "accept": {
+      "action": {
+        "do": "accept_offer"
+      }
+    }
+  },
+  "transitions": [
+    {
+      "from": "*",
+      "to": "flee",
+      "when": {
+        "threat_within_m": "${flee_m}"
+      },
+      "priority": 100
+    },
+    {
+      "from": "*",
+      "to": "flee",
+      "when": {
+        "need": "fear",
+        "gt": 0.2
+      },
+      "priority": 90
+    },
+    {
+      "from": "*",
+      "to": "touched",
+      "when": {
+        "all": [
+          {
+            "player_touch": true
+          },
+          {
+            "need": "fear",
+            "lt": 0.2
+          },
+          {
+            "not": {
+              "threat_within_m": "${flee_m}"
+            }
+          }
+        ]
+      },
+      "priority": 60
+    },
+    {
+      "from": "*",
+      "to": "accept",
+      "when": {
+        "all": [
+          {
+            "player_offer": "food"
+          },
+          {
+            "need": "fear",
+            "lt": 0.2
+          },
+          {
+            "not": {
+              "threat_within_m": "${flee_m}"
+            }
+          }
+        ]
+      },
+      "priority": 40
+    },
+    {
+      "from": "touched",
+      "to": "forage",
+      "when": {
+        "player_touch": false
+      }
+    },
+    {
+      "from": "accept",
+      "to": "forage",
+      "when": {
+        "not": {
+          "player_offer": "food"
+        }
+      }
+    },
+    {
+      "from": "flee",
+      "to": "forage",
+      "when": {
+        "not": {
+          "threat_within_m": "${calm_m}"
+        }
+      }
+    },
+    {
+      "from": "forage",
+      "to": "sentinel",
+      "when": {
+        "need": "hunger",
+        "lt": 0.3
+      }
+    },
+    {
+      "from": "forage",
+      "to": "rest",
+      "when": {
+        "need": "energy",
+        "gt": 0.7
+      }
+    },
+    {
+      "from": "sentinel",
+      "to": "groom",
+      "when": {
+        "all": [
+          {
+            "conspecifics_within_m": "${social_distance_m}",
+            "gte": 1
+          },
+          {
+            "chance": 0.5
+          }
+        ]
+      }
+    },
+    {
+      "from": "sentinel",
+      "to": "forage",
+      "when": {
+        "need": "hunger",
+        "gt": 0.5
+      }
+    },
+    {
+      "from": "groom",
+      "to": "rest",
+      "when": {
+        "chance": 0.4
+      }
+    },
+    {
+      "from": "groom",
+      "to": "forage",
+      "when": {
+        "need": "hunger",
+        "gt": 0.5
+      }
+    },
+    {
+      "from": "rest",
+      "to": "forage",
+      "when": {
+        "need": "hunger",
+        "gt": 0.4
+      }
+    }
+  ]
+}
