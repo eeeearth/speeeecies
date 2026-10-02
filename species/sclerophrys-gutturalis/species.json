@@ -1,0 +1,629 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Sclerophrys gutturalis",
+  "slug": "sclerophrys-gutturalis",
+  "common_names": {
+    "en": "Guttural toad"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Amphibia",
+    "order": "Anura",
+    "family": "Bufonidae",
+    "genus": "Sclerophrys",
+    "authority": "(Power, 1927)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 9456514,
+    "inat_taxon_id": 517053,
+    "itis_tsn": 1103383,
+    "wikidata": "Q28929960"
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "KE",
+      "TZ",
+      "ZA",
+      "AO",
+      "BW",
+      "CD",
+      "ET",
+      "SZ",
+      "LS",
+      "MW",
+      "MZ",
+      "NA",
+      "ZM",
+      "ZW",
+      "SO"
+    ],
+    "introduced": [
+      "MU",
+      "RE"
+    ],
+    "koppen": [
+      "Aw",
+      "Cwb",
+      "Cfa",
+      "BSh"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk",
+      "Hop",
+      "Swim"
+    ],
+    "thermoregulation": "Ectotherm",
+    "skin": "Moist",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "Complete",
+    "nest_type": "None",
+    "perching": false,
+    "size_class": "Tiny",
+    "mass_kg": 0.0387,
+    "length_m": 0.105,
+    "lifespan_y": 10,
+    "diet": {
+      "invertebrate": 0.95,
+      "vertebrate": 0.05
+    },
+    "social": {
+      "structure": "Solitary",
+      "group_size": [
+        1,
+        3
+      ]
+    },
+    "activity_pattern": "Nocturnal",
+    "defense": "Toxin",
+    "wariness": 0.3
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.8,
+      "fossorial": 0.1,
+      "aquatic": 0.1
+    },
+    "shelter_tag": "leaf_litter",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 1.0
+      },
+      {
+        "tag": "pond",
+        "kind": "Nesting",
+        "weight": 1.0,
+        "months": [
+          10,
+          11
+        ]
+      },
+      {
+        "tag": "leaf_litter",
+        "kind": "Shelter",
+        "weight": 0.7
+      },
+      {
+        "tag": "log_pile",
+        "kind": "Shelter",
+        "weight": 0.6
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "light_max": 0.6,
+      "notes": "Very adaptable and spreading; lives in rural gardens, urban areas, arable land and degraded forest as well as savanna and wetlands."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "10-01",
+        "end": "11-30",
+        "note": "Males call through the year with the main breeding period in October and November; eggs laid in double strings wound around submerged vegetation; tadpoles develop about 75 days before metamorphosis."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg",
+        "duration_days": 7,
+        "requires_tag": "pond"
+      },
+      {
+        "stage": "Juvenile",
+        "duration_days": 75,
+        "scale": 0.5
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "KE-30",
+        "monthly": [
+          0.1,
+          0.05,
+          0.05,
+          0.1,
+          0.67,
+          0.14,
+          0.0,
+          0.05,
+          0.05,
+          0.33,
+          1.0,
+          0.86
+        ],
+        "method": "gbif_raw",
+        "observations": 71,
+        "sources": [
+          "gbif-activity-ke-30"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 10957,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=517053&place_id=10957&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": null,
+            "total": 25,
+            "usable": false
+          },
+          "gbif": {
+            "tier": "C",
+            "area": [
+              "gadmGid",
+              "KEN.30_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=9456514&gadmGid=KEN.30_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "baseline_url": null,
+            "total": 71,
+            "usable": false
+          },
+          "used": [
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-anuran-nocturnal-v1",
+    "params": {
+      "flee_m": 1.5,
+      "freeze_m": 4,
+      "food_tag": "invertebrate",
+      "call": "croak",
+      "min_temp_c": 12,
+      "max_temp_c": 32,
+      "call_m1": 10,
+      "call_m2": 11
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "croak",
+      "context": "Croak",
+      "season_months": [
+        10,
+        11
+      ],
+      "time_windows": [
+        "Dusk",
+        "Night"
+      ],
+      "cooldown_s": 15,
+      "loudness": "Moderate",
+      "description": "Guttural snore repeated at intervals of about three seconds, males calling from the surface of permanent water bodies in large choruses."
+    }
+  ],
+  "look": {
+    "body_plan": "anuran",
+    "proportions": {
+      "torso_aspect": 1.0,
+      "leg_length_ratio": 0.45,
+      "head_scale": 0.7,
+      "neck_angle_deg": 5,
+      "girth_ratio": 1.1
+    },
+    "palette": {
+      "body": "#a08050",
+      "belly": "#d8cfb8",
+      "markings": "#4a3826",
+      "accent": "#b03a28",
+      "eye": "#8a6a1a"
+    },
+    "extra_parts": [
+      {
+        "name": "parotoid",
+        "parent": "head",
+        "offset": [
+          -0.3,
+          0.45,
+          0.3
+        ],
+        "size": [
+          0.35,
+          0.25,
+          0.25
+        ],
+        "color": "body",
+        "mirror": true
+      },
+      {
+        "name": "cross_mark",
+        "parent": "head",
+        "offset": [
+          0.1,
+          0.5,
+          0
+        ],
+        "size": [
+          0.3,
+          0.1,
+          0.3
+        ],
+        "color": "markings"
+      },
+      {
+        "name": "spine_stripe",
+        "parent": "body",
+        "offset": [
+          0,
+          0.48,
+          0
+        ],
+        "size": [
+          0.8,
+          0.06,
+          0.1
+        ],
+        "color": "belly"
+      },
+      {
+        "name": "thigh_patch",
+        "parent": "leg_rear_left",
+        "offset": [
+          -0.1,
+          0.1,
+          0
+        ],
+        "size": [
+          0.3,
+          0.3,
+          0.3
+        ],
+        "color": "accent",
+        "mirror": true
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "hop": {},
+      "swim": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/9456514",
+      "title": "GBIF Backbone Taxonomy: Sclerophrys gutturalis",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-02",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q28929960",
+      "title": "Wikidata: Guttural toad (Q28929960)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-02",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Guttural_toad",
+      "title": "Wikipedia: Guttural toad",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-02",
+      "attribution": "Wikipedia contributors, \"Guttural toad\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=1103383",
+      "title": "ITIS: Sclerophrys gutturalis, TSN 1103383",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-10-02",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "amphibio",
+      "url": "https://doi.org/10.6084/m9.figshare.4644424",
+      "title": "AmphiBIO v1: a global database for amphibian ecological traits",
+      "license": "CC-BY-4.0",
+      "kind": "dataset",
+      "accessed": "2026-10-02",
+      "attribution": "Oliveira, B. F. et al. (2017) AmphiBIO. Scientific Data 4:170123",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "gbif-activity-ke-30",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=9456514&gadmGid=KEN.30_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+      "title": "GBIF occurrence search for Sclerophrys gutturalis in KE-30",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "itis"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "common_names": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikidata",
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Country list from the described Kenya-to-Angola-to-South-Africa range; Mauritius and Reunion listed as introduced; Koppen classes are judgement."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Tadpoles develop about 75 days before metamorphosis."
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Builds no nest; eggs wound around submerged vegetation."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.size_class": {
+      "sources": [
+        "amphibio"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "amphibio"
+      ],
+      "confidence": "High",
+      "note": "AmphiBIO Body_mass_g 38.7 for Amietophrynus gutturalis (synonym)."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of male 90 mm and female 120 mm snout-to-vent length."
+    },
+    "traits.lifespan_y": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored judgement: typical lifespan of a large Bufonid toad."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Large toad eating ground invertebrates; shares are judgement."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Solitary; large calling congregations gather at permanent water in the breeding season."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Males call at night from permanent water."
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Prominent parotoid glands; no major predators."
+    },
+    "traits.wariness": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored judgement."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Forest, savanna, wetlands, arable land, gardens and urban areas; breeds in permanent water."
+    },
+    "habitat.shelter_tag": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored: shelters in litter and debris by day."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Ground invertebrates; breeding ponds October-November; shelter tags authored."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Lives in rural gardens and urban areas; very adaptable; light_max authored."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Active all year; males call throughout the year."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Main breeding period October and November; eggs in double strings; 75-day tadpole development."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "75-day tadpole stage from Wikipedia; egg duration and toadlet scale are judgement."
+    },
+    "vocalizations.croak": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Guttural snore at three-second intervals from permanent water; large choruses."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Buffish-brown with dark markings, cross mark between the eyes, pale spinal stripe, white arm tubercles, red thigh patch, pale granular underparts, dark male throat, prominent parotoids; proportions authored."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared anuran-nocturnal program; temperature bounds set for Nairobi."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies maintainers",
+      "agent": "sisyphus"
+    }
+  ]
+}
