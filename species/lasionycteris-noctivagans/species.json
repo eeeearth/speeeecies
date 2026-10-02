@@ -196,7 +196,19 @@
       "water_m": 120
     }
   },
-  "vocalizations": [],
+  "vocalizations": [
+    {
+      "call_id": "echolocate",
+      "context": "Buzz",
+      "season_months": [],
+      "time_windows": [
+        "Night"
+      ],
+      "cooldown_s": 1,
+      "loudness": "Quiet",
+      "description": "The ultrasonic echolocation call emitted in flight and read back from its echoes to find insects a short distance ahead."
+    }
+  ],
   "look": {
     "body_plan": "biped_winged",
     "proportions": {
@@ -275,6 +287,16 @@
       "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
       "accessed": "2026-10-01",
       "kind": "api"
+    },
+    {
+      "id": "wikipedia-bat",
+      "url": "https://en.wikipedia.org/wiki/Bat",
+      "title": "Bat",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Silver-haired bat\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
     }
   ],
   "provenance": {
@@ -529,6 +551,15 @@
       "confidence": "Medium",
       "derived": true,
       "note": "The shared fsm-ground-forager-v1 program is reused for a flying mammal because its states map onto this bat's day exactly: hunt when hungry, fly to drink at a water edge, flee by flight, and rest at the shelter when the sun is up. flee_gait and forage_gait are both set to fly so no walking gait is emitted, and rest_sun_lo_deg and rest_sun_hi_deg are left at the defaults of 10 and 90, which is the daytime roosting window a nocturnal species needs."
+    },
+    "vocalizations.echolocate": {
+      "sources": [
+        "wikipedia",
+        "wikipedia-bat"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "'Microbats use echolocation for navigation and finding prey' (Bat); 'slow but maneuverable flyers that typically detect prey a short distance away' (species page). Cooldown and loudness are authored judgement."
     }
   },
   "contributors": [
