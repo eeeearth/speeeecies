@@ -1,0 +1,583 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Procavia capensis",
+  "slug": "procavia-capensis",
+  "common_names": {
+    "en": "Rock hyrax"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Mammalia",
+    "order": "Hyracoidea",
+    "family": "Procaviidae",
+    "genus": "Procavia",
+    "authority": "(Pallas, 1766)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 5219598,
+    "inat_taxon_id": 43086,
+    "wikidata": "Q323847"
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "ZA",
+      "DZ",
+      "LY",
+      "EG",
+      "IL",
+      "JO",
+      "LB"
+    ],
+    "koppen": [
+      "Csb",
+      "BSk",
+      "BWh",
+      "Csa"
+    ],
+    "elevation_m": [
+      0,
+      4200
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk",
+      "Climb"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Fur",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Cavity",
+    "perching": false,
+    "size_class": "Medium",
+    "mass_kg": 4,
+    "mass_range_kg": [
+      3.6,
+      4.4
+    ],
+    "length_m": 0.5,
+    "lifespan_y": 9,
+    "diet": {
+      "browse": 1.0
+    },
+    "senses": {
+      "vision_color": true,
+      "olfaction": "High",
+      "hearing": "Med"
+    },
+    "social": {
+      "structure": "Group",
+      "group_size": [
+        10,
+        80
+      ]
+    },
+    "activity_pattern": "Crepuscular",
+    "defense": "Hide",
+    "wariness": 0.55
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.75,
+      "arboreal": 0.25
+    },
+    "shelter_tag": "cavity",
+    "resources": [
+      {
+        "tag": "browse",
+        "kind": "Herbivory",
+        "weight": 1.0
+      },
+      {
+        "tag": "cavity",
+        "kind": "Shelter",
+        "weight": 1.0
+      },
+      {
+        "tag": "cavity",
+        "kind": "Nesting",
+        "weight": 1.0
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "dist_building_min_m": 150,
+      "light_max": 0.5,
+      "notes": "The species needs habitat with rock crevices to escape predators, so it needs kopjes and outcrops rather than flat built ground; in South Africa the dassie is familiar on the rocky slopes and outcrops that run through the Cape's suburbs."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "territorial",
+        "start": "01-01",
+        "end": "12-31",
+        "note": "The article describes a year-round group structure with a dominant male and no migration or dormancy, so the phase spans the year."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Juvenile",
+        "duration_days": 150,
+        "scale": 0.5
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "ZA-WC",
+        "monthly": [
+          0.57,
+          0.84,
+          0.72,
+          0.49,
+          0.81,
+          0.72,
+          0.53,
+          0.89,
+          1.0,
+          0.94,
+          0.51,
+          0.93
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 1004,
+        "sources": [
+          "inat-activity-za-wc",
+          "gbif-activity-za-wc"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 6987,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=43086&place_id=6987&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=6987&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "total": 487,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "ZAF.9_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5219598&gadmGid=ZAF.9_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=ZAF.9_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 517,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-ground-forager-v1",
+    "params": {
+      "flee_m": 12,
+      "calm_m": 30,
+      "food_tag": "browse",
+      "food_m": 25,
+      "flee_gait": "gallop",
+      "forage_gait": "walk",
+      "rest_sun_lo_deg": 10,
+      "rest_sun_hi_deg": 90
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "song",
+      "context": "Hoot",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day",
+        "Dusk",
+        "Night"
+      ],
+      "cooldown_s": 20,
+      "loudness": "Loud",
+      "description": "A long, rising-whistling call. The article reports that rock hyraxes are one of the few non-primate, non-cetacean and non-bat mammals with rich syntactic structure and geographical variation in their calls, that higher-ranked males sing more often, and that snorts are a rare aspect of the male song."
+    }
+  ],
+  "look": {
+    "body_plan": "quadruped",
+    "proportions": {
+      "torso_aspect": 1.4,
+      "leg_length_ratio": 0.3,
+      "head_scale": 0.42,
+      "neck_angle_deg": 20,
+      "tail_ratio": 0.12,
+      "ear_ratio": 0.3,
+      "girth_ratio": 1.2
+    },
+    "palette": {
+      "body": "#8a7a63",
+      "belly": "#c4b79c",
+      "markings": "#5a4c3b",
+      "accent": "#2a2420",
+      "eye": "#171310"
+    },
+    "part_colors": {
+      "snout": "markings",
+      "ear_*": "markings",
+      "leg_*": "markings"
+    },
+    "extra_parts": [
+      {
+        "name": "dorsal_tuft",
+        "parent": "body",
+        "offset": [
+          -0.3,
+          0.6,
+          0.0
+        ],
+        "size": [
+          0.6,
+          0.5,
+          0.5
+        ],
+        "color": "markings"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "trot": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/5219598",
+      "title": "GBIF Backbone Taxonomy: Procavia capensis",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q323847",
+      "title": "Wikidata: Rock hyrax (Q323847)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Rock_hyrax",
+      "title": "Wikipedia: Rock hyrax",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Rock hyrax\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "inat-activity-za-wc",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=43086&place_id=6987&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Procavia capensis in ZA-WC",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-za-wc",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5219598&gadmGid=ZAF.9_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Procavia capensis in ZA-WC",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "GBIF usageKey 5219598 from the species/match endpoint and iNaturalist taxon 43086 from the taxa endpoint; the Wikidata QID is the one the English article's taxobox links to."
+    },
+    "conservation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "The species article's taxobox records IUCN category Least Concern."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'The rock hyrax occurs widely across sub-Saharan Africa in disjunct northern and southern populations; it is absent from the Congo Basin and Madagascar. The distribution encompasses southern Algeria, Libya, Egypt, and the Middle East, with populations in Israel, Jordan, Lebanon, and the Arabian Peninsula.' The seven African and Middle Eastern countries named are recorded; ZA stands for the sub-Saharan range as a whole, which the article does not break down by country, and the Arabian Peninsula is left out because it is a region rather than an ISO 3166-1 code."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Walk follows from a squat, heavily built terrestrial mammal that forages as a group on the ground. Climb follows from the species living 'in habitats with rock crevices, allowing them to escape from predators' and by the trait being given an arboreal share of its time."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'Having incomplete thermoregulation, they are most active in the morning and evening.' Endotherm, but the incomplete quality is why the Crepuscular pattern is recorded below."
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'Their fur is thick and grey-brown'."
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Derived from the sourced habitat: rock crevices are the refuge this species needs from predators, so that is where it shelters and where young are kept. Cavity is recorded rather than Burrow, because the article describes no digging."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "A terrestrial, rock-dwelling mammal; no perching or arboreal foraging is described, so false is recorded."
+    },
+    "traits.size_class": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'adults reaching a length of 50 cm and weighing around 4 kg'."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Derived from the sourced statement that there is 'a slight sexual dimorphism, males being about 10% heavier than females': 4 kg x 0.9 and 4 kg x 1.1 give 3.6 to 4.4 kg."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'adults reaching a length of 50 cm'."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "The article has a longevity section, but it discusses how group structure correlates with individual longevity and does not state a lifespan in years. No openly licensed source with a figure was found, so 9 years is an authored placeholder for a small afrotherian mammal; it is not a sourced value."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Honest gap, narrowed. The article's only dietary statement is that hyrax size is correlated to precipitation 'probably because of the effect on preferred hyrax forage', which establishes that the species is a plant-eating herbivore but gives no food types and no proportions. browse 1.0 is used as one broad category for plant forage and is a judgement, not a sourced breakdown. A reviewer should replace it."
+    },
+    "traits.senses": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored for a herbivorous mammal with a documented vocal repertoire: high olfaction, coloured vision, moderate hearing."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'Hyraxes typically live in groups of 10-80 animals, and forage as a group.' The article also describes colonies comprising an adult male, several adult females and immatures."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'Having incomplete thermoregulation, they are most active in the morning and evening, although their activity pattern varies substantially with season and climate.' Morning and evening activity is Crepuscular, not Diurnal."
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Hide. The species lives 'in habitats with rock crevices, allowing them to escape from predators', and the article lists Verreaux's eagle in particular as a specialist hunter of hyraxes."
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Judgement from a prey species that uses sentries to warn of approaching predators and retreats to rock crevices, which puts it well above a garden-adapted species but below a fully shy one."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Mostly ground, since it forages as a group and depends on rock crevices, with an arboreal share for climbing among the rocks it uses as refuge. The 0.75/0.25 split is authored."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'Rock hyraxes are found at elevations up to 4200 m above sea level in habitats with rock crevices, allowing them to escape from predators.'"
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "The browse tag follows the article's statement that hyrax size tracks precipitation through the effect on preferred forage. The cavity shelter and nesting tags follow the rock-crevice habitat. Weight is a judgement, because no food types are given."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The article does not discuss this species and human settlement. Adapter and dist_building_min_m are authored, on the basis of the sourced requirement for rock crevices: a garden needs an outcrop, wall or boulder pile within reach. light_max is authored."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The article describes no migration or dormancy for this species and records it at elevations up to 4200 m year-round, so ActiveYearRound is recorded by inference from the absence of any stated seasonal change."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "The article gives no calendar window for breeding and describes a permanent group structure with a dominant male, so a single year-long territorial phase stands for the colony's year-round occupation of its rocks. The label and dates are authored."
+    },
+    "seasonal.life_stages": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored: a litter of young kept in the group's rock refuge, weaned over a few months. The article gives no gestation, litter size or weaning age."
+    },
+    "vocalizations.song": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "'Researchers have found rich syntactic structure and geographical variations in the calls of rock hyraxes, a first in the vocalization of mammalian taxa other than primates, cetaceans, and bats. Higher-ranked males tend to sing more often ... snorts, a rare aspect of male hyrax songs, play an important signalling' role. The article does not transcribe the call, so the description of a rising whistle is authored and flagged."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'Rock hyraxes are squat and heavily built ... Their fur is thick and grey-brown, although this varies strongly between different environments, from dark brown in wetter habitats, to light gray in desert-living individuals.' Proportions, including the short muzzle, small rounded ears and stubby tail that give the dassie its rabbit-like look, are authored."
+    },
+    "behavior": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Mostly authored for the shared ground-forager program, which the article's behaviour supports: a group forager that walks out from rock cover to browse, retreats to crevices from a threat, and rests in shelter by day. The program description notes its default daytime rest window suits nocturnal and crepuscular species, so the default 10 to 90 degrees is kept for this crepuscular animal."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies maintainers",
+      "agent": "opencode"
+    }
+  ]
+}

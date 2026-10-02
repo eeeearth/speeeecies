@@ -8,7 +8,8 @@
     "en": "Great Horned Owl",
     "fr": "Grand-duc d'Amérique",
     "de": "Virginia-Uhu",
-    "nl": "Amerikaanse oehoe"
+    "nl": "Amerikaanse oehoe",
+    "es": "Búho hornado"
   },
   "taxonomy": {
     "kingdom": "Animalia",
@@ -52,7 +53,66 @@
       "BO",
       "PY",
       "UY",
-      "AR"
+      "AR",
+      "EC",
+      "CL",
+      "US-CO",
+      "US-AK",
+      "US-WA",
+      "US-OR",
+      "US-CA",
+      "US-NV",
+      "US-ID",
+      "US-MT",
+      "US-WY",
+      "US-UT",
+      "US-AZ",
+      "US-NM",
+      "US-ND",
+      "US-SD",
+      "US-NE",
+      "US-KS",
+      "US-OK",
+      "US-TX",
+      "US-MN",
+      "US-IA",
+      "US-MO",
+      "US-AR",
+      "US-LA",
+      "US-WI",
+      "US-IL",
+      "US-MS",
+      "US-AL",
+      "US-TN",
+      "US-KY",
+      "US-GA",
+      "US-FL",
+      "US-SC",
+      "US-NC",
+      "US-VA",
+      "US-WV",
+      "US-MD",
+      "US-DE",
+      "US-NJ",
+      "US-PA",
+      "US-NY",
+      "US-CT",
+      "US-RI",
+      "US-MA",
+      "US-VT",
+      "US-NH",
+      "US-ME",
+      "CA-YT",
+      "CA-NT",
+      "CA-NU",
+      "CA-QC",
+      "CA-ON",
+      "CA-MB",
+      "CA-SK",
+      "CA-NB",
+      "CA-NS",
+      "CA-NL",
+      "CA-PE"
     ],
     "koppen": [
       "BSh",
@@ -62,6 +122,10 @@
       "Dfb",
       "Dfc",
       "ET"
+    ],
+    "elevation_m": [
+      0,
+      3300
     ]
   },
   "traits": {
@@ -94,7 +158,7 @@
     ],
     "length_m": 0.55,
     "wingspan_m": 1.22,
-    "lifespan_y": 13,
+    "lifespan_y": 13.0,
     "diet": {
       "vertebrate": 0.86,
       "invertebrate": 0.09,
@@ -202,7 +266,9 @@
         "duration_days": 33
       },
       {
-        "stage": "Juvenile"
+        "stage": "Juvenile",
+        "duration_days": 200,
+        "scale": 0.4
       },
       {
         "stage": "Adult"
@@ -320,6 +386,17 @@
       "cooldown_s": 15,
       "loudness": "Moderate",
       "description": "Nestlings and fledglings hiss loudly and give loud, persistent, piercing screams that are often mistaken for barn owl calls. The calls grow rapidly in intensity, pitch and character, juvenile males trying out their father's hoot in the autumn, though they end in gurgling notes and no juvenile hoots competently until January."
+    },
+    {
+      "call_id": "squawk",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Night"
+      ],
+      "cooldown_s": 15,
+      "loudness": "Loud",
+      "description": "When disturbed or angered at the nest the bird gives 'an indescribable assemblage of hoots, chuckles, screeches, and squawks, given so rapidly and disconnectedly that the effect is both startling and amusing', including a growling krrooo-ooo pair, a laughing whar, whah, wha-a-a-a-ah, a high-pitched ank, ank, ank, a cat-like meee-owwwwww and a hawk-like ke-yah, ke-yah. These sounds 'frequently preced[e] an attack on an interloping human or other animal'."
     }
   ],
   "look": {
@@ -594,7 +671,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Low: 680 g, the lightest published adult, a male of the California race B. v. pacificus, in the race the source calls home to 'the lightest wild great horned owl adult ever weighed'. High: 'Depending on subspecies, maximum weight can reach 2,503 g', the heaviest known nominate female."
+      "note": "Low: 680 g, the lightest published adult, a male of the California race B. v. pacificus, in the race the source calls home to 'the lightest wild great horned owl adult ever weighed'. High: 'Depending on subspecies, maximum weight can reach 2,503 g', the heaviest known nominate female.",
+      "derived": true
     },
     "traits.length_m": {
       "sources": [
@@ -756,6 +834,29 @@
       "confidence": "Medium",
       "derived": true,
       "note": "No shared program fits a nocturnal raptor, so this record ships species/bubo-virginianus/behavior.json (fsm-nocturnal-raptor-v1); the four shared programs are named and why each misses are set out in that file's description. Its shape follows the source: roost by day in a tree, perch and listen at night, quartering flights 'about 50 to 100 m from perch to perch, stopping to survey for food at each', an 'Effective maximum hunting distance of an owl from an elevated perch' of 90 m (food_m), a swoop down onto prey taken on foot, and hooting to hold territory, which 'seems to peak after rather than before midnight' and falls away at egg laying. There is no drink state because the source never mentions the bird drinking. flee_m 25 and calm_m 60 are judgement: a mobbed owl 'alights to the nearest secluded spot', so a close threat means flight to cover rather than a short hop."
+    },
+    "traits": {
+      "sources": [
+        "wikipedia",
+        "gbif-backbone"
+      ],
+      "confidence": "High",
+      "note": "Covers the structural traits (body plan, limb count, thermoregulation, skin, flight, respiration, metamorphosis, perching) and locomotion modes: the owl 'can fly at a very low speed for the size of the species, as slow as 2 miles per hour when they are gliding on breezes' and makes 'great use of secrecy and stealth', roosting in large trees by day and walking about on powerful legs and talons. Glide is a locomotion mode here because the species' low-speed flight is explicitly gliding; Powered is retained for the silent flapping flight."
+    },
+    "habitat": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Covers shelter_tag and habitat.resources. small_vertebrate, vertebrate, invertebrate and carrion tags come from the Prey and trophic ecology section; perch from the daytime roosting behaviour in large trees and on rock outcrops; nest_platform from the abandoned raptor and crow nests it takes over. Weights are judgement, not separately sourced percentages."
+    },
+    "vocalizations.squawk": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Calls section: the 'indescribable assemblage of hoots, chuckles, screeches, and squawks' given when disturbed or angered at the nest, with the individual notes listed in the field, 'frequently preceding an attack on an interloping human or other animal'. It is the alarm slot of the shared program."
     }
   },
   "contributors": [

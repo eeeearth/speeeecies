@@ -1,0 +1,593 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Podarcis muralis",
+  "slug": "podarcis-muralis",
+  "common_names": {
+    "en": "Common wall lizard",
+    "fr": "Lézard des murailles",
+    "de": "Mauereidechse",
+    "nl": "Muurhagedis"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Reptilia",
+    "order": "Squamata",
+    "family": "Lacertidae",
+    "genus": "Podarcis",
+    "authority": "(Laurenti, 1768)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2469188,
+    "inat_taxon_id": 55990,
+    "itis_tsn": 564582,
+    "wikidata": "Q186615",
+    "ncbi_taxon_id": 64176
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "PT",
+      "ES",
+      "FR",
+      "IT",
+      "CH",
+      "AT",
+      "SI",
+      "HR",
+      "BA",
+      "ME",
+      "RS",
+      "MK",
+      "AL",
+      "GR",
+      "BG",
+      "RO",
+      "HU",
+      "SK",
+      "CZ",
+      "DE",
+      "BE",
+      "NL",
+      "LU",
+      "PL",
+      "UA",
+      "MD",
+      "TR"
+    ],
+    "introduced": [
+      "GB",
+      "US",
+      "CA"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk"
+    ],
+    "thermoregulation": "Ectotherm",
+    "skin": "Scales",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Burrow",
+    "perching": false,
+    "size_class": "Tiny",
+    "mass_kg": 0.007,
+    "mass_range_kg": [
+      0.004,
+      0.012
+    ],
+    "length_m": 0.2,
+    "lifespan_y": 5,
+    "diet": {
+      "invertebrate": 1.0
+    },
+    "social": {
+      "structure": "Solitary",
+      "group_size": [
+        1,
+        1
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.3
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.9,
+      "arboreal": 0.1
+    },
+    "shelter_tag": "shrub_thicket",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 1.0
+      },
+      {
+        "tag": "shrub_thicket",
+        "kind": "Shelter",
+        "weight": 0.8
+      },
+      {
+        "tag": "burrow",
+        "kind": "Nesting",
+        "weight": 1.0
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "light_max": 0.8,
+      "notes": "Strongly associated with human settlements; thrives on walls, ruins, rock piles, and urban debris; common in gardens and parks across its range."
+    }
+  },
+  "seasonal": {
+    "strategy": "Brumation",
+    "winter_fraction": 1.0,
+    "triggers": {
+      "enter": {
+        "temperature_below_c": 10,
+        "days": 5
+      },
+      "exit": {
+        "temperature_above_c": 10,
+        "days": 5
+      }
+    },
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "04-01",
+        "end": "07-31",
+        "note": "Mating in spring; females lay 2-10 eggs in loose soil or crevices; eggs absorb water and hatch after 6-11 weeks depending on temperature."
+      },
+      {
+        "name": "dormancy",
+        "start": "11-01",
+        "end": "02-28",
+        "note": "Inactive during cold months; retreats to crevices in walls, rocks, and debris for brumation."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg",
+        "duration_days": 50
+      },
+      {
+        "stage": "Juvenile",
+        "duration_days": 365
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "FR-IDF",
+        "monthly": [
+          0.02,
+          0.08,
+          0.48,
+          1.0,
+          0.92,
+          0.82,
+          0.72,
+          0.66,
+          0.55,
+          0.18,
+          0.02,
+          0.0
+        ],
+        "method": "mean(inat_raw, gbif_raw)",
+        "observations": 12801,
+        "sources": [
+          "inat-activity-fr-idf",
+          "gbif-activity-fr-idf"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 10577,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=55990&place_id=10577&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": null,
+            "total": 1140,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "FRA.8_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2469188&gadmGid=FRA.8_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": null,
+            "total": 11661,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-ground-forager-v1",
+    "params": {
+      "flee_m": 2,
+      "calm_m": 5,
+      "food_tag": "invertebrate",
+      "food_m": 5,
+      "flee_gait": "walk",
+      "forage_gait": "walk",
+      "rest_sun_lo_deg": 15,
+      "rest_sun_hi_deg": 35
+    }
+  },
+  "vocalizations": [],
+  "look": {
+    "body_plan": "quadruped",
+    "proportions": {
+      "torso_aspect": 2.5,
+      "leg_length_ratio": 0.25,
+      "head_scale": 0.4,
+      "neck_angle_deg": 5,
+      "tail_ratio": 0.9,
+      "girth_ratio": 0.4
+    },
+    "palette": {
+      "body": "#8b7355",
+      "belly": "#e8a87c",
+      "markings": "#5d4e3a",
+      "accent": "#a0522d",
+      "eye": "#2c1810"
+    },
+    "poses": {
+      "idle": {},
+      "walk": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2469188",
+      "title": "GBIF Backbone Taxonomy: Podarcis muralis",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q186615",
+      "title": "Wikidata: Common Wall Lizard (Q186615)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Podarcis_muralis",
+      "title": "Wikipedia: Podarcis muralis",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Podarcis muralis\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=564582",
+      "title": "ITIS: Podarcis muralis, TSN 564582",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "inat-activity-fr-idf",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=55990&place_id=10577&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Podarcis muralis in FR-IDF",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-fr-idf",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2469188&gadmGid=FRA.8_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Podarcis muralis in FR-IDF",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "itis"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "iNaturalist and NCBI ids via Wikidata (P3151, P685)."
+    },
+    "common_names": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikidata",
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Native range from Distribution section (mainland Europe except far north/south, extends to Turkey); introduced populations in southern Britain, North America (Cincinnati area), Vancouver Island."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Scurries on ground and vertical surfaces; no powered flight or hopping gait."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Eggs laid in loose soil or crevices; modelled as Burrow."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Climbs vertical walls and rocks but does not perch in the avian sense."
+    },
+    "traits.size_class": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg (~7 g falls in the Small band, < 1 kg)."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Estimated from typical lacertid mass (5-12 g); no explicit mass range in open-licence source."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Estimated range 4-12 g based on typical lacertid sizes."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Total length up to 20 cm (snout-vent ~6-7 cm, tail ~13-14 cm)."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Typical lifespan 5-7 years in wild; maximum up to 10 years; 5 years as judgement."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Insectivorous; feeds on insects, spiders, and other small invertebrates; no quantitative open-licence diet study found."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Territorial males; solitary outside breeding season; group_size of 1 reflects solitary structure."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Diurnal basking and foraging described in Ecology section."
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Flees to crevices when threatened; autotomy (tail loss) also occurs but not modelled."
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: very tolerant of human presence in urban settings; low wariness (0.3)."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Strongly ground-dwelling on walls, rocks, and debris; minimal arboreal use."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored: uses crevices in walls, rock piles, and debris; shrub_thicket as closest available tag."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Invertebrate prey year-round; shelter and nesting in crevices from Ecology section."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Urban adapter; thrives on walls, ruins, and in gardens; light_max authored (judgement)."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Resident across range; no migration described."
+    },
+    "seasonal.winter_fraction": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Judgement: overwinters in crevices; 1.0 reflects full site fidelity."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Breeding April-July from Reproduction references; active season March-October from Ecology (basking in warm months)."
+    },
+    "seasonal.triggers": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Temperature thresholds for brumation enter/exit are judgements based on typical lacertid brumation phenology; no specific open-licence study found for this species."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Egg incubation ~6-11 weeks (midpoint ~50 days); sexual maturity ~1 year."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Brownish/greyish with variable pattern; belly reddish/pink/orangish; six morphs exist; proportions authored (judgement) for a slender, long-tailed lizard. tail_ratio 0.9 is judgement: the article gives total length (about 20 cm) but no tail length, so the tail is set to roughly the length of the snout-vent length, which is what a wall lizard carries; the first value of 2.0 drew a tail twice the length of the body and read as a needle."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for shared ground-forager program; rest_sun_lo/hi set for diurnal basking lizard; flee_m/calm_m reduced for small, fast lizard."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies maintainers",
+      "agent": "claude-code"
+    }
+  ]
+}

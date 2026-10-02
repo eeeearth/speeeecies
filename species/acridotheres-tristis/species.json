@@ -452,6 +452,55 @@
             "gbif"
           ]
         }
+      },
+      {
+        "region": "IN-KA",
+        "monthly": [
+          0.47,
+          0.63,
+          0.63,
+          0.94,
+          0.95,
+          1.0,
+          0.95,
+          0.81,
+          0.82,
+          0.6,
+          0.48,
+          0.51
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 216375,
+        "sources": [
+          "inat-activity-in-ka",
+          "gbif-activity-in-ka"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 7043,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=204454&place_id=7043&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=7043&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 742,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "IND.16_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2489005&gadmGid=IND.16_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=IND.16_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 215633,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
       }
     ]
   },
@@ -682,6 +731,24 @@
       "license": "CC-BY-4.0",
       "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
       "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "inat-activity-in-ka",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=204454&place_id=7043&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Acridotheres tristis in IN-KA",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-in-ka",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2489005&gadmGid=IND.16_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Acridotheres tristis in IN-KA",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
       "kind": "api"
     }
   ],
