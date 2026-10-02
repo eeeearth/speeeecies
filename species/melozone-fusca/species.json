@@ -215,6 +215,55 @@
             "gbif"
           ]
         }
+      },
+      {
+        "region": "MX-CMX",
+        "monthly": [
+          0.58,
+          0.59,
+          0.67,
+          0.84,
+          0.94,
+          0.81,
+          0.98,
+          1.0,
+          0.92,
+          0.65,
+          0.6,
+          0.55
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 28729,
+        "sources": [
+          "inat-activity-mx-cmx",
+          "gbif-activity-mx-cmx"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 59014,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=145289&place_id=59014&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=59014&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 2778,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "MEX.9_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=7341622&gadmGid=MEX.9_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=MEX.9_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 25951,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
       }
     ]
   },
@@ -352,6 +401,24 @@
       "id": "gbif-activity-us-nm",
       "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=7341622&gadmGid=USA.32_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
       "title": "GBIF occurrence search for Melozone fusca in US-NM",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "inat-activity-mx-cmx",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=145289&place_id=59014&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Melozone fusca in MX-CMX",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-mx-cmx",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=7341622&gadmGid=MEX.9_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Melozone fusca in MX-CMX",
       "license": "CC-BY-4.0",
       "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
       "accessed": "2026-10-01",
