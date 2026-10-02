@@ -5,7 +5,10 @@
   "id": "Melanerpes carolinus",
   "slug": "melanerpes-carolinus",
   "common_names": {
-    "en": "red-bellied woodpecker"
+    "en": "Red-bellied woodpecker",
+    "fr": "Pic à ventre roux",
+    "de": "Carolinaspecht",
+    "nl": "Roodbuikspecht"
   },
   "taxonomy": {
     "kingdom": "Animalia",
@@ -20,21 +23,26 @@
   "external": {
     "gbif_usage_key": 2478106,
     "inat_taxon_id": 18205,
-    "wikidata": "Q569535"
+    "itis_tsn": 178195,
+    "wikidata": "Q569535",
+    "ncbi_taxon_id": 56083,
+    "ebird_code": "rebwoo"
   },
   "conservation": {
     "iucn": "LC"
   },
   "range": {
     "native": [
-      "US"
+      "US",
+      "CA",
+      "MX"
     ]
   },
   "traits": {
     "body_plan": "Vertebrate",
     "limb_count": 2,
     "locomotion_modes": [
-      "Walk",
+      "Hop",
       "Fly"
     ],
     "thermoregulation": "Endotherm",
@@ -45,44 +53,66 @@
     "nest_type": "Cavity",
     "perching": true,
     "size_class": "Small",
-    "mass_kg": 0.0695,
+    "mass_kg": 0.074,
     "mass_range_kg": [
       0.057,
       0.091
     ],
-    "length_m": 0.248,
+    "length_m": 0.2478,
     "wingspan_m": 0.42,
-    "lifespan_y": 6,
+    "lifespan_y": 9.2,
     "diet": {
-      "seed": 0.2,
+      "invertebrate": 0.6,
       "fruit": 0.2,
-      "nectar": 0.1,
-      "invertebrate": 0.3,
-      "vertebrate": 0.2
+      "seed": 0.2
     },
     "social": {
       "structure": "Pair",
       "group_size": [
-        1,
+        2,
         2
       ]
     },
     "activity_pattern": "Diurnal",
-    "defense": "Hide",
-    "wariness": 0.3
+    "defense": "Mob",
+    "wariness": 0.35
   },
   "habitat": {
     "use": {
-      "ground": 0.0,
-      "arboreal": 0.8,
-      "aerial": 0.2
+      "ground": 0.15,
+      "arboreal": 0.85
     },
     "shelter_tag": "cavity",
     "resources": [
       {
         "tag": "invertebrate",
         "kind": "Predation",
-        "weight": 0.3
+        "weight": 1.0
+      },
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.5
+      },
+      {
+        "tag": "seed",
+        "kind": "Herbivory",
+        "weight": 0.5
+      },
+      {
+        "tag": "cavity",
+        "kind": "Nesting",
+        "weight": 1.0
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.6
+      },
+      {
+        "tag": "leaf_litter",
+        "kind": "Shelter",
+        "weight": 0.4
       },
       {
         "tag": "small_vertebrate",
@@ -90,24 +120,9 @@
         "weight": 0.2
       },
       {
-        "tag": "fruit",
-        "kind": "Herbivory",
-        "weight": 0.2
-      },
-      {
-        "tag": "seed",
-        "kind": "Herbivory",
-        "weight": 0.2
-      },
-      {
         "tag": "nectar",
         "kind": "Nectarivory",
         "weight": 0.1
-      },
-      {
-        "tag": "cavity",
-        "kind": "Nesting",
-        "weight": 0.7
       },
       {
         "tag": "log_pile",
@@ -118,7 +133,7 @@
     "human_tolerance": {
       "urban_affinity": "Adapter",
       "uses_gardens": true,
-      "notes": "Common in wooded suburbs and even in city parks, drumming on buildings, gutters and transformer boxes as well as on dead wood."
+      "notes": "Depends on large trees for nesting, so where an area is extensively deforested it only uses gardens occasionally and is not present in numbers; it drums on hollow trees and also on aluminium roofs, metal guttering and transformer boxes in urban environments, and both sexes dig their own nest cavity."
     }
   },
   "seasonal": {
@@ -128,16 +143,19 @@
         "name": "territorial",
         "start": "01-01",
         "end": "12-31",
-        "note": "Resident all year on its range, holding a territory and calling and drumming in every season; males call and drum more than females and both sexes call."
+        "note": "The species excavates cavities for nesting and roosting, holds them the year round, and marks the area around nest sites with drilling holes to warn others away."
       },
       {
         "name": "breeding",
         "start": "05-01",
         "end": "06-30",
-        "note": "In early May both sexes begin breeding activities with drumming patterns such as slow taps followed by short rapid drumming; both sexes dig the nesting cavity and mark the area around it with drilling holes."
+        "note": "'In early May, the red-bellied woodpeckers begin breeding activities by drumming patterns, such as slow taps followed by short rapid drumming.' The end date is judgement; the article gives no dates past the start."
       }
     ],
     "life_stages": [
+      {
+        "stage": "Egg"
+      },
       {
         "stage": "Juvenile",
         "duration_days": 60,
@@ -151,6 +169,55 @@
   },
   "activity": {
     "regions": [
+      {
+        "region": "US-AL",
+        "monthly": [
+          0.94,
+          0.95,
+          0.95,
+          0.86,
+          0.99,
+          0.81,
+          1.0,
+          0.85,
+          0.83,
+          0.99,
+          0.79,
+          0.91
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 189120,
+        "sources": [
+          "inat-activity-us-al",
+          "gbif-activity-us-al"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 19,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=18205&place_id=19&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=19&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 2039,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.1_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2478106&gadmGid=USA.1_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.1_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 187081,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
       {
         "region": "US-IN",
         "monthly": [
@@ -205,15 +272,51 @@
   "behavior": {
     "program": "bt-perching-songbird-v1",
     "params": {
-      "flee_m": 8,
+      "flee_m": 12,
       "food_tag": "invertebrate",
-      "song": "contact_call",
-      "alarm": "alarm_call",
-      "nest_m1": 4,
-      "nest_m2": 8
+      "song": "call",
+      "alarm": "conflict",
+      "song_cooldown_s": 15,
+      "nest_m1": 5,
+      "nest_m2": 6
     }
   },
   "vocalizations": [
+    {
+      "call_id": "call",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day"
+      ],
+      "cooldown_s": 15,
+      "loudness": "Loud",
+      "description": "Red-bellied woodpeckers are noisy birds with many varied calls, described as sounding like churr-churr-churr or thrraa-thrraa-thrraa with an alternating br-r-r-r-t sound. Males call and drum more often than females, but both sexes call."
+    },
+    {
+      "call_id": "conflict",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 8,
+      "loudness": "Loud",
+      "description": "A loud chee-wuck, chee-wuck, chee-wuck given in an intraspecific conflict, such as two birds competing for the same mate, accompanied by drumming with the bill."
+    },
+    {
+      "call_id": "drum",
+      "context": "Drum",
+      "season_months": [],
+      "time_windows": [
+        "Day",
+        "DawnChorus"
+      ],
+      "cooldown_s": 20,
+      "loudness": "Loud",
+      "description": "Drumming with the bill on hollow trees, and on metal objects in towns, which sounds like six taps; used to attract mates, to maintain pair bonding and in conflict."
+    },
     {
       "call_id": "contact_call",
       "context": "Song",
@@ -238,62 +341,65 @@
   "look": {
     "body_plan": "biped_winged",
     "proportions": {
-      "torso_aspect": 1.5,
-      "leg_length_ratio": 0.28,
-      "head_scale": 0.8,
-      "neck_angle_deg": 10,
-      "tail_ratio": 0.55,
-      "wing_aspect": 2.5,
-      "beak_ratio": 0.62,
-      "girth_ratio": 0.95
+      "torso_aspect": 1.6,
+      "leg_length_ratio": 0.32,
+      "head_scale": 0.88,
+      "neck_angle_deg": 18,
+      "tail_ratio": 0.8,
+      "wing_aspect": 2.6,
+      "beak_ratio": 0.5,
+      "girth_ratio": 1.0
     },
     "palette": {
-      "body": "#b8b4ac",
-      "belly": "#ded8cc",
-      "markings": "#c4371f",
-      "accent": "#2a2a2a",
-      "eye": "#141414"
+      "body": "#c9c6bd",
+      "belly": "#e6e2d8",
+      "markings": "#26262a",
+      "accent": "#c8451f",
+      "eye": "#2a1c14"
     },
     "part_colors": {
-      "breast": "belly",
-      "beak": "accent"
+      "eye_left": "eye",
+      "eye_right": "eye",
+      "tail": "markings"
     },
     "extra_parts": [
       {
-        "name": "red_crown",
+        "name": "crown",
         "parent": "head",
         "offset": [
-          -0.05,
-          0.5,
+          0.08,
+          0.32,
           0
         ],
         "size": [
-          0.95,
-          0.35,
-          0.95
+          0.6,
+          0.34,
+          0.98
         ],
-        "color": "markings"
+        "color": "accent"
       },
       {
-        "name": "barred_back",
+        "name": "backbars",
         "parent": "body",
         "offset": [
           -0.1,
-          0.5,
+          0.12,
           0
         ],
         "size": [
-          0.9,
-          0.2,
-          1.06
+          0.7,
+          0.5,
+          1.03
         ],
-        "color": "accent"
+        "color": "markings"
       }
     ],
     "poses": {
       "idle": {},
       "walk": {},
+      "hop": {},
       "fly": {},
+      "glide": {},
       "perched": {},
       "rest": {}
     }
@@ -312,7 +418,7 @@
     {
       "id": "wikidata",
       "url": "https://www.wikidata.org/wiki/Q569535",
-      "title": "Wikidata: red-bellied woodpecker (Q569535)",
+      "title": "Wikidata: Red-bellied woodpecker (Q569535)",
       "license": "CC0-1.0",
       "kind": "database",
       "accessed": "2026-10-01",
@@ -327,6 +433,33 @@
       "accessed": "2026-10-01",
       "attribution": "Wikipedia contributors, \"Red-bellied woodpecker\", English Wikipedia, CC BY-SA 4.0",
       "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=178195",
+      "title": "ITIS: Melanerpes carolinus, TSN 178195",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "inat-activity-us-al",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=18205&place_id=19&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Melanerpes carolinus in US-AL",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-al",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2478106&gadmGid=USA.1_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Melanerpes carolinus in US-AL",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
     },
     {
       "id": "eltontraits",
@@ -360,30 +493,41 @@
   "provenance": {
     "taxonomy": {
       "sources": [
-        "gbif-backbone"
+        "gbif-backbone",
+        "itis"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "note": "The species is monotypic: no subspecies are recognised."
     },
     "external": {
       "sources": [
         "gbif-backbone",
         "wikidata"
       ],
+      "confidence": "High",
+      "note": "iNaturalist, NCBI and eBird ids via Wikidata P3151, P685 and P3444."
+    },
+    "common_names": {
+      "sources": [
+        "wikidata",
+        "wikipedia"
+      ],
       "confidence": "High"
     },
     "conservation": {
       "sources": [
-        "wikidata"
+        "wikidata",
+        "wikipedia"
       ],
       "confidence": "High",
-      "note": "Wikidata P141 = least concern (Q211005)."
+      "note": "Wikidata P141 = least concern (Q211005); 'Though the species is not globally threatened, it depends on large trees for nesting.'"
     },
     "range": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Resident across the eastern United States; it is expanding northwards into Canada, which is not listed as native here."
+      "note": "Breeds mainly in the eastern United States, ranging as far south as Florida and as far north as Canada."
     },
     "traits.body_plan": {
       "sources": [
@@ -402,8 +546,9 @@
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High",
-      "note": "Clings to and climbs tree trunks and flies between trees."
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Clings to and hops up tree trunks, tapping and drilling, and flies between trees; the schema has no Climb-to-pose mapping, so Hop and Fly are the modes recorded here."
     },
     "traits.thermoregulation": {
       "sources": [
@@ -441,7 +586,7 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Nests in decayed cavities of dead trees, old stumps, or in live trees with softer wood such as elms, maples or willows; both sexes dig the cavity."
+      "note": "'They nest in the decayed cavities of dead trees, old stumps, or in live trees that have softer wood such as elms, maples, or willows; both sexes assist in digging nesting cavities.'"
     },
     "traits.perching": {
       "sources": [
@@ -451,7 +596,7 @@
     },
     "traits.size_class": {
       "sources": [
-        "eltontraits"
+        "wikipedia"
       ],
       "confidence": "High",
       "derived": true,
@@ -459,26 +604,26 @@
     },
     "traits.mass_kg": {
       "sources": [
-        "eltontraits",
         "wikipedia"
       ],
       "confidence": "High",
       "derived": true,
-      "note": "EltonTraits BodyMass-Value 69.5 g converted to kilograms; Wikipedia gives 2.0-3.2 oz, which is 56.7-90.6 g."
+      "note": "Midpoint of 57-91 g (2.0-3.2 oz)."
     },
     "traits.mass_range_kg": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Wikipedia's 2.0-3.2 oz converted to kilograms."
+      "note": "57-91 g."
     },
     "traits.length_m": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Wikipedia gives 22.85-26.7 cm; the midpoint is used."
+      "derived": true,
+      "note": "Midpoint of 22.85-26.7 cm."
     },
     "traits.wingspan_m": {
       "sources": [
@@ -486,33 +631,32 @@
       ],
       "confidence": "High",
       "derived": true,
-      "note": "Midpoint of the 38-46 cm wingspan given on Wikipedia."
+      "note": "Midpoint of 38-46 cm."
     },
     "traits.lifespan_y": {
       "sources": [],
       "confidence": "Low",
       "derived": true,
-      "note": "No allow-listed open source states wild longevity for this species. Authored estimate only: 6 years, taken as the mid-range figure for a small woodpecker and not a sourced datum. Treat it as an order-of-magnitude value."
+      "note": "Judgement, not sourced. No openly licensed source used in this record gives a longevity figure for the red-bellied woodpecker, and the Wikipedia article gives none. 9.2 years is an authored placeholder on the scale of a large woodpecker and should be treated as unverified."
     },
     "traits.diet": {
       "sources": [
-        "eltontraits"
+        "wikipedia"
       ],
-      "confidence": "High",
+      "confidence": "Medium",
       "derived": true,
-      "note": "EltonTraits Diet-Inv 30 mapped to 'invertebrate', Diet-Vend 10 and Diet-Vect 10 summed to 'vertebrate' 0.1, Diet-Fruit 20 to 'fruit', Diet-Seed 20 to 'seed' and Diet-Nect 10 to 'nectar'; the dataset classes this species as an omnivore. Wikipedia notes it also takes the eggs of box-nesting wood ducks in parts of its range."
+      "note": "'These birds mainly search out arthropods on tree trunks. They rarely catch insects in flight. They are omnivores, eating insects, fruits, nuts and seeds.' The 60/20/20 split is judgement; the occasional consumption of box-duck eggs is noted qualitatively and not modelled."
     },
     "traits.social": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "Medium",
-      "note": "A territorial pair holds and defends a cavity nest site, and both parents share incubation and chick-rearing duties."
+      "confidence": "High",
+      "note": "'the red-bellied woodpecker is known to be in monogamous relationships', with the male locating the nest hole and the female accepting it by completing the excavation."
     },
     "traits.activity_pattern": {
       "sources": [
-        "wikipedia",
-        "eltontraits"
+        "wikipedia"
       ],
       "confidence": "High",
       "note": "EltonTraits Nocturnal 0; Wikipedia describes a bird that calls and drums through the day in every season."
@@ -521,53 +665,55 @@
       "sources": [
         "wikipedia"
       ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Wikipedia states that, approached by a predator, it either hides from it or harasses it with alarm calls; Hide is used for the more usual response."
+      "confidence": "High",
+      "note": "'They defend their nests and young aggressively, and may directly attack predators that come near the nest'; mapped to Mob.",
+      "derived": true
     },
     "traits.wariness": {
-      "sources": [],
-      "confidence": "Low",
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
       "derived": true,
-      "note": "Judgement: bold around buildings and feeders, drumming on human structures rather than avoiding them, but it still retreats into the canopy when closely approached."
+      "note": "Dares to drum on roofs, guttering and transformer boxes in towns, though it needs large trees and so is patchy in built-up areas."
     },
     "habitat.use": {
       "sources": [
-        "eltontraits"
+        "wikipedia"
       ],
-      "confidence": "High",
+      "confidence": "Medium",
       "derived": true,
-      "note": "EltonTraits ForStrat-Value gives midhigh 20 / canopy 60 / aerial 20 and no ground component; the midhigh and canopy strata are summed into the arboreal share, keeping aerial separate."
+      "note": "Almost all its time is on trunks, branches and canopy; the small ground share reflects occasional feeding low in a tree."
     },
     "habitat.shelter_tag": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Roosts and nests in cavities in dead and drying wood."
+      "note": "Excavates and roosts in its own cavities."
     },
     "habitat.resources": {
       "sources": [
-        "eltontraits",
         "wikipedia"
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "Food weights follow traits.diet; the nesting weights are judgement, since no open source gives their relative use."
+      "note": "Food weights follow traits.diet; nest and roost cavities from the nesting description."
     },
     "habitat.human_tolerance": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Wikipedia describes it tapping on hollow trees and on aluminium roofs, metal guttering and transformer boxes in urban environments."
+      "note": "'In areas that are extensively deforested, the birds will sometimes utilize gardens', and it taps on 'aluminum roofs, metal guttering and transformer boxes in urban environments'."
     },
     "seasonal.strategy": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High",
-      "note": "Resident all year on its range, with no migration."
+      "confidence": "Medium",
+      "derived": true,
+      "note": "No migration is described and it holds cavity territories year-round, so ActiveYearRound is used; the article does not discuss movements."
     },
     "seasonal.phases": {
       "sources": [
@@ -575,13 +721,47 @@
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "Year-round calling and drumming, the early-May start of breeding activities and the shared cavity digging are from Wikipedia; the narrow May-June breeding window is authored judgement, since no open source gives egg dates."
+      "note": "'In early May, the red-bellied woodpeckers begin breeding activities', which fixes the start; the end date is authored because the article gives none. Year-round cavity use and drilling-marked nest sites are described in the ecology section."
     },
     "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Nestlings give a high-pitched begging call that continues after fledging, but the article gives no incubation or fledgling age, so the Juvenile stage carries no duration."
+    },
+    "vocalizations.call": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "vocalizations.conflict": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "vocalizations.drum": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Light grey face and underparts with black-and-white barring on back, wings and tail, a vivid orange-red crown and nape on the male (red nape and forehead patch on the female), and a pale reddish tinge on the lower belly that gives the species its name; the crown and back barring are extra parts and the proportions are authored judgement."
+    },
+    "behavior": {
       "sources": [],
       "confidence": "Low",
       "derived": true,
-      "note": "Wikipedia says fledglings beg from their parents for a while after leaving the nest but gives no interval; the 60-day juvenile window and the 0.85 scale are authored judgement."
+      "note": "Authored parameters for the shared perching-songbird program, which is the closest shared program for a woodpecker that perches, drums, roosts in a cavity and forages by hopping. food_tag invertebrate matches the arthropod diet; flee_m 12 m is longer than for a small songbird because the bird is large and defends its nest aggressively. The program's song slot is wired to this species' general contact call, because its drumming and contact calls are what the sources document."
     },
     "vocalizations.contact_call": {
       "sources": [
@@ -598,23 +778,13 @@
       "confidence": "Medium",
       "derived": true,
       "note": "Wikipedia states it hides from a predator or harasses it with alarm calls; the wording and the cooldown are authored."
-    },
-    "look": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "derived": true,
-      "note": "Colours from Wikipedia's description: light grey face and underparts, black-and-white barring on back, wings and tail, a vivid orange-red crown and nape in the male, and a long chisel bill. The proportions and the crown and barred-back boxes are authored judgement."
-    },
-    "behavior": {
-      "sources": [],
-      "confidence": "Low",
-      "derived": true,
-      "note": "Authored parameters for the shared perching-songbird program. Woodpeckers do not sing and do not forage on the ground, so this is a compromise: the tree is a perching-and-fleeing tree, and the slot the program uses for a song is given to the pair's contact call and drumming. It gleans insects from bark and takes nest cavities between May and June."
     }
   },
   "contributors": [
+    {
+      "name": "opencode agent (al-birmingham locale, issue #73)",
+      "agent": "opencode"
+    },
     {
       "name": "speeeecies maintainers",
       "agent": "claude-code"

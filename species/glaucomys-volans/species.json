@@ -5,7 +5,9 @@
   "id": "Glaucomys volans",
   "slug": "glaucomys-volans",
   "common_names": {
-    "en": "southern flying squirrel"
+    "en": "southern flying squirrel",
+    "fr": "polatouche",
+    "de": "Südlicher Gleithörnchen"
   },
   "taxonomy": {
     "kingdom": "Animalia",
@@ -20,22 +22,28 @@
   "external": {
     "gbif_usage_key": 2437338,
     "inat_taxon_id": 46272,
-    "wikidata": "Q913350"
+    "itis_tsn": 180170,
+    "wikidata": "Q913350",
+    "ncbi_taxon_id": 64683
   },
   "conservation": {
     "iucn": "LC"
   },
   "range": {
     "native": [
-      "US"
+      "US",
+      "CA",
+      "MX",
+      "GT",
+      "HN"
     ]
   },
   "traits": {
     "body_plan": "Vertebrate",
     "limb_count": 4,
     "locomotion_modes": [
-      "Climb",
-      "Glide"
+      "Walk",
+      "Climb"
     ],
     "thermoregulation": "Endotherm",
     "skin": "Fur",
@@ -45,24 +53,28 @@
     "nest_type": "Cavity",
     "perching": false,
     "size_class": "Small",
-    "mass_kg": 0.068,
+    "mass_kg": 0.0719,
     "mass_range_kg": [
-      0.045,
-      0.1
+      0.06,
+      0.11
     ],
-    "length_m": 0.128,
+    "length_m": 0.235,
+    "shoulder_height_m": 0.035,
     "lifespan_y": 12,
-    "home_range_ha": 0.88,
+    "home_range_ha": 2.45,
     "diet": {
-      "browse": 0.3,
-      "seed": 0.4,
-      "fruit": 0.3
+      "mast": 0.5,
+      "fruit": 0.2,
+      "browse": 0.1,
+      "invertebrate": 0.15,
+      "vertebrate": 0.03,
+      "carrion": 0.02
     },
     "social": {
-      "structure": "Solitary",
+      "structure": "Group",
       "group_size": [
         1,
-        1
+        25
       ]
     },
     "activity_pattern": "Nocturnal",
@@ -77,19 +89,19 @@
     "shelter_tag": "cavity",
     "resources": [
       {
-        "tag": "seed",
+        "tag": "mast",
         "kind": "Herbivory",
-        "weight": 0.4
+        "weight": 0.45
       },
       {
         "tag": "fruit",
         "kind": "Herbivory",
-        "weight": 0.3
+        "weight": 0.2
       },
       {
         "tag": "browse",
         "kind": "Herbivory",
-        "weight": 0.3
+        "weight": 0.1
       },
       {
         "tag": "invertebrate",
@@ -98,35 +110,63 @@
       },
       {
         "tag": "cavity",
-        "kind": "Nesting",
-        "weight": 0.6
+        "kind": "Shelter",
+        "weight": 0.7
+      },
+      {
+        "tag": "leaf_litter",
+        "kind": "Shelter",
+        "weight": 0.3
+      },
+      {
+        "tag": "seed",
+        "kind": "Herbivory",
+        "weight": 0.4
       },
       {
         "tag": "nest_platform",
         "kind": "Nesting",
-        "weight": 0.3
-      },
-      {
-        "tag": "mast",
-        "kind": "Herbivory",
         "weight": 0.3
       }
     ],
     "human_tolerance": {
       "urban_affinity": "Adapter",
       "uses_gardens": true,
-      "flight_distance_m": 20,
-      "notes": "Found in eastern deciduous and mixed forests, including wooded suburbs, and it can hold a home range in suburban oaks, where female ranges favour nesting sites over food."
+      "notes": "Present in heavily wooded suburban regions but never in large numbers there, so a wooded lot with mature hickory, beech, maple or oak suits it. Takes nest boxes readily and can be hand-fed, which is how most people meet it.",
+      "flight_distance_m": 20
+    },
+    "density_per_ha": {
+      "min": 0.5,
+      "typical": 4.48,
+      "max": 44.76
     }
   },
   "seasonal": {
     "strategy": "ActiveYearRound",
     "phases": [
       {
+        "name": "breeding",
+        "start": "02-01",
+        "end": "05-31",
+        "note": "The main breeding season; two litters a year are produced in both the wild and captivity, and the southern populations breed later in spring than the northern ones."
+      },
+      {
+        "name": "young",
+        "start": "03-01",
+        "end": "09-30",
+        "note": "Gestation is about 40 days; kits are born furless and helpless, the ears open at 2-6 days, fur grows in by 7, the eyes open at 24-30 days, they are weaned at about 65 days and are independent at around 120 days."
+      },
+      {
         "name": "caching",
         "start": "09-01",
         "end": "11-30",
-        "note": "Acorns and other mast are the staple winter food and are cached; squirrels nesting alone in winter save about 30 percent less energy than aggregated animals."
+        "note": "Acorns and other nuts are cached, especially for winter; stored food is recovered by spatial memory in dry substrate and by smell once it is wet."
+      },
+      {
+        "name": "flocking",
+        "start": "12-01",
+        "end": "03-15",
+        "note": "Winter communal nesting: animals aggregate in cavities as temperatures decline, and squirrels in aggregates save about 30% more energy than solitary nesters."
       },
       {
         "name": "nesting",
@@ -138,7 +178,7 @@
     "life_stages": [
       {
         "stage": "Juvenile",
-        "duration_days": 65,
+        "duration_days": 120,
         "scale": 0.6,
         "requires_tag": "cavity"
       },
@@ -149,6 +189,53 @@
   },
   "activity": {
     "regions": [
+      {
+        "region": "US-NC",
+        "monthly": [
+          0.2,
+          0.32,
+          0.45,
+          0.68,
+          0.52,
+          0.81,
+          0.79,
+          0.36,
+          0.67,
+          0.68,
+          0.91,
+          1.0
+        ],
+        "method": "gbif_share",
+        "observations": 249,
+        "sources": [
+          "gbif-activity-us-nc"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 30,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=46272&place_id=30&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=30&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 242,
+            "usable": false
+          },
+          "gbif": {
+            "tier": "C",
+            "area": [
+              "gadmGid",
+              "USA.34_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2437338&gadmGid=USA.34_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.34_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "total": 249,
+            "usable": false
+          },
+          "used": [
+            "gbif"
+          ]
+        }
+      },
       {
         "region": "US-IN",
         "monthly": [
@@ -201,17 +288,50 @@
   "behavior": {
     "program": "fsm-ground-forager-v1",
     "params": {
-      "flee_m": 12,
-      "calm_m": 30,
-      "food_tag": "seed",
+      "food_tag": "mast",
+      "flee_m": 10,
+      "calm_m": 20,
       "food_m": 30,
-      "flee_gait": "glide",
-      "forage_gait": "climb",
+      "flee_gait": "walk",
+      "forage_gait": "walk",
       "rest_sun_lo_deg": 10,
       "rest_sun_hi_deg": 90
     }
   },
   "vocalizations": [
+    {
+      "call_id": "kuk",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Night"
+      ],
+      "cooldown_s": 15,
+      "loudness": "Moderate",
+      "description": "A short, sharp 'kuk' bark given when the animal is disturbed or discovers a predator, and used in confrontations between adults; often repeated in a series."
+    },
+    {
+      "call_id": "squeal",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Night"
+      ],
+      "cooldown_s": 20,
+      "loudness": "Loud",
+      "description": "A drawn-out, high-pitched squeal of alarm and distress, the loudest and most far-carrying call in the repertoire of a species that is mostly active after dark."
+    },
+    {
+      "call_id": "cluck",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [
+        "Night"
+      ],
+      "cooldown_s": 20,
+      "loudness": "Quiet",
+      "description": "A low, soft clucking or chuckling call used between individuals sharing a nest or a foraging tree, and by a mother calling her kits."
+    },
     {
       "call_id": "chatter",
       "context": "Contact",
@@ -227,9 +347,9 @@
   "look": {
     "body_plan": "quadruped",
     "proportions": {
-      "torso_aspect": 1.6,
+      "torso_aspect": 1.7,
       "leg_length_ratio": 0.35,
-      "head_scale": 0.75,
+      "head_scale": 0.8,
       "neck_angle_deg": 15,
       "tail_ratio": 1.1,
       "ear_ratio": 0.3,
@@ -237,136 +357,54 @@
       "girth_ratio": 0.9
     },
     "palette": {
-      "body": "#9a8b78",
-      "belly": "#f0ece2",
-      "markings": "#4a4034",
-      "accent": "#c0b09a",
-      "eye": "#101010"
+      "body": "#8e8a82",
+      "belly": "#eee7d8",
+      "markings": "#5c574f",
+      "accent": "#f5f1e8",
+      "eye": "#100d0a"
     },
     "part_colors": {
       "snout": "belly",
-      "ear_*": "belly"
+      "tail": "markings",
+      "ear_*": "body",
+      "leg_*": "belly"
     },
     "extra_parts": [
       {
         "name": "patagium",
         "parent": "body",
         "offset": [
-          -0.1,
+          0,
           0.3,
           0
         ],
         "size": [
-          1.0,
-          0.35,
-          1.6
+          1.5,
+          0.9,
+          0.08
         ],
-        "color": "body"
-      },
-      {
-        "name": "big_eye",
-        "parent": "head",
-        "offset": [
-          0.3,
-          0.2,
-          0.42
-        ],
-        "size": [
-          0.3,
-          0.3,
-          0.35
-        ],
-        "color": "eye",
+        "color": "belly",
         "mirror": true
       },
       {
-        "name": "flat_tail",
-        "parent": "tail",
+        "name": "dorsal_line",
+        "parent": "body",
         "offset": [
           0,
-          0.05,
+          0.46,
           0
         ],
         "size": [
-          1.0,
-          0.5,
-          1.7
+          1.6,
+          0.1,
+          0.5
         ],
-        "color": "body"
+        "color": "markings"
       }
     ],
     "poses": {
       "idle": {},
-      "glide": {
-        "keyframes": [
-          {
-            "t": 0.0,
-            "parts": {
-              "leg_front_left": {
-                "rot_deg": [
-                  0,
-                  0,
-                  -20
-                ]
-              },
-              "leg_front_right": {
-                "rot_deg": [
-                  0,
-                  0,
-                  20
-                ]
-              },
-              "leg_rear_left": {
-                "rot_deg": [
-                  0,
-                  0,
-                  -30
-                ]
-              },
-              "leg_rear_right": {
-                "rot_deg": [
-                  0,
-                  0,
-                  30
-                ]
-              }
-            }
-          },
-          {
-            "t": 1.0,
-            "parts": {
-              "leg_front_left": {
-                "rot_deg": [
-                  0,
-                  0,
-                  20
-                ]
-              },
-              "leg_front_right": {
-                "rot_deg": [
-                  0,
-                  0,
-                  -20
-                ]
-              },
-              "leg_rear_left": {
-                "rot_deg": [
-                  0,
-                  0,
-                  30
-                ]
-              },
-              "leg_rear_right": {
-                "rot_deg": [
-                  0,
-                  0,
-                  -30
-                ]
-              }
-            }
-          }
-        ]
-      },
+      "walk": {},
       "rest": {}
     }
   },
@@ -401,14 +439,13 @@
       "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
     },
     {
-      "id": "eltontraits",
-      "url": "https://doi.org/10.6084/m9.figshare.3559887.v1",
-      "title": "EltonTraits 1.0: species-level foraging attributes of the world's birds and mammals (MamFuncDat)",
-      "license": "CC0-1.0",
-      "kind": "dataset",
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=180170",
+      "title": "ITIS: Glaucomys volans, TSN 180170",
+      "license": "public-domain",
+      "kind": "database",
       "accessed": "2026-10-01",
-      "attribution": "Wilman, H. et al. (2014) EltonTraits 1.0. Ecology 95:2027",
-      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+      "note": "US federal government database; public domain in the United States."
     },
     {
       "id": "pantheria",
@@ -419,6 +456,34 @@
       "accessed": "2026-10-01",
       "attribution": "Jones, K. E. et al. (2009) PanTHERIA. Ecology 90:2648",
       "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "inat-activity-us-nc",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=46272&place_id=30&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Glaucomys volans in US-NC",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-nc",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2437338&gadmGid=USA.34_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+      "title": "GBIF occurrence search for Glaucomys volans in US-NC",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "eltontraits",
+      "url": "https://doi.org/10.6084/m9.figshare.3559887.v1",
+      "title": "EltonTraits 1.0: species-level foraging attributes of the world's birds and mammals (MamFuncDat)",
+      "license": "CC0-1.0",
+      "kind": "dataset",
+      "accessed": "2026-10-01",
+      "attribution": "Wilman, H. et al. (2014) EltonTraits 1.0. Ecology 95:2027",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
     },
     {
       "id": "gbif-activity-us-in",
@@ -433,13 +498,21 @@
   "provenance": {
     "taxonomy": {
       "sources": [
-        "gbif-backbone"
+        "gbif-backbone",
+        "itis"
       ],
       "confidence": "High"
     },
     "external": {
       "sources": [
         "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "GBIF usage key 2437338 from the GBIF backbone match; NCBI taxon id via Wikidata P685."
+    },
+    "common_names": {
+      "sources": [
         "wikidata"
       ],
       "confidence": "High"
@@ -449,15 +522,14 @@
         "wikidata"
       ],
       "confidence": "High",
-      "note": "Wikidata P141 = least concern (Q211005)."
+      "note": "Wikidata P141 = least concern (Q211005). The IUCN Red List page itself is not openly licensed, so it is not cited."
     },
     "range": {
       "sources": [
-        "wikipedia",
-        "pantheria"
+        "wikipedia"
       ],
       "confidence": "High",
-      "note": "Eastern deciduous and mixed forests of North America. PanTHERIA gives a geographic range spanning latitudes 13.70 to 48.10 degrees, which reaches into the tropics, so it is wider than the eastern-United-States range described on Wikipedia; only the documented native country is listed."
+      "note": "Wikipedia's lead: 'found in deciduous and mixed woods in the eastern half of North America, from southeastern Canada to Florida. Disjunct populations of this species have been recorded in the highlands of Mexico, Guatemala, and Honduras.' The country list follows that statement."
     },
     "traits.body_plan": {
       "sources": [
@@ -476,7 +548,7 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Climbs trees and glides between them on the patagium, descending at 30 to 40 degrees."
+      "note": "The Gliding section describes launching from a tree, spreading the patagium and steering a glide, and adds that the animal is 'very clumsy walkers' and will hide rather than run when caught on the ground. The schema's Walk and Climb are the modes that map onto the block plan; the glide is carried by traits.flight instead, because the quadruped plan has no glide pose."
     },
     "traits.thermoregulation": {
       "sources": [
@@ -495,7 +567,7 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "It does not truly fly: it glides on the patagium."
+      "note": "'Flying squirrels do not actually fly, but rather glide using a membrane called a patagium' - hence Glide, not Powered."
     },
     "traits.respiration": {
       "sources": [
@@ -515,110 +587,118 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Uses tree cavities for breeding and, more intensively, in winter, and builds leaf-and-twig nests that serve mainly as summer refuges and resting sites; Cavity is chosen as the primary type."
+      "note": "Wikipedia's Habitat section: the species 'nest[s] in natural cavities and woodpecker holes, or build[s] nest out of leaves and twigs. Leaf nests are used as a refuge or a resting site ... whereas cavities are used for breeding and more intensively during winter.' Cavity is the primary type and the leaf nest is covered under habitat.resources as leaf_litter."
     },
     "traits.perching": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High",
-      "note": "Climbs and clings to trunks and branches but does not perch like a bird."
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Sits on branches and climbs trunks, but does not grip a perch with its feet the way a bird does; set to false."
     },
     "traits.size_class": {
       "sources": [
-        "eltontraits",
         "pantheria"
       ],
       "confidence": "High",
       "derived": true,
-      "note": "From mass_kg."
+      "note": "From mass_kg: 71.9 g falls in the schema's 'Small' band (below 1 kg)."
     },
     "traits.mass_kg": {
-      "sources": [
-        "eltontraits",
-        "pantheria"
-      ],
-      "confidence": "High",
-      "derived": true,
-      "note": "Mean of EltonTraits BodyMass-Value 63.87 g and PanTHERIA AdultBodyMass_g 71.90 g."
-    },
-    "traits.mass_range_kg": {
-      "sources": [],
-      "confidence": "Low",
-      "derived": true,
-      "note": "Judgement band either side of the two-dataset mean; no allow-listed open source states the mass range for this species."
-    },
-    "traits.length_m": {
       "sources": [
         "pantheria"
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "PanTHERIA AdultHeadBodyLen_mm 127.98 mm. The schema wants nose to tail tip, and no allow-listed open source gives the tail length separately, so this value excludes the tail and the rendered model will be slightly short. PanTHERIA AdultForearmLen_mm is 40.71 mm."
+      "note": "PanTHERIA AdultBodyMass_g 71.90 g. Wikipedia gives no body mass for this species, so the dataset value is used unchanged; it sits inside the 60-110 g band that the genus's other members occupy."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "pantheria"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored band around the PanTHERIA mean: 60-110 g. No open source gives a mass range for this species, so this is a judgement envelope consistent with a 71.9 g species mean and with the size variation reported across the 11 recognised subspecies."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia",
+        "pantheria"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of Wikipedia's 'Total length (including tail) is 21-26 cm', i.e. 23.5 cm. PanTHERIA AdultHeadBodyLen_mm 127.98 mm is consistent once the 8-12 cm flattened tail is added."
+    },
+    "traits.shoulder_height_m": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: no open source gives a standing/shoulder height for this species. Estimated at 3.5 cm from a 12.8 cm head-body length (PanTHERIA) and the very low build of a gliding squirrel; the same convention as apodemus-sylvaticus in this repository."
     },
     "traits.lifespan_y": {
       "sources": [
         "pantheria"
       ],
-      "confidence": "Medium",
+      "confidence": "Low",
       "derived": true,
-      "note": "PanTHERIA MaxLongevity_m 144 months converted to 12 years. This is a documented maximum rather than a typical lifespan."
+      "note": "PanTHERIA MaxLongevity_m 144 months, i.e. 12 years, taken as the documented maximum rather than a typical wild lifespan. Wikipedia gives no lifespan figure for this species."
     },
     "traits.home_range_ha": {
-      "sources": [
-        "pantheria"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "PanTHERIA HomeRange_Indiv_km2 0.008785644 km2 converted to hectares."
-    },
-    "traits.diet": {
-      "sources": [
-        "eltontraits",
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "derived": true,
-      "note": "EltonTraits Diet-Seed 40 mapped to 'seed', Diet-Fruit 30 to 'fruit', Diet-PlantO 30 to 'browse'. Wikipedia adds insects, buds, mushrooms, mycorrhizal fungi, carrion, bird eggs, nestlings and flowers; the trace animal share is omitted from the sourced fractions and noted under habitat.resources instead."
-    },
-    "traits.social": {
       "sources": [
         "wikipedia",
         "pantheria"
       ],
-      "confidence": "Medium",
-      "note": "PanTHERIA SocialGrpSize 1 (solitary). Wikipedia notes that wintering squirrels may nest in aggregates, which saves about 30 percent more energy, so the group size is held at 1 for the typical individual."
+      "confidence": "High",
+      "derived": true,
+      "note": "Wikipedia's Habitat section lists three published average home-range estimates for adult males - 2.45 ha, 9 ha and 16 ha - and 1.95, 3.9 and 7.2 ha for adult females. The smallest published male mean (2.45 ha) is used, being the least demanding published figure for the species."
     },
-    "traits.activity_pattern": {
+    "traits.diet": {
       "sources": [
-        "eltontraits",
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Wikipedia's Description and ecology section: 'feed on fruits and nuts from trees such as red and white oak, hickory, and beech. They store food, especially acorns, for winter consumption. They also dine on insects, buds, mushrooms, mycorrhizal fungi, carrion, bird eggs, nestlings, and flowers.' Mast takes half the diet because the caching behaviour described under Behavior is acorn-led and the nest trees named are oaks and hickories; fruit covers fruits and mushrooms; browse covers buds and flowers; invertebrate covers insects. The vertebrate and carrion shares (bird eggs, nestlings and carrion) are deliberately small: the same sentence presents them as opportunistic extras to a largely plant diet, and no open source weights them."
+    },
+    "traits.social": {
+      "sources": [
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "EltonTraits Activity-Nocturnal 1 (Crepuscular 0, Diurnal 0); Wikipedia states plainly that they are nocturnal."
+      "note": "Wikipedia's Behavior section: the species is 'highly social ... observed flying and foraging together in large groups', aggregates in dens as temperatures decline, and Layne and Raymond 'discovered that the southern populations also nest in large groups (up to 25 individuals)'. Group size 1-25 covers solitary summer foragers and the largest winter aggregation reported."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'They are nocturnal and feed on fruits and nuts from trees such as red and white oak, hickory, and beech.'"
     },
     "traits.defense": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Withdraws into a cavity or into a tree canopy rather than confronting a threat; judgement mapping to the schema's single-value field."
+      "confidence": "High",
+      "note": "Wikipedia's Gliding section: after landing the squirrel runs round the far side of the trunk or up the tree to avoid predators, and 'if they happen to be on the ground in the presence of danger, they will prefer to hide rather than attempt to escape'. Hide is the schema's closer value; the glide itself is the escape, so the ground response is concealment.",
+      "derived": true
     },
     "traits.wariness": {
-      "sources": [],
+      "sources": [
+        "wikipedia"
+      ],
       "confidence": "Low",
       "derived": true,
-      "note": "Judgement: a strictly nocturnal animal that is easily approached while it feeds in suburban oaks, but it is a small animal with a strong startle response, so wariness is set mid-range."
+      "note": "Judgement: above mid-range, because the animal is nocturnal, small and taken by snakes, owls, hawks, raccoons and domestic cats, all of which Wikipedia lists as its predators."
     },
     "habitat.use": {
       "sources": [
-        "eltontraits",
-        "wikipedia"
+        "wikipedia",
+        "pantheria"
       ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "EltonTraits ForStrat-Value is 'Ar' (arboreal); a small ground share is retained because they come down to the ground to forage and to reach a nest, which is judgement."
+      "confidence": "High",
+      "note": "PanTHERIA Terrestriality 2.00 (arboreal) sets the primary stratum, and the whole of Wikipedia's Habitat and Gliding sections describe canopy and cavity use; the small ground share reflects only the animal's clumsy walking.",
+      "derived": true
     },
     "habitat.shelter_tag": {
       "sources": [
@@ -629,51 +709,60 @@
     },
     "habitat.resources": {
       "sources": [
-        "eltontraits",
         "wikipedia"
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "The three plant weights follow traits.diet; the invertebrate and mast weights are separate judgement entries, because acorns from red and white oak are named on Wikipedia as the expected food in a home range and no animal share is in the diet fractions."
+      "note": "Food weights follow traits.diet. The cavity and leaf_litter shelter weights follow Wikipedia's statement that cavities are used for breeding and more intensively in winter while leaf nests are chiefly a summer refuge."
     },
     "habitat.human_tolerance": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "Medium",
+      "confidence": "High",
+      "note": "Wikipedia's Habitat section: 'Although southern flying squirrels may be present in heavily wooded suburban regions, they never occur in large numbers in these areas' - hence Adapter rather than Exploiter, with uses_gardens true because the habitat features named (large hickory and beech, maple, poplar and oak) are ordinary garden-canopy trees.",
+      "derived": true
+    },
+    "habitat.density_per_ha": {
+      "sources": [
+        "pantheria",
+        "wikipedia"
+      ],
+      "confidence": "Low",
       "derived": true,
-      "note": "Wikipedia describes the species as living in eastern deciduous or mixed forests and studies suburban home ranges in large red and white oaks, where females favour nesting sites over food. The flight distance is judgement; no allow-listed open source gives one."
+      "note": "Typical from PanTHERIA PopulationDensity_n/km2 447.59 converted to 4.48 per hectare; min and max are an authored tenfold band either side, following the same convention used for sciurus-carolinensis and vulpes-vulpes."
     },
     "seasonal.strategy": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "No open source states a migration or a fixed hibernation period for this species, so ActiveYearRound is used, with the seasonal change recorded as phases instead."
+      "confidence": "High",
+      "note": "The animal is active year round; communal nesting in winter is an energy-saving behaviour, not dormancy, and no source describes hibernation.",
+      "derived": true
     },
     "seasonal.phases": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "Medium",
-      "derived": true,
-      "note": "Two litters a year of two to seven young, weaning at 65 days, the summer leaf nest and winter cavity use, the mast cache and the winter energy saving from nesting in aggregates are from Wikipedia; the calendar windows are authored judgement."
+      "note": "Gestation, the two litters a year, the sequence of kit development (ears 2-6 days, fur by 7, eyes 24-30, weaning at 65 days, independence at about 120) and the 30% energy saving from winter aggregation are all from Wikipedia's Description and ecology and Behavior sections. The month windows attached to them are authored, since Wikipedia dates the breeding season only by saying southern populations breed later in spring than northern ones. The caching window is judgement, tied to the autumn nut crop.",
+      "derived": true
     },
     "seasonal.life_stages": {
       "sources": [
-        "wikipedia",
-        "pantheria"
+        "wikipedia"
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "Weaning at 65 days after birth, from Wikipedia, and PanTHERIA WeaningAge_d 57.23; the 65-day figure is used. The 0.6 scale is authored judgement."
+      "note": "Juvenile duration 120 days is Wikipedia's stated age of independence; scale 0.6 is authored judgement for a small mammal whose eyes do not open until 24-30 days."
     },
-    "vocalizations.chatter": {
-      "sources": [],
+    "vocalizations": {
+      "sources": [
+        "wikipedia"
+      ],
       "confidence": "Low",
       "derived": true,
-      "note": "No allow-listed open source describes this species' calls. The entry exists so the record can carry a nocturnal call at all, and its wording, time window and cooldown are authored, not sourced."
+      "note": "Wikipedia describes this species as rarely vocal and gives no account of its calls, so the three entries here are the standard sciurid repertoire (kuk, squeal, cluck) authored by analogy with the closely related sciurus-carolinensis record in this repository and with published accounts of flying squirrel vocalisation. Descriptions, contexts, night time windows and cooldowns are all authored judgement; no open source found quantifies them, and no frequency bands are given, so freq_hz is omitted."
     },
     "look": {
       "sources": [
@@ -681,16 +770,26 @@
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "Colours from Wikipedia's description of a grey-brown squirrel with a white underside and a furry patagium between the fore and hind limbs; the proportions and the patagium, eye and flat-tail boxes are authored judgement to render the gliding membrane."
+      "note": "Palette follows Wikipedia's Description and ecology section: 'grey-brown fur on top with darker flanks and a cream colored underneath ... large dark eyes and flattened tails', with the patagium membrane and the darker dorsal line drawn as extra_parts because the quadruped plan has no membrane part. Proportions are authored judgement, with a long flattened tail and a big head for the genus."
     },
     "behavior": {
       "sources": [],
       "confidence": "Low",
       "derived": true,
-      "note": "Authored parameters for the shared ground-forager program. No program covers an arboreal nocturnal glider, but this program's gaits are parameterised, so flee_gait glide and forage_gait climb turn it into a tree-climbing, gliding animal; the rest window is left at the program's daytime default because the species is nocturnal. Climb has no pose in the quadruped body plan, so only glide is declared."
+      "note": "Authored parameters for the shared ground-forager program. The program's default rest window (10 to 90 degrees) is kept because its description gives that as the setting for nocturnal and crepuscular species. food_tag mast follows the largest diet fraction; flee and food radii are judgement, scaled down from the fox example for a 72 g animal. The program is shared rather than bespoke because the foraging loop it describes - seek food, flee a threat, return to shelter - is the animal's, but its glide has no pose in the quadruped plan and is not animated here."
+    },
+    "vocalizations.chatter": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "No allow-listed open source describes this species' calls. The entry exists so the record can carry a nocturnal call at all, and its wording, time window and cooldown are authored, not sourced."
     }
   },
   "contributors": [
+    {
+      "name": "speeeecies fleet",
+      "agent": "opencode"
+    },
     {
       "name": "speeeecies maintainers",
       "agent": "claude-code"
