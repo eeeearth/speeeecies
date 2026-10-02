@@ -44,7 +44,12 @@
       "SV",
       "NI",
       "CR",
-      "PA"
+      "PA",
+      "BM",
+      "JM",
+      "HT",
+      "DO",
+      "PR"
     ],
     "introduced": [
       "BM"
@@ -129,6 +134,11 @@
         "tag": "fruit",
         "kind": "Herbivory",
         "weight": 0.2
+      },
+      {
+        "tag": "shrub_thicket",
+        "kind": "Shelter",
+        "weight": 0.3
       }
     ],
     "human_tolerance": {
@@ -169,6 +179,21 @@
         "start": "11-01",
         "end": "01-31",
         "note": "Resident over most of the United States; northern prairie birds and Central American birds are summer or winter visitors only."
+      },
+      {
+        "name": "breeding",
+        "start": "04-01",
+        "end": "09-30",
+        "region": "US",
+        "note": "Prolific breeder, with up to six broods a year in warm areas; the northern season is April-September."
+      },
+      {
+        "name": "absent",
+        "start": "10-01",
+        "end": "03-31",
+        "region": "US",
+        "fraction": 0.95,
+        "note": "Much of the Canadian and northern US prairie range sees mourning doves in summer only; a small number linger through winter."
       }
     ],
     "life_stages": [
@@ -331,6 +356,53 @@
           },
           "used": [
             "inat",
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "US-ND",
+        "monthly": [
+          0.03,
+          0.02,
+          0.05,
+          0.47,
+          0.62,
+          0.7,
+          0.86,
+          1.0,
+          0.8,
+          0.21,
+          0.03,
+          0.03
+        ],
+        "method": "gbif_share",
+        "observations": 73945,
+        "sources": [
+          "gbif-activity-us-nd"
+        ],
+        "query": {
+          "min_obs": 500,
+          "inat": {
+            "tier": "C",
+            "place_id": 13,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3454&place_id=13&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=13&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 224,
+            "usable": false
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.35_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2495347&gadmGid=USA.35_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.35_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 73945,
+            "usable": true
+          },
+          "used": [
             "gbif"
           ]
         }
@@ -553,6 +625,15 @@
       "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
       "accessed": "2026-10-01",
       "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-nd",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2495347&gadmGid=USA.35_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Zenaida macroura in US-ND",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
     }
   ],
   "provenance": {
@@ -727,7 +808,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Feeding and breeding behaviour described by day."
+      "note": "Feeding and breeding behaviour described by day.",
+      "derived": true
     },
     "traits.defense": {
       "sources": [],
@@ -778,7 +860,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Resident or partially migratory depending on latitude; no dormancy is described."
+      "note": "Resident or partially migratory depending on latitude; no dormancy is described.",
+      "derived": true
     },
     "seasonal.phases": {
       "sources": [
@@ -833,6 +916,14 @@
       "confidence": "Medium",
       "derived": true,
       "note": "The mournful coo and the courtship sequence are as described in the article."
+    },
+    "seasonal.winter_fraction": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: few mourning doves overwinter in North Dakota."
     }
   },
   "contributors": [

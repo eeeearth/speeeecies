@@ -229,6 +229,11 @@
         "tag": "shrub_thicket",
         "kind": "Shelter",
         "weight": 0.5
+      },
+      {
+        "tag": "water",
+        "kind": "Water",
+        "weight": 0.2
       }
     ],
     "human_tolerance": {
@@ -571,6 +576,53 @@
             "gbif"
           ]
         }
+      },
+      {
+        "region": "US-ND",
+        "monthly": [
+          1.0,
+          0.91,
+          0.3,
+          0.12,
+          0.09,
+          0.03,
+          0.01,
+          0.02,
+          0.07,
+          0.11,
+          0.14,
+          0.57
+        ],
+        "method": "gbif_share",
+        "observations": 209,
+        "sources": [
+          "gbif-activity-us-nd"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 13,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=46020&place_id=13&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=13&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 176,
+            "usable": false
+          },
+          "gbif": {
+            "tier": "C",
+            "area": [
+              "gadmGid",
+              "USA.35_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5219683&gadmGid=USA.35_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.35_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "total": 209,
+            "usable": false
+          },
+          "used": [
+            "gbif"
+          ]
+        }
       }
     ]
   },
@@ -889,6 +941,15 @@
       "license": "CC-BY-4.0",
       "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
       "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-nd",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5219683&gadmGid=USA.35_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+      "title": "GBIF occurrence search for Sciurus niger in US-ND",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
+      "accessed": "2026-10-01",
       "kind": "api"
     }
   ],
@@ -1234,7 +1295,8 @@
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "note": "'Tooth chatters and breathy barks are indications of stress. Grunts and squeals are given by restrained animals and during male-male chase.'"
     },
     "vocalizations.scream": {
       "sources": [

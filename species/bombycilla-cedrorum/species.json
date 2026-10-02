@@ -39,7 +39,10 @@
       "BZ",
       "CR",
       "PA",
-      "CO"
+      "CO",
+      "HN",
+      "SV",
+      "NI"
     ]
   },
   "traits": {
@@ -121,6 +124,16 @@
       {
         "tag": "water",
         "kind": "Water",
+        "weight": 0.4
+      },
+      {
+        "tag": "berry",
+        "kind": "Herbivory",
+        "weight": 0.6
+      },
+      {
+        "tag": "shrub_thicket",
+        "kind": "Shelter",
         "weight": 0.4
       }
     ],
@@ -219,6 +232,53 @@
             "gbif"
           ]
         }
+      },
+      {
+        "region": "US-ND",
+        "monthly": [
+          0.54,
+          0.49,
+          0.31,
+          0.17,
+          0.35,
+          0.54,
+          0.65,
+          1.0,
+          0.93,
+          0.46,
+          0.53,
+          0.74
+        ],
+        "method": "gbif_share",
+        "observations": 25278,
+        "sources": [
+          "gbif-activity-us-nd"
+        ],
+        "query": {
+          "min_obs": 500,
+          "inat": {
+            "tier": "C",
+            "place_id": 13,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=7428&place_id=13&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=13&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 169,
+            "usable": false
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.35_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2484609&gadmGid=USA.35_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.35_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 25278,
+            "usable": true
+          },
+          "used": [
+            "gbif"
+          ]
+        }
       }
     ]
   },
@@ -246,6 +306,31 @@
       "cooldown_s": 6,
       "loudness": "Moderate",
       "description": "Very high-pitched whistles and buzzy trills about half a second long, often rendered as see or sree, and described as high, thin whistles. The birds call often, especially in flight, and flock members pass berries beak-to-beak along a twig."
+    },
+    {
+      "call_id": "trill",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day",
+        "Dusk"
+      ],
+      "cooldown_s": 4,
+      "loudness": "Quiet",
+      "description": "Very high-pitched, thin whistles and buzzy trills about half a second long, often represented as see or sree; given frequently, especially in flight."
+    },
+    {
+      "call_id": "alarm",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Day",
+        "Dusk"
+      ],
+      "cooldown_s": 4,
+      "loudness": "Moderate",
+      "description": "A sharper, higher burst of the same thin whistles when the flock is disturbed."
     }
   ],
   "look": {
@@ -397,6 +482,15 @@
       "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
       "accessed": "2026-10-01",
       "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-nd",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2484609&gadmGid=USA.35_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Bombycilla cedrorum in US-ND",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
     }
   ],
   "provenance": {
@@ -456,7 +550,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "'The male does a hopping dance for the female' plus the strong direct flight described, and the flock's 'movement in flight resembles that of a flock of small, pale European starlings'; Glide is included for the flock gliding movement of a bird with broad pointed wings, though the source does not use the word."
+      "note": "'The male does a hopping dance for the female' plus the strong direct flight described, and the flock's 'movement in flight resembles that of a flock of small, pale European starlings'; Glide is included for the flock gliding movement of a bird with broad pointed wings, though the source does not use the word.",
+      "derived": true
     },
     "traits.thermoregulation": {
       "sources": [
@@ -640,7 +735,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "'This species is nomadic and irruptive, with erratic winter movements, though most of the population migrates farther south into the United States and beyond, sometimes reaching as far as northern South America.'"
+      "note": "'This species is nomadic and irruptive, with erratic winter movements, though most of the population migrates farther south into the United States and beyond, sometimes reaching as far as northern South America.'",
+      "derived": true
     },
     "seasonal.winter_fraction": {
       "sources": [
@@ -687,6 +783,20 @@
       "confidence": "Low",
       "derived": true,
       "note": "Authored parameters for the shared perching-songbird program. food_tag set to fruit, which is the species' dominant and near-exclusive diet; song and alarm both point at the single described call, because the source names no separate song; nest_m1/nest_m2 set to the late-spring to late-summer mating season. The program is otherwise written around a hopping ground forager with a song perch, which suits a canopy-feeding flocking waxwing, but this is the closest shared program and its parameters are authored accordingly."
+    },
+    "vocalizations.trill": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "vocalizations.alarm": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "The source describes only high-pitched whistles and buzzy trills; a distinct sharper alarm call is a judgement."
     }
   },
   "contributors": [

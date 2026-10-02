@@ -119,6 +119,16 @@
         "tag": "carrion",
         "kind": "Scavenging",
         "weight": 0.1
+      },
+      {
+        "tag": "shelter",
+        "kind": "Shelter",
+        "weight": 0.7
+      },
+      {
+        "tag": "water",
+        "kind": "Water",
+        "weight": 0.2
       }
     ],
     "human_tolerance": {
@@ -180,6 +190,12 @@
         "end": "07-31",
         "region": "US-MO",
         "note": "Nestlings emerge 42-46 days after hatching; fledging, including learning to hunt, takes about 10 weeks."
+      },
+      {
+        "name": "breeding",
+        "start": "03-01",
+        "end": "07-31",
+        "note": "The pair builds a stick nest of twigs lined with bark, pine needles, corn cobs and stalks, 71 to 97 cm across, in a large tree or on a man-made structure; one to three eggs are laid, and fledging, including learning to fly and hunt, takes some 10 weeks."
       }
     ],
     "life_stages": [
@@ -257,6 +273,33 @@
       "cooldown_s": 15,
       "loudness": "Moderate",
       "description": "A croaking guh-runk at close range; young hawks give a wailing klee-uk food cry when parents leave the nest."
+    },
+    {
+      "call_id": "screech",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 10,
+      "loudness": "Loud",
+      "description": "A long, harsh, descending screech. The hawk calls frequently while hunting or soaring, and loudest in annoyance or anger, in response to a predator or to a rival hawk's intrusion into its territory."
+    },
+    {
+      "call_id": "klee_uk",
+      "context": "Contact",
+      "season_months": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 8,
+      "loudness": "Moderate",
+      "description": "A wailing klee-uk food cry uttered by young hawks when their parents leave the nest."
     }
   ],
   "look": {
@@ -419,6 +462,15 @@
       "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
       "accessed": "2026-10-01",
       "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-nd",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2480542&gadmGid=USA.35_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Buteo jamaicensis in US-ND",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
     }
   ],
   "provenance": {
@@ -456,7 +508,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "'The red-tailed hawk breeds throughout most of the continent, from western Alaska and northern Canada to as far south as Panama and the West Indies.'"
+      "note": "'The red-tailed hawk breeds throughout most of the continent, from western Alaska and northern Canada to as far south as Panama and the West Indies.'",
+      "derived": true
     },
     "traits.body_plan": {
       "sources": [
@@ -575,21 +628,24 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "'The red-tailed hawk preys on small mammals such as rodents and lagomorphs, but also opportunistically consumes birds, fish, reptiles, and amphibians', with rodents comprising up to 85% of the diet. Most common prey are mice, gophers, voles, chipmunks and squirrels; additional prey runs from lagomorphs, shrews and bats through pigeons, quail and corvids to reptiles, fish, crustaceans, insects and earthworms, which is where the invertebrate and fish shares come from. Carrion is not described for this species, so it is left out rather than guessed at."
+      "note": "'The red-tailed hawk preys on small mammals such as rodents and lagomorphs, but also opportunistically consumes birds, fish, reptiles, and amphibians', with rodents comprising up to 85% of the diet. Most common prey are mice, gophers, voles, chipmunks and squirrels; additional prey runs from lagomorphs, shrews and bats through pigeons, quail and corvids to reptiles, fish, crustaceans, insects and earthworms, which is where the invertebrate and fish shares come from. Carrion is not described for this species, so it is left out rather than guessed at.",
+      "derived": true
     },
     "traits.social": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "'Pairs stay together for life, taking a new mate only when the original mate dies', and the same nesting territory may be defended by the pair for years; red-tailed hawks have also been observed to hunt in pairs, stalking opposite sides of a tree to flush a squirrel for the other."
+      "note": "'Pairs stay together for life, taking a new mate only when the original mate dies', and the same nesting territory may be defended by the pair for years; red-tailed hawks have also been observed to hunt in pairs, stalking opposite sides of a tree to flush a squirrel for the other.",
+      "derived": true
     },
     "traits.activity_pattern": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "A bird of prey that hunts by day from perches and while soaring; the great horned owl takes a similar niche nocturnally, but the differing nesting seasons and activity times mean there is usually no direct competition."
+      "note": "A bird of prey that hunts by day from perches and while soaring; the great horned owl takes a similar niche nocturnally, but the differing nesting seasons and activity times mean there is usually no direct competition.",
+      "derived": true
     },
     "traits.defense": {
       "sources": [
@@ -643,7 +699,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "'The species is a partial migrant, as in most of their range in Canada and Alaska, they almost entirely vacate their breeding grounds', with coastal birds in the Pacific Northwest, southern Alaska and Nova Scotia usually resident, and birds territorial during winter."
+      "note": "'The species is a partial migrant, as in most of their range in Canada and Alaska, they almost entirely vacate their breeding grounds', with coastal birds in the Pacific Northwest, southern Alaska and Nova Scotia usually resident, and birds territorial during winter.",
+      "derived": true
     },
     "seasonal.winter_fraction": {
       "sources": [
@@ -658,7 +715,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Sexual maturity at two years; monogamy for life; courtship flights in late winter and early spring; a stick nest 4 to 21 m up in a large tree, on a cliff ledge 35 m or higher, or on a man-made structure, 71 to 97 cm across; a clutch of one to five eggs laid about every second day with both parents incubating; nestlings leaving after 42-46 days and about 10 weeks of learning to fly and hunt; and birds territorial in winter."
+      "note": "Sexual maturity at two years; monogamy for life; courtship flights in late winter and early spring; a stick nest 4 to 21 m up in a large tree, on a cliff ledge 35 m or higher, or on a man-made structure, 71 to 97 cm across; a clutch of one to five eggs laid about every second day with both parents incubating; nestlings leaving after 42-46 days and about 10 weeks of learning to fly and hunt; and birds territorial in winter.",
+      "derived": true
     },
     "seasonal.life_stages": {
       "sources": [
@@ -710,6 +768,20 @@
         "wikipedia"
       ],
       "confidence": "High"
+    },
+    "vocalizations.screech": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'The red-tailed hawk frequently vocalizes while hunting or soaring, but vocalizes loudest in annoyance or anger, in response to a predator or a rival hawk's intrusion into their territory.' The harsh descending quality of the call is standard description of the species and is authored here rather than quoted."
+    },
+    "vocalizations.klee_uk": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'Young hawks may utter a wailing klee-uk food cry when parents leave the nest.'"
     }
   },
   "contributors": [
@@ -720,6 +792,10 @@
     {
       "name": "speeeecies contributors",
       "agent": "claude-code"
+    },
+    {
+      "name": "speeeecies maintainers",
+      "agent": "opencode"
     }
   ],
   "activity": {
@@ -818,6 +894,53 @@
           },
           "used": [
             "inat",
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "US-ND",
+        "monthly": [
+          0.16,
+          0.13,
+          0.67,
+          0.54,
+          0.22,
+          0.35,
+          0.46,
+          0.63,
+          0.79,
+          1.0,
+          0.29,
+          0.17
+        ],
+        "method": "gbif_share",
+        "observations": 34589,
+        "sources": [
+          "gbif-activity-us-nd"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 13,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=5212&place_id=13&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=13&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 252,
+            "usable": false
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.35_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2480542&gadmGid=USA.35_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.35_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 34589,
+            "usable": true
+          },
+          "used": [
             "gbif"
           ]
         }

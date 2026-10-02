@@ -384,6 +384,14 @@
         "end": "12-31",
         "region": "US-WV",
         "note": "Regional note, a judgement rather than a cited statement: most of the species winters south of Canada, but the source says that robins 'occasionally overwinter in the northern part of the United States and southern Canada', and the Great Lakes and Appalachian highlands in the northern US are within that band, so this locale is treated as holding robins year-round."
+      },
+      {
+        "name": "absent",
+        "start": "10-15",
+        "end": "03-31",
+        "region": "US",
+        "fraction": 0.9,
+        "note": "Most robins leave the northern part of the range for the winter; a minority overwinters, so this is a PartialMigration absence rather than a full one."
       }
     ],
     "life_stages": [
@@ -892,6 +900,53 @@
             "gbif"
           ]
         }
+      },
+      {
+        "region": "US-ND",
+        "monthly": [
+          0.38,
+          0.26,
+          0.86,
+          1.0,
+          0.67,
+          0.58,
+          0.66,
+          0.67,
+          0.77,
+          0.9,
+          0.42,
+          0.42
+        ],
+        "method": "gbif_share",
+        "observations": 84839,
+        "sources": [
+          "gbif-activity-us-nd"
+        ],
+        "query": {
+          "min_obs": 500,
+          "inat": {
+            "tier": "C",
+            "place_id": 13,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=12727&place_id=13&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=13&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 471,
+            "usable": false
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.35_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=9510564&gadmGid=USA.35_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.35_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 84839,
+            "usable": true
+          },
+          "used": [
+            "gbif"
+          ]
+        }
       }
     ]
   },
@@ -1363,6 +1418,15 @@
       "id": "gbif-activity-us-wv",
       "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=9510564&gadmGid=USA.49_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
       "title": "GBIF occurrence search for Turdus migratorius in US-WV",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-nd",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=9510564&gadmGid=USA.35_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Turdus migratorius in US-ND",
       "license": "CC-BY-4.0",
       "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
       "accessed": "2026-10-01",

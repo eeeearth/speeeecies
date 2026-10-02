@@ -188,6 +188,11 @@
         "tag": "berry",
         "kind": "Herbivory",
         "weight": 0.2
+      },
+      {
+        "tag": "shelter",
+        "kind": "Shelter",
+        "weight": 0.9
       }
     ],
     "human_tolerance": {
@@ -230,6 +235,12 @@
         "start": "09-01",
         "end": "10-31",
         "note": "'Those that do migrate tend to begin their spring migration towards the beginning of April and make their return between September and October.' Some southern populations are completely non-migratory."
+      },
+      {
+        "name": "absent",
+        "start": "11-01",
+        "end": "03-31",
+        "note": "Those birds that migrate leave the northern breeding grounds from September and October and return from the beginning of April; the winter diet of the birds that stay shifts to berries and seeds, including poison ivy, dogwood, sumac and wild cherry."
       }
     ],
     "life_stages": [
@@ -346,6 +357,53 @@
             "gbif"
           ]
         }
+      },
+      {
+        "region": "US-ND",
+        "monthly": [
+          0.42,
+          0.37,
+          0.17,
+          0.59,
+          0.28,
+          0.26,
+          0.36,
+          0.47,
+          1.0,
+          0.43,
+          0.33,
+          0.43
+        ],
+        "method": "gbif_share",
+        "observations": 32271,
+        "sources": [
+          "gbif-activity-us-nd"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 13,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=18236&place_id=13&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=13&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 160,
+            "usable": false
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.35_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2478259&gadmGid=USA.35_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.35_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 32271,
+            "usable": true
+          },
+          "used": [
+            "gbif"
+          ]
+        }
       }
     ]
   },
@@ -415,6 +473,28 @@
       "cooldown_s": 20,
       "loudness": "Loud",
       "description": "'One may also hear a constant knocking as they often drum on trees or even metal objects to declare territory... the purpose is to make as loud a noise as possible, so woodpeckers sometimes drum on metal objects.' While drumming the bird spreads its wings and flashes its colourful tail underside."
+    },
+    {
+      "call_id": "laugh",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 5,
+      "loudness": "Loud",
+      "description": "A sustained laugh, ki ki ki ki, flat at first and then rising into a loud noise; several of these names derive from attempts to imitate it. Given on the ground, from a snag and in flight."
+    },
+    {
+      "call_id": "alarm",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 4,
+      "loudness": "Moderate",
+      "description": "The same ki ki ki ki given as a territorial signal toward a rival, and a sharper version when a nestling or an adult is flushed from the cavity."
     }
   ],
   "look": {
@@ -573,6 +653,15 @@
       "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
       "accessed": "2026-09-30",
       "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-nd",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2478259&gadmGid=USA.35_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Colaptes auratus in US-ND",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
     }
   ],
   "provenance": {
@@ -632,7 +721,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "'flickers are the only woodpeckers that frequently feed on the ground', probing with the beak and flying up to trees to roost and drum."
+      "note": "'flickers are the only woodpeckers that frequently feed on the ground', probing with the beak and flying up to trees to roost and drum.",
+      "derived": true
     },
     "traits.thermoregulation": {
       "sources": [
@@ -738,7 +828,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "A mated pair builds and excavates the nest together, the male commonly incubating overnight and both parents incubating by day."
+      "note": "A mated pair builds and excavates the nest together, the male commonly incubating overnight and both parents incubating by day.",
+      "derived": true
     },
     "traits.activity_pattern": {
       "sources": [
@@ -873,6 +964,29 @@
       ],
       "confidence": "High",
       "note": "Call and flight section: 'One may also hear a constant knocking as they often drum on trees or even metal objects to declare territory.' Cooldown is judgement."
+    },
+    "seasonal.winter_fraction": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: some northern-breeding birds withdraw south, but many winter well north of the breeding range, so roughly half the population stays."
+    },
+    "vocalizations.laugh": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'This bird's call is a sustained laugh, ki ki ki ki'; 'the calls' pattern can be classified as flat and gradually rises into a loud noise.'"
+    },
+    "vocalizations.alarm": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "'If the call is used towards a male, it is a territorial sign' and 'juvenile northern flickers are often helpless against predators who enter the nest'; the separate alarm call here is the same laugh used defensively, which is a judgement."
     }
   },
   "contributors": [

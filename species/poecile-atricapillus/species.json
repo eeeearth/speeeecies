@@ -146,6 +146,11 @@
         "tag": "leaf_litter",
         "kind": "Shelter",
         "weight": 0.3
+      },
+      {
+        "tag": "shelter",
+        "kind": "Shelter",
+        "weight": 0.8
       }
     ],
     "human_tolerance": {
@@ -216,7 +221,8 @@
       {
         "stage": "Adult"
       }
-    ]
+    ],
+    "winter_fraction": 1.0
   },
   "activity": {
     "regions": [
@@ -413,6 +419,53 @@
             "gbif"
           ]
         }
+      },
+      {
+        "region": "US-ND",
+        "monthly": [
+          0.94,
+          1.0,
+          0.47,
+          0.2,
+          0.12,
+          0.05,
+          0.1,
+          0.2,
+          0.27,
+          0.29,
+          0.47,
+          0.83
+        ],
+        "method": "gbif_share",
+        "observations": 55082,
+        "sources": [
+          "gbif-activity-us-nd"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 13,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=144815&place_id=13&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=13&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 119,
+            "usable": false
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.35_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2487805&gadmGid=USA.35_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.35_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 55082,
+            "usable": true
+          },
+          "used": [
+            "gbif"
+          ]
+        }
       }
     ]
   },
@@ -529,6 +582,40 @@
       "cooldown_s": 30,
       "loudness": "Moderate",
       "description": "An explosive hiss like a snake's, given by an incubating female when something unusual disturbs her at the nest entrance; probably an adaptation that discourages nest predators."
+    },
+    {
+      "call_id": "fee_bee",
+      "context": "Song",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day"
+      ],
+      "cooldown_s": 8,
+      "loudness": "Loud",
+      "description": "Two clear whistles, the second about a third higher than the first. The song typically starts around 400 Hz with tones spanning roughly 1 kHz, and males sing it only in relative isolation from other chickadees."
+    },
+    {
+      "call_id": "chickadee_dee",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 4,
+      "loudness": "Loud",
+      "description": "The chick-a-dee-dee-dee call, produced by both sexes year round. The number of dee notes tracks the level of threat: usually two, but four or more for a serious threat, and one recorded warning about a pygmy owl carried 23 dees. Other species in a mixed flock respond to it."
+    },
+    {
+      "call_id": "gargle",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 6,
+      "loudness": "Quiet",
+      "description": "A gargle noise used by males as a threat of attacking another male, often when feeding, and also in sexual contexts; chicks learn it soon after birth."
     }
   ],
   "look": {
@@ -696,6 +783,15 @@
       "id": "gbif-activity-us-wv",
       "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2487805&gadmGid=USA.49_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
       "title": "GBIF occurrence search for Poecile atricapillus in US-WV",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-nd",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2487805&gadmGid=USA.35_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Poecile atricapillus in US-ND",
       "license": "CC-BY-4.0",
       "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
       "accessed": "2026-10-01",
@@ -874,7 +970,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Diurnal: it forages by day in dense vegetation and roosts in cavities and foliage at night."
+      "note": "Diurnal: it forages by day in dense vegetation and roosts in cavities and foliage at night.",
+      "derived": true
     },
     "traits.defense": {
       "sources": [
@@ -1014,6 +1111,35 @@
       "confidence": "High",
       "note": "The two-note fee-bee description, its pitch relationship between the notes, the frequency figures (starting around 400 Hz with tones spanning roughly 1 kHz, recorded here as 400-1400 Hz), the four A-D units of the chick-a-dee-dee, its year-round use by both sexes, the faint version used at the nest and in courtship, the single note of young birds in late summer and the incubating female's snake-like hiss are all from the Vocalization and Breeding sections. The chick-a-dee's 3-8 kHz band is authored: the article gives frequency figures for the song only, and places the call's two components on either side of the song, so the band is set around them and is not a quoted measurement. Cooldowns are authored judgement.",
       "derived": true
+    },
+    "seasonal.winter_fraction": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Follows from the species being non-migratory: the whole population stays."
+    },
+    "vocalizations.fee_bee": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'One of the most recognizable sounds produced, particularly by the males, is the two-note fee-bee whistle'; 'the frequency of their songs typically starts around 400 Hz, and various tones spanning roughly 1 kHz are sung within the song'; and 'the males sing the song only in relative isolation from other chickadees'."
+    },
+    "vocalizations.chickadee_dee": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'The most familiar call is the chick-a-dee-dee-dee, which gave this bird its name... produced by both males and females year-round', and 'the number of dees indicates the level of threat from nearby predators', with 23 dees recorded in one warning about a pygmy owl."
+    },
+    "vocalizations.gargle": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'Black-capped chickadees make a number of other calls and sounds, such as a gargle noise usually used as a threat of attacking another male, often when feeding. This call is also used in sexual contexts', and it is learned soon after birth."
     }
   },
   "contributors": [
