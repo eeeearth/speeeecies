@@ -63,7 +63,8 @@
       "BSk",
       "Cfc"
     ],
-    "introduced": []
+    "introduced": [],
+    "invasive_in": []
   },
   "traits": {
     "body_plan": "Vertebrate",
@@ -87,7 +88,7 @@
     ],
     "length_m": 0.255,
     "wingspan_m": 0.36,
-    "lifespan_y": 2.0,
+    "lifespan_y": 2,
     "diet": {
       "invertebrate": 0.4,
       "fruit": 0.6
@@ -101,7 +102,11 @@
     },
     "activity_pattern": "Diurnal",
     "defense": "Flee",
-    "wariness": 0.35
+    "wariness": 0.35,
+    "senses": {
+      "olfaction": "Med",
+      "hearing": "High"
+    }
   },
   "habitat": {
     "use": {
@@ -204,6 +209,11 @@
       "notes": "Uses open farmland and urban areas, lawns with shade trees in the Deep South, and is not shy about nesting near human habitations; numerical tolerance limits are authored judgements.",
       "impervious_max": 0.45,
       "dist_building_min_m": 3
+    },
+    "density_per_ha": {
+      "min": 0.17,
+      "typical": 1.7,
+      "max": 17
     }
   },
   "seasonal": {
@@ -292,6 +302,28 @@
         "region": "US-MO",
         "fraction": 0.8,
         "note": "Most birds depart by the end of August and return in February or March; a minority overwinter in the northern United States, including Missouri."
+      },
+      {
+        "name": "breeding",
+        "start": "04-01",
+        "end": "07-31",
+        "region": "US-MI",
+        "note": "Breeding season runs April to July with two to three broods; among the earliest North American birds to lay eggs, starting soon after the return to the summer range."
+      },
+      {
+        "name": "nesting",
+        "start": "04-15",
+        "end": "07-15",
+        "region": "US-MI",
+        "note": "Nest 1.5-4.5 m above ground in a dense bush or a fork between branches; clutch of three to five eggs, incubated by the female alone, hatching after 14 days; young leave the nest a further two weeks later."
+      },
+      {
+        "name": "absent",
+        "start": "09-01",
+        "end": "03-15",
+        "region": "US-MI",
+        "fraction": 0.9,
+        "note": "Most robins leave the northern United States by the end of August and return north in February and March."
       }
     ],
     "life_stages": [
@@ -653,6 +685,55 @@
             "gbif"
           ]
         }
+      },
+      {
+        "region": "US-MI",
+        "monthly": [
+          0.33,
+          0.5,
+          0.9,
+          1.0,
+          0.61,
+          0.81,
+          0.7,
+          0.45,
+          0.36,
+          0.51,
+          0.27,
+          0.23
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 1079422,
+        "sources": [
+          "inat-activity-us-mi",
+          "gbif-activity-us-mi"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 29,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=12727&place_id=29&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=29&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "total": 916,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.23_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=9510564&gadmGid=USA.23_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.23_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 1078506,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
       }
     ]
   },
@@ -730,6 +811,15 @@
       "cooldown_s": 10,
       "loudness": "Quiet",
       "description": "Short, quiet 'chip' contact call given by foraging or resting robins."
+    },
+    {
+      "call_id": "contact",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [],
+      "cooldown_s": 20,
+      "loudness": "Quiet",
+      "description": "A soft 'chup' or low 'tut-tut' contact call exchanged between a pair and between flock members on the winter ground."
     }
   ],
   "look": {
@@ -1061,6 +1151,24 @@
       "id": "gbif-activity-us-ga",
       "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=9510564&gadmGid=USA.11_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
       "title": "GBIF occurrence search for Turdus migratorius in US-GA",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "inat-activity-us-mi",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=12727&place_id=29&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Turdus migratorius in US-MI",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-mi",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=9510564&gadmGid=USA.23_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Turdus migratorius in US-MI",
       "license": "CC-BY-4.0",
       "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
       "accessed": "2026-10-01",
@@ -1398,6 +1506,21 @@
       "confidence": "Medium",
       "derived": true,
       "note": "Song description, its dawn timing and its February-to-August season are from the Vocalization section. The alarm entry records only what Wikipedia supports, that an alarm call and a separate scold call exist; the cooldown is authored judgement."
+    },
+    "traits.senses": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Wikipedia states the species uses 'auditory, visual, olfactory and possibly vibrotactile cues to find prey, but vision is the predominant mode', and that experiments show it finds earthworms underground by listening alone. Olfaction is set to Med and hearing to High on that basis; no open source quantifies either, and vision_colour is omitted rather than guessed."
+    },
+    "habitat.density_per_ha": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: Wikipedia's statement that this is 'the most abundant landbird in North America (with 370 million individuals)' fixes the order of magnitude for a continent-wide species; typical 1.7 per hectare follows from a typical breed-bird territory of roughly 0.6 ha, and min and max are an authored tenfold band either side, following the same convention used for sciurus-carolinensis and vulpes-vulpes."
     }
   },
   "contributors": [

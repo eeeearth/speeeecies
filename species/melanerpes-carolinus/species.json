@@ -8,7 +8,8 @@
     "en": "Red-bellied woodpecker",
     "fr": "Pic à ventre roux",
     "de": "Carolinaspecht",
-    "nl": "Roodbuikspecht"
+    "nl": "Roodbuikspecht",
+    "es": "carpintero de vientre rojo"
   },
   "taxonomy": {
     "kingdom": "Animalia",
@@ -36,7 +37,9 @@
       "US",
       "CA",
       "MX"
-    ]
+    ],
+    "introduced": [],
+    "invasive_in": []
   },
   "traits": {
     "body_plan": "Vertebrate",
@@ -133,7 +136,15 @@
     "human_tolerance": {
       "urban_affinity": "Adapter",
       "uses_gardens": true,
-      "notes": "Depends on large trees for nesting, so where an area is extensively deforested it only uses gardens occasionally and is not present in numbers; it drums on hollow trees and also on aluminium roofs, metal guttering and transformer boxes in urban environments, and both sexes dig their own nest cavity."
+      "notes": "Depends on large trees for nesting, so where an area is extensively deforested it only uses gardens occasionally and is not present in numbers; it drums on hollow trees and also on aluminium roofs, metal guttering and transformer boxes in urban environments, and both sexes dig their own nest cavity.",
+      "impervious_max": 0.3,
+      "light_max": 0.6,
+      "road_mortality": "Medium"
+    },
+    "density_per_ha": {
+      "min": 0.015,
+      "typical": 0.15,
+      "max": 1.5
     }
   },
   "seasonal": {
@@ -150,6 +161,24 @@
         "start": "05-01",
         "end": "06-30",
         "note": "'In early May, the red-bellied woodpeckers begin breeding activities by drumming patterns, such as slow taps followed by short rapid drumming.' The end date is judgement; the article gives no dates past the start."
+      },
+      {
+        "name": "nesting",
+        "start": "04-15",
+        "end": "07-15",
+        "note": "Both sexes dig the nesting cavity in a dead tree, an old stump or a softwood live tree such as elm, maple or willow; the male locates the hole and seeks his mate's approval by mutual tapping, and the female accepts by completing the excavation. The juvenile is ready to fledge at 24-26 days."
+      },
+      {
+        "name": "caching",
+        "start": "08-15",
+        "end": "11-30",
+        "note": "Hides berries and acorns deep in natural crevices to keep them from interspecific competitors."
+      },
+      {
+        "name": "young",
+        "start": "06-15",
+        "end": "12-31",
+        "note": "The juvenile remains in its natal area for about 27 weeks after fledging, and natal dispersal has been observed; it may return to breed there, depending on predation levels and food."
       }
     ],
     "life_stages": [
@@ -266,19 +295,70 @@
             "gbif"
           ]
         }
+      },
+      {
+        "region": "US-MI",
+        "monthly": [
+          0.78,
+          0.83,
+          0.68,
+          0.47,
+          0.35,
+          0.28,
+          0.28,
+          0.26,
+          0.35,
+          0.68,
+          0.87,
+          1.0
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 706465,
+        "sources": [
+          "inat-activity-us-mi",
+          "gbif-activity-us-mi"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "B",
+            "place_id": 29,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=18205&place_id=29&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=29&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa",
+            "total": 304,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.23_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2478106&gadmGid=USA.23_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.23_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 706161,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
       }
     ]
   },
   "behavior": {
-    "program": "bt-perching-songbird-v1",
+    "program": "fsm-bark-climber-v1",
     "params": {
-      "flee_m": 12,
+      "flee_m": 10,
+      "calm_m": 25,
       "food_tag": "invertebrate",
-      "song": "call",
-      "alarm": "conflict",
-      "song_cooldown_s": 15,
-      "nest_m1": 5,
-      "nest_m2": 6
+      "cache_tag": "fruit",
+      "food_m": 3,
+      "cover_m": 25,
+      "call": "churr",
+      "drum_m1": 4,
+      "drum_m2": 6
     }
   },
   "vocalizations": [
@@ -336,6 +416,60 @@
       "cooldown_s": 6,
       "loudness": "Loud",
       "description": "A harsh alarm call, given either while hiding from a predator or while harassing it."
+    },
+    {
+      "call_id": "churr",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 20,
+      "loudness": "Moderate",
+      "description": "The running commentary of the species: a 'churr-churr-churr' or 'thrraa-thrraa-thrraa' with an alternating br-r-r-r-t sound. Red-bellied woodpeckers are noisy birds with many varied calls, and both sexes give them."
+    },
+    {
+      "call_id": "chee_wuck",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 10,
+      "loudness": "Loud",
+      "description": "A loud repeated 'chee-wuck, chee-wuck, chee-wuck', given in an intraspecific conflict such as two males competing for the same mate, and used to harass an approaching predator."
+    },
+    {
+      "call_id": "grr",
+      "context": "Contact",
+      "season_months": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 25,
+      "loudness": "Quiet",
+      "description": "A low 'grr, grr' exchanged by a pair from the start of courtship until the end of the breeding season."
+    },
+    {
+      "call_id": "pree_pree_pree",
+      "context": "Chirp",
+      "season_months": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 8,
+      "loudness": "Moderate",
+      "description": "The high-pitched begging call of a nestling, continued for some time after fledging whenever the young bird sees its parents."
     }
   ],
   "look": {
@@ -488,6 +622,24 @@
       "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
       "accessed": "2026-10-01",
       "kind": "api"
+    },
+    {
+      "id": "inat-activity-us-mi",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=18205&place_id=29&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa",
+      "title": "iNaturalist observations histogram for Melanerpes carolinus in US-MI",
+      "license": "CC-BY-SA-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-mi",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2478106&gadmGid=USA.23_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Melanerpes carolinus in US-MI",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
     }
   ],
   "provenance": {
@@ -592,7 +744,8 @@
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "note": "Clings to trunks and branches to work the bark and to hammer stored food into crevices."
     },
     "traits.size_class": {
       "sources": [
@@ -778,6 +931,19 @@
       "confidence": "Medium",
       "derived": true,
       "note": "Wikipedia states it hides from a predator or harasses it with alarm calls; the wording and the cooldown are authored."
+    },
+    "habitat.density_per_ha": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: no open source gives a density. A woodpecker pair holding a year-round territory in mature deciduous forest with snags works on a multi-hectare territory, giving typical 0.15 per hectare, and min and max are an authored tenfold band either side, following the convention used for turdus-migratorius and cardinalis-cardinalis."
+    },
+    "vocalizations": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "The churr and thrraa calls, the six-tap drumming on hollow trees and on roofs, gutters and transformer boxes, the loud 'chee-wuck' conflict and harassment call, the low pair 'grr, grr' from courtship to the end of breeding, and the high-pitched 'pree-pree-pree' nestling beg continued after fledging are all quoted or closely paraphrased from the article's Vocalizations, Behavior and ecology and Breeding sections. Cooldowns are authored judgement; no open source quantifies them. No open source gives frequency bands, so freq_hz is omitted."
     }
   },
   "contributors": [
