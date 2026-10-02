@@ -1,0 +1,152 @@
+{
+  "schema_version": 1,
+  "format": "speeeecies/behavior",
+  "id": "fsm-adelie-penguin-v1",
+  "kind": "fsm",
+  "description": "Colonial diving seabird (Adelie penguin): cycles between colony (breeding/resting), commute to foraging grounds, dive foraging for fish/krill, and hauling out on ice/land. No flight; walks and swims only.",
+  "params": {
+    "dive_depth_m": 20,
+    "food_tag": "small_vertebrate",
+    "krill_tag": "invertebrate",
+    "colony_group_size": 1000,
+    "commute_gait": "walk",
+    "forage_gait": "swim",
+    "flee_m": 10,
+    "calm_m": 30
+  },
+  "initial": "colony",
+  "states": {
+    "colony": {
+      "action": {
+        "do": "idle"
+      },
+      "min_dwell_s": 10
+    },
+    "commute": {
+      "action": {
+        "do": "wander",
+        "gait": "${commute_gait}"
+      }
+    },
+    "dive_forage": {
+      "action": {
+        "do": "eat_nearest",
+        "tag": "${food_tag}",
+        "gait": "${forage_gait}"
+      }
+    },
+    "haul_out": {
+      "action": {
+        "do": "rest",
+        "at": "home"
+      },
+      "min_dwell_s": 5
+    },
+    "flee": {
+      "action": {
+        "do": "flee",
+        "gait": "${commute_gait}"
+      },
+      "min_dwell_s": 3
+    }
+  },
+  "transitions": [
+    {
+      "from": "*",
+      "to": "flee",
+      "when": {
+        "threat_within_m": "${flee_m}"
+      },
+      "priority": 100
+    },
+    {
+      "from": "flee",
+      "to": "colony",
+      "when": {
+        "not": {
+          "threat_within_m": "${calm_m}"
+        }
+      }
+    },
+    {
+      "from": "colony",
+      "to": "commute",
+      "when": {
+        "all": [
+          {
+            "need": "hunger",
+            "gt": 0.4
+          },
+          {
+            "conspecifics_within_m": 50,
+            "gte": "${colony_group_size}"
+          }
+        ]
+      }
+    },
+    {
+      "from": "commute",
+      "to": "dive_forage",
+      "when": {
+        "any": [
+          {
+            "food_within_m": 100,
+            "tag": "${food_tag}"
+          },
+          {
+            "food_within_m": 100,
+            "tag": "${krill_tag}"
+          }
+        ]
+      }
+    },
+    {
+      "from": "dive_forage",
+      "to": "haul_out",
+      "when": {
+        "all": [
+          {
+            "need": "hunger",
+            "lt": 0.2
+          },
+          {
+            "bb": "dive_depth_m",
+            "gt": "${dive_depth_m}"
+          }
+        ]
+      }
+    },
+    {
+      "from": "haul_out",
+      "to": "colony",
+      "when": {
+        "conspecifics_within_m": 50,
+        "gte": 10
+      }
+    },
+    {
+      "from": "colony",
+      "to": "dive_forage",
+      "when": {
+        "all": [
+          {
+            "need": "hunger",
+            "gt": 0.4
+          },
+          {
+            "any": [
+              {
+                "food_within_m": 50,
+                "tag": "${food_tag}"
+              },
+              {
+                "food_within_m": 50,
+                "tag": "${krill_tag}"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
