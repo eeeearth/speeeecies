@@ -1,0 +1,610 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Perimyotis subflavus",
+  "slug": "perimyotis-subflavus",
+  "common_names": {
+    "en": "Tricolored Bat"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Mammalia",
+    "order": "Chiroptera",
+    "family": "Vespertilionidae",
+    "genus": "Perimyotis",
+    "authority": "(F. Cuvier, 1832)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 7665644,
+    "inat_taxon_id": 183166,
+    "wikidata": "Q27431474"
+  },
+  "conservation": {
+    "iucn": "VU"
+  },
+  "range": {
+    "native": [
+      "US",
+      "CA",
+      "MX",
+      "GT",
+      "BZ",
+      "HN",
+      "NI"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Fly"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Fur",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "perching": false,
+    "size_class": "Tiny",
+    "mass_kg": 0.0062,
+    "mass_range_kg": [
+      0.0046,
+      0.0079
+    ],
+    "length_m": 0.083,
+    "wingspan_m": 0.235,
+    "lifespan_y": 14.8,
+    "diet": {
+      "invertebrate": 1.0
+    },
+    "social": {
+      "structure": "Colony",
+      "group_size": [
+        1,
+        30
+      ]
+    },
+    "activity_pattern": "Nocturnal",
+    "defense": "Flee",
+    "wariness": 0.6
+  },
+  "habitat": {
+    "use": {
+      "aerial": 0.7,
+      "arboreal": 0.3
+    },
+    "shelter_tag": "cavity",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 1.0,
+        "months": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "tag": "cavity",
+        "kind": "Shelter",
+        "weight": 1.0
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.5
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": false,
+      "light_max": 0.3,
+      "notes": "Roosts in barns, under porch roofs, on bridges and in culverts as well as in forest; forages over waterways and forest edges rather than in gardens."
+    }
+  },
+  "seasonal": {
+    "strategy": "Hibernation",
+    "triggers": {
+      "enter": {
+        "temperature_below_c": 10,
+        "days": 7
+      },
+      "exit": {
+        "temperature_above_c": 10,
+        "days": 7
+      }
+    },
+    "phases": [
+      {
+        "name": "dormancy",
+        "start": "11-01",
+        "end": "03-31",
+        "region": "US-TN",
+        "note": "Hibernates in caves, mines and culverts through the winter; in the south may roost in trees and feed during mild spells."
+      },
+      {
+        "name": "breeding",
+        "start": "05-01",
+        "end": "07-31",
+        "note": "Mating in the fall before hibernation with delayed fertilization; females give birth to twins in June or July."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Juvenile",
+        "duration_days": 60,
+        "scale": 0.9
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-nocturnal-bat-v1",
+    "params": {
+      "flee_m": 8,
+      "calm_m": 20,
+      "food_tag": "invertebrate",
+      "food_m": 40
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "feeding_buzz",
+      "context": "Buzz",
+      "season_months": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "time_windows": [
+        "Dusk",
+        "Night"
+      ],
+      "cooldown_s": 5,
+      "loudness": "Quiet",
+      "description": "Ultrasonic echolocation calls used to navigate and find prey, with a distinctive hook-shaped profile bottoming out around 42 kHz and rapid feeding buzzes when closing in; inaudible to people."
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.2,
+      "leg_length_ratio": 0.25,
+      "head_scale": 0.8,
+      "neck_angle_deg": 10,
+      "tail_ratio": 0.4,
+      "wing_aspect": 2.5,
+      "beak_ratio": 0.2,
+      "girth_ratio": 1.0
+    },
+    "palette": {
+      "body": "#6b4a2f",
+      "belly": "#c8a86a",
+      "markings": "#241c14",
+      "accent": "#8a6a42",
+      "eye": "#111111"
+    },
+    "part_colors": {
+      "breast": "belly",
+      "wing_left": "markings",
+      "wing_right": "markings",
+      "wing_left_outer": "markings",
+      "wing_right_outer": "markings",
+      "tail": "markings",
+      "beak": "markings",
+      "ears_left": "body",
+      "ears_right": "body"
+    },
+    "extra_parts": [
+      {
+        "name": "ears",
+        "parent": "head",
+        "offset": [
+          0,
+          0.5,
+          0
+        ],
+        "size": [
+          0.25,
+          0.35,
+          0.2
+        ],
+        "color": "body",
+        "mirror": true
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "fly": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/7665644",
+      "title": "GBIF Backbone Taxonomy: Perimyotis subflavus",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q27431474",
+      "title": "Wikidata: Perimyotis subflavus (Q27431474)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Tricolored_bat",
+      "title": "Wikipedia: Tricolored bat",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Tricolored bat\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "usfws",
+      "url": "https://www.fws.gov/species/tricolored-bat-perimyotis-subflavus",
+      "title": "U.S. Fish and Wildlife Service: Tricolored Bat (Perimyotis subflavus) species profile",
+      "license": "US-Gov-PD",
+      "kind": "webpage",
+      "accessed": "2026-10-01"
+    },
+    {
+      "id": "gbif-activity-us-tn",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=7665644&gadmGid=USA.43_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+      "title": "GBIF occurrence search for Perimyotis subflavus in US-TN",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "GBIF usage key from the species-match API; iNaturalist taxon id from the issue's data pointers, confirmed via the taxa API; Wikidata Q27431474 from the entity search API."
+    },
+    "common_names": {
+      "sources": [
+        "wikidata",
+        "wikipedia",
+        "usfws"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "IUCN Vulnerable (2018 assessment); USFWS proposed endangered status in September 2022."
+    },
+    "range": {
+      "sources": [
+        "usfws"
+      ],
+      "confidence": "High",
+      "note": "39 US states including Tennessee, four Canadian provinces, Mexico, Guatemala, Honduras, Belize and Nicaragua, from the USFWS range statement."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia",
+        "usfws"
+      ],
+      "confidence": "High",
+      "note": "Slow, erratic, fluttery foraging flight; wings are the only functional locomotion."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia",
+        "usfws"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.perching": {
+      "sources": [
+        "usfws"
+      ],
+      "confidence": "High",
+      "note": "Hangs in foliage, lichen, culverts and caves rather than perching."
+    },
+    "traits.size_class": {
+      "sources": [
+        "usfws"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg; the smallest bat of the eastern US at 4.6-7.9 g."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "usfws"
+      ],
+      "confidence": "High",
+      "note": "Males 4.6 g (April) to 7.5 g (September); females 5.8 g to 7.9 g; midpoint 6.2 g."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "usfws",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "4.6-7.9 g across sources."
+    },
+    "traits.length_m": {
+      "sources": [
+        "usfws"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of 77-89 mm average body length."
+    },
+    "traits.wingspan_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of 21-26 cm."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "usfws"
+      ],
+      "confidence": "Medium",
+      "note": "Oldest on record: a male recaptured 14.8 years after banding."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia",
+        "usfws"
+      ],
+      "confidence": "High",
+      "note": "Strictly insectivorous: mosquitoes, beetles, ants, moths, cicadas, caddisflies, wasps, flying ants and flies."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia",
+        "usfws"
+      ],
+      "confidence": "High",
+      "note": "Females in maternity colonies (up to 30); males solitary."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia",
+        "usfws"
+      ],
+      "confidence": "High",
+      "note": "Emerges early in the evening; one of the first bats out each night."
+    },
+    "traits.defense": {
+      "sources": [],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Authored: escapes by flight."
+    },
+    "traits.wariness": {
+      "sources": [
+        "usfws"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: tolerates roosting on human structures but avoids close approach; nocturnal and light-shy."
+    },
+    "habitat.use": {
+      "sources": [
+        "usfws"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Forages on the wing over waterways and forest edges; roosts in tree foliage. Split is judgement."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "usfws"
+      ],
+      "confidence": "High",
+      "note": "Hibernates in caves, mines and culverts; the winter hibernaculum is the critical shelter."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia",
+        "usfws"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Night-flying insects in the active months; caves/mines for hibernation; foliage and lichen (perch tag) for summer roosts."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "usfws"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Uses barns, porches, bridges and culverts; light_max authored."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia",
+        "usfws"
+      ],
+      "confidence": "High",
+      "note": "Hibernates in winter with reduced metabolism, body temperature and heart rate."
+    },
+    "seasonal.triggers": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: a week of nights below 10 C cues entry into torpor in fall and a week above 10 C cues spring emergence, matching the November-March dormancy in Tennessee; exact physiological thresholds are not sourced."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia",
+        "usfws"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Torpor November-April; mating mid-August to mid-October with delayed fertilization; births May-July. Dates are judgements for Tennessee."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia",
+        "usfws"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Flies at 3 weeks, forages at 4 weeks; scale authored."
+    },
+    "vocalizations.feeding_buzz": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Hook-shaped echolocation calls bottoming out at 42 kHz; parameters authored."
+    },
+    "look": {
+      "sources": [
+        "wikipedia",
+        "usfws"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Tricolored back hairs (dark base, buffy middle, brown tip), yellowish to orange; reddish forearms against black wing membranes. Proportions and block colors authored."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored bespoke program fsm-nocturnal-bat-v1: no shared program fits a foliage-roosting aerial hawker, so the owl program was adapted minus the hoot."
+    }
+  },
+  "contributors": [
+    {
+      "name": "Sisyphus agent",
+      "agent": "claude-code"
+    }
+  ],
+  "activity": {
+    "regions": [
+      {
+        "region": "US-TN",
+        "monthly": [
+          0.1,
+          0.28,
+          0.36,
+          0.37,
+          0.13,
+          0.1,
+          0.21,
+          0.32,
+          0.31,
+          0.16,
+          0.17,
+          1.0
+        ],
+        "method": "gbif_share",
+        "observations": 303,
+        "sources": [
+          "gbif-activity-us-tn"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 45,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=183166&place_id=45&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=45&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 142,
+            "usable": false
+          },
+          "gbif": {
+            "tier": "C",
+            "area": [
+              "gadmGid",
+              "USA.43_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=7665644&gadmGid=USA.43_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.43_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "total": 303,
+            "usable": true
+          },
+          "used": [
+            "gbif"
+          ]
+        }
+      }
+    ]
+  }
+}
