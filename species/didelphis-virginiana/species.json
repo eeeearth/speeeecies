@@ -41,7 +41,8 @@
       "NI",
       "CR",
       "PA",
-      "CO"
+      "CO",
+      "SV"
     ],
     "koppen": [
       "Cfa",
@@ -80,7 +81,7 @@
     ],
     "length_m": 0.69,
     "shoulder_height_m": 0.16,
-    "lifespan_y": 2.0,
+    "lifespan_y": 2,
     "diet": {
       "invertebrate": 0.35,
       "carrion": 0.2,
@@ -98,7 +99,10 @@
     },
     "activity_pattern": "Nocturnal",
     "defense": "Freeze",
-    "wariness": 0.35
+    "wariness": 0.35,
+    "speed_ms": {
+      "walk": 1.5
+    }
   },
   "habitat": {
     "use": {
@@ -179,6 +183,11 @@
         "tag": "compost",
         "kind": "Herbivory",
         "weight": 0.2
+      },
+      {
+        "tag": "shrub_thicket",
+        "kind": "Shelter",
+        "weight": 0.4
       }
     ],
     "human_tolerance": {
@@ -384,6 +393,55 @@
             "gbif"
           ]
         }
+      },
+      {
+        "region": "US-OK",
+        "monthly": [
+          0.61,
+          0.64,
+          0.52,
+          0.65,
+          0.4,
+          0.33,
+          0.32,
+          0.48,
+          0.57,
+          0.59,
+          0.61,
+          1.0
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 1326,
+        "sources": [
+          "inat-activity-us-ok",
+          "gbif-activity-us-ok"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 12,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=42652&place_id=12&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=12&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 592,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "C",
+            "area": [
+              "gadmGid",
+              "USA.37_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2439923&gadmGid=USA.37_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.37_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "total": 734,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
       }
     ]
   },
@@ -423,6 +481,17 @@
       "cooldown_s": 12,
       "loudness": "Quiet",
       "description": "Clicking sounds made with the mouth by the male, used to attract the female during the mating season; a quiet, close-range courtship sound rather than a call carried across a garden."
+    },
+    {
+      "call_id": "scream",
+      "context": "Scream",
+      "season_months": [],
+      "time_windows": [
+        "Night"
+      ],
+      "cooldown_s": 30,
+      "loudness": "Loud",
+      "description": "High-pitched scream given when the animal is attacked or cornered; exact call text is a judgement."
     }
   ],
   "look": {
@@ -637,6 +706,24 @@
       "id": "gbif-activity-us-vt",
       "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2439923&gadmGid=USA.46_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
       "title": "GBIF occurrence search for Didelphis virginiana in US-VT",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "inat-activity-us-ok",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=42652&place_id=12&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Didelphis virginiana in US-OK",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-ok",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2439923&gadmGid=USA.37_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+      "title": "GBIF occurrence search for Didelphis virginiana in US-OK",
       "license": "CC-BY-NC-4.0",
       "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
       "accessed": "2026-10-01",
@@ -937,6 +1024,20 @@
         "wikipedia"
       ],
       "confidence": "High"
+    },
+    "traits.speed_ms": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "No open source gives a walking speed; 1.5 m/s is a judgement for a slow-moving marsupial."
+    },
+    "vocalizations.scream": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The article describes defensive behaviour but no scream call text; the description is a judgement."
     }
   },
   "contributors": [
@@ -946,6 +1047,10 @@
     },
     {
       "name": "speeeecies agent",
+      "agent": "claude-code"
+    },
+    {
+      "name": "speeeecies maintainers",
       "agent": "claude-code"
     }
   ]

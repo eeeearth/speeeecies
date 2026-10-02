@@ -90,6 +90,11 @@
       "vision_color": true,
       "olfaction": "Med",
       "hearing": "Med"
+    },
+    "shoulder_height_m": 0.25,
+    "speed_ms": {
+      "trot": 2.5,
+      "gallop": 8.0
     }
   },
   "habitat": {
@@ -167,6 +172,11 @@
         "tag": "browse",
         "kind": "Herbivory",
         "weight": 0.12
+      },
+      {
+        "tag": "leaf_litter",
+        "kind": "Shelter",
+        "weight": 0.3
       }
     ],
     "human_tolerance": {
@@ -227,6 +237,12 @@
         "start": "08-15",
         "end": "12-14",
         "note": "Judgement window: 'Fox squirrels will form caches by burying food items for later consumption ... like to store foods that are shelled and high in fat, such as acorns and nuts', and autumn is when mast is available."
+      },
+      {
+        "name": "breeding",
+        "start": "01-15",
+        "end": "07-31",
+        "note": "Females come into estrus in mid-December or early January, then again in June; most births occur mid-March and July. Dates are a judgement."
       }
     ],
     "life_stages": [
@@ -343,6 +359,55 @@
             "gbif"
           ]
         }
+      },
+      {
+        "region": "US-OK",
+        "monthly": [
+          1.0,
+          0.79,
+          0.52,
+          0.89,
+          0.57,
+          0.44,
+          0.47,
+          0.52,
+          0.62,
+          0.57,
+          0.6,
+          0.71
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 2879,
+        "sources": [
+          "inat-activity-us-ok",
+          "gbif-activity-us-ok"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 12,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=46020&place_id=12&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=12&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 2550,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.37_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5219683&gadmGid=USA.37_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.37_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 329,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
       }
     ]
   },
@@ -416,6 +481,28 @@
       "cooldown_s": 12,
       "loudness": "Quiet",
       "description": "Grunts and squeals, given by restrained animals and during male-male chases."
+    },
+    {
+      "call_id": "chatter",
+      "context": "Chirp",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 10,
+      "loudness": "Quiet",
+      "description": "Tooth chatters and breathy barks indicating stress; high-pitched whines during mating."
+    },
+    {
+      "call_id": "scream",
+      "context": "Scream",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 30,
+      "loudness": "Loud",
+      "description": "Distress scream warning of approaching threats."
     }
   ],
   "look": {
@@ -549,6 +636,24 @@
       "license": "CC-BY-NC-4.0",
       "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
       "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "inat-activity-us-ok",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=46020&place_id=12&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Sciurus niger in US-OK",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-ok",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5219683&gadmGid=USA.37_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Sciurus niger in US-OK",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
       "kind": "api"
     }
   ],
@@ -872,6 +977,30 @@
       "confidence": "High"
     },
     "vocalizations.grunt": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.shoulder_height_m": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "No open source gives a shoulder height; 0.25 m is a judgement from the described body length of 25-38 cm."
+    },
+    "traits.speed_ms": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "No open source gives speeds; trot and gallop values are judgement for a squirrel of this size."
+    },
+    "vocalizations.chatter": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "vocalizations.scream": {
       "sources": [
         "wikipedia"
       ],
