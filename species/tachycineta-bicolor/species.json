@@ -1,0 +1,647 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Tachycineta bicolor",
+  "slug": "tachycineta-bicolor",
+  "common_names": {
+    "en": "Tree Swallow"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Passeriformes",
+    "family": "Hirundinidae",
+    "genus": "Tachycineta",
+    "authority": "(Vieillot, 1808)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2489181,
+    "inat_taxon_id": 11935,
+    "itis_tsn": 178431,
+    "wikidata": "Q922192"
+  },
+  "conservation": {
+    "iucn": "LC",
+    "notes": "Protected in the United States under the Migratory Bird Treaty Act of 1918 and in Canada under the Migratory Birds Convention Act."
+  },
+  "range": {
+    "native": [
+      "US",
+      "CA",
+      "MX",
+      "GL"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Fly",
+      "Glide"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Cavity",
+    "perching": true,
+    "size_class": "Tiny",
+    "mass_kg": 0.02125,
+    "mass_range_kg": [
+      0.017,
+      0.0255
+    ],
+    "length_m": 0.13,
+    "wingspan_m": 0.325,
+    "lifespan_y": 2.7,
+    "diet": {
+      "invertebrate": 0.95,
+      "fruit": 0.05
+    },
+    "social": {
+      "structure": "Pair",
+      "group_size": [
+        2,
+        8
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.35
+  },
+  "habitat": {
+    "use": {
+      "aerial": 0.7,
+      "arboreal": 0.2,
+      "aquatic": 0.1
+    },
+    "shelter_tag": "cavity",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.95
+      },
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.05,
+        "months": [
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "tag": "cavity",
+        "kind": "Nesting",
+        "weight": 1.0
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.5
+      },
+      {
+        "tag": "water",
+        "kind": "Water",
+        "weight": 0.3
+      }
+    ],
+    "requires": [
+      {
+        "resource_within_m": 1500,
+        "tag": "water"
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Exploiter",
+      "impervious_max": 0.6,
+      "light_max": 0.6,
+      "flight_distance_m": 20,
+      "road_mortality": "Low",
+      "uses_gardens": true,
+      "notes": "Takes readily to nest boxes, which is how it spread out of forest into open country, and hunts low over water, fields and gardens. It is aggressive toward conspecifics at the nest in the breeding season and sociable outside it."
+    }
+  },
+  "seasonal": {
+    "strategy": "Migration",
+    "phases": [
+      {
+        "name": "nesting",
+        "start": "05-01",
+        "end": "07-31",
+        "region": "US-OH",
+        "note": "Breeding can start as soon as early May and can run as late as July; the female incubates two to eight white eggs for around 14 to 15 days and the chicks generally fledge 18 to 22 days after hatching."
+      },
+      {
+        "name": "moult",
+        "start": "07-01",
+        "end": "08-31",
+        "note": "Post-breeding moult, after which the second-year female still carries some brown subadult plumage."
+      },
+      {
+        "name": "absent",
+        "start": "09-01",
+        "end": "04-30",
+        "note": "Migrates to the wintering range, from California and southwestern Arizona in the west and southeastern Virginia in the east, south along the Gulf Coast to the West Indies, Panama and the northwestern coast of South America. Autumn stop-overs average 57 days."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg"
+      },
+      {
+        "stage": "Juvenile",
+        "duration_days": 22,
+        "scale": 0.85,
+        "requires_tag": "cavity"
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US-OH",
+        "monthly": [
+          0.02,
+          0.01,
+          0.4,
+          0.95,
+          1.0,
+          0.95,
+          0.51,
+          0.28,
+          0.12,
+          0.11,
+          0.01,
+          0.0
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 446018,
+        "sources": [
+          "inat-activity-us-oh",
+          "gbif-activity-us-oh"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 31,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=11935&place_id=31&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=31&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "total": 843,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.36_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2489181&gadmGid=USA.36_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.36_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 445175,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "bt-perching-songbird-v1",
+    "params": {
+      "flee_m": 10,
+      "food_tag": "invertebrate",
+      "song": "song",
+      "alarm": "alarm",
+      "song_cooldown_s": 8,
+      "nest_m1": 5,
+      "nest_m2": 7
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "song",
+      "context": "Song",
+      "season_months": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "time_windows": [
+        "DawnChorus",
+        "Day"
+      ],
+      "cooldown_s": 10,
+      "loudness": "Moderate",
+      "description": "A three-part song of chirp, whine and gurgle; any section may stand alone or be repeated, and the gurgle at the end is usually uttered twice. The male also gives a chatter call that advertises a nest site to other tree swallows."
+    },
+    {
+      "call_id": "alarm",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 6,
+      "loudness": "Moderate",
+      "description": "The whine on its own, a downward shift in frequency followed by an upward one, generally given alone as the anxiety call and sometimes in response to certain predators. A short high-pitched submission call follows an aggressive encounter, and a distress call is given while the bird is restrained or in pain."
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.7,
+      "leg_length_ratio": 0.25,
+      "head_scale": 0.85,
+      "neck_angle_deg": 10,
+      "tail_ratio": 0.7,
+      "wing_aspect": 3.2,
+      "beak_ratio": 0.25,
+      "girth_ratio": 0.8
+    },
+    "palette": {
+      "body": "#1f6f8b",
+      "belly": "#f2f4f5",
+      "markings": "#123243",
+      "accent": "#c8a15a",
+      "eye": "#3a2a1c"
+    },
+    "part_colors": {
+      "wing_left_outer": "markings",
+      "wing_right_outer": "markings",
+      "tail": "markings",
+      "beak": "markings",
+      "leg_left": "accent",
+      "leg_right": "accent"
+    },
+    "poses": {
+      "idle": {},
+      "fly": {},
+      "glide": {},
+      "perched": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2489181",
+      "title": "GBIF Backbone Taxonomy: Tachycineta bicolor",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q922192",
+      "title": "Wikidata: Tree Swallow (Q922192)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Tree_swallow",
+      "title": "Wikipedia: Tree Swallow",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Tree Swallow\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "us-itis",
+      "url": "https://www.itis.gov/ITISWebService/jsonservice/getFullRecordFromTSN?tsn=178431",
+      "title": "ITIS: Tachycineta bicolor, TSN 178431, full record",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "inat-activity-us-oh",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=11935&place_id=31&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Tachycineta bicolor in US-OH",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-oh",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2489181&gadmGid=USA.36_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Tachycineta bicolor in US-OH",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "us-itis"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata",
+        "us-itis"
+      ],
+      "confidence": "High",
+      "note": "GBIF usageKey 2489181 and family Hirundinidae from the GBIF Backbone record for the accepted name; iNaturalist taxon id 11935 from the iNaturalist taxa API; ITIS TSN 178431 from the ITISWebService scientific-name search, which returns Tachycineta bicolor (Vieillot, 1808) as an exact match; Wikidata Q922192 from a Wikidata entity search for the scientific name."
+    },
+    "common_names": {
+      "sources": [
+        "wikidata",
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikidata",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "IUCN category from Wikidata P141, which points at the IUCN 'Least Concern' item; the article states the swallow 'is considered to be least concern ... because of its large range and stable population' and names the two statutes that protect it."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Country list derived from the article's breeding range across north-central Alaska and Canada to Tennessee in the east, California and New Mexico in the west and Kansas in the centre, plus the Greenland vagrants, with the wintering range reaching the West Indies, Panama and the northwestern coast of South America. Mexico is included because the wintering range runs to Panama along the Gulf Coast."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'An aerial insectivore, the tree swallow forages both alone and in groups, eating mostly insects', and it roosts on trees and wires; the bird moves between these by flight and gliding rather than by walking, so Fly and Glide are the two modes."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'It roosts every night during the non-breeding season ... also being found over land and on trees and wires.'"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'The tree swallow nests in structures with pre-existing holes, both natural and artificial', which is a cavity nest."
+    },
+    "traits.size_class": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of 'a weight of approximately 17 to 25.5 g'."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'a weight of approximately 17 to 25.5 g'."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of 'a length between about 12 and 14 cm'."
+    },
+    "traits.wingspan_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of 'Wingspan ranges from 30 to 35 cm'."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'The tree swallow has an average lifespan of 2.7 years and a maximum of 12 years'; the average is recorded, since that is the figure a scene should expect to see."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'eating mostly insects, in addition to mollusks, spiders, and fruit'. Mollusks and spiders sit inside `invertebrate`, which takes 0.95, and the named fruit is the remaining 0.05; the weight matches the article's word 'mostly'."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'This bird is generally socially monogamous (although about 8% of males are polygynous)', nesting 'either in isolated pairs or loose groups', and sociable outside the breeding season in flocks sometimes numbering thousands. The group size band is authored for one scene, so it stops at 8."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Authored: a swallow in the open is hard to catch and escapes by flight, dispatching conspecifics from the nest by attacking rather than by physical defence."
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Judgement at 0.35: it breeds in nest boxes in built-up places and hunts low over gardens and fields, but it needs undisturbed water and open air to hunt insects well, so it is neither shy nor fearless."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'The breeding habitat of this bird is primarily in open and wooded areas, especially those near water', foraging aerially and roosting over water in cane and reed beds, on trees and on wires; the aerial/arboreal/aquatic split is authored from those three sentences."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'The tree swallow nests in structures with pre-existing holes, both natural and artificial', so the site it holds all year is a cavity."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "The diet sentence for the feeding resources, the nest-hole sentence for `cavity`, the trees-and-wires sentence for `perch`, and the near-water habitat for `water`. The fruit months are authored to the late-summer and early-autumn window in which fruit is available to a migratory bird on its stop-overs."
+    },
+    "habitat.requires": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'The breeding habitat of this bird is primarily in open and wooded areas, especially those near water.' 1.5 km is an authored radius for open water in a scene; the article states no distance."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'These were once found only in forested regions, but the building of nest boxes has allowed this bird to expand into open habitats', and it roosts on wires; the numeric tolerances are authored around that record."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'The wintering range is from California and southwestern Arizona in the west and southeastern Virginia in the east south along the Gulf Coast to the West Indies, Panama, and the northwestern South American coast', against a breeding range that stops at Tennessee, Kansas and the Canadian tree line: the species clears the Great Lakes entirely, so Migration and no winter_fraction."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Breeding dates, incubation and fledging times, the subadult-plumage detail that places the moult before departure, and the wintering range all come from the article; the month boundaries are judgements aligned to those dates."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'The chicks hatch slightly asynchronously ... They generally fledge about 18 to 22 days after hatching' and the female incubates 'for around 14 to 15 days'; duration_days 22 is the upper end of the fledging window and scale 0.85 is a judgement for the brown-headed juvenile, since 'Juveniles have brown upperparts, and gray-brown-washed breasts.'"
+    },
+    "vocalizations.song": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'The tree swallow's song consists of three parts: the chirp, the whine, and the gurgle. These sections may be repeated or omitted, and all can stand alone', with the gurgle 'usually uttered twice' at the end; the nest-site advertising chatter is described in the same passage. No openly licensed recording is cited, so no `recordings` entry is claimed."
+    },
+    "vocalizations.alarm": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "The whine 'may be given alone as the anxiety call, occasionally made in response to certain predators', plus the submission and distress calls, all from the article's communication section. The cooldown is authored."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'The male has mostly glossy blue-green upperparts, the wings and tail being blackish. The underparts and the cheek patch are white ... The bill is black, the eyes dark brown, and the legs and feet pale brown.' The wing and tail are coloured from the `markings` slot and the legs from `accent` because the palette has no sixth slot; the proportions are authored from the 12-14 cm length and 30-35 cm wingspan."
+    },
+    "behavior": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "bt-perching-songbird-v1 is the shared program for a bird that holds a cavity, sings from a perch, roosts in cover, builds a nest and takes food; food_tag is `invertebrate` because the article calls it an aerial insectivore eating mostly insects, and flee_m is set to 10 m because it is bolder about people than the program's 6 m default but will leave a disturbed nest."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies maintainers",
+      "agent": "claude-code"
+    }
+  ]
+}
