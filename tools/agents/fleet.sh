@@ -1362,11 +1362,22 @@ cmd_supervise() {
       remaining="$pick"
       # Report starvation once, on the transition. Repeating it every poll turns a
       # one-line state change into log spam that hides real events.
+      # Two very different situations both used to report STARVED, and an operator
+      # could not tell them apart: the repo having no work at all, versus every open
+      # issue already being carried by an open PR. The second is not a malfunction
+      # and the fix is human review, so it gets its own state and says so.
       if [ -z "$remaining" ] && [ "$fleet_state" != GH_UNREACHABLE ]; then
-        if [ "$prev_state" != STARVED ]; then
-          echo "[$(date -u +%FT%TZ)] STARVED: live=$live below floor $FLEET_MIN, no eligible issue left"
+        if [ -n "$pick" ]; then
+          fleet_state=AWAITING_REVIEW
+          if [ "$prev_state" != AWAITING_REVIEW ]; then
+            echo "[$(date -u +%FT%TZ)] AWAITING_REVIEW: live=$live below floor $FLEET_MIN, but every open issue is already carried by an open PR or has spent its retry budget; the queue refills when those PRs land"
+          fi
+        else
+          fleet_state=STARVED
+          if [ "$prev_state" != STARVED ]; then
+            echo "[$(date -u +%FT%TZ)] STARVED: live=$live below floor $FLEET_MIN, no eligible issue left"
+          fi
         fi
-        fleet_state=STARVED
       fi
       budget=$(printf '%s\n' "$remaining" | grep -c . || true)
       while [ -n "$remaining" ] && [ "$live" -lt "$FLEET_MIN" ] && [ "$budget" -gt 0 ]; do

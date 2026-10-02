@@ -2751,3 +2751,26 @@ def test_a_refused_spawn_still_counts_its_attempt():
             f"the {guard!r} guard sits after the ledger append, so it would burn "
             "budget for an issue that was never actually attempted"
         )
+
+
+def test_idle_fleet_distinguishes_no_work_from_work_awaiting_review():
+    """Both situations reported STARVED, so an operator could not tell a healthy idle
+    fleet from a broken one. When open issues exist but every one is already carried
+    by an open PR or has spent its retry budget, the cause is human review, not a
+    malfunction, and the state has to say which."""
+    text = FLEET.read_text(encoding="utf-8")
+    body = text.split("cmd_supervise() {", 1)[1]
+    assert "AWAITING_REVIEW" in body, "the awaiting-review state is not reported"
+    starved_at = body.index('fleet_state=STARVED')
+    await_at = body.index('fleet_state=AWAITING_REVIEW')
+    # The distinction has to be driven by whether any candidate survived the
+    # listing, not just be a second label on the same branch.
+    assert 'if [ -n "$pick" ]; then' in body, (
+        "AWAITING_REVIEW must be conditional on candidates existing"
+    )
+    assert body.index('if [ -n "$pick" ]; then') < await_at < starved_at + 400, (
+        "the pick/remaining distinction is not wired to the two states"
+    )
+    assert "those PRs land" in body, (
+        "the awaiting-review line must tell the operator what refills the queue"
+    )
