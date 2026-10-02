@@ -709,6 +709,15 @@ cmd_spawn() {
   local branch wpath
   branch="$BRANCH_PREFIX/$kind-$issue-$slug"
   wpath="$WORKTREE_ROOT/$kind-$slug"
+  # Count the attempt BEFORE the spawn can fail. The row used to be appended only
+  # on a committed spawn, so a slug blocked by a permanent collision never
+  # incremented the ledger and was retried forever: one slug logged 217 refusals
+  # while sitting at 1 of 3 attempts, and the retry budget the code relies on to
+  # "stop retrying a genuinely broken issue" never engaged. Placed after the
+  # issue-state and duplicate-PR checks so those do not burn budget, and before
+  # the collision check so they do. refund_attempt still strips the row when the
+  # death was a model route rather than the issue's fault.
+  printf '%s\t%s\t%s\n' "$issue" "$kind" "$slug" >> "$STATE_DIR/queue.tsv"
   [ -e "$wpath" ] && die "worktree path already exists: $wpath"
   # A leftover branch is a retry, not a fatal collision, and cmd_spawn is called
   # directly from the refill loop, so a die() here would exit the whole supervisor.
@@ -927,7 +936,6 @@ fi
   # actually asks for would stop happening.
   advance_model
 
-  printf '%s\t%s\t%s\n' "$issue" "$kind" "$slug" >> "$STATE_DIR/queue.tsv"
   say "spawned $slug (issue $issue, model $model)"
   # After the log line: the tally is meant to be auditable against supervisor.log,
   # and counting first left it permanently one ahead of what the log showed.

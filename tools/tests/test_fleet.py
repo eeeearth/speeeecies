@@ -2717,3 +2717,37 @@ def test_an_unwritable_streak_fails_closed_instead_of_aborting_the_spawn():
     assert "could not persist the provider streak" in p.stdout, (
         f"the degradation was not reported: {p.stdout!r}"
     )
+
+
+def test_a_refused_spawn_still_counts_its_attempt():
+    """The retry row used to be appended only on a *committed* spawn, so a slug
+    blocked by a permanent collision never reached the cap and was retried forever:
+    one slug logged 217 refusals while sitting at 1 of 3 attempts, so the budget
+    meant to stop retrying a genuinely broken issue never engaged.
+
+    This asserts the ordering rather than driving a spawn, because the repo no
+    longer has a spawnable issue to drive one with -- every open issue is either
+    closed or already covered by an open PR. An end-to-end version of this test was
+    attempted and failed for exactly that reason, four different ways.
+    """
+    text = FLEET.read_text(encoding="utf-8")
+    body = text.split("cmd_spawn() {", 1)[1].split("\n}\n", 1)[0]
+    append_at = body.index('printf \'%s\\t%s\\t%s\\n\' "$issue" "$kind" "$slug" >> "$STATE_DIR/queue.tsv"')
+    collide_at = body.index('die "worktree path already exists: $wpath"')
+    assert append_at < collide_at, (
+        "the attempt is counted after the collision check, so a spawn that always "
+        "dies there never burns budget and is retried forever"
+    )
+    # And only once: a second append on the success path would double-count every
+    # successful spawn and retire issues at half the intended rate.
+    assert body.count('$STATE_DIR/queue.tsv"') == 1, (
+        "the retry row is appended more than once in cmd_spawn"
+    )
+    # Budget must NOT be burned by the checks that mean "this issue is not ours":
+    # a dead, assigned, or already-covered issue is not a failed attempt.
+    for guard in ("is not an open species-request", "already assigned to",
+                  "an open PR already touches"):
+        assert body.index(guard) < append_at, (
+            f"the {guard!r} guard sits after the ledger append, so it would burn "
+            "budget for an issue that was never actually attempted"
+        )
