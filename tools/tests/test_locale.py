@@ -233,7 +233,7 @@ def test_lint_ignores_harmless_text(validate_module):
         [
             "Open http://127.0.0.1:18160/preview.html and see ~/.local/share for caches.",
             "The robin sings from 3 Main perches; see species/erithacus-rubecula.",
-            "Clone https://github.com/jt55401/speeeecies over https, not over SSH.",
+            "Clone https://github.com/eeeearth/speeeecies over https, not over SSH.",
             "Keep machine settings in settings.local.json, which git ignores.",
         ]
     )

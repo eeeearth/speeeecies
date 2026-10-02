@@ -8,7 +8,7 @@ is public. Read `schema/v0.1/species.schema.json` and
 `species/bufo-bufo`.
 
 Site (schema docs, behaviour guide, previewer, gallery):
-https://jt55401.github.io/speeeecies/
+https://eeeearth.github.io/speeeecies/
 
 ## The flow
 

@@ -31,7 +31,7 @@ import urllib.request
 from pathlib import Path
 from typing import Any, Optional
 
-USER_AGENT = "speeeecies-fetch-activity/0.1 (+https://github.com/jt55401/speeeecies)"
+USER_AGENT = "speeeecies-fetch-activity/0.1 (+https://github.com/eeeearth/speeeecies)"
 INAT_MIN_INTERVAL_SECONDS = 1.0
 RETRY_STATUSES = {429, 500, 502, 503, 504}
 MAX_RETRIES = 5

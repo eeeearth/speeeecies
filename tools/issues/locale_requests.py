@@ -49,8 +49,8 @@ from typing import Callable
 
 REPO_ROOT = Path(__file__).resolve().parent.parent.parent
 OUT_DIR = Path(__file__).resolve().parent / "out"
-REPO_URL = "https://github.com/jt55401/speeeecies"
-SITE_URL = "https://jt55401.github.io/speeeecies/"
+REPO_URL = "https://github.com/eeeearth/speeeecies"
+SITE_URL = "https://eeeearth.github.io/speeeecies/"
 LIVE_URL = "https://www.youtube.com/@jt55401/live"
 LABEL = "locale-request"
 LABEL_COLOR = "fbca04"

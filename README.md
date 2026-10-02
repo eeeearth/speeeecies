@@ -8,7 +8,7 @@ checks the record, a browser previewer shows the model, and a pull request
 delivers it.
 
 Watch the simulation live: https://www.youtube.com/@jt55401/live
-Site (schema docs, behaviour guide, previewer, gallery): https://jt55401.github.io/speeeecies/
+Site (schema docs, behaviour guide, previewer, gallery): https://eeeearth.github.io/speeeecies/
 
 ![The three worked examples in the previewer: red fox, European robin, common toad](site/img/previewer-examples.png)
 
@@ -30,9 +30,9 @@ locale is `locales/<id>/locale.json`: a public centroid (never an
 address), its climate, a generic plot and at least 8 species (aim for 12
 or more), plus `locales/<id>/flora-catalog.json`, the plants its garden
 shows. See `docs/locale-richness.md` for why both matter. Browse
-them on the [locales page](https://jt55401.github.io/speeeecies/locales.html),
+them on the [locales page](https://eeeearth.github.io/speeeecies/locales.html),
 or pick an open
-[`locale-request` issue](https://github.com/jt55401/speeeecies/issues?q=is%3Aissue+is%3Aopen+label%3Alocale-request)
+[`locale-request` issue](https://github.com/eeeearth/speeeecies/issues?q=is%3Aissue+is%3Aopen+label%3Alocale-request)
 (Berlin, Tokyo, Sydney, Cape Town, São Paulo and more) and follow
 "Contribute a locale" in [`AGENTS.md`](AGENTS.md).
 

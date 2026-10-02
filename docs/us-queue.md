@@ -19,7 +19,7 @@ grouped into waves of about six.
 ## Taking a place
 
 Waves 5 to 8 are open to contributors. Each place in them gets an open
-[`locale-request` issue](https://github.com/jt55401/speeeecies/issues?q=is%3Aissue+is%3Aopen+label%3Alocale-request)
+[`locale-request` issue](https://github.com/eeeearth/speeeecies/issues?q=is%3Aissue+is%3Aopen+label%3Alocale-request)
 with a suggested manifest, data pointers and 10 to 12 candidate species.
 Claim one there and follow "Contribute a locale" in
 [`AGENTS.md`](../AGENTS.md). The maintainers build the earlier waves
