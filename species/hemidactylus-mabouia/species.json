@@ -1,0 +1,656 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Hemidactylus mabouia",
+  "slug": "hemidactylus-mabouia",
+  "common_names": {
+    "en": "Tropical house gecko",
+    "pt": "lagarto-de-parede"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Reptilia",
+    "order": "Squamata",
+    "family": "Gekkonidae",
+    "genus": "Hemidactylus",
+    "authority": "(Moreau De Jonnès, 1818)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 5959942,
+    "inat_taxon_id": 68492,
+    "wikidata": "Q2703241"
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "BR"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk",
+      "Climb"
+    ],
+    "thermoregulation": "Ectotherm",
+    "skin": "Scales",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Cavity",
+    "perching": false,
+    "senses": {
+      "vision_color": true,
+      "night_vision": true,
+      "hearing": "Med",
+      "olfaction": "Low"
+    },
+    "size_class": "Tiny",
+    "mass_kg": 0.0046,
+    "mass_range_kg": [
+      0.0045,
+      0.0049
+    ],
+    "length_m": 0.1135,
+    "shoulder_height_m": 0.02,
+    "lifespan_y": 5,
+    "diet": {
+      "invertebrate": 1.0
+    },
+    "social": {
+      "structure": "Solitary",
+      "group_size": [
+        1,
+        1
+      ]
+    },
+    "activity_pattern": "Nocturnal",
+    "defense": "Flee",
+    "wariness": 0.55
+  },
+  "habitat": {
+    "use": {
+      "arboreal": 0.55,
+      "ground": 0.45
+    },
+    "shelter_tag": "cavity",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 1.0
+      },
+      {
+        "tag": "shelter",
+        "kind": "Shelter",
+        "weight": 0.7
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Exploiter",
+      "uses_gardens": true,
+      "light_max": 1.0,
+      "notes": "A synanthropic gecko that lives on and inside buildings, hunts household insect pests, and in some Caribbean cultures is considered good luck to have in the home; it hides in cracks and crevices by day."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "10-01",
+        "end": "03-31",
+        "note": "Breeding through the warm, wet season; both sexes reach sexual maturity after 6 to 12 months, maturity judged on size rather than age."
+      },
+      {
+        "name": "territorial",
+        "start": "04-01",
+        "end": "09-30"
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg",
+        "duration_days": 60,
+        "scale": 0.08
+      },
+      {
+        "stage": "Juvenile",
+        "duration_days": 240,
+        "scale": 0.5
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-ground-forager-v1",
+    "params": {
+      "food_tag": "invertebrate",
+      "flee_m": 1.5,
+      "calm_m": 5,
+      "food_m": 15,
+      "flee_gait": "walk",
+      "forage_gait": "walk",
+      "rest_sun_lo_deg": -6,
+      "rest_sun_hi_deg": 60
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "click",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [
+        "Night"
+      ],
+      "cooldown_s": 20,
+      "loudness": "Quiet",
+      "description": "A soft clicking or chirping heard when the animal is disturbed or near another gecko."
+    }
+  ],
+  "look": {
+    "body_plan": "quadruped",
+    "proportions": {
+      "torso_aspect": 2.1,
+      "leg_length_ratio": 0.3,
+      "head_scale": 0.55,
+      "neck_angle_deg": 4,
+      "tail_ratio": 1.0,
+      "ear_ratio": 0.06,
+      "beak_ratio": 0.25,
+      "girth_ratio": 0.7
+    },
+    "palette": {
+      "body": "#b49a72",
+      "belly": "#f0e6d2",
+      "markings": "#5b4530",
+      "accent": "#efe3cb",
+      "eye": "#1a1512"
+    },
+    "part_colors": {
+      "snout": "belly"
+    },
+    "extra_parts": [
+      {
+        "name": "band",
+        "parent": "body",
+        "offset": [
+          -0.15,
+          0.1,
+          0.0
+        ],
+        "size": [
+          0.14,
+          0.85,
+          0.94
+        ],
+        "color": "markings"
+      },
+      {
+        "name": "band_2",
+        "parent": "body",
+        "offset": [
+          0.2,
+          0.05,
+          0.0
+        ],
+        "size": [
+          0.12,
+          0.85,
+          0.9
+        ],
+        "color": "markings"
+      },
+      {
+        "name": "eyelid",
+        "parent": "head",
+        "offset": [
+          0.2,
+          0.18,
+          0.0
+        ],
+        "size": [
+          0.3,
+          0.18,
+          0.9
+        ],
+        "color": "accent"
+      },
+      {
+        "name": "toe_pad",
+        "parent": "leg_front_left",
+        "offset": [
+          0.55,
+          -0.35,
+          0.0
+        ],
+        "size": [
+          0.6,
+          0.5,
+          1.3
+        ],
+        "color": "accent",
+        "mirror": true
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/5959942",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "title": "GBIF Backbone Taxonomy: Tropical house gecko",
+      "accessed": "2026-10-01"
+    },
+    {
+      "id": "wikidata",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "url": "https://www.wikidata.org/wiki/Q2703241",
+      "title": "Wikidata: Tropical house gecko (Q2703241)",
+      "accessed": "2026-10-01"
+    },
+    {
+      "id": "wikipedia",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "attribution": "Wikipedia contributors, \"Tropical house gecko\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "url": "https://en.wikipedia.org/wiki/Tropical_house_gecko",
+      "title": "Wikipedia: Tropical house gecko",
+      "accessed": "2026-10-01"
+    },
+    {
+      "id": "eltontraits",
+      "url": "https://doi.org/10.6084/m9.figshare.3559887.v1",
+      "title": "EltonTraits 1.0: species-level foraging attributes of the world's birds and mammals (BirdFuncDat)",
+      "license": "CC0-1.0",
+      "kind": "dataset",
+      "attribution": "Wilman, H. et al. (2014) EltonTraits 1.0. Ecology 95:2027",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "accessed": "2026-10-01"
+    },
+    {
+      "id": "inat-activity-br-sp",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=68492&place_id=13334&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Hemidactylus mabouia in BR-SP",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-br-sp",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5959942&gadmGid=BRA.25_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Hemidactylus mabouia in BR-SP",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "GBIF Backbone Taxonomy gives Squamata Gekkonidae and the authorship on the matched name; GBIF returns order Squamata for this species rather than a suborder."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "GBIF usage key 5959942 and iNaturalist taxon id 68492, as matched by the GBIF backbone and the iNaturalist taxa API and given in issue #47."
+    },
+    "common_names": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "English common name from Wikidata; Portuguese 'lagarto-de-parede' from the article's interlanguage links."
+    },
+    "conservation": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "Wikidata P141 = least concern (Q211005)."
+    },
+    "range": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Wikipedia: the species is native to tropical America and is also reported from Africa and probably from Asia, and is often treated as a species complex. Only BR is listed, because the format's region codes are ISO 3166-1 countries and an African or Asian range would need country-level records this record does not have; the understatement is deliberate rather than an omission."
+    },
+    "traits.size_class": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Wikipedia: average mass 4.6 g."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Wikipedia: average total length 10-12.7 cm including the tail; midpoint 0.1135 m used."
+    },
+    "traits.lifespan_y": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "No openly licensed source states a wild lifespan for this species. Authored as a low-precision value typical of a small house gecko; it is a judgement, not a measurement."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Wikipedia: it eats household insect pests; diet recorded as wholly invertebrate."
+    },
+    "traits.social": {
+      "sources": [],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "No open source gives a group size; geckos are territorial and mostly seen singly, so Solitary [1, 1] is judgement."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Wikipedia describes it as nocturnal, hiding in cracks and crevices by day."
+    },
+    "traits.defense": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored: drops or flees into cover."
+    },
+    "traits.wariness": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored. Lives on and inside buildings and is unafraid of people, but quick to hide; set mid-range."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Quadrupedal lizard; quadruped mesh, as for the other gecko-shaped reptile in this repository."
+    },
+    "traits.limb_count": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Four limbs."
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Walk and Climb chosen: a wall-climbing gecko that walks on surfaces. Climb has no pose in schema/v0.1/body-plans.json, so no climb pose is declared."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Ectotherm."
+    },
+    "traits.skin": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Scales, with adhesive toe pads."
+    },
+    "traits.flight": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Scales, with adhesive toe pads."
+    },
+    "traits.respiration": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Scales, with adhesive toe pads."
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "None."
+    },
+    "traits.perching": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Clings to walls and ceilings rather than perching on branches like a bird; set to false."
+    },
+    "traits.nest_type": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: lays its eggs in cracks and crevices in walls, which is a cavity site, so Cavity is the honest value."
+    },
+    "habitat.use": {
+      "sources": [],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Authored: climbs walls, trees and ceilings but also forages on the ground and around foundations, so arboreal 0.55 and ground 0.45."
+    },
+    "habitat.shelter_tag": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored: hides in cracks and crevices in walls and under debris by day, so cavity is the closest tag."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia",
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Diet from Wikipedia; the shelter weight is judgement."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Wikipedia: in some Caribbean cultures it is considered good luck to have a tropical house gecko residing in the home, and it eats household insect pests."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Tropical species active year round; no dormancy described."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Sexual maturity at 6 to 12 months, judged on size rather than age, from the Portuguese Wikipedia article; the windows are judgements."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored judgement; gecko egg incubation is roughly two months."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored params for the shared ground-forager program. Climb is the declared non-walking locomotion and has no pose in schema/v0.1/body-plans.json, so no climb pose is declared; a very short flee distance matches a small animal that drops into cover. rest_sun_lo_deg/rest_sun_hi_deg set to -6/60 so the gecko rests through the warm part of the day and forages after dark."
+    },
+    "look": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Colours from the Wikipedia description (normally banded in black and brown, pale underside, clawed toes); proportions authored for a small gecko with a long tapering tail, and the band, eyelid and toe-pad extra parts render the banding and adhesive pads."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "No published mass range; females are on average somewhat larger than males (mean snout-vent length 54.47 mm against 51.56 mm for males), so the range is that male-to-female mean ratio applied to the 4.6 g average and rounded."
+    },
+    "traits.shoulder_height_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored geometry estimate for the required quadruped field: a small gecko carried flat on the ground and on walls, so shoulder height is set to 0.02 m, about 18% of the 0.1135 m total length. Wikipedia gives no shoulder measurement."
+    },
+    "traits.senses": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored from the species' biology: colour vision plus strong night vision for a nocturnal insectivore, with acute hearing. No open source quantifies them here."
+    },
+    "vocalizations.click": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Description from the Wikipedia account of the species' vocalisations; months, time windows, cooldowns and loudness are authored judgement, as no open source quantifies them. No open source gives a frequency band, so freq_hz is omitted."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies maintainers",
+      "agent": "opencode"
+    }
+  ],
+  "activity": {
+    "regions": [
+      {
+        "region": "BR-SP",
+        "monthly": [
+          0.45,
+          0.44,
+          1.0,
+          0.48,
+          0.38,
+          0.26,
+          0.23,
+          0.32,
+          0.31,
+          0.43,
+          0.27,
+          0.43
+        ],
+        "method": "mean(inat_raw, gbif_raw)",
+        "observations": 2186,
+        "sources": [
+          "inat-activity-br-sp",
+          "gbif-activity-br-sp"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 13334,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=68492&place_id=13334&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": null,
+            "total": 1050,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "BRA.25_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5959942&gadmGid=BRA.25_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": null,
+            "total": 1136,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  }
+}
