@@ -179,6 +179,12 @@
         "start": "09-01",
         "end": "02-28",
         "note": "Pairs maintain territories and stay together for several years; outside the main nesting months they remain local and territorial."
+      },
+      {
+        "name": "nesting",
+        "start": "02-15",
+        "end": "08-31",
+        "note": "Southern laying runs from late February to late August (the dates given for Texas; Alabama birds sit inside that window), with up to three broods a year."
       }
     ],
     "life_stages": [
@@ -238,6 +244,55 @@
             "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2493801&gadmGid=USA.19_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
             "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.19_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
             "total": 211579,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "US-AL",
+        "monthly": [
+          0.76,
+          0.77,
+          0.73,
+          0.66,
+          0.82,
+          1.0,
+          0.91,
+          0.87,
+          0.83,
+          0.78,
+          0.78,
+          0.78
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 234166,
+        "sources": [
+          "inat-activity-us-al",
+          "gbif-activity-us-al"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 19,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=7513&place_id=19&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=19&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 2008,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.1_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2493801&gadmGid=USA.1_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.1_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 232158,
             "usable": true
           },
           "used": [
@@ -562,6 +617,24 @@
       "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
       "accessed": "2026-09-30",
       "kind": "api"
+    },
+    {
+      "id": "inat-activity-us-al",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=7513&place_id=19&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Thryothorus ludovicianus in US-AL",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-al",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2493801&gadmGid=USA.1_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Thryothorus ludovicianus in US-AL",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
     }
   ],
   "provenance": {
@@ -680,7 +753,8 @@
         "eltontraits"
       ],
       "confidence": "High",
-      "note": "BirdFuncDat BodyMass-Value = 18.96 g for Thryothorus ludovicianus."
+      "note": "BirdFuncDat BodyMass-Value = 18.96 g for Thryothorus ludovicianus.",
+      "derived": true
     },
     "traits.mass_range_kg": {
       "sources": [
@@ -757,7 +831,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "EltonTraits ForStrat-ground 40, understory 40, midhigh 20; mapped to 40 percent ground and 60 percent arboreal/vegetation stratum."
+      "note": "EltonTraits ForStrat-ground 40, understory 40, midhigh 20; mapped to 40 percent ground and 60 percent arboreal/vegetation stratum.",
+      "derived": true
     },
     "habitat.shelter_tag": {
       "sources": [
@@ -817,7 +892,9 @@
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "'Both males and females give out alarm calls, but only males sing to advertise territory', and the female's territorial chatter is described separately."
     },
     "vocalizations.chatter": {
       "sources": [
@@ -850,6 +927,10 @@
   "contributors": [
     {
       "name": "speeeecies contributors",
+      "agent": "opencode"
+    },
+    {
+      "name": "opencode agent (al-birmingham locale, issue #73)",
       "agent": "opencode"
     }
   ]

@@ -5,7 +5,11 @@
   "id": "Procyon lotor",
   "slug": "procyon-lotor",
   "common_names": {
-    "en": "Common Raccoon"
+    "en": "Common Raccoon",
+    "fr": "raton laveur",
+    "de": "Waschbär",
+    "nl": "wasbeer",
+    "es": "mapache"
   },
   "taxonomy": {
     "kingdom": "Animalia",
@@ -21,7 +25,8 @@
     "gbif_usage_key": 5218786,
     "inat_taxon_id": 41663,
     "itis_tsn": 180575,
-    "wikidata": "Q121439"
+    "wikidata": "Q121439",
+    "ncbi_taxon_id": 9654
   },
   "conservation": {
     "iucn": "LC",
@@ -31,9 +36,25 @@
     "native": [
       "US",
       "CA",
-      "MX"
+      "MX",
+      "GT",
+      "BZ",
+      "HN",
+      "SV",
+      "NI",
+      "CR",
+      "PA"
     ],
     "introduced": [
+      "DE",
+      "JP",
+      "FR",
+      "ES",
+      "IT",
+      "BY",
+      "AZ"
+    ],
+    "invasive_in": [
       "DE",
       "JP"
     ]
@@ -64,9 +85,9 @@
     "lifespan_y": 2.5,
     "diet": {
       "invertebrate": 0.4,
-      "vertebrate": 0.27,
       "fruit": 0.2,
-      "mast": 0.13
+      "mast": 0.13,
+      "vertebrate": 0.27
     },
     "social": {
       "structure": "Solitary",
@@ -83,7 +104,8 @@
       "olfaction": "Med",
       "hearing": "High"
     },
-    "shoulder_height_m": 0.27
+    "shoulder_height_m": 0.27,
+    "home_range_ha": 20
   },
   "habitat": {
     "use": {
@@ -174,6 +196,11 @@
       "road_mortality": "Medium",
       "uses_gardens": true,
       "notes": "Thrives in cities and suburbs, where fruit and insects in gardens and leftovers in municipal waste are readily available, and sleeps in hollows in old garden trees, garages, sheds and attics. Road traffic is one of the two commonest causes of death in much of the range. It climbs a vertical structure when threatened rather than running, and mostly avoids open ground."
+    },
+    "density_per_ha": {
+      "min": 0.05,
+      "typical": 0.5,
+      "max": 1.5
     }
   },
   "seasonal": {
@@ -211,6 +238,12 @@
         "start": "12-01",
         "end": "12-31",
         "note": "Raccoons stay active through the winter in tree hollows, rock crevices and other sheltered dens rather than hibernating, and can lose as much as half their body weight to fat reserves before spring."
+      },
+      {
+        "name": "caching",
+        "start": "09-01",
+        "end": "11-30",
+        "note": "Late-summer and autumn fruits and nuts are eaten heavily to build the fat stores for winter."
       }
     ],
     "life_stages": [
@@ -324,6 +357,55 @@
             "gbif"
           ]
         }
+      },
+      {
+        "region": "US-AL",
+        "monthly": [
+          0.97,
+          1.0,
+          0.87,
+          0.55,
+          0.66,
+          0.58,
+          0.75,
+          0.92,
+          0.84,
+          0.65,
+          0.96,
+          0.96
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 2436,
+        "sources": [
+          "inat-activity-us-al",
+          "gbif-activity-us-al"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 19,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=41663&place_id=19&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=19&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 1292,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "C",
+            "area": [
+              "gadmGid",
+              "USA.1_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5218786&gadmGid=USA.1_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.1_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "total": 1144,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
       }
     ]
   },
@@ -380,6 +462,28 @@
       "cooldown_s": 12,
       "loudness": "Quiet",
       "description": "The birdlike twittering of newborn kits, one of thirteen identified vocal calls of which seven are used between a mother and her kits."
+    },
+    {
+      "call_id": "scream",
+      "context": "Scream",
+      "season_months": [],
+      "time_windows": [
+        "Night"
+      ],
+      "cooldown_s": 30,
+      "loudness": "Loud",
+      "description": "A piercing shriek, most often heard in fights between males during the mating season and sometimes mistaken for a bird or a human cry."
+    },
+    {
+      "call_id": "whine",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [
+        "Night"
+      ],
+      "cooldown_s": 25,
+      "loudness": "Quiet",
+      "description": "A soft, high whine and purr-like sound exchanged between a mother and her kits."
     }
   ],
   "look": {
@@ -569,6 +673,33 @@
       "title": "GBIF occurrence search for Procyon lotor in US-PA",
       "license": "CC-BY-4.0",
       "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=180575",
+      "title": "ITIS: Procyon lotor, TSN 180575",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "inat-activity-us-al",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=41663&place_id=19&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Procyon lotor in US-AL",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-al",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5218786&gadmGid=USA.1_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+      "title": "GBIF occurrence search for Procyon lotor in US-AL",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
       "accessed": "2026-10-01",
       "kind": "api"
     }
@@ -873,7 +1004,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "The shoulder height is between 23 and 30 cm; 27 cm is the mid-range value."
+      "note": "The shoulder height is between 23 and 30 cm; 27 cm is the mid-range value.",
+      "derived": true
     },
     "vocalizations.twitter": {
       "sources": [
@@ -881,6 +1013,30 @@
       ],
       "confidence": "High",
       "note": "Seven of thirteen identified vocal calls are used in communication between a mother and her kits, one of these being the birdlike twittering of newborns."
+    },
+    "traits.home_range_ha": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Urban home ranges are 3-40 ha for females and 8-80 ha for males; 20 ha is a judgement within that band. Rural home ranges are far larger (2-50 km2)."
+    },
+    "habitat.density_per_ha": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Converted from the stated 0.5-3.2 animals/km2 in prairies, up to 6/km2 in upland hardwood forest, and 50-150/km2 in the densest urban areas; typical is a judgement between the rural and urban figures."
+    },
+    "vocalizations": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The raccoon has thirteen identified calls; the four here (chitter, growl, scream, whine) are described qualitatively in the article's communication text. Time windows and cooldowns are authored judgement, as no open source quantifies them."
     }
   },
   "contributors": [
@@ -890,6 +1046,10 @@
     },
     {
       "name": "sisyphus-agent",
+      "agent": "opencode"
+    },
+    {
+      "name": "opencode agent (al-birmingham locale, issue #73)",
       "agent": "opencode"
     }
   ]

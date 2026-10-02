@@ -8,7 +8,7 @@
     "en": "Northern mockingbird",
     "fr": "Moqueur polyglotte",
     "de": "Gartenspottdrossel",
-    "es": "sinsonte norte\u00f1o"
+    "es": "sinsonte norteño"
   },
   "taxonomy": {
     "kingdom": "Animalia",
@@ -41,7 +41,8 @@
       "KY",
       "JM",
       "HT",
-      "DO"
+      "DO",
+      "PR"
     ],
     "koppen": [
       "Cfa",
@@ -50,6 +51,11 @@
       "BSh",
       "BWh",
       "Aw"
+    ],
+    "introduced": [
+      "BB",
+      "SH",
+      "PF"
     ]
   },
   "traits": {
@@ -284,6 +290,12 @@
         "region": "CA",
         "fraction": 0.25,
         "note": "A small northern share may shift south in inclement weather; fraction and dates are conservative judgement for northern Canada only."
+      },
+      {
+        "name": "nesting",
+        "start": "04-01",
+        "end": "08-31",
+        "note": "Judgement: the article describes several nests per breeding season, an average clutch of four eggs and nestling development to leaving the nest in 11 to 13 days, but dates no season, so late spring to late summer is authored."
       }
     ],
     "life_stages": [
@@ -344,6 +356,55 @@
             "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5231677&gadmGid=USA.19_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
             "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.19_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
             "total": 257051,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "US-AL",
+        "monthly": [
+          0.74,
+          0.92,
+          1.0,
+          0.88,
+          0.77,
+          0.88,
+          0.93,
+          0.7,
+          0.78,
+          0.99,
+          0.81,
+          0.7
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 227791,
+        "sources": [
+          "inat-activity-us-al",
+          "gbif-activity-us-al"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 19,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=14886&place_id=19&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=19&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 3653,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.1_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5231677&gadmGid=USA.1_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.1_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 224138,
             "usable": true
           },
           "used": [
@@ -419,6 +480,30 @@
       "cooldown_s": 15,
       "loudness": "Moderate",
       "description": "Short calls exchanged by mates and neighboring birds during territorial and breeding interactions."
+    },
+    {
+      "call_id": "hew",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Day",
+        "DawnChorus",
+        "Dusk"
+      ],
+      "cooldown_s": 10,
+      "loudness": "Loud",
+      "description": "One of four recognised calls; used by both sexes against nest predators, in conspecific chasing and in various interactions between mates."
+    },
+    {
+      "call_id": "chat",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 8,
+      "loudness": "Loud",
+      "description": "The chat or chatburst call, given when the birds aggressively defend their nests and surrounding area against other birds and animals."
     }
   ],
   "look": {
@@ -614,6 +699,24 @@
       "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
       "accessed": "2026-09-30",
       "kind": "api"
+    },
+    {
+      "id": "inat-activity-us-al",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=14886&place_id=19&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Mimus polyglottos in US-AL",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-al",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5231677&gadmGid=USA.1_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Mimus polyglottos in US-AL",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
     }
   ],
   "provenance": {
@@ -773,7 +876,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "EltonTraits BodyMass-Value 48.5 g; Wikipedia range 40-58 g."
+      "note": "EltonTraits BodyMass-Value 48.5 g; Wikipedia range 40-58 g.",
+      "derived": true
     },
     "traits.mass_range_kg": {
       "sources": [
@@ -852,7 +956,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "EltonTraits ForStrat-ground 70 and ForStrat-understory 30; Wikipedia says forages on the ground or in vegetation and flies down from perches."
+      "note": "EltonTraits ForStrat-ground 70 and ForStrat-understory 30; Wikipedia says forages on the ground or in vegetation and flies down from perches.",
+      "derived": true
     },
     "habitat.shelter_tag": {
       "sources": [
@@ -970,12 +1075,28 @@
       ],
       "confidence": "High",
       "note": "Parent coverage for external identifier object; individual identifiers also have field-level provenance."
+    },
+    "vocalizations.hew": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "vocalizations.chat": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
     }
   },
   "contributors": [
     {
       "name": "OpenCode",
       "agent": "gpt-5.5"
+    },
+    {
+      "name": "opencode agent (al-birmingham locale, issue #73)",
+      "agent": "opencode"
     }
   ]
 }
