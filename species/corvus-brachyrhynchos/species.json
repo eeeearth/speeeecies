@@ -5,7 +5,9 @@
   "id": "Corvus brachyrhynchos",
   "slug": "corvus-brachyrhynchos",
   "common_names": {
-    "en": "American Crow"
+    "en": "American Crow",
+    "fr": "Corneille d'Amérique",
+    "de": "Amerikanische Krähe"
   },
   "taxonomy": {
     "kingdom": "Animalia",
@@ -14,7 +16,7 @@
     "order": "Passeriformes",
     "family": "Corvidae",
     "genus": "Corvus",
-    "authority": "C.L.Brehm, 1822",
+    "authority": "Brehm, 1822",
     "status": "Accepted"
   },
   "external": {
@@ -32,15 +34,15 @@
       "US",
       "CA",
       "MX"
-    ]
+    ],
+    "introduced": []
   },
   "traits": {
     "body_plan": "Vertebrate",
     "limb_count": 2,
     "locomotion_modes": [
-      "Hop",
-      "Fly",
-      "Walk"
+      "Walk",
+      "Fly"
     ],
     "thermoregulation": "Endotherm",
     "skin": "Feathers",
@@ -50,100 +52,104 @@
     "nest_type": "Platform",
     "perching": true,
     "size_class": "Small",
-    "mass_kg": 0.44876,
+    "mass_kg": 0.45,
     "mass_range_kg": [
-      0.316,
-      0.62
+      0.3,
+      0.6
     ],
-    "length_m": 0.465,
-    "wingspan_m": 0.925,
-    "lifespan_y": 7.5,
+    "length_m": 0.45,
+    "wingspan_m": 0.9,
+    "lifespan_y": 7.0,
     "diet": {
-      "invertebrate": 0.2,
-      "vertebrate": 0.3,
-      "fruit": 0.2,
-      "carrion": 0.2,
-      "seed": 0.1
+      "invertebrate": 0.3,
+      "carrion": 0.3,
+      "seed": 0.2,
+      "fruit": 0.1,
+      "vertebrate": 0.1
     },
     "social": {
       "structure": "Flock",
       "group_size": [
-        1,
-        100
+        2,
+        20
       ]
     },
     "activity_pattern": "Diurnal",
     "defense": "Mob",
-    "wariness": 0.3
+    "wariness": 0.6
   },
   "habitat": {
     "use": {
-      "ground": 0.6,
-      "arboreal": 0.2,
-      "aerial": 0.2
+      "ground": 0.5,
+      "arboreal": 0.5
     },
     "shelter_tag": "perch",
     "resources": [
       {
         "tag": "invertebrate",
         "kind": "Predation",
-        "weight": 0.2
-      },
-      {
-        "tag": "small_vertebrate",
-        "kind": "Predation",
         "weight": 0.3
       },
       {
         "tag": "carrion",
         "kind": "Scavenging",
+        "weight": 0.3
+      },
+      {
+        "tag": "seed",
+        "kind": "Herbivory",
         "weight": 0.2
       },
       {
         "tag": "fruit",
         "kind": "Herbivory",
-        "weight": 0.2
-      },
-      {
-        "tag": "seed",
-        "kind": "Herbivory",
         "weight": 0.1
       },
       {
-        "tag": "nest_platform",
-        "kind": "Nesting",
-        "weight": 0.8
+        "tag": "small_vertebrate",
+        "kind": "Predation",
+        "weight": 0.1
       },
       {
         "tag": "perch",
         "kind": "Shelter",
-        "weight": 0.7
+        "weight": 0.6
+      },
+      {
+        "tag": "nest_platform",
+        "kind": "Nesting",
+        "weight": 1.0
       }
     ],
     "human_tolerance": {
-      "urban_affinity": "Exploiter",
+      "urban_affinity": "Adapter",
       "uses_gardens": true,
-      "flight_distance_m": 10,
-      "notes": "Thrives around farms, towns and cities; feeds on refuse and roadkill as well as natural foods."
+      "light_max": 0.8,
+      "road_mortality": "High",
+      "notes": "Common in city parks, suburbs and farmland; roosts in large winter flocks; often killed on roads while scavenging carrion.",
+      "flight_distance_m": 10
     }
   },
   "seasonal": {
-    "strategy": "ActiveYearRound",
+    "strategy": "PartialMigration",
+    "winter_fraction": 0.5,
     "phases": [
       {
         "name": "breeding",
         "start": "03-01",
-        "end": "06-30"
+        "end": "07-31",
+        "note": "Nests high in a tree; one brood per season; family groups stay together for months."
+      },
+      {
+        "name": "flocking",
+        "start": "08-01",
+        "end": "02-28",
+        "note": "Forms large winter roosts, sometimes thousands of birds."
       },
       {
         "name": "young",
         "start": "04-01",
         "end": "07-31"
-      },
-      {
-        "name": "flocking",
-        "start": "10-01",
-        "end": "02-28"
       }
     ],
     "life_stages": [
@@ -152,7 +158,7 @@
       },
       {
         "stage": "Juvenile",
-        "duration_days": 36,
+        "duration_days": 35,
         "scale": 0.85
       },
       {
@@ -162,6 +168,55 @@
   },
   "activity": {
     "regions": [
+      {
+        "region": "US-VT",
+        "monthly": [
+          0.78,
+          1.0,
+          0.9,
+          0.49,
+          0.3,
+          0.32,
+          0.34,
+          0.37,
+          0.43,
+          0.59,
+          0.71,
+          0.78
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 388077,
+        "sources": [
+          "inat-activity-us-vt",
+          "gbif-activity-us-vt"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 47,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=8021&place_id=47&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=47&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 2258,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.46_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2482507&gadmGid=USA.46_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.46_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 385819,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
       {
         "region": "US-DE",
         "monthly": [
@@ -214,28 +269,37 @@
   "behavior": {
     "program": "bt-perching-songbird-v1",
     "params": {
-      "flee_m": 10,
+      "flee_m": 8,
       "food_tag": "invertebrate",
       "song": "caw",
-      "alarm": "rattle",
-      "song_cooldown_s": 15,
-      "nest_m1": 5,
-      "nest_m2": 12
+      "alarm": "alarm",
+      "nest_m1": 3,
+      "nest_m2": 7,
+      "song_cooldown_s": 15
     }
   },
   "vocalizations": [
     {
       "call_id": "caw",
-      "context": "Contact",
+      "context": "Song",
       "season_months": [],
       "time_windows": [
-        "DawnChorus",
-        "Day",
-        "Dusk"
+        "Day"
       ],
-      "cooldown_s": 10,
+      "cooldown_s": 6,
       "loudness": "Loud",
-      "description": "A loud, short, rapid 'caaw-caaw-caaw', usually given with the head thrust up and down."
+      "description": "The familiar harsh 'caw-caw-caw', the species' principal call, given from a perch or in flight; used for contact, assembly and territorial advertisement."
+    },
+    {
+      "call_id": "alarm",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 3,
+      "loudness": "Loud",
+      "description": "Rapid, emphatic series of short 'caw' notes given when mobbing an owl, hawk or other predator."
     },
     {
       "call_id": "rattle",
@@ -252,31 +316,32 @@
   "look": {
     "body_plan": "biped_winged",
     "proportions": {
-      "torso_aspect": 1.6,
+      "torso_aspect": 1.5,
       "leg_length_ratio": 0.35,
-      "head_scale": 0.7,
-      "neck_angle_deg": 15,
-      "tail_ratio": 1.1,
-      "wing_aspect": 2.8,
-      "beak_ratio": 0.45,
-      "girth_ratio": 1.0
+      "head_scale": 0.85,
+      "neck_angle_deg": 12,
+      "tail_ratio": 0.5,
+      "wing_aspect": 2.4,
+      "beak_ratio": 0.55,
+      "girth_ratio": 1.1
     },
     "palette": {
-      "body": "#1a1a1c",
-      "belly": "#26262a",
-      "markings": "#0d0d0f",
-      "accent": "#3a3a40",
-      "eye": "#0a0a0a"
+      "body": "#1a1a1a",
+      "belly": "#2c2c2c",
+      "markings": "#0d0d0d",
+      "accent": "#3a3a3a",
+      "eye": "#0d0d0d"
     },
     "part_colors": {
-      "beak": "markings"
+      "beak": "markings",
+      "wing_*": "body",
+      "tail": "body",
+      "breast": "belly"
     },
     "poses": {
       "idle": {},
-      "hop": {},
       "walk": {},
       "fly": {},
-      "glide": {},
       "perched": {},
       "rest": {}
     }
@@ -295,7 +360,7 @@
     {
       "id": "wikidata",
       "url": "https://www.wikidata.org/wiki/Q267735",
-      "title": "Wikidata: Corvus brachyrhynchos (Q267735)",
+      "title": "Wikidata: American Crow (Q267735)",
       "license": "CC0-1.0",
       "kind": "database",
       "accessed": "2026-10-01",
@@ -304,11 +369,11 @@
     {
       "id": "wikipedia",
       "url": "https://en.wikipedia.org/wiki/American_crow",
-      "title": "Wikipedia: Corvus brachyrhynchos",
+      "title": "Wikipedia: American crow",
       "license": "CC-BY-SA-4.0",
       "kind": "webpage",
       "accessed": "2026-10-01",
-      "attribution": "Wikipedia contributors, \"Corvus brachyrhynchos\", English Wikipedia, CC BY-SA 4.0",
+      "attribution": "Wikipedia contributors, \"American crow\", English Wikipedia, CC BY-SA 4.0",
       "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
     },
     {
@@ -319,6 +384,24 @@
       "kind": "database",
       "accessed": "2026-10-01",
       "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "inat-activity-us-vt",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=8021&place_id=47&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Corvus brachyrhynchos in US-VT",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-vt",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2482507&gadmGid=USA.46_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Corvus brachyrhynchos in US-VT",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
     },
     {
       "id": "eltontraits",
@@ -360,7 +443,8 @@
       "sources": [
         "wikidata"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "note": "en/fr/de labels from Wikidata sitelink titles."
     },
     "conservation": {
       "sources": [
@@ -375,7 +459,7 @@
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "Native to North America, across the United States and Canada and into northern Mexico."
+      "note": "Native across North America: breeds in Canada and the US, winters through the US and into Mexico."
     },
     "traits.body_plan": {
       "sources": [
@@ -393,7 +477,8 @@
       "sources": [
         "wikipedia"
       ],
-      "confidence": "Medium"
+      "confidence": "High",
+      "note": "Walks and hops on the ground, flies between sites and to roosts."
     },
     "traits.thermoregulation": {
       "sources": [
@@ -429,7 +514,8 @@
       "sources": [
         "wikipedia"
       ],
-      "confidence": "Medium",
+      "confidence": "High",
+      "note": "Large stick platform nest high in a tree.",
       "derived": true
     },
     "traits.perching": {
@@ -439,18 +525,20 @@
       "confidence": "High"
     },
     "traits.size_class": {
-      "sources": [],
-      "confidence": "High",
-      "derived": true,
-      "note": "From mass_kg (EltonTraits 1.0)."
-    },
-    "traits.mass_kg": {
       "sources": [
-        "eltontraits"
+        "wikipedia"
       ],
       "confidence": "High",
       "derived": true,
-      "note": "EltonTraits BodyMass-Value 448.76 g; within Wikipedia's 316-620 g range."
+      "note": "From mass_kg 0.45 (Small < 1 kg)."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'316-620 g' typical adult mass; 450 g used.",
+      "derived": true
     },
     "traits.mass_range_kg": {
       "sources": [
@@ -463,122 +551,145 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "derived": true,
-      "note": "Midpoint of Wikipedia's 40-53 cm body length."
+      "note": "'40-53 cm' total length; lower end used.",
+      "derived": true
     },
     "traits.wingspan_m": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High",
-      "derived": true,
-      "note": "Midpoint of Wikipedia's 85-100 cm wingspan."
+      "note": "'85-100 cm' wingspan; midpoint used.",
+      "derived": true
     },
     "traits.lifespan_y": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "Medium",
-      "note": "Wikipedia: the average lifespan in the wild is 7-8 years."
+      "confidence": "Low",
+      "derived": true,
+      "note": "Wikipedia gives a maximum of 20 years in the wild; typical lifespan is shorter, 7 years used as a judgement."
     },
     "traits.diet": {
       "sources": [
-        "eltontraits",
         "wikipedia"
       ],
-      "confidence": "High",
+      "confidence": "Medium",
       "derived": true,
-      "note": "EltonTraits records 20% invertebrates, 30% vertebrates (including fish), 20% carrion, 20% fruit and 10% seed; Wikipedia describes an omnivore eating insects, seeds, nuts, small animals and carrion."
+      "note": "Omnivorous: invertebrates, carrion, seeds, fruit and small vertebrates; shares are judgement from the described diet."
     },
     "traits.social": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "Medium",
-      "derived": true
+      "derived": true,
+      "note": "Family groups in the breeding season, large winter roosts; group_size is judgement."
     },
     "traits.activity_pattern": {
       "sources": [
-        "eltontraits",
         "wikipedia"
       ],
       "confidence": "High"
     },
     "traits.defense": {
-      "sources": [],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Authored: the usual response to a threat."
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Mobs and drives away predators such as owls and hawks.",
+      "derived": true
     },
     "traits.wariness": {
-      "sources": [],
-      "confidence": "Low",
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
       "derived": true,
-      "note": "Judgement: how close a person can approach before it flees."
+      "note": "Wary of people where hunted, bolder in cities."
     },
     "habitat.use": {
       "sources": [
-        "eltontraits",
         "wikipedia"
       ],
-      "confidence": "Low",
+      "confidence": "Medium",
       "derived": true,
-      "note": "EltonTraits ForStrat gives ground 80% and understory 20%; the aerial share is authored from its frequent flights and soaring."
+      "note": "Forages on the ground in open areas; roosts and nests in trees."
     },
     "habitat.shelter_tag": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "Medium",
-      "derived": true,
-      "note": "Roosts and nests in trees."
+      "note": "Roosts in trees, often in large communal winter roosts.",
+      "derived": true
     },
     "habitat.resources": {
       "sources": [
-        "eltontraits",
         "wikipedia"
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "Food shares follow traits.diet; nesting and shelter weights are judgement."
+      "note": "Invertebrates, carrion, seeds and fruit from the ground; platform nests in trees."
     },
     "habitat.human_tolerance": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High",
-      "note": "Wikipedia: common around human settlement and farmland."
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Common in city parks and suburbs; road_mortality High from scavenging on roads."
     },
     "seasonal.strategy": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High",
-      "note": "Resident across the United States, including Delaware, with winter flocks."
+      "confidence": "Medium",
+      "note": "Northern populations migrate, southern birds resident; Vermont holds a mix, so PartialMigration with winter_fraction 0.5."
     },
     "seasonal.phases": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "Medium",
+      "confidence": "Low",
       "derived": true,
-      "note": "Breeding March-June and young April-July from Wikipedia's breeding section; the winter flocking window is judgement."
+      "note": "Breeding from March; exact phase dates are judgement."
     },
     "seasonal.life_stages": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "Medium",
+      "confidence": "Low",
       "derived": true,
-      "note": "Egg, then a juvenile period of about five weeks to fledging, then adult."
+      "note": "Nestling period about 35 days; duration_days and scale are judgement."
     },
     "vocalizations.caw": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "Medium",
+      "confidence": "High",
       "derived": true,
       "note": "Call description and context from the Wikipedia article's description/behaviour sections."
+    },
+    "vocalizations.alarm": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Entirely black with a slight glossy sheen; strong black bill. Proportions are judgement."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared perching-songbird program: the caw stands in for the song call; longer flee distance reflecting wariness."
     },
     "vocalizations.rattle": {
       "sources": [
@@ -587,23 +698,13 @@
       "confidence": "Medium",
       "derived": true,
       "note": "Call description and context from the Wikipedia article's description/behaviour sections."
-    },
-    "look": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "All-black plumage with a slight iridescent sheen and a heavy bill, from Wikipedia's description; proportions authored."
-    },
-    "behavior": {
-      "sources": [],
-      "confidence": "Low",
-      "derived": true,
-      "note": "Authored parameters for the shared perching-songbird program, scaled to a large corvid."
     }
   },
   "contributors": [
+    {
+      "name": "speeeecies agent",
+      "agent": "claude-code"
+    },
     {
       "name": "speeeecies maintainers",
       "agent": "opencode"
