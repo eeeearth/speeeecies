@@ -1,0 +1,686 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Blarina brevicauda",
+  "slug": "blarina-brevicauda",
+  "common_names": {
+    "en": "Northern Short-tailed Shrew"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Mammalia",
+    "order": "Eulipotyphla",
+    "family": "Soricidae",
+    "genus": "Blarina",
+    "authority": "(Say, 1823)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2435862,
+    "inat_taxon_id": 63113,
+    "itis_tsn": 179967,
+    "wikidata": "Q1766543"
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "US",
+      "CA"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk",
+      "Trot"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Fur",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Burrow",
+    "perching": false,
+    "size_class": "Tiny",
+    "mass_kg": 0.0225,
+    "mass_range_kg": [
+      0.015,
+      0.03
+    ],
+    "length_m": 0.124,
+    "lifespan_y": 1.1,
+    "diet": {
+      "invertebrate": 0.55,
+      "vertebrate": 0.35,
+      "seed": 0.1
+    },
+    "social": {
+      "structure": "Solitary",
+      "group_size": [
+        1,
+        1
+      ]
+    },
+    "activity_pattern": "Nocturnal",
+    "defense": "Toxin",
+    "wariness": 0.3,
+    "senses": {
+      "olfaction": "Low",
+      "vibration": true
+    }
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.85,
+      "arboreal": 0.15
+    },
+    "shelter_tag": "burrow",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.55
+      },
+      {
+        "tag": "small_vertebrate",
+        "kind": "Predation",
+        "weight": 0.35
+      },
+      {
+        "tag": "seed",
+        "kind": "Herbivory",
+        "weight": 0.1
+      },
+      {
+        "tag": "burrow",
+        "kind": "Shelter",
+        "weight": 0.9
+      },
+      {
+        "tag": "leaf_litter",
+        "kind": "Shelter",
+        "weight": 0.8
+      },
+      {
+        "tag": "water",
+        "kind": "Water",
+        "weight": 0.3
+      }
+    ],
+    "requires": [
+      {
+        "resource_within_m": 100,
+        "tag": "leaf_litter"
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "impervious_max": 0.5,
+      "light_max": 0.5,
+      "uses_gardens": true,
+      "notes": "Uses disturbed as readily as undisturbed ground, including household gardens, as long as the ground is moist and there is leaf litter or thick cover to tunnel under. It eats three times its own weight in a day and takes water from its prey, so it is drawn to where the soil is damp."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "moult",
+        "start": "10-01",
+        "end": "11-30",
+        "region": "US-OH",
+        "note": "Sheds the short, pale summer coat for the denser winter pelage; the coat changes back between February and July."
+      },
+      {
+        "name": "caching",
+        "start": "09-01",
+        "end": "03-31",
+        "region": "US-OH",
+        "note": "Hoards prey in the fall and winter or whenever prey is abundant: one study found it cached 87% of what it caught, ate 9% at once and left 4% where the prey died."
+      },
+      {
+        "name": "dormancy",
+        "start": "12-01",
+        "end": "02-28",
+        "region": "US-OH",
+        "note": "No true hibernation. Activity drops during cold periods, and the animal shelters in its lined nest, forages below leaf litter or snow where the temperature is milder, and moves earlier in the evening in winter than in summer."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Juvenile",
+        "duration_days": 60,
+        "scale": 0.5,
+        "requires_tag": "burrow"
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US-OH",
+        "monthly": [
+          0.73,
+          0.81,
+          0.83,
+          0.35,
+          0.29,
+          0.47,
+          0.46,
+          0.58,
+          0.65,
+          0.88,
+          0.79,
+          1.0
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 1456,
+        "sources": [
+          "inat-activity-us-oh",
+          "gbif-activity-us-oh"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 31,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=63113&place_id=31&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=31&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "total": 364,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.36_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2435862&gadmGid=USA.36_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.36_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 1092,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "CA-ON",
+        "monthly": [
+          0.36,
+          0.21,
+          0.16,
+          0.21,
+          0.31,
+          0.48,
+          0.68,
+          0.87,
+          1.0,
+          0.98,
+          0.58,
+          0.38
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 4130,
+        "sources": [
+          "inat-activity-ca-on",
+          "gbif-activity-ca-on"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 6883,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=63113&place_id=6883&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=6883&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 2111,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "CAN.9_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2435862&gadmGid=CAN.9_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=CAN.9_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 2019,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-ground-forager-v1",
+    "params": {
+      "flee_m": 4,
+      "calm_m": 12,
+      "food_tag": "invertebrate",
+      "food_m": 15,
+      "flee_gait": "trot",
+      "forage_gait": "walk",
+      "rest_sun_lo_deg": 10,
+      "rest_sun_hi_deg": 90
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "chitter",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [
+        "Night"
+      ],
+      "cooldown_s": 12,
+      "loudness": "Quiet",
+      "description": "A faint, high-pitched contact call used between individuals in the dark; the cited article does not describe this species' vocalizations, so the description is deliberately limited to what a nocturnal ground forager needs and is marked Low confidence."
+    }
+  ],
+  "look": {
+    "body_plan": "quadruped",
+    "proportions": {
+      "torso_aspect": 1.8,
+      "leg_length_ratio": 0.22,
+      "head_scale": 0.55,
+      "neck_angle_deg": 25,
+      "tail_ratio": 0.25,
+      "ear_ratio": 0.1,
+      "beak_ratio": 0.95,
+      "girth_ratio": 0.75
+    },
+    "palette": {
+      "body": "#4b4b4f",
+      "belly": "#94948f",
+      "markings": "#1b1b1d",
+      "accent": "#7d5b52",
+      "eye": "#0f0f10"
+    },
+    "part_colors": {
+      "snout": "accent",
+      "leg_front_left": "accent",
+      "leg_front_right": "accent",
+      "leg_rear_left": "accent",
+      "leg_rear_right": "accent",
+      "tail": "accent"
+    },
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "trot": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2435862",
+      "title": "GBIF Backbone Taxonomy: Blarina brevicauda",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q1766543",
+      "title": "Wikidata: Blarina brevicauda (Q1766543)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Northern_short-tailed_shrew",
+      "title": "Wikipedia: Northern Short-tailed Shrew",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Northern Short-tailed Shrew\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "us-itis",
+      "url": "https://www.itis.gov/ITISWebService/jsonservice/getFullRecordFromTSN?tsn=179967",
+      "title": "ITIS: Blarina brevicauda, TSN 179967, full record",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "inat-activity-us-oh",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=63113&place_id=31&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Blarina brevicauda in US-OH",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-oh",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2435862&gadmGid=USA.36_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Blarina brevicauda in US-OH",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "inat-activity-ca-on",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=63113&place_id=6883&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Blarina brevicauda in CA-ON",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-ca-on",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2435862&gadmGid=CAN.9_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Blarina brevicauda in CA-ON",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "us-itis"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata",
+        "us-itis"
+      ],
+      "confidence": "High",
+      "note": "GBIF usageKey 2435862 and family Soricidae from the GBIF Backbone record for the accepted name; iNaturalist taxon id 63113 from the iNaturalist taxa API; ITIS TSN 179967 from the ITISWebService scientific-name search, which returns Blarina brevicauda (Say, 1823) as an exact match; Wikidata Q1766543 from a Wikidata entity search for the scientific name."
+    },
+    "common_names": {
+      "sources": [
+        "wikidata",
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "IUCN category from Wikidata P141, which points at the IUCN 'Least Concern' item. The article records no threat, only the species' very high intrinsic mortality."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Country list derived from the article's use of the species across the United States and southern Canada; the article describes its habitats by vegetation type rather than by political unit, so the list is deliberately coarse."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'Other shrews spend more time above ground than does the northern short-tailed shrew, which prefers to tunnel along below ground, through the leaf litter, or at the snow/ground interface': the animal moves by running and scurrying over and under cover, so Walk and Trot are the modes."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'The shrew constructs a nest up to 20 cm (8 in) in diameter underground or underneath a log, and lines it with leaves or the fur of the meadow vole', with a latrine area outside and other parts of the burrow system used for food storage. The schema's Burrow covers a nest chamber inside the animal's own tunnel system, which is what the article describes."
+    },
+    "traits.size_class": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of 'weighs 15 to 30 g'."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'weighs 15 to 30 g (0.53 to 1.06 oz)'."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of 'a total length of 108 to 140 mm (4.3 to 5.5 in)'. The tail accounts for 18 to 32 mm of that, which is carried separately in look.proportions.tail_ratio because 'The tail is quite short, amounting to less than 25% of the total length'."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The article states no longevity figure, so this is derived from the mortality it does state: 'only 6% of a marked group of shrews survived to the next year'. With annual survival near 0.06 the mean remaining life is about 1/0.94 years, so 1.1 is recorded as the average life expectancy, which is the sense this kit uses, not a maximum age."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'It eats small quantities of subterranean fungi and seeds, though it is mostly carnivorous. It prefers insects (such as beetles), earthworms, voles, snails, and other shrews for the bulk of its diet, though salamanders, frogs, snakes, birds, and mice are also eaten. This shrew consumes vertebrates more often than other shrews do.' invertebrate 0.55 and vertebrate 0.35 follow that weighting, with the remaining 0.10 for the named seeds; the subterranean fungi have no tag in the schema."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The article gives each animal three scent glands whose scent 'may be used for marking territories', and describes the nursing female alone with the young; it records no grouping, so the animal is modelled as solitary. The word 'may' is why this is Medium rather than High."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'The shrew mostly forages within a few hours after sunset, though it is also active during cloudy days', and a captive study found it 'primarily nocturnal'."
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'The saliva of the northern short-tailed shrew contains a kallikrein-like protease, used to parialize and subdue its prey. The toxin is strong enough to kill small animals, up to sizes somewhat larger than the shrew itself, and results in painful bites to humans who attempt to handle the shrew.' Mammalian carnivores are also deterred by the musky odour of its scent glands. The venomous bite is the specific defence the article devotes a section to, so Toxin rather than Hide."
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Judgement at 0.3: it does not withdraw from a hand - it bites - and it ranges over household gardens, but it spends most of its life under cover and is eaten by everything from trout to raccoons."
+    },
+    "traits.senses": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "'the shrew's sense of smell is thought to be poor' is the article's own wording and is recorded as Low; `vibration` is recorded because the animal tunnels below ground and through leaf litter and hunts in the dark, and touch is how a subterranean hunter finds prey. The article makes no claim about hearing, so none is asserted."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'It is a semifossorial, highly active, and voracious insectivore' that 'prefers to tunnel along below ground, through the leaf litter, or at the snow/ground interface', with the small arboreal share covering the shrubs and hedges in its habitat list; the split is authored from those two sentences."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'Other parts of the burrow system are used for food storage' and the animal shelters in its lined nest in cold periods, so the site it lives in is a burrow."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "The diet sentence for the feeding tags, the burrow-and-nest sentences for `burrow`, the tunnel-and-leaf-litter sentences for `leaf_litter`, and 'High evaporative water loss requires the shrew to have access to a source of water, though it does obtain water from its food' for `water`."
+    },
+    "habitat.requires": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'the preferred habitats are those which are moist with leaf litter or thick plant cover', and the animal forages below leaf litter or snow, so cover it can tunnel under has to be within reach. 100 m is an authored radius; the article states no distance."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'Both disturbed and undisturbed habitats are used ... including grasslands, old fields, fencerows, marshy areas, deciduous and coniferous forests, and household gardens'; the numeric tolerances are authored from that record of living in gardens and mown-shelter ground."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'decreasing activity levels during cold periods' plus winter foraging below litter and snow and a lined nest for heat conservation is reduced activity, not hibernation: the animal is active all year. ActiveYearRound is the closest of the schema's strategies, with the reduced winter activity carried by the dormancy phase rather than by torpor."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "The October-November moult to the winter pelage and the February-to-July change back, the fall and winter food hoarding with its 87/9/4 split, and the winter cold-period behaviour including the lined nest and the earlier evening activity all come from the article; the month boundaries are judgements."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "'The young, which were born hairless and blind and weighing less than a gram, may become sexually mature in as soon as 2-3 months', and 'The juvenile pelage is pale and quite similar to the adults' summer fur, and is molted when the young reaches adult size.' duration_days 60 is the top of the stated 2-3 month maturity range. scale 0.5 is a judgement: the real ratio of a sub-gram newborn to a 22.5 g adult is about 0.04, and a linear mesh scale that small would be invisible, so the mesh uses a readable half-size juvenile instead."
+    },
+    "vocalizations.chitter": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored. The cited article does not describe this species' vocalizations at all; a nocturnal ground forager in the simulation needs a call id, so this is a Quiet night-time contact call marked Low confidence rather than a description of a documented call. No recording is cited."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'The dorsal fur is thick and velvety, and can be black, brownish black, or silvery gray, with the ventral fur being a bit lighter and grayer', with a tail under a quarter of the body length and a short pointed snout. The palette takes the silvery-gray form; the snout, feet and tail share the `accent` slot because the schema has no separate paw colour; the proportions are authored from the 108-140 mm length and the stated tail share."
+    },
+    "behavior": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "fsm-ground-forager-v1 is the shared program for a ground-dwelling mammal that forages when hungry, wanders, drinks, flees and rests in shelter by day, which is exactly this animal's routine: it 'mostly forages within a few hours after sunset', shelters in its nest, and 'High evaporative water loss requires the shrew to have access to a source of water'. flee_m is cut to 4 m and calm_m to 12 m because this is a 22 g animal that escapes by reaching cover rather than by running away, food_m to 15 m because a shrew's foraging range is a few metres of tunnel, and the daylight rest window is the program's own nocturnal default."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies maintainers",
+      "agent": "claude-code"
+    }
+  ]
+}

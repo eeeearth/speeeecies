@@ -1,0 +1,733 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Haliaeetus leucocephalus",
+  "slug": "haliaeetus-leucocephalus",
+  "common_names": {
+    "en": "Bald eagle"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Accipitriformes",
+    "family": "Accipitridae",
+    "genus": "Haliaeetus",
+    "authority": "(Linnaeus, 1766)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2480446,
+    "inat_taxon_id": 5305,
+    "itis_tsn": 175420,
+    "wikidata": "Q127216"
+  },
+  "conservation": {
+    "iucn": "LC",
+    "notes": "Delisted from the US Endangered Species List on 2007-08-09 after recovery; numbers rose substantially from 1966 to 2015 and it now nests in every continental US state."
+  },
+  "range": {
+    "native": [
+      "US",
+      "CA",
+      "MX"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Walk",
+      "Fly",
+      "Glide"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Platform",
+    "perching": true,
+    "size_class": "Medium",
+    "mass_kg": 4.85,
+    "mass_range_kg": [
+      3,
+      6.3
+    ],
+    "length_m": 0.86,
+    "wingspan_m": 2.05,
+    "lifespan_y": 20,
+    "diet": {
+      "fish": 0.75,
+      "vertebrate": 0.15,
+      "carrion": 0.1
+    },
+    "social": {
+      "structure": "Pair",
+      "group_size": [
+        1,
+        2
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.35
+  },
+  "habitat": {
+    "use": {
+      "aerial": 0.5,
+      "arboreal": 0.4,
+      "ground": 0.1
+    },
+    "shelter_tag": "perch",
+    "resources": [
+      {
+        "tag": "small_vertebrate",
+        "kind": "Predation",
+        "weight": 0.9
+      },
+      {
+        "tag": "carrion",
+        "kind": "Scavenging",
+        "weight": 1.0
+      },
+      {
+        "tag": "water",
+        "kind": "Water",
+        "weight": 0.3
+      },
+      {
+        "tag": "nest_platform",
+        "kind": "Nesting",
+        "weight": 1.0
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.8
+      }
+    ],
+    "requires": [
+      {
+        "resource_within_m": 3000,
+        "tag": "water"
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "light_max": 0.4,
+      "flight_distance_m": 200,
+      "road_mortality": "Low",
+      "uses_gardens": false,
+      "notes": "Nests in large estuaries and even in secluded groves inside major cities, and increasingly on human-made reservoirs stocked with fish; adult birds are famously tolerant of people, so flight_distance_m is large."
+    }
+  },
+  "seasonal": {
+    "strategy": "PartialMigration",
+    "winter_fraction": 0.7,
+    "phases": [
+      {
+        "name": "nesting",
+        "start": "03-01",
+        "end": "07-31",
+        "region": "US",
+        "note": "Pair formation, egg laying and incubation in a huge stick nest in a mature tree near open water; the male usually brings the sticks."
+      },
+      {
+        "name": "territorial",
+        "start": "08-01",
+        "end": "02-28",
+        "note": "Fledglings are still being fed in early autumn; northern birds then move south and gather on open lakes and rivers where fish are easy to catch."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg"
+      },
+      {
+        "stage": "Juvenile",
+        "duration_days": 1500,
+        "scale": 0.75,
+        "requires_tag": "nest_platform"
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US-OH",
+        "monthly": [
+          1.0,
+          0.95,
+          0.72,
+          0.74,
+          0.8,
+          0.47,
+          0.66,
+          0.73,
+          0.76,
+          0.64,
+          0.87,
+          0.86
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 353897,
+        "sources": [
+          "inat-activity-us-oh",
+          "gbif-activity-us-oh"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 31,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=5305&place_id=31&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=31&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "total": 1885,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.36_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2480446&gadmGid=USA.36_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.36_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 352012,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "CA-ON",
+        "monthly": [
+          0.98,
+          1.0,
+          0.76,
+          0.38,
+          0.23,
+          0.26,
+          0.25,
+          0.37,
+          0.53,
+          0.64,
+          0.75,
+          0.86
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 294077,
+        "sources": [
+          "inat-activity-ca-on",
+          "gbif-activity-ca-on"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 6883,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=5305&place_id=6883&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=6883&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "total": 1386,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "CAN.9_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2480446&gadmGid=CAN.9_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=CAN.9_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 292691,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-seabird-predator-v1",
+    "params": {
+      "flee_m": 200,
+      "calm_m": 400,
+      "live_food_m": 300,
+      "carrion_m": 200
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "contact",
+      "context": "Contact",
+      "season_months": [
+        11,
+        12,
+        1,
+        2,
+        3
+      ],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 20,
+      "loudness": "Loud",
+      "description": "A high-pitched, drawn-out descending whistle given by both sexes, especially in the winter breeding-season courtship and, where birds gather, over open water.",
+      "duration_s": [
+        0.6,
+        1.2
+      ]
+    },
+    {
+      "call_id": "alarm",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 5,
+      "loudness": "Loud",
+      "description": "Rapid, harsh cackling or chittering, given by adults near the nest and by immatures begging for food; the adults also give a guttural 'kee-yer' when a rival is close.",
+      "duration_s": [
+        0.2,
+        1.5
+      ]
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.8,
+      "leg_length_ratio": 0.3,
+      "head_scale": 0.72,
+      "neck_angle_deg": 12,
+      "tail_ratio": 0.55,
+      "wing_aspect": 1.9,
+      "beak_ratio": 0.7,
+      "girth_ratio": 1.05
+    },
+    "palette": {
+      "body": "#4b3a2a",
+      "belly": "#3a2c1f",
+      "markings": "#f5f2ea",
+      "accent": "#e8b923",
+      "eye": "#c9971a"
+    },
+    "part_colors": {
+      "head": "markings",
+      "tail": "markings",
+      "breast": "body",
+      "beak": "accent",
+      "leg_*": "accent"
+    },
+    "extra_parts": [
+      {
+        "name": "crown",
+        "parent": "head",
+        "offset": [
+          -0.1,
+          0.34,
+          0
+        ],
+        "size": [
+          0.62,
+          0.34,
+          0.9
+        ],
+        "color": "markings"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "fly": {},
+      "glide": {},
+      "perched": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2480446",
+      "title": "GBIF Backbone Taxonomy: Haliaeetus leucocephalus",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q127216",
+      "title": "Wikidata: Bald eagle (Q127216)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Bald_eagle",
+      "title": "Wikipedia: Bald eagle",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Bald eagle\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/ITISWebService/jsonservice/getFullHierarchyFromTSN?tsn=175420",
+      "title": "ITIS: Haliaeetus leucocephalus, TSN 175420, full hierarchy",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "note": "US federal government database; public domain in the United States.",
+      "attribution": "Integrated Taxonomic Information System (ITIS), US federal government, public domain"
+    },
+    {
+      "id": "inat-activity-us-oh",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=5305&place_id=31&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Haliaeetus leucocephalus in US-OH",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-oh",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2480446&gadmGid=USA.36_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Haliaeetus leucocephalus in US-OH",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "inat-activity-ca-on",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=5305&place_id=6883&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Haliaeetus leucocephalus in CA-ON",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-ca-on",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2480446&gadmGid=CAN.9_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Haliaeetus leucocephalus in CA-ON",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "itis"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata",
+        "itis"
+      ],
+      "confidence": "High",
+      "note": "GBIF usageKey from an EXACT match on the scientific name; iNaturalist taxon id 5305 from the iNaturalist API; ITIS TSN 175420 from the ITISWebService scientific-name search; Wikidata Q127216 from a Wikidata entity search."
+    },
+    "common_names": {
+      "sources": [
+        "wikidata",
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikidata",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "IUCN category from Wikidata P141; the delisting year and the 1966-2015 increase from the Wikipedia article."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Country list derived from 'found in North America' plus the article's breeding range across Alaska, Canada and Mexico; only the three country codes are recorded."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Soars and glides over open water and perches in trees; also walks about a nest."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'builds the largest nest of any North American bird ... up to 4 m deep, 2.5 m wide': a huge open stick platform in a mature tree, not a cup or cavity."
+    },
+    "traits.size_class": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of the two stated sex averages: males 4.1 kg, females as much as 5.6 kg."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'mass is normally between 3 and 6.3 kg'."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of 'body length of 70-102 cm'."
+    },
+    "traits.wingspan_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of 'typical wingspan is between 1.8 and 2.3 m'."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'The average lifespan of bald eagles in the wild is around 20 years, with the oldest confirmed one having been 38 years of age.'"
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Wikipedia: breeding habitat is open water 'with an abundance of fish', the crop can hold 1 kg, and eagles also take carrion and other birds. 0.75/0.15/0.10 is a judgement that puts fish firmly first but keeps the scavenging and bird-tagging the shared predator program needs."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Monogamous pairs hold a territory and share a nest; groups of well over a dozen gather to feed and roost, so group_size is recorded as a pair."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Authored: an adult eagle leaves a person and circles rather than standing its ground."
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Judgement. Wikipedia records birds nesting in groves inside major cities and hunting stocked reservoirs without disturbance, so it is low for a large raptor but not zero."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Much of the year is spent soaring and gliding over open water, with a large share perched in trees; upland wintering birds spend time on the ground. Authored split."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Roosts in tall trees near water."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Fish and other vertebrates as prey, carrion when fishing is poor, and a huge stick platform plus high perches from the article. The schema's tag set has no `fish` tag, so `small_vertebrate` carries the fish and waterfowl that make up most of the diet, and `water` is the open water the bird both drinks at and hunts over. `small_vertebrate` and `carrion` are also the two tags fsm-seabird-predator-v1 hunts and scavenges on."
+    },
+    "habitat.requires": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "'Most nests have been found within 200 m of open water' and 'the greatest distance from open water recorded for a bald eagle nest was over 3 km, in Florida'; 3 km is used as the hard placement radius."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Nesting in city estuaries and on stocked reservoirs from Wikipedia; light_max, flight_distance_m and road_mortality are authored."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'northern birds are migratory, while southern birds are resident, remaining on their breeding territory all year'."
+    },
+    "seasonal.winter_fraction": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement, 0.7: the article says northern birds migrate and southern birds are resident but gives no share."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Nesting-tree and open-water requirements from Wikipedia; the exact month-day boundaries and the autumn territorial window are judgements."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "'Sexual maturity is attained at the age of four to five years' and the immature is dark brown with messy white streaking until the fourth or fifth year; duration_days is 1500, about four years, and scale 0.75 is a judgement for the dark streaked juvenile plumage."
+    },
+    "vocalizations.contact": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The high descending whistle used in courtship and over wintering water; the frequency and duration bands are authored."
+    },
+    "vocalizations.alarm": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The harsh cackling near the nest and the immatures' begging call; the duration band is authored."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "'evenly dark brown with a white head and tail', 'the beak, feet and irises are bright yellow'; the shaggy white crown is the extra part, and the proportions are authored from the wing chord and tail lengths in the article."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared territorial-predator program. It is nominally a seabird program, but its states - patrol by flight, take live prey, scavenge carrion, drink, retreat from a threat - are what an adult bald eagle does over open water, and it is the closest shared fit. The large flee_m and calm_m reflect the article's tolerance of people."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies maintainers",
+      "agent": "claude-code"
+    }
+  ]
+}

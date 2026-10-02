@@ -1,0 +1,818 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Dryophytes cinereus",
+  "slug": "dryophytes-cinereus",
+  "common_names": {
+    "en": "American green treefrog"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Amphibia",
+    "order": "Anura",
+    "family": "Hylidae",
+    "genus": "Dryophytes",
+    "authority": "(Schneider, 1799)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 10810025,
+    "inat_taxon_id": 1668858,
+    "itis_tsn": 1095381,
+    "wikidata": "Q32350216",
+    "ncbi_taxon_id": 8422
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "US"
+    ],
+    "koppen": [
+      "Cfa"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk",
+      "Hop",
+      "Climb",
+      "Swim"
+    ],
+    "thermoregulation": "Ectotherm",
+    "skin": "Moist",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "Complete",
+    "nest_type": "None",
+    "perching": true,
+    "size_class": "Tiny",
+    "mass_kg": 0.00376,
+    "mass_range_kg": [
+      0.00215,
+      0.00511
+    ],
+    "length_m": 0.048,
+    "lifespan_y": 6,
+    "diet": {
+      "invertebrate": 1.0
+    },
+    "social": {
+      "structure": "Solitary",
+      "group_size": [
+        1,
+        1
+      ]
+    },
+    "activity_pattern": "Nocturnal",
+    "defense": "Flee",
+    "wariness": 0.45
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.15,
+      "arboreal": 0.7,
+      "aquatic": 0.15
+    },
+    "shelter_tag": "perch",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 1.0
+      },
+      {
+        "tag": "pond",
+        "kind": "Nesting",
+        "weight": 1.0,
+        "months": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      {
+        "tag": "pond",
+        "kind": "Water",
+        "weight": 0.8
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.8
+      },
+      {
+        "tag": "shrub_thicket",
+        "kind": "Shelter",
+        "weight": 0.6
+      },
+      {
+        "tag": "leaf_litter",
+        "kind": "Shelter",
+        "weight": 0.3,
+        "months": [
+          12,
+          1,
+          2
+        ]
+      }
+    ],
+    "suitability": {
+      "combine": "GeometricMean",
+      "curves": [
+        {
+          "covariate": "dist_water_m",
+          "curve": [
+            [
+              0,
+              1.0
+            ],
+            [
+              25,
+              0.85
+            ],
+            [
+              100,
+              0.25
+            ],
+            [
+              250,
+              0.0
+            ]
+          ]
+        },
+        {
+          "covariate": "canopy",
+          "curve": [
+            [
+              0,
+              0.2
+            ],
+            [
+              0.3,
+              0.75
+            ],
+            [
+              0.7,
+              1.0
+            ]
+          ]
+        }
+      ]
+    },
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "road_mortality": "Medium",
+      "notes": "Uses settled places such as backyards with ponds, garages and garden structures, but still depends on humid vegetated cover and water for breeding."
+    }
+  },
+  "seasonal": {
+    "strategy": "Brumation",
+    "triggers": {
+      "enter": {
+        "temperature_below_c": 10,
+        "days": 5
+      },
+      "exit": {
+        "temperature_above_c": 15,
+        "days": 3
+      }
+    },
+    "phases": [
+      {
+        "name": "dormancy",
+        "start": "12-01",
+        "end": "02-28",
+        "region": "US",
+        "note": "Short cool-season dormancy in the northern part of the Gulf Coast range; milder spells can interrupt it."
+      },
+      {
+        "name": "breeding",
+        "start": "03-01",
+        "end": "09-30",
+        "region": "US"
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg",
+        "duration_days": 5,
+        "requires_tag": "pond",
+        "scale": 0.02
+      },
+      {
+        "stage": "Tadpole",
+        "duration_days": 42,
+        "requires_tag": "pond",
+        "scale": 0.12
+      },
+      {
+        "stage": "Juvenile",
+        "duration_days": 365,
+        "scale": 0.35
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US-LA",
+        "monthly": [
+          0.05,
+          0.32,
+          0.63,
+          0.8,
+          0.5,
+          0.49,
+          1.0,
+          0.61,
+          0.51,
+          0.41,
+          0.22,
+          0.11
+        ],
+        "method": "mean(inat_raw, gbif_raw)",
+        "observations": 1217,
+        "sources": [
+          "inat-activity-us-la",
+          "gbif-activity-us-la"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 27,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=1668858&place_id=27&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": null,
+            "total": 414,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.19_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=10810025&gadmGid=USA.19_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": null,
+            "total": 803,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-anuran-nocturnal-v1",
+    "params": {
+      "flee_m": 1.2,
+      "freeze_m": 3,
+      "food_tag": "invertebrate",
+      "call": "quonk",
+      "min_temp_c": 12,
+      "max_temp_c": 32,
+      "call_m1": 5,
+      "call_m2": 6
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "quonk",
+      "context": "Croak",
+      "season_months": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "time_windows": [
+        "Dusk",
+        "Night"
+      ],
+      "cooldown_s": 8,
+      "loudness": "Loud",
+      "description": "A nasal quonk or bark-like advertisement call from males at night near breeding water; choruses can be loud."
+    }
+  ],
+  "look": {
+    "body_plan": "anuran",
+    "proportions": {
+      "torso_aspect": 1.2,
+      "leg_length_ratio": 0.7,
+      "head_scale": 0.75,
+      "neck_angle_deg": 10,
+      "girth_ratio": 0.75
+    },
+    "palette": {
+      "body": "#4fbf3f",
+      "belly": "#f2efd9",
+      "markings": "#f6f2d2",
+      "accent": "#d4b24a",
+      "eye": "#c98a24"
+    },
+    "extra_parts": [
+      {
+        "name": "body_side_stripe",
+        "parent": "body",
+        "offset": [
+          0.0,
+          0.1,
+          0.52
+        ],
+        "size": [
+          0.9,
+          0.05,
+          0.05
+        ],
+        "color": "markings",
+        "mirror": true
+      },
+      {
+        "name": "head_side_stripe",
+        "parent": "head",
+        "offset": [
+          0.05,
+          0.0,
+          0.5
+        ],
+        "size": [
+          0.45,
+          0.05,
+          0.05
+        ],
+        "color": "markings",
+        "mirror": true
+      },
+      {
+        "name": "gold_dorsal_speckle",
+        "parent": "body",
+        "offset": [
+          0.15,
+          0.55,
+          0.12
+        ],
+        "size": [
+          0.12,
+          0.04,
+          0.12
+        ],
+        "color": "accent",
+        "mirror": true
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "hop": {},
+      "swim": {},
+      "perched": {
+        "cycle_s": 4,
+        "keyframes": [
+          {
+            "t": 0,
+            "parts": {
+              "body": {
+                "rot_deg": [
+                  -8,
+                  0,
+                  0
+                ]
+              },
+              "head": {
+                "rot_deg": [
+                  8,
+                  0,
+                  0
+                ]
+              },
+              "leg_front_left": {
+                "rot_deg": [
+                  18,
+                  0,
+                  -12
+                ]
+              },
+              "leg_front_right": {
+                "rot_deg": [
+                  18,
+                  0,
+                  12
+                ]
+              },
+              "leg_rear_left": {
+                "rot_deg": [
+                  -28,
+                  0,
+                  -18
+                ]
+              },
+              "leg_rear_right": {
+                "rot_deg": [
+                  -28,
+                  0,
+                  18
+                ]
+              },
+              "leg_rear_left_lower": {
+                "rot_deg": [
+                  36,
+                  0,
+                  0
+                ]
+              },
+              "leg_rear_right_lower": {
+                "rot_deg": [
+                  36,
+                  0,
+                  0
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/10810025",
+      "title": "GBIF Backbone Taxonomy: Dryophytes cinereus",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-09-30",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "inat-taxon",
+      "url": "https://api.inaturalist.org/v1/taxa?q=Dryophytes%20cinereus",
+      "title": "iNaturalist taxon search: Dryophytes cinereus",
+      "license": "CC-BY-4.0",
+      "kind": "api",
+      "accessed": "2026-09-30",
+      "attribution": "iNaturalist contributors; taxon data accessed via the iNaturalist API",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q32350216",
+      "title": "Wikidata: Dryophytes cinereus (Q32350216)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-09-30",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/American_green_tree_frog",
+      "title": "Wikipedia: American green tree frog",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-09-30",
+      "attribution": "Wikipedia contributors, \"American green tree frog\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=1095381",
+      "title": "ITIS: Dryophytes cinereus, TSN 1095381",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-09-30",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "amphibio",
+      "url": "https://doi.org/10.6084/m9.figshare.4644424",
+      "title": "AmphiBIO v1: a global database for amphibian ecological traits",
+      "license": "CC-BY-4.0",
+      "kind": "dataset",
+      "accessed": "2026-09-30",
+      "attribution": "Oliveira, B. F. et al. (2017) AmphiBIO. Scientific Data 4:170123",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "inat-activity-us-la",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=1668858&place_id=27&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Dryophytes cinereus in US-LA",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-la",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=10810025&gadmGid=USA.19_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Dryophytes cinereus in US-LA",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "common_names": {
+      "sources": [
+        "wikipedia",
+        "inat-taxon"
+      ],
+      "confidence": "High"
+    },
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "itis"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "inat-taxon",
+        "wikidata",
+        "itis"
+      ],
+      "confidence": "High",
+      "note": "GBIF returned an exact accepted match for Dryophytes cinereus; iNaturalist taxon search returned id 1668858. Wikidata Q32350216 gives GBIF, ITIS and NCBI identifiers."
+    },
+    "conservation": {
+      "sources": [
+        "wikidata",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Wikidata P141 and the Wikipedia infobox report IUCN Least Concern."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Country-level range derived from central and southeastern United States; Cfa selected for the humid subtropical Gulf Coast/suburban Shreveport use case."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Arboreal; clings to vertical surfaces, perches on vegetation, leaps to water or treetops, and is aquatic during hibernating and mating seasons."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Adult anuran lung respiration inferred from amphibian body plan; tadpole aquatic stage is recorded separately."
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia",
+        "amphibio"
+      ],
+      "confidence": "High",
+      "note": "Egg and tadpole stages metamorphose into froglets; AmphiBIO flags larval development."
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Egg masses are attached to aquatic vegetation; no built nest."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Often perched on twigs, low branches and grasses."
+    },
+    "traits.size_class": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Tiny because average adult mass is 0.00376 kg."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Average adult mass 3.76 g; reported range 2.15-5.11 g."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Converted from 2.15-5.11 g."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia",
+        "amphibio"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Midpoint of Wikipedia's 3.2-6.4 cm adult length range; AmphiBIO gives maximum adult body size 66 mm."
+    },
+    "traits.lifespan_y": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored conservative simulator value; no open licensed wild lifespan source was found during this pass."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia",
+        "amphibio"
+      ],
+      "confidence": "High",
+      "note": "Nocturnal insectivore; diet list is flies, mosquitoes, grasshoppers, cockroaches, spiders, beetles, crickets, ants and other small insects; AmphiBIO flags arthropod diet."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Solitary outside breeding choruses; males aggregate only at calling sites."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia",
+        "amphibio"
+      ],
+      "confidence": "High",
+      "note": "Wikipedia describes it as nocturnal; AmphiBIO flags both diurnal, nocturnal and crepuscular reports, but night activity dominates the behaviour program."
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Avoids predators by leaping into water or jumping into treetops."
+    },
+    "traits.wariness": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "judgement"
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia",
+        "amphibio"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Arboreal treefrog that is aquatic during hibernating and mating seasons; shares authored for simulator placement."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Uses twigs, low branches, grasses, garden structures and vegetated cover; mapped to the perch resource tag."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Invertebrate prey, ponds/permanent water for breeding, and vegetated perches/shelter are stated; weights are authored."
+    },
+    "habitat.suitability": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "judgement: shaped from permanent water and abundant vegetation requirement for a suburban lot."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Found in natural and settled environments, including backyards with ponds, garages and garden structures; urbanization also threatens wetlands."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Wikipedia says it is aquatic during hibernating and mating seasons; Brumation is the ectotherm dormancy class used here."
+    },
+    "seasonal.triggers": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "judgement: authored temperature thresholds for the simulator; open sources found here did not state exact trigger values."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Breeding follows published March-September calling and April-August amplexus in Florida; a short December-February dormancy is authored for cooler Gulf Coast winters."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia",
+        "amphibio"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Eggs hatch in 4-14 days, average 5; tadpoles transform in about 5-7 weeks; maturity within 1 year in Wikipedia and 1-2 years in AmphiBIO; scales authored."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "judgement: authored parameters for the shared nocturnal anuran program; May-June call months represent the program's two-month call window within the longer warm breeding season."
+    },
+    "vocalizations.quonk": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Males emit low-frequency advertisement calls; months derived from March-September calling and April-August amplexus; cooldown and loudness are authored for simulator playback."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "judgement: bright green to reddish-brown dorsum, cream ventral side, white lateral stripes, small golden dorsal spots, long legs, slender build and perching pose mapped onto the anuran block body plan."
+    }
+  },
+  "contributors": [
+    {
+      "name": "OpenAI GPT-5.5 via opencode",
+      "agent": "opencode"
+    }
+  ]
+}

@@ -1,0 +1,903 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Dryobates pubescens",
+  "slug": "dryobates-pubescens",
+  "common_names": {
+    "en": "downy woodpecker",
+    "fr": "pic épeiche",
+    "de": "Haarspecht",
+    "nl": "kleine bonte specht"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Piciformes",
+    "family": "Picidae",
+    "genus": "Dryobates",
+    "authority": "(Linnaeus, 1766)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 9149595,
+    "inat_taxon_id": 792988,
+    "wikidata": "Q27074911",
+    "ebird_code": "dowwoo"
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "US",
+      "CA",
+      "MX"
+    ],
+    "koppen": [
+      "Cfb",
+      "Cfa",
+      "Dfb",
+      "Dfa",
+      "BSk",
+      "BSh"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Climb",
+      "Hop",
+      "Fly",
+      "Glide"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Cavity",
+    "perching": true,
+    "size_class": "Tiny",
+    "mass_kg": 0.0265,
+    "mass_range_kg": [
+      0.02,
+      0.033
+    ],
+    "length_m": 0.16,
+    "wingspan_m": 0.28,
+    "lifespan_y": 2.0,
+    "home_range_ha": 2.0,
+    "diet": {
+      "invertebrate": 0.7,
+      "seed": 0.2,
+      "fruit": 0.1
+    },
+    "social": {
+      "structure": "Pair",
+      "group_size": [
+        1,
+        2
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Mob",
+    "wariness": 0.2
+  },
+  "habitat": {
+    "use": {
+      "arboreal": 0.9,
+      "ground": 0.1
+    },
+    "shelter_tag": "cavity",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.8
+      },
+      {
+        "tag": "seed",
+        "kind": "Herbivory",
+        "weight": 0.3,
+        "months": [
+          11,
+          12,
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "tag": "berry",
+        "kind": "Herbivory",
+        "weight": 0.25,
+        "months": [
+          7,
+          8,
+          9
+        ]
+      },
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.25,
+        "months": [
+          7,
+          8,
+          9
+        ]
+      },
+      {
+        "tag": "cavity",
+        "kind": "Nesting",
+        "weight": 0.9
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.8
+      }
+    ],
+    "requires": [
+      {
+        "resource_within_m": 60,
+        "tag": "perch"
+      }
+    ],
+    "suitability": {
+      "curves": [
+        {
+          "covariate": "canopy",
+          "curve": [
+            [
+              0.0,
+              0.55
+            ],
+            [
+              0.35,
+              0.9
+            ],
+            [
+              0.75,
+              1.0
+            ],
+            [
+              1.0,
+              0.9
+            ]
+          ],
+          "weight": 1.0
+        },
+        {
+          "covariate": "impervious",
+          "curve": [
+            [
+              0.0,
+              1.0
+            ],
+            [
+              0.35,
+              0.85
+            ],
+            [
+              0.7,
+              0.55
+            ],
+            [
+              1.0,
+              0.25
+            ]
+          ],
+          "weight": 0.8
+        },
+        {
+          "covariate": "resource:cavity",
+          "curve": [
+            [
+              0,
+              0.2
+            ],
+            [
+              1,
+              0.8
+            ],
+            [
+              3,
+              1.0
+            ]
+          ],
+          "weight": 0.9
+        },
+        {
+          "covariate": "resource:perch",
+          "curve": [
+            [
+              0,
+              0.2
+            ],
+            [
+              2,
+              0.8
+            ],
+            [
+              5,
+              1.0
+            ]
+          ],
+          "weight": 0.7
+        }
+      ],
+      "combine": "WeightedMean"
+    },
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "impervious_max": 0.7,
+      "light_max": 0.8,
+      "noise_max": 0.7,
+      "flight_distance_m": 10,
+      "road_mortality": "Medium",
+      "uses_gardens": true,
+      "notes": "Widely drawn to suet and shelled peanuts in mesh feeders and to mature trees; a common bird on suburban bird feeders across North America. human_tolerance thresholds are authored judgement for suburban-lot placement."
+    }
+  },
+  "seasonal": {
+    "strategy": "PartialMigration",
+    "winter_fraction": 0.85,
+    "phases": [
+      {
+        "name": "territorial",
+        "start": "02-15",
+        "end": "05-15",
+        "note": "Pair holds a territory around the previous year's cavity and calls in early spring; authored from the year-round pair bond."
+      },
+      {
+        "name": "nesting",
+        "start": "04-01",
+        "end": "06-30",
+        "behavior_params": {
+          "nest_m1": 4,
+          "nest_m2": 6
+        },
+        "note": "Cavity excavation, egg laying (typically 4-5 eggs) and incubation of about 12 days; month boundaries are authored within the sourced April-June cavity-nesting window."
+      },
+      {
+        "name": "young",
+        "start": "05-20",
+        "end": "07-10",
+        "note": "Nestlings are brooded and fed in the cavity and are fully grown by about their 17th or 18th day; fledging is around then."
+      },
+      {
+        "name": "absent",
+        "start": "11-15",
+        "end": "03-01",
+        "fraction": 0.15,
+        "note": "Mostly permanent residents, but northern birds may migrate further south and mountain birds may move to lower elevations; the fraction is an authored coarse estimate of that minority."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg",
+        "duration_days": 12,
+        "requires_tag": "cavity",
+        "scale": 0.4
+      },
+      {
+        "stage": "Juvenile",
+        "duration_days": 35,
+        "requires_tag": "cavity",
+        "scale": 0.7
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "CA-ON",
+        "monthly": [
+          0.99,
+          1.0,
+          0.66,
+          0.48,
+          0.27,
+          0.18,
+          0.33,
+          0.38,
+          0.39,
+          0.51,
+          0.71,
+          0.95
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 1116733,
+        "sources": [
+          "inat-activity-ca-on",
+          "gbif-activity-ca-on"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 6883,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=792988&place_id=6883&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=6883&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "total": 1640,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "CAN.9_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=9149595&gadmGid=CAN.9_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=CAN.9_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 1115093,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "bt-perching-songbird-v1",
+    "params": {
+      "flee_m": 15,
+      "food_tag": "invertebrate",
+      "song": "call",
+      "alarm": "call",
+      "song_cooldown_s": 14,
+      "nest_m1": 4,
+      "nest_m2": 6
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "call",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day"
+      ],
+      "cooldown_s": 14,
+      "loudness": "Moderate",
+      "description": "A short pik call, and a rattle-call of a short burst that sounds like a bouncing ball, given by both sexes from a perch or while foraging on bark."
+    },
+    {
+      "call_id": "drill",
+      "context": "Drum",
+      "season_months": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 30,
+      "loudness": "Loud",
+      "description": "Drumming with the bill against a tree, heard as about four taps; slower than other North American woodpeckers and used in territorial and courtship signalling."
+    },
+    {
+      "call_id": "begging",
+      "context": "Chirp",
+      "season_months": [
+        5,
+        6,
+        7
+      ],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 8,
+      "loudness": "Quiet",
+      "description": "Raspish begging calls from nestlings in the cavity, audible near the entrance once the young are large; months and time window are authored from the cavity-nesting period."
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.5,
+      "leg_length_ratio": 0.28,
+      "head_scale": 0.95,
+      "neck_angle_deg": 22,
+      "tail_ratio": 0.6,
+      "wing_aspect": 2.9,
+      "beak_ratio": 0.62,
+      "girth_ratio": 0.85
+    },
+    "palette": {
+      "body": "#17171b",
+      "belly": "#f4f3ef",
+      "markings": "#9d1b1b",
+      "accent": "#e8e7e2",
+      "eye": "#0d0d10"
+    },
+    "part_colors": {
+      "head": "body",
+      "breast": "belly",
+      "wing_*": "body",
+      "tail": "body",
+      "beak": "accent",
+      "leg_*": "accent"
+    },
+    "extra_parts": [
+      {
+        "name": "white_back",
+        "parent": "body",
+        "offset": [
+          0.05,
+          0.5,
+          0.0
+        ],
+        "size": [
+          0.55,
+          0.3,
+          1.02
+        ],
+        "color": "belly"
+      },
+      {
+        "name": "white_belly",
+        "parent": "breast",
+        "offset": [
+          -0.05,
+          -0.15,
+          0.0
+        ],
+        "size": [
+          0.85,
+          0.6,
+          1.03
+        ],
+        "color": "belly"
+      },
+      {
+        "name": "male_nape_patch",
+        "parent": "head",
+        "offset": [
+          -0.28,
+          0.3,
+          0.0
+        ],
+        "size": [
+          0.3,
+          0.28,
+          0.96
+        ],
+        "color": "markings"
+      },
+      {
+        "name": "white_eye_stripe",
+        "parent": "head",
+        "offset": [
+          0.12,
+          0.12,
+          0.0
+        ],
+        "size": [
+          0.55,
+          0.1,
+          0.94
+        ],
+        "color": "belly"
+      },
+      {
+        "name": "white_wing_spots",
+        "parent": "wing_left",
+        "offset": [
+          0.0,
+          0.15,
+          0.0
+        ],
+        "size": [
+          1.0,
+          0.35,
+          1.01
+        ],
+        "color": "belly",
+        "mirror": true
+      },
+      {
+        "name": "spotted_tail_outer",
+        "parent": "tail",
+        "offset": [
+          0.0,
+          0.0,
+          -0.35
+        ],
+        "size": [
+          0.3,
+          0.9,
+          0.6
+        ],
+        "color": "belly",
+        "mirror": true
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "hop": {},
+      "fly": {},
+      "glide": {},
+      "perched": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/9149595",
+      "title": "GBIF Backbone Taxonomy: Dryobates pubescens",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q27074911",
+      "title": "Wikidata: Dryobates pubescens (Q27074911)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Downy_woodpecker",
+      "title": "Wikipedia: Downy woodpecker",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Downy woodpecker\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "inat-activity-ca-on",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=792988&place_id=6883&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Dryobates pubescens in CA-ON",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-ca-on",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=9149595&gadmGid=CAN.9_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Dryobates pubescens in CA-ON",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "GBIF usage key 9149595 and Wikidata Q27074911 confirmed from the live APIs; the iNaturalist taxon id 792988 comes from the iNaturalist taxa API. No ITIS TSN or NCBI taxon id is recorded because neither was confirmed from a query during this contribution; those keys are optional."
+    },
+    "common_names": {
+      "sources": [
+        "wikipedia",
+        "wikidata"
+      ],
+      "confidence": "Medium",
+      "note": "English name from the GBIF and Wikipedia common name. The French, German and Dutch labels are the standard names for the species in those languages from Wikipedia sitelinks; they are not independently sourced here."
+    },
+    "conservation": {
+      "sources": [
+        "wikidata",
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Least Concern. Wikidata carries the IUCN status and the IUCN page itself was not used, because it is not openly licensed."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Country list from Wikipedia: most of the United States and Canada including Ontario, extending south to Mexico, excluding the deserts of the southwest and the northern tundra. Köppen classes are coarse authored judgement from that range and include Dfa and Dfb for the Ontario target region."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Climbs tree trunks and branches, hops along branches and flies; the species also glides between foraging patches, so glide is modeled alongside powered flight."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Nests in a tree cavity excavated by the pair, and roosts in cavities in winter."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Perches on bark and branches while foraging and clinging upright to trunks."
+    },
+    "traits.size_class": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Derived from mass_kg below 0.05 kg."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of Wikipedia's 20-33 g range; Wikidata P2067 independently gives 28 g, consistent with that midpoint."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Converted from Wikipedia's 20-33 g."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of Wikipedia's 14-18 cm total length."
+    },
+    "traits.wingspan_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of Wikipedia's 25-31 cm wingspan."
+    },
+    "traits.lifespan_y": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement. The Wikipedia article for this species gives no lifespan figure, so 2.0 years is an authored typical value for a small woodpecker, not a quoted mean or maximum. Omitting the field was not possible: traits.mass_kg and traits.lifespan_y are both required by the schema."
+    },
+    "traits.home_range_ha": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement from Wikipedia's statement that birds return to a site within 2 hectares of where they were born; the exact territory area is not given."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Wikipedia says the species mainly eats insects and also feeds on seeds and berries. The 0.7/0.2/0.1 split is authored from that description and from the reported winter shift to suet and shelled peanuts."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Pairs nest and hold territory together and reuse the same holes across years, so Pair is the breeding structure; a winter flock of more than two is not documented for this species in the source, so group_size stays at two."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "All described activity - foraging, drumming, nesting and feeder visits - is during daylight hours."
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Both sexes share incubation in alternating shifts and drive intruders away from the cavity; modeled as Mob for the schema's single defense field."
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: notably tolerant of people, readily feeding at suburban feeders, so wariness is set low."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Wikipedia describes foraging on trees and preferring forest openings and edges with broad-leaved trees; the arboreal share is authored and the small ground share covers visits to feeders and snow-dusted ground."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Cavity, for both winter roosting and nesting."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Invertebrate, seed and berry tags follow the sourced diet; cavity, perch and the summer/winter food months follow the described nesting, roosting and winter-feeding behaviour."
+    },
+    "habitat.requires": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement for the behavior program: a tree-climbing forager needs at least one nearby perch in the simulation."
+    },
+    "habitat.suitability": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement from the habitat description: wooded suburban gardens, forest edges and openings, with mature trees; curves are authored for suburban-lot placement."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Wikipedia explicitly records suburban backyard use and feeding on suet and shelled peanuts from mesh feeders; the numeric thresholds are authored judgement for simulation placement."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Wikipedia describes the species as mostly permanent residents, with northern birds migrating further south and mountain birds moving to lower elevations, so PartialMigration is the honest fit."
+    },
+    "seasonal.winter_fraction": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement. Wikipedia says mostly permanent residents without a proportion; 0.85 reflects that wording for the Ontario target region, where winter backyard records are common."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Cavity nesting, a 4-5 egg clutch, about 12 days incubation and young fully grown by the 17th or 18th day come from Wikipedia; the exact month-day boundaries are authored for an Ontario garden."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Egg and juvenile stages follow the sourced incubation of about 12 days and young fully grown by day 17-18; duration and scale are simulation judgement."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for bt-perching-songbird-v1: bark-surface insect foraging, alarm and flee to a perch, and an April-June cavity-nesting window."
+    },
+    "vocalizations.call": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Wikipedia gives the short pik call and the bouncing-ball rattle-call."
+    },
+    "vocalizations.drill": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Wikipedia describes bill drumming heard as about four taps and slower than other North American woodpeckers."
+    },
+    "vocalizations.begging": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: nestling begging is not described in the source article, so the call is modelled from the documented cavity nestling period. Season months, time window and cooldown are authored."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Wikipedia describes black upperparts and wings, a white back, throat and belly, white spotting on the wings, one white bar above and one below the eye, a black tail with white outer feathers barred with black, and a red patch on the back of the head in adult males. Palette and block proportions are authored judgement for a stylised model."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies contributors",
+      "agent": "opencode"
+    }
+  ]
+}
