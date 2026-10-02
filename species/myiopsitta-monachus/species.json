@@ -6,7 +6,10 @@
   "slug": "myiopsitta-monachus",
   "common_names": {
     "en": "Monk parakeet",
-    "es": "Cotorra argentina"
+    "es": "Cotorra argentina",
+    "fr": "conure veuve",
+    "de": "Mönchssittich",
+    "nl": "mönchsparakiet"
   },
   "taxonomy": {
     "kingdom": "Animalia",
@@ -22,7 +25,8 @@
     "gbif_usage_key": 2479407,
     "inat_taxon_id": 19349,
     "wikidata": "Q724987",
-    "ebird_code": "monpar1"
+    "ebird_code": "monpar1",
+    "itis_tsn": 554304
   },
   "conservation": {
     "iucn": "LC"
@@ -45,6 +49,28 @@
     "elevation_m": [
       0,
       2000
+    ],
+    "introduced": [
+      "ES",
+      "PT",
+      "IT",
+      "FR",
+      "BE",
+      "NL",
+      "DE",
+      "GB",
+      "US",
+      "PR",
+      "MX",
+      "BM",
+      "KY",
+      "JP",
+      "IL",
+      "AE",
+      "QA",
+      "BH",
+      "KW",
+      "SA"
     ]
   },
   "traits": {
@@ -104,7 +130,15 @@
       {
         "tag": "fruit",
         "kind": "Herbivory",
-        "weight": 0.3
+        "weight": 0.3,
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
       },
       {
         "tag": "perch",
@@ -115,6 +149,21 @@
         "tag": "nest_platform",
         "kind": "Nesting",
         "weight": 1.0
+      },
+      {
+        "tag": "browse",
+        "kind": "Herbivory",
+        "weight": 0.3
+      },
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.1
+      },
+      {
+        "tag": "cavity",
+        "kind": "Shelter",
+        "weight": 0.7
       }
     ],
     "human_tolerance": {
@@ -133,6 +182,18 @@
         "end": "02-28",
         "region": "CL",
         "note": "Breeds in spring and summer in the Southern Hemisphere."
+      },
+      {
+        "name": "breeding",
+        "start": "03-01",
+        "end": "08-31",
+        "note": "Breeds March to August in introduced European range; colonial breeder with communal nests containing multiple chambers; up to two broods per year."
+      },
+      {
+        "name": "flocking",
+        "start": "09-01",
+        "end": "02-28",
+        "note": "Remains in colony year-round; forages in flocks in parks, gardens and agricultural areas."
       }
     ],
     "life_stages": [
@@ -193,6 +254,55 @@
             "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2479407&gadmGid=CHL.14_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
             "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=CHL.14_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
             "total": 35131,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "ES-MD",
+        "monthly": [
+          0.55,
+          0.75,
+          1.0,
+          0.44,
+          0.48,
+          0.53,
+          0.52,
+          0.51,
+          0.58,
+          0.68,
+          0.65,
+          0.58
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 50252,
+        "sources": [
+          "inat-activity-es-md",
+          "gbif-activity-es-md"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 10543,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=19349&place_id=10543&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=10543&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 3821,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "ESP.8_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2479407&gadmGid=ESP.8_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=ESP.8_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 46431,
             "usable": true
           },
           "used": [
@@ -316,6 +426,33 @@
       "id": "gbif-activity-cl-rm",
       "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2479407&gadmGid=CHL.14_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
       "title": "GBIF occurrence search for Myiopsitta monachus in CL-RM",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=554304",
+      "title": "ITIS: Myiopsitta monachus, TSN 554304",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "inat-activity-es-md",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=19349&place_id=10543&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Myiopsitta monachus in ES-MD",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-es-md",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2479407&gadmGid=ESP.8_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Myiopsitta monachus in ES-MD",
       "license": "CC-BY-4.0",
       "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
       "accessed": "2026-10-01",
@@ -444,7 +581,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Common in urban areas; builds nests on manmade structures."
+      "note": "Common in urban areas; builds nests on manmade structures.",
+      "derived": true
     },
     "seasonal.strategy": {
       "sources": [
@@ -582,6 +720,10 @@
     {
       "name": "speeeecies maintainers",
       "agent": "claude-code"
+    },
+    {
+      "name": "Sisyphus (agent)",
+      "agent": "opencode"
     }
   ]
 }
