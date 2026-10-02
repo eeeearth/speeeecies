@@ -1,0 +1,591 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Corvus macrorhynchos",
+  "slug": "corvus-macrorhynchos",
+  "common_names": {
+    "en": "Large-billed Crow",
+    "ko": "큰부리까마귀"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Passeriformes",
+    "family": "Corvidae",
+    "genus": "Corvus",
+    "authority": "Wagler, 1827",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2482487,
+    "inat_taxon_id": 8026,
+    "wikidata": "Q111674"
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "RU",
+      "CN",
+      "KR",
+      "KP",
+      "JP",
+      "MN",
+      "IN",
+      "NP",
+      "MM",
+      "VN",
+      "LA",
+      "TH",
+      "LK",
+      "ID",
+      "PH"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Walk",
+      "Hop",
+      "Fly"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Platform",
+    "perching": true,
+    "size_class": "Small",
+    "mass_kg": 0.65,
+    "mass_range_kg": [
+      0.45,
+      1.0
+    ],
+    "length_m": 0.52,
+    "wingspan_m": 1.1,
+    "lifespan_y": 8,
+    "diet": {
+      "invertebrate": 0.3,
+      "carrion": 0.25,
+      "fruit": 0.2,
+      "vertebrate": 0.15,
+      "seed": 0.1
+    },
+    "social": {
+      "structure": "Flock",
+      "group_size": [
+        2,
+        20
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.5
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.5,
+      "arboreal": 0.5
+    },
+    "shelter_tag": "perch",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.5
+      },
+      {
+        "tag": "carrion",
+        "kind": "Scavenging",
+        "weight": 0.6
+      },
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.4
+      },
+      {
+        "tag": "small_vertebrate",
+        "kind": "Predation",
+        "weight": 0.4
+      },
+      {
+        "tag": "seed",
+        "kind": "Herbivory",
+        "weight": 0.3
+      },
+      {
+        "tag": "nest_platform",
+        "kind": "Nesting",
+        "weight": 1.0
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.8
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Exploiter",
+      "uses_gardens": true,
+      "flight_distance_m": 20,
+      "notes": "Highly adaptable to urban areas; common in cities and towns across Asia."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "03-01",
+        "end": "07-31",
+        "note": "Breeding season in spring and summer."
+      },
+      {
+        "name": "flocking",
+        "start": "10-01",
+        "end": "02-28",
+        "note": "Winter communal roosting."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg"
+      },
+      {
+        "stage": "Juvenile"
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "KR-11",
+        "monthly": [
+          0.5,
+          0.59,
+          0.71,
+          0.93,
+          0.76,
+          0.89,
+          0.99,
+          1.0,
+          0.87,
+          0.98,
+          0.81,
+          0.66
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 10501,
+        "sources": [
+          "inat-activity-kr-11",
+          "gbif-activity-kr-11"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 11005,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=8026&place_id=11005&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=11005&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 354,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "KOR.16_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2482487&gadmGid=KOR.16_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=KOR.16_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 10147,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "bt-perching-songbird-v1",
+    "params": {
+      "flee_m": 10,
+      "food_tag": "carrion",
+      "song": "caw",
+      "alarm": "caw",
+      "song_cooldown_s": 15,
+      "nest_m1": 3,
+      "nest_m2": 6
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "caw",
+      "context": "Song",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day"
+      ],
+      "cooldown_s": 12,
+      "loudness": "Loud",
+      "description": "A harsh, loud 'kaa' or 'caw', the most common call; used as contact call and alarm."
+    },
+    {
+      "call_id": "alarm",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [],
+      "cooldown_s": 8,
+      "loudness": "Loud",
+      "description": "A rapid, repetitive cawing when alarmed or mobbing predators."
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.6,
+      "leg_length_ratio": 0.35,
+      "head_scale": 0.65,
+      "neck_angle_deg": 15,
+      "tail_ratio": 1.1,
+      "wing_aspect": 2.8,
+      "beak_ratio": 0.55,
+      "girth_ratio": 0.9
+    },
+    "palette": {
+      "body": "#0a0a0a",
+      "belly": "#1a1a1a",
+      "markings": "#2a2a3a",
+      "accent": "#0a0a0a",
+      "eye": "#1a1a1a"
+    },
+    "part_colors": {
+      "beak": "accent",
+      "wing_left_outer": "markings",
+      "wing_right_outer": "markings"
+    },
+    "extra_parts": [],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "hop": {},
+      "fly": {},
+      "perched": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2482487",
+      "title": "GBIF Backbone Taxonomy: Corvus macrorhynchos",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q111674",
+      "title": "Wikidata: Large-billed Crow (Q111674)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Large-billed_crow",
+      "title": "Wikipedia: Large-billed crow",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Large-billed crow\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "inat-activity-kr-11",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=8026&place_id=11005&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Corvus macrorhynchos in KR-11",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-kr-11",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2482487&gadmGid=KOR.16_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Corvus macrorhynchos in KR-11",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "common_names": {
+      "sources": [
+        "wikidata",
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "IUCN Least Concern."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Range from Wikipedia: widespread across Asia."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Mass 450-1000g from Wikipedia."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Length 46-59 cm from Wikipedia."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Diet: omnivorous - carrion, small vertebrates, invertebrates, fruit."
+    },
+    "vocalizations": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Harsh 'kaa' call typical of crows."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "All-black plumage with purple sheen; large bill; proportions authored."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared perching-songbird program."
+    },
+    "habitat.use": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored: ground and arboreal foraging."
+    },
+    "habitat.shelter_tag": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored: roosts in trees."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Weights are judgement based on diet description."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Common in urban and suburban areas."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Largely sedentary with some migration."
+    },
+    "seasonal.phases": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored: breeding and flocking phases."
+    },
+    "seasonal.life_stages": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored: egg, juvenile, adult."
+    },
+    "traits.activity_pattern": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: diurnal bird."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.defense": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: flees from threats."
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: walks, hops and flies."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Approximate range from description."
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Judgement: platform or cup nest."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.size_class": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "From mass_kg."
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Pairs or small flocks."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.wariness": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored judgement."
+    },
+    "traits.wingspan_m": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored estimate."
+    },
+    "traits.lifespan_y": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored estimate."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies maintainers",
+      "agent": "claude-code"
+    }
+  ]
+}
