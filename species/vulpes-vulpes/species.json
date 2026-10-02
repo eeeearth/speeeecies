@@ -66,7 +66,8 @@
       "TN",
       "DZ",
       "MA",
-      "US"
+      "US",
+      "CA"
     ],
     "introduced": [
       "AU"
@@ -453,6 +454,55 @@
             "gbif"
           ]
         }
+      },
+      {
+        "region": "US-MA",
+        "monthly": [
+          1.0,
+          0.6,
+          0.65,
+          0.64,
+          0.9,
+          0.6,
+          0.34,
+          0.46,
+          0.37,
+          0.41,
+          0.79,
+          0.92
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 3336,
+        "sources": [
+          "inat-activity-us-ma",
+          "gbif-activity-us-ma"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 2,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=42069&place_id=2&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=2&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 1780,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "C",
+            "area": [
+              "gadmGid",
+              "USA.22_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5219243&gadmGid=USA.22_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.22_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "total": 1556,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
       }
     ]
   },
@@ -735,6 +785,24 @@
       "id": "gbif-activity-us-nc",
       "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5219243&gadmGid=USA.34_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
       "title": "GBIF occurrence search for Vulpes vulpes in US-NC",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "inat-activity-us-ma",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=42069&place_id=2&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Vulpes vulpes in US-MA",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-ma",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5219243&gadmGid=USA.22_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+      "title": "GBIF occurrence search for Vulpes vulpes in US-MA",
       "license": "CC-BY-NC-4.0",
       "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
       "accessed": "2026-10-01",

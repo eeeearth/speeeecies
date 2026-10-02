@@ -5,7 +5,8 @@
   "id": "Eptesicus fuscus",
   "slug": "eptesicus-fuscus",
   "common_names": {
-    "en": "Big Brown Bat"
+    "en": "Big Brown Bat",
+    "de": "große Braune Breitflügelfledermaus"
   },
   "taxonomy": {
     "kingdom": "Animalia",
@@ -21,7 +22,8 @@
     "gbif_usage_key": 2432352,
     "inat_taxon_id": 40509,
     "itis_tsn": 29078,
-    "wikidata": "Q301254"
+    "wikidata": "Q301254",
+    "ncbi_taxon_id": 29078
   },
   "conservation": {
     "iucn": "LC"
@@ -36,7 +38,12 @@
       "CU",
       "JM",
       "CO",
-      "VE"
+      "VE",
+      "HN",
+      "SV",
+      "NI",
+      "CR",
+      "PA"
     ]
   },
   "traits": {
@@ -75,7 +82,13 @@
     },
     "activity_pattern": "Nocturnal",
     "defense": "Flee",
-    "wariness": 0.7
+    "wariness": 0.7,
+    "senses": {
+      "vision_color": false,
+      "night_vision": true,
+      "olfaction": "Med",
+      "hearing": "High"
+    }
   },
   "habitat": {
     "use": {
@@ -104,6 +117,11 @@
         "tag": "perch",
         "kind": "Shelter",
         "weight": 0.1
+      },
+      {
+        "tag": "water",
+        "kind": "Water",
+        "weight": 0.4
       }
     ],
     "human_tolerance": {
@@ -179,7 +197,22 @@
       ],
       "cooldown_s": 1,
       "loudness": "Quiet",
-      "description": "The ultrasonic call emitted into the environment and used with returning echoes to judge distance, size, shape, density and the direction any object is moving, which lets the bat hunt in the dark and exploit night-flying insects with little competition."
+      "description": "The ultrasonic call emitted into the environment and used with returning echoes to judge distance, size, shape, density and the direction any object is moving, which lets the bat hunt in the dark and exploit night-flying insects with little competition.",
+      "freq_hz": [
+        25000,
+        50000
+      ]
+    },
+    {
+      "call_id": "social",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [
+        "Night"
+      ],
+      "cooldown_s": 5,
+      "loudness": "Quiet",
+      "description": "Lower-frequency social calls between roost-mates, used in the maternity colony and during mating."
     }
   ],
   "look": {
@@ -293,6 +326,24 @@
       "id": "gbif-activity-us-pa",
       "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2432352&gadmGid=USA.39_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
       "title": "GBIF occurrence search for Eptesicus fuscus in US-PA",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=180008",
+      "title": "ITIS: Eptesicus fuscus, TSN 180008",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "gbif-activity-us-ma",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2432352&gadmGid=USA.22_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+      "title": "GBIF occurrence search for Eptesicus fuscus in US-MA",
       "license": "CC-BY-NC-4.0",
       "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
       "accessed": "2026-10-01",
@@ -457,7 +508,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Maternity colonies range from 5 to 700 individuals and are frequently 25-75 adults in the eastern United States and Canada; in summer males are most often solitary but may form small all-male colonies, and solitary males and non-pregnant females roost under bark."
+      "note": "Maternity colonies range from 5 to 700 individuals and are frequently 25-75 adults in the eastern United States and Canada; in summer males are most often solitary but may form small all-male colonies, and solitary males and non-pregnant females roost under bark.",
+      "derived": true
     },
     "traits.activity_pattern": {
       "sources": [
@@ -485,7 +537,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "It is airborne for most of the night while foraging, using echolocation in the dark, and clings in roosts by day; it forages in cities around street lamps."
+      "note": "It is airborne for most of the night while foraging, using echolocation in the dark, and clings in roosts by day; it forages in cities around street lamps.",
+      "derived": true
     },
     "habitat.shelter_tag": {
       "sources": [
@@ -527,7 +580,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Breeding season in the fall shortly before hibernation; maternity colonies forming after hibernation ends in spring, with twins commonly born between May and July in the eastern United States; pups blind and helpless at 3 g, nursing about a month and fledging at three to five weeks."
+      "note": "Breeding season in the fall shortly before hibernation; maternity colonies forming after hibernation ends in spring, with twins commonly born between May and July in the eastern United States; pups blind and helpless at 3 g, nursing about a month and fledging at three to five weeks.",
+      "derived": true
     },
     "seasonal.life_stages": {
       "sources": [
@@ -549,7 +603,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Dorsal fur reddish brown and glossy, ventral fur lighter brown, and the snout, uropatagium, wing membranes and ears all black and hairless, with short rounded ears. Proportions are authored."
+      "note": "Dorsal fur reddish brown and glossy, ventral fur lighter brown, and the snout, uropatagium, wing membranes and ears all black and hairless, with short rounded ears. Proportions are authored.",
+      "derived": true
     },
     "behavior": {
       "sources": [
@@ -558,12 +613,32 @@
       "confidence": "Medium",
       "derived": true,
       "note": "No shared program models a flying nocturnal mammal, so the ground-forager program is used: its forage, drink, flee and rest-in-shelter cycle matches a bat's, and its daytime rest window is the documented case for nocturnal species. Both gaits are set to fly so the mesh uses the flight poses; the description of the program as ground-dwelling does not match this species and the import would be better served by a dedicated bat program."
+    },
+    "traits.senses": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Echolocation implies acute hearing; bats also have functional night vision. Judgement mapping."
+    },
+    "vocalizations": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Echolocation and social calls described on Wikipedia; the 25-50 kHz band, cooldowns and time windows are authored judgement."
     }
   },
   "contributors": [
     {
       "name": "sisyphus-agent",
       "agent": "opencode"
+    },
+    {
+      "name": "speeeecies maintainers",
+      "agent": "claude-code"
     }
   ],
   "activity": {
@@ -613,6 +688,53 @@
           },
           "used": [
             "inat",
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "US-MA",
+        "monthly": [
+          0.52,
+          0.68,
+          0.73,
+          0.51,
+          0.95,
+          0.33,
+          0.65,
+          1.0,
+          0.32,
+          0.59,
+          0.49,
+          0.38
+        ],
+        "method": "gbif_share",
+        "observations": 274,
+        "sources": [
+          "gbif-activity-us-ma"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 2,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40509&place_id=2&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=2&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 235,
+            "usable": false
+          },
+          "gbif": {
+            "tier": "C",
+            "area": [
+              "gadmGid",
+              "USA.22_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2432352&gadmGid=USA.22_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.22_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "total": 274,
+            "usable": false
+          },
+          "used": [
             "gbif"
           ]
         }

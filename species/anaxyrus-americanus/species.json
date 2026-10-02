@@ -21,7 +21,8 @@
     "gbif_usage_key": 2422872,
     "inat_taxon_id": 64968,
     "itis_tsn": 8389,
-    "wikidata": "Q694496"
+    "wikidata": "Q694496",
+    "ncbi_taxon_id": 8389
   },
   "conservation": {
     "iucn": "LC"
@@ -55,7 +56,7 @@
       0.03
     ],
     "length_m": 0.07,
-    "lifespan_y": 10,
+    "lifespan_y": 10.0,
     "diet": {
       "invertebrate": 1.0
     },
@@ -85,12 +86,23 @@
       {
         "tag": "pond",
         "kind": "Nesting",
-        "weight": 1.0
+        "weight": 1.0,
+        "months": [
+          4,
+          5,
+          6
+        ]
       },
       {
         "tag": "burrow",
         "kind": "Shelter",
-        "weight": 0.7
+        "weight": 0.7,
+        "months": [
+          11,
+          12,
+          1,
+          2
+        ]
       },
       {
         "tag": "shrub_thicket",
@@ -106,13 +118,19 @@
         "tag": "water",
         "kind": "Water",
         "weight": 0.5
+      },
+      {
+        "tag": "log_pile",
+        "kind": "Shelter",
+        "weight": 0.6
       }
     ],
     "human_tolerance": {
       "urban_affinity": "Adapter",
       "uses_gardens": true,
       "light_max": 0.6,
-      "notes": "Given a semi-permanent pool with shallow water to breed in and dense vegetation for cover and hunting, it can live almost everywhere from forests to flat grassland. It commonly shelters under boardwalks, flat stones, boards, logs and wood piles, becomes active in the rain, and is creatures of habit, staying within about an acre of wooded ground with water in proximity."
+      "notes": "Given a semi-permanent pool with shallow water to breed in and dense vegetation for cover and hunting, it can live almost everywhere from forests to flat grassland. It commonly shelters under boardwalks, flat stones, boards, logs and wood piles, becomes active in the rain, and is creatures of habit, staying within about an acre of wooded ground with water in proximity.",
+      "road_mortality": "High"
     }
   },
   "seasonal": {
@@ -145,22 +163,31 @@
         "start": "05-15",
         "end": "09-30",
         "note": "Eggs hatch into tadpoles in 3 to 12 days and the tadpoles reach adulthood in 50 to 65 days; groups of toadlets often reach that stage at once and make a mass migration to higher ground into shaded mid-range and upland forest, eating microscopic bugs, ants, spiders, slugs and worms on the way."
+      },
+      {
+        "name": "breeding",
+        "start": "04-01",
+        "end": "06-15",
+        "note": "Males call from the shallows; eggs are laid in long strings among water plants."
       }
     ],
     "life_stages": [
       {
         "stage": "Egg",
         "duration_days": 7,
-        "scale": 0.02
+        "scale": 0.02,
+        "requires_tag": "pond"
       },
       {
         "stage": "Tadpole",
         "duration_days": 57,
-        "scale": 0.12
+        "scale": 0.12,
+        "requires_tag": "pond"
       },
       {
         "stage": "Juvenile",
-        "scale": 0.35
+        "scale": 0.35,
+        "duration_days": 1095
       },
       {
         "stage": "Adult"
@@ -195,6 +222,22 @@
       "cooldown_s": 20,
       "loudness": "Loud",
       "description": "A high trill lasting between 6 and 30 seconds that sounds similar to a ringing telephone, given by breeding males for an average of six to seven nights. Females prefer high call efforts, the product of rate and duration."
+    },
+    {
+      "call_id": "trill",
+      "context": "Croak",
+      "season_months": [
+        4,
+        5,
+        6
+      ],
+      "time_windows": [
+        "Dusk",
+        "Night"
+      ],
+      "cooldown_s": 20,
+      "loudness": "Loud",
+      "description": "A long, high, musical trill lasting up to half a minute, given by males from shallow breeding water; a chorus of them carries far on a spring night."
     }
   ],
   "look": {
@@ -320,6 +363,33 @@
       "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
       "accessed": "2026-10-01",
       "kind": "api"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=773511",
+      "title": "ITIS: Anaxyrus americanus, TSN 773511",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "inat-activity-us-ma",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=64968&place_id=2&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Anaxyrus americanus in US-MA",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-ma",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2422872&gadmGid=USA.22_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Anaxyrus americanus in US-MA",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
     }
   ],
   "provenance": {
@@ -388,7 +458,8 @@
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "note": "Dry, warty skin; 'Moist' is the format's amphibian class."
     },
     "traits.flight": {
       "sources": [
@@ -470,7 +541,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "'Their diet includes crickets, mealworms, earthworms, ants, spiders, slugs, centipedes, moths, and other small invertebrates', and toadlets eat microscopic bugs, ants, spiders, slugs and worms."
+      "note": "'Their diet includes crickets, mealworms, earthworms, ants, spiders, slugs, centipedes, moths, and other small invertebrates', and toadlets eat microscopic bugs, ants, spiders, slugs and worms.",
+      "derived": true
     },
     "traits.social": {
       "sources": [
@@ -507,7 +579,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "It forages on the ground among vegetation and at water, needs shallow water for breeding and development, and can live almost everywhere from forests to flat grassland given water, cover and insects."
+      "note": "It forages on the ground among vegetation and at water, needs shallow water for breeding and development, and can live almost everywhere from forests to flat grassland given water, cover and insects.",
+      "derived": true
     },
     "habitat.shelter_tag": {
       "sources": [
@@ -551,7 +624,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Males call for an average of 6-7 nights in the breeding period; two long egg ropes of 2,000-20,000 eggs are laid in shallow water; eggs hatch in 3-12 days and tadpoles reach adulthood in 50-65 days, after which toadlets migrate to higher ground."
+      "note": "Males call for an average of 6-7 nights in the breeding period; two long egg ropes of 2,000-20,000 eggs are laid in shallow water; eggs hatch in 3-12 days and tadpoles reach adulthood in 50-65 days, after which toadlets migrate to higher ground.",
+      "derived": true
     },
     "seasonal.life_stages": {
       "sources": [
@@ -583,11 +657,22 @@
       "confidence": "High",
       "derived": true,
       "note": "The shared anuran program is a direct match: it hides in cover by day, forages for invertebrates at night when warm and damp, calls near water in the breeding months and freezes then hops away from threats. The temperature band is set to stop activity in the cold and the call months to the spring breeding window; the exact values are authored."
+    },
+    "vocalizations.trill": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "The long musical trill of the male is described in the article."
     }
   },
   "contributors": [
     {
       "name": "sisyphus-agent",
+      "agent": "opencode"
+    },
+    {
+      "name": "Sisyphus",
       "agent": "opencode"
     }
   ],
@@ -634,6 +719,55 @@
             "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2422872&gadmGid=USA.39_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
             "baseline_url": null,
             "total": 2282,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "US-MA",
+        "monthly": [
+          0.01,
+          0.01,
+          0.06,
+          0.58,
+          1.0,
+          0.88,
+          0.76,
+          0.79,
+          0.57,
+          0.12,
+          0.03,
+          0.0
+        ],
+        "method": "mean(inat_raw, gbif_raw)",
+        "observations": 1563,
+        "sources": [
+          "inat-activity-us-ma",
+          "gbif-activity-us-ma"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 2,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=64968&place_id=2&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": null,
+            "total": 762,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.22_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2422872&gadmGid=USA.22_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": null,
+            "total": 801,
             "usable": true
           },
           "used": [
