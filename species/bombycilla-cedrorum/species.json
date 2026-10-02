@@ -5,7 +5,9 @@
   "id": "Bombycilla cedrorum",
   "slug": "bombycilla-cedrorum",
   "common_names": {
-    "en": "cedar waxwing"
+    "en": "Cedar Waxwing",
+    "fr": "Jaseur d'Amérique",
+    "de": "Zedernseidenschwanz"
   },
   "taxonomy": {
     "kingdom": "Animalia",
@@ -14,7 +16,7 @@
     "order": "Passeriformes",
     "family": "Bombycillidae",
     "genus": "Bombycilla",
-    "authority": "(Vieillot, 1808)",
+    "authority": "Vieillot, 1808",
     "status": "Accepted"
   },
   "external": {
@@ -30,16 +32,17 @@
   },
   "range": {
     "native": [
-      "CA",
       "US",
+      "CA",
       "MX",
       "GT",
       "BZ",
+      "CR",
+      "PA",
+      "CO",
       "HN",
       "SV",
-      "NI",
-      "CR",
-      "PA"
+      "NI"
     ]
   },
   "traits": {
@@ -47,7 +50,8 @@
     "limb_count": 2,
     "locomotion_modes": [
       "Hop",
-      "Fly"
+      "Fly",
+      "Glide"
     ],
     "thermoregulation": "Endotherm",
     "skin": "Feathers",
@@ -56,47 +60,56 @@
     "metamorphosis": "None",
     "nest_type": "Cup",
     "perching": true,
+    "senses": {
+      "vision_color": true,
+      "hearing": "High"
+    },
     "size_class": "Tiny",
-    "mass_kg": 0.03,
+    "mass_kg": 0.03158,
+    "mass_range_kg": [
+      0.028,
+      0.035
+    ],
     "length_m": 0.165,
     "wingspan_m": 0.26,
-    "lifespan_y": 2.0,
+    "lifespan_y": 3.0,
     "diet": {
-      "fruit": 0.85,
-      "invertebrate": 0.15
+      "fruit": 0.7,
+      "invertebrate": 0.2,
+      "browse": 0.1
     },
     "social": {
       "structure": "Flock",
       "group_size": [
-        5,
-        100
+        2,
+        300
       ]
     },
     "activity_pattern": "Diurnal",
     "defense": "Flee",
-    "wariness": 0.35
+    "wariness": 0.3
   },
   "habitat": {
     "use": {
       "arboreal": 0.8,
-      "ground": 0.2
+      "aerial": 0.2
     },
-    "shelter_tag": "perch",
+    "shelter_tag": "shrub_thicket",
     "resources": [
       {
         "tag": "fruit",
         "kind": "Herbivory",
-        "weight": 1.0
-      },
-      {
-        "tag": "berry",
-        "kind": "Herbivory",
-        "weight": 0.6
+        "weight": 0.7
       },
       {
         "tag": "invertebrate",
         "kind": "Predation",
-        "weight": 0.3
+        "weight": 0.2
+      },
+      {
+        "tag": "browse",
+        "kind": "Herbivory",
+        "weight": 0.1
       },
       {
         "tag": "nest_cup",
@@ -106,7 +119,17 @@
       {
         "tag": "perch",
         "kind": "Shelter",
-        "weight": 0.7
+        "weight": 0.6
+      },
+      {
+        "tag": "water",
+        "kind": "Water",
+        "weight": 0.4
+      },
+      {
+        "tag": "berry",
+        "kind": "Herbivory",
+        "weight": 0.6
       },
       {
         "tag": "shrub_thicket",
@@ -117,24 +140,33 @@
     "human_tolerance": {
       "urban_affinity": "Adapter",
       "uses_gardens": true,
-      "notes": "In suburbs and towns it favours parkland with well-spaced trees, berry bushes and a nearby water source such as a fountain or birdbath; often seen in fruiting garden trees."
+      "light_max": 0.6,
+      "notes": "In urban and suburban settings favours parkland with well-spaced trees, golf courses, cemeteries and other landscaping with well-spaced trees, berry-bearing bushes, and a nearby water source; also found near farms, orchards and gardens, particularly with fruiting trees or shrubs."
     }
   },
   "seasonal": {
-    "strategy": "PartialMigration",
-    "winter_fraction": 0.1,
+    "strategy": "Migration",
+    "winter_fraction": 0.2,
     "phases": [
       {
         "name": "breeding",
-        "start": "06-01",
+        "start": "05-15",
         "end": "08-31",
-        "note": "The mating season begins around the end of spring and runs through late summer; nesting peaks in June-August."
+        "note": "The mating season begins around the end of spring and runs through to late summer. The nest is a loose open cup of grass and twigs on a branch 2-6 m above ground; usually five or six eggs, incubated by the female for 11 to 13 days, with young leaving the nest 14 to 18 days after hatching; one or two broods are typically raised."
       },
       {
         "name": "flocking",
         "start": "09-01",
-        "end": "05-31",
-        "note": "Outside the breeding season cedar waxwings feed in large nomadic flocks, moving erratically to follow berry crops."
+        "end": "04-30",
+        "note": "Outside the breeding season the birds feed in large flocks numbering hundreds, moving from place to place depending on where they can find good sources of berries."
+      },
+      {
+        "name": "absent",
+        "start": "12-01",
+        "end": "02-28",
+        "region": "CA",
+        "fraction": 0.8,
+        "note": "This species is nomadic and irruptive, though most of the population migrates farther south into the United States and beyond, sometimes reaching as far as northern South America, so the far-northern part of the breeding range is largely vacated in mid-winter. 0.8 is an authored fraction."
       }
     ],
     "life_stages": [
@@ -143,8 +175,9 @@
       },
       {
         "stage": "Juvenile",
-        "duration_days": 40,
-        "scale": 0.85
+        "duration_days": 80,
+        "scale": 0.7,
+        "requires_tag": "nest_cup"
       },
       {
         "stage": "Adult"
@@ -153,6 +186,53 @@
   },
   "activity": {
     "regions": [
+      {
+        "region": "US-WV",
+        "monthly": [
+          0.12,
+          0.09,
+          0.05,
+          0.05,
+          0.38,
+          0.76,
+          0.75,
+          1.0,
+          0.86,
+          0.66,
+          0.39,
+          0.17
+        ],
+        "method": "gbif_share",
+        "observations": 41224,
+        "sources": [
+          "gbif-activity-us-wv"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 33,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=7428&place_id=33&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=33&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 290,
+            "usable": false
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.49_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2484609&gadmGid=USA.49_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.49_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 41224,
+            "usable": true
+          },
+          "used": [
+            "gbif"
+          ]
+        }
+      },
       {
         "region": "US-ND",
         "monthly": [
@@ -207,13 +287,26 @@
     "params": {
       "flee_m": 6,
       "food_tag": "fruit",
-      "song": "trill",
-      "alarm": "alarm",
+      "song": "call",
+      "alarm": "call",
       "nest_m1": 6,
       "nest_m2": 8
     }
   },
   "vocalizations": [
+    {
+      "call_id": "call",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day",
+        "Dusk"
+      ],
+      "cooldown_s": 6,
+      "loudness": "Moderate",
+      "description": "Very high-pitched whistles and buzzy trills about half a second long, often rendered as see or sree, and described as high, thin whistles. The birds call often, especially in flight, and flock members pass berries beak-to-beak along a twig."
+    },
     {
       "call_id": "trill",
       "context": "Contact",
@@ -243,47 +336,81 @@
   "look": {
     "body_plan": "biped_winged",
     "proportions": {
-      "torso_aspect": 1.5,
-      "leg_length_ratio": 0.32,
-      "head_scale": 0.8,
-      "neck_angle_deg": 14,
-      "tail_ratio": 0.7,
-      "wing_aspect": 2.7,
-      "beak_ratio": 0.3,
-      "girth_ratio": 1.05
+      "torso_aspect": 1.6,
+      "leg_length_ratio": 0.35,
+      "head_scale": 0.78,
+      "neck_angle_deg": 10,
+      "tail_ratio": 0.55,
+      "wing_aspect": 2.2,
+      "beak_ratio": 0.32,
+      "girth_ratio": 0.9
     },
     "palette": {
-      "body": "#8a6f52",
-      "belly": "#e3d9a0",
-      "markings": "#262626",
-      "accent": "#d9b13b",
-      "eye": "#141414"
+      "body": "#8a6f4e",
+      "belly": "#e8d98f",
+      "markings": "#15161a",
+      "accent": "#b8341f",
+      "eye": "#0f0d0c"
     },
     "part_colors": {
-      "head": "markings",
-      "tail": "accent"
+      "beak": "markings",
+      "wing_left_outer": "markings",
+      "wing_right_outer": "markings",
+      "tail": "belly"
     },
     "extra_parts": [
       {
         "name": "crest",
         "parent": "head",
         "offset": [
-          0,
-          0.6,
-          -0.2
+          -0.18,
+          0.42,
+          0
         ],
         "size": [
-          0.5,
-          0.5,
-          0.4
+          0.7,
+          0.34,
+          0.8
         ],
         "color": "body"
+      },
+      {
+        "name": "mask",
+        "parent": "head",
+        "offset": [
+          0.34,
+          0.06,
+          0
+        ],
+        "size": [
+          0.42,
+          0.2,
+          1.06
+        ],
+        "color": "markings"
+      },
+      {
+        "name": "wax_tip",
+        "parent": "wing_left_outer",
+        "offset": [
+          0.34,
+          0.12,
+          0
+        ],
+        "size": [
+          0.4,
+          0.24,
+          0.9
+        ],
+        "color": "accent",
+        "mirror": true
       }
     ],
     "poses": {
       "idle": {},
       "hop": {},
       "fly": {},
+      "glide": {},
       "perched": {},
       "rest": {}
     }
@@ -302,7 +429,7 @@
     {
       "id": "wikidata",
       "url": "https://www.wikidata.org/wiki/Q184314",
-      "title": "Wikidata: cedar waxwing (Q184314)",
+      "title": "Wikidata: Cedar Waxwing (Q184314)",
       "license": "CC0-1.0",
       "kind": "database",
       "accessed": "2026-10-01",
@@ -328,6 +455,35 @@
       "note": "US federal government database; public domain in the United States."
     },
     {
+      "id": "eltontraits",
+      "url": "https://doi.org/10.6084/m9.figshare.3559887.v1",
+      "title": "EltonTraits 1.0: species-level foraging attributes of the world's birds and mammals (BirdFuncDat)",
+      "license": "CC0-1.0",
+      "kind": "dataset",
+      "accessed": "2026-10-01",
+      "attribution": "Wilman, H. et al. (2014) EltonTraits 1.0. Ecology 95:2027",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "avonet",
+      "url": "https://doi.org/10.6084/m9.figshare.16586228",
+      "title": "AVONET: morphological, ecological and geographical data for all birds",
+      "license": "CC-BY-4.0",
+      "kind": "dataset",
+      "accessed": "2026-10-01",
+      "attribution": "Tobias, J. A. et al. (2022) AVONET. Ecology Letters 25:581-597",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "gbif-activity-us-wv",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2484609&gadmGid=USA.49_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Bombycilla cedrorum in US-WV",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
       "id": "gbif-activity-us-nd",
       "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2484609&gadmGid=USA.35_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
       "title": "GBIF occurrence search for Bombycilla cedrorum in US-ND",
@@ -343,15 +499,17 @@
         "gbif-backbone",
         "itis"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "note": "GBIF backbone gives family Bombycillidae and authority Vieillot, 1808; ITIS scientific-name search returns TSN 178532 with the same authority."
     },
     "external": {
       "sources": [
         "gbif-backbone",
-        "wikidata"
+        "wikidata",
+        "itis"
       ],
       "confidence": "High",
-      "note": "iNaturalist, NCBI and eBird ids via Wikidata (P3151, P685, P3444)."
+      "note": "GBIF usageKey 2484609 from species/match; ITIS TSN 178532 from the ITIS scientific-name search; NCBI taxon id 161648, eBird code cedwax and IUCN category least concern (Q211005) from Wikidata P685, P3444 and P141."
     },
     "common_names": {
       "sources": [
@@ -361,18 +519,19 @@
     },
     "conservation": {
       "sources": [
+        "wikipedia",
         "wikidata"
       ],
       "confidence": "High",
-      "note": "Wikidata P141 = least concern (Q211005)."
+      "note": "'The cedar cedar waxwing is listed as least concern on the IUCN Red List' and Wikidata P141 = least concern (Q211005). Populations are described as increasing in range."
     },
     "range": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "Medium",
+      "confidence": "High",
       "derived": true,
-      "note": "Country list derived from 'a native of North and Central America, breeding in open wooded areas in southern Canada and wintering in the southern half of the United States, Central America, and the far northwest of South America'."
+      "note": "'It is a native of North and Central America, breeding in open wooded areas in southern Canada and wintering in the southern half of the United States, Central America, and the far northwest of South America.' The Central American and north-west South American country list is the published range of the species rather than a per-country breakdown in the source, so it is recorded at country level and should be read as approximate."
     },
     "traits.body_plan": {
       "sources": [
@@ -390,9 +549,9 @@
       "sources": [
         "wikipedia"
       ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "A perching passerine that flies and hops; the source describes perching, flight and a 'hopping dance'."
+      "confidence": "High",
+      "note": "'The male does a hopping dance for the female' plus the strong direct flight described, and the flock's 'movement in flight resembles that of a flock of small, pale European starlings'; Glide is included for the flock gliding movement of a bird with broad pointed wings, though the source does not use the word.",
+      "derived": true
     },
     "traits.thermoregulation": {
       "sources": [
@@ -410,7 +569,8 @@
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "note": "'The flight of waxwings is strong and direct', flying at 40 km/h at altitudes up to 610 m."
     },
     "traits.respiration": {
       "sources": [
@@ -429,28 +589,49 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "'The nest is a loose, open cup built with grass and twigs, lined with softer materials'."
+      "note": "'The nest is a loose, open cup built with grass and twigs, lined with softer materials, and supported by a tree branch averaging 2 to 6 m above ground', with an outer diameter of about 12 to 16 cm."
     },
     "traits.perching": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "note": "Perches in the canopy and on branch forks; the nest is supported by a tree branch and the crest is described as lying flat over the back of the head."
+    },
+    "traits.senses": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "vision_color authored from the 'silky, shiny collection of brown, gray, and lemon-yellow' with a 'rakish black mask' and red wax droplets. hearing High from the two-call repertoire and the frequent calling in flight. No olfaction value is written because no sourced claim was found."
     },
     "traits.size_class": {
       "sources": [
-        "wikipedia"
+        "eltontraits",
+        "avonet"
       ],
       "confidence": "High",
       "derived": true,
-      "note": "From mass_kg 0.03 (< 0.05 kg)."
+      "note": "From mass_kg (0.03158 kg falls in the Tiny band, under 0.05 kg)."
     },
     "traits.mass_kg": {
       "sources": [
+        "eltontraits",
+        "avonet",
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "'weighing roughly 30 g (1 oz)'."
+      "note": "EltonTraits BodyMass-Value 31.58 g and AVONET Mass 31.58 g agree exactly (both sourced to Dunning 2008) and match Wikipedia's 'weighing roughly 30 g'."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "avonet",
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "An authored band either side of the sourced point mass, following the convention used elsewhere in this kit: Wikipedia gives only 'roughly 30 g' with no range, so 28-35 g brackets that figure rather than a published range."
     },
     "traits.length_m": {
       "sources": [
@@ -458,7 +639,7 @@
       ],
       "confidence": "High",
       "derived": true,
-      "note": "Midpoint of 'around 6-7 in (15-18 cm) long'."
+      "note": "Midpoint of 15 to 18 cm."
     },
     "traits.wingspan_m": {
       "sources": [
@@ -466,7 +647,7 @@
       ],
       "confidence": "High",
       "derived": true,
-      "note": "Midpoint of 'Wingspan ranges from 8.7 to 11.8 in (22 to 30 cm)'."
+      "note": "Midpoint of 22 to 30 cm."
     },
     "traits.lifespan_y": {
       "sources": [
@@ -474,48 +655,56 @@
       ],
       "confidence": "Low",
       "derived": true,
-      "note": "'The oldest observed cedar waxwing was eight years and two months old.' No typical or mean figure is given; 2.0 years is a judgement by analogy to other small, heavily predated passerines in this repository, pending a better source."
+      "note": "The only figure the source gives is a record maximum, 'The oldest observed cedar waxwing was eight years and two months old'. A record maximum is not a typical lifespan, so it is deliberately not used for this field; 3.0 years is an authored order-of-magnitude figure for typical adult longevity of a medium-sized passerine, and this is an honest gap rather than a sourced value."
     },
     "traits.diet": {
       "sources": [
+        "eltontraits",
         "wikipedia"
       ],
       "confidence": "High",
       "derived": true,
-      "note": "'Cedar waxwings eat berries and sugary fruit year-round ... with insects becoming an important part of the diet in the breeding season.' Shares are a judgement."
+      "note": "EltonTraits Diet-Fruit 70, Diet-Inv 20, Diet-PlantO 10, with PlantO mapped to the schema's browse for the flowers, catkins and pollen the bird eats when fruit is scarce. Wikipedia's digestion study is consistent and more extreme, reporting 'stomach contents of 84% fruit, 12% invertebrates, and 4% flowers' across 212 individuals, and describes the species as 'a highly specialized frugivorous species, exhibiting almost full reliance on sugary fruits'."
     },
     "traits.social": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "'Cedar waxwings are sociable, seen in flocks year round. They are nonterritorial birds.'"
+      "derived": true,
+      "note": "'Cedar waxwings are sociable, seen in flocks year round. They are nonterritorial birds and will often groom each other'; 'Outside the breeding season, cedar waxwings often feed in large flocks numbering hundreds of birds.' The upper bound of 300 is an authored figure, since 'hundreds' is not a count."
     },
     "traits.activity_pattern": {
-      "sources": [],
-      "confidence": "Low",
-      "derived": true,
-      "note": "Authored: a day-active flocking frugivore; the source does not state an activity pattern explicitly."
-    },
-    "traits.defense": {
-      "sources": [],
-      "confidence": "Low",
-      "derived": true,
-      "note": "Authored: the flock moves off together when disturbed."
-    },
-    "traits.wariness": {
-      "sources": [],
-      "confidence": "Low",
-      "derived": true,
-      "note": "Authored judgement: tolerant of people around fruiting trees and feeders."
-    },
-    "habitat.use": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "A canopy frugivore that sometimes drops to the ground or water; split is a judgement."
+      "note": "Diurnal is an authored reading: the source describes feeding, nesting and frequent calling through the day and the male's courtship hopping dance, but states no explicit activity-pattern sentence."
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Authored: the species is described as nonterritorial and non-aggressive, with no predator-directed behaviour in the source, so Flee is recorded as the main reaction; both parents feed the young, but no nest-defence behaviour is described."
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: the species uses parkland, cemeteries, golf courses and gardens with well-spaced trees, so it is comfortable in open, managed settings, but it is nomadic and irruptive rather than a settled feeder bird, so a middling value is used."
+    },
+    "habitat.use": {
+      "sources": [
+        "eltontraits"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "EltonTraits ForStrat-understory 40 + ForStrat-midhigh 40 (80) mapped to arboreal; ForStrat-aerial 20 mapped to aerial, matching the strong direct flock flight described."
     },
     "habitat.shelter_tag": {
       "sources": [
@@ -523,30 +712,31 @@
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "Perches in well-spaced trees and berry bushes; 'perch' is the closest drawable shelter tag."
+      "note": "Authored: preferred habitat is 'trees at the edge of wooded areas or forests', and the species is often found on berry-bearing bushes, so shrub_thicket; the source does not name a resting shelter directly."
     },
     "habitat.resources": {
       "sources": [
+        "eltontraits",
         "wikipedia"
       ],
-      "confidence": "Medium",
+      "confidence": "High",
       "derived": true,
-      "note": "Fruit and berry diet, insects in the breeding season, cup nest in a tree fork 2-6 m up, and tree perches; weights are judgement."
+      "note": "Food weights follow traits.diet exactly. Nesting weight 1.0 on nest_cup follows the nest description. The water weight reflects two explicit statements in the source, that the birds are 'attracted to the sound of running water and like to bathe in and drink from shallow creeks' and that they favour habitat 'as well as water'. Perch and shrub_thicket weights are authored judgement."
     },
     "habitat.human_tolerance": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Suburban parkland, garden fruiting trees, birdbaths and fountains are described explicitly."
+      "note": "The urban and suburban habitat list is quoted almost verbatim in the field note; light_max is authored (judgement)."
     },
     "seasonal.strategy": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "'This species is nomadic and irruptive, with erratic winter movements, though most of the population migrates farther south'; PartialMigration with a low winter fraction."
+      "confidence": "High",
+      "note": "'This species is nomadic and irruptive, with erratic winter movements, though most of the population migrates farther south into the United States and beyond, sometimes reaching as far as northern South America.'",
+      "derived": true
     },
     "seasonal.winter_fraction": {
       "sources": [
@@ -554,23 +744,45 @@
       ],
       "confidence": "Low",
       "derived": true,
-      "note": "Judgement: few cedar waxwings winter in North Dakota in most years."
+      "note": "Judgement: the source says most of the population migrates farther south without giving a proportion, so 0.2 is an authored figure for the share overwintering on the northern part of the range."
     },
     "seasonal.phases": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "Low",
+      "confidence": "Medium",
       "derived": true,
-      "note": "Mating season 'around the end of spring ... through to late summer' and year-round flocking from Wikipedia; the exact windows are a judgement."
+      "note": "Breeding window from 'the mating season for this bird begins around the end of spring and runs through to late summer', with 11-13 days of incubation and 14-18 days to fledging; winter flocking from the 'large flocks numbering hundreds' statement; the regional absent phase is authored from the described southward migration. Exact window edges are judgements informed by those dates."
     },
     "seasonal.life_stages": {
       "sources": [
         "wikipedia"
       ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Juvenile duration from the 11-13 day incubation and 'Young leave the nest about 14 to 18 days after hatching' (about 80 days used for the period from laying to independence, which the source does not state separately); scale is authored judgement and the egg stage carries no duration because none is sourced."
+    },
+    "vocalizations": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Description from the Vocalization section ('very high-pitched whistles and buzzy trills about a half-second long, often represented as see or sree ... high, thin, whistles', 'They call often, especially in flight'). This is a contact call rather than a song, which is why the call_id is 'call'; months and time windows are authored judgement, since no open source quantifies them, and no frequency band is given so freq_hz is omitted. The same call_id serves as both the song and alarm param because the source names only these two common calls and describes no separate song."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Colours from the Description section: 'a silky, shiny collection of brown, gray, and lemon-yellow, accented with a subdued crest, rakish black mask, and brilliant-red wax droplets on the wing feathers', a pale yellow belly, a short square-tipped yellow or orange tail, and a short wide bill. Three extra parts render the traits the name refers to: a crest (which 'lies flat and droops over the back of the head'), the black facial mask, and the red wax droplets on the outer secondaries, mirrored to both wings. Proportions are authored judgement for a short-billed, short-tailed, broad-winged waxwing."
+    },
+    "behavior": {
+      "sources": [],
       "confidence": "Low",
       "derived": true,
-      "note": "Five or six eggs incubated 11-13 days; the juvenile duration and scale are a judgement."
+      "note": "Authored parameters for the shared perching-songbird program. food_tag set to fruit, which is the species' dominant and near-exclusive diet; song and alarm both point at the single described call, because the source names no separate song; nest_m1/nest_m2 set to the late-spring to late-summer mating season. The program is otherwise written around a hopping ground forager with a song perch, which suits a canopy-feeding flocking waxwing, but this is the closest shared program and its parameters are authored accordingly."
     },
     "vocalizations.trill": {
       "sources": [
@@ -585,20 +797,6 @@
       "confidence": "Low",
       "derived": true,
       "note": "The source describes only high-pitched whistles and buzzy trills; a distinct sharper alarm call is a judgement."
-    },
-    "look": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Silky brown, gray and lemon-yellow plumage with a subdued crest, black mask and red wax droplets on the wing tips, yellow-tipped square tail; proportions and box placement are judgement."
-    },
-    "behavior": {
-      "sources": [],
-      "confidence": "Low",
-      "derived": true,
-      "note": "Authored parameters for the shared perching-songbird program, with the contact trill standing in for song and fruit as the food tag."
     }
   },
   "contributors": [

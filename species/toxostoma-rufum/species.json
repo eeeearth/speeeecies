@@ -1,0 +1,614 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Toxostoma rufum",
+  "slug": "toxostoma-rufum",
+  "common_names": {
+    "en": "Brown thrasher",
+    "es": "Mirlón rojizo"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Passeriformes",
+    "family": "Mimidae",
+    "genus": "Toxostoma",
+    "authority": "(Linnaeus, 1758)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 9479809,
+    "inat_taxon_id": 14898,
+    "wikidata": "Q928134",
+    "ebird_code": "brnthr"
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "CA",
+      "US"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Walk",
+      "Hop",
+      "Fly"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Cup",
+    "perching": true,
+    "size_class": "Small",
+    "mass_kg": 0.068,
+    "mass_range_kg": [
+      0.061,
+      0.089
+    ],
+    "length_m": 0.27,
+    "wingspan_m": 0.31,
+    "lifespan_y": 9,
+    "diet": {
+      "invertebrate": 0.55,
+      "fruit": 0.3,
+      "seed": 0.1,
+      "vertebrate": 0.05
+    },
+    "social": {
+      "structure": "Pair",
+      "group_size": [
+        1,
+        2
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.35
+  },
+  "habitat": {
+    "use": {
+      "arboreal": 0.5,
+      "ground": 0.5
+    },
+    "shelter_tag": "shrub_thicket",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.55
+      },
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.3
+      },
+      {
+        "tag": "seed",
+        "kind": "Herbivory",
+        "weight": 0.1
+      },
+      {
+        "tag": "small_vertebrate",
+        "kind": "Predation",
+        "weight": 0.05
+      },
+      {
+        "tag": "nest_cup",
+        "kind": "Nesting",
+        "weight": 1.0
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.6
+      },
+      {
+        "tag": "leaf_litter",
+        "kind": "Shelter",
+        "weight": 0.7
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "light_max": 0.5,
+      "road_mortality": "Low",
+      "notes": "Prefers woodland edges, thickets and dense brush, and will live near agricultural and suburban areas, though less readily than other birds close to housing. Searches for food in dry leaf litter on the ground."
+    }
+  },
+  "seasonal": {
+    "strategy": "PartialMigration",
+    "winter_fraction": 0.7,
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "02-01",
+        "end": "07-31",
+        "note": "In the southeastern United States the breeding months begin in February and March; males sing from high perches and territories run from 2 to 10 acres."
+      },
+      {
+        "name": "territorial",
+        "start": "08-01",
+        "end": "01-31",
+        "note": "A strong but partial migrant: southern birds are year-round residents while northern birds withdraw for the winter."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg"
+      },
+      {
+        "stage": "Juvenile",
+        "duration_days": 32,
+        "scale": 0.9
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US-MS",
+        "monthly": [
+          0.31,
+          0.56,
+          0.64,
+          0.93,
+          1.0,
+          0.91,
+          0.85,
+          0.36,
+          0.55,
+          0.74,
+          0.28,
+          0.21
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 48413,
+        "sources": [
+          "inat-activity-us-ms",
+          "gbif-activity-us-ms"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 37,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=14898&place_id=37&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=37&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 524,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.25_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=9479809&gadmGid=USA.25_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.25_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 47889,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "bt-perching-songbird-v1",
+    "params": {
+      "flee_m": 6,
+      "food_tag": "invertebrate",
+      "song": "song",
+      "alarm": "alarm",
+      "nest_m1": 3,
+      "nest_m2": 6
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "song",
+      "context": "Song",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day"
+      ],
+      "cooldown_s": 30,
+      "loudness": "Loud",
+      "description": "A loud, clear two-note phrase repeated from a high perch by the singing male, who defends a territory of 2 to 10 acres and sings hardest in the breeding season."
+    },
+    {
+      "call_id": "alarm",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 5,
+      "loudness": "Moderate",
+      "description": "A harsh, smacking call given when flushed."
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.5,
+      "leg_length_ratio": 0.44,
+      "head_scale": 0.8,
+      "neck_angle_deg": 14,
+      "tail_ratio": 1.1,
+      "wing_aspect": 2.5,
+      "beak_ratio": 0.62,
+      "girth_ratio": 1.0
+    },
+    "palette": {
+      "body": "#9a5b30",
+      "belly": "#e3d3b6",
+      "markings": "#4a2a15",
+      "accent": "#c88f5f",
+      "eye": "#e8c31a"
+    },
+    "part_colors": {
+      "beak": "eye"
+    },
+    "extra_parts": [
+      {
+        "name": "breast_streaks",
+        "parent": "breast",
+        "offset": [
+          0,
+          -0.3,
+          0
+        ],
+        "size": [
+          0.9,
+          0.5,
+          1.02
+        ],
+        "color": "markings"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "hop": {},
+      "fly": {},
+      "glide": {},
+      "perched": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/9479809",
+      "title": "GBIF Backbone Taxonomy: Brown thrasher",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q928134",
+      "title": "Wikidata: Brown thrasher (Q928134)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Brown_thrasher",
+      "title": "Wikipedia: Brown thrasher",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Brown thrasher\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "inat-activity-us-ms",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=14898&place_id=37&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Toxostoma rufum in US-MS",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-ms",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=9479809&gadmGid=USA.25_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Toxostoma rufum in US-MS",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared perching-songbird program."
+    },
+    "conservation": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "IUCN Red List category via Wikidata P141 (Q211005, least concern)."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "GBIF usage key 9479809 from the GBIF Backbone Taxonomy; iNaturalist taxon id 14898 and Wikidata Q928134 via Wikidata."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Suburban tolerance and the hunting in dry leaves from Wikipedia; the rest are judgements."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The food resources follow the diet shares; nest, perch and leaf litter are authored from the habitat description."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Dense brush and leaf litter."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Shares authored: it works the ground litter and sings from perches in the thicket above."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Reddish-brown above with dark teardrop streaks on a whitish breast, a long rounded rufous tail and bright yellow eyes; proportions and palette are authored."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Country list derived from the two recognized subspecies, T. r. rufum 'in the eastern half of Canada and the United States' and T. r. longicauda 'in the central United States east of the Rocky Mountains'."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The juvenile period covers fledging to independence."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "The February-March start of breeding in the southeastern United States and the 2 to 10 acre territory are from Wikipedia; the winter phase date is a judgement."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'A strong, but partial migrant'."
+    },
+    "taxonomy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.defense": {
+      "sources": [],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Authored: drops back into thicket."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Weights authored: it forages in leaf litter for insects and also takes fruit, with a little seed and the occasional small vertebrate."
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of 23.5-30.5 cm."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Not stated in the article. 9 years is a judgement for a thrasher of this size."
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "It runs and hops through leaf litter and makes short flights up to a song perch; the gaits are authored."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Average 68 g."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "61-89 g."
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "A bulky cup nest of twigs and grass in a low shrub or thicket."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.size_class": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg."
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'Typically monogamous birds, but mate-switching does occur'."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "'Less likely to live near housing than other bird species'; 0.35 is a judgement."
+    },
+    "traits.wingspan_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of 29-33 cm."
+    },
+    "vocalizations.alarm": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "A harsh alarm is standard for the genus; no recording is cited."
+    },
+    "vocalizations.song": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The repeated two-note phrase and the singing male on high perches are as described for the species."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies contributors",
+      "agent": "opencode-go/space-bunny-free"
+    }
+  ]
+}

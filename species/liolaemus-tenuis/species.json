@@ -1,0 +1,504 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Liolaemus tenuis",
+  "slug": "liolaemus-tenuis",
+  "common_names": {
+    "en": "Blue-Green Smooth-throated Lizard",
+    "es": "Lagartija tenue"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Reptilia",
+    "order": "Squamata",
+    "family": "Liolaemidae",
+    "genus": "Liolaemus",
+    "authority": "Wiegmann, 1834",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2460411,
+    "inat_taxon_id": 39111,
+    "wikidata": "Q797007",
+    "reptile_db_id": "Liolaemus tenuis"
+  },
+  "range": {
+    "native": [
+      "CL"
+    ],
+    "koppen": [
+      "Csb",
+      "Cfb",
+      "Cfc"
+    ],
+    "elevation_m": [
+      0,
+      2000
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk",
+      "Climb"
+    ],
+    "thermoregulation": "Ectotherm",
+    "skin": "Scales",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "None",
+    "perching": false,
+    "size_class": "Tiny",
+    "mass_kg": 0.01,
+    "length_m": 0.055,
+    "lifespan_y": 3,
+    "diet": {
+      "invertebrate": 1.0
+    },
+    "social": {
+      "structure": "Solitary",
+      "group_size": [
+        1,
+        1
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.6,
+    "shoulder_height_m": 0.02
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.5,
+      "arboreal": 0.5
+    },
+    "shelter_tag": "shrub_thicket",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 1.0
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.5
+      },
+      {
+        "tag": "shrub_thicket",
+        "kind": "Shelter",
+        "weight": 0.6
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "light_max": 0.5,
+      "notes": "Endemic to Chile; diurnal; sometimes kept as a pet; found in various habitats."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "10-01",
+        "end": "02-28",
+        "region": "CL",
+        "note": "Breeds in Southern Hemisphere spring and summer."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg"
+      },
+      {
+        "stage": "Juvenile",
+        "duration_days": 180,
+        "scale": 0.6
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "CL-RM",
+        "monthly": [
+          0.43,
+          0.29,
+          0.38,
+          0.34,
+          0.12,
+          0.02,
+          0.08,
+          0.25,
+          0.72,
+          1.0,
+          0.71,
+          0.55
+        ],
+        "method": "mean(inat_raw, gbif_raw)",
+        "observations": 2214,
+        "sources": [
+          "inat-activity-cl-rm",
+          "gbif-activity-cl-rm"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 12691,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=39111&place_id=12691&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": null,
+            "total": 1105,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "C",
+            "area": [
+              "gadmGid",
+              "CHL.14_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2460411&gadmGid=CHL.14_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "baseline_url": null,
+            "total": 1109,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-ground-forager-v1",
+    "params": {
+      "flee_m": 3,
+      "calm_m": 10,
+      "food_tag": "invertebrate",
+      "food_m": 20,
+      "flee_gait": "walk",
+      "forage_gait": "walk",
+      "rest_sun_lo_deg": -90,
+      "rest_sun_hi_deg": -6
+    }
+  },
+  "vocalizations": [],
+  "look": {
+    "body_plan": "quadruped",
+    "proportions": {
+      "torso_aspect": 2.5,
+      "leg_length_ratio": 0.35,
+      "head_scale": 0.7,
+      "neck_angle_deg": 10,
+      "tail_ratio": 1.2,
+      "ear_ratio": 0.1,
+      "beak_ratio": 0.3,
+      "girth_ratio": 0.8
+    },
+    "palette": {
+      "body": "#4a8c6a",
+      "belly": "#6aaa8a",
+      "markings": "#3a7a5a",
+      "accent": "#4a8c6a",
+      "eye": "#111111"
+    },
+    "part_colors": {
+      "tail": "markings"
+    },
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2460411",
+      "title": "GBIF Backbone Taxonomy: Liolaemus tenuis",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q797007",
+      "title": "Wikidata: Liolaemus tenuis (Q797007)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Liolaemus_tenuis",
+      "title": "Wikipedia: Liolaemus tenuis",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Liolaemus tenuis\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "inat-activity-cl-rm",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=39111&place_id=12691&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Liolaemus tenuis in CL-RM",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-cl-rm",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2460411&gadmGid=CHL.14_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+      "title": "GBIF occurrence search for Liolaemus tenuis in CL-RM",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "common_names": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "en label from Wikidata Q797007; the Spanish name is the item's es alias ('Lagartija tenue')."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Endemic to Chile."
+    },
+    "traits.mass_kg": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored: estimated from small lizard body size; no specific source found."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "5.5 cm snout-vent length."
+    },
+    "traits.lifespan_y": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored: typical small lizard lifespan 2-4 years; no specific source found."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Feeds mainly on insects."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Solitary by default; no specific source found."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Diurnal habits."
+    },
+    "traits.wariness": {
+      "sources": [],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Authored: wild lizard, skittish; high wariness."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Called 'thin tree iguana'; climbs trees and found on ground."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Insects from Wikipedia; shelter in vegetation."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Sometimes kept as a pet; found in various habitats."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Active year-round as a diurnal ectotherm."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Breeding season in Southern Hemisphere spring/summer."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Blue-green coloration; small lizard; proportions authored."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared ground-forager program, adapted for a diurnal lizard."
+    },
+    "habitat.shelter_tag": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Life stages from Wikipedia; durations authored."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.defense": {
+      "sources": [],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Authored: flies to cover."
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Nest type from Wikipedia."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.size_class": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg."
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.shoulder_height_m": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored: estimated from body size."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies maintainers",
+      "agent": "claude-code"
+    }
+  ]
+}
