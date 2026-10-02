@@ -45,9 +45,21 @@ quotas the rotation is balancing, so one agent's fan-out starves the others.
 
 Write the species records yourself, one at a time, in this worktree. It is more
 tool calls and it takes longer, and that is the design: the fleet is built for
-steady and slow. If you run out of budget with species left, ship the locale and
-the species you finished and end with `BLOCKED: <what is left>`. A partial
-locale with an honest note is a good outcome.
+steady and slow.
+
+**Open the pull request as soon as you have anything that validates, then keep
+adding to it.** Do not wait until every species is done. The locale record plus
+however many species you have is a shippable PR; open it, then continue adding
+species as further commits to that same branch and push them. A PR that exists
+with three species is worth far more than a finished local branch with eight
+and no PR, because the next session resumes the branch and pushes straight on
+top of it instead of starting over.
+
+So: `locale.json` valid plus one or two species with curves is enough to open
+the PR. Then keep working and keep pushing. If you run out of budget, say what
+is still missing in the PR body and end with `BLOCKED: <what is left>`. Never
+exit without a PR when you have anything valid -- an unopened PR throws away
+every species record you wrote.
 
 ## What this repository is
 
@@ -236,6 +248,12 @@ gh pr view --json number,url,state
 A real PR returns a `number` and a `/pull/<number>` URL. If that errors with "no
 pull requests found", the PR is not open — fix it or report `BLOCKED:`. Do not
 write `I'm done boss` on the strength of a push.
+
+**If a PR already exists for this branch, do not open a second one.** You are
+resuming: earlier sessions were salvaged onto this branch. `gh pr view --json
+number,url,state` will find it. Push your new commits to the same branch and the
+existing PR picks them up, then finish with `BLOCKED: <what is left>` naming what
+is still missing.
 
 ### 11. Get CI green, then stop
 
