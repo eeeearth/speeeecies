@@ -1,0 +1,578 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Tiliqua scincoides",
+  "slug": "tiliqua-scincoides",
+  "common_names": {
+    "en": "Common Bluetongue"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Reptilia",
+    "order": "Squamata",
+    "family": "Scincidae",
+    "genus": "Tiliqua",
+    "authority": "(White, 1790)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2462503,
+    "inat_taxon_id": 37456,
+    "wikidata": "Q2189561",
+    "reptile_db_id": "scincoides"
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "AU",
+      "ID"
+    ],
+    "koppen": [
+      "Cfa",
+      "Cfb",
+      "Cwa",
+      "BSh"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk"
+    ],
+    "thermoregulation": "Ectotherm",
+    "skin": "Scales",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "None",
+    "perching": false,
+    "size_class": "Small",
+    "mass_kg": 0.5,
+    "mass_range_kg": [
+      0.3,
+      0.7
+    ],
+    "length_m": 0.5,
+    "lifespan_y": 20,
+    "diet": {
+      "invertebrate": 0.4,
+      "fruit": 0.3,
+      "vertebrate": 0.2,
+      "browse": 0.1
+    },
+    "social": {
+      "structure": "Solitary",
+      "group_size": [
+        1,
+        1
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Freeze",
+    "wariness": 0.5,
+    "shoulder_height_m": 0.1
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.9,
+      "fossorial": 0.1
+    },
+    "shelter_tag": "shrub_thicket",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.4
+      },
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.3
+      },
+      {
+        "tag": "small_vertebrate",
+        "kind": "Predation",
+        "weight": 0.2
+      },
+      {
+        "tag": "browse",
+        "kind": "Herbivory",
+        "weight": 0.1
+      },
+      {
+        "tag": "shrub_thicket",
+        "kind": "Shelter",
+        "weight": 0.5
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "light_max": 0.7,
+      "notes": "Common in suburban gardens; shelters under rocks, logs and garden debris."
+    }
+  },
+  "seasonal": {
+    "strategy": "Brumation",
+    "triggers": {
+      "enter": {
+        "temperature_below_c": 10,
+        "days": 7
+      },
+      "exit": {
+        "temperature_above_c": 15,
+        "days": 3
+      }
+    },
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "09-01",
+        "end": "12-31",
+        "note": "Breeding from September to December; live-bearing."
+      },
+      {
+        "name": "dormancy",
+        "start": "06-01",
+        "end": "08-31",
+        "note": "Brumation in winter; activity reduced in cold months."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Juvenile",
+        "duration_days": 365,
+        "scale": 0.4
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "AU-NSW",
+        "monthly": [
+          0.91,
+          0.69,
+          0.52,
+          0.42,
+          0.24,
+          0.14,
+          0.21,
+          0.42,
+          0.95,
+          1.0,
+          0.7,
+          0.94
+        ],
+        "method": "mean(inat_raw, gbif_raw)",
+        "observations": 46313,
+        "sources": [
+          "inat-activity-au-nsw",
+          "gbif-activity-au-nsw"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 6825,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=37456&place_id=6825&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": null,
+            "total": 423,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "AUS.5_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2462503&gadmGid=AUS.5_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": null,
+            "total": 45890,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-ground-forager-v1",
+    "params": {
+      "food_tag": "invertebrate",
+      "flee_m": 5,
+      "calm_m": 15,
+      "food_m": 20,
+      "flee_gait": "walk",
+      "forage_gait": "walk",
+      "rest_sun_lo_deg": -90,
+      "rest_sun_hi_deg": -6
+    }
+  },
+  "vocalizations": [],
+  "look": {
+    "body_plan": "quadruped",
+    "proportions": {
+      "torso_aspect": 3.0,
+      "leg_length_ratio": 0.2,
+      "head_scale": 0.5,
+      "neck_angle_deg": 10,
+      "tail_ratio": 0.8,
+      "ear_ratio": 0.1,
+      "beak_ratio": 0.15,
+      "girth_ratio": 1.2
+    },
+    "palette": {
+      "body": "#8a7a6a",
+      "belly": "#b0a898",
+      "markings": "#4a3a2a",
+      "accent": "#6a5a4a",
+      "eye": "#111111"
+    },
+    "part_colors": {
+      "head": "body",
+      "tail": "markings"
+    },
+    "extra_parts": [
+      {
+        "name": "body_bands",
+        "parent": "body",
+        "offset": [
+          0,
+          0.1,
+          0
+        ],
+        "size": [
+          0.9,
+          0.3,
+          1.02
+        ],
+        "color": "markings"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2462503",
+      "title": "GBIF Backbone Taxonomy: Tiliqua scincoides",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q2189561",
+      "title": "Wikidata: Tiliqua scincoides (Q2189561)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Common_bluetongue",
+      "title": "Wikipedia: Common bluetongue",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Common bluetongue\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "inat-activity-au-nsw",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=37456&place_id=6825&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Tiliqua scincoides in AU-NSW",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-au-nsw",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2462503&gadmGid=AUS.5_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Tiliqua scincoides in AU-NSW",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "common_names": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "Wikidata P141 = least concern."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Walks; short legs, slow-moving."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Live-bearing; no nest."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Does not perch."
+    },
+    "traits.size_class": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Adult mass ~0.5 kg."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Total length ~0.5 m."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium"
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Invertebrates, fruit, vertebrates, browse from Wikipedia."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Solitary."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Freezes and displays blue tongue when threatened."
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Moderately wary; wariness 0.5."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Ground-dwelling; fossorial share from Wikipedia."
+    },
+    "habitat.shelter_tag": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Invertebrates, fruit, vertebrates, browse from Wikipedia."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Common in suburban gardens."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Brumation in winter."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Breeding and dormancy seasons from Wikipedia."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Juvenile duration estimated."
+    },
+    "vocalizations": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "No vocalizations described; silent species."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Brown body with dark bands from Wikipedia; proportions authored."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared ground-forager program."
+    },
+    "seasonal.triggers": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Brumation triggers from Wikipedia; temperature thresholds are judgement."
+    },
+    "traits.shoulder_height_m": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: a low-slung lizard with very short legs, roughly 20% of body length; no open source gives a shoulder height."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies maintainers",
+      "agent": "opencode"
+    }
+  ]
+}
