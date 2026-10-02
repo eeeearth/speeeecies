@@ -6,7 +6,9 @@
   "slug": "thryothorus-ludovicianus",
   "common_names": {
     "en": "Carolina wren",
-    "fr": "Troglodyte de Caroline",
+    "fr": "troglodyte de Caroline",
+    "de": "Carolinazaunkönig",
+    "nl": "Carolinawinterkoning",
     "es": "Charrán de Carolina"
   },
   "taxonomy": {
@@ -16,14 +18,16 @@
     "order": "Passeriformes",
     "family": "Troglodytidae",
     "genus": "Thryothorus",
-    "authority": "(Latham, 1783)",
+    "authority": "(Latham, 1790)",
     "status": "Accepted"
   },
   "external": {
     "gbif_usage_key": 2493801,
     "inat_taxon_id": 7513,
     "itis_tsn": 178581,
-    "wikidata": "Q1585636"
+    "wikidata": "Q1585636",
+    "ncbi_taxon_id": 74200,
+    "ebird_code": "carwre"
   },
   "conservation": {
     "iucn": "LC"
@@ -32,16 +36,21 @@
     "native": [
       "US",
       "CA",
-      "MX"
+      "MX",
+      "BZ",
+      "GT",
+      "NI"
     ],
-    "introduced": [],
     "koppen": [
       "Cfa",
-      "Cfb",
-      "Cwa",
       "Dfa",
-      "Dfb"
-    ]
+      "Dfb",
+      "Aw",
+      "Am",
+      "Cwa",
+      "Cfb"
+    ],
+    "introduced": []
   },
   "traits": {
     "body_plan": "Vertebrate",
@@ -58,81 +67,110 @@
     "nest_type": "Cavity",
     "perching": true,
     "size_class": "Tiny",
-    "mass_kg": 0.0205,
+    "mass_kg": 0.01896,
     "mass_range_kg": [
       0.018,
       0.023
     ],
     "length_m": 0.1325,
     "wingspan_m": 0.29,
-    "lifespan_y": 6.0,
+    "lifespan_y": 4.3,
     "diet": {
-      "invertebrate": 0.78,
-      "vertebrate": 0.12,
-      "fruit": 0.06,
-      "seed": 0.04
+      "invertebrate": 0.6,
+      "vertebrate": 0.2,
+      "fruit": 0.1,
+      "seed": 0.1
     },
     "social": {
       "structure": "Pair",
       "group_size": [
-        2,
-        4
+        1,
+        2
       ]
     },
     "activity_pattern": "Diurnal",
-    "defense": "Mob",
-    "wariness": 0.35
+    "defense": "Flee",
+    "wariness": 0.28
   },
   "habitat": {
     "use": {
-      "ground": 0.65,
-      "arboreal": 0.35
+      "ground": 0.4,
+      "arboreal": 0.6
     },
-    "shelter_tag": "cavity",
+    "shelter_tag": "shrub_thicket",
     "resources": [
       {
         "tag": "invertebrate",
         "kind": "Predation",
-        "weight": 0.78
+        "weight": 0.75
+      },
+      {
+        "tag": "leaf_litter",
+        "kind": "Predation",
+        "weight": 0.45
       },
       {
         "tag": "small_vertebrate",
         "kind": "Predation",
-        "weight": 0.12
+        "weight": 0.2
+      },
+      {
+        "tag": "berry",
+        "kind": "Herbivory",
+        "weight": 0.1,
+        "months": [
+          10,
+          11,
+          12,
+          1,
+          2
+        ]
+      },
+      {
+        "tag": "seed",
+        "kind": "Herbivory",
+        "weight": 0.1,
+        "months": [
+          10,
+          11,
+          12,
+          1,
+          2
+        ]
+      },
+      {
+        "tag": "cavity",
+        "kind": "Nesting",
+        "weight": 0.7
+      },
+      {
+        "tag": "nest_cup",
+        "kind": "Nesting",
+        "weight": 0.6
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.7
+      },
+      {
+        "tag": "shrub_thicket",
+        "kind": "Shelter",
+        "weight": 0.9
       },
       {
         "tag": "fruit",
         "kind": "Herbivory",
         "weight": 0.06
-      },
-      {
-        "tag": "seed",
-        "kind": "Herbivory",
-        "weight": 0.04
-      },
-      {
-        "tag": "cavity",
-        "kind": "Nesting",
-        "weight": 1.0
-      },
-      {
-        "tag": "shrub_thicket",
-        "kind": "Shelter",
-        "weight": 0.7
-      },
-      {
-        "tag": "leaf_litter",
-        "kind": "Shelter",
-        "weight": 0.4
       }
     ],
     "human_tolerance": {
-      "urban_affinity": "Exploiter",
+      "urban_affinity": "Adapter",
       "uses_gardens": true,
-      "light_max": 0.7,
-      "flight_distance_m": 10.0,
-      "road_mortality": "Medium",
-      "notes": "Takes readily to bird feeders in the northern part of its range, which the article gives as one reason the species has expanded northward, and nests in bird boxes, mailboxes, sheds and other man-made cavities."
+      "light_max": 0.65,
+      "road_mortality": "Low",
+      "notes": "Uses dense cover in forest, farm edges and suburban areas; in human-made settings it has an affinity for dilapidated buildings and unkempt yards, matching a brushy southern suburban garden with shrubs, porches, sheds and leaf litter. Numerical tolerance limits are authored judgements.",
+      "flight_distance_m": 10.0
     }
   },
   "seasonal": {
@@ -140,16 +178,29 @@
     "phases": [
       {
         "name": "breeding",
-        "start": "02-25",
+        "start": "03-01",
         "end": "08-31",
-        "region": "US-AR",
-        "note": "Judgement window, taken from the closest sourced regional dates: 'Egg laying dates and clutch size vary by region; in Texas the time period is from late February to late August, while in Iowa it ranges from late April to June.' Texas is the nearest region the article dates, and Arkansas sits between the two, so late February to late August is used and the day boundaries are the author's judgement."
+        "region": "US",
+        "note": "Carolina wrens are resident and raise multiple broods during the summer breeding season; the March-August window follows the shared behavior program's four-month nest-building parameter shape and is a southern-US judgement."
       },
       {
         "name": "territorial",
         "start": "09-01",
-        "end": "02-24",
-        "note": "Judgement window for the rest of the year, when 'During the winter season, males are more responsible for guarding the territory' and pairs hold a territory and roost together."
+        "end": "02-28",
+        "note": "Pairs maintain territories and stay together for several years; outside the main nesting months they remain local and territorial."
+      },
+      {
+        "name": "nesting",
+        "start": "02-15",
+        "end": "08-31",
+        "note": "Southern laying runs from late February to late August (the dates given for Texas; Alabama birds sit inside that window), with up to three broods a year."
+      },
+      {
+        "name": "breeding",
+        "start": "02-25",
+        "end": "08-31",
+        "region": "US-AR",
+        "note": "Judgement window, taken from the closest sourced regional dates: 'Egg laying dates and clutch size vary by region; in Texas the time period is from late February to late August, while in Iowa it ranges from late April to June.' Texas is the nearest region the article dates, and Arkansas sits between the two, so late February to late August is used and the day boundaries are the author's judgement."
       }
     ],
     "life_stages": [
@@ -158,8 +209,8 @@
       },
       {
         "stage": "Juvenile",
-        "duration_days": 30,
-        "scale": 0.8
+        "duration_days": 28,
+        "scale": 0.85
       },
       {
         "stage": "Adult"
@@ -168,6 +219,104 @@
   },
   "activity": {
     "regions": [
+      {
+        "region": "US-LA",
+        "monthly": [
+          0.68,
+          0.84,
+          1.0,
+          0.72,
+          0.97,
+          0.91,
+          0.96,
+          0.82,
+          0.65,
+          0.64,
+          0.53,
+          0.68
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 212088,
+        "sources": [
+          "inat-activity-us-la",
+          "gbif-activity-us-la"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 27,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=7513&place_id=27&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=27&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "total": 509,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.19_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2493801&gadmGid=USA.19_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.19_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 211579,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "US-AL",
+        "monthly": [
+          0.76,
+          0.77,
+          0.73,
+          0.66,
+          0.82,
+          1.0,
+          0.91,
+          0.87,
+          0.83,
+          0.78,
+          0.78,
+          0.78
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 234166,
+        "sources": [
+          "inat-activity-us-al",
+          "gbif-activity-us-al"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 19,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=7513&place_id=19&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=19&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 2008,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.1_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2493801&gadmGid=USA.1_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.1_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 232158,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
       {
         "region": "US-AR",
         "monthly": [
@@ -222,12 +371,12 @@
   "behavior": {
     "program": "bt-perching-songbird-v1",
     "params": {
-      "flee_m": 10,
+      "flee_m": 5,
       "food_tag": "invertebrate",
       "song": "song",
-      "alarm": "cheer",
-      "song_cooldown_s": 7,
-      "nest_m1": 2,
+      "alarm": "alarm",
+      "song_cooldown_s": 12,
+      "nest_m1": 3,
       "nest_m2": 8
     }
   },
@@ -241,9 +390,35 @@
         "Day",
         "Dusk"
       ],
-      "cooldown_s": 7,
+      "cooldown_s": 12,
       "loudness": "Loud",
-      "description": "Males only, and year round 'and at any point during the daytime, except during the most harsh weather conditions', from a repertoire of 'at least twenty different phrase patterns and on average, thirty two'; transcribed as teakettle-teakettle-teakettle and cheery-cheery-cheery, with one pattern repeated for several minutes and the tail pointed downward while singing."
+      "description": "Rich, emphatic, repeated phrases such as 'teakettle-teakettle-teakettle' or 'cheery-cheery-cheery', sung by males year-round in daytime from low or exposed perches."
+    },
+    {
+      "call_id": "alarm",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day",
+        "Dusk"
+      ],
+      "cooldown_s": 5,
+      "loudness": "Moderate",
+      "description": "Sharp alarm and scolding calls from both sexes when disturbed, often delivered from cover before the bird drops back into brush or flies to a perch."
+    },
+    {
+      "call_id": "chatter",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day",
+        "Dusk"
+      ],
+      "cooldown_s": 8,
+      "loudness": "Moderate",
+      "description": "Chattering contact notes, including female vocalizations that may accompany a male's song in pair interactions and territorial duets."
     },
     {
       "call_id": "cheer",
@@ -257,82 +432,180 @@
       "cooldown_s": 5,
       "loudness": "Moderate",
       "description": "The alarm call, given by both sexes in territorial disputes and encounters with predators; in southern regions of the range the alarm sound is 'a ringing pink or p'dink', and only males produce the cheer call."
-    },
-    {
-      "call_id": "chatter",
-      "context": "Alarm",
-      "season_months": [],
-      "time_windows": [
-        "DawnChorus",
-        "Day",
-        "Dusk"
-      ],
-      "cooldown_s": 6,
-      "loudness": "Moderate",
-      "description": "A paired dit-dit or chatter used only by females, 'used exclusively with territorial encounters with male song, and the song can either follow or overlap her mate's song'."
     }
   ],
   "look": {
     "body_plan": "biped_winged",
     "proportions": {
       "torso_aspect": 1.25,
-      "leg_length_ratio": 0.42,
-      "head_scale": 0.95,
-      "neck_angle_deg": 6,
-      "tail_ratio": 0.42,
+      "leg_length_ratio": 0.34,
+      "head_scale": 0.9,
+      "neck_angle_deg": 12,
+      "tail_ratio": 0.7,
       "wing_aspect": 2.2,
-      "beak_ratio": 0.38,
-      "girth_ratio": 1.2
+      "beak_ratio": 0.5,
+      "girth_ratio": 1.18
     },
     "palette": {
-      "body": "#6b4a2f",
-      "belly": "#cfc3ac",
-      "markings": "#221a12",
-      "accent": "#8f7a63",
-      "eye": "#141210"
+      "body": "#8b4f2f",
+      "belly": "#d6a46f",
+      "markings": "#3c2518",
+      "accent": "#f2e5bf",
+      "eye": "#17110c"
     },
     "part_colors": {
-      "head": "body",
-      "beak": "markings"
+      "breast": "belly",
+      "wing_*": "markings",
+      "tail": "markings",
+      "beak": "eye"
     },
     "extra_parts": [
       {
-        "name": "brow",
+        "name": "supercilium",
         "parent": "head",
         "offset": [
-          0.2,
-          0.34,
-          0.42
+          0.18,
+          0.08,
+          0
         ],
         "size": [
-          0.4,
-          0.14,
-          0.55
+          0.82,
+          0.12,
+          1.08
         ],
-        "color": "accent",
-        "mirror": true
+        "color": "accent"
       },
       {
-        "name": "tail_bar",
+        "name": "tail_bars",
         "parent": "tail",
         "offset": [
-          0.0,
-          0.0,
-          0.0
+          -0.1,
+          0.02,
+          0
         ],
         "size": [
-          0.85,
-          0.3,
-          1.05
+          0.7,
+          0.18,
+          1.04
         ],
-        "color": "markings"
+        "color": "body"
+      },
+      {
+        "name": "flank_warmth",
+        "parent": "breast",
+        "offset": [
+          -0.15,
+          -0.15,
+          0
+        ],
+        "size": [
+          0.7,
+          0.45,
+          1.06
+        ],
+        "color": "belly"
       }
     ],
     "poses": {
-      "idle": {},
-      "hop": {},
-      "fly": {},
-      "perched": {},
+      "idle": {
+        "keyframes": [
+          {
+            "t": 0,
+            "parts": {
+              "tail": {
+                "rot_deg": [
+                  0,
+                  0,
+                  -38
+                ]
+              },
+              "head": {
+                "rot_deg": [
+                  4,
+                  0,
+                  0
+                ]
+              }
+            }
+          },
+          {
+            "t": 0.5,
+            "parts": {
+              "tail": {
+                "rot_deg": [
+                  0,
+                  0,
+                  -46
+                ]
+              },
+              "head": {
+                "rot_deg": [
+                  -3,
+                  0,
+                  0
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "hop": {
+        "cycle_s": 0.42,
+        "amplitude": 1.15,
+        "keyframes": [
+          {
+            "t": 0,
+            "parts": {
+              "tail": {
+                "rot_deg": [
+                  0,
+                  0,
+                  -50
+                ]
+              }
+            }
+          },
+          {
+            "t": 0.5,
+            "parts": {
+              "tail": {
+                "rot_deg": [
+                  0,
+                  0,
+                  -34
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "fly": {
+        "cycle_s": 0.55,
+        "amplitude": 1.1
+      },
+      "perched": {
+        "keyframes": [
+          {
+            "t": 0,
+            "parts": {
+              "tail": {
+                "rot_deg": [
+                  0,
+                  0,
+                  -55
+                ]
+              },
+              "head": {
+                "rot_deg": [
+                  0,
+                  10,
+                  0
+                ]
+              }
+            }
+          }
+        ]
+      },
       "rest": {}
     }
   },
@@ -350,7 +623,7 @@
     {
       "id": "wikidata",
       "url": "https://www.wikidata.org/wiki/Q1585636",
-      "title": "Wikidata: Thryothorus ludovicianus (Q1585636)",
+      "title": "Wikidata: Carolina wren (Q1585636)",
       "license": "CC0-1.0",
       "kind": "database",
       "accessed": "2026-09-30",
@@ -368,12 +641,78 @@
     },
     {
       "id": "itis",
-      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=178581",
+      "url": "https://www.itis.gov/ITISWebService/jsonservice/searchForAnyMatch?srchKey=Thryothorus%20ludovicianus",
       "title": "ITIS: Thryothorus ludovicianus, TSN 178581",
       "license": "public-domain",
       "kind": "database",
       "accessed": "2026-09-30",
       "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "eltontraits",
+      "url": "https://doi.org/10.6084/m9.figshare.3559887.v1",
+      "title": "EltonTraits 1.0: species-level foraging attributes of the world's birds and mammals (BirdFuncDat)",
+      "license": "CC0-1.0",
+      "kind": "dataset",
+      "accessed": "2026-09-30",
+      "attribution": "Wilman, H. et al. (2014) EltonTraits 1.0. Ecology 95:2027",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "commons-rhododendrites",
+      "url": "https://commons.wikimedia.org/wiki/File:Carolina_wren_(14391).jpg",
+      "title": "Carolina wren in Prospect Park",
+      "license": "CC-BY-SA-4.0",
+      "kind": "image",
+      "accessed": "2026-09-30",
+      "attribution": "Rhododendrites, Carolina wren in Prospect Park, via Wikimedia Commons, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "commons-adj82",
+      "url": "https://commons.wikimedia.org/wiki/File:CarolinaWren-23SEP2016.jpg",
+      "title": "Carolina Wren in Greenville, South Carolina",
+      "license": "CC-BY-SA-4.0",
+      "kind": "image",
+      "accessed": "2026-09-30",
+      "attribution": "ADJ82, Carolina Wren in Greenville, South Carolina, via Wikimedia Commons, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "inat-activity-us-la",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=7513&place_id=27&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Thryothorus ludovicianus in US-LA",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-la",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2493801&gadmGid=USA.19_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Thryothorus ludovicianus in US-LA",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "inat-activity-us-al",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=7513&place_id=19&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Thryothorus ludovicianus in US-AL",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-al",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2493801&gadmGid=USA.1_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Thryothorus ludovicianus in US-AL",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
     },
     {
       "id": "inat-activity-us-ar",
@@ -410,12 +749,13 @@
         "wikidata",
         "itis"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "note": "GBIF and iNaturalist identifiers were confirmed against their APIs; ITIS TSN from the ITIS JSON service; Wikidata properties provide NCBI taxon id and eBird code."
     },
     "common_names": {
       "sources": [
         "wikidata",
-        "wikipedia"
+        "itis"
       ],
       "confidence": "High",
       "derived": true,
@@ -423,19 +763,20 @@
     },
     "conservation": {
       "sources": [
-        "wikidata"
+        "wikidata",
+        "wikipedia"
       ],
       "confidence": "High",
-      "derived": true,
-      "note": "Wikidata P141 (conservation status) = LC, Q211005."
+      "note": "Wikidata P141 and Wikipedia conservation-status box report least concern.",
+      "derived": true
     },
     "range": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High",
+      "confidence": "Medium",
       "derived": true,
-      "note": "From the lead and habitat section: 'common in the eastern United States, the extreme south of Ontario, Canada, the northeast and southeast of Mexico, and into northern Central America', with permanent breeding 'from eastern Nebraska, southern Michigan, southeast Ontario and the New England states to Mexican states such as Coahuila, Nuevo Leon, San Luis Potosi and Tamaulipas and the Gulf Coast of the United States' and occasional vagrants beyond. Koppen classes are the author's judgement of the described range."
+      "note": "Country list derived from Wikipedia's range text: eastern United States, extreme southern Ontario, northeast/southeast Mexico and northern Central America; Köppen classes are a broad climate mapping across that described range, included to mark Shreveport's Cfa as suitable."
     },
     "traits.body_plan": {
       "sources": [
@@ -457,9 +798,9 @@
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High",
-      "derived": true,
-      "note": "'Carolina wrens spend the majority of their time on or near the ground searching for food, or in tangles of vegetation and vines', moving with the short hops of a small wren and flying between cover; the ground walk and run the article describes are folded into the block model's hop."
+      "confidence": "Medium",
+      "note": "Energetically investigates surroundings, rarely stationary, and moves in dense cover; modelled as hop plus powered flight like the close wren template.",
+      "derived": true
     },
     "traits.thermoregulation": {
       "sources": [
@@ -505,9 +846,9 @@
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High",
+      "confidence": "Medium",
       "derived": true,
-      "note": "'The nests are arch-shaped structures with a side entrance and built of dried plants or strips of bark', in 'fragmented or complete cavities in trees, or in man-made structures such as bird-boxes, buildings, tin cans, mailboxes': a cavity nest."
+      "note": "Nests in varied natural and artificial cavities/crevices and man-made objects; mapped to the closest enum value, Cavity."
     },
     "traits.perching": {
       "sources": [
@@ -519,27 +860,27 @@
     },
     "traits.size_class": {
       "sources": [
-        "wikipedia"
+        "eltontraits"
       ],
       "confidence": "High",
       "derived": true,
-      "note": "From mass_kg: the validator bands a bird under 0.05 kg as Tiny, and 0.021 kg is well inside that band."
+      "note": "From mass_kg (< 0.05 kg)."
     },
     "traits.mass_kg": {
       "sources": [
-        "wikipedia"
+        "eltontraits"
       ],
       "confidence": "High",
-      "derived": true,
-      "note": "Midpoint of 'a weight of about 18 to 23 g (0.63 to 0.81 oz)'."
+      "note": "BirdFuncDat BodyMass-Value = 18.96 g for Thryothorus ludovicianus.",
+      "derived": true
     },
     "traits.mass_range_kg": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High",
-      "derived": true,
-      "note": "'a weight of about 18 to 23 g (0.63 to 0.81 oz)'."
+      "note": "Wikipedia gives about 18-23 g.",
+      "derived": true
     },
     "traits.length_m": {
       "sources": [
@@ -547,87 +888,91 @@
       ],
       "confidence": "High",
       "derived": true,
-      "note": "Midpoint of 'At 12.5 to 14 cm (4.9 to 5.5 in) long'."
+      "note": "Midpoint of 12.5-14 cm."
     },
     "traits.wingspan_m": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High",
-      "derived": true,
-      "note": "'a 29 cm (11 in) wingspan'."
+      "note": "Wikipedia gives 29 cm.",
+      "derived": true
     },
     "traits.lifespan_y": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High",
+      "confidence": "Low",
       "derived": true,
-      "note": "The article gives maximum documented wild ages rather than a mean: 'A male captured in Arkansas lived to be at least 6 years and 1 month old, and in Alabama, the oldest female and male captured were six and ten years old', and 'roughly 90 percent of the banded wrens died within 10 years'. lifespan_y takes 6.0, the lower of the two documented six-year figures, as a conservative documented value rather than an invented mean."
+      "note": "Wikipedia states a southeastern mark-recapture study in which roughly 90 percent of banded wrens died within 10 years. A constant-hazard approximation with 10 percent surviving to 10 years gives about 4.3 years (10 / ln(10)); older individual records are maxima, not typical lifespan."
     },
     "traits.diet": {
       "sources": [
+        "eltontraits",
         "wikipedia"
       ],
       "confidence": "High",
-      "derived": true,
-      "note": "'Their diet consists of invertebrates, such as beetles, true bugs, grasshoppers, katydids, spiders, ants, bees, and wasps. Small lizards and tree frogs also make up the carnivorous portion of their diet. Vegetable matter, such as fruit pulp and various seeds, makes up a small percentage of their diet.' The shares follow that description, with the invertebrate share dominating as the article states and the plant share kept small as it states; the percentages are the author's judgement."
+      "note": "EltonTraits row: Diet-Inv 60, Diet-Vect 20, Diet-Fruit 10, Diet-Seed 10. Wikipedia confirms feeding on insects, small vertebrates and winter plant material.",
+      "derived": true
     },
     "traits.social": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High",
-      "derived": true,
-      "note": "'After finding a mate, pairs maintain a territory and stay together for several years' and 'Carolina wrens are both genetically and socially monogamous and will usually mate for life'; group_size covers a pair, its fledged young and, in a feeder, a visiting pair."
+      "note": "Pairs maintain territory and stay together for several years.",
+      "derived": true
     },
     "traits.activity_pattern": {
       "sources": [
+        "eltontraits",
         "wikipedia"
       ],
       "confidence": "High",
-      "derived": true,
-      "note": "'Carolina wrens sing year round and at any point during the daytime, except during the most harsh weather conditions', and it forages by day; the whole behavioural account is diurnal."
+      "note": "EltonTraits Nocturnal=0; Wikipedia says song is given during daytime except harsh weather.",
+      "derived": true
     },
     "traits.defense": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High",
+      "confidence": "Medium",
       "derived": true,
-      "note": "Mob: 'Both sexes are involved in defending the territory', and in playback experiments 'If the song is not degraded, they respond by attacking', while judging threat size - 'The wrens judge the size of the potential threat, such as a blue jay and avoid the risk of injury when attacking'."
+      "note": "Main response in the simulation is fleeing from threat to nearby dense cover or a perch; Wikipedia describes territorial/predator defense and avoidance of open areas."
     },
     "traits.wariness": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High",
+      "confidence": "Low",
       "derived": true,
-      "note": "Judgement: 'it is generally inconspicuous, avoiding the open for extended periods of time. When out in the open, they energetically investigate their surroundings', but it lives 'in suburban yards with abundant thick shrubs' and 'frequent[s]' bird feeders in the north of its range."
+      "note": "Judgement: generally inconspicuous and avoids extended time in the open, but readily uses suburban yards and buildings."
     },
     "habitat.use": {
       "sources": [
+        "eltontraits",
         "wikipedia"
       ],
       "confidence": "High",
-      "derived": true,
-      "note": "'Carolina wrens spend the majority of their time on or near the ground searching for food, or in tangles of vegetation and vines', and 'probe bark crevices on lower tree levels, or pick up leaf-litter in order to search for prey', so ground use dominates while nesting and roosting sit in low cover."
+      "note": "EltonTraits ForStrat-ground 40, understory 40, midhigh 20; mapped to 40 percent ground and 60 percent arboreal/vegetation stratum.",
+      "derived": true
     },
     "habitat.shelter_tag": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High",
+      "confidence": "Medium",
       "derived": true,
-      "note": "Nests and roosts in cavities, in trees or in man-made structures, 'from 1-3 m from the ground and are rarely higher'."
+      "note": "Preferred habitats include dense cover, brushy edges, thickets and suburban yards with thick shrubs and trees; mapped to shrub_thicket."
     },
     "habitat.resources": {
       "sources": [
+        "eltontraits",
         "wikipedia"
       ],
-      "confidence": "High",
+      "confidence": "Medium",
       "derived": true,
-      "note": "The invertebrate, small_vertebrate, fruit and seed weights follow the diet shares; cavity is the nest site, shrub_thicket the tangle cover the bird prefers, and leaf_litter the litter it picks through for prey."
+      "note": "Invertebrate, vertebrate, fruit and seed weights follow EltonTraits diet shares; leaf litter, shrub_thicket, perch, cavity and nest_cup map Wikipedia's descriptions of low probing, dense cover, singing/perching and varied cavity/domelike nest sites."
     },
     "habitat.human_tolerance": {
       "sources": [
@@ -635,15 +980,15 @@
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "urban_affinity and uses_gardens from 'The preferred habitats are ... suburban yards with abundant thick shrubs and trees, and parks', from 'It has an affinity for dilapidated buildings and unkempt yards in man-made areas', and from the range expansion explanation 'the wrens taking advantage of urban areas containing feeders, especially in winter'; light_max, flight_distance_m and road_mortality are judgement values, the article giving no figures."
+      "note": "Uses suburban areas and has affinity for dilapidated buildings and unkempt yards; urban_affinity and uses_gardens follow that text, while light_max and road_mortality are judgement."
     },
     "seasonal.strategy": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High",
-      "derived": true,
-      "note": "'These birds are largely resident, and will only disperse beyond their range after mild winters', so the record is year-round activity."
+      "note": "Largely resident; severe winters limit the northern edge but Shreveport is well inside the southern resident range.",
+      "derived": true
     },
     "seasonal.phases": {
       "sources": [
@@ -651,29 +996,15 @@
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "The article gives regional egg-laying windows rather than a single one - 'in Texas the time period is from late February to late August, while in Iowa it ranges from late April to June' - and 'As many as three broods may be raised by a pair in a single breeding season'. The breeding window uses the Texas dates, the nearest sourced region to Arkansas, and the day boundaries are the author's judgement; the territorial window covers the stated winter pattern of male-led territory guarding."
+      "note": "Resident pair territories and multiple broods during summer breeding season are sourced; exact month-day windows are judgement for a southern United States garden and behavior-program compatibility."
     },
     "seasonal.life_stages": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High",
-      "derived": true,
-      "note": "'They are incubated by the female for 12-16 days. After the young hatch, they are fed exclusively on invertebrates and fledge in 12-14 days.' duration_days is the upper end of the incubation span plus the fledging span, and scale is a judgement of a recently fledged young bird."
-    },
-    "look": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Plumage from the lead and Description section: a 'fairly large wren' with a strong white supercilium, warm brown upperparts, a pale buffy underside and a barred tail; the record draws a plain warm brown body, a pale eyebrow and underside, a dark barred tail and a dark bill. Proportions are judgement, scaled for a very short-tailed, big-headed, long-legged wren with a fine bill for crevices; the brow and tail_bar parts carry the eyebrow and the barring."
-    },
-    "behavior": {
-      "sources": [],
       "confidence": "Low",
       "derived": true,
-      "note": "Authored parameters for the shared perching-songbird program: invertebrate-led foraging near the ground, a short flee distance for a bird that 'is generally inconspicuous, avoiding the open', and a February-August nest window reflecting up to three broods from a late-February start."
+      "note": "Egg, juvenile and adult stages are standard for this passerine; juvenile duration_days and scale are judgement because the open source used here does not give a single juvenile-duration figure."
     },
     "vocalizations.song": {
       "sources": [
@@ -681,13 +1012,42 @@
       ],
       "confidence": "High"
     },
-    "vocalizations.cheer": {
+    "vocalizations.alarm": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "'Both males and females give out alarm calls, but only males sing to advertise territory', and the female's territorial chatter is described separately."
     },
     "vocalizations.chatter": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Female duet/contact chatter is described qualitatively; call_id and cooldown are authored for the simulator."
+    },
+    "look": {
+      "sources": [
+        "wikipedia",
+        "commons-rhododendrites",
+        "commons-adj82"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Rich brown/chestnut upperparts, buff underparts, bold pale supercilium, barred tail, curved bill and cocked-tail posture follow the text and licensed images; exact block proportions, colours and pose rotations are judgement."
+    },
+    "behavior": {
+      "sources": [
+        "wikipedia",
+        "eltontraits"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared perching-songbird program: invertebrate food tag follows the mainly insectivorous EltonTraits/Wikipedia diet; flee distance, song cooldown and nest months are judgement for a resident suburban wren using low brush and buildings."
+    },
+    "vocalizations.cheer": {
       "sources": [
         "wikipedia"
       ],
@@ -697,6 +1057,10 @@
   "contributors": [
     {
       "name": "speeeecies contributors",
+      "agent": "opencode"
+    },
+    {
+      "name": "opencode agent (al-birmingham locale, issue #73)",
       "agent": "opencode"
     }
   ]
