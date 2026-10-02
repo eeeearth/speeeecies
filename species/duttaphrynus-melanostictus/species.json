@@ -1,0 +1,444 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Duttaphrynus melanostictus",
+  "slug": "duttaphrynus-melanostictus",
+  "common_names": {
+    "en": "Asian common toad"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Amphibia",
+    "order": "Anura",
+    "family": "Bufonidae",
+    "genus": "Duttaphrynus",
+    "authority": "(Schneider, 1799)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2422538,
+    "inat_taxon_id": 62345,
+    "wikidata": "Q28031739",
+    "ncbi_taxon_id": 30335
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "PK",
+      "NP",
+      "BD",
+      "IN",
+      "LK",
+      "MM",
+      "TH",
+      "LA",
+      "VN",
+      "KH",
+      "CN",
+      "TW",
+      "MY",
+      "SG",
+      "ID"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk",
+      "Hop",
+      "Swim"
+    ],
+    "thermoregulation": "Ectotherm",
+    "skin": "Moist",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "Complete",
+    "nest_type": "None",
+    "perching": false,
+    "size_class": "Small",
+    "mass_kg": 0.1223,
+    "length_m": 0.16,
+    "lifespan_y": 4,
+    "diet": {
+      "invertebrate": 0.95,
+      "vertebrate": 0.05
+    },
+    "social": {
+      "structure": "Solitary",
+      "group_size": [
+        1,
+        1
+      ]
+    },
+    "activity_pattern": "Nocturnal",
+    "defense": "Toxin",
+    "wariness": 0.2
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.8,
+      "aquatic": 0.2
+    },
+    "shelter_tag": "leaf_litter",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 1.0
+      },
+      {
+        "tag": "water",
+        "kind": "Water",
+        "weight": 1.0
+      },
+      {
+        "tag": "pond",
+        "kind": "Nesting",
+        "weight": 1.0
+      },
+      {
+        "tag": "leaf_litter",
+        "kind": "Shelter",
+        "weight": 0.8
+      },
+      {
+        "tag": "log_pile",
+        "kind": "Shelter",
+        "weight": 0.5
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Exploiter",
+      "uses_gardens": true,
+      "light_max": 1.0,
+      "notes": "Lives mostly in disturbed lowland habitats and is closely associated with human habitations; often seen at night under street lamps, especially when winged termites swarm."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "05-01",
+        "end": "09-30",
+        "note": "Breeds during the monsoon in still and slow-flowing water; tadpoles are black and young toads appear in numbers after the rains."
+      },
+      {
+        "name": "young",
+        "start": "08-01",
+        "end": "11-30",
+        "note": "Metamorphosed young toads leave the breeding pools."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg",
+        "requires_tag": "pond",
+        "scale": 0.02
+      },
+      {
+        "stage": "Tadpole",
+        "duration_days": 30,
+        "requires_tag": "pond",
+        "scale": 0.15
+      },
+      {
+        "stage": "Juvenile",
+        "duration_days": 180,
+        "scale": 0.5
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "TH-50",
+        "monthly": [
+          0.75,
+          0.85,
+          0.9,
+          0.65,
+          0.65,
+          0.3,
+          0.6,
+          0.85,
+          0.9,
+          1.0,
+          0.4,
+          0.85
+        ],
+        "method": "inat_raw",
+        "observations": 174,
+        "sources": [
+          "inat-activity-th-50"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 13320,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=62345&place_id=13320&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": null,
+            "total": 174,
+            "usable": false
+          },
+          "gbif": {
+            "tier": "C",
+            "area": [
+              "gadmGid",
+              "THA.10_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2422538&gadmGid=THA.10_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "baseline_url": null,
+            "total": 150,
+            "usable": false
+          },
+          "used": [
+            "inat"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-anuran-nocturnal-v1",
+    "params": {
+      "flee_m": 2,
+      "freeze_m": 5,
+      "food_tag": "invertebrate",
+      "call": "croak",
+      "min_temp_c": 10,
+      "max_temp_c": 34,
+      "call_m1": 5,
+      "call_m2": 9
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "croak",
+      "context": "Croak",
+      "season_months": [
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "time_windows": [
+        "Dusk",
+        "Night"
+      ],
+      "cooldown_s": 3,
+      "loudness": "Moderate",
+      "description": "A repeated, low-pitched croaking given by males from the edge of breeding pools during the monsoon."
+    }
+  ],
+  "look": {
+    "body_plan": "anuran",
+    "proportions": {
+      "torso_aspect": 1.0,
+      "leg_length_ratio": 0.45,
+      "head_scale": 0.75,
+      "neck_angle_deg": 5,
+      "girth_ratio": 1.05
+    },
+    "palette": {
+      "body": "#6b5a3a",
+      "belly": "#cbbf9e",
+      "markings": "#2b2118",
+      "accent": "#4a3a22",
+      "eye": "#b8732a"
+    },
+    "extra_parts": [
+      {
+        "name": "paratoid",
+        "parent": "head",
+        "offset": [
+          -0.3,
+          0.45,
+          0.3
+        ],
+        "size": [
+          0.4,
+          0.3,
+          0.3
+        ],
+        "color": "accent",
+        "mirror": true
+      },
+      {
+        "name": "blotch",
+        "parent": "body",
+        "offset": [
+          0.1,
+          0.46,
+          0.2
+        ],
+        "size": [
+          0.3,
+          0.12,
+          0.25
+        ],
+        "color": "markings",
+        "mirror": true
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "hop": {},
+      "swim": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2422538",
+      "title": "GBIF Backbone Taxonomy: Duttaphrynus melanostictus",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q28031739",
+      "title": "Wikidata: Asian common toad (Q28031739)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Duttaphrynus_melanostictus",
+      "title": "Wikipedia: Duttaphrynus melanostictus",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Duttaphrynus melanostictus\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "amphibio",
+      "url": "https://doi.org/10.6084/m9.figshare.4644424",
+      "title": "AmphiBIO, a global database for amphibian ecological traits",
+      "license": "CC-BY-4.0",
+      "kind": "dataset",
+      "accessed": "2026-10-01",
+      "attribution": "Oliveira, B. F. et al. (2017) AmphiBIO, a global database for amphibian ecological traits. Scientific Data 4:170123",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "inat-activity-th-50",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=62345&place_id=13320&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Duttaphrynus melanostictus in TH-50",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "iNaturalist and NCBI ids via Wikidata (P3151, P685)."
+    },
+    "common_names": {
+      "sources": [
+        "wikidata",
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "IUCN Red List category (P141): least concern."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Native countries from the article's distribution (South and Southeast Asia, southern China, Taiwan, Malaysia, Singapore, Indonesia)."
+    },
+    "traits": {
+      "sources": [
+        "wikipedia",
+        "amphibio"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Body mass 122.3 g, snout-vent length 160 mm, nocturnal habit, terrestrial adult habitat, maximum longevity 4 years and larval development from AmphiBIO; the article's 'grows to about 20 cm' agrees on size. Diet, toxin defence and breeding in still water from Wikipedia; diet shares and wariness are judgement. size_class derived from mass_kg."
+    },
+    "habitat": {
+      "sources": [
+        "wikipedia",
+        "amphibio"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Terrestrial adults sheltering under rocks, leaf litter and logs, and breeding in ponds and slow water, from Wikipedia and AmphiBIO; stratum shares and resource weights are judgement."
+    },
+    "seasonal": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Active year round. The article states the species breeds during the monsoon, so the May-September window is sourced; the young phase is judgement."
+    },
+    "vocalizations.croak": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "The article does not describe the call; the croak is a generic toad breeding call, and its timing follows the monsoon breeding season."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Brown warty body with prominent bony head ridges and paratoid glands from the article's description; proportions and part placement are authored for the block mesh."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared nocturnal-anuran program, with the calling window set to the monsoon."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies locale agent",
+      "agent": "opencode"
+    }
+  ]
+}

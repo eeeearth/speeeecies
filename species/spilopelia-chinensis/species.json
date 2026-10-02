@@ -1,0 +1,469 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Spilopelia chinensis",
+  "slug": "spilopelia-chinensis",
+  "common_names": {
+    "en": "spotted dove"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Columbiformes",
+    "family": "Columbidae",
+    "genus": "Spilopelia",
+    "authority": "(Scopoli, 1786)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 6101224,
+    "inat_taxon_id": 1455918,
+    "wikidata": "Q116686",
+    "ncbi_taxon_id": 115700
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "IN",
+      "PK",
+      "NP",
+      "BD",
+      "BT",
+      "LK",
+      "MM",
+      "TH",
+      "LA",
+      "KH",
+      "VN",
+      "MY",
+      "ID",
+      "CN",
+      "TW",
+      "PH"
+    ],
+    "introduced": [
+      "AU",
+      "US",
+      "NZ",
+      "MU",
+      "SG",
+      "FJ"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Hop",
+      "Fly"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Platform",
+    "perching": true,
+    "size_class": "Small",
+    "mass_kg": 0.18,
+    "length_m": 0.32,
+    "wingspan_m": 0.45,
+    "lifespan_y": 5,
+    "diet": {
+      "seed": 0.75,
+      "fruit": 0.1,
+      "invertebrate": 0.15
+    },
+    "social": {
+      "structure": "Pair",
+      "group_size": [
+        1,
+        4
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.4
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.6,
+      "arboreal": 0.3,
+      "aerial": 0.1
+    },
+    "shelter_tag": "shelter",
+    "resources": [
+      {
+        "tag": "seed",
+        "kind": "Herbivory",
+        "weight": 0.7
+      },
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.15
+      },
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.15
+      },
+      {
+        "tag": "nest_platform",
+        "kind": "Nesting",
+        "weight": 1.0
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.7
+      },
+      {
+        "tag": "shelter",
+        "kind": "Shelter",
+        "weight": 0.5
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "light_max": 0.7,
+      "notes": "Common in gardens, streets, parks and farmland; forages on the ground for seeds and grain and will nest on buildings and other structures."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "03-01",
+        "end": "08-31",
+        "note": "Breeding is spread out in warm regions; a flimsy platform of twigs holds two eggs, and more than one brood may be raised."
+      },
+      {
+        "name": "moult",
+        "start": "09-01",
+        "end": "11-30"
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg"
+      },
+      {
+        "stage": "Juvenile",
+        "duration_days": 40,
+        "scale": 0.85
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "TH-50",
+        "monthly": [
+          0.46,
+          0.34,
+          0.41,
+          0.6,
+          0.55,
+          0.62,
+          0.92,
+          1.0,
+          0.83,
+          0.68,
+          0.5,
+          0.43
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 19501,
+        "sources": [
+          "inat-activity-th-50",
+          "gbif-activity-th-50"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 13320,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=1455918&place_id=13320&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=13320&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 355,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "THA.10_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=6101224&gadmGid=THA.10_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=THA.10_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 19146,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "bt-perching-songbird-v1",
+    "params": {
+      "flee_m": 6,
+      "food_tag": "seed",
+      "song": "song",
+      "alarm": "alarm",
+      "nest_m1": 3,
+      "nest_m2": 8
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "song",
+      "context": "Song",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day",
+        "Dusk"
+      ],
+      "cooldown_s": 15,
+      "loudness": "Moderate",
+      "description": "A soft, low cooing, krookruk-krukroo, repeated from a perch or the ground."
+    },
+    {
+      "call_id": "alarm",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 5,
+      "loudness": "Moderate",
+      "description": "A sharp, explosive flutter and clapping of the wings as the bird takes off from the ground when startled."
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.8,
+      "leg_length_ratio": 0.3,
+      "head_scale": 0.7,
+      "neck_angle_deg": 20,
+      "tail_ratio": 1.0,
+      "wing_aspect": 3.2,
+      "beak_ratio": 0.4,
+      "girth_ratio": 1.0
+    },
+    "palette": {
+      "body": "#a98a6b",
+      "belly": "#d8c7b0",
+      "markings": "#222222",
+      "accent": "#f5f5f5",
+      "eye": "#111111"
+    },
+    "part_colors": {
+      "head": "body",
+      "breast": "belly",
+      "tail": "body",
+      "beak": "markings"
+    },
+    "extra_parts": [
+      {
+        "name": "collar",
+        "parent": "body",
+        "offset": [
+          0.3,
+          0.35,
+          0
+        ],
+        "size": [
+          0.35,
+          0.3,
+          1.05
+        ],
+        "color": "markings"
+      },
+      {
+        "name": "tail_tip",
+        "parent": "tail",
+        "offset": [
+          0.45,
+          0,
+          0
+        ],
+        "size": [
+          0.2,
+          1.0,
+          1.0
+        ],
+        "color": "accent"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "hop": {},
+      "walk": {},
+      "fly": {},
+      "glide": {},
+      "perched": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/6101224",
+      "title": "GBIF Backbone Taxonomy: Spilopelia chinensis",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q116686",
+      "title": "Wikidata: spotted dove (Q116686)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Spotted_dove",
+      "title": "Wikipedia: Spotted dove",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Spotted dove\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "inat-activity-th-50",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=1455918&place_id=13320&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Spilopelia chinensis in TH-50",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-th-50",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=6101224&gadmGid=THA.10_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Spilopelia chinensis in TH-50",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "iNaturalist id 1455918 is the accepted Spilopelia chinensis taxon; Wikidata P3151 carries the older Streptopelia id 144549."
+    },
+    "common_names": {
+      "sources": [
+        "wikidata",
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "IUCN Red List category (P141): least concern."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Native countries inferred from the article's distribution (Indian subcontinent, East and Southeast Asia); introduced countries from the article's introduction history."
+    },
+    "traits": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Total length (300-340 mm) and body mass (162-200 g) from the article's subspecies table; diet shares derived from the article's description of ground foraging for seeds and grain with occasional insects. size_class derived from mass_kg. wingspan_m and lifespan_y are judgement, not stated in the cited source."
+    },
+    "habitat": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Ground foraging and platform nest from the article's habitat and breeding sections; stratum shares and weights are judgement."
+    },
+    "seasonal": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Active year round; the article says breeding is spread out in warm regions, so the phase boundaries are judgement for Thailand."
+    },
+    "vocalizations.song": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "vocalizations.alarm": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The take-off flutter is described in the article; the timing is judgement."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Long slim buff-brown body, white-spotted black half-collar and white-tipped tail from the article's description; proportions and part placement are authored for the block mesh."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared perching-songbird program."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies locale agent",
+      "agent": "opencode"
+    }
+  ]
+}
