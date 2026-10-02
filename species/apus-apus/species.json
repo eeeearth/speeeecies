@@ -1,0 +1,680 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Apus apus",
+  "slug": "apus-apus",
+  "common_names": {
+    "en": "Common swift",
+    "fr": "martinet noir",
+    "de": "Mauersegler",
+    "nl": "gierzwaluw",
+    "es": "vencejo común"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Apodiformes",
+    "family": "Apodidae",
+    "genus": "Apus",
+    "authority": "Linnaeus, 1758",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 5228676,
+    "inat_taxon_id": 6638,
+    "itis_tsn": 178021,
+    "wikidata": "Q207524"
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "PT",
+      "ES",
+      "FR",
+      "GB",
+      "IE",
+      "BE",
+      "NL",
+      "LU",
+      "DE",
+      "DK",
+      "NO",
+      "SE",
+      "FI",
+      "EE",
+      "LV",
+      "LT",
+      "PL",
+      "CZ",
+      "AT",
+      "CH",
+      "IT",
+      "SI",
+      "HR",
+      "HU",
+      "SK",
+      "RO",
+      "BG",
+      "GR",
+      "TR",
+      "RU",
+      "UA",
+      "BY",
+      "MD",
+      "RS",
+      "BA",
+      "ME",
+      "MK",
+      "AL",
+      "GE",
+      "AM",
+      "AZ",
+      "KZ",
+      "CN",
+      "MN",
+      "JP",
+      "KP",
+      "KR",
+      "IR",
+      "IQ",
+      "SY",
+      "LB",
+      "IL",
+      "JO",
+      "MA",
+      "DZ",
+      "TN",
+      "LY",
+      "EG"
+    ],
+    "introduced": []
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Fly"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Cavity",
+    "perching": false,
+    "size_class": "Tiny",
+    "mass_kg": 0.042,
+    "mass_range_kg": [
+      0.031,
+      0.056
+    ],
+    "length_m": 0.17,
+    "wingspan_m": 0.42,
+    "lifespan_y": 5,
+    "diet": {
+      "invertebrate": 1.0
+    },
+    "social": {
+      "structure": "Colony",
+      "group_size": [
+        10,
+        1000
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.1
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.0,
+      "arboreal": 1.0
+    },
+    "shelter_tag": "cavity",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 1.0
+      },
+      {
+        "tag": "cavity",
+        "kind": "Nesting",
+        "weight": 1.0
+      },
+      {
+        "tag": "cavity",
+        "kind": "Shelter",
+        "weight": 1.0
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Exploiter",
+      "uses_gardens": true,
+      "light_max": 0.9,
+      "notes": "Almost exclusively aerial; nests in cavities in buildings (under eaves, in roof spaces, wall crevices) in cities, towns and villages; forages over urban areas, parks, water bodies; never perches on branches, only clings to vertical surfaces."
+    }
+  },
+  "seasonal": {
+    "strategy": "Migration",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "05-01",
+        "end": "08-31",
+        "region": "ES",
+        "note": "Arrives in Iberia late April/early May; breeds May to August in colonies under eaves and in roof spaces; single brood."
+      },
+      {
+        "name": "dispersal",
+        "start": "09-01",
+        "end": "10-31",
+        "note": "Departs for sub-Saharan Africa in September/October; non-breeding range south of Sahara."
+      },
+      {
+        "name": "absent",
+        "start": "11-01",
+        "end": "04-30",
+        "fraction": 0.99,
+        "note": "Almost entirely absent from Europe during winter; small numbers may overwinter in southern Spain but <1% of population."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg"
+      },
+      {
+        "stage": "Juvenile",
+        "duration_days": 60,
+        "scale": 0.85
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "ES-MD",
+        "monthly": [
+          0.0,
+          0.0,
+          0.02,
+          0.6,
+          0.81,
+          1.0,
+          0.81,
+          0.21,
+          0.04,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 31268,
+        "sources": [
+          "inat-activity-es-md",
+          "gbif-activity-es-md"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 10543,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=6638&place_id=10543&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=10543&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 556,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "ESP.8_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5228676&gadmGid=ESP.8_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=ESP.8_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 30712,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "bt-perching-songbird-v1",
+    "params": {
+      "flee_m": 3,
+      "food_tag": "invertebrate",
+      "song": "scream",
+      "alarm": "scream",
+      "song_cooldown_s": 5,
+      "nest_m1": 5,
+      "nest_m2": 8
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "scream",
+      "context": "Song",
+      "season_months": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "time_windows": [
+        "DawnChorus",
+        "Day",
+        "Dusk"
+      ],
+      "cooldown_s": 3,
+      "loudness": "Loud",
+      "description": "Piercing, high-pitched 'sriii-sriii' or 'screee-screee' given in fast, low flight around breeding colonies and at nest entrances; the characteristic sound of summer evenings in European cities."
+    },
+    {
+      "call_id": "contact",
+      "context": "Contact",
+      "season_months": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "time_windows": [
+        "DawnChorus",
+        "Day",
+        "Dusk"
+      ],
+      "cooldown_s": 8,
+      "loudness": "Moderate",
+      "description": "Shorter, softer 'chip-chip' or 'tsit-tsit' given at the nest between mates and to young."
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.8,
+      "leg_length_ratio": 0.08,
+      "head_scale": 0.7,
+      "neck_angle_deg": 5,
+      "tail_ratio": 0.6,
+      "wing_aspect": 4.5,
+      "beak_ratio": 0.3,
+      "girth_ratio": 0.8
+    },
+    "palette": {
+      "body": "#1a1a1a",
+      "belly": "#2a2a2a",
+      "markings": "#151515",
+      "accent": "#1a1a1a",
+      "eye": "#0a0a0a"
+    },
+    "part_colors": {
+      "body": "body",
+      "head": "body",
+      "wing_*": "markings",
+      "tail": "markings",
+      "beak": "accent",
+      "leg_*": "accent"
+    },
+    "extra_parts": [
+      {
+        "name": "throat_patch",
+        "parent": "head",
+        "offset": [
+          0.15,
+          -0.1,
+          0.1
+        ],
+        "size": [
+          0.3,
+          0.2,
+          0.15
+        ],
+        "color": "belly"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "fly": {},
+      "perched": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/5228676",
+      "title": "GBIF Backbone Taxonomy: Apus apus",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q207524",
+      "title": "Wikidata: Common Swift (Q207524)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Common_swift",
+      "title": "Wikipedia: Common swift",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Common swift\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=178021",
+      "title": "ITIS: Apus apus, TSN 178021",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "inat-activity-es-md",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=6638&place_id=10543&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Apus apus in ES-MD",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-es-md",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5228676&gadmGid=ESP.8_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Apus apus in ES-MD",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "itis"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "common_names": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikidata",
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Breeds across Europe, North Africa, and temperate Asia east to Lake Baikal and northern China; winters sub-Saharan Africa. Country list from breeding range (Europe, NW Africa, W/C Asia) and wintering range (sub-Saharan Africa); only breeding-range countries listed here as native."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Almost exclusively aerial; does not walk or hop (feet tiny, adapted for clinging); flight only."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Highly aerial; feeds, drinks, mates and sleeps on the wing."
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Cannot perch on branches; clings to vertical surfaces only."
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Nests in cavities: gaps under roof tiles, eaves, wall crevices, nest boxes."
+    },
+    "traits.size_class": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg (0.042 kg falls in Small band)."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "31-56 g; mean ~42 g."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "31-56 g."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "16-17 cm; midpoint ~16.5 cm."
+    },
+    "traits.wingspan_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "42-48 cm; midpoint ~42 cm."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Average 5-6 years; maximum recorded 21 years."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Exclusively aerial invertebrates (insects, spiders caught in flight); diet 100% invertebrate."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Colonial breeder; forms screaming parties of 10-50+ birds around colonies; huge flocks on migration."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Diurnal aerial forager; sleeps on the wing at night."
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Flees by rapid flight; nests in inaccessible cavities."
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: nests on buildings in close proximity to humans; feeds overhead in cities; very low wariness at nest but never approachable on ground."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "100% aerial (arboreal in schema terms); never on ground."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Roosts and nests in building cavities; clings to vertical walls at night."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Aerial invertebrates only; cavity for nesting and roosting (clinging to vertical surfaces inside); no ground resources used."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Urban exploiter: nests almost exclusively on/under buildings in cities and towns; forages over urban areas; light_max high due to crepuscular activity around streetlights."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Obligate long-distance migrant; winters sub-Saharan Africa; arrives Europe late April, departs September/October."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Breeding May-August in Iberia; migration September-October; absent November-April (fraction 0.99)."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Incubation 19-20 days, nestling 37-56 days (weather-dependent); duration_days and scale are judgement."
+    },
+    "vocalizations.scream": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "vocalizations.contact": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Softer contact calls at nest described in voice section; season_months and cooldown are judgement."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Sooty black-brown overall with pale grey-white throat patch; long scythe-shaped wings; short forked tail; tiny feet; proportions authored for highly aerial form (very long wings, tiny legs)."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for shared perching-songbird program; program does not fully capture aerial lifestyle (no ground foraging, no perching), but provides screaming display and cavity nesting; nest_m1/nest_m2 set to May-August."
+    }
+  },
+  "contributors": [
+    {
+      "name": "Sisyphus (agent)",
+      "agent": "opencode"
+    }
+  ]
+}

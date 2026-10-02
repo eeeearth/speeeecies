@@ -1,0 +1,645 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Nyctereutes procyonoides",
+  "slug": "nyctereutes-procyonoides",
+  "common_names": {
+    "en": "Raccoon Dog",
+    "ko": "너구리"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Mammalia",
+    "order": "Carnivora",
+    "family": "Canidae",
+    "genus": "Nyctereutes",
+    "authority": "(Gray, 1834)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2434552,
+    "inat_taxon_id": 855311
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "CN",
+      "KR",
+      "KP",
+      "JP",
+      "RU",
+      "MN"
+    ],
+    "introduced": [
+      "FI",
+      "SE",
+      "NO",
+      "DK",
+      "DE",
+      "NL",
+      "BE",
+      "FR",
+      "AT",
+      "CH",
+      "PL",
+      "CZ",
+      "SK",
+      "HU",
+      "RO",
+      "BG",
+      "GR",
+      "IT",
+      "ES",
+      "PT",
+      "GB",
+      "IE"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk",
+      "Trot",
+      "Gallop",
+      "Swim"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Fur",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Burrow",
+    "perching": false,
+    "size_class": "Medium",
+    "mass_kg": 5.5,
+    "mass_range_kg": [
+      3.5,
+      10.5
+    ],
+    "length_m": 0.65,
+    "shoulder_height_m": 0.38,
+    "speed_ms": {
+      "trot": 2.0,
+      "gallop": 8.0
+    },
+    "lifespan_y": 7,
+    "home_range_ha": 50,
+    "diet": {
+      "invertebrate": 0.3,
+      "vertebrate": 0.25,
+      "fruit": 0.2,
+      "carrion": 0.15,
+      "seed": 0.1
+    },
+    "social": {
+      "structure": "Pair",
+      "group_size": [
+        1,
+        2
+      ]
+    },
+    "activity_pattern": "Nocturnal",
+    "defense": "Flee",
+    "wariness": 0.7
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.85,
+      "fossorial": 0.15
+    },
+    "shelter_tag": "burrow",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.5
+      },
+      {
+        "tag": "small_vertebrate",
+        "kind": "Predation",
+        "weight": 0.5
+      },
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.4
+      },
+      {
+        "tag": "carrion",
+        "kind": "Scavenging",
+        "weight": 0.4
+      },
+      {
+        "tag": "seed",
+        "kind": "Herbivory",
+        "weight": 0.3
+      },
+      {
+        "tag": "burrow",
+        "kind": "Shelter",
+        "weight": 1.0
+      },
+      {
+        "tag": "shrub_thicket",
+        "kind": "Shelter",
+        "weight": 0.5
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "flight_distance_m": 25,
+      "notes": "Opportunistic omnivore; adapts well to urban and suburban areas; uses burrows for shelter and winter sleep."
+    }
+  },
+  "seasonal": {
+    "strategy": "Hibernation",
+    "triggers": {
+      "enter": {
+        "temperature_below_c": -5,
+        "days": 14
+      },
+      "exit": {
+        "temperature_above_c": 5,
+        "days": 7
+      }
+    },
+    "phases": [
+      {
+        "name": "mating",
+        "start": "02-01",
+        "end": "03-31",
+        "note": "Mating in late winter."
+      },
+      {
+        "name": "breeding",
+        "start": "04-01",
+        "end": "07-31",
+        "note": "Gestation ~61 days; pups born in spring."
+      },
+      {
+        "name": "dormancy",
+        "start": "11-01",
+        "end": "03-31",
+        "note": "Winter sleep in burrow; body temperature drops slightly."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Juvenile",
+        "duration_days": 120,
+        "scale": 0.5
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "KR-11",
+        "monthly": [
+          0.0,
+          0.55,
+          0.53,
+          0.39,
+          0.54,
+          1.0,
+          0.52,
+          0.7,
+          0.67,
+          0.09,
+          0.18,
+          0.14
+        ],
+        "method": "gbif_share",
+        "observations": 67,
+        "sources": [
+          "gbif-activity-kr-11"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 11005,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=855311&place_id=11005&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=11005&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 37,
+            "usable": false
+          },
+          "gbif": {
+            "tier": "C",
+            "area": [
+              "gadmGid",
+              "KOR.16_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2434552&gadmGid=KOR.16_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=KOR.16_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "total": 67,
+            "usable": false
+          },
+          "used": [
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-ground-forager-v1",
+    "params": {
+      "food_tag": "invertebrate",
+      "flee_m": 20,
+      "calm_m": 40,
+      "food_m": 50,
+      "flee_gait": "gallop",
+      "forage_gait": "walk"
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "whine",
+      "context": "Contact",
+      "season_months": [
+        2,
+        3
+      ],
+      "time_windows": [
+        "Night"
+      ],
+      "cooldown_s": 30,
+      "loudness": "Quiet",
+      "description": "A high-pitched whine or whimper, used as a contact call between mates."
+    },
+    {
+      "call_id": "growl",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Night"
+      ],
+      "cooldown_s": 15,
+      "loudness": "Moderate",
+      "description": "A low growl when threatened or defending a den."
+    }
+  ],
+  "look": {
+    "body_plan": "quadruped",
+    "proportions": {
+      "torso_aspect": 2.0,
+      "leg_length_ratio": 0.35,
+      "head_scale": 0.65,
+      "neck_angle_deg": 25,
+      "tail_ratio": 0.35,
+      "ear_ratio": 0.3,
+      "beak_ratio": 0.5,
+      "girth_ratio": 1.0
+    },
+    "palette": {
+      "body": "#6a5a4a",
+      "belly": "#d0c8b8",
+      "markings": "#1a1a1a",
+      "accent": "#f0e8d8",
+      "eye": "#2a1a0a"
+    },
+    "part_colors": {
+      "leg_*": "markings",
+      "ear_*": "markings",
+      "snout": "belly"
+    },
+    "extra_parts": [
+      {
+        "name": "mask",
+        "parent": "head",
+        "offset": [
+          0.2,
+          0.1,
+          0
+        ],
+        "size": [
+          0.6,
+          0.4,
+          1.0
+        ],
+        "color": "markings"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "trot": {},
+      "gallop": {},
+      "swim": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2434552",
+      "title": "GBIF Backbone Taxonomy: Nyctereutes procyonoides",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Raccoon_dog",
+      "title": "Wikipedia: Raccoon dog",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Raccoon dog\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "gbif-activity-kr-11",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2434552&gadmGid=KOR.16_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+      "title": "GBIF occurrence search for Nyctereutes procyonoides in KR-11",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High"
+    },
+    "common_names": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "IUCN Least Concern."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Range from Wikipedia: East Asia native, Europe introduced."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Mass 3.5-10.5kg from description."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Length 50-85cm from description."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Diet: omnivorous - invertebrates, small vertebrates, fruit, carrion."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Lifespan ~7 years in the wild."
+    },
+    "vocalizations": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Typical canid vocalizations."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Greyish-brown fur with black face mask; proportions authored."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared ground-forager program."
+    },
+    "habitat.use": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored: ground and arboreal."
+    },
+    "habitat.shelter_tag": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored: uses burrows or cavities."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Weights are judgement based on diet description."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Adapts to urban and suburban areas."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Active year-round or hibernation."
+    },
+    "seasonal.phases": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored: breeding and caching phases."
+    },
+    "seasonal.life_stages": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored: juvenile, adult."
+    },
+    "traits.activity_pattern": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: diurnal or nocturnal."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.defense": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: flees from threats."
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: walks, trots, climbs."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Approximate range from description."
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Judgement: burrow or cavity."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.shoulder_height_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Approximate from description."
+    },
+    "traits.size_class": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "From mass_kg."
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Solitary or pair."
+    },
+    "traits.speed_ms": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored estimate."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.wariness": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored judgement."
+    },
+    "traits.home_range_ha": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored estimate."
+    },
+    "seasonal.triggers": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored: temperature-based triggers."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies maintainers",
+      "agent": "claude-code"
+    }
+  ]
+}

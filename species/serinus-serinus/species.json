@@ -1,0 +1,667 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Serinus serinus",
+  "slug": "serinus-serinus",
+  "common_names": {
+    "en": "European serin",
+    "fr": "serin cini",
+    "de": "girlitz",
+    "nl": "europese kanarie",
+    "es": "verdecillo"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Passeriformes",
+    "family": "Fringillidae",
+    "genus": "Serinus",
+    "authority": "Linnaeus, 1766",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2494200,
+    "inat_taxon_id": 9236,
+    "itis_tsn": 179252,
+    "wikidata": "Q25309"
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "PT",
+      "ES",
+      "FR",
+      "IT",
+      "CH",
+      "AT",
+      "SI",
+      "HR",
+      "BA",
+      "ME",
+      "MK",
+      "AL",
+      "GR",
+      "TR",
+      "CY",
+      "MA",
+      "DZ",
+      "TN",
+      "LY"
+    ],
+    "introduced": [
+      "BE",
+      "NL",
+      "DE",
+      "GB"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Hop",
+      "Fly"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Cup",
+    "perching": true,
+    "size_class": "Tiny",
+    "mass_kg": 0.012,
+    "mass_range_kg": [
+      0.01,
+      0.014
+    ],
+    "length_m": 0.11,
+    "wingspan_m": 0.19,
+    "lifespan_y": 2.5,
+    "diet": {
+      "seed": 0.8,
+      "invertebrate": 0.15,
+      "fruit": 0.05
+    },
+    "social": {
+      "structure": "Flock",
+      "group_size": [
+        2,
+        50
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.25
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.4,
+      "arboreal": 0.6
+    },
+    "shelter_tag": "perch",
+    "resources": [
+      {
+        "tag": "seed",
+        "kind": "Herbivory",
+        "weight": 0.8
+      },
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.3,
+        "months": [
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.1,
+        "months": [
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "tag": "nest_cup",
+        "kind": "Nesting",
+        "weight": 1.0
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.7
+      },
+      {
+        "tag": "shrub_thicket",
+        "kind": "Shelter",
+        "weight": 0.4
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "light_max": 0.7,
+      "notes": "Common in Mediterranean gardens, parks, orchards and olive groves; visits bird feeders; sings from exposed perches (wires, treetops) in urban and suburban areas."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "03-01",
+        "end": "07-31",
+        "note": "Breeds March to July (sometimes two broods); cup nest in trees, shrubs, vines; sings from prominent perches throughout breeding season."
+      },
+      {
+        "name": "flocking",
+        "start": "08-01",
+        "end": "02-28",
+        "note": "Forms small flocks outside breeding season; forages on ground for seeds in gardens, fields, olive groves; often mixes with other finches."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg"
+      },
+      {
+        "stage": "Juvenile",
+        "duration_days": 60,
+        "scale": 0.8
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "ES-MD",
+        "monthly": [
+          0.49,
+          0.67,
+          0.85,
+          1.0,
+          0.91,
+          0.71,
+          0.45,
+          0.31,
+          0.35,
+          0.33,
+          0.42,
+          0.58
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 65743,
+        "sources": [
+          "inat-activity-es-md",
+          "gbif-activity-es-md"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 10543,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=9236&place_id=10543&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=10543&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 2541,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "ESP.8_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2494200&gadmGid=ESP.8_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=ESP.8_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 63202,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "bt-perching-songbird-v1",
+    "params": {
+      "flee_m": 4,
+      "food_tag": "seed",
+      "song": "song",
+      "alarm": "alarm",
+      "song_cooldown_s": 6,
+      "nest_m1": 3,
+      "nest_m2": 7
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "song",
+      "context": "Song",
+      "season_months": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "time_windows": [
+        "DawnChorus",
+        "Day",
+        "Dusk"
+      ],
+      "cooldown_s": 4,
+      "loudness": "Moderate",
+      "description": "Rapid, buzzy, jingling trill 'tsiriri-tsiriri-tsiriri' or 'zzzz-zzzz-zzzz', often ending with a wheezy note; delivered from high exposed perches (wires, treetops, TV aerials) throughout the day, most intense in spring; one of the most characteristic sounds of Mediterranean gardens."
+    },
+    {
+      "call_id": "alarm",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day",
+        "Dusk"
+      ],
+      "cooldown_s": 5,
+      "loudness": "Moderate",
+      "description": "Sharp 'tsit' or 'pit' repeated rapidly when a predator or intruder approaches the nest or feeding flock."
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.3,
+      "leg_length_ratio": 0.25,
+      "head_scale": 0.9,
+      "neck_angle_deg": 10,
+      "tail_ratio": 0.4,
+      "wing_aspect": 2.2,
+      "beak_ratio": 0.3,
+      "girth_ratio": 1.0
+    },
+    "palette": {
+      "body": "#8a9a4a",
+      "belly": "#f0e8a0",
+      "markings": "#5a6a2a",
+      "accent": "#b8c86a",
+      "eye": "#1a1a1a"
+    },
+    "part_colors": {
+      "head": "accent",
+      "wing_*": "markings",
+      "tail": "markings",
+      "beak": "accent",
+      "leg_*": "accent"
+    },
+    "extra_parts": [
+      {
+        "name": "rump",
+        "parent": "body",
+        "offset": [
+          -0.3,
+          0,
+          0
+        ],
+        "size": [
+          0.4,
+          0.5,
+          0.5
+        ],
+        "color": "accent"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "hop": {},
+      "fly": {},
+      "perched": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2494200",
+      "title": "GBIF Backbone Taxonomy: Serinus serinus",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q25309",
+      "title": "Wikidata: European Serin (Q25309)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/European_serin",
+      "title": "Wikipedia: European serin",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"European serin\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=179252",
+      "title": "ITIS: Serinus serinus, TSN 179252",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "inat-activity-es-md",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=9236&place_id=10543&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Serinus serinus in ES-MD",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-es-md",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2494200&gadmGid=ESP.8_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Serinus serinus in ES-MD",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "itis"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "common_names": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikidata",
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Native to Mediterranean Europe (Iberia, France, Italy, Balkans), North Africa (Morocco, Algeria, Tunisia, Libya), and parts of Western Asia (Turkey, Cyprus); introduced in Belgium, Netherlands, Germany, UK. Country list from Distribution section."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Hops on ground; powered flight."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Small cup nest in tree, shrub, or vine; often in conifers or citrus trees."
+    },
+    "traits.size_class": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg (0.012 kg falls in Tiny band)."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "10-14 g; mean ~12 g (smallest European finch)."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "10-14 g."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "11-12 cm; midpoint ~11.5 cm."
+    },
+    "traits.wingspan_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "18-20 cm; midpoint ~19 cm."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Typical lifespan 2-3 years; maximum recorded ~8-10 years."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Primarily seeds (grass, weeds, composites, cereals); invertebrates (aphids, caterpillars) fed to young and taken in breeding season; some fruit/buds; no quantitative percentages found; shares authored from qualitative description."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Breeds in loose colonies or solitary pairs; forms small flocks (10-50) outside breeding season; often mixes with goldfinches, greenfinches, sparrows."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Diurnal; feeds on ground and in vegetation by day."
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Flees to cover; alarm call alerts flock."
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: common in gardens and parks, visits feeders, sings from exposed perches near houses; moderately low wariness."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Forages on ground for seeds and in shrubs/trees for buds and invertebrates; judgement split."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Roosts in dense shrubs and trees (perch/shrub_thicket); nests in cup in vegetation."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Seeds primary year-round; invertebrates seasonal (breeding season for feeding young); fruit/buds minor; nest_cup for cup nest; perch and shrub_thicket for roosting."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Common in Mediterranean gardens, orchards, parks; visits feeders; urban adapter; light_max is judgement."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Largely resident in Mediterranean range; some altitudinal and short-distance movements in north of range; treated as ActiveYearRound."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Breeding March-July (sometimes 2 broods); flocking August-February; boundaries are judgement."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Incubation 12-13 days, fledging 13-16 days, independence a few weeks later; duration_days and scale are judgement."
+    },
+    "vocalizations.song": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "vocalizations.alarm": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Streaky yellow-green upperparts; bright yellow rump (diagnostic); yellow breast and face with dark streaks; pale belly; forked tail; proportions and extra-part (rump) are judgement."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for shared perching-songbird program; seed-focused foraging, short flee distance for garden bird, nest window March-July."
+    }
+  },
+  "contributors": [
+    {
+      "name": "Sisyphus (agent)",
+      "agent": "opencode"
+    }
+  ]
+}
