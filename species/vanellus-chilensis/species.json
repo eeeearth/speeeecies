@@ -68,7 +68,7 @@
     "respiration": "Lungs",
     "metamorphosis": "None",
     "nest_type": "Ground",
-    "perching": true,
+    "perching": false,
     "size_class": "Small",
     "mass_kg": 0.338,
     "mass_range_kg": [
@@ -204,14 +204,16 @@
     ]
   },
   "behavior": {
-    "program": "bt-perching-songbird-v1",
+    "program": "fsm-ground-forager-v1",
     "params": {
       "flee_m": 8,
+      "calm_m": 30,
       "food_tag": "invertebrate",
-      "song": "call",
-      "alarm": "alarm",
-      "nest_m1": 8,
-      "nest_m2": 1
+      "food_m": 40,
+      "flee_gait": "fly",
+      "forage_gait": "walk",
+      "rest_sun_lo_deg": -90,
+      "rest_sun_hi_deg": -6
     }
   },
   "vocalizations": [
