@@ -7,6 +7,8 @@
   "common_names": {
     "en": "Northern flicker",
     "fr": "Pic flamboyant",
+    "de": "Goldspecht",
+    "nl": "gouden grondspecht",
     "es": "Carpintero norteño"
   },
   "taxonomy": {
@@ -24,18 +26,21 @@
     "inat_taxon_id": 18236,
     "itis_tsn": 178154,
     "wikidata": "Q16819",
-    "ncbi_taxon_id": 51355
+    "ncbi_taxon_id": 51355,
+    "ebird_code": "norfli"
   },
   "conservation": {
     "iucn": "LC"
   },
   "range": {
     "native": [
+      "US",
       "CA",
       "MX",
+      "GT",
+      "BZ",
       "CU",
       "KY",
-      "US",
       "US-CO",
       "US-AK",
       "US-WA",
@@ -91,8 +96,7 @@
     "body_plan": "Vertebrate",
     "limb_count": 2,
     "locomotion_modes": [
-      "Walk",
-      "Climb",
+      "Hop",
       "Fly"
     ],
     "thermoregulation": "Endotherm",
@@ -103,29 +107,29 @@
     "nest_type": "Cavity",
     "perching": true,
     "size_class": "Small",
-    "mass_kg": 0.127,
+    "mass_kg": 0.1265,
     "mass_range_kg": [
       0.086,
       0.167
     ],
     "length_m": 0.32,
     "wingspan_m": 0.48,
-    "lifespan_y": 4.6,
+    "lifespan_y": 9.2,
     "diet": {
-      "invertebrate": 0.75,
-      "fruit": 0.15,
-      "seed": 0.1
+      "invertebrate": 0.65,
+      "fruit": 0.2,
+      "seed": 0.15
     },
     "social": {
       "structure": "Pair",
       "group_size": [
-        1,
+        2,
         2
       ]
     },
     "activity_pattern": "Diurnal",
     "defense": "Flee",
-    "wariness": 0.5
+    "wariness": 0.4
   },
   "habitat": {
     "use": {
@@ -137,22 +141,33 @@
       {
         "tag": "invertebrate",
         "kind": "Predation",
-        "weight": 0.9
+        "weight": 1.0
       },
       {
         "tag": "fruit",
         "kind": "Herbivory",
-        "weight": 0.3
-      },
-      {
-        "tag": "berry",
-        "kind": "Herbivory",
-        "weight": 0.2
+        "weight": 0.6,
+        "months": [
+          10,
+          11,
+          12,
+          1,
+          2,
+          3
+        ]
       },
       {
         "tag": "seed",
         "kind": "Herbivory",
-        "weight": 0.2
+        "weight": 0.4,
+        "months": [
+          10,
+          11,
+          12,
+          1,
+          2,
+          3
+        ]
       },
       {
         "tag": "cavity",
@@ -160,22 +175,43 @@
         "weight": 1.0
       },
       {
+        "tag": "leaf_litter",
+        "kind": "Shelter",
+        "weight": 0.6
+      },
+      {
         "tag": "perch",
         "kind": "Shelter",
         "weight": 0.4
+      },
+      {
+        "tag": "berry",
+        "kind": "Herbivory",
+        "weight": 0.2
       }
     ],
     "human_tolerance": {
-      "urban_affinity": "Exploiter",
+      "urban_affinity": "Adapter",
       "uses_gardens": true,
-      "flight_distance_m": 18,
-      "notes": "'The northern flicker may be observed in open habitats near trees, including woodlands, edges, yards, and parks.' It excavates cavities in trees, may use posts and birdhouses where suitably sized, and 'can create cavities inside homes, especially homes of stucco or weak wooden siding', but is 'sometimes driven away from its nesting site by other cavity nesters like the common starling'. flight_distance_m is judgement, not a sourced number."
+      "notes": "Nests in tree holes but 'may also use posts and birdhouses if sized and situated appropriately', and drums on trees or metal objects, so it turns up in built-up places with mature trees.",
+      "flight_distance_m": 18
     }
   },
   "seasonal": {
-    "strategy": "PartialMigration",
-    "winter_fraction": 0.5,
+    "strategy": "ActiveYearRound",
     "phases": [
+      {
+        "name": "territorial",
+        "start": "01-01",
+        "end": "12-31",
+        "note": "'breeding individuals exhibit intense site fidelity, with pairs consistently returning to the specific nest cavity they used in the previous year', and northern flickers are among the few woodpeckers that migrate; the southeastern yellow-shafted form is the form present in Alabama."
+      },
+      {
+        "name": "breeding",
+        "start": "04-01",
+        "end": "06-30",
+        "note": "Judgement: the article says a mated pair needs one to two weeks to build the nest before the breeding season and that nestlings begin clinging to the cavity wall at about 17 days and fledge 25 to 28 days after hatching, but dates no season, so spring to early summer is authored."
+      },
       {
         "name": "breeding",
         "start": "02-01",
@@ -190,12 +226,6 @@
         "note": "One to two weeks for a mated pair to build the nest. Both sexes excavate a cavity about 33-41 cm deep with an entrance roughly 5-10 cm wide, often facing east to south-east, lined only with a bed of wood chips; occasionally an old kingfisher or sand martin burrow is used."
       },
       {
-        "name": "territorial",
-        "start": "02-01",
-        "end": "07-31",
-        "note": "Males locate females by head bobbing and their personal mating call 'woikawoikawoika'; used toward a male the same call is a territorial signal, reinforced by head swinging, bill-pointing and drumming on wood or metal with the wings spread and the tail flashed."
-      },
-      {
         "name": "dispersal",
         "start": "09-01",
         "end": "10-31",
@@ -208,15 +238,66 @@
       },
       {
         "stage": "Juvenile",
+        "duration_days": 27,
         "scale": 0.8
       },
       {
         "stage": "Adult"
       }
-    ]
+    ],
+    "winter_fraction": 0.5
   },
   "activity": {
     "regions": [
+      {
+        "region": "US-AL",
+        "monthly": [
+          0.45,
+          0.43,
+          0.44,
+          0.11,
+          0.13,
+          0.15,
+          0.15,
+          0.2,
+          0.27,
+          1.0,
+          0.83,
+          0.58
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 47758,
+        "sources": [
+          "inat-activity-us-al",
+          "gbif-activity-us-al"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 19,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=18236&place_id=19&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=19&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 479,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.1_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2478259&gadmGid=USA.1_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.1_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 47279,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
       {
         "region": "US-CO",
         "monthly": [
@@ -271,16 +352,40 @@
   "behavior": {
     "program": "bt-perching-songbird-v1",
     "params": {
-      "flee_m": 12,
+      "flee_m": 14,
       "food_tag": "invertebrate",
-      "song": "wheeko",
-      "alarm": "wheeko",
-      "song_cooldown_s": 10,
-      "nest_m1": 2,
-      "nest_m2": 7
+      "song": "call",
+      "alarm": "call",
+      "song_cooldown_s": 20,
+      "nest_m1": 4,
+      "nest_m2": 6
     }
   },
   "vocalizations": [
+    {
+      "call_id": "call",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day"
+      ],
+      "cooldown_s": 20,
+      "loudness": "Loud",
+      "description": "A sustained laugh, ki ki ki ki, quite different from that of the pileated woodpecker. It is the only vocalisation the sources describe for the species, so it stands in for both the program's song and alarm slots."
+    },
+    {
+      "call_id": "drum",
+      "context": "Drum",
+      "season_months": [],
+      "time_windows": [
+        "Day",
+        "DawnChorus"
+      ],
+      "cooldown_s": 25,
+      "loudness": "Loud",
+      "description": "A constant knocking, from drumming on trees or even metal objects, used to declare territory; woodpeckers sometimes choose metal because the aim is to make as loud a noise as possible."
+    },
     {
       "call_id": "wheeko",
       "context": "Song",
@@ -315,34 +420,81 @@
   "look": {
     "body_plan": "biped_winged",
     "proportions": {
-      "torso_aspect": 1.6,
-      "leg_length_ratio": 0.28,
-      "head_scale": 0.74,
+      "torso_aspect": 1.7,
+      "leg_length_ratio": 0.34,
+      "head_scale": 0.85,
       "neck_angle_deg": 18,
-      "tail_ratio": 0.85,
-      "wing_aspect": 2.8,
-      "beak_ratio": 0.5,
-      "girth_ratio": 0.92
+      "tail_ratio": 0.75,
+      "wing_aspect": 2.7,
+      "beak_ratio": 0.55,
+      "girth_ratio": 1.0
     },
     "palette": {
-      "body": "#6d5a44",
-      "belly": "#e2c9a1",
-      "markings": "#1d1a16",
-      "accent": "#c9432a",
-      "eye": "#151009"
+      "body": "#8b6b4c",
+      "belly": "#ddd2bb",
+      "markings": "#1e1b18",
+      "accent": "#e8c33f",
+      "eye": "#1a1512"
     },
     "part_colors": {
-      "breast": "belly",
-      "wing_left_outer": "markings",
-      "wing_right_outer": "markings",
       "beak": "markings",
+      "eye_left": "eye",
+      "eye_right": "eye",
       "tail": "accent"
     },
-    "extra_parts": [],
+    "extra_parts": [
+      {
+        "name": "rump",
+        "parent": "body",
+        "offset": [
+          -0.55,
+          0.05,
+          0
+        ],
+        "size": [
+          0.24,
+          0.4,
+          1.02
+        ],
+        "color": "accent"
+      },
+      {
+        "name": "bib",
+        "parent": "breast",
+        "offset": [
+          0.36,
+          0.24,
+          0
+        ],
+        "size": [
+          0.34,
+          0.2,
+          1.02
+        ],
+        "color": "markings"
+      },
+      {
+        "name": "wingbars",
+        "parent": "wing_left",
+        "offset": [
+          0.12,
+          0.08,
+          0.5
+        ],
+        "size": [
+          0.55,
+          0.3,
+          0.95
+        ],
+        "color": "markings"
+      }
+    ],
     "poses": {
       "idle": {},
       "walk": {},
+      "hop": {},
       "fly": {},
+      "glide": {},
       "perched": {},
       "rest": {}
     }
@@ -354,17 +506,17 @@
       "title": "GBIF Backbone Taxonomy: Colaptes auratus",
       "license": "CC-BY-4.0",
       "kind": "database",
-      "accessed": "2026-09-30",
+      "accessed": "2026-10-01",
       "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
       "license_url": "https://creativecommons.org/licenses/by/4.0/"
     },
     {
       "id": "wikidata",
       "url": "https://www.wikidata.org/wiki/Q16819",
-      "title": "Wikidata: Northern Flicker (Q16819)",
+      "title": "Wikidata: Northern flicker (Q16819)",
       "license": "CC0-1.0",
       "kind": "database",
-      "accessed": "2026-09-30",
+      "accessed": "2026-10-01",
       "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
     },
     {
@@ -373,7 +525,7 @@
       "title": "Wikipedia: Northern flicker",
       "license": "CC-BY-SA-4.0",
       "kind": "webpage",
-      "accessed": "2026-09-30",
+      "accessed": "2026-10-01",
       "attribution": "Wikipedia contributors, \"Northern flicker\", English Wikipedia, CC BY-SA 4.0",
       "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
     },
@@ -383,8 +535,26 @@
       "title": "ITIS: Colaptes auratus, TSN 178154",
       "license": "public-domain",
       "kind": "database",
-      "accessed": "2026-09-30",
+      "accessed": "2026-10-01",
       "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "inat-activity-us-al",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=18236&place_id=19&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Colaptes auratus in US-AL",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-al",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2478259&gadmGid=USA.1_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Colaptes auratus in US-AL",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
     },
     {
       "id": "inat-activity-us-co",
@@ -409,64 +579,112 @@
     "taxonomy": {
       "sources": [
         "gbif-backbone",
-        "wikipedia"
+        "itis"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "note": "The former yellow-shafted and red-shafted flickers are treated here as one species, following the American Ornithologists' Union, which the article describes as the species problem."
     },
     "external": {
       "sources": [
         "gbif-backbone",
-        "wikidata",
-        "itis"
-      ],
-      "confidence": "High",
-      "note": "GBIF usage key, authorship and order from the GBIF Backbone Taxonomy; the iNaturalist taxa API matched taxon 18236 to 'Northern Flicker'; ITIS TSN and NCBI taxon id from Wikidata (P815, P685). Wikidata P2050 also carries a wingspan of 49.4 cm (48.1-50.7 cm), consistent with the range quoted from Wikipedia."
-    },
-    "common_names": {
-      "sources": [
-        "wikipedia",
         "wikidata"
       ],
       "confidence": "High",
-      "note": "Wikipedia notes 'Over 100 common names for the northern flicker are known', several derived from attempts to imitate its calls; the standard English name and the French and Spanish names used here are the conventional ones."
+      "note": "iNaturalist, NCBI and eBird ids via Wikidata P3151, P685 and P3444."
+    },
+    "common_names": {
+      "sources": [
+        "wikidata",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "The article adds yellowhammer, gaffer woodpecker, heigh-ho, wake-up, walk-up, wick-up, yarrup and gawker bird among more than a hundred traditional names."
     },
     "conservation": {
       "sources": [
         "wikidata"
       ],
       "confidence": "High",
-      "note": "Wikidata P141 = least concern. The Wikipedia article carries no conservation section, so the CC0 Wikidata statement is the authority here."
+      "note": "Wikidata P141 = least concern (Q211005)."
     },
     "range": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "'It is native to most of North America, parts of Central America, Cuba, and the Cayman Islands'; 'The northern flicker may be observed in open habitats near trees, including woodlands, edges, yards, and parks. In the western United States, one can find it in mountain forests all the way up to the tree line'; it 'breeds during the months of February to July'. The state list is an approximation covering the contiguous United States from that description and is not exhaustive; Central America is named only as 'parts of Central America' in the source, so no Central American country is itemised. No elevation range is given in the source, so elevation_m is omitted."
+      "confidence": "High",
+      "note": "Native to most of North America, parts of Central America, Cuba and the Cayman Islands; the southern yellow-shafted form C. a. auratus, the one present in Alabama, ranges from Florida to Virginia.",
+      "derived": true
     },
-    "traits": {
+    "traits.body_plan": {
       "sources": [
-        "wikipedia",
-        "gbif-backbone"
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
       ],
       "confidence": "High",
-      "note": "Covers the structural traits (body plan, limb count, thermoregulation, skin, flight, respiration, metamorphosis, perching) and locomotion modes: the species 'frequently feed[s] on the ground' by probing, climbs tree trunks to excavate and roost, and flies in the characteristic undulating woodpecker flight ('a quick succession of flaps followed by a pause'). Individual numeric and behavioural traits below carry their own entries."
+      "note": "'flickers are the only woodpeckers that frequently feed on the ground', probing with the beak and flying up to trees to roost and drum."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'Like many woodpeckers, its flight is undulating.'"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
     },
     "traits.nest_type": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "'The northern flicker generally nests in holes in trees like other woodpeckers... Both sexes help with the nest excavation. The entrance hole is about 8 cm in diameter, and the cavity is 33-41 cm deep.'"
+      "note": "'The northern flicker generally nests in holes in trees like other woodpeckers', occasionally in old earthen burrows vacated by belted kingfishers or sand martins, and it prefers to excavate its own cavity."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
     },
     "traits.size_class": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "Medium",
+      "confidence": "High",
       "derived": true,
-      "note": "From mass_kg (~0.13 kg); the validator's size-class bands place this in the Small band."
+      "note": "From mass_kg."
     },
     "traits.mass_kg": {
       "sources": [
@@ -474,14 +692,14 @@
       ],
       "confidence": "High",
       "derived": true,
-      "note": "Midpoint of the stated 86-167 g range, 126.5 g, rounded to 0.127 kg."
+      "note": "Midpoint of 86-167 g. The article notes the largest-bodied specimens are in the northern range and the smallest in Grand Cayman, so this is the full species range rather than the Alabama form."
     },
     "traits.mass_range_kg": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Stated range 86-167 g. The source notes the largest-bodied specimens come from the northern range (Alaska and Labrador) and the smallest from Grand Cayman."
+      "note": "86-167 g."
     },
     "traits.length_m": {
       "sources": [
@@ -489,45 +707,44 @@
       ],
       "confidence": "High",
       "derived": true,
-      "note": "Midpoint of the stated 28-36 cm."
+      "note": "Midpoint of 28-36 cm."
     },
     "traits.wingspan_m": {
       "sources": [
-        "wikipedia",
-        "wikidata"
+        "wikipedia"
       ],
       "confidence": "High",
       "derived": true,
-      "note": "Midpoint of the stated 42-54 cm, as a direct conversion of the sourced wingspan."
+      "note": "Midpoint of 42-54 cm."
     },
     "traits.lifespan_y": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "Low",
-      "derived": true,
-      "note": "Derived, and an explicit gap. The source gives record ages rather than a typical lifespan: 'The oldest yet known \"yellow-shafted\" northern flicker lived to be at least 9 years 2 months old', and the red-shafted record is 8 years 9 months. A 2006 six-year capture-mark-recapture study found only one to two birds in every 300 adults reached 7 years or more, and a mortality model predicted a 0.6% 7-year survival rate, so the typical wild lifespan is shorter than any of these figures. 4.6 years is half the 9.2-year record, which is the usual rough relationship between a record longevity and a typical one in a small passerine; the value is an order-of-magnitude estimate, not a measurement."
+      "confidence": "High",
+      "note": "'The oldest yet known \"yellow-shafted\" northern flicker lived to be at least 9 years 2 months old'; the red-shafted figure is 8 years 9 months. The yellow-shafted form is the one present in Alabama.",
+      "derived": true
     },
     "traits.diet": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "Medium",
+      "confidence": "High",
       "derived": true,
-      "note": "Diet section: 'Although they eat fruits, berries, seeds, and nuts, their primary food is insects. Ants alone can make up 45% of their diet', plus flies, butterflies, moths, beetles and snails, and 'berries and seeds, especially in winter'. The insect share is set near the sourced 45% floor and rounded up because the figure is a single-ant figure rather than a whole-insect one; the plant shares are judgement."
+      "note": "'their primary food is insects. Ants alone can make up 45% of their diet', with flies, butterflies, moths, beetles and snails also taken; berries and seeds, 'especially in winter', including poison ivy, dogwood, sumac, wild cherry, grape and elderberry. The 65/20/15 split is judgement, keeping insects dominant as the article states."
     },
     "traits.social": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "'During the breeding season, both mates stay together. After the season, they do not stay together', and both sexes incubate the eggs and feed the young."
+      "note": "A mated pair builds and excavates the nest together, the male commonly incubating overnight and both parents incubating by day."
     },
     "traits.activity_pattern": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "Medium",
+      "confidence": "High",
       "derived": true,
       "note": "Judgement: the source describes daytime ground foraging, courtship calls and territorial drumming, and a nocturnal cavity roost, without labelling the pattern."
     },
@@ -537,15 +754,103 @@
       ],
       "confidence": "Low",
       "derived": true,
-      "note": "Judgement: the species has strong territorial signals against other flickers (head swinging, bill-pointing, drumming) but no sourced predator defence, and the shared perching-songbird program's default response to a close threat is to move away, so Flee was authored."
+      "note": "The article records only that flickers are sometimes driven from a nesting site by other cavity nesters such as the common starling, and that juvenile flickers are helpless against predators entering the nest; mapped to Flee on that basis."
     },
     "traits.wariness": {
       "sources": [
         "wikipedia"
       ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Approachable where mature trees and open ground exist: it forages in the open on lawns and uses posts and birdhouses, but it needs cavity sites."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "'flickers are the only woodpeckers that frequently feed on the ground'; the rest of its time is in trees, drumming and roosting."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Excavates and roosts in tree cavities, reusing and repairing damaged or abandoned nests."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Food weights and their months follow traits.diet and the article's winter emphasis on fruit and seed; nest cavities and ground foraging in leaf litter and soil are from the diet and nesting sections."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'It is a cavity nester that typically nests in trees, but may also use posts and birdhouses if sized and situated appropriately', and it drums on metal objects."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The species 'is one of the few woodpecker species that migrate', but pairs show intense site fidelity and return to the same cavity; the Alabama form is the sedentary southeastern yellow-shafted race, so ActiveYearRound is used."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
       "confidence": "Low",
       "derived": true,
-      "note": "Judgement: it feeds openly in yards and parks and excavates in buildings, but 'is sometimes driven away from its nesting site by other cavity nesters' and it needs undisturbed nest sites; a middling value was authored."
+      "note": "Nest building one to two weeks before the breeding season, nestlings clinging to the cavity wall at about 17 days and fledging 25 to 28 days after hatching are described; the calendar window is authored because the article gives no dates."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "'The young are fed by regurgitation and fledge about 25 to 28 days after hatching'; 27 days is the midpoint and the 0.8 scale is authored judgement."
+    },
+    "vocalizations.call": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "vocalizations.drum": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Brown with black bars on back and wings, a black necklace-like patch on the upper breast, beige lower breast and belly with black spots, a dark tail above and a white rump conspicuous in flight; the southern yellow-shafted form is yellow under the wings and under the tail, which is where the accent colour is used. The rump, bib and wing bars are extra parts and the proportions are authored judgement."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared perching-songbird program, the closest shared program for a woodpecker that perches, roosts in a cavity, drums and forages on the ground. food_tag invertebrate matches the ant-heavy diet. Both the song and alarm slots point at the species' single documented call, the ki-ki-ki-ki laugh, because the sources describe no separate alarm vocalisation; that is a wiring choice, not a claim that the call is an alarm call."
+    },
+    "traits": {
+      "sources": [
+        "wikipedia",
+        "gbif-backbone"
+      ],
+      "confidence": "High",
+      "note": "Covers the structural traits (body plan, limb count, thermoregulation, skin, flight, respiration, metamorphosis, perching) and locomotion modes: the species 'frequently feed[s] on the ground' by probing, climbs tree trunks to excavate and roost, and flies in the characteristic undulating woodpecker flight ('a quick succession of flaps followed by a pause'). Individual numeric and behavioural traits below carry their own entries."
     },
     "habitat": {
       "sources": [
@@ -554,43 +859,6 @@
       "confidence": "Medium",
       "derived": true,
       "note": "Covers shelter_tag and habitat.resources. Invertebrate, fruit, berry and seed tags come from the Diet section; cavity from the nest excavation; perch from drumming, roosting and courtship on trees. Weights are judgement, not separately sourced percentages."
-    },
-    "habitat.use": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "note": "'flickers are the only woodpeckers that frequently feed on the ground', probing with the beak and sometimes catching insects in flight, while nesting and roosting in tree cavities and foraging on fruit and seeds in trees and shrubs."
-    },
-    "habitat.human_tolerance": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "note": "Habitat and Reproduction sections: observed 'in open habitats near trees, including woodlands, edges, yards, and parks'; 'may also use posts and birdhouses if sized and situated appropriately'; 'They can create cavities inside homes, especially homes of stucco or weak wooden siding'; but 'sometimes driven away from its nesting site by other cavity nesters like the common starling'. flight_distance_m is judgement, not a sourced number."
-    },
-    "seasonal.strategy": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "note": "'Northern flickers are partial migrants, some southern populations being completely non-migratory', so PartialMigration was used rather than Migration."
-    },
-    "seasonal.phases": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "derived": true,
-      "note": "Breeding February to July with one to two clutches and the quoted clutch, incubation and fledging figures; nest excavation taking one to two weeks; courtship and territorial behaviour through the breeding season; and a September-October return migration with spring movement from early April. The source gives months rather than days, so day-of-month boundaries are judgement. The breeding phase is tagged US-CO because the locale that prompted this record is in Colorado; the source's dates are continental."
-    },
-    "seasonal.life_stages": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Egg (six to eight pure white, smooth, high-gloss eggs, the second-largest of any North American woodpecker), altricial juvenile (fledged about 25-28 days after hatching; 'juvenile northern flickers are often helpless against predators who enter the nest') and adult. No sourced juvenile-plumage duration was found, so duration_days is unset and the juvenile scale is judgement."
     },
     "vocalizations.wheeko": {
       "sources": [
@@ -605,25 +873,13 @@
       ],
       "confidence": "High",
       "note": "Call and flight section: 'One may also hear a constant knocking as they often drum on trees or even metal objects to declare territory.' Cooldown is judgement."
-    },
-    "look": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Description section: 'Adults are brown with black bars on the back and wings... A necklace-like black patch occupies the upper breast, while the lower breast and belly are beige with black spots. Males can be identified by a black (in the eastern part of the species' range) or red (in the western part) mustachial stripe at the base of the beak... The tail is dark on top, transitioning to a white rump which is conspicuous in flight.' Colorado birds are red-shafted, so the accent colour carries the red-shafted tail and undertail flash; the barred back and wings are placed on the wing-outer and body slots; proportions are authored judgement."
-    },
-    "behavior": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Low",
-      "derived": true,
-      "note": "Authored parameters for the shared perching-songbird program: food_tag is the insect share the program uses for ground foraging, which is this species' defining habit; flee_m and wariness are middling for a bird that feeds in open yards; nest_m1/nest_m2 span the stated February-July breeding season."
     }
   },
   "contributors": [
+    {
+      "name": "opencode agent (al-birmingham locale, issue #73)",
+      "agent": "opencode"
+    },
     {
       "name": "speeeecies maintainers",
       "agent": "claude-code"

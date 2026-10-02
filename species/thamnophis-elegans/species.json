@@ -5,9 +5,10 @@
   "id": "Thamnophis elegans",
   "slug": "thamnophis-elegans",
   "common_names": {
-    "en": "Western terrestrial garter snake",
-    "fr": "Couleuvre terrestre de l'Ouest",
-    "es": "Serpiente terrestre occidental"
+    "en": "western terrestrial garter snake",
+    "de": "Berg-Strumpfbandnatter",
+    "es": "culebra listonada elegante",
+    "fr": "Couleuvre terrestre de l'Ouest"
   },
   "taxonomy": {
     "kingdom": "Animalia",
@@ -75,13 +76,13 @@
     "nest_type": "None",
     "perching": false,
     "size_class": "Small",
-    "mass_kg": 0.15,
-    "length_m": 0.75,
-    "lifespan_y": 2.0,
+    "mass_kg": 0.4,
+    "length_m": 0.8,
+    "lifespan_y": 4,
     "diet": {
-      "invertebrate": 0.5,
-      "vertebrate": 0.4,
-      "fish": 0.1
+      "invertebrate": 0.55,
+      "vertebrate": 0.3,
+      "fish": 0.15
     },
     "social": {
       "structure": "Solitary",
@@ -91,30 +92,44 @@
       ]
     },
     "activity_pattern": "Diurnal",
-    "defense": "Venom",
-    "wariness": 0.55
+    "defense": "Flee",
+    "wariness": 0.15
   },
   "habitat": {
     "use": {
-      "ground": 0.75,
-      "aquatic": 0.2,
-      "arboreal": 0.05
+      "ground": 0.9,
+      "aquatic": 0.1
     },
-    "shelter_tag": "shrub_thicket",
+    "shelter_tag": "burrow",
     "resources": [
       {
         "tag": "invertebrate",
         "kind": "Predation",
-        "weight": 0.8
+        "weight": 0.6
       },
       {
         "tag": "small_vertebrate",
         "kind": "Predation",
-        "weight": 0.6
+        "weight": 0.4
       },
       {
         "tag": "water",
         "kind": "Water",
+        "weight": 1.0
+      },
+      {
+        "tag": "burrow",
+        "kind": "Shelter",
+        "weight": 1.0
+      },
+      {
+        "tag": "log_pile",
+        "kind": "Shelter",
+        "weight": 0.5
+      },
+      {
+        "tag": "leaf_litter",
+        "kind": "Shelter",
         "weight": 0.4
       },
       {
@@ -126,28 +141,40 @@
     "human_tolerance": {
       "urban_affinity": "Adapter",
       "uses_gardens": true,
-      "dist_building_min_m": 10,
-      "notes": "No open source used for this record describes how the western terrestrial garter snake behaves around people; 'Adapter' and the 10 m building distance are judgement, not sourced numbers. What the source does establish is that the species occupies 'grasslands, woodlands, and coniferous forests, from sea level up to 3,962 m', and that Colorado populations are among those it discusses - Colorado lies in the inland and montane part of the range, and its mild-but-real envenomation has been recorded there."
+      "notes": "Occurs in a wide variety of habitats, from grasslands, shrublands and woodlands to coniferous forest, sea level to about 3,960 m, and is a common snake of gardens, lawns, ponds and ditches in settled parts of the western United States.",
+      "dist_building_min_m": 10
     }
   },
   "seasonal": {
     "strategy": "Brumation",
     "triggers": {
       "enter": {
-        "temperature_below_c": 4,
+        "temperature_below_c": 10,
         "days": 5
       },
       "exit": {
-        "temperature_above_c": 6,
-        "days": 3
+        "temperature_above_c": 10,
+        "days": 5
       }
     },
     "phases": [
       {
         "name": "dormancy",
         "start": "11-01",
-        "end": "03-15",
-        "note": "Winter inactivity. The source does not date the dormant period explicitly; it records that 'the most common causes of mortality is predation or over winter starvation in young snakes' (that wording is the author's inference from the ADW account of the species' ecology and is not used here), and the elevation ceiling of 3,962 m plus the inland and montane distribution imply a long cold season at Colorado Springs' 1,839 m. The window and the temperature triggers are judgement, flagged as such."
+        "end": "03-31",
+        "note": "Brumation, the reptile equivalent of hibernation, spent in communal hibernacula such as deep burrows and rock piles; snakes emerge when temperatures rise in spring."
+      },
+      {
+        "name": "mating",
+        "start": "04-01",
+        "end": "05-31",
+        "note": "Mating takes place in spring after brumation, when temperatures rise; females may store sperm over winter."
+      },
+      {
+        "name": "young",
+        "start": "08-01",
+        "end": "09-30",
+        "note": "Ovoviviparous: broods of eight to twelve young are born in August and September."
       },
       {
         "name": "territorial",
@@ -166,14 +193,940 @@
     "life_stages": [
       {
         "stage": "Juvenile",
-        "duration_days": 300,
-        "scale": 0.4
+        "duration_days": 730,
+        "scale": 0.3
       },
       {
         "stage": "Adult"
       }
     ]
   },
+  "behavior": {
+    "program": "fsm-garter-snake-v1"
+  },
+  "vocalizations": [],
+  "look": {
+    "body_plan": "serpentine",
+    "proportions": {
+      "head_scale": 1.0,
+      "segments": 16,
+      "girth_ratio": 0.9
+    },
+    "palette": {
+      "body": "#5f6b3f",
+      "belly": "#d8d2a8",
+      "markings": "#2b3320",
+      "accent": "#d9c34a",
+      "eye": "#14100a"
+    },
+    "extra_parts": [
+      {
+        "name": "eye",
+        "parent": "head",
+        "offset": [
+          0.3,
+          0.28,
+          0.36
+        ],
+        "size": [
+          0.16,
+          0.22,
+          0.18
+        ],
+        "color": "eye",
+        "mirror": true
+      },
+      {
+        "name": "stripe0",
+        "parent": "segment0",
+        "offset": [
+          0,
+          0.46,
+          0
+        ],
+        "size": [
+          0.98,
+          0.12,
+          0.34
+        ],
+        "color": "accent"
+      },
+      {
+        "name": "sidestripe0",
+        "parent": "segment0",
+        "offset": [
+          0,
+          0.02,
+          0.46
+        ],
+        "size": [
+          0.98,
+          0.12,
+          0.1
+        ],
+        "color": "accent",
+        "mirror": true
+      },
+      {
+        "name": "stripe1",
+        "parent": "segment1",
+        "offset": [
+          0,
+          0.46,
+          0
+        ],
+        "size": [
+          0.98,
+          0.12,
+          0.34
+        ],
+        "color": "accent"
+      },
+      {
+        "name": "sidestripe1",
+        "parent": "segment1",
+        "offset": [
+          0,
+          0.02,
+          0.46
+        ],
+        "size": [
+          0.98,
+          0.12,
+          0.1
+        ],
+        "color": "accent",
+        "mirror": true
+      },
+      {
+        "name": "stripe2",
+        "parent": "segment2",
+        "offset": [
+          0,
+          0.46,
+          0
+        ],
+        "size": [
+          0.98,
+          0.12,
+          0.34
+        ],
+        "color": "accent"
+      },
+      {
+        "name": "sidestripe2",
+        "parent": "segment2",
+        "offset": [
+          0,
+          0.02,
+          0.46
+        ],
+        "size": [
+          0.98,
+          0.12,
+          0.1
+        ],
+        "color": "accent",
+        "mirror": true
+      },
+      {
+        "name": "stripe3",
+        "parent": "segment3",
+        "offset": [
+          0,
+          0.46,
+          0
+        ],
+        "size": [
+          0.98,
+          0.12,
+          0.34
+        ],
+        "color": "accent"
+      },
+      {
+        "name": "sidestripe3",
+        "parent": "segment3",
+        "offset": [
+          0,
+          0.02,
+          0.46
+        ],
+        "size": [
+          0.98,
+          0.12,
+          0.1
+        ],
+        "color": "accent",
+        "mirror": true
+      },
+      {
+        "name": "stripe4",
+        "parent": "segment4",
+        "offset": [
+          0,
+          0.46,
+          0
+        ],
+        "size": [
+          0.98,
+          0.12,
+          0.34
+        ],
+        "color": "accent"
+      },
+      {
+        "name": "sidestripe4",
+        "parent": "segment4",
+        "offset": [
+          0,
+          0.02,
+          0.46
+        ],
+        "size": [
+          0.98,
+          0.12,
+          0.1
+        ],
+        "color": "accent",
+        "mirror": true
+      },
+      {
+        "name": "stripe5",
+        "parent": "segment5",
+        "offset": [
+          0,
+          0.46,
+          0
+        ],
+        "size": [
+          0.98,
+          0.12,
+          0.34
+        ],
+        "color": "accent"
+      },
+      {
+        "name": "sidestripe5",
+        "parent": "segment5",
+        "offset": [
+          0,
+          0.02,
+          0.46
+        ],
+        "size": [
+          0.98,
+          0.12,
+          0.1
+        ],
+        "color": "accent",
+        "mirror": true
+      },
+      {
+        "name": "stripe6",
+        "parent": "segment6",
+        "offset": [
+          0,
+          0.46,
+          0
+        ],
+        "size": [
+          0.98,
+          0.12,
+          0.34
+        ],
+        "color": "accent"
+      },
+      {
+        "name": "sidestripe6",
+        "parent": "segment6",
+        "offset": [
+          0,
+          0.02,
+          0.46
+        ],
+        "size": [
+          0.98,
+          0.12,
+          0.1
+        ],
+        "color": "accent",
+        "mirror": true
+      },
+      {
+        "name": "stripe7",
+        "parent": "segment7",
+        "offset": [
+          0,
+          0.46,
+          0
+        ],
+        "size": [
+          0.98,
+          0.12,
+          0.34
+        ],
+        "color": "accent"
+      },
+      {
+        "name": "sidestripe7",
+        "parent": "segment7",
+        "offset": [
+          0,
+          0.02,
+          0.46
+        ],
+        "size": [
+          0.98,
+          0.12,
+          0.1
+        ],
+        "color": "accent",
+        "mirror": true
+      },
+      {
+        "name": "stripe8",
+        "parent": "segment8",
+        "offset": [
+          0,
+          0.46,
+          0
+        ],
+        "size": [
+          0.98,
+          0.12,
+          0.34
+        ],
+        "color": "accent"
+      },
+      {
+        "name": "sidestripe8",
+        "parent": "segment8",
+        "offset": [
+          0,
+          0.02,
+          0.46
+        ],
+        "size": [
+          0.98,
+          0.12,
+          0.1
+        ],
+        "color": "accent",
+        "mirror": true
+      },
+      {
+        "name": "stripe9",
+        "parent": "segment9",
+        "offset": [
+          0,
+          0.46,
+          0
+        ],
+        "size": [
+          0.98,
+          0.12,
+          0.34
+        ],
+        "color": "accent"
+      },
+      {
+        "name": "sidestripe9",
+        "parent": "segment9",
+        "offset": [
+          0,
+          0.02,
+          0.46
+        ],
+        "size": [
+          0.98,
+          0.12,
+          0.1
+        ],
+        "color": "accent",
+        "mirror": true
+      },
+      {
+        "name": "stripe10",
+        "parent": "segment10",
+        "offset": [
+          0,
+          0.46,
+          0
+        ],
+        "size": [
+          0.98,
+          0.12,
+          0.34
+        ],
+        "color": "accent"
+      },
+      {
+        "name": "sidestripe10",
+        "parent": "segment10",
+        "offset": [
+          0,
+          0.02,
+          0.46
+        ],
+        "size": [
+          0.98,
+          0.12,
+          0.1
+        ],
+        "color": "accent",
+        "mirror": true
+      },
+      {
+        "name": "stripe11",
+        "parent": "segment11",
+        "offset": [
+          0,
+          0.46,
+          0
+        ],
+        "size": [
+          0.98,
+          0.12,
+          0.34
+        ],
+        "color": "accent"
+      },
+      {
+        "name": "sidestripe11",
+        "parent": "segment11",
+        "offset": [
+          0,
+          0.02,
+          0.46
+        ],
+        "size": [
+          0.98,
+          0.12,
+          0.1
+        ],
+        "color": "accent",
+        "mirror": true
+      },
+      {
+        "name": "stripe12",
+        "parent": "segment12",
+        "offset": [
+          0,
+          0.46,
+          0
+        ],
+        "size": [
+          0.98,
+          0.12,
+          0.34
+        ],
+        "color": "accent"
+      },
+      {
+        "name": "sidestripe12",
+        "parent": "segment12",
+        "offset": [
+          0,
+          0.02,
+          0.46
+        ],
+        "size": [
+          0.98,
+          0.12,
+          0.1
+        ],
+        "color": "accent",
+        "mirror": true
+      },
+      {
+        "name": "stripe13",
+        "parent": "segment13",
+        "offset": [
+          0,
+          0.46,
+          0
+        ],
+        "size": [
+          0.98,
+          0.12,
+          0.34
+        ],
+        "color": "accent"
+      },
+      {
+        "name": "sidestripe13",
+        "parent": "segment13",
+        "offset": [
+          0,
+          0.02,
+          0.46
+        ],
+        "size": [
+          0.98,
+          0.12,
+          0.1
+        ],
+        "color": "accent",
+        "mirror": true
+      },
+      {
+        "name": "stripe14",
+        "parent": "segment14",
+        "offset": [
+          0,
+          0.46,
+          0
+        ],
+        "size": [
+          0.98,
+          0.12,
+          0.34
+        ],
+        "color": "accent"
+      },
+      {
+        "name": "sidestripe14",
+        "parent": "segment14",
+        "offset": [
+          0,
+          0.02,
+          0.46
+        ],
+        "size": [
+          0.98,
+          0.12,
+          0.1
+        ],
+        "color": "accent",
+        "mirror": true
+      },
+      {
+        "name": "stripe15",
+        "parent": "segment15",
+        "offset": [
+          0,
+          0.46,
+          0
+        ],
+        "size": [
+          0.98,
+          0.12,
+          0.34
+        ],
+        "color": "accent"
+      },
+      {
+        "name": "sidestripe15",
+        "parent": "segment15",
+        "offset": [
+          0,
+          0.02,
+          0.46
+        ],
+        "size": [
+          0.98,
+          0.12,
+          0.1
+        ],
+        "color": "accent",
+        "mirror": true
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "slither": {},
+      "swim": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2457545",
+      "title": "GBIF Backbone Taxonomy: Thamnophis elegans",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-09-30",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q819220",
+      "title": "Wikidata: western terrestrial garter snake (Q819220)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-09-30",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Western_terrestrial_garter_snake",
+      "title": "Wikipedia: Western terrestrial garter snake",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-09-30",
+      "attribution": "Wikipedia contributors, \"Western terrestrial garter snake\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "wikipedia-garter-snake",
+      "url": "https://en.wikipedia.org/wiki/Garter_snake",
+      "title": "Wikipedia: Garter snake",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-09-30",
+      "attribution": "Wikipedia contributors, \"Garter snake\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=174142",
+      "title": "ITIS: Thamnophis elegans, TSN 174142",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-09-30",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "nps",
+      "url": "https://www.nps.gov/brca/learn/nature/garter-snake.htm",
+      "title": "National Park Service: Western Terrestrial Garter Snake (Bryce Canyon)",
+      "license": "public-domain",
+      "kind": "webpage",
+      "accessed": "2026-09-30",
+      "note": "US federal government work; public domain in the United States."
+    },
+    {
+      "id": "amniote",
+      "url": "https://doi.org/10.6084/m9.figshare.3563457.v1",
+      "title": "Amniote life-history database (Myhrvold et al. 2015), full archive",
+      "license": "CC0-1.0",
+      "kind": "dataset",
+      "accessed": "2026-09-30",
+      "note": "Ecological Archives E096-269; the figshare deposit is released under CC0.",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "inat-activity-us-co",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=28398&place_id=34&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Thamnophis elegans in US-CO",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-co",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2457545&gadmGid=USA.6_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Thamnophis elegans in US-CO",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "itis",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "GBIF's backbone places Squamata at class rank and gives no order between class and family for this species, which cannot satisfy the schema's required order; the conventional classification (class Reptilia, order Squamata, family Colubridae) is used instead, as given by ITIS. Authority from the GBIF backbone."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata",
+        "itis"
+      ],
+      "confidence": "High",
+      "note": "GBIF usage key 2457545 and iNaturalist taxon id 28398 from the issue's data pointers, confirmed against the GBIF and iNaturalist APIs; ITIS TSN 174142 and NCBI taxon id 35005 via Wikidata P815/P685."
+    },
+    "common_names": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "English name and German label from Wikidata labels; Spanish name from Wikidata's taxon common name (P1843)."
+    },
+    "conservation": {
+      "sources": [
+        "wikidata",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Wikidata P141 = least concern (Q211005); the English Wikipedia article's conservation status agrees."
+    },
+    "range": {
+      "sources": [
+        "wikipedia",
+        "nps"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Country list derived from Wikipedia's range description (central British Columbia, central Alberta and southwestern Manitoba; the western United States east to western Nebraska and the Oklahoma Panhandle; an isolated population in Baja California, Mexico) and the NPS page."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "gbif-backbone",
+        "itis"
+      ],
+      "confidence": "High",
+      "note": "A vertebrate snake."
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Snakes have no walking limbs."
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia",
+        "nps"
+      ],
+      "confidence": "Medium",
+      "note": "Slithers on land; Wikipedia notes the Great Basin and Rocky Mountain populations are semi-aquatic, so Swim is included."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia-garter-snake"
+      ],
+      "confidence": "High",
+      "note": "Ectothermic, like all reptiles; garter snakes bask in the sun to regulate body temperature."
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia",
+        "wikipedia-garter-snake"
+      ],
+      "confidence": "High",
+      "note": "Keeled scales."
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Ovoviviparous: it gives birth to live young and builds no nest."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "No perching behaviour."
+    },
+    "traits.size_class": {
+      "sources": [
+        "amniote"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Small (<1 kg) from mass_kg."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "amniote"
+      ],
+      "confidence": "Medium",
+      "note": "Amniote life-history database adult_body_mass_g = 400 g (median of Behler & King 1979 and Stebbins 2003). Females are much larger than males, and this value sits at the large end of the species' size range.",
+      "derived": true
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia",
+        "nps"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Adults are usually 46-104 cm total length (Wikipedia and NPS both give this range); 0.8 m is authored as a typical mid-to-large adult."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "amniote"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "The Amniote database reports a maximum longevity of 17.8 y and an individual-longevity estimate of 15.8 y, but these reflect long-lived captive and high-elevation 'slow' ecotype individuals; wild garter snakes are typically much shorter-lived. 4 y is authored as a typical wild lifespan across the species' ecotypes (judgement)."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia",
+        "nps"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Shares authored from the qualitative diet in Wikipedia and the NPS page (earthworms, slugs, snails, insects and leeches; frogs, salamanders, toads, small rodents and lizards; small fish): invertebrate 0.55, vertebrate 0.30, fish 0.15."
+    },
+    "traits.social": {
+      "sources": [
+        "nps"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "NPS: 'typically solitary animals'; group_size [1,1]."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia-garter-snake"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Garter snakes are diurnal and bask in the sun to regulate their body temperature (Wikipedia, Garter snake); Diurnal is authored judgement."
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia",
+        "nps"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The main response to a threat is to flee and hide; NPS notes it will bite if captured, and its saliva is mildly venomous, but flight is the primary response, so Flee is recorded."
+    },
+    "traits.wariness": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored judgement: a common snake of gardens and disturbed ground that flees only when approached closely; 0.15 on the 0-1 scale (flee distance about 4 m)."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Wikipedia: 'primarily terrestrial, although populations in the Great Basin and Rocky Mountains are semi-aquatic'; ground 0.9 and aquatic 0.1 are authored shares."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia-garter-snake",
+        "nps"
+      ],
+      "confidence": "High",
+      "note": "Rests and brumates in burrows, rock piles and other ground cover."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia",
+        "nps",
+        "amniote"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Predation tags and weights follow the authored diet split (invertebrate 0.6, small_vertebrate 0.4, the latter covering amphibians, fish and small rodents); water, burrow, log_pile and leaf_litter shelter tags and weights are authored from Wikipedia's and the NPS's description of foraging in and around water and sheltering in burrows and ground cover."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia",
+        "nps"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Wikipedia and NPS describe a species of grasslands, woodlands and forest edges that also uses ponds and ditches near settlement; urban affinity Adapter and uses_gardens true are authored judgement."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia-garter-snake",
+        "nps"
+      ],
+      "confidence": "High",
+      "note": "Brumation (the reptile equivalent of hibernation) in communal hibernacula.",
+      "derived": true
+    },
+    "seasonal.triggers": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored temperature thresholds (enter and leave brumation around 10 C over five days); no open source gives thresholds."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia",
+        "wikipedia-garter-snake",
+        "nps"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The young phase (August-September births) is explicit in Wikipedia; the dormancy and mating windows are authored from the description of spring emergence and mating after brumation."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Ovoviviparous, so there is no egg stage; juvenile duration (about two years to maturity) and scale are authored judgement."
+    },
+    "look": {
+      "sources": [
+        "wikipedia",
+        "nps"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Colours judged from the olive-to-grey body with a yellow or white dorsal stripe and two side stripes and a paler belly (Wikipedia and NPS); proportions and the eye boxes are authored judgement for a slender serpentine plan."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored bespoke program (fsm-garter-snake-v1). No shared program fits: the ground forager has no basking state and defaults to four-legged gaits, and the other three assume a bird, an anuran or a seabird."
+    },
+    "traits": {
+      "sources": [
+        "wikipedia",
+        "gbif-backbone"
+      ],
+      "confidence": "High",
+      "note": "Covers the structural traits (body plan, limb count, thermoregulation, skin, flight, respiration, metamorphosis, nest_type) and locomotion modes: 'It is primarily terrestrial, although populations in the Great Basin and Rocky Mountains are semi-aquatic', foraging 'both on land and in water' with 'attacks that are both aerial and underwater. These include craning, cruising, and diving'. metamorphosis is None because the species is ovoviviparous - it 'does not lay eggs' - and nest_type is None for the same reason; there is no nest."
+    },
+    "habitat": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Covers shelter_tag and habitat.resources. invertebrate, small_vertebrate and the two water tags come from the Habitat and Diet sections, which place inland populations 'adjacent to fresh water sources such as creeks, rivers, streams, ponds, or lakes'. shelter_tag is shrub_thicket as authored cover: the source names no specific refuge, only that the animal is primarily terrestrial and semi-aquatic. Weights are judgement, not separately sourced percentages."
+    },
+    "vocalizations": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "HONEST GAP: the record carries an empty vocalizations list, which the schema permits for silent species, because the Western terrestrial garter snake article describes no hiss, rattle or other sound. fsm-ground-forager-v1 declares no call parameter, so nothing else in the record depends on it."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies maintainers",
+      "agent": "opencode"
+    }
+  ],
   "activity": {
     "regions": [
       {
@@ -226,303 +1179,5 @@
         }
       }
     ]
-  },
-  "behavior": {
-    "program": "fsm-ground-forager-v1",
-    "params": {
-      "food_tag": "invertebrate",
-      "flee_m": 8,
-      "calm_m": 25,
-      "food_m": 40,
-      "flee_gait": "slither",
-      "forage_gait": "slither",
-      "rest_sun_lo_deg": -90,
-      "rest_sun_hi_deg": 88
-    }
-  },
-  "vocalizations": [],
-  "look": {
-    "body_plan": "serpentine",
-    "proportions": {
-      "head_scale": 1.15,
-      "segments": 12,
-      "girth_ratio": 1.0
-    },
-    "palette": {
-      "body": "#6f7a5c",
-      "belly": "#e6dfc2",
-      "markings": "#2f3324",
-      "accent": "#d8b23a",
-      "eye": "#141408"
-    },
-    "extra_parts": [],
-    "poses": {
-      "idle": {},
-      "slither": {},
-      "swim": {},
-      "rest": {}
-    }
-  },
-  "sources": [
-    {
-      "id": "gbif-backbone",
-      "url": "https://api.gbif.org/v1/species/2457545",
-      "title": "GBIF Backbone Taxonomy: Thamnophis elegans",
-      "license": "CC-BY-4.0",
-      "kind": "database",
-      "accessed": "2026-09-30",
-      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
-      "license_url": "https://creativecommons.org/licenses/by/4.0/"
-    },
-    {
-      "id": "wikidata",
-      "url": "https://www.wikidata.org/wiki/Q819220",
-      "title": "Wikidata: Western terrestrial garter snake (Q819220)",
-      "license": "CC0-1.0",
-      "kind": "database",
-      "accessed": "2026-09-30",
-      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
-    },
-    {
-      "id": "wikipedia",
-      "url": "https://en.wikipedia.org/wiki/Western_terrestrial_garter_snake",
-      "title": "Wikipedia: Western terrestrial garter snake",
-      "license": "CC-BY-SA-4.0",
-      "kind": "webpage",
-      "accessed": "2026-09-30",
-      "attribution": "Wikipedia contributors, \"Western terrestrial garter snake\", English Wikipedia, CC BY-SA 4.0",
-      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
-    },
-    {
-      "id": "itis",
-      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=174142",
-      "title": "ITIS: Thamnophis elegans, TSN 174142",
-      "license": "public-domain",
-      "kind": "database",
-      "accessed": "2026-09-30",
-      "note": "US federal government database; public domain in the United States."
-    },
-    {
-      "id": "inat-activity-us-co",
-      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=28398&place_id=34&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
-      "title": "iNaturalist observations histogram for Thamnophis elegans in US-CO",
-      "license": "CC-BY-4.0",
-      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
-      "accessed": "2026-09-30",
-      "kind": "api"
-    },
-    {
-      "id": "gbif-activity-us-co",
-      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2457545&gadmGid=USA.6_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
-      "title": "GBIF occurrence search for Thamnophis elegans in US-CO",
-      "license": "CC-BY-4.0",
-      "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
-      "accessed": "2026-09-30",
-      "kind": "api"
-    }
-  ],
-  "provenance": {
-    "taxonomy": {
-      "sources": [
-        "gbif-backbone",
-        "wikipedia"
-      ],
-      "confidence": "High"
-    },
-    "external": {
-      "sources": [
-        "gbif-backbone",
-        "wikidata",
-        "itis"
-      ],
-      "confidence": "High",
-      "note": "GBIF usage key, authorship and family from the GBIF Backbone Taxonomy; the iNaturalist taxa API matched taxon 28398 to 'Western Terrestrial Garter Snake'; ITIS TSN and NCBI taxon id from Wikidata (P815, P685). ITIS independently confirms the authority as 'Baird and Girard in Marcy and McClellan, 1853'."
-    },
-    "common_names": {
-      "sources": [
-        "wikipedia",
-        "wikidata"
-      ],
-      "confidence": "High"
-    },
-    "conservation": {
-      "sources": [
-        "wikidata"
-      ],
-      "confidence": "High",
-      "note": "Wikidata P141 = least concern. The Wikipedia article carries no conservation section."
-    },
-    "range": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "'Thamnophis elegans is found in central British Columbia, central Alberta, and southwestern Manitoba in Canada. It can be found in the western United States, as far east as western Nebraska and the Oklahoma Panhandle. An isolated population occurs in Baja California, Mexico.' US-CO is included because the Description section discusses 'Snakes from Colorado populations of terrestrial garter snakes' and 'mild human envenomation... including in Colorado'. The state list is an approximation of 'the western United States' and is not exhaustive. elevation_m is the sourced 3,962 m ceiling."
-    },
-    "traits": {
-      "sources": [
-        "wikipedia",
-        "gbif-backbone"
-      ],
-      "confidence": "High",
-      "note": "Covers the structural traits (body plan, limb count, thermoregulation, skin, flight, respiration, metamorphosis, nest_type) and locomotion modes: 'It is primarily terrestrial, although populations in the Great Basin and Rocky Mountains are semi-aquatic', foraging 'both on land and in water' with 'attacks that are both aerial and underwater. These include craning, cruising, and diving'. metamorphosis is None because the species is ovoviviparous - it 'does not lay eggs' - and nest_type is None for the same reason; there is no nest."
-    },
-    "traits.size_class": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Low",
-      "derived": true,
-      "note": "From mass_kg (~0.15 kg); the validator's size-class bands place this in the Small band."
-    },
-    "traits.mass_kg": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Low",
-      "derived": true,
-      "note": "HONEST GAP: no mass figure for Thamnophis elegans appears in any CC0 or CC BY source used for this record - Wikipedia's article gives length but no weight, and GBIF, ITIS and Wikidata carry none. 0.15 kg is an order-of-magnitude estimate derived from the sourced length: treating the 75 cm mid-point animal as a cylinder of about 0.8 cm radius gives roughly 150 cm3 and, at a body density near water, about 0.15 kg. This is a geometric estimate, not a measurement."
-    },
-    "traits.length_m": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "derived": true,
-      "note": "Midpoint of the stated '46-104 cm (18-41 in)' for medium-sized individuals."
-    },
-    "traits.lifespan_y": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Low",
-      "derived": true,
-      "note": "HONEST GAP: no lifespan figure for Thamnophis elegans appears in any CC0 or CC BY source used for this record - Wikipedia's article carries none, and it is absent from GBIF, ITIS and Wikidata; the Wikipedia pages for the genus, the common garter snake and Thamnophis sirtalis were checked and none gives a wild longevity either. 2.0 years is an order-of-magnitude placeholder for a small natricine snake, whose populations are typically dominated by animals in their first two years; it is not a sourced measurement and should be replaced if a better source is found. Animal Diversity Web does carry a figure for this species, but it is CC BY-NC-SA and the licence could not be confirmed from the page itself, so it was not used."
-    },
-    "traits.diet": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "derived": true,
-      "note": "Diet section, split by the source's own two variants. Colorado birds belong to the inland and montane variant, which 'prefer a far more \"amphibious\" diet of small frogs, newts, salamanders, toads and their larvae, as well as freshwater leeches, earthworms and small fish. Thus, aquatic food sources are a staple in the inland snake populations' diet'. The invertebrate share is the leeches, worms and other invertebrates, the vertebrate share the amphibians and their larvae, and the fish share the small fish. Coastal populations - not the locale's - 'mainly include terrestrial prey such as earthworms, grubs, caterpillars, crickets, small snails, slugs, salamanders, baby rodents... and small lizards or toads'."
-    },
-    "traits.social": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Judgement: the source describes individual foraging, courtship and a single brood of young, and never describes a group; natricine snakes of this size forage alone, so Solitary with a group ceiling of one was authored."
-    },
-    "traits.activity_pattern": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Judgement: garter snakes of this group forage by day after basking to reach temperature, and the source describes foraging 'both on land and in water' without a light condition; Diurnal was authored as the dominant pattern."
-    },
-    "traits.defense": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "note": "'Like many species of North American garter snake, the western terrestrial garter snake possesses a mildly venomous saliva. Specimens collected from Idaho and Washington produced venom with myonecrotic (muscle tissue-killing) effects when injected into the gastrocnemius muscles of mice. Several cases of mild human envenomation with local edema and other symptoms (but without any systemic symptoms) have occurred from the wandering garter snake subspecies, including in Colorado.'"
-    },
-    "traits.wariness": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Low",
-      "derived": true,
-      "note": "Judgement: no open source used describes this species' reaction to people. A middling value was authored on the reasoning that a snake that must bask in the open to work is exposed to whatever passes, and that it occurs in settled valley habitats."
-    },
-    "habitat": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Covers shelter_tag and habitat.resources. invertebrate, small_vertebrate and the two water tags come from the Habitat and Diet sections, which place inland populations 'adjacent to fresh water sources such as creeks, rivers, streams, ponds, or lakes'. shelter_tag is shrub_thicket as authored cover: the source names no specific refuge, only that the animal is primarily terrestrial and semi-aquatic. Weights are judgement, not separately sourced percentages."
-    },
-    "habitat.use": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "note": "'It is primarily terrestrial, although populations in the Great Basin and Rocky Mountains are semi-aquatic'; 'Regardless the habitat in which foraging takes place, both ecotypes utilize similar techniques. This consists of attacks that are both aerial and underwater.' The split is judgement, following the source's own description of a mostly terrestrial animal that also forages underwater."
-    },
-    "habitat.human_tolerance": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Low",
-      "derived": true,
-      "note": "HONEST GAP: no open source used for this record describes how this species behaves around people. Adapter, uses_gardens and the 10 m building distance are all judgement, not sourced numbers; what the source does support is that the species spans settled valley habitats and that humans have been envenomed by it in Colorado."
-    },
-    "seasonal.strategy": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Brumation is inferred, not stated: the source describes a montane and inland distribution reaching 3,962 m and identifies over-winter starvation as a cause of death, which implies a winter inactive period, and Brumation is the schema's term for an ectotherm's winter inactivity. The temperature triggers are authored judgement - the schema requires them for this strategy - and are set near freezing rather than copied from a source."
-    },
-    "seasonal.phases": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Low",
-      "derived": true,
-      "note": "HONEST GAP on dates: the source gives one date range only, 'Broods of eight to 12 young are born in August and September', and no courtship, nesting or emergence window. The dormancy, territorial and breeding phase boundaries are therefore authored to bracket that stated brood period around a plausible active season at Colorado Springs' elevation; they are judgement, not sourced. The dormant-phase note deliberately quotes no longevity text, since none is cited for this record."
-    },
-    "seasonal.life_stages": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Egg is absent from the list because the species is ovoviviparous: 'The western terrestrial garter snake does not lay eggs, but instead is ovoviviparous... Broods of eight to 12 young are born in August and September.' duration_days 300 runs from the August-September brood to the following spring's emergence and is judgement; scale 0.4 is judgement for a newly born snake."
-    },
-    "vocalizations": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Low",
-      "derived": true,
-      "note": "HONEST GAP: the record carries an empty vocalizations list, which the schema permits for silent species, because the Western terrestrial garter snake article describes no hiss, rattle or other sound. fsm-ground-forager-v1 declares no call parameter, so nothing else in the record depends on it."
-    },
-    "look": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "derived": true,
-      "note": "Description section: 'Most western terrestrial garter snakes have a yellow, light orange, or white dorsal stripe, accompanied by two stripes of the same color, one on each side. Some varieties have red or black spots between the dorsal stripe and the side stripes', with 'grayish-green backs and yellow bellies' and 'dark spots occasionally... on the back'. The palette takes the olive-grey back, the yellow dorsal stripe as the accent, the pale yellow belly and the dark spotting as the markings. Proportions set the very long, slender body (12 segments at the body plan's default torso_aspect, which the schema's own upper bound of 6 on look.proportions.torso_aspect prevents raising) and a slightly oversized head for a natricine, from the sourced 46-104 cm length against a head that carries eight upper labial scales. The serpentine body plan has a head part plus generated body segments and no separate underpart slot, so the belly and stripe colours are approximated in the body palette rather than painted onto distinct parts."
-    },
-    "behavior": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Low",
-      "derived": true,
-      "note": "Authored parameters for the shared ground-forager program, which has no reptile or serpentine equivalent in v0.1: food_tag is the invertebrate share, the largest single component of the inland diet the program can name; flee_m and calm_m are judgement for an animal that escapes by wriggling away from a threat rather than running; both gaits are slither, the animal's only mode; the rest window spans the whole night because an ectotherm in a cold-winter Colorado locale spends most of the 24 hours inactive, and the program keys rest off sun elevation rather than temperature."
-    },
-    "seasonal.triggers": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Low",
-      "derived": true,
-      "note": "HONEST GAP: the schema requires seasonal.triggers whenever the strategy is Brumation, and the Western terrestrial garter snake article gives no temperature at which the animal becomes active or inactive. 4 C for five days to enter and 6 C for three days to exit are authored, set just above freezing for a montane ectotherm; they are judgement, not sourced, and are the least well-supported numbers in this record."
-    }
-  },
-  "contributors": [
-    {
-      "name": "speeeecies maintainers",
-      "agent": "claude-code"
-    }
-  ]
+  }
 }

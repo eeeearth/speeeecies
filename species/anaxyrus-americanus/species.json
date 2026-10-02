@@ -1,0 +1,904 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Anaxyrus americanus",
+  "slug": "anaxyrus-americanus",
+  "common_names": {
+    "en": "American Toad",
+    "fr": "crapaud d'Amérique",
+    "de": "Amerikanische Kröte"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Amphibia",
+    "order": "Anura",
+    "family": "Bufonidae",
+    "genus": "Anaxyrus",
+    "authority": "(Holbrook, 1836)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2422872,
+    "inat_taxon_id": 64968,
+    "itis_tsn": 8389,
+    "wikidata": "Q694496",
+    "ncbi_taxon_id": 8389
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "US",
+      "CA"
+    ],
+    "introduced": [],
+    "invasive_in": []
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk",
+      "Hop",
+      "Swim",
+      "Burrow"
+    ],
+    "thermoregulation": "Ectotherm",
+    "skin": "Moist",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "Complete",
+    "nest_type": "Ground",
+    "perching": false,
+    "size_class": "Tiny",
+    "mass_kg": 0.018,
+    "mass_range_kg": [
+      0.008,
+      0.03
+    ],
+    "length_m": 0.07,
+    "lifespan_y": 10,
+    "diet": {
+      "invertebrate": 1.0
+    },
+    "social": {
+      "structure": "Group",
+      "group_size": [
+        1,
+        6
+      ]
+    },
+    "activity_pattern": "Nocturnal",
+    "defense": "Toxin",
+    "wariness": 0.45,
+    "senses": {
+      "olfaction": "High",
+      "hearing": "High"
+    }
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.75,
+      "aquatic": 0.25
+    },
+    "shelter_tag": "burrow",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 1.0
+      },
+      {
+        "tag": "pond",
+        "kind": "Nesting",
+        "weight": 1.0,
+        "months": [
+          4,
+          5,
+          6
+        ]
+      },
+      {
+        "tag": "burrow",
+        "kind": "Shelter",
+        "weight": 0.7,
+        "months": [
+          11,
+          12,
+          1,
+          2
+        ]
+      },
+      {
+        "tag": "shrub_thicket",
+        "kind": "Shelter",
+        "weight": 0.4
+      },
+      {
+        "tag": "leaf_litter",
+        "kind": "Shelter",
+        "weight": 0.3
+      },
+      {
+        "tag": "water",
+        "kind": "Water",
+        "weight": 0.5
+      },
+      {
+        "tag": "log_pile",
+        "kind": "Shelter",
+        "weight": 0.6
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "light_max": 0.6,
+      "notes": "Given a semi-permanent pool with shallow water to breed in and dense vegetation for cover and hunting, it can live almost everywhere from forests to flat grassland. It commonly shelters under boardwalks, flat stones, boards, logs and wood piles, becomes active in the rain, and is creatures of habit, staying within about an acre of wooded ground with water in proximity.",
+      "road_mortality": "High",
+      "flight_distance_m": 5
+    },
+    "requires": [
+      {
+        "resource_within_m": 200,
+        "tag": "pond"
+      }
+    ],
+    "density_per_ha": {
+      "min": 0.1,
+      "typical": 1,
+      "max": 10
+    }
+  },
+  "seasonal": {
+    "strategy": "Hibernation",
+    "triggers": {
+      "enter": {
+        "temperature_below_c": 8,
+        "days": 14
+      },
+      "exit": {
+        "temperature_above_c": 10,
+        "days": 7
+      }
+    },
+    "phases": [
+      {
+        "name": "dormancy",
+        "start": "11-01",
+        "end": "04-10",
+        "note": "They hibernate during the winter, digging backwards and burying themselves in the dirt of their summer home or choosing another site. Egg ropes are laid in shallow water and the tadpoles need it for early development, so the dormant window covers the frozen season. Exact dates are authored because the article gives none."
+      },
+      {
+        "name": "spawning_migration",
+        "start": "03-15",
+        "end": "05-15",
+        "note": "Males call for an average of six to seven nights during the breeding period, and females lay two long ropes of 2,000 to 20,000 small black eggs surrounded by jelly, entwined around vegetation or lying on the bottom of the pond."
+      },
+      {
+        "name": "young",
+        "start": "05-15",
+        "end": "09-30",
+        "note": "Eggs hatch into tadpoles in 3 to 12 days and the tadpoles reach adulthood in 50 to 65 days; groups of toadlets often reach that stage at once and make a mass migration to higher ground into shaded mid-range and upland forest, eating microscopic bugs, ants, spiders, slugs and worms on the way."
+      },
+      {
+        "name": "breeding",
+        "start": "04-01",
+        "end": "06-15",
+        "note": "Males call from the shallows; eggs are laid in long strings among water plants."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg",
+        "duration_days": 7,
+        "requires_tag": "pond",
+        "scale": 0.02
+      },
+      {
+        "stage": "Tadpole",
+        "duration_days": 57,
+        "scale": 0.12,
+        "requires_tag": "pond"
+      },
+      {
+        "stage": "Juvenile",
+        "scale": 0.35,
+        "duration_days": 1095
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-anuran-nocturnal-v1",
+    "params": {
+      "flee_m": 2,
+      "freeze_m": 5,
+      "food_tag": "invertebrate",
+      "call": "croak",
+      "min_temp_c": 5,
+      "max_temp_c": 28,
+      "call_m1": 3,
+      "call_m2": 4
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "croak",
+      "context": "Croak",
+      "season_months": [
+        3,
+        4,
+        5
+      ],
+      "time_windows": [
+        "Night"
+      ],
+      "cooldown_s": 20,
+      "loudness": "Loud",
+      "description": "A high trill lasting between 6 and 30 seconds that sounds similar to a ringing telephone, given by breeding males for an average of six to seven nights. Females prefer high call efforts, the product of rate and duration."
+    },
+    {
+      "call_id": "trill",
+      "context": "Croak",
+      "season_months": [
+        4,
+        5,
+        6
+      ],
+      "time_windows": [
+        "Dusk",
+        "Night"
+      ],
+      "cooldown_s": 20,
+      "loudness": "Loud",
+      "description": "A long, high, musical trill lasting up to half a minute, given by males from shallow breeding water; a chorus of them carries far on a spring night."
+    }
+  ],
+  "look": {
+    "body_plan": "anuran",
+    "proportions": {
+      "torso_aspect": 1.3,
+      "leg_length_ratio": 0.55,
+      "head_scale": 0.78,
+      "neck_angle_deg": 8,
+      "girth_ratio": 1.05
+    },
+    "palette": {
+      "body": "#8b7a55",
+      "belly": "#ded3b6",
+      "markings": "#3b3122",
+      "accent": "#c6b489",
+      "eye": "#15110b"
+    },
+    "part_colors": {
+      "head": "body",
+      "leg_front_left": "accent",
+      "leg_front_right": "accent"
+    },
+    "extra_parts": [
+      {
+        "name": "parotoid_left",
+        "parent": "head",
+        "offset": [
+          0.26,
+          0.3,
+          0.34
+        ],
+        "size": [
+          0.22,
+          0.26,
+          0.22
+        ],
+        "color": "accent"
+      },
+      {
+        "name": "parotoid_right",
+        "parent": "head",
+        "offset": [
+          0.26,
+          -0.3,
+          0.34
+        ],
+        "size": [
+          0.22,
+          0.26,
+          0.22
+        ],
+        "color": "accent"
+      },
+      {
+        "name": "dorsal_spots",
+        "parent": "body",
+        "offset": [
+          -0.05,
+          0.3,
+          0
+        ],
+        "size": [
+          0.72,
+          0.14,
+          1.04
+        ],
+        "color": "markings"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "hop": {},
+      "walk": {},
+      "swim": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2422872",
+      "title": "GBIF Backbone Taxonomy: Anaxyrus americanus",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q694496",
+      "title": "Wikidata: American toad (Q694496)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/American_toad",
+      "title": "Wikipedia: American toad",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"American toad\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "inat-activity-us-pa",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=64968&place_id=42&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Anaxyrus americanus in US-PA",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-pa",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2422872&gadmGid=USA.39_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Anaxyrus americanus in US-PA",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=773511",
+      "title": "ITIS: Anaxyrus americanus, TSN 773511",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "inat-activity-us-ma",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=64968&place_id=2&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Anaxyrus americanus in US-MA",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-ma",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2422872&gadmGid=USA.22_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Anaxyrus americanus in US-MA",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "inat-activity-us-mi",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=64968&place_id=29&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Anaxyrus americanus in US-MI",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-mi",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2422872&gadmGid=USA.23_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Anaxyrus americanus in US-MI",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "Bufonidae, Anaxyrus, (Holbrook, 1836). Taxonomic treatments in 2006 placed this species in Anaxyrus instead of Bufo, and the species is divided into the eastern A. a. americanus, the dwarf A. a. charlesmithi and the rare Hudson Bay A. a. copei."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "GBIF usage key 2422872 and iNaturalist taxon 64968; ITIS TSN 8389 from Wikidata P685."
+    },
+    "common_names": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "'A common species of toad found throughout the eastern half of Canada and the United States', with three subspecies, one of them only described as rare, is consistent with Least Concern; no IUCN page was consulted because those are not openly licensed."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Found throughout the eastern half of Canada and the United States."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Eastern American toads hop and walk lethargically, unlike Fowler's toad which bursts into 5-10 fast hops; tadpoles swim and school in very shallow water, and the toad digs backwards to bury itself for hibernation."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Dry, warty skin; 'Moist' is the format's amphibian class."
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Adult toads breathe with lungs and use their moist skin; the tadpole stage is the exception and is covered by the Tadpole life stage."
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Complete: eggs hatch into tadpoles in 3-12 days, the tadpoles reach adulthood in 50-65 days, and the toadlets then move onto land."
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Ground: the female lays her egg ropes in shallow water, either entwined around vegetation or resting on the bottom of the pond, and the toad overwinters buried in the dirt of its summer home. Ground is used because the format has no amphibian-specific value."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "It shelters in burrows, under stones, boards and logs and in leaf litter, not on a perch."
+    },
+    "traits.size_class": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg: about 18 g is under 50 g, so Tiny."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored, not measured. The article gives the eastern American toad at 5-9 cm snout-vent with a record of 11.1 cm but no body mass, and no openly licensed source for the mass was found, so 18 g is an estimate for a toad of that length."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored envelope around the estimated 18 g, spanning small juveniles to a large adult female; no sourced range was found."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "The eastern American toad ranges from 5 to 9 cm, record 11.1 cm; 7 cm is the mid-range value, as a snout-vent length."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored, not measured. The article reports that some toads have been known to live over 30 years but gives no typical figure, so 10 years is an estimate and should be read as well under the documented maximum."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'Their diet includes crickets, mealworms, earthworms, ants, spiders, slugs, centipedes, moths, and other small invertebrates', and toadlets eat microscopic bugs, ants, spiders, slugs and worms.",
+      "derived": true
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Largely solitary and creatures of habit, but males congregate and call for six to seven nights at a breeding pond while females lay their egg ropes there, so a small group size is used for the breeding aggregation. Individual adults keep to about an acre."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'Adult toads are mostly nocturnal, although juveniles are often active during the day', and they become active when it rains."
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "The parotoid glands 'secrete bufotoxin, a poisonous substance meant to make the toad unpalatable to potential predators'; tadpoles also produce toxic chemicals in their skin."
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Judgement, set from its habit of freezing rather than fleeing, its use of cover, and the fact that females when caught are silent and easily tamed."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "It forages on the ground among vegetation and at water, needs shallow water for breeding and development, and can live almost everywhere from forests to flat grassland given water, cover and insects.",
+      "derived": true
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "They 'commonly seek cover in burrows, under boardwalks, flat stones, boards, logs, wood piles, or other cover', and dig backwards into the dirt to hibernate."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "invertebrate from the diet; pond from the semi-permanent freshwater pool required for breeding, water gathering and early development; burrow, leaf_litter and shrub_thicket from the cover list. Weights are authored."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "It needs a semi-permanent freshwater pond or pool with shallow water to breed and to gather water in times of drought, and dense patches of vegetation for cover and hunting; given those it can live almost everywhere. It uses boardwalks, stones, boards, logs and wood piles as cover and is active in the rain."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'They hibernate during the winter' in the eastern subspecies account; in cold weather they dig backwards and bury themselves in the dirt of their summer home or choose another site."
+    },
+    "seasonal.triggers": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored. The article says only that they hibernate in winter and become active when it rains; 8 C for a fortnight to enter and 10 C for a week to exit are chosen as shallow autumn and spring thresholds for a hardy eastern toad."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Males call for an average of 6-7 nights in the breeding period; two long egg ropes of 2,000-20,000 eggs are laid in shallow water; eggs hatch in 3-12 days and tadpoles reach adulthood in 50-65 days, after which toadlets migrate to higher ground.",
+      "derived": true
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Egg 3-12 days, tadpole about 50-65 days to the toadlet stage; the three scales are authored since no sourced growth figures were found."
+    },
+    "vocalizations.croak": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'The call or voice of a breeding male is a high trill that lasts between 6-30 seconds and sounds similar to a ringing telephone. Males call for an average of 6-7 nights during their breeding period.'"
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From the eastern subspecies account: colour variable from yellow to brown to black, solid or speckled, with spots containing only one or two warts, enlarged warts on the tibia, a usually spotted belly more so on the forward half, blackish spades on the back legs, and parotoid glands the same colour as the surrounding skin. The model uses one olive-brown phase with dark dorsal spots; proportions are authored."
+    },
+    "behavior": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "The shared anuran program is a direct match: it hides in cover by day, forages for invertebrates at night when warm and damp, calls near water in the breeding months and freezes then hops away from threats. The temperature band is set to stop activity in the cold and the call months to the spring breeding window; the exact values are authored."
+    },
+    "vocalizations.trill": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "The long musical trill of the male is described in the article."
+    },
+    "traits.senses": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement, flagged as such: the article describes the call and the female's preference for call effort but never names a sense. High hearing follows from a female choosing a male by the rate and duration of his call, and High olfaction from the prey's own chemistry carrying the trail - both are judgement, not source claims, and the article says nothing about vision."
+    },
+    "habitat.requires": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Authored from the source's requirement of 'a freshwater pond or pool with shallow water in which to breed, to gather their water supplies in times of drought or as a routine, and for their early development'. The distance is 200 m rather than bufo-bufo's 3.6 km because this source describes the animal as living 'within an acre' of the forest it uses, which bounds how far it ranges from the water it needs."
+    },
+    "habitat.density_per_ha": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: no open source gives a density, only that the species is 'common' and that females are 'easily tamed' in terrariums. A toad holding a small foraging ground inside a one-acre home range gives typical 1 per hectare, and min and max are an authored tenfold band either side, following the convention used for turdus-migratorius and sciurus-carolinensis."
+    },
+    "vocalizations": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "The call description is the article's own - a high trill lasting 6-30 seconds that sounds like a ringing telephone - as is the 6-7 nights of calling and the female's preference for call effort over call frequency. The months and the Night window follow the breeding phase, and the cooldown is authored judgement, since no open source quantifies it. No open source gives frequency bands, so freq_hz is omitted."
+    }
+  },
+  "contributors": [
+    {
+      "name": "sisyphus-agent",
+      "agent": "opencode"
+    },
+    {
+      "name": "Sisyphus",
+      "agent": "opencode"
+    },
+    {
+      "name": "speeeecies maintainers",
+      "agent": "opencode"
+    }
+  ],
+  "activity": {
+    "regions": [
+      {
+        "region": "US-PA",
+        "monthly": [
+          0.0,
+          0.0,
+          0.08,
+          0.45,
+          1.0,
+          0.84,
+          0.85,
+          0.94,
+          0.65,
+          0.16,
+          0.0,
+          0.0
+        ],
+        "method": "mean(inat_raw, gbif_raw)",
+        "observations": 3419,
+        "sources": [
+          "inat-activity-us-pa",
+          "gbif-activity-us-pa"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 42,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=64968&place_id=42&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": null,
+            "total": 1137,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.39_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2422872&gadmGid=USA.39_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": null,
+            "total": 2282,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "US-MA",
+        "monthly": [
+          0.01,
+          0.01,
+          0.06,
+          0.58,
+          1.0,
+          0.88,
+          0.76,
+          0.79,
+          0.57,
+          0.12,
+          0.03,
+          0.0
+        ],
+        "method": "mean(inat_raw, gbif_raw)",
+        "observations": 1563,
+        "sources": [
+          "inat-activity-us-ma",
+          "gbif-activity-us-ma"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 2,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=64968&place_id=2&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": null,
+            "total": 762,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.22_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2422872&gadmGid=USA.22_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": null,
+            "total": 801,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "US-MI",
+        "monthly": [
+          0.0,
+          0.0,
+          0.02,
+          0.27,
+          0.92,
+          1.0,
+          0.89,
+          0.84,
+          0.46,
+          0.1,
+          0.01,
+          0.0
+        ],
+        "method": "mean(inat_raw, gbif_raw)",
+        "observations": 2439,
+        "sources": [
+          "inat-activity-us-mi",
+          "gbif-activity-us-mi"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 29,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=64968&place_id=29&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": null,
+            "total": 671,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.23_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2422872&gadmGid=USA.23_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": null,
+            "total": 1768,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  }
+}

@@ -5,8 +5,10 @@
   "id": "Bubo virginianus",
   "slug": "bubo-virginianus",
   "common_names": {
-    "en": "Great horned owl",
+    "en": "Great Horned Owl",
     "fr": "Grand-duc d'Amérique",
+    "de": "Virginia-Uhu",
+    "nl": "Amerikaanse oehoe",
     "es": "Búho hornado"
   },
   "taxonomy": {
@@ -16,7 +18,7 @@
     "order": "Strigiformes",
     "family": "Strigidae",
     "genus": "Bubo",
-    "authority": "(J.F.Gmelin, 1788)",
+    "authority": "Gmelin, 1788",
     "status": "Accepted"
   },
   "external": {
@@ -31,21 +33,28 @@
   },
   "range": {
     "native": [
-      "US",
       "CA",
+      "US",
       "MX",
       "GT",
       "BZ",
       "HN",
+      "SV",
       "NI",
       "CR",
       "PA",
       "CO",
-      "VE",
-      "EC",
       "PE",
+      "VE",
+      "GY",
+      "SR",
+      "GF",
+      "BR",
       "BO",
+      "PY",
+      "UY",
       "AR",
+      "EC",
       "CL",
       "US-CO",
       "US-AK",
@@ -105,6 +114,15 @@
       "CA-NL",
       "CA-PE"
     ],
+    "koppen": [
+      "BSh",
+      "BSk",
+      "Cfa",
+      "Cfb",
+      "Dfb",
+      "Dfc",
+      "ET"
+    ],
     "elevation_m": [
       0,
       3300
@@ -116,28 +134,36 @@
     "locomotion_modes": [
       "Walk",
       "Fly",
-      "Glide"
+      "Glide",
+      "Hover"
     ],
     "thermoregulation": "Endotherm",
     "skin": "Feathers",
     "flight": "Powered",
     "respiration": "Lungs",
     "metamorphosis": "None",
-    "nest_type": "Cavity",
+    "nest_type": "Platform",
     "perching": true,
+    "senses": {
+      "vision_color": true,
+      "night_vision": true,
+      "olfaction": "Low",
+      "hearing": "High"
+    },
     "size_class": "Medium",
     "mass_kg": 1.416,
     "mass_range_kg": [
-      1.224,
+      0.68,
       2.503
     ],
     "length_m": 0.55,
     "wingspan_m": 1.22,
     "lifespan_y": 13.0,
     "diet": {
-      "vertebrate": 0.8,
-      "invertebrate": 0.15,
-      "carrion": 0.05
+      "vertebrate": 0.86,
+      "invertebrate": 0.09,
+      "carrion": 0.03,
+      "fish": 0.02
     },
     "social": {
       "structure": "Pair",
@@ -147,49 +173,55 @@
       ]
     },
     "activity_pattern": "Nocturnal",
-    "defense": "Mob",
-    "wariness": 0.55
+    "defense": "Flee",
+    "wariness": 0.35
   },
   "habitat": {
     "use": {
-      "ground": 0.2,
-      "arboreal": 0.6,
-      "aerial": 0.2
+      "arboreal": 0.5,
+      "aerial": 0.4,
+      "ground": 0.1
     },
-    "shelter_tag": "cavity",
+    "shelter_tag": "perch",
     "resources": [
       {
         "tag": "small_vertebrate",
         "kind": "Predation",
-        "weight": 1.0
+        "weight": 0.75
       },
       {
         "tag": "invertebrate",
         "kind": "Predation",
-        "weight": 0.2
+        "weight": 0.1
       },
       {
         "tag": "carrion",
         "kind": "Scavenging",
-        "weight": 0.1
-      },
-      {
-        "tag": "perch",
-        "kind": "Shelter",
-        "weight": 0.9
+        "weight": 0.3
       },
       {
         "tag": "nest_platform",
         "kind": "Nesting",
+        "weight": 1.0
+      },
+      {
+        "tag": "cavity",
+        "kind": "Nesting",
         "weight": 0.6
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 1.0
       }
     ],
     "human_tolerance": {
       "urban_affinity": "Adapter",
+      "light_max": 0.3,
+      "flight_distance_m": 25,
+      "road_mortality": "High",
       "uses_gardens": true,
-      "light_max": 0.4,
-      "flight_distance_m": 40,
-      "notes": "'This species can occasionally be found in urban or suburban areas. However, they seem to prefer areas with less human activity and are most likely to be found in park-like settings in such developed areas, unlike eastern and western screech owls... which may regularly occur in busy suburban settings.' In Wisconsin urban nests hatched a month earlier than rural ones, attributed to protection from wind and cold, and Winnipeg birds began nesting five to six weeks early on the urban heat island. light_max and flight_distance_m are judgement, not separately sourced numbers."
+      "notes": "Great horned owls are among the most adaptable owls in the world and 'can occasionally be found in urban or suburban areas', though they 'seem to prefer areas with less human activity and are most likely to be found in park-like settings in such developed areas'. Urban pairs do nest: in Wisconsin and Winnipeg, urban birds choose taller trees and nest higher, which the source attributes to human avoidance, and in Wisconsin eggs in urban nests hatched about a month earlier than in rural nests; productivity itself shows little difference between urban and rural sites. Night-light tolerance (light_max) and flush distance (flight_distance_m) are judgement, not sourced numbers: a bird that hunts by ear in the dark is placed low on the light scale, and one that sits tight on a high daytime roost was given a middling distance. Road mortality is sourced: collisions with cars, wires and buildings are among the leading causes of death, and 15 of 209 banded nestlings were hit by cars and 14 found dead on highways."
     }
   },
   "seasonal": {
@@ -199,13 +231,33 @@
         "name": "mating",
         "start": "10-01",
         "end": "12-31",
-        "note": "'In most of North America, courtship is from October to December and mates are chosen by December to January.' The male hoots emphatically for about a month or six weeks towards the end of the year while the period in which females also hoot is usually only a week to ten days; he leans over with his tail folded or cocked and his white throat puffed 'to look like a ball', and may convince the female by bringing her freshly caught prey."
+        "note": "Courtship runs from October to December in most of North America, with mates chosen by December to January. The male attracts a mate by hooting emphatically from a perch and by bringing her prey; he hoots emphatically for about a month or six weeks, while females also hoot usually only for a week to ten days. Pairs typically breed together year after year and may mate for life."
+      },
+      {
+        "name": "nesting",
+        "start": "01-01",
+        "end": "04-30",
+        "region": "US",
+        "note": "One of the earliest-nesting birds in North America. Across the largest part of the United States egg laying runs from late February to early April, later further north and earlier in southern Florida; the female alone incubates for 28-37 days (33 on average) while the male brings her food from soon after dark. The owls take over an abandoned nest of a larger bird or use a hollow, a cliff ledge or even bare ground, and never build a nest of their own."
+      },
+      {
+        "name": "young",
+        "start": "04-01",
+        "end": "08-31",
+        "region": "US",
+        "note": "Nestlings weigh about 35 g at birth and gain roughly 33 g a day for the first four weeks. They move onto nearby branches at six weeks and begin to fly about a week later, but are not usually competent fliers until they are 10-12 weeks old; most have mature-looking plumage by late summer."
+      },
+      {
+        "name": "dispersal",
+        "start": "08-15",
+        "end": "12-31",
+        "note": "Young stay within 13-52 ha of the nest into the autumn but usually disperse up to several thousand hectares by the end of fall, and are still begging for food in late October. Mortality during this first dispersal is frequently more than 50%, and birds that fail to hold a territory live as silent 'floaters' until they do. Territorial hooting has a second peak in autumn as juveniles disperse."
       },
       {
         "name": "territorial",
         "start": "01-01",
-        "end": "03-31",
-        "note": "'Usually, territorial hooting decreases in February or March at the onset of egg laying', and 'all mated great horned owls are permanent residents of their territories'. Males select the nesting site and bring the female's attention to it by flying to the nest and stomping on it."
+        "end": "12-31",
+        "note": "Mated pairs hold a territory year-round and long-term, keeping it by hooting rather than by fighting; calling is highest before egg laying, and territorial hooting decreases in February or March at the onset of egg laying. Territories average 16 km2 in the Yukon and 2.1 km2 in Wyoming."
       },
       {
         "name": "breeding",
@@ -230,7 +282,8 @@
     ],
     "life_stages": [
       {
-        "stage": "Egg"
+        "stage": "Egg",
+        "duration_days": 33
       },
       {
         "stage": "Juvenile",
@@ -296,36 +349,63 @@
     ]
   },
   "behavior": {
-    "program": "bt-perching-songbird-v1",
+    "program": "fsm-nocturnal-raptor-v1",
     "params": {
-      "flee_m": 40,
+      "flee_m": 25,
+      "calm_m": 60,
       "food_tag": "small_vertebrate",
-      "song": "hoot",
-      "alarm": "squawk",
-      "song_cooldown_s": 30,
-      "nest_m1": 2,
-      "nest_m2": 4
+      "food_m": 90,
+      "hoot": "hoot"
     }
   },
   "vocalizations": [
     {
       "call_id": "hoot",
       "context": "Hoot",
+      "season_months": [],
+      "time_windows": [
+        "Dusk",
+        "Night"
+      ],
+      "cooldown_s": 20,
+      "loudness": "Loud",
+      "description": "A low-pitched but loud 'ho-ho-hoo hoo hoo' of four or five syllables, resonant and described as solemn; the female's hoot is higher and rises in pitch at the end. Heard at dusk before the owl flies out to an open song post, and again through the night, peaking after midnight. Year-round, but strongest in autumn and through courtship, pair bonding and territorial disputes; it falls away in February or March as egg laying starts."
+    },
+    {
+      "call_id": "nest_protest",
+      "context": "Alarm",
       "season_months": [
-        10,
-        11,
-        12,
-        1,
         2,
-        3
+        3,
+        4,
+        5
+      ],
+      "time_windows": [
+        "Day",
+        "Night"
+      ],
+      "cooldown_s": 10,
+      "loudness": "Loud",
+      "description": "An owl disturbed or angered at the nest gives an extraordinary rapid assemblage of hoots, chuckles, screeches and squawks, including a growling 'krrooo-ooo', a laughing 'whar, whah, wha-a-a-a-ah' and a high-pitched 'ank, ank, ank', with wings spread, bill-clapping, hissing and higher-pitched screams at the highest level of confrontation, body poised to strike with the feet. This commonly precedes an attack on an interloping human or other animal."
+    },
+    {
+      "call_id": "young_screech",
+      "context": "Scream",
+      "season_months": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
       ],
       "time_windows": [
         "Dusk",
         "Night"
       ],
-      "cooldown_s": 30,
-      "loudness": "Loud",
-      "description": "The song is 'normally a low-pitched but loud ho-ho-hoo hoo hoo (or also transcribed as bu-bubu booh, who-hoo-ho-oo or who-ho-o-o, whoo-hoo-o-o, whoo)' and can last four or five syllables; resonant, and described as variously 'solemn' and 'terrifying'. The female's call is higher and rises in pitch at the end. 'At dusk, the owl utters a few calls before flying to a more open sing-post... to deliver song', and 'calling seems to peak after rather than before midnight'."
+      "cooldown_s": 15,
+      "loudness": "Moderate",
+      "description": "Nestlings and fledglings hiss loudly and give loud, persistent, piercing screams that are often mistaken for barn owl calls. The calls grow rapidly in intensity, pitch and character, juvenile males trying out their father's hoot in the autumn, though they end in gurgling notes and no juvenile hoots competently until January."
     },
     {
       "call_id": "squawk",
@@ -342,30 +422,61 @@
   "look": {
     "body_plan": "biped_winged",
     "proportions": {
-      "torso_aspect": 1.9,
-      "leg_length_ratio": 0.28,
-      "head_scale": 0.95,
-      "neck_angle_deg": 4,
-      "tail_ratio": 0.55,
-      "wing_aspect": 2.9,
-      "beak_ratio": 0.5,
-      "girth_ratio": 1.15
+      "torso_aspect": 1.4,
+      "leg_length_ratio": 0.22,
+      "head_scale": 0.9,
+      "neck_angle_deg": 30,
+      "tail_ratio": 0.45,
+      "wing_aspect": 1.8,
+      "beak_ratio": 0.3,
+      "girth_ratio": 1.1
     },
     "palette": {
-      "body": "#6b5a45",
-      "belly": "#cfc2a6",
-      "markings": "#382c20",
-      "accent": "#4b5054",
-      "eye": "#e8c21e"
+      "body": "#6f5a41",
+      "belly": "#c9bda4",
+      "markings": "#3b2f24",
+      "accent": "#3c3f44",
+      "eye": "#dfa92c"
     },
     "part_colors": {
       "breast": "belly",
-      "beak": "accent",
       "wing_left_outer": "markings",
       "wing_right_outer": "markings",
       "tail": "markings"
     },
-    "extra_parts": [],
+    "extra_parts": [
+      {
+        "name": "ear_tuft",
+        "parent": "head",
+        "offset": [
+          -0.05,
+          0.5,
+          0.38
+        ],
+        "size": [
+          0.3,
+          0.35,
+          0.1
+        ],
+        "color": "body",
+        "mirror": true
+      },
+      {
+        "name": "throat_patch",
+        "parent": "head",
+        "offset": [
+          0.45,
+          -0.2,
+          0.0
+        ],
+        "size": [
+          0.15,
+          0.3,
+          0.5
+        ],
+        "color": "belly"
+      }
+    ],
     "poses": {
       "idle": {},
       "walk": {},
@@ -412,7 +523,7 @@
       "license": "public-domain",
       "kind": "database",
       "accessed": "2026-09-30",
-      "note": "US federal government database; public domain in the United States."
+      "note": "US federal government database; public domain in the United States. The TSN was confirmed through ITIS's JSON web service, which returns the combined name Bubo virginianus for 177884."
     },
     {
       "id": "inat-activity-us-co",
@@ -421,7 +532,8 @@
       "license": "CC-BY-NC-4.0",
       "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
       "accessed": "2026-09-30",
-      "kind": "api"
+      "kind": "api",
+      "note": "Tier C: fetch_activity.py escalated to this tier because Colorado holds only 211 verifiable Bubo virginianus observations under CC0/CC BY and 213 under CC0/CC BY/CC BY-SA, both below its 300-observation floor. The NC observations keep their own licence and are not relicensed."
     },
     {
       "id": "gbif-activity-us-co",
@@ -437,32 +549,35 @@
     "taxonomy": {
       "sources": [
         "gbif-backbone",
+        "itis",
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "note": "GBIF's name match is an exact match on Bubo virginianus (Gmelin, 1788) in Strigiformes/Strigidae, and ITIS TSN 177884 returns the same combined name. The authority is from the Wikipedia Taxonomy section: the species 'was formally described in 1788 by the German naturalist Johann Friedrich Gmelin', who 'coined the binomial name Strix virginia'."
     },
     "external": {
       "sources": [
         "gbif-backbone",
-        "wikidata",
-        "itis"
+        "wikidata"
       ],
       "confidence": "High",
-      "note": "GBIF usage key, authorship and order from the GBIF Backbone Taxonomy; the iNaturalist taxa API matched taxon 20044 to 'Great Horned Owl'; ITIS TSN and NCBI taxon id from Wikidata (P815, P685). Wikidata P2050 also carries a wingspan of 1.34 m, consistent with the 91-153 cm range and 122 cm mean quoted from Wikipedia."
+      "note": "Wikidata Q81515 carries the GBIF taxon id (P846), the iNaturalist taxon id (P3151), the ITIS TSN (P815) and the NCBI taxon id (P685). Each was checked against a second route: GBIF's name match returned usageKey 5959118, the iNaturalist taxon search returned taxon 20044 named 'Great Horned Owl' (Bubo virginianus), and ITIS's JSON record for TSN 177884 returned Bubo virginianus."
     },
     "common_names": {
       "sources": [
-        "wikipedia",
-        "wikidata"
+        "wikidata",
+        "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "note": "Wikidata Q81515 labels: en 'Great Horned Owl', fr \"Grand-duc d'Amérique\", de 'Virginia-Uhu', nl 'Amerikaanse oehoe'. Wikipedia's lead also gives the English names 'tiger owl' and 'hoot owl', which were left out to keep one common name per language."
     },
     "conservation": {
       "sources": [
-        "wikidata"
+        "wikidata",
+        "wikipedia"
       ],
       "confidence": "High",
-      "note": "Wikidata P141 = least concern."
+      "note": "Wikidata P141 (IUCN status) is least concern; Wikipedia: 'The great horned owl is not considered a globally threatened species by the IUCN.'"
     },
     "range": {
       "sources": [
@@ -470,7 +585,275 @@
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "'They are distributed throughout most of North America and very spottily in Central America and then down into South America south to upland regions of Argentina, Bolivia and Peru... It is absent or rare from southern Guatemala, El Salvador, Nicaragua, and Costa Rica to Panama... The species is also absent from the West Indies, Haida Gwaii, and almost all off-shore islands in the Americas'. The country and state lists are an approximation of that description and are not exhaustive; the South American countries listed are those the source names directly. elevation_m is the sourced 3,300 m ceiling 'in the Rockies', which is the range the locale sits in."
+      "note": "The country list was read off the Distribution and habitat section ('They are distributed throughout most of North America and very spottily in Central America and then down into South America south to upland regions of Argentina, Bolivia and Peru') together with the fifteen recognised subspecies in Taxonomy, whose stated ranges give CA, US, MX (Baja California and the Yucatan included), GT, BZ, HN, SV, NI, CR, PA, CO, PE, VE, GY, SR, GF, BR, BO, PY, UY and AR. The same section says the bird is 'absent or rare from southern Guatemala, El Salvador, Nicaragua, and Costa Rica to Panama (where only two records)', so the Central American countries are listed on the strength of the subspecies ranges rather than on abundance. It is absent from the West Indies, Haida Gwaii and almost all off-shore islands, so no island state is listed, and no introduced or invasive range was found."
+    },
+    "range.koppen": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement mapping from the habitat text onto the schema's climate classes: vegetated desert fringes in the Mojave and Sonora (BSh), prairie, pampa and short-grass steppe (BSk), humid temperate and mixed forest over most of the eastern United States (Cfa, Cfb), continental and subarctic forest in Canada and Alaska (Dfb, Dfc), and treeless Andean puna grassland at 4,100-4,500 m in Ecuador and Peru (ET). Pure high-Arctic tundra is left out because the source says the species is replaced there by the snowy owl."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "A bird, so two legs; the schema does not count wings as limbs."
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Hunting behaviour: 'The great horned owl is generally a poor walker on the ground; it walks like a starling, with a pronounced side-to-side gait' (Walk); owls fly, at 'speeds of more than 65 km/h (40 mph) in level flight' (Fly); the wing structure lets them fly 'at a very low speed ... as slow as 2 miles per hour when they are gliding on breezes' (Glide); and 'Brief hovering flight (for about 6-18 seconds) has been described, especially in windy areas' (Hover). Hover is declared because the source describes it, but schema/v0.1/body-plans.json has no hover pose, so the model ships idle, walk, fly, glide, perched and rest only."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Feathered, including feathered legs and feet: 'the feathers on the feet of the great horned owl are the second-longest known in any owl (after the snowy owl)'."
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Powered silent flight from serrated leading edges, softer feathers and a trailing fringe, with wing loading 'proportionately the highest among raptors'."
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Judgement mapping: 'Like all owls, great horned owls do not build their own nest', and 'Most tree nests used by great horned owls are constructed by other animals, often from a height of about 4.5 to 22 m off the ground', usually a red-tailed hawk or other accipitrid stick nest, which the owls prefer 'since they provide a much firmer, safer foundation'. The enum (Cup/Cavity/Platform/Ground/Burrow/None) has no value for 'takes over another bird's nest', so Platform was chosen as the closest fit; the hollows, cacti, cliff ledges and bare ground the source also lists are carried in habitat.resources instead."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Sits upright on a perch, roosting by day in large trees on thick branches and hunting from 'a snag, pole or other high perch'; during courtship the male 'often flies up and down on a perch'."
+    },
+    "traits.senses": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Physiology and measurements: 'It is estimated that their hearing is up to ten times that of a human being', with asymmetrical ear openings and a facial disc that directs sound into them (hearing High); 'Due to their poor sense of smell, great horned owls are the only predators to routinely attack' skunks (olfaction Low); the eyes are 'large even for an owl', cylindrical, 'visually highly adapted for nocturnal hunting' with a wide binocular field and a predominantly rod retina (night_vision true), and they 'contain both rods and cones, like most species that see in color', though with 'relatively weak color vision' (vision_color true)."
+    },
+    "traits.size_class": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "From mass_kg (1.416 kg). The validator's bands are Tiny < 0.05 kg, Small < 1 kg, Medium < 50 kg and Large otherwise, so a 1.4 kg owl falls in Medium. That is the schema's answer for any bird of this size rather than a judgement that the great horned owl is a medium-sized animal; the record carries the real mass either way."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Mean of the two sex means in Physiology and measurements: 'Mean body weight is 1,608 g for females and 1,224 g for males', giving 1,416 g."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Low: 680 g, the lightest published adult, a male of the California race B. v. pacificus, in the race the source calls home to 'the lightest wild great horned owl adult ever weighed'. High: 'Depending on subspecies, maximum weight can reach 2,503 g', the heaviest known nominate female.",
+      "derived": true
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "The stated average of the 43-64 cm (17-25 in) adult length range, i.e. 55 cm (22 in); the tail alone is 175-252 mm of that."
+    },
+    "traits.wingspan_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "The stated average of the 91-153 cm wingspan range, i.e. 122 cm (48 in). Wikidata Q81515 carries 134 cm (P2050) for the same species, which was not used."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Longevity and natural mortality: 'A more typical top lifespan of a great horned owl is approximately 13 years.' The same section gives almost 29 years as the highest age recorded for any owl in North America and a captive record of 50 years, so 13 is the typical ceiling rather than the record."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "The source gives no range-wide diet percentage, so the shares are judgement anchored on its own ordering: 'Small rodents form the great majority of great horned owl prey by number', hares and rabbits are 'the largest regular prey' in biomass, 'After mammals, birds rank as the next most important general prey group' though 'usually considerably secondary', reptiles and amphibians are taken 'whenever the chance arises', invertebrate prey is occasional and mostly for inexperienced young, 'Although rare, carrion-feeding has been recorded', and fish only 'on rare occasions'. Regional studies do give real figures, but none for the whole range: snowshoe hare 75-99% of boreal biomass, jackrabbit 90.2% of Utah biomass at the hare's peak, lagomorphs 42.9% and voles up to 32.2% by number in Colorado short-grass prairie, and 65% of prey by number in one North Dakota wetland."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "'Pairs typically breed together year after year and may mate for life', and 'mated pairs occupy territories year-round and long-term'; territorial defence is mostly the male's, with the female joining in hooting contests even during incubation. One male has been recorded mating with two females at once, and unmated birds live as solitary floaters, so group_size is capped at 2."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Behaviour section: 'Generally great horned owls are active at night, although in some areas they may be active in the late afternoon or early morning'; 'Hunting tends to peak between 8:30 pm and midnight and then can resume from 4:30 am to sunrise'; calling 'seems to peak after rather than before midnight'. The same source calls the species 'exclusively (or near exclusively) nocturnal' when explaining its asymmetrical ear openings."
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: the source's own responses to a threat are flight and withdrawal - 'In response to mobbing, if the owl flies it alights to the nearest secluded spot' - while wing-spreading, bill-clapping, hissing and a strike with the feet belong to the highest level of a territorial confrontation, and parents defend the nest ferociously. The enum holds one value, so Flee was authored rather than Mob, which would wrongly make the owl the mobber; crows, ravens and hawks are what mob it."
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement, a middling value. On the bold side: urban pairs nest in taller trees and higher up than rural ones, are found in city parks, and most captive adults 'resent attempts at contact and are often given to attacking their keepers'. On the wary side: they 'seem to prefer areas with less human activity', are 'most likely to be found in park-like settings' in developed areas, choose dense daytime cover, and can be driven off the nest by human disturbance and by mobbing corvids."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement split: 'During the daytime it roosts usually in large trees (including snags and large hollows but usually thick branches) but may occasionally be in crevices or small caves in rocks or in dense shrubbery', and nests 4.5-22 m up (arboreal); 'Owls hunt mainly by watching from a snag, pole or other high perch. During hunting forays, they often fly about 50 to 100 m from perch to perch, stopping to survey for food at each', plus gliding and brief hovering (aerial); on the ground the bird is 'a poor walker ... it walks like a starling', though it will 'occasionally ... walk on the ground in pursuit of small prey', forage 'around the base of bushes' and sometimes nest on bare ground (ground). The source gives no numeric split."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Behaviour section: day roosts are large trees, snags and large hollows, usually on thick branches, with 'Pine and other coniferous trees ... preferred where available since they are particularly dense and provide cover throughout the year', or crevices in rock and dense shrubbery otherwise; 'Typically, males have a favorite roosting site not far from the nest, sometimes used over successive years.' Tagged as the perch/shelter slot."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Predation tags and weights from the Diet section: rodents, lagomorphs, shrews and other small mammals as small_vertebrate, insects and other invertebrates as occasional invertebrate, and carrion (road kill, and a filmed deer carcass) as rare Scavenging. Nest tags from Reproduction: abandoned accipitrid stick nests 4.5-22 m up as nest_platform, and hollows in dead trees and branches plus large cacti hollows as cavity, with cliff ledges, railroad cuts and bare ground also recorded. The perch/shelter tag is the daytime tree roost from Behaviour. Weights are judgement, not separately sourced numbers."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Distribution and habitat and Urban vs rural nesting: occasional in urban and suburban areas but preferring less human activity and park-like settings (Adapter, uses_gardens); urban birds nest higher in taller trees, attributed to human avoidance, and eggs in Wisconsin urban nests hatched about a month earlier than rural ones; and collisions with cars, wires and buildings are among the leading causes of death, with 15 of 209 banded nestlings hit by cars and 14 found dead on highways (road_mortality High). light_max and flight_distance_m are judgement, as flagged in the record's own notes field."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Territoriality and movements: 'mated pairs occupy territories year-round and long-term', 'there is no annual migration even at the northern limits of the great horned owl's range', and northern birds only 'occasionally irrupt south during times of food shortage' - an irregular irruption rather than a migration, so ActiveYearRound."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Reproduction (courtship October to December with mates chosen by December to January; egg laying late February to early April across the largest part of the United States and later further north; incubation 28-37 days; young on branches at six weeks, flying about a week later, competent at 10-12 weeks), Mortality and longevity (autumn dispersal of young with more than 50% mortality, young still begging in late October), and Territoriality and movements (year-round pair territories held by hooting, peaking before egg laying with a second peak in autumn). The day-of-month boundaries are judgement: the source gives windows in months and latitude-dependent ranges, so the nesting and young phases are marked region US, where the dates it gives are US-specific."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Egg: 1-6 eggs, usually 2, incubated by the female for 28-37 days, so duration_days 33 is the source's own average. Juvenile: altricial, 34.7 g at birth, gaining about 33 g a day for four weeks, on branches at six weeks, flying at about seven, competent at 10-12 weeks, dispersing in autumn and reaching sexual maturity at two years; no single sourced duration was found, so duration_days and scale are left unset rather than guessed. Adult: long-lived, with mortality now mostly human-related."
+    },
+    "activity.regions": {
+      "sources": [
+        "inat-activity-us-co",
+        "gbif-activity-us-co"
+      ],
+      "confidence": "High",
+      "note": "US-CO, the region the issue asks for, built by tools/fetch_activity.py from iNaturalist place 34 and GBIF GADM USA.6_1. Only that region is carried: the species is native to the Americas, so no Old World region applies, and no other subdivision was requested. The iNaturalist side of the query is tier C (CC BY-NC) because Colorado holds only 211 CC0/CC BY and 213 CC0/CC BY/CC BY-SA verifiable observations of this species, below the tool's 300-observation floor; the GBIF side is tier A (CC0/CC BY), and the curve is the mean of the two shares. The curve peaks in February-May and bottoms out in June-July, which is a winter detection peak: in a strongly nocturnal species that reflects when observers and the effort that reaches them are most active, not when the bird is."
+    },
+    "vocalizations.hoot": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Calls section: 'a low-pitched but loud ho-ho-hoo hoo hoo (or also transcribed as bu-bubu booh, who-hoo-ho-oo or who-ho-o-o, whoo-hoo-o-o, whoo)' lasting four or five syllables, 'The female's call is higher and rises in pitch at the end of the call', 'Calling seems to peak after rather than before midnight', 'territorial hooting decreases in February or March at the onset of egg laying', and at dusk the owl 'utters a few calls before flying to a more open sing-post'. Loudness Loud and the 20 s cooldown are judgement; season_months is empty because the hoot is heard all year."
+    },
+    "vocalizations.nest_protest": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Calls and Behaviour sections: 'an indescribable assemblage of hoots, chuckles, screeches, and squawks, given so rapidly and disconnectedly', among them 'a growling krrooo-ooo note pair, a laughing whar, whah, wha-a-a-a-ah, a high-pitched ank, ank, ank', uttered when the birds are 'disturbed and angered at the nest (frequently preceding an attack on an interloping human or other animal)', with bill-clapping, hissing and higher-pitched screams at the highest threat level. The season months (February to May) were aligned to the nesting phase as judgement, since the source does not itemise months."
+    },
+    "vocalizations.young_screech": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Calls and Reproduction sections: 'Young owls still in the care of their parents make loud, persistent hissing or loud, piercing screeching sounds that are often confused with the calls of the barn owl', and the young 'are able to exert weak chirps while still in the egg, developing into a raspy chirp shortly after hatching', with the calls increasing rapidly in intensity, pitch and character through the summer. The season months (April to September) were aligned to the nestling and dispersal phases as judgement."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Description and Physiology and measurements: upperparts and upper wings 'a mottled brown usually bearing heavy, complex, darker markings', underparts 'light with some brown horizontal barring', a variable white throat patch that may continue as a breast streak, a facial disc of reddish, brown or gray colour 'demarked by a dark rim culminating in bold, blackish side brackets', 'eyebrow-like horns' that are feather tufts (plumicorns), a 'dark gunmetal-gray' bill and talons, black leg and foot skin under long feathers, and yellow irises. Build: 'heavily built, with a barrel-shaped body, a large head, and broad wings', a relatively short tail (175-252 mm against a 55 cm bird), strong legs with a 54-80 mm tarsus, and wing loading 'proportionately the highest among raptors'. The palette approximates that scheme: mottled brown body, pale barred belly, dark barring, gunmetal beak and talons, yellow iris; the ear tufts and throat patch are extra parts on the head. Proportions: wing_aspect 1.8 is the source's own geometry, half of the 122 cm mean wingspan over a wing chord of about 34 cm, which is what makes the wings read as broad and short; the other ratios are judgement fitted to a barrel-shaped, big-headed, short-tailed, broad-winged bird with short legs."
+    },
+    "behavior": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "No shared program fits a nocturnal raptor, so this record ships species/bubo-virginianus/behavior.json (fsm-nocturnal-raptor-v1); the four shared programs are named and why each misses are set out in that file's description. Its shape follows the source: roost by day in a tree, perch and listen at night, quartering flights 'about 50 to 100 m from perch to perch, stopping to survey for food at each', an 'Effective maximum hunting distance of an owl from an elevated perch' of 90 m (food_m), a swoop down onto prey taken on foot, and hooting to hold territory, which 'seems to peak after rather than before midnight' and falls away at egg laying. There is no drink state because the source never mentions the bird drinking. flee_m 25 and calm_m 60 are judgement: a mobbed owl 'alights to the nearest secluded spot', so a close threat means flight to cover rather than a short hop."
     },
     "traits": {
       "sources": [
@@ -480,97 +863,6 @@
       "confidence": "High",
       "note": "Covers the structural traits (body plan, limb count, thermoregulation, skin, flight, respiration, metamorphosis, perching) and locomotion modes: the owl 'can fly at a very low speed for the size of the species, as slow as 2 miles per hour when they are gliding on breezes' and makes 'great use of secrecy and stealth', roosting in large trees by day and walking about on powerful legs and talons. Glide is a locomotion mode here because the species' low-speed flight is explicitly gliding; Powered is retained for the silent flapping flight."
     },
-    "traits.nest_type": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Judgement mapping: 'Like all owls, great horned owls do not build their own nest' but 'tend to examine an area for an abandoned nest, generally from larger birds like hawks, and take over the nest for raising their own young', with 'Many nests... in cavernous hollows of dead trees or their branches', cliff ledges, small caves, rock shelters, boulders, railroad cuts and low bushes. The schema's enum has no 'abandoned raptor nest' option; Cavity is chosen as the closest fit because tree hollows are the most frequently named site, and the abandoned-stick-nest case is carried in habitat.resources as nest_platform."
-    },
-    "traits.size_class": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "From mass_kg (~1.4 kg); the validator's size-class bands place this in the Medium band."
-    },
-    "traits.mass_kg": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "derived": true,
-      "note": "Mean of the two sex means the source gives: 1,608 g for females and 1,224 g for males, giving 1,416 g. 'Females are somewhat larger than males', and size varies by subspecies across the range."
-    },
-    "traits.mass_range_kg": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "derived": true,
-      "note": "From the male mean of 1,224 g (the lightest typical bird) to the stated subspecies maximum of 2,503 g. The source gives no overall minimum or maximum beyond those figures."
-    },
-    "traits.length_m": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "note": "'Adult great horned owls range in length from 43 to 64 cm, with an average of 55 cm' - the stated average is used directly rather than the midpoint, because the source gives one."
-    },
-    "traits.wingspan_m": {
-      "sources": [
-        "wikipedia",
-        "wikidata"
-      ],
-      "confidence": "High",
-      "note": "'possess a wingspan of 91 to 153 cm, with an average of 122 cm' - the stated average is used directly, and Wikidata P2050 independently records 1.34 m."
-    },
-    "traits.lifespan_y": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "note": "'Great horned owls seem to be the most long-lived owl in North America... almost 29 years being the highest age for an owl recorded in North America. In captivity, the record for the longest lived great horned owl was 50 years. A more typical top lifespan of a great horned owl is approximately 13 years.' The typical figure is used, as the schema asks for a typical lifespan; the record figures are recorded here."
-    },
-    "traits.diet": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "The Prey and trophic ecology section and its subsections (Rodents, Lagomorphs, Other mammals, Birds, Other prey, Urban vs rural diet) give the prey list in detail without percentages: rodents, lagomorphs, other mammals, birds up to the size of a great blue heron, plus reptiles, amphibians, insects and, rarely, carrion. Shares are judgement, with the vertebrate tag covering both the small mammal prey and the larger kills, since the schema's diet block has no finer key for them. The source also records the bird-hunting consequence - 'crows sometimes congregate from considerable distances to mob owls and caw angrily at them for hours on end' - which is why Defense is Mob."
-    },
-    "traits.social": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "note": "'Pairs typically breed together year after year and may mate for life, although they associate with each other more loosely when their young become mostly independent.' The species 'was once thought to be strictly monogamous, but recent analysis indicates one male may mate with two females simultaneously'."
-    },
-    "traits.activity_pattern": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "note": "'Generally great horned owls are active at night, although in some areas they may be active in the late afternoon or early morning', and the species makes 'silent flight'."
-    },
-    "traits.defense": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "note": "'few species press attacks on the owl's nests due to the ferocious defensive abilities of the parents', and the disturbance calls 'frequently preced[e] an attack on an interloping human or other animal'."
-    },
-    "traits.wariness": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Judgement: it uses city parks but 'seem[s] to prefer areas with less human activity', nests in taller urban trees 'due to the fact that urban areas have large trees used for ornamentation', and the higher nesting 'was attributed to human avoidance', so a middling-high wariness value was authored."
-    },
     "habitat": {
       "sources": [
         "wikipedia"
@@ -579,72 +871,12 @@
       "derived": true,
       "note": "Covers shelter_tag and habitat.resources. small_vertebrate, vertebrate, invertebrate and carrion tags come from the Prey and trophic ecology section; perch from the daytime roosting behaviour in large trees and on rock outcrops; nest_platform from the abandoned raptor and crow nests it takes over. Weights are judgement, not separately sourced percentages."
     },
-    "habitat.use": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "note": "'They prefer areas where open habitats, which they often hunt in, and woods, where they tend to roost and nest, are juxtaposed'; by day it roosts in large trees including snags and hollows, crevices or small rock caves, or dense shrubbery, and 'Pine and other coniferous trees may be preferred where available since they are particularly dense and provide cover throughout the year'."
-    },
-    "habitat.human_tolerance": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "note": "Distribution and habitat and Urban vs rural nesting sections, quoted at length in the field, including the Wisconsin and Winnipeg urban-nesting findings. Adapter rather than Exploiter, because the source explicitly contrasts the species with the screech owls that 'may regularly occur in busy suburban settings'. light_max and flight_distance_m are judgement, not separately sourced numbers."
-    },
-    "seasonal.strategy": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "note": "'All mated great horned owls are permanent residents of their territories, but unmated and younger birds move freely in search of company and a territory and leave regions with little food in winter' - local movement and dispersal rather than migration, so ActiveYearRound was used."
-    },
-    "seasonal.phases": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "derived": true,
-      "note": "October-December courtship and mate choice by December-January, territorial hooting tapering from February-March at egg laying, early breeding with the quoted clutch and range of laying dates, nestling growth and weight gain, autumn dispersal with the quoted juvenile mortality, and year-round territoriality. The nesting and breeding phases are tagged US-CO because the locale that prompted this record is in Colorado; the source gives laying dates by broad region and the early-February-to-northern-Louisiana band is the one that brackets interior Colorado. Day-of-month boundaries other than October, December, January, February and March are judgement. The flocking phase is dispersal rather than flocking in the social sense and carries a judgement fraction."
-    },
-    "seasonal.life_stages": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "derived": true,
-      "note": "Reproduction and Longevity sections: 'The young weigh 34.7 g (1.22 oz) at birth on average and can gain about 33 g (1.2 oz) a day for the first four weeks of life, with typical weights in the range of 800 or 1,000 g by 25-29 days for males and females, respectively. When first hatched the young are covered in whitish gray down, with some brownish about the wings.' duration_days 200 is derived from that four-week nestling phase plus the autumn dispersal period for which the source gives 'frequently more than 50%' mortality; scale 0.4 is judgement for a recently fledged bird."
-    },
-    "vocalizations.hoot": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "note": "Calls section, quoted closely in the field: the song, its alternative transcriptions, the four-to-five syllable length, the higher and rising female call, the dusk sing-post behaviour and the after-midnight peak. season_months follows the courtship and territorial-hooting window the source dates (October to March), during which the male hoots for about a month or six weeks and the female for only a week to ten days."
-    },
     "vocalizations.squawk": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High",
       "note": "Calls section: the 'indescribable assemblage of hoots, chuckles, screeches, and squawks' given when disturbed or angered at the nest, with the individual notes listed in the field, 'frequently preceding an attack on an interloping human or other animal'. It is the alarm slot of the shared program."
-    },
-    "look": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "derived": true,
-      "note": "Description section: 'The underparts of the species are usually light with some brown horizontal barring; the upper parts and upper wings are generally a mottled brown usually bearing heavy, complex, darker markings. All subspecies are darkly barred to some extent along the sides. A variable-sized white patch is seen on the throat... The skin of the feet and legs... is black. Even tropical great horned owls have feathered legs and feet. The bill is dark gunmetal-gray, as are the talons', with a facial disc 'reddish, brown, or gray... demarked by a dark rim culminating in bold, blackish side brackets', and 'The iris is yellow, except in the amber-eyed South American great horned owl'. The palette maps the mottled brown onto the body, the barred light underparts onto the breast, the darker complex markings onto the wings and tail, the gunmetal bill onto the beak and the yellow iris onto the eye. The plumicorn 'horns' and the facial disc have no separate part in the biped_winged body plan and are not modelled; proportions are authored judgement from the 'barrel-shaped body, a large head, and broad wings', the large head_scale and the 'relatively short' tail."
-    },
-    "behavior": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Low",
-      "derived": true,
-      "note": "Authored parameters for the shared perching-songbird program, used here for a very large nocturnal raptor rather than a small songbird: flee_m 40 is the longest flight distance in this locale's cast, matching an owl that flushes at tens of metres; food_tag is small_vertebrate, the dominant prey group; song_cooldown_s 30 matches the once-a-month-or-six-weeks male hooting pattern rather than a per-minute song; nest_m1/nest_m2 span the earliest-of-any-North-American-breeder window the source describes, February to April."
     }
   },
   "contributors": [
