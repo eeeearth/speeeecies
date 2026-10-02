@@ -23,7 +23,8 @@
     "gbif_usage_key": 2482507,
     "inat_taxon_id": 8021,
     "itis_tsn": 179731,
-    "wikidata": "Q267735"
+    "wikidata": "Q267735",
+    "ncbi_taxon_id": 85066
   },
   "conservation": {
     "iucn": "LC"
@@ -125,7 +126,8 @@
       "uses_gardens": true,
       "light_max": 0.8,
       "road_mortality": "High",
-      "notes": "Common in city parks, suburbs and farmland; roosts in large winter flocks; often killed on roads while scavenging carrion."
+      "notes": "Common in city parks, suburbs and farmland; roosts in large winter flocks; often killed on roads while scavenging carrion.",
+      "flight_distance_m": 10
     }
   },
   "seasonal": {
@@ -143,6 +145,11 @@
         "start": "08-01",
         "end": "02-28",
         "note": "Forms large winter roosts, sometimes thousands of birds."
+      },
+      {
+        "name": "young",
+        "start": "04-01",
+        "end": "07-31"
       }
     ],
     "life_stages": [
@@ -209,6 +216,53 @@
             "gbif"
           ]
         }
+      },
+      {
+        "region": "US-DE",
+        "monthly": [
+          0.84,
+          0.99,
+          1.0,
+          0.77,
+          0.58,
+          0.67,
+          0.48,
+          0.51,
+          0.86,
+          0.84,
+          0.82,
+          0.88
+        ],
+        "method": "gbif_share",
+        "observations": 96065,
+        "sources": [
+          "gbif-activity-us-de"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 4,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=8021&place_id=4&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=4&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 72,
+            "usable": false
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.8_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2482507&gadmGid=USA.8_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.8_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 96065,
+            "usable": true
+          },
+          "used": [
+            "gbif"
+          ]
+        }
       }
     ]
   },
@@ -220,7 +274,8 @@
       "song": "caw",
       "alarm": "alarm",
       "nest_m1": 3,
-      "nest_m2": 7
+      "nest_m2": 7,
+      "song_cooldown_s": 15
     }
   },
   "vocalizations": [
@@ -245,6 +300,17 @@
       "cooldown_s": 3,
       "loudness": "Loud",
       "description": "Rapid, emphatic series of short 'caw' notes given when mobbing an owl, hawk or other predator."
+    },
+    {
+      "call_id": "rattle",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 8,
+      "loudness": "Loud",
+      "description": "A dry, rattling alarm call given at a threat."
     }
   ],
   "look": {
@@ -336,6 +402,25 @@
       "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
       "accessed": "2026-10-01",
       "kind": "api"
+    },
+    {
+      "id": "eltontraits",
+      "url": "https://doi.org/10.6084/m9.figshare.3559887.v1",
+      "title": "EltonTraits 1.0: species-level foraging attributes of the world's birds and mammals",
+      "license": "CC0-1.0",
+      "kind": "dataset",
+      "accessed": "2026-10-01",
+      "attribution": "Wilman, H. et al. (2014) EltonTraits 1.0. Ecology 95:2027",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "gbif-activity-us-de",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2482507&gadmGid=USA.8_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Corvus brachyrhynchos in US-DE",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
     }
   ],
   "provenance": {
@@ -351,7 +436,8 @@
         "gbif-backbone",
         "wikidata"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "note": "ITIS TSN and NCBI taxon id via Wikidata (P815, P685); Wikidata item for this species."
     },
     "common_names": {
       "sources": [
@@ -429,7 +515,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Large stick platform nest high in a tree."
+      "note": "Large stick platform nest high in a tree.",
+      "derived": true
     },
     "traits.perching": {
       "sources": [
@@ -450,7 +537,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "'316-620 g' typical adult mass; 450 g used."
+      "note": "'316-620 g' typical adult mass; 450 g used.",
+      "derived": true
     },
     "traits.mass_range_kg": {
       "sources": [
@@ -463,14 +551,16 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "'40-53 cm' total length; lower end used."
+      "note": "'40-53 cm' total length; lower end used.",
+      "derived": true
     },
     "traits.wingspan_m": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "'85-100 cm' wingspan; midpoint used."
+      "note": "'85-100 cm' wingspan; midpoint used.",
+      "derived": true
     },
     "traits.lifespan_y": {
       "sources": [
@@ -507,7 +597,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Mobs and drives away predators such as owls and hawks."
+      "note": "Mobs and drives away predators such as owls and hawks.",
+      "derived": true
     },
     "traits.wariness": {
       "sources": [
@@ -530,7 +621,8 @@
         "wikipedia"
       ],
       "confidence": "Medium",
-      "note": "Roosts in trees, often in large communal winter roosts."
+      "note": "Roosts in trees, often in large communal winter roosts.",
+      "derived": true
     },
     "habitat.resources": {
       "sources": [
@@ -575,7 +667,9 @@
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "Call description and context from the Wikipedia article's description/behaviour sections."
     },
     "vocalizations.alarm": {
       "sources": [
@@ -596,12 +690,24 @@
       "confidence": "Low",
       "derived": true,
       "note": "Authored parameters for the shared perching-songbird program: the caw stands in for the song call; longer flee distance reflecting wariness."
+    },
+    "vocalizations.rattle": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Call description and context from the Wikipedia article's description/behaviour sections."
     }
   },
   "contributors": [
     {
       "name": "speeeecies agent",
       "agent": "claude-code"
+    },
+    {
+      "name": "speeeecies maintainers",
+      "agent": "opencode"
     }
   ]
 }

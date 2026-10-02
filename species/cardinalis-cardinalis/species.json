@@ -134,7 +134,15 @@
       {
         "tag": "berry",
         "kind": "Herbivory",
-        "weight": 0.2
+        "weight": 0.2,
+        "months": [
+          9,
+          10,
+          11,
+          12,
+          1,
+          2
+        ]
       },
       {
         "tag": "invertebrate",
@@ -279,6 +287,16 @@
         "start": "03-01",
         "end": "08-31",
         "note": "Territory-holding males sing through the spring and summer; two to four clutches of three to four eggs are laid between March and August, with 12-13 days of incubation."
+      },
+      {
+        "name": "young",
+        "start": "04-01",
+        "end": "09-30"
+      },
+      {
+        "name": "moult",
+        "start": "08-01",
+        "end": "09-30"
       }
     ],
     "life_stages": [
@@ -636,6 +654,55 @@
             "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2490384&gadmGid=USA.46_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
             "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.46_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
             "total": 253686,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "US-DE",
+        "monthly": [
+          0.98,
+          1.0,
+          0.86,
+          0.91,
+          0.55,
+          0.63,
+          0.51,
+          0.45,
+          0.66,
+          0.5,
+          0.56,
+          0.91
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 175186,
+        "sources": [
+          "inat-activity-us-de",
+          "gbif-activity-us-de"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 4,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=9083&place_id=4&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=4&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 958,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.8_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2490384&gadmGid=USA.8_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.8_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 174228,
             "usable": true
           },
           "used": [
@@ -1051,6 +1118,24 @@
       "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
       "accessed": "2026-10-01",
       "kind": "api"
+    },
+    {
+      "id": "inat-activity-us-de",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=9083&place_id=4&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Cardinalis cardinalis in US-DE",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-de",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2490384&gadmGid=USA.8_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Cardinalis cardinalis in US-DE",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
     }
   ],
   "provenance": {
@@ -1362,7 +1447,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Short metallic chip when predators approach the nest."
+      "note": "Short metallic chip when predators approach the nest.",
+      "derived": true
     },
     "vocalizations.contact_chip": {
       "sources": [
