@@ -1,0 +1,192 @@
+{
+  "schema_version": 1,
+  "format": "speeeecies/behavior",
+  "id": "fsm-aerial-insectivore-v1",
+  "kind": "fsm",
+  "description": "A nocturnal flying insectivore (a bat): hangs in its roost by day, launches after dark, alternates patrol and echolocation while quartering for insects, takes insects in flight, drinks on the wing, and drops clear of a threat. Written for `lasiurus-borealis`, which no shared program fits: `fsm-ground-forager-v1` and `fsm-anuran-nocturnal-v1` have no flight gait, `bt-perching-songbird-v1` needs a song and an alarm call and ends in perch_nearest, and `fsm-seabird-predator-v1` hunts a hard-coded `small_vertebrate` tag by walking and scavenges carrion.",
+  "params": {
+    "flee_m": 25,
+    "calm_m": 60,
+    "insect_m": 80,
+    "water_m": 120
+  },
+  "initial": "roost",
+  "states": {
+    "roost": {
+      "action": {
+        "do": "rest",
+        "at": "shelter"
+      },
+      "min_dwell_s": 60
+    },
+    "patrol": {
+      "action": {
+        "do": "wander",
+        "gait": "fly"
+      }
+    },
+    "echolocate": {
+      "action": {
+        "do": "sing",
+        "call": "echolocate"
+      }
+    },
+    "hunt": {
+      "action": {
+        "do": "eat_nearest",
+        "tag": "invertebrate",
+        "gait": "fly"
+      }
+    },
+    "drink": {
+      "action": {
+        "do": "drink_nearest",
+        "gait": "fly"
+      }
+    },
+    "flee": {
+      "action": {
+        "do": "flee",
+        "gait": "fly"
+      },
+      "min_dwell_s": 3
+    }
+  },
+  "transitions": [
+    {
+      "from": "*",
+      "to": "flee",
+      "when": {
+        "threat_within_m": "${flee_m}"
+      },
+      "priority": 100
+    },
+    {
+      "from": "*",
+      "to": "flee",
+      "when": {
+        "need": "fear",
+        "gt": 0.25
+      },
+      "priority": 90
+    },
+    {
+      "from": "*",
+      "to": "roost",
+      "when": {
+        "is_day": true
+      },
+      "priority": 50
+    },
+    {
+      "from": "flee",
+      "to": "patrol",
+      "when": {
+        "not": {
+          "threat_within_m": "${calm_m}"
+        }
+      }
+    },
+    {
+      "from": "roost",
+      "to": "patrol",
+      "when": {
+        "all": [
+          {
+            "need": "hunger",
+            "gt": 0.45
+          },
+          {
+            "not": {
+              "is_day": true
+            }
+          }
+        ]
+      }
+    },
+    {
+      "from": "roost",
+      "to": "patrol",
+      "when": {
+        "chance": 0.3
+      }
+    },
+    {
+      "from": "patrol",
+      "to": "echolocate",
+      "when": {
+        "chance": 0.4
+      }
+    },
+    {
+      "from": "echolocate",
+      "to": "hunt",
+      "when": {
+        "all": [
+          {
+            "need": "hunger",
+            "gt": 0.45
+          },
+          {
+            "food_within_m": "${insect_m}",
+            "tag": "invertebrate"
+          }
+        ]
+      }
+    },
+    {
+      "from": "echolocate",
+      "to": "patrol",
+      "when": {
+        "chance": 0.35
+      }
+    },
+    {
+      "from": "patrol",
+      "to": "hunt",
+      "when": {
+        "all": [
+          {
+            "need": "hunger",
+            "gt": 0.45
+          },
+          {
+            "food_within_m": "${insect_m}",
+            "tag": "invertebrate"
+          }
+        ]
+      }
+    },
+    {
+      "from": "hunt",
+      "to": "patrol",
+      "when": {
+        "need": "hunger",
+        "lt": 0.2
+      }
+    },
+    {
+      "from": "patrol",
+      "to": "drink",
+      "when": {
+        "all": [
+          {
+            "need": "thirst",
+            "gt": 0.6
+          },
+          {
+            "water_within_m": "${water_m}"
+          }
+        ]
+      }
+    },
+    {
+      "from": "drink",
+      "to": "patrol",
+      "when": {
+        "need": "thirst",
+        "lt": 0.1
+      }
+    }
+  ]
+}
