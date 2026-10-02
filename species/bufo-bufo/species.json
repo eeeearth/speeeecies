@@ -390,6 +390,55 @@
             "gbif"
           ]
         }
+      },
+      {
+        "region": "FR-IDF",
+        "monthly": [
+          0.02,
+          0.42,
+          1.0,
+          0.45,
+          0.26,
+          0.34,
+          0.21,
+          0.12,
+          0.12,
+          0.09,
+          0.01,
+          0.0
+        ],
+        "method": "mean(inat_raw, gbif_raw)",
+        "observations": 29838,
+        "sources": [
+          "inat-activity-fr-idf",
+          "gbif-activity-fr-idf"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 10577,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=326296&place_id=10577&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": null,
+            "total": 688,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "FRA.8_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5217160&gadmGid=FRA.8_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": null,
+            "total": 29150,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
       }
     ]
   },
@@ -606,6 +655,24 @@
       "license": "CC-BY-4.0",
       "attribution": "GBIF.org (2026-09-26) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
       "accessed": "2026-09-26",
+      "kind": "api"
+    },
+    {
+      "id": "inat-activity-fr-idf",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=326296&place_id=10577&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Bufo bufo in FR-IDF",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-fr-idf",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5217160&gadmGid=FRA.8_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Bufo bufo in FR-IDF",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
       "kind": "api"
     }
   ],

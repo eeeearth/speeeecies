@@ -1,0 +1,700 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Desmognathus ochrophaeus",
+  "slug": "desmognathus-ochrophaeus",
+  "common_names": {
+    "en": "Allegheny Mountain Dusky Salamander"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Amphibia",
+    "order": "Urodela",
+    "family": "Plethodontidae",
+    "genus": "Desmognathus",
+    "authority": "Cope, 1859",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2431199,
+    "inat_taxon_id": 27390,
+    "itis_tsn": 173641,
+    "wikidata": "Q2705341",
+    "ncbi_taxon_id": 52104
+  },
+  "conservation": {
+    "iucn": "LC",
+    "notes": "Least concern globally (Wikidata P141). The species is not federally listed in the United States. Its two Canadian populations are each designated endangered under Schedule 1 of Canada's Species at Risk Act, and Ontario's Endangered Species Act, 2007 protects it in Ontario."
+  },
+  "range": {
+    "native": [
+      "US",
+      "CA"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk",
+      "Swim"
+    ],
+    "thermoregulation": "Ectotherm",
+    "skin": "Moist",
+    "flight": "None",
+    "respiration": "Skin",
+    "metamorphosis": "Complete",
+    "nest_type": "Ground",
+    "perching": false,
+    "senses": {
+      "olfaction": "High",
+      "vibration": true
+    },
+    "size_class": "Tiny",
+    "mass_kg": 0.006,
+    "mass_range_kg": [
+      0.003,
+      0.01
+    ],
+    "length_m": 0.089,
+    "lifespan_y": 12.0,
+    "diet": {
+      "invertebrate": 1.0
+    },
+    "social": {
+      "structure": "Solitary",
+      "group_size": [
+        1,
+        2
+      ]
+    },
+    "activity_pattern": "Nocturnal",
+    "defense": "Hide",
+    "wariness": 0.6
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.8,
+      "aquatic": 0.2
+    },
+    "shelter_tag": "shelter",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 1.0
+      },
+      {
+        "tag": "water",
+        "kind": "Water",
+        "weight": 0.5
+      },
+      {
+        "tag": "shelter",
+        "kind": "Shelter",
+        "weight": 0.9
+      },
+      {
+        "tag": "leaf_litter",
+        "kind": "Shelter",
+        "weight": 0.5
+      },
+      {
+        "tag": "nest_ground",
+        "kind": "Nesting",
+        "weight": 1.0
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Avoider",
+      "uses_gardens": false,
+      "notes": "Confined to moist, saturated ground around small streams, seeps and wet rock faces, and usually discovered only by turning over rocks and logs. It needs groundwater at or near the surface, so it is placed on damp ground with cover rather than on open or drained ground."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "young",
+        "start": "04-01",
+        "end": "12-31",
+        "note": "Hatchlings emerge from the eggs with external gills and spend up to 10 months as fully aquatic larvae before transforming into adults. Females deposit their eggs under moss, rocks or logs, or under logs in or near flowing water, and remain with the eggs until they hatch."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg",
+        "requires_tag": "nest_ground"
+      },
+      {
+        "stage": "Larva",
+        "duration_days": 300,
+        "scale": 0.5,
+        "requires_tag": "water"
+      },
+      {
+        "stage": "Juvenile",
+        "duration_days": 180,
+        "scale": 0.75,
+        "requires_tag": "shelter"
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US-WV",
+        "monthly": [
+          0.0,
+          0.0,
+          0.05,
+          0.43,
+          1.0,
+          0.92,
+          0.76,
+          0.61,
+          0.72,
+          0.26,
+          0.01,
+          0.01
+        ],
+        "method": "mean(inat_raw, gbif_raw)",
+        "observations": 3168,
+        "sources": [
+          "inat-activity-us-wv",
+          "gbif-activity-us-wv"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 33,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=27390&place_id=33&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": null,
+            "total": 923,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.49_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2431199&gadmGid=USA.49_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": null,
+            "total": 2245,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-anuran-nocturnal-v1",
+    "params": {
+      "flee_m": 1,
+      "freeze_m": 2,
+      "food_tag": "invertebrate",
+      "call": "no_call"
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "no_call",
+      "context": "Chirp",
+      "season_months": [],
+      "time_windows": [],
+      "cooldown_s": 120,
+      "loudness": "Quiet",
+      "description": "Placeholder, not a real sound: this species is not known to vocalize, and none of the four state wildlife sources consulted for this record describes a call. The entry exists only because the schema requires a vocalizations array, and it is what the behaviour program's call state points at so that state stays silent."
+    }
+  ],
+  "look": {
+    "body_plan": "anuran",
+    "proportions": {
+      "torso_aspect": 1.9,
+      "leg_length_ratio": 0.35,
+      "head_scale": 0.55,
+      "neck_angle_deg": 4,
+      "girth_ratio": 0.7
+    },
+    "palette": {
+      "body": "#6b5236",
+      "belly": "#c9b48c",
+      "markings": "#2e2419",
+      "accent": "#c8a02a",
+      "eye": "#100d0b"
+    },
+    "part_colors": {
+      "head": "markings"
+    },
+    "extra_parts": [
+      {
+        "name": "tail",
+        "parent": "body",
+        "offset": [
+          -0.85,
+          0.0,
+          0
+        ],
+        "size": [
+          1.35,
+          0.5,
+          0.5
+        ],
+        "color": "body"
+      },
+      {
+        "name": "dorsal_stripe",
+        "parent": "body",
+        "offset": [
+          0.0,
+          0.45,
+          0
+        ],
+        "size": [
+          1.5,
+          0.12,
+          0.34
+        ],
+        "color": "accent"
+      },
+      {
+        "name": "jaw_line",
+        "parent": "head",
+        "offset": [
+          0.25,
+          -0.1,
+          0.4
+        ],
+        "size": [
+          0.55,
+          0.1,
+          0.1
+        ],
+        "color": "belly",
+        "mirror": true
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "swim": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2431199",
+      "title": "GBIF Backbone Taxonomy: Desmognathus ochrophaeus",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q2705341",
+      "title": "Wikidata: Allegheny Mountain dusky salamander (Q2705341)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Allegheny_Mountain_dusky_salamander",
+      "title": "Wikipedia: Allegheny Mountain dusky salamander",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Allegheny Mountain dusky salamander\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=173641",
+      "title": "ITIS: Desmognathus ochrophaeus, TSN 173641",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "tn-twra",
+      "url": "https://www.tn.gov/twra/wildlife/amphibians/salamanders/allegheny-mountain-dusky.html",
+      "title": "Tennessee Wildlife Resources Agency: Allegheny Mountain Dusky Salamander",
+      "license": "public-domain",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "note": "Tennessee Wildlife Resources Agency, an agency of the State of Tennessee; public domain in the United States."
+    },
+    {
+      "id": "va-dwr",
+      "url": "https://dwr.virginia.gov/wildlife/information/allegheny-mountain-dusky-salamander",
+      "title": "Virginia Department of Wildlife Resources: Allegheny Mountain Dusky Salamander",
+      "license": "public-domain",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "note": "Virginia Department of Wildlife Resources, an agency of the Commonwealth of Virginia; public domain in the United States."
+    },
+    {
+      "id": "md-dnr",
+      "url": "https://dnr.maryland.gov/education/documents/streamsalamander_infopages.pdf",
+      "title": "Maryland Department of Natural Resources: Stream Salamander information pages, Allegheny Mountain Dusky Salamander",
+      "license": "public-domain",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "note": "Maryland Department of Natural Resources, an agency of the State of Maryland; public domain in the United States."
+    },
+    {
+      "id": "usfws",
+      "url": "https://www.fws.gov/species/mountain-dusky-salamander-desmognathus-ochrophaeus",
+      "title": "U.S. Fish and Wildlife Service: Mountain Dusky Salamander (Desmognathus ochrophaeus) species profile",
+      "license": "public-domain",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "note": "United States Fish and Wildlife Service, Department of the Interior; public domain in the United States."
+    },
+    {
+      "id": "inat-activity-us-wv",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=27390&place_id=33&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Desmognathus ochrophaeus in US-WV",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-wv",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2431199&gadmGid=USA.49_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Desmognathus ochrophaeus in US-WV",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "itis"
+      ],
+      "confidence": "High",
+      "note": "GBIF backbone gives family Plethodontidae and authority Cope, 1859; ITIS scientific-name search returns TSN 173641 with the same authority, and the USFWS species profile independently lists TSN 173641. The type species was described as Desmognathus ochrophæa."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata",
+        "itis",
+        "usfws"
+      ],
+      "confidence": "High",
+      "note": "GBIF usageKey 2431199 from species/match, which Wikidata P846 confirms; ITIS TSN 173641 from the ITIS scientific-name search and confirmed by the USFWS profile; NCBI taxon id 52104 and IUCN category least concern (Q211005) from Wikidata P685 and P141."
+    },
+    "common_names": {
+      "sources": [
+        "usfws",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "The USFWS species profile carries both 'Mountain Dusky Salamander' and 'Allegheny Mountain Dusky Salamander'. The longer, more precise name is used, matching the issue and the Virginia and Tennessee state agencies; the older lumped name is not added. No French or German vernacular is recorded on the Wikidata item, so none is written here."
+    },
+    "conservation": {
+      "sources": [
+        "wikipedia",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "Wikidata P141 = least concern (Q211005). The Protection section of the source records that the two Canadian populations are 'each of which is designated endangered under Schedule 1 of the Species at Risk Act', the Appalachian population having been designated in April 2021, and that Ontario's Endangered Species Act, 2007 protects the species in Ontario. Those national and provincial statuses are recorded in the notes field, since the schema's single iucn field holds the global category."
+    },
+    "range": {
+      "sources": [
+        "wikipedia",
+        "md-dnr",
+        "va-dwr",
+        "tn-twra"
+      ],
+      "confidence": "High",
+      "note": "Wikipedia: 'It is found in the eastern United States, as well as in the Niagara Glen Nature Reserve adjacent to the lower Niagara River in southern Ontario, and a single disjunct population in southern Quebec, Canada.' Maryland adds that the species is 'found almost exclusively on the Allegheny Plateau', Virginia places it in the 'western, montane counties in high elevation mixed hardwood forests', and Tennessee places it on the 'northern Cumberland Plateau'. The Quebec population is not listed in the country array because the source calls it a single disjunct population rather than part of the species' main range, and adding it would imply a wider occupancy than the source supports."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia",
+        "va-dwr",
+        "tn-twra"
+      ],
+      "confidence": "High",
+      "note": "Walk for the terrestrial adult, which Virginia describes as emerging 'just after sunset and actively mov[ing] about in search of small terrestrial invertebrates' and Tennessee as 'more terrestrial than most salamanders ... found far out into forests in wet weather'; Swim for the aquatic larval stage, which Tennessee describes as spending 'up to 10 months as fully aquatic larvae'. No source consulted describes hopping, and this is a salamander, not a frog."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "An amphibian that 'must keep their skin moist to breathe' and lives in saturated ground; no source consulted states this explicitly, and Ectotherm is the schema's only non-mammal, non-bird value."
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Moist: the species 'belongs to the lungless salamander family (Plethodontidae), whose adults must keep their skin moist to breathe', and it is a 'somewhat terrestrial salamander that can be found under stones, logs, and bark near springs, streams, and other areas where the ground is saturated with water'."
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Skin, and this is the notable feature of the family: Plethodontidae are the lungless salamanders, whose 'adults must keep their skin moist to breathe'. The larvae additionally 'emerge from their eggs with external gills' (Tennessee Wildlife Resources Agency), but the schema holds a single adult-stage value, so Skin is the correct entry rather than Gills."
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "tn-twra"
+      ],
+      "confidence": "High",
+      "note": "Complete: 'Hatchling salamanders emerge from their eggs with external gills and spend up to 10 months as fully aquatic larvae before transforming into adults.'"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "tn-twra",
+        "md-dnr"
+      ],
+      "confidence": "High",
+      "note": "Ground: 'Females deposit their eggs under moss, rocks, or logs or under logs in or near flowing water', and Maryland adds that the species 'may nest underground or in seeps, muddy banks, dry stream-beds, under logs, and stumps that are embedded in mud'. Every site listed is on or in the ground, and none is a cavity in a tree."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.senses": {
+      "sources": [
+        "wikipedia",
+        "va-dwr"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored, and weak: olfaction High follows from the family's reliance on cutaneous respiration and moist substrate, and vibration true from a nocturnal ambush forager hunting invertebrate prey on the forest floor. No openly licensed source consulted describes this species' senses, so no value is claimed for vision, hearing or night vision, and the two written here are judgements rather than measurements."
+    },
+    "traits.size_class": {
+      "sources": [
+        "md-dnr",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg (0.006 kg falls in the Tiny band, under 0.05 kg)."
+    },
+    "traits.mass_kg": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored, and an honest gap: none of the five government or encyclopaedic sources consulted gives a mass, and EltonTraits and AVONET were checked and do not cover amphibians. 0.006 kg is an order-of-magnitude figure consistent with an animal of 6.4-11.4 cm total length; treat it as a placeholder, not a measurement."
+    },
+    "traits.mass_range_kg": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored band either side of the placeholder point mass, 3-10 g, spanning the sourced length range. Not a sourced range."
+    },
+    "traits.length_m": {
+      "sources": [
+        "tn-twra",
+        "va-dwr",
+        "md-dnr",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of 2.5 to 4.5 inches, the range the Tennessee Wildlife Resources Agency gives for the species, giving 0.089 m. Three other sources agree on that order: Virginia's 'Up to 4 inches' (10.2 cm), Maryland's 'typically less than 10 cm', and Wikipedia's 'can grow to about 10 cm'."
+    },
+    "traits.lifespan_y": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement, and an honest gap: no openly licensed source consulted states a lifespan for this species. A single figure of nearly 20 years for a captive specimen appears in a herpetological society's account of the species, but that account itself notes it is not known whether the specimen was truly D. ochrophaeus or a sibling species, so it is not cited as this species' longevity. 12.0 years is an authored order-of-magnitude figure for a lungless salamander, a group noted for exceptional longevity relative to its size. Treat it as a placeholder, not a measurement."
+    },
+    "traits.diet": {
+      "sources": [
+        "tn-twra",
+        "va-dwr"
+      ],
+      "confidence": "High",
+      "note": "Invertebrate carries the full share. Tennessee: 'Forest floor invertebrates make up this species' diet.' Virginia: 'Larvae feed on small invertebrates. Adults eat a variety of prey items, including adult and immature terrestrial insects, terrestrial worms, other terrestrial invertebrates, aquatic insects, and aquatic snails.' Every prey item listed by either source is an invertebrate, so no other diet key is used."
+    },
+    "traits.social": {
+      "sources": [
+        "tn-twra"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Authored: the only social behaviour any source records is that 'The female remains with her eggs until they hatch', which is maternal attendance rather than group living, and nothing suggests flocking or territorial groups. Solitary is therefore the accurate structure, with a group size bound of 2 as a judgement covering a female with a clutch, since no source counts individuals."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "tn-twra",
+        "va-dwr"
+      ],
+      "confidence": "High",
+      "note": "Nocturnal, and directly sourced from two state agencies: Tennessee's Fun Facts gives 'Active primarily at night', and Virginia's Did You Know gives 'Adults emerge from cover just after sunset and actively move about in search of small terrestrial invertebrates.' This is the best-sourced activity pattern of any of the twelve species in this locale."
+    },
+    "traits.defense": {
+      "sources": [
+        "md-dnr",
+        "va-dwr"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Authored: the animal is 'usually discovered in and along small streams under rocks, logs or other substrates', is described as 'more terrestrial than most salamanders' yet dependent on cover, and emerges from that cover only after dark, so concealment is its primary anti-predator strategy. Freeze would be a defensible alternative for a small salamander that stops rather than runs, and no source describes either response explicitly."
+    },
+    "traits.wariness": {
+      "sources": [
+        "md-dnr",
+        "tn-twra"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: an animal found by turning over logs and rocks, restricted to saturated ground, and active only after dark, so a high value. Tennessee notes it is 'Very common within its range', which speaks to abundance rather than tameness."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia",
+        "tn-twra",
+        "va-dwr"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Authored from the lifecycle, because no amphibian stratum dataset was available to this work and EltonTraits covers birds and mammals only. The ground share of 0.8 follows Tennessee's 'More terrestrial than most salamanders. It can be found far out into forests in wet weather' and Virginia's account of adults foraging on the forest floor; the aquatic share of 0.2 follows the fully aquatic larval stage lasting up to 10 months. Both values are judgements, and the source gives no numeric stratum split."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "md-dnr",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "shelter: 'They are usually discovered in and along small streams under rocks, logs or other substrates', and Wikipedia adds 'found under stones, logs, and bark near springs, streams, and other areas where the ground is saturated with water'. The schema's generic shelter tag is the honest choice here, because the cover is rock, log and bark rather than a burrow or a litter layer specifically."
+    },
+    "habitat.resources": {
+      "sources": [
+        "tn-twra",
+        "va-dwr",
+        "wikipedia",
+        "md-dnr"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "invertebrate carries the full share and follows traits.diet. nest_ground at 1.0 follows the sourced egg-laying sites. water at 0.5 reflects the larval stage being aquatic and the species' dependence on springs, seeps and flowing water, though the adult is terrestrial much of the time. shelter at 0.9 and leaf_litter at 0.5 are authored from the rock, log and bark cover and the forest-floor foraging, with leaf_litter weighted lower because the cover the sources name is chiefly rock and log rather than litter."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "va-dwr",
+        "md-dnr",
+        "tn-twra"
+      ],
+      "confidence": "High",
+      "note": "The species is confined to moist, saturated habitat: Wikipedia lists 'temperate forests, rivers, intermittent rivers, freshwater springs, and rocky areas'; Maryland says it is 'found almost exclusively on the Allegheny Plateau' and is 'sometimes found a long distance from water, particularly in narrow, sandstone cliff crevices'; Tennessee places it 'along streams, in seepage areas, and on wet rock faces'. Avoider with uses_gardens false follows directly."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "ActiveYearRound, and this is the weakest field in the record. None of the five sources consulted describes any seasonal dormancy, migration or aestivation for this species, and the sources that comment on season at all describe only the ten-month larval stage. Rather than assert a Brumation that no source supports, the record stays ActiveYearRound and the honest gap is recorded here; a reviewer with a hibernation source should replace this field. No seasonal.triggers block is written: triggers are required only for Brumation, and this record stays ActiveYearRound, so the behaviour program's own default temperature window applies unchanged."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "tn-twra"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "A single young phase, covering the aquatic larval period: 'Hatchling salamanders emerge from their eggs with external gills and spend up to 10 months as fully aquatic larvae before transforming into adults.' The April-December window edges are a judgement, since the source gives the duration but no calendar dates, and the phase is placed in the growing season on that basis. No adult or breeding phase is written because no source consulted dates the egg-laying season."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "tn-twra",
+        "md-dnr"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Larva duration from 'up to 10 months as fully aquatic larvae' (300 days used, the stated maximum rather than a midpoint, because the source gives only a maximum). The egg stage carries no duration because the source gives none. The juvenile stage is a judgement: no source gives a duration for the post-metamorphic period before sexual maturity, so 180 days is an authored placeholder covering the first terrestrial season, and the scale of 0.75 reflects an animal close to adult size. The schema's Tadpole stage is deliberately not used, since a salamander larva is not a tadpole."
+    },
+    "vocalizations.no_call": {
+      "sources": [
+        "tn-twra",
+        "va-dwr"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The description records an absence. Four state wildlife sources and the encyclopedia article were consulted for this record and none describes any call for the species; the courtship and egg-laying behaviour the sources do describe is spatial and tactile, with the female guarding the clutch. The entry exists because the schema makes vocalizations a required field. The context value Chirp is a placeholder from the schema's enum and carries no claim about what this animal does, and no frequency band is given so freq_hz is omitted."
+    },
+    "vocalizations": {
+      "sources": [
+        "tn-twra",
+        "va-dwr"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The single entry is a documented non-sound rather than an invented one, as set out in its own provenance entry. Time windows and the cooldown are authored judgement, since no open source quantifies them."
+    },
+    "look": {
+      "sources": [
+        "tn-twra",
+        "va-dwr",
+        "md-dnr",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Colours from the state sources, which are fuller on plumage than the encyclopedia article: Tennessee gives 'a round tail and a light line from the eye to the angle of the jaw', a dorsal stripe 'that can vary in color from yellow to orange, red, or brown', and notes that 'Some individuals may exhibit red legs or cheek patches'; Virginia gives a back 'light to dark gray' with 'a broad yellow, brown or red stripe' and notes that 'Large adults may be a uniform dark gray'; Wikipedia agrees on 'a light stripe down the back, with a row of dark spots on the centre'. The model shows the striped morph, which is the best-known form: the body is brown, the head is darkened, a dorsal stripe part carries the accent colour, and a mirrored jaw_line part renders the light line from eye to jaw. Three extra parts are used because the anuran body plan generates no tail and this animal's rounded, unkeeled tail is a stated field mark: 'The tail of this animal does not have a keel or ridge along the top of the tail, unlike other closely related salamanders.' One honest caveat is recorded in the body-plan provenance: a salamander differs in body form from the frog and toad the anuran plan was built for, so the model is a close approximation rather than an exact one."
+    },
+    "behavior": {
+      "sources": [
+        "tn-twra",
+        "va-dwr"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The shared fsm-anuran-nocturnal-v1 program is the closest fit available, and for this species the fit is good on the states that matter: it hides in cover, forages for invertebrates at night when conditions allow, and freezes then flees a threat. Three of its parameters are directly sourced rather than authored: food_tag invertebrate, from Tennessee's 'Forest floor invertebrates make up this species' diet'; the night-time resting window, from Tennessee's 'Active primarily at night' and Virginia's 'Adults emerge from cover just after sunset'; and the call state is deliberately pointed at a documented non-sound so it stays silent. flee_m 1 m and freeze_m 2 m are authored, scaled right down from the program's 2 m and 5 m defaults for a 9 cm animal. min_temp_c, max_temp_c, call_m1 and call_m2 are deliberately not overridden: unlike the eastern newt, no openly licensed source consulted gives a temperature threshold or a breeding season for this species, so the program's own defaults are left in place rather than being replaced with invented numbers. A bespoke program with an aquatic larval stage and egg-guarding females would describe this animal better than a toad-and-frog program does, and that limitation is left visible for a reviewer to overturn."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies maintainers",
+      "agent": "opencode"
+    }
+  ]
+}
