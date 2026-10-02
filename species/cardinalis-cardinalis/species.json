@@ -5,7 +5,11 @@
   "id": "Cardinalis cardinalis",
   "slug": "cardinalis-cardinalis",
   "common_names": {
-    "en": "northern cardinal"
+    "en": "Northern cardinal",
+    "fr": "cardinal rouge",
+    "de": "Rotkardinal",
+    "nl": "rode kardinaal",
+    "es": "cardenal rojo"
   },
   "taxonomy": {
     "kingdom": "Animalia",
@@ -21,7 +25,9 @@
     "gbif_usage_key": 2490384,
     "inat_taxon_id": 9083,
     "itis_tsn": 179124,
-    "wikidata": "Q726389"
+    "wikidata": "Q726389",
+    "ncbi_taxon_id": 98964,
+    "ebird_code": "norcar"
   },
   "conservation": {
     "iucn": "LC"
@@ -30,10 +36,21 @@
     "native": [
       "US",
       "CA",
-      "MX"
+      "MX",
+      "BZ",
+      "GT"
     ],
     "introduced": [
-      "BM"
+      "BM",
+      "HI",
+      "CA"
+    ],
+    "koppen": [
+      "Cfa",
+      "Cfb",
+      "Cwa",
+      "Dfa",
+      "Dfb"
     ]
   },
   "traits": {
@@ -51,99 +68,248 @@
     "nest_type": "Cup",
     "perching": true,
     "size_class": "Tiny",
-    "mass_kg": 0.045,
+    "mass_kg": 0.04264,
     "mass_range_kg": [
       0.0336,
       0.065
     ],
-    "length_m": 0.22,
+    "length_m": 0.2225,
     "wingspan_m": 0.28,
-    "lifespan_y": 2.7,
+    "lifespan_y": 2.5,
     "diet": {
-      "seed": 0.6,
-      "invertebrate": 0.25,
-      "fruit": 0.15
+      "seed": 0.7,
+      "fruit": 0.1,
+      "invertebrate": 0.2
     },
     "social": {
       "structure": "Pair",
       "group_size": [
-        2,
+        1,
         6
       ]
     },
     "activity_pattern": "Diurnal",
     "defense": "Flee",
-    "wariness": 0.35
+    "wariness": 0.25
   },
   "habitat": {
     "use": {
-      "ground": 0.5,
-      "arboreal": 0.5
+      "ground": 0.4,
+      "arboreal": 0.6
     },
     "shelter_tag": "shrub_thicket",
     "resources": [
       {
         "tag": "seed",
         "kind": "Herbivory",
-        "weight": 0.6
-      },
-      {
-        "tag": "invertebrate",
-        "kind": "Predation",
-        "weight": 0.25
+        "weight": 0.7,
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ]
       },
       {
         "tag": "fruit",
         "kind": "Herbivory",
-        "weight": 0.15
+        "weight": 0.2,
+        "months": [
+          9,
+          10,
+          11,
+          12,
+          1,
+          2
+        ]
       },
       {
-        "tag": "perch",
-        "kind": "Shelter",
-        "weight": 0.5
+        "tag": "berry",
+        "kind": "Herbivory",
+        "weight": 0.2,
+        "months": [
+          9,
+          10,
+          11,
+          12,
+          1,
+          2
+        ]
+      },
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.6,
+        "months": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
       },
       {
         "tag": "shrub_thicket",
         "kind": "Shelter",
-        "weight": 0.5
+        "weight": 0.9
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.8
       },
       {
         "tag": "nest_cup",
         "kind": "Nesting",
         "weight": 1.0
+      },
+      {
+        "tag": "water",
+        "kind": "Water",
+        "weight": 0.5
       }
     ],
+    "requires": [
+      {
+        "resource_within_m": 40,
+        "tag": "shrub_thicket"
+      }
+    ],
+    "suitability": {
+      "curves": [
+        {
+          "covariate": "canopy",
+          "curve": [
+            [
+              0,
+              0.25
+            ],
+            [
+              0.35,
+              1.0
+            ],
+            [
+              0.8,
+              0.85
+            ]
+          ],
+          "weight": 1.0
+        },
+        {
+          "covariate": "resource:shrub_thicket",
+          "curve": [
+            [
+              0,
+              0.2
+            ],
+            [
+              2,
+              0.85
+            ],
+            [
+              5,
+              1.0
+            ]
+          ],
+          "weight": 1.2
+        },
+        {
+          "covariate": "impervious",
+          "curve": [
+            [
+              0,
+              1.0
+            ],
+            [
+              0.45,
+              0.9
+            ],
+            [
+              0.8,
+              0.35
+            ]
+          ],
+          "weight": 0.8
+        }
+      ],
+      "combine": "WeightedMean"
+    },
     "human_tolerance": {
       "urban_affinity": "Adapter",
+      "impervious_max": 0.8,
+      "light_max": 0.8,
+      "noise_max": 0.7,
+      "flight_distance_m": 6,
+      "road_mortality": "Low",
       "uses_gardens": true,
-      "light_max": 0.7,
-      "road_mortality": "Medium",
-      "notes": "Common at bird feeders and in suburban areas; mated pairs often travel together year-round."
+      "notes": "Common in gardens, parks, shrublands and woodland edges; readily uses suburban feeders and dense shrubs or low trees for nesting. Tolerance values are authored for the simulation from that qualitative habitat association."
     }
   },
   "seasonal": {
     "strategy": "ActiveYearRound",
     "phases": [
       {
+        "name": "territorial",
+        "start": "02-01",
+        "end": "08-31",
+        "note": "Males defend territories with song; exact simulation window is placed around the nesting season."
+      },
+      {
         "name": "breeding",
         "start": "03-01",
-        "end": "09-30",
-        "note": "Two to four clutches a year, with nests built in dense shrubs; dates are a judgement placed around the described breeding activity."
+        "end": "09-15",
+        "region": "US",
+        "note": "Two to four clutches can be produced each year; the longer southern garden window is a judgement around the described repeated broods."
       },
       {
         "name": "flocking",
         "start": "10-01",
-        "end": "02-28",
-        "note": "Outside the breeding season; exact boundary dates are a judgement."
+        "end": "01-31",
+        "note": "Outside peak breeding, cardinals remain resident and may travel in mated pairs or small loose groups around feeders and cover."
+      },
+      {
+        "name": "nesting",
+        "start": "03-01",
+        "end": "08-31",
+        "note": "Judgement: the female builds a cup nest of twigs, bark strips and grasses in dense shrub or a low tree 1-3 m off the ground, and the species raises two to four clutches of three or four eggs a year; the article does not date the nesting season."
+      },
+      {
+        "name": "breeding",
+        "start": "03-01",
+        "end": "08-31",
+        "note": "Territory-holding males sing through the spring and summer; two to four clutches of three to four eggs are laid between March and August, with 12-13 days of incubation."
+      },
+      {
+        "name": "young",
+        "start": "04-01",
+        "end": "09-30"
+      },
+      {
+        "name": "moult",
+        "start": "08-01",
+        "end": "09-30"
       }
     ],
     "life_stages": [
       {
-        "stage": "Egg"
+        "stage": "Egg",
+        "duration_days": 12.5,
+        "requires_tag": "nest_cup",
+        "scale": 0.12
       },
       {
         "stage": "Juvenile",
-        "duration_days": 40,
+        "duration_days": 70,
+        "requires_tag": "shrub_thicket",
         "scale": 0.85
       },
       {
@@ -153,6 +319,398 @@
   },
   "activity": {
     "regions": [
+      {
+        "region": "US-LA",
+        "monthly": [
+          0.67,
+          0.82,
+          0.8,
+          0.71,
+          0.77,
+          1.0,
+          0.79,
+          0.68,
+          0.6,
+          0.49,
+          0.42,
+          0.54
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 304699,
+        "sources": [
+          "inat-activity-us-la",
+          "gbif-activity-us-la"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 27,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=9083&place_id=27&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=27&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "total": 833,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.19_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2490384&gadmGid=USA.19_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.19_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 303866,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "US-PA",
+        "monthly": [
+          1.0,
+          0.99,
+          0.82,
+          0.82,
+          0.6,
+          0.67,
+          0.62,
+          0.66,
+          0.58,
+          0.46,
+          0.56,
+          0.89
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 1633368,
+        "sources": [
+          "inat-activity-us-pa",
+          "gbif-activity-us-pa"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 42,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=9083&place_id=42&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=42&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "total": 1360,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.39_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2490384&gadmGid=USA.39_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.39_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 1632008,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "US-AL",
+        "monthly": [
+          0.95,
+          0.8,
+          0.73,
+          0.58,
+          0.66,
+          0.98,
+          0.79,
+          0.67,
+          0.63,
+          0.61,
+          0.56,
+          1.0
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 300089,
+        "sources": [
+          "inat-activity-us-al",
+          "gbif-activity-us-al"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "B",
+            "place_id": 19,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=9083&place_id=19&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=19&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa",
+            "total": 301,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.1_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2490384&gadmGid=USA.1_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.1_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 299788,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "US-IN",
+        "monthly": [
+          0.79,
+          0.76,
+          0.6,
+          0.58,
+          0.4,
+          0.53,
+          0.53,
+          0.6,
+          0.52,
+          0.49,
+          1.0,
+          0.9
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 588957,
+        "sources": [
+          "inat-activity-us-in",
+          "gbif-activity-us-in"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 20,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=9083&place_id=20&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=20&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "total": 486,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.15_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2490384&gadmGid=USA.15_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.15_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 588471,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "US-AR",
+        "monthly": [
+          0.89,
+          1.0,
+          0.83,
+          0.68,
+          0.58,
+          0.67,
+          0.73,
+          0.69,
+          0.68,
+          0.63,
+          0.67,
+          0.71
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 231396,
+        "sources": [
+          "inat-activity-us-ar",
+          "gbif-activity-us-ar"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 36,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=9083&place_id=36&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=36&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 2659,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.4_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2490384&gadmGid=USA.4_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.4_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 228737,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "US-NJ",
+        "monthly": [
+          0.73,
+          1.0,
+          0.83,
+          0.61,
+          0.43,
+          0.51,
+          0.5,
+          0.45,
+          0.39,
+          0.34,
+          0.49,
+          0.78
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 798006,
+        "sources": [
+          "inat-activity-us-nj",
+          "gbif-activity-us-nj"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 51,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=9083&place_id=51&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=51&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "total": 1378,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.31_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2490384&gadmGid=USA.31_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.31_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 796628,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "US-VT",
+        "monthly": [
+          0.86,
+          1.0,
+          0.87,
+          0.7,
+          0.38,
+          0.3,
+          0.36,
+          0.37,
+          0.28,
+          0.38,
+          0.75,
+          1.0
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 256698,
+        "sources": [
+          "inat-activity-us-vt",
+          "gbif-activity-us-vt"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 47,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=9083&place_id=47&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=47&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 3012,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.46_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2490384&gadmGid=USA.46_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.46_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 253686,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "US-DE",
+        "monthly": [
+          0.98,
+          1.0,
+          0.86,
+          0.91,
+          0.55,
+          0.63,
+          0.51,
+          0.45,
+          0.66,
+          0.5,
+          0.56,
+          0.91
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 175186,
+        "sources": [
+          "inat-activity-us-de",
+          "gbif-activity-us-de"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 4,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=9083&place_id=4&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=4&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 958,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.8_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2490384&gadmGid=USA.8_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.8_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 174228,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
       {
         "region": "US-OK",
         "monthly": [
@@ -207,77 +765,192 @@
   "behavior": {
     "program": "bt-perching-songbird-v1",
     "params": {
-      "flee_m": 5,
+      "flee_m": 6,
       "food_tag": "seed",
       "song": "song",
       "alarm": "alarm",
+      "song_cooldown_s": 10,
       "nest_m1": 3,
-      "nest_m2": 9
+      "nest_m2": 8
     }
   },
   "vocalizations": [
     {
       "call_id": "song",
       "context": "Song",
-      "season_months": [],
+      "season_months": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
       "time_windows": [
         "DawnChorus",
         "Day",
         "Dusk"
       ],
-      "cooldown_s": 8,
+      "cooldown_s": 10,
       "loudness": "Loud",
-      "description": "Clear, whistled phrases repeated several times then varied, such as 'cheer-cheer-cheer, what-what-what'; both sexes sing, the male from a high perch to defend his territory."
+      "description": "Clear repeated whistled phrases such as 'cheer, cheer, cheer' and 'what-cheer, what-cheer', sung by both sexes from perches."
     },
     {
       "call_id": "alarm",
       "context": "Alarm",
       "season_months": [],
       "time_windows": [
-        "Day"
+        "DawnChorus",
+        "Day",
+        "Dusk"
       ],
-      "cooldown_s": 5,
+      "cooldown_s": 4,
       "loudness": "Moderate",
-      "description": "Short, sharp metallic 'chip' call given when a predator approaches the nest."
+      "description": "Short metallic chip call given when predators approach the nest or cover."
+    },
+    {
+      "call_id": "contact_chip",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day",
+        "Dusk"
+      ],
+      "cooldown_s": 12,
+      "loudness": "Moderate",
+      "description": "Brief chip notes used by paired birds and birds moving through shrubs or feeder edges."
+    },
+    {
+      "call_id": "courtship_feed",
+      "context": "Chirp",
+      "season_months": [
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "time_windows": [
+        "Day",
+        "Dusk"
+      ],
+      "cooldown_s": 20,
+      "loudness": "Quiet",
+      "description": "Soft close-range notes associated here with beak-to-beak courtship feeding and pair contact."
+    },
+    {
+      "call_id": "chip",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [],
+      "cooldown_s": 6,
+      "loudness": "Moderate",
+      "description": "A short, sharp, metallic chip, given as a contact or alarm note."
     }
   ],
   "look": {
     "body_plan": "biped_winged",
     "proportions": {
-      "torso_aspect": 1.4,
-      "leg_length_ratio": 0.3,
-      "head_scale": 0.9,
-      "neck_angle_deg": 12,
-      "tail_ratio": 0.55,
-      "wing_aspect": 2.4,
-      "beak_ratio": 0.5,
-      "girth_ratio": 1.1
+      "torso_aspect": 1.55,
+      "leg_length_ratio": 0.35,
+      "head_scale": 0.88,
+      "neck_angle_deg": 18,
+      "tail_ratio": 0.78,
+      "wing_aspect": 2.5,
+      "beak_ratio": 0.48,
+      "girth_ratio": 1.05
     },
     "palette": {
-      "body": "#b81f2d",
-      "belly": "#d98a7e",
-      "markings": "#1a1a1a",
-      "accent": "#e8572a",
-      "eye": "#2b1d10"
+      "body": "#c71922",
+      "belly": "#b1121b",
+      "markings": "#1a1110",
+      "accent": "#ef5f35",
+      "eye": "#111111"
     },
     "part_colors": {
+      "head": "body",
+      "breast": "body",
+      "wing_*": "belly",
+      "tail": "belly",
       "beak": "accent"
     },
     "extra_parts": [
       {
-        "name": "crest",
+        "name": "face_mask",
         "parent": "head",
         "offset": [
-          0,
-          0.45,
+          0.34,
+          -0.08,
           0
         ],
         "size": [
-          0.35,
-          0.5,
-          0.35
+          0.42,
+          0.68,
+          1.05
+        ],
+        "color": "markings"
+      },
+      {
+        "name": "crest",
+        "parent": "head",
+        "offset": [
+          -0.12,
+          0.62,
+          0
+        ],
+        "size": [
+          0.52,
+          0.72,
+          0.52
         ],
         "color": "body"
+      },
+      {
+        "name": "wing_shadow",
+        "parent": "breast",
+        "offset": [
+          -0.08,
+          0.08,
+          0
+        ],
+        "size": [
+          0.95,
+          0.4,
+          1.08
+        ],
+        "color": "belly"
+      },
+      {
+        "name": "face",
+        "parent": "head",
+        "offset": [
+          0.3,
+          -0.05,
+          0
+        ],
+        "size": [
+          0.5,
+          0.75,
+          1.04
+        ],
+        "color": "markings"
+      },
+      {
+        "name": "grey_border",
+        "parent": "breast",
+        "offset": [
+          0,
+          0.3,
+          0
+        ],
+        "size": [
+          0.9,
+          0.2,
+          1.06
+        ],
+        "color": "accent"
       }
     ],
     "poses": {
@@ -285,7 +958,8 @@
       "hop": {},
       "fly": {},
       "perched": {},
-      "rest": {}
+      "rest": {},
+      "glide": {}
     }
   },
   "sources": [
@@ -295,17 +969,17 @@
       "title": "GBIF Backbone Taxonomy: Cardinalis cardinalis",
       "license": "CC-BY-4.0",
       "kind": "database",
-      "accessed": "2026-10-01",
+      "accessed": "2026-09-30",
       "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
       "license_url": "https://creativecommons.org/licenses/by/4.0/"
     },
     {
       "id": "wikidata",
       "url": "https://www.wikidata.org/wiki/Q726389",
-      "title": "Wikidata: Northern Cardinal (Q726389)",
+      "title": "Wikidata: Northern cardinal (Q726389)",
       "license": "CC0-1.0",
       "kind": "database",
-      "accessed": "2026-10-01",
+      "accessed": "2026-09-30",
       "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
     },
     {
@@ -314,18 +988,203 @@
       "title": "Wikipedia: Northern cardinal",
       "license": "CC-BY-SA-4.0",
       "kind": "webpage",
-      "accessed": "2026-10-01",
+      "accessed": "2026-09-30",
       "attribution": "Wikipedia contributors, \"Northern cardinal\", English Wikipedia, CC BY-SA 4.0",
       "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
     },
     {
       "id": "itis",
-      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=179124",
+      "url": "https://www.itis.gov/ITISWebService/jsonservice/getFullRecordFromTSN?tsn=179124",
       "title": "ITIS: Cardinalis cardinalis, TSN 179124",
       "license": "public-domain",
       "kind": "database",
-      "accessed": "2026-10-01",
+      "accessed": "2026-09-30",
       "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "eltontraits",
+      "url": "https://doi.org/10.6084/m9.figshare.3559887.v1",
+      "title": "EltonTraits 1.0: species-level foraging attributes of the world's birds and mammals (BirdFuncDat)",
+      "license": "CC0-1.0",
+      "kind": "dataset",
+      "accessed": "2026-09-30",
+      "attribution": "Wilman, H. et al. (2014) EltonTraits 1.0. Ecology 95:2027",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "inat-taxon",
+      "url": "https://api.inaturalist.org/v1/taxa/9083",
+      "title": "iNaturalist taxon API: Cardinalis cardinalis",
+      "license": "CC-BY-4.0",
+      "kind": "api",
+      "accessed": "2026-09-30",
+      "attribution": "iNaturalist taxon data accessed via the iNaturalist API",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata-licensing",
+      "url": "https://www.wikidata.org/wiki/Wikidata:Licensing",
+      "title": "Wikidata: Licensing",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-09-30",
+      "attribution": "Wikidata contributors, \"Wikidata:Licensing\", CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "note": "Read to verify that structured data in Wikidata's main namespace is released under CC0."
+    },
+    {
+      "id": "figshare-api",
+      "url": "https://api.figshare.com/v2/articles/3559887",
+      "title": "Figshare API metadata for EltonTraits 1.0",
+      "license": "CC0-1.0",
+      "kind": "api",
+      "accessed": "2026-09-30",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "note": "Read to verify EltonTraits files and dataset licence."
+    },
+    {
+      "id": "inat-activity-us-la",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=9083&place_id=27&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Cardinalis cardinalis in US-LA",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-la",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2490384&gadmGid=USA.19_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Cardinalis cardinalis in US-LA",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "inat-activity-us-pa",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=9083&place_id=42&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Cardinalis cardinalis in US-PA",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-pa",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2490384&gadmGid=USA.39_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Cardinalis cardinalis in US-PA",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "inat-activity-us-al",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=9083&place_id=19&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa",
+      "title": "iNaturalist observations histogram for Cardinalis cardinalis in US-AL",
+      "license": "CC-BY-SA-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-al",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2490384&gadmGid=USA.1_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Cardinalis cardinalis in US-AL",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "inat-activity-us-in",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=9083&place_id=20&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Cardinalis cardinalis in US-IN",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-in",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2490384&gadmGid=USA.15_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Cardinalis cardinalis in US-IN",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "inat-activity-us-ar",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=9083&place_id=36&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Cardinalis cardinalis in US-AR",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-ar",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2490384&gadmGid=USA.4_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Cardinalis cardinalis in US-AR",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "inat-activity-us-nj",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=9083&place_id=51&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Cardinalis cardinalis in US-NJ",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-nj",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2490384&gadmGid=USA.31_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Cardinalis cardinalis in US-NJ",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "inat-activity-us-vt",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=9083&place_id=47&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Cardinalis cardinalis in US-VT",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-vt",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2490384&gadmGid=USA.46_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Cardinalis cardinalis in US-VT",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "inat-activity-us-de",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=9083&place_id=4&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Cardinalis cardinalis in US-DE",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-de",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2490384&gadmGid=USA.8_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Cardinalis cardinalis in US-DE",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
     },
     {
       "id": "inat-activity-us-ok",
@@ -352,131 +1211,165 @@
         "gbif-backbone",
         "itis"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "Linnaeus 1758, Cardinalis cardinalis; family Cardinalidae per the GBIF backbone and ITIS TSN 179124."
     },
     "external": {
       "sources": [
         "gbif-backbone",
-        "wikidata"
+        "wikidata",
+        "inat-taxon",
+        "itis"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "note": "GBIF usage key and iNaturalist taxon id were also confirmed directly against their APIs; Wikidata provides NCBI taxon id (P685), ITIS TSN (P815), eBird code (P3444), and iNaturalist id (P3151). Wikidata licence verified from Wikidata:Licensing."
     },
     "common_names": {
       "sources": [
         "wikidata"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "note": "Labels and sitelinks for English, French, German and Dutch common names.",
+      "derived": true
     },
     "conservation": {
       "sources": [
-        "wikidata"
+        "wikidata",
+        "wikipedia"
       ],
       "confidence": "High",
-      "note": "Wikidata P141 = least concern."
+      "note": "Wikidata P141 and the Wikipedia infobox both report least concern.",
+      "derived": true
     },
     "range": {
       "sources": [
-        "wikipedia"
+        "wikipedia",
+        "inat-taxon"
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "Country list described from the range: eastern and central United States, southern Canada, Mexico to the Isthmus of Tehuantepec; introduced to Bermuda and Hawaii."
+      "note": "Country list derived from the distribution text: southeastern Canada, eastern and southern United States, Mexico, northern Guatemala and Belize. Bermuda is listed as introduced. Cfa is included for the Shreveport/Louisiana locale; other climate classes across the broad range are intentionally omitted rather than over-enumerated."
     },
     "traits.body_plan": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "Vertebrate, chordate, feathered, endothermic bird."
     },
     "traits.limb_count": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "note": "Biped: two legs; the wings are not counted as limbs.",
+      "derived": true
     },
     "traits.locomotion_modes": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Hops on the ground through trees and shrubbery while feeding; flies between cover."
+      "note": "Wikipedia describes it as a ground feeder that finds food while hopping through trees or shrubbery; flight is implicit in the described bird body and territorial behaviour from tree tops.",
+      "derived": true
     },
     "traits.thermoregulation": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "note": "Winter heat-retention behaviour and shivering are described for this bird.",
+      "derived": true
     },
     "traits.skin": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "Feathers: plumage described in detail in the Description section."
     },
     "traits.flight": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "Powered flight between perches, trees and feeders."
     },
     "traits.respiration": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Authored from avian body plan; no separate respiratory source was needed beyond the source establishing the species as a bird."
     },
     "traits.metamorphosis": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
-    },
-    "traits.perching": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High"
+      "confidence": "High",
+      "derived": true,
+      "note": "Authored from the described bird life cycle of egg, nestling, juvenile and adult; no metamorphic larval stage is described."
     },
     "traits.nest_type": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Cup nest built in a well-concealed spot in dense shrub or a low tree."
+      "note": "Female builds a cup nest of twigs, bark strips, grasses and fibers.",
+      "derived": true
     },
-    "traits.size_class": {
-      "sources": [],
-      "confidence": "Low",
-      "derived": true,
-      "note": "From mass_kg (< 0.05 kg)."
-    },
-    "traits.mass_kg": {
+    "traits.perching": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Described adult weight 33.6-65 g with an average of 44.8 g."
+      "note": "Mid-sized perching songbird; males sing from tree tops or high locations.",
+      "derived": true
+    },
+    "traits.size_class": {
+      "sources": [
+        "eltontraits"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg below 0.05 kg. EltonTraits licence verified from figshare API metadata."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "eltontraits"
+      ],
+      "confidence": "High",
+      "note": "EltonTraits BirdFuncDat BodyMass-Value 42.64 g converted to kilograms.",
+      "derived": true
     },
     "traits.mass_range_kg": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Described adult weight range 33.6-65 g."
+      "note": "Adult weighs 33.6-65 g.",
+      "derived": true
     },
     "traits.length_m": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Midpoint of the described 21-23.5 cm body length."
+      "derived": true,
+      "note": "Midpoint of 21-23.5 cm body length."
     },
     "traits.wingspan_m": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Midpoint of the described 25-31 cm wingspan."
+      "derived": true,
+      "note": "Midpoint of 25-31 cm wingspan."
     },
     "traits.lifespan_y": {
       "sources": [
@@ -484,14 +1377,16 @@
       ],
       "confidence": "Low",
       "derived": true,
-      "note": "Wikipedia gives a oldest wild bird of 15 years 9 months and adult annual survival of 60-65%. Using the midpoint annual survival p=0.625 and the expected-lifespan approximation 1/(1-p) for a constant-hazard population gives about 2.7 years for a bird that reaches breeding age; treated as a rough estimate, not a sourced figure."
+      "note": "Wikipedia gives adult annual survival of 60-65%, but no typical lifespan. A rough constant-hazard estimate using midpoint survival 0.625 gives 1/(1-0.625)=2.67 adult years; rounded down to 2.5 y to avoid false precision."
     },
     "traits.diet": {
       "sources": [
+        "eltontraits",
         "wikipedia"
       ],
-      "confidence": "High",
-      "note": "Mainly granivorous: up to 90% weed seeds, grains and fruit, plus insects (beetles, cicadas, grasshoppers); the young are fed almost entirely on insects."
+      "confidence": "Medium",
+      "derived": true,
+      "note": "EltonTraits lists Diet-PlantO 70, Diet-Fruit 10, Diet-Inv 20. Wikipedia says adults eat mainly weed seeds, grains and fruits, up to 90%, and also insects; PlantO is mapped to schema seed because the text explicitly identifies seeds/grains as the main plant food."
     },
     "traits.social": {
       "sources": [
@@ -499,14 +1394,16 @@
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "Mated pairs generally stay together year-round; group_size is a judgement."
+      "note": "Mated pairs often travel together, can stay together year-round, and flocking outside breeding is represented by allowing small groups at feeders; group_size maximum is authored judgement."
     },
     "traits.activity_pattern": {
       "sources": [
+        "eltontraits",
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Sings and feeds by day; fluffs down feathers to retain warmth in winter."
+      "note": "EltonTraits Nocturnal=0; Wikipedia describes song, feeding and territorial behaviour during dawn/day/dusk rather than night.",
+      "derived": true
     },
     "traits.defense": {
       "sources": [
@@ -514,23 +1411,24 @@
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "Judgement: flees from predators; the male defends the territory by chasing intruders."
+      "note": "Authored mapping: alarm-chip near predators, then flee to dense shrubs or perches."
     },
     "traits.wariness": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "Medium",
+      "confidence": "Low",
       "derived": true,
-      "note": "Judgement from the described behaviour: common and tame at feeders, but flies to cover when disturbed."
+      "note": "Judgement: common in gardens and at feeders but still a wild songbird that flees when closely approached."
     },
     "habitat.use": {
       "sources": [
+        "eltontraits",
         "wikipedia"
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "Ground feeder that hops through trees or shrubbery; nests in dense shrubs and low trees."
+      "note": "EltonTraits foraging strata: ground 40, understory 20, mid-high 20, canopy 20. Understory/mid-high/canopy are mapped to arboreal for the schema."
     },
     "habitat.shelter_tag": {
       "sources": [
@@ -538,57 +1436,102 @@
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "Nests and takes cover in dense shrubs, trees and vine tangles."
+      "note": "Habitat includes shrublands and gardens; nests are well concealed in dense shrub or low tree."
     },
     "habitat.resources": {
       "sources": [
+        "eltontraits",
         "wikipedia"
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "Weights follow the described diet: weed seeds, grains and fruit, insects; nests in dense cover."
+      "note": "Food tags reflect EltonTraits diet and Wikipedia's seeds/grains/fruits/insects, including young fed almost entirely insects. Perch, shrub_thicket and nest_cup reflect perching song and dense-shrub cup nesting."
+    },
+    "habitat.requires": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement from nesting in well-concealed dense shrubs or low trees; 40 m is an authored placement radius for the simulation."
+    },
+    "habitat.suitability": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement curves for a suburban garden species associated with gardens, shrublands, woodland edges and dense cover interspersed with open areas."
     },
     "habitat.human_tolerance": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High",
-      "note": "Numerous in suburban areas, woodland edges, parks and gardens; common at bird feeders."
+      "confidence": "Medium",
+      "derived": true,
+      "note": "uses_gardens and Adapter affinity from garden, park and feeding-station descriptions; numeric tolerance settings are authored judgement for the simulation."
     },
     "seasonal.strategy": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Year-round resident; no migration described."
+      "note": "Distribution map and text describe the species as year-round across its range, and pairs may stay together year-round.",
+      "derived": true
     },
     "seasonal.phases": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "Low",
+      "confidence": "Medium",
       "derived": true,
-      "note": "Two to four clutches a year with incubation of 12-13 days is from Wikipedia; exact phase dates and the flocking window are a judgement."
+      "note": "Territory, breeding, multiple broods and pair behaviour are sourced; exact calendar boundaries are judgement for a southern US garden."
     },
     "seasonal.life_stages": {
       "sources": [
         "wikipedia"
       ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Incubation takes 12 or 13 days; young fledge 10 or 11 days after hatching; juvenile beak and plumage change by fall. Juvenile duration and scale are authored approximations for preview/import."
+    },
+    "activity": {
+      "sources": [],
       "confidence": "Low",
       "derived": true,
-      "note": "Incubation 12-13 days plus fledging at 10-11 days; duration_days and scale are a judgement approximation."
+      "note": "Placeholder before running tools/fetch_activity.py; replaced by US-LA activity provenance after the fetch."
     },
     "vocalizations.song": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "note": "Clear whistled patterns repeated and then varied, both sexes singing and the male singing from a high perch to defend territory; the recorded phrases include 'what-cheer, what-cheer', 'purty, purty, purty' and 'cheer, cheer, cheer, what'. Sung year-round.",
+      "derived": true
     },
     "vocalizations.alarm": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "note": "Short metallic chip when predators approach the nest.",
+      "derived": true
+    },
+    "vocalizations.contact_chip": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored from the same chip-call description and mated-pair movement; Wikipedia does not separately quantify a contact call."
+    },
+    "vocalizations.courtship_feed": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored quiet pair-contact call around courtship feeding; the beak-to-beak courtship feeding behaviour is sourced but a specific quiet note is not quantified."
     },
     "look": {
       "sources": [
@@ -596,18 +1539,42 @@
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "Adult male: brilliant crimson red with a black face mask, prominent raised crest and coral-orange conical bill; female fawn with reddish tint. Model follows the male. Proportions and crest placement are judgement."
+      "note": "Male look uses brilliant crimson plumage, black face mask, coral beak, darker back/wings, strong cone-shaped beak and prominent raised crest from Wikipedia; proportions, colours and extra-part dimensions are judgement for a readable block model."
     },
     "behavior": {
       "sources": [],
       "confidence": "Low",
       "derived": true,
-      "note": "Authored parameters for the shared perching-songbird program: seed-based ground foraging, a long nest-building window reflecting two to four clutches, and a short flee distance reflecting feeder tolerance."
+      "note": "Authored parameters for bt-perching-songbird-v1. food_tag=seed matches the main adult diet and habitat resource; nest window March-August reflects repeated broods; flee and cooldown values are judgement for a garden songbird."
+    },
+    "vocalizations.chip": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Wikipedia describes a distinctive short metallic chip as the alarm call; the cooldown is authored judgement."
     }
   },
   "contributors": [
     {
       "name": "speeeecies maintainers",
+      "agent": "opencode"
+    },
+    {
+      "name": "sisyphus-agent",
+      "agent": "claude-code"
+    },
+    {
+      "name": "opencode agent (al-birmingham locale, issue #73)",
+      "agent": "opencode"
+    },
+    {
+      "name": "speeeecies contributors",
+      "agent": "opencode"
+    },
+    {
+      "name": "speeeecies agent",
       "agent": "claude-code"
     }
   ]
