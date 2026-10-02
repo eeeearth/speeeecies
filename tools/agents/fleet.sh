@@ -61,6 +61,14 @@ FLEET_MAX_PROVIDER_STREAK=${FLEET_MAX_PROVIDER_STREAK:-2}
 # Retiring a locale after three tries was throwing away unfinished work that a
 # fourth would have finished; four locales have now burned all three.
 FLEET_MAX_ATTEMPTS_LOCALE=${FLEET_MAX_ATTEMPTS_LOCALE:-5}
+# How long a spawn attempt counts against a slug's retry budget. The budget used to
+# be permanent: nothing ever decremented it except a model-route refund, so an agent
+# that ran and produced no PR spent an attempt exactly as if the ISSUE were
+# unworkable. At a 54% no-PR rate that drained the queue outright -- every candidate
+# reached its cap without the issue ever being tested, and the fleet sat at
+# state=STARVED with three perfectly spawnable issues in front of it. Attempts now
+# expire, so a budget regenerates while churn inside any single window stays bounded.
+FLEET_ATTEMPT_COOLDOWN_SECONDS=${FLEET_ATTEMPT_COOLDOWN_SECONDS:-86400}
 BRANCH_PREFIX=${BRANCH_PREFIX:-$(gh api user -q .login 2>/dev/null || echo contributor)}
 BRIEF_SPECIES=${BRIEF_SPECIES:-$SCRIPT_DIR/brief-species.md}
 BRIEF_LOCALE=${BRIEF_LOCALE:-$SCRIPT_DIR/brief-locale.md}
@@ -717,7 +725,9 @@ cmd_spawn() {
   # issue-state and duplicate-PR checks so those do not burn budget, and before
   # the collision check so they do. refund_attempt still strips the row when the
   # death was a model route rather than the issue's fault.
-  printf '%s\t%s\t%s\n' "$issue" "$kind" "$slug" >> "$STATE_DIR/queue.tsv"
+  # Fourth column is the epoch the attempt was spent, so the budget can expire.
+  printf '%s\t%s\t%s\t%s\n' "$issue" "$kind" "$slug" "$(date +%s)" \
+    >> "$STATE_DIR/queue.tsv"
   [ -e "$wpath" ] && die "worktree path already exists: $wpath"
   # A leftover branch is a retry, not a fatal collision, and cmd_spawn is called
   # directly from the refill loop, so a die() here would exit the whole supervisor.
@@ -1344,9 +1354,15 @@ cmd_supervise() {
       busy=$(for m in "${metas[@]}"; do basename "$m" .meta; done | paste -sd' ' -)
       if [ -f "$STATE_DIR/queue.tsv" ]; then
         pick=$(printf '%s\n' "$pick" | awk -F'\t' -v q="$STATE_DIR/queue.tsv" \
-          -v max="$FLEET_MAX_ATTEMPTS" -v maxloc="$FLEET_MAX_ATTEMPTS_LOCALE" -v busy="$busy" '
+          -v max="$FLEET_MAX_ATTEMPTS" -v maxloc="$FLEET_MAX_ATTEMPTS_LOCALE" \
+          -v cut="$(( $(date +%s) - FLEET_ATTEMPT_COOLDOWN_SECONDS ))" -v busy="$busy" '
           BEGIN { k = split(busy, b, " "); for (i = 1; i <= k; i++) if (b[i] != "") live[b[i]] = 1 }
-          FILENAME == q { if ($3 != "") n[$2 "/" $3]++; next }
+          # Only attempts inside the cooldown window count. An unstamped row predates
+          # the schema and always counted, so it still counts: "N rows = N attempts
+          # spent" is the invariant the filter has always had, and silently expiring
+          # unstamped rows would retire issues nobody retried. Every row written from
+          # now on is stamped, so the ledger drains on its own from here.
+          FILENAME == q { if ($3 != "" && ($4 == "" || ($4 + 0) > cut)) n[$2 "/" $3]++; next }
           { if ($2 == "" || $3 == "") next; key = $3 "/" $2; if ($2 in live) next;
             lim = ($3 == "locale") ? maxloc : max;
             if ((key in n) && n[key] >= lim) next; print }

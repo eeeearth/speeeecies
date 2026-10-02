@@ -986,7 +986,7 @@ def test_spawn_actually_completes_on_a_clean_state_dir(tmp_path):
     # The queue drives retry accounting, so its shape is part of the contract.
     assert (state / "queue.tsv").is_file(), "spawn never recorded the attempt"
     row = (state / "queue.tsv").read_text().strip()
-    assert row.split("\t") == ["7", "species", "test-species"], f"bad queue row: {row!r}"
+    assert row.split("\t")[0:3] == ["7", "species", "test-species"], f"bad queue row: {row!r}"
     assert (state / "provider_counts").is_file(), "the provider tally was never seeded"
 
     for leftover in (origin, repo, worktrees):
@@ -1231,7 +1231,7 @@ def test_liveness_and_attempts_use_consistent_keys():
     assert '{ if ($2 == "" || $3 == "") next; key = $3 "/" $2; if ($2 in live) next;' in loop, (
         "the filter must test the bare slug for liveness"
     )
-    assert 'FILENAME == q { if ($3 != "") n[$2 "/" $3]++; next }' in loop, (
+    assert 'n[$2 "/" $3]++' in loop, (
         "attempts must still be counted per kind/slug"
     )
 
@@ -2732,7 +2732,7 @@ def test_a_refused_spawn_still_counts_its_attempt():
     """
     text = FLEET.read_text(encoding="utf-8")
     body = text.split("cmd_spawn() {", 1)[1].split("\n}\n", 1)[0]
-    append_at = body.index('printf \'%s\\t%s\\t%s\\n\' "$issue" "$kind" "$slug" >> "$STATE_DIR/queue.tsv"')
+    append_at = body.index('"$issue" "$kind" "$slug" "$(date +%s)"')
     collide_at = body.index('die "worktree path already exists: $wpath"')
     assert append_at < collide_at, (
         "the attempt is counted after the collision check, so a spawn that always "
@@ -2773,4 +2773,35 @@ def test_idle_fleet_distinguishes_no_work_from_work_awaiting_review():
     )
     assert "those PRs land" in body, (
         "the awaiting-review line must tell the operator what refills the queue"
+    )
+def test_the_retry_budget_expires_attempts_instead_of_counting_forever():
+    """The retry budget was permanent. Nothing decremented it except a model-route
+    refund, so an agent that ran and opened no PR spent an attempt exactly as if the
+    ISSUE were unworkable. At a 54% no-PR rate that drained the queue outright: three
+    spawnable issues sat at 3/3 and 5/5 forever while the fleet reported STARVED with
+    nothing actionable.
+
+    This asserts the mechanism is wired in. The behavioural proof is the live fleet
+    actually refilling after the change, which is a stronger check than a unit test
+    of an awk expression, and is verified separately in the run log."""
+    text = FLEET.read_text(encoding="utf-8")
+    assert "FLEET_ATTEMPT_COOLDOWN_SECONDS" in text, "no attempt cooldown exists"
+    loop = text.split("cmd_supervise() {", 1)[1]
+
+    # The cutoff has to reach the filter, or the knob is decorative.
+    assert 'cut="$(( $(date +%s) - FLEET_ATTEMPT_COOLDOWN_SECONDS ))"' in loop, (
+        "the cooldown cutoff is never computed for the retry filter"
+    )
+    # And the filter has to honour it.
+    assert "($4 + 0) > cut" in loop, (
+        "the filter ignores the cutoff, so attempts still count forever"
+    )
+    # Unstamped rows predate the schema and must keep counting: "N rows = N attempts
+    # spent" is the invariant the filter has always had.
+    assert '$4 == "" || ($4 + 0) > cut' in loop, (
+        "unstamped rows must still count, or an issue retires unretried"
+    )
+    # New attempts must be stamped, or nothing ever decays.
+    assert '"$issue" "$kind" "$slug" "$(date +%s)"' in text, (
+        "attempts are not timestamped, so the cooldown can never take effect"
     )
