@@ -1,0 +1,934 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Sialia sialis",
+  "slug": "sialia-sialis",
+  "common_names": {
+    "en": "Eastern bluebird",
+    "fr": "merlebleu de l'Est",
+    "de": "Rotkehl-Hüttensänger",
+    "nl": "roodkeelsialia"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Passeriformes",
+    "family": "Turdidae",
+    "genus": "Sialia",
+    "authority": "(Linnaeus, 1758)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2490941,
+    "inat_taxon_id": 12942,
+    "itis_tsn": 179801,
+    "wikidata": "Q600880",
+    "ncbi_taxon_id": 172413,
+    "ebird_code": "easblu"
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "US",
+      "CA",
+      "MX",
+      "BM",
+      "GT",
+      "HN",
+      "NI",
+      "SV"
+    ],
+    "koppen": [
+      "Cfa",
+      "Cfb",
+      "Dfa",
+      "Dfb",
+      "BSh",
+      "BSk",
+      "Cwa",
+      "Aw"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Hop",
+      "Fly"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Cavity",
+    "perching": true,
+    "size_class": "Tiny",
+    "mass_kg": 0.0275,
+    "mass_range_kg": [
+      0.027,
+      0.034
+    ],
+    "length_m": 0.185,
+    "wingspan_m": 0.285,
+    "lifespan_y": 1.0,
+    "diet": {
+      "invertebrate": 0.7,
+      "fruit": 0.3
+    },
+    "social": {
+      "structure": "Pair",
+      "group_size": [
+        1,
+        100
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.35
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.7,
+      "arboreal": 0.2,
+      "aerial": 0.1
+    },
+    "shelter_tag": "cavity",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.75
+      },
+      {
+        "tag": "berry",
+        "kind": "Herbivory",
+        "weight": 0.5,
+        "months": [
+          10,
+          11,
+          12,
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.5,
+        "months": [
+          10,
+          11,
+          12,
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "tag": "cavity",
+        "kind": "Nesting",
+        "weight": 0.8
+      },
+      {
+        "tag": "nest_cup",
+        "kind": "Nesting",
+        "weight": 0.6
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.8
+      },
+      {
+        "tag": "shrub_thicket",
+        "kind": "Shelter",
+        "weight": 0.4
+      }
+    ],
+    "requires": [
+      {
+        "resource_within_m": 80,
+        "tag": "perch"
+      }
+    ],
+    "suitability": {
+      "curves": [
+        {
+          "covariate": "canopy",
+          "curve": [
+            [
+              0.0,
+              0.8
+            ],
+            [
+              0.35,
+              1.0
+            ],
+            [
+              0.75,
+              0.45
+            ],
+            [
+              1.0,
+              0.15
+            ]
+          ],
+          "weight": 1.0
+        },
+        {
+          "covariate": "impervious",
+          "curve": [
+            [
+              0.0,
+              1.0
+            ],
+            [
+              0.35,
+              0.9
+            ],
+            [
+              0.7,
+              0.35
+            ],
+            [
+              1.0,
+              0.05
+            ]
+          ],
+          "weight": 0.7
+        },
+        {
+          "covariate": "resource:perch",
+          "curve": [
+            [
+              0,
+              0.2
+            ],
+            [
+              2,
+              0.75
+            ],
+            [
+              5,
+              1.0
+            ]
+          ],
+          "weight": 1.0
+        },
+        {
+          "covariate": "resource:cavity",
+          "curve": [
+            [
+              0,
+              0.25
+            ],
+            [
+              1,
+              0.8
+            ],
+            [
+              4,
+              1.0
+            ]
+          ],
+          "weight": 0.8
+        }
+      ],
+      "combine": "WeightedMean"
+    },
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "impervious_max": 0.65,
+      "light_max": 0.7,
+      "noise_max": 0.65,
+      "flight_distance_m": 8,
+      "road_mortality": "Medium",
+      "uses_gardens": true,
+      "notes": "Uses suburban parks, backyards, golf courses and open country with scattered trees; accepts nest boxes and perches on wires, branches or fence posts before dropping to ground prey. Human-tolerance thresholds are authored for suburban placement."
+    }
+  },
+  "seasonal": {
+    "strategy": "PartialMigration",
+    "winter_fraction": 0.7,
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "03-01",
+        "end": "08-31",
+        "region": "US",
+        "note": "Spring and summer breeding; females typically raise two broods, so the phase spans the main two-brood season in the United States."
+      },
+      {
+        "name": "nesting",
+        "start": "03-15",
+        "end": "07-31",
+        "region": "US",
+        "behavior_params": {
+          "nest_m1": 3,
+          "nest_m2": 7
+        },
+        "note": "Cavity or nest-box construction and chick rearing; exact southern garden dates are judgement within the sourced spring-summer breeding window."
+      },
+      {
+        "name": "flocking",
+        "start": "09-01",
+        "end": "02-28",
+        "note": "Outside the breeding season, birds may gather in flocks and, where wintering, seek cover in thickets or orchards with food."
+      },
+      {
+        "name": "absent",
+        "start": "11-15",
+        "end": "03-01",
+        "region": "CA",
+        "fraction": 0.5,
+        "note": "Northern and western birds tend to migrate; Canada entry is a coarse authored regional absence fraction, not applied to Louisiana."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg"
+      },
+      {
+        "stage": "Juvenile",
+        "duration_days": 65,
+        "requires_tag": "cavity",
+        "scale": 0.85
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US-LA",
+        "monthly": [
+          0.83,
+          1.0,
+          0.82,
+          0.66,
+          0.81,
+          0.77,
+          0.68,
+          0.59,
+          0.57,
+          0.53,
+          0.66,
+          0.65
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 91062,
+        "sources": [
+          "inat-activity-us-la",
+          "gbif-activity-us-la"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 27,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=12942&place_id=27&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=27&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "total": 446,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.19_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2490941&gadmGid=USA.19_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.19_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 90616,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "bt-perching-songbird-v1",
+    "params": {
+      "flee_m": 8,
+      "food_tag": "invertebrate",
+      "song": "song",
+      "alarm": "alarm",
+      "song_cooldown_s": 12,
+      "nest_m1": 3,
+      "nest_m2": 7
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "song",
+      "context": "Song",
+      "season_months": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "time_windows": [
+        "DawnChorus",
+        "Day",
+        "Dusk"
+      ],
+      "cooldown_s": 20,
+      "loudness": "Moderate",
+      "description": "Soft warbling song often rendered as chiti WEEW wewidoo, given from an exposed perch during the breeding season."
+    },
+    {
+      "call_id": "alarm",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day",
+        "Dusk"
+      ],
+      "cooldown_s": 5,
+      "loudness": "Moderate",
+      "description": "Song-like warning cry and agitated wing-flicking or warbling given when predators approach the nest or territory."
+    },
+    {
+      "call_id": "contact",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 15,
+      "loudness": "Quiet",
+      "description": "Soft jeew or chir-wi contact notes used by perched birds and pairs moving through open habitat."
+    },
+    {
+      "call_id": "begging",
+      "context": "Chirp",
+      "season_months": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 8,
+      "loudness": "Quiet",
+      "description": "Thin nestling begging calls from within a cavity or nest box when an adult visits with food.",
+      "recordings": [
+        "xc100032"
+      ]
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.45,
+      "leg_length_ratio": 0.34,
+      "head_scale": 0.82,
+      "neck_angle_deg": 14,
+      "tail_ratio": 0.5,
+      "wing_aspect": 2.8,
+      "beak_ratio": 0.38,
+      "girth_ratio": 0.95
+    },
+    "palette": {
+      "body": "#2b62a3",
+      "belly": "#f0e5cf",
+      "markings": "#b65d30",
+      "accent": "#7f8a92",
+      "eye": "#111111"
+    },
+    "part_colors": {
+      "head": "body",
+      "wing_*": "body",
+      "tail": "body",
+      "breast": "markings",
+      "beak": "eye",
+      "leg_*": "accent"
+    },
+    "extra_parts": [
+      {
+        "name": "rust_throat",
+        "parent": "breast",
+        "offset": [
+          0.28,
+          0.32,
+          0
+        ],
+        "size": [
+          0.55,
+          0.35,
+          0.95
+        ],
+        "color": "markings"
+      },
+      {
+        "name": "pale_lower_belly",
+        "parent": "breast",
+        "offset": [
+          -0.1,
+          -0.2,
+          0
+        ],
+        "size": [
+          0.75,
+          0.55,
+          1.03
+        ],
+        "color": "belly"
+      },
+      {
+        "name": "female_grey_wash",
+        "parent": "head",
+        "offset": [
+          -0.15,
+          0.05,
+          0
+        ],
+        "size": [
+          0.7,
+          0.65,
+          1.02
+        ],
+        "color": "accent"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "hop": {},
+      "fly": {},
+      "perched": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2490941",
+      "title": "GBIF Backbone Taxonomy: Sialia sialis",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-09-30",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q600880",
+      "title": "Wikidata: Sialia sialis (Q600880)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-09-30",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Eastern_bluebird",
+      "title": "Wikipedia: Eastern bluebird",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-09-30",
+      "attribution": "Wikipedia contributors, \"Eastern bluebird\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/ITISWebService/jsonservice/getFullRecordFromTSN?tsn=179801",
+      "title": "ITIS: Sialia sialis, TSN 179801",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-09-30",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "eltontraits",
+      "url": "https://doi.org/10.6084/m9.figshare.3559887.v1",
+      "title": "EltonTraits 1.0: species-level foraging attributes of the world's birds and mammals (BirdFuncDat)",
+      "license": "CC0-1.0",
+      "kind": "dataset",
+      "accessed": "2026-09-30",
+      "attribution": "Wilman, H. et al. (2014) EltonTraits 1.0. Ecology 95:2027",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "figshare-eltontraits",
+      "url": "https://api.figshare.com/v2/articles/3559887",
+      "title": "Figshare metadata for EltonTraits 1.0",
+      "license": "CC0-1.0",
+      "kind": "api",
+      "accessed": "2026-09-30",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "note": "Confirms CC0 licence and BirdFuncDat file for EltonTraits."
+    },
+    {
+      "id": "xc100032",
+      "url": "https://commons.wikimedia.org/wiki/File:Sialia_sialis_-_Eastern_Bluebird_-_XC100032.ogg",
+      "title": "Eastern bluebird begging calls, xeno-canto XC100032",
+      "license": "CC-BY-SA-3.0",
+      "kind": "recording",
+      "accessed": "2026-09-30",
+      "attribution": "Jonathon Jongsma, xeno-canto XC100032, via Wikimedia Commons, CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    {
+      "id": "inat-activity-us-la",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=12942&place_id=27&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Sialia sialis in US-LA",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-la",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2490941&gadmGid=USA.19_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Sialia sialis in US-LA",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "itis",
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "GBIF, iNaturalist, ITIS, NCBI and eBird identifiers confirmed from GBIF/iNaturalist APIs and Wikidata properties."
+    },
+    "common_names": {
+      "sources": [
+        "wikidata",
+        "itis"
+      ],
+      "confidence": "High",
+      "note": "English and French names from ITIS/Wikidata; German and Dutch labels from Wikipedia sitelinks."
+    },
+    "conservation": {
+      "sources": [
+        "wikidata",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Wikidata/IUCN status shown as Least Concern; IUCN page itself not used as a source because it is not openly licensed."
+    },
+    "range": {
+      "sources": [
+        "wikipedia",
+        "itis"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Country list derived from Wikipedia's range: southern Canada to Gulf states, southeastern Arizona to Nicaragua, plus Bermuda subspecies; ITIS confirms Canada, continental US, Mexico, Caribbean and Middle America jurisdiction/origin. Köppen classes are coarse judgement from that broad range, including the target Cfa Louisiana locale."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Perches and swoops to ground prey; modeled with hop on ground plus powered flight."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Nests are in abandoned woodpecker holes or other cavities; nesting boxes are documented."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Observed on wires and open perches; feeds by perching on a high point then swooping to ground prey."
+    },
+    "traits.size_class": {
+      "sources": [
+        "eltontraits"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Derived from mass_kg below 0.05 kg."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "eltontraits",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "EltonTraits BodyMass-Value 27.5 g; Wikipedia range 27-34 g."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Converted from Wikipedia's 27-34 g."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of Wikipedia's 16-21 cm length range."
+    },
+    "traits.wingspan_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of Wikipedia's 25-32 cm wingspan range."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Wikipedia gives maximum 6-10 years but says most die within first year; 1.0 is a conservative authored typical lifespan, not a quoted mean."
+    },
+    "traits.diet": {
+      "sources": [
+        "eltontraits",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "EltonTraits row for Sialia sialis has Diet-Inv 70 and Diet-Fruit 30; Wikipedia says about two thirds invertebrates and the remainder wild fruits or berries."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Territorial during breeding but sometimes gathers in flocks of over a hundred; Pair structure chosen for breeding-garden behaviour, with group_size allowing winter flocks."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "eltontraits",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "EltonTraits Nocturnal=0; Wikipedia descriptions are daytime perching, feeding and breeding behaviour."
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Warning calls, wing-flicking and warbling near predators; modeled as Flee for the schema's single defense field."
+    },
+    "traits.wariness": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: moderately wary, but commonly visible on exposed perches in suburban parks/backyards and uses nest boxes."
+    },
+    "habitat.use": {
+      "sources": [
+        "eltontraits",
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "EltonTraits ForStrat-ground 100; Wikipedia describes perching on branches, wires or fence posts before dropping to the ground, so arboreal/aerial shares are authored for simulation behaviour."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Cavity selected because nests are in cavities and birds wintering locally seek cover in thickets/orchards; cavity is most important for placement."
+    },
+    "habitat.resources": {
+      "sources": [
+        "eltontraits",
+        "wikipedia",
+        "xc100032"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Food resources follow EltonTraits and Wikipedia diet; perch/cavity/nest_cup reflect perching, cavity nesting and cup-like nest construction; berry/fruit winter months are judgement from fruit/berry winter-food description."
+    },
+    "habitat.requires": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement for the behavior program: perching bluebirds need at least one nearby perch in the simulation."
+    },
+    "habitat.suitability": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement from habitat description: open country with trees, suburban parks/backyards and sparse understory; curves are authored for suburban-lot placement."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Uses suburban parks, backyards, golf courses and nest boxes; impervious/light/noise/flight-distance values are authored judgement for simulation placement."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Described as migratory; wintering depends on food availability, so modeled as PartialMigration."
+    },
+    "seasonal.winter_fraction": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement for the target southern-US locale: many birds remain where winter food is available, while northern/western birds migrate."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Spring/summer mating, two broods, cavity nesting and winter flocking/cover from Wikipedia; exact month-day boundaries are authored for a southern-US garden."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Egg and juvenile stages from incubation 13-16 days, fledging 15-20 days, and juvenile plumage until maturity; duration and scale are simulation judgement."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for bt-perching-songbird-v1: insect ground-foraging from perches, alarm/flee to perch, and March-July nest-building window for a cavity-nesting bluebird."
+    },
+    "vocalizations.song": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Wikipedia gives soft warbles of jeew/chir-wi and melodious song chiti WEEW wewidoo."
+    },
+    "vocalizations.alarm": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Predator approach produces a song-like warning cry, wing-flicking and warbling; cooldown/time windows are authored."
+    },
+    "vocalizations.contact": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Contact description uses the call syllables listed by Wikipedia; context/cooldown are authored."
+    },
+    "vocalizations.begging": {
+      "sources": [
+        "xc100032",
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "xeno-canto XC100032 documents begging calls from a nest hole after an adult food visit; months/time window/cooldown are authored from breeding season."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Male has bright blue head/back/wings and brownish-red breast; female is grayer with blue wings/tail and paler orange breast. Palette and block proportions are authored judgement for a stylised model."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies contributors",
+      "agent": "opencode"
+    }
+  ]
+}
