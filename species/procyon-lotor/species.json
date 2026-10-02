@@ -200,7 +200,8 @@
       "flight_distance_m": 15,
       "road_mortality": "Medium",
       "uses_gardens": true,
-      "notes": "Thrives in cities and suburbs, where fruit and insects in gardens and leftovers in municipal waste are readily available, and sleeps in hollows in old garden trees, garages, sheds and attics. Road traffic is one of the two commonest causes of death in much of the range. It climbs a vertical structure when threatened rather than running, and mostly avoids open ground."
+      "notes": "Thrives in cities and suburbs, where fruit and insects in gardens and leftovers in municipal waste are readily available, and sleeps in hollows in old garden trees, garages, sheds and attics. Road traffic is one of the two commonest causes of death in much of the range. It climbs a vertical structure when threatened rather than running, and mostly avoids open ground.",
+      "dist_building_min_m": 0
     },
     "density_per_ha": {
       "min": 0.05,
@@ -249,6 +250,13 @@
         "start": "09-01",
         "end": "11-30",
         "note": "Late-summer and autumn fruits and nuts are eaten heavily to build the fat stores for winter."
+      },
+      {
+        "name": "breeding",
+        "start": "01-01",
+        "end": "06-30",
+        "region": "US-MO",
+        "note": "After 63 to 65 days of gestation a litter of typically two to five young is born; mating is in late winter and early spring in the north."
       }
     ],
     "life_stages": [
@@ -456,6 +464,55 @@
           },
           "used": [
             "inat"
+          ]
+        }
+      },
+      {
+        "region": "US-MO",
+        "monthly": [
+          0.8,
+          0.93,
+          0.64,
+          0.72,
+          0.81,
+          0.98,
+          1.0,
+          0.99,
+          0.75,
+          0.77,
+          0.84,
+          0.7
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 3102,
+        "sources": [
+          "inat-activity-us-mo",
+          "gbif-activity-us-mo"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 28,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=41663&place_id=28&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=28&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 1691,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "C",
+            "area": [
+              "gadmGid",
+              "USA.26_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5218786&gadmGid=USA.26_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.26_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "total": 1411,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
           ]
         }
       }
@@ -773,6 +830,24 @@
       "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
       "accessed": "2026-10-01",
       "kind": "api"
+    },
+    {
+      "id": "inat-activity-us-mo",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=41663&place_id=28&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Procyon lotor in US-MO",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-mo",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5218786&gadmGid=USA.26_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+      "title": "GBIF occurrence search for Procyon lotor in US-MO",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
     }
   ],
   "provenance": {
@@ -827,7 +902,8 @@
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "note": "Four legs."
     },
     "traits.locomotion_modes": {
       "sources": [
@@ -841,7 +917,8 @@
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "note": "'Its grayish coat mostly consists of dense underfur, which insulates it against cold weather.'"
     },
     "traits.skin": {
       "sources": [
@@ -853,7 +930,8 @@
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "note": "A mammal; it cannot fly."
     },
     "traits.respiration": {
       "sources": [
@@ -865,14 +943,16 @@
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "note": "Born live as a placental mammal; no metamorphosis."
     },
     "traits.perching": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "'raccoons depend on vertical structures to climb when they feel threatened' and it climbs down headfirst, so it is an animal that goes up and comes down trees. The quadruped mesh plan has no built-in 'perched' pose, so the validator's MissingPerchedPose warning is left standing rather than cleared by setting perching false."
+      "note": "'raccoons depend on vertical structures to climb when they feel threatened' and it climbs down headfirst, so it is an animal that goes up and comes down trees. The quadruped mesh plan has no built-in 'perched' pose, so the validator's MissingPerchedPose warning is left standing rather than cleared by setting perching false.",
+      "derived": true
     },
     "traits.nest_type": {
       "sources": [
@@ -1124,6 +1204,10 @@
     {
       "name": "opencode agent (al-birmingham locale, issue #73)",
       "agent": "opencode"
+    },
+    {
+      "name": "speeeecies contributors",
+      "agent": "claude-code"
     }
   ]
 }
