@@ -1,0 +1,141 @@
+{
+  "schema_version": 1,
+  "format": "speeeecies/behavior",
+  "id": "fsm-penguin-colony-v1",
+  "kind": "fsm",
+  "description": "Colonial flightless seabird (penguin): rests and socialises in the colony on the ice, commutes over ice on foot when hungry, dives for prey at sea, hauls out to rest, and flees from threats (leopard seals and orcas at sea, giant petrels near chicks). No shared program fits: the ground forager assumes terrestrial food and burrow shelter, the songbird assumes flight and perching, and the anuran assumes nocturnal pond life.",
+  "params": {
+    "flee_m": 30,
+    "calm_m": 60,
+    "food_tag": "invertebrate",
+    "food_m": 60,
+    "commute_gait": "walk",
+    "forage_gait": "swim"
+  },
+  "initial": "colony",
+  "states": {
+    "colony": {
+      "action": {
+        "do": "idle"
+      },
+      "min_dwell_s": 5
+    },
+    "commute": {
+      "action": {
+        "do": "wander",
+        "gait": "${commute_gait}"
+      }
+    },
+    "dive_forage": {
+      "action": {
+        "do": "eat_nearest",
+        "tag": "${food_tag}",
+        "gait": "${forage_gait}"
+      }
+    },
+    "haul_out": {
+      "action": {
+        "do": "rest",
+        "at": "shelter"
+      },
+      "min_dwell_s": 30
+    },
+    "flee": {
+      "action": {
+        "do": "flee",
+        "gait": "${forage_gait}"
+      },
+      "min_dwell_s": 3
+    }
+  },
+  "transitions": [
+    {
+      "from": "*",
+      "to": "flee",
+      "when": {
+        "threat_within_m": "${flee_m}"
+      },
+      "priority": 100
+    },
+    {
+      "from": "*",
+      "to": "flee",
+      "when": {
+        "need": "fear",
+        "gt": 0.2
+      },
+      "priority": 90
+    },
+    {
+      "from": "flee",
+      "to": "colony",
+      "when": {
+        "not": {
+          "threat_within_m": "${calm_m}"
+        }
+      }
+    },
+    {
+      "from": "colony",
+      "to": "commute",
+      "when": {
+        "need": "hunger",
+        "gt": 0.5
+      }
+    },
+    {
+      "from": "colony",
+      "to": "commute",
+      "when": {
+        "chance": 0.2
+      }
+    },
+    {
+      "from": "colony",
+      "to": "haul_out",
+      "when": {
+        "need": "energy",
+        "gt": 0.7
+      }
+    },
+    {
+      "from": "commute",
+      "to": "dive_forage",
+      "when": {
+        "food_within_m": "${food_m}",
+        "tag": "${food_tag}"
+      }
+    },
+    {
+      "from": "commute",
+      "to": "colony",
+      "when": {
+        "chance": 0.1
+      }
+    },
+    {
+      "from": "dive_forage",
+      "to": "haul_out",
+      "when": {
+        "need": "hunger",
+        "lt": 0.2
+      }
+    },
+    {
+      "from": "haul_out",
+      "to": "colony",
+      "when": {
+        "need": "energy",
+        "lt": 0.2
+      }
+    },
+    {
+      "from": "haul_out",
+      "to": "dive_forage",
+      "when": {
+        "need": "hunger",
+        "gt": 0.6
+      }
+    }
+  ]
+}

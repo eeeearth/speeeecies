@@ -1,0 +1,684 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Urosaurus ornatus",
+  "slug": "urosaurus-ornatus",
+  "common_names": {
+    "en": "ornate tree lizard",
+    "es": "lagartija-arbolera común"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Reptilia",
+    "order": "Squamata",
+    "family": "Phrynosomatidae",
+    "genus": "Urosaurus",
+    "authority": "(Baird in Baird and Girard, 1852)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 8538855,
+    "inat_taxon_id": 36107,
+    "itis_tsn": 173954,
+    "wikidata": "Q3062093"
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "US",
+      "MX"
+    ],
+    "koppen": [
+      "BWh",
+      "BWk",
+      "BSk",
+      "Csa",
+      "Dsa",
+      "Dfb"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk",
+      "Climb"
+    ],
+    "thermoregulation": "Ectotherm",
+    "skin": "Scales",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Ground",
+    "perching": true,
+    "size_class": "Tiny",
+    "shoulder_height_m": 0.015,
+    "mass_kg": 0.0047,
+    "length_m": 0.059,
+    "lifespan_y": 5,
+    "diet": {
+      "invertebrate": 0.9,
+      "browse": 0.1
+    },
+    "senses": {
+      "vision_color": true,
+      "olfaction": "Med",
+      "hearing": "Med"
+    },
+    "social": {
+      "structure": "Group",
+      "group_size": [
+        1,
+        6
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.7
+  },
+  "habitat": {
+    "use": {
+      "arboreal": 0.55,
+      "ground": 0.45
+    },
+    "shelter_tag": "cavity",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.9
+      },
+      {
+        "tag": "browse",
+        "kind": "Herbivory",
+        "weight": 0.1
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.7
+      },
+      {
+        "tag": "cavity",
+        "kind": "Shelter",
+        "weight": 0.6
+      },
+      {
+        "tag": "shrub_thicket",
+        "kind": "Shelter",
+        "weight": 0.5
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "light_max": 1.0,
+      "notes": "Needs warm sun: mean body temperature about 35 C in desert and montane habitat, and about 38 C in desert riparian habitat. Takes to shrubs, trees and boulders, so a planted yard with cover suits it."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "03-01",
+        "end": "08-31",
+        "note": "Females are pregnant from late March through August, and 87% of adults are in a reproductive state at the start of April, which opens the breeding season."
+      },
+      {
+        "name": "territorial",
+        "start": "03-01",
+        "end": "10-31",
+        "note": "Males hold territories through the warm months, with enlarged testes from June to November; the dominant orange-and-blue morph defends a territory that can include up to four females."
+      },
+      {
+        "name": "young",
+        "start": "06-01",
+        "end": "11-30",
+        "note": "Hatchlings appear from the middle of June through November, with hatching highest in autumn."
+      },
+      {
+        "name": "dormancy",
+        "start": "12-01",
+        "end": "12-31",
+        "note": "Inactive through December, and both sexes emerge in November and January only on the warmest days."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg"
+      },
+      {
+        "stage": "Juvenile",
+        "duration_days": 365,
+        "scale": 0.6
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US-NM",
+        "monthly": [
+          0.01,
+          0.07,
+          0.35,
+          0.85,
+          0.87,
+          0.9,
+          1.0,
+          0.62,
+          0.5,
+          0.19,
+          0.06,
+          0.02
+        ],
+        "method": "mean(inat_raw, gbif_raw)",
+        "observations": 3247,
+        "sources": [
+          "inat-activity-us-nm",
+          "gbif-activity-us-nm"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 9,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=36107&place_id=9&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": null,
+            "total": 1317,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.32_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=8538855&gadmGid=USA.32_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": null,
+            "total": 1930,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-ground-forager-v1",
+    "params": {
+      "flee_m": 15,
+      "calm_m": 35,
+      "food_tag": "invertebrate",
+      "food_m": 25,
+      "flee_gait": "trot",
+      "forage_gait": "walk",
+      "rest_sun_lo_deg": -90,
+      "rest_sun_hi_deg": -6
+    }
+  },
+  "vocalizations": [],
+  "look": {
+    "body_plan": "quadruped",
+    "proportions": {
+      "torso_aspect": 2.4,
+      "leg_length_ratio": 0.32,
+      "head_scale": 0.5,
+      "neck_angle_deg": 0,
+      "tail_ratio": 1.6,
+      "ear_ratio": 0.08,
+      "girth_ratio": 0.55
+    },
+    "palette": {
+      "body": "#8a7a5f",
+      "belly": "#e0d9c7",
+      "markings": "#b08a52",
+      "accent": "#3f8fa0",
+      "eye": "#1b1b16"
+    },
+    "part_colors": {
+      "snout": "belly",
+      "ear_*": "markings",
+      "tail": "body"
+    },
+    "extra_parts": [
+      {
+        "name": "dewlap",
+        "parent": "head",
+        "offset": [
+          0.05,
+          -0.9,
+          0.0
+        ],
+        "size": [
+          0.4,
+          1.1,
+          1.4
+        ],
+        "color": "markings"
+      },
+      {
+        "name": "throat_spot",
+        "parent": "dewlap",
+        "offset": [
+          0.55,
+          -0.3,
+          0.0
+        ],
+        "size": [
+          0.5,
+          0.45,
+          0.4
+        ],
+        "color": "accent"
+      },
+      {
+        "name": "abdominal_patch",
+        "parent": "body",
+        "offset": [
+          -0.05,
+          -0.3,
+          0.75
+        ],
+        "size": [
+          0.55,
+          0.5,
+          0.5
+        ],
+        "color": "accent",
+        "mirror": true
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "trot": {},
+      "perched": {
+        "cycle_s": 6.0,
+        "keyframes": [
+          {
+            "t": 0.0,
+            "parts": {
+              "body": {
+                "rot_deg": [
+                  0,
+                  0,
+                  -3
+                ]
+              },
+              "tail": {
+                "rot_deg": [
+                  0,
+                  0,
+                  7
+                ]
+              }
+            }
+          },
+          {
+            "t": 0.5,
+            "parts": {
+              "body": {
+                "rot_deg": [
+                  0,
+                  0,
+                  3
+                ]
+              },
+              "tail": {
+                "rot_deg": [
+                  0,
+                  0,
+                  -7
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/8538855",
+      "title": "GBIF Backbone Taxonomy: Urosaurus ornatus",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q3062093",
+      "title": "Wikidata: Urosaurus ornatus (Q3062093)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Urosaurus_ornatus",
+      "title": "Wikipedia: Urosaurus ornatus",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"Urosaurus ornatus\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=173954",
+      "title": "ITIS: Urosaurus ornatus, TSN 173954",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "inat-activity-us-nm",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=36107&place_id=9&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Urosaurus ornatus in US-NM",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-nm",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=8538855&gadmGid=USA.32_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Urosaurus ornatus in US-NM",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "itis"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "common_names": {
+      "sources": [
+        "wikidata",
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Wikipedia lists California, Nevada, Utah, Colorado, Wyoming, Arizona, New Mexico and Texas, and the Mexican states Sonora, Sinaloa, Chihuahua and Coahuila; the country list is that range as ISO 3166-1 codes. The Koppen list is the set of climate classes the listed states span."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "No mass appears in the cited sources. 4.7 g is the mean adult mass reported for this species in an open dissertation sample, used here as the best available figure; it is consistent with the published field range of roughly 1-6 g for adults of this size. Treat as an estimate, not a measurement from the cited article, and replace it if a sourced mass for the species is found."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "length_m is the sourced snout-vent length: Wikipedia gives an SVL of up to 59 mm, and the tail is excluded. The field is normally nose-to-tail-tip, so this record reads shorter than the animal actually is; it is set to the figure that is actually sourced rather than to an estimated total length."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "No longevity figure appears in the cited sources. 5 years is an informed estimate for a small phrynosomatid lizard and is a placeholder, not a measurement: replace it if a sourced figure for this species is found."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Wikipedia: mostly insects and their larvae, with plant material also recorded, and a diet that shifts seasonally from Homoptera, Formicidae, Hemiptera and lepidopterous larvae in winter and spring to Coleoptera and Formicidae in summer."
+    },
+    "traits.senses": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Colour vision is inferred from the article's central finding that throat colour reliably signals social status between males, which requires the lizards to see it; smell and hearing are set mid-range as judgement, since the article does not measure either."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Wikipedia describes a group of one male and one or more females in an area with large trees, shrubs or boulders, and a dominant male defending a territory including up to four females, so the structure is a small group rather than a pair."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Wariness is set high from the documented anti-predator behaviour: Wikipedia describes hiding and a measured flight initiation distance, with individuals bolting only once a predator is close."
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Hides and bolts rather than fighting: Wikipedia gives hiding time and flight initiation distance as the anti-predator responses, and notes the species competes with Sceloporus merriami rather than escalating."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Wikipedia describes the species as arboreal, semi-arboreal or saxicolous, occupying boulders and perching in trees and shrubs, and as significantly faster and higher in stamina when dominant, so Walk and Climb are the two modes the record animates. Slither is omitted because the article describes climbing and scrambling rather than undulating locomotion."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Wikipedia states explicitly that lizards are ectotherms and gives mean body temperatures that shift with habitat."
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Wikipedia gives clutch size and timing but does not say where eggs are laid. Ground is the schema's closest fit for a lizard that lays a clutch in soil and is a placeholder until a sourced nest description is found."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.size_class": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg: 4.7 g is Tiny (< 0.05 kg)."
+    },
+    "traits.shoulder_height_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Not measured in the cited sources. 0.015 m is an authored estimate of standing shoulder height for a lizard of 47-59 mm SVL whose hind limbs are roughly two thirds of its snout-vent length and whose body is held close to the substrate. Placeholder until a sourced measurement is found."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Split between arboreal and ground from Wikipedia's 'arboreal, semi-arboreal or saxicolous' and its accounts of lizards occupying open spots on boulders as well as trees and shrubs."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Cavity is used for the crevices and rock fissures the lizards retreat into; the article describes capture in rock crevices and tree fissures and time spent in the open on boulders only when active."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Weighted from the diet shares, with perch, crevice and shrub cover carrying the shelter weights, since the species is more often on a perch or in cover than in the open."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Authored judgement. Wikipedia calls the species one of the most widespread and abundant of North American lizards, and says it is abundant where there are more trees, which is the basis for treating a planted yard as suitable; light_max is 1.0 because the record's own note gives a preferred body temperature near 35 C, so the animal actively seeks sun rather than avoiding it."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Wikipedia: active during every month except December, with only the warmest days used in November and January, so the species is resident year-round rather than migratory or hibernating."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Breeding from late March (87% of adults reproductive at the start of April) through August, territorial males with enlarged testes June to November, hatchlings from mid-June through November with an autumn peak, and inactivity in December, all from Wikipedia."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Wikipedia: two to seven eggs per clutch, all hatchlings reach sexual maturity within one year of hatching, and females are mature at 45 mm SVL. The Egg stage is left without a duration because the article gives no incubation period."
+    },
+    "vocalizations": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Left empty. The cited article describes the species at length without recording any call, and an empty list is the schema's option for a silent species, so nothing is invented here."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The kit has no reptile mesh, so the model uses the quadruped plan, which suits a long, low, four-legged animal: torso_aspect 2.4 and girth_ratio 0.55 give the slender lizard body, tail_ratio 1.6 the long tail that Wikipedia's own measurements pair with the body, and ear_ratio 0.08 shrinks the ear parts because the species has no external pinnae. Colours follow the article: grayish to brown dorsum with cross-bars of light brown edged with pale blue, a whitish venter, and the male's paired turquoise abdominal patches and blue-green throat spot, modelled as the dewlap, throat_spot and mirrored abdominal_patch extra parts. The perched pose is authored, since the quadruped plan has no built-in perch: it holds the body level with a slow tail sway, and the block mesh's own walk and trot cycles carry the locomotion."
+    },
+    "behavior": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Uses the shared fsm-ground-forager-v1 programme, whose description tells a diurnal species to set rest_sun_lo_deg to -90 and rest_sun_hi_deg to -6; that puts the lizard in cover overnight and out foraging in daylight, matching its diurnal pattern and its dependence on warm sun. forage_gait walk and flee_gait trot suit a small quadruped lizard that moves slowly while foraging and bolts when threatened, and food_m is shortened to 25 m because Wikipedia describes a group holding one tree, shrub or boulder rather than ranging widely."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies maintainers",
+      "agent": "claude-code"
+    }
+  ]
+}

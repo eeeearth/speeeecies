@@ -1,0 +1,598 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Aptenodytes forsteri",
+  "slug": "aptenodytes-forsteri",
+  "common_names": {
+    "en": "Emperor penguin",
+    "fr": "Manchot empereur",
+    "de": "Kaiserpinguin",
+    "nl": "Keizerspinguïn"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Sphenisciformes",
+    "family": "Spheniscidae",
+    "genus": "Aptenodytes",
+    "authority": "G.R. Gray, 1844",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2481661,
+    "inat_taxon_id": 3820,
+    "itis_tsn": 174449,
+    "wikidata": "Q161829",
+    "ncbi_taxon_id": 9233,
+    "ebird_code": "emppen1"
+  },
+  "conservation": {
+    "iucn": "NT"
+  },
+  "range": {
+    "native": [
+      "AQ"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Walk",
+      "Swim"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "None",
+    "perching": false,
+    "size_class": "Medium",
+    "mass_kg": 34.0,
+    "mass_range_kg": [
+      22.7,
+      45.4
+    ],
+    "length_m": 1.15,
+    "lifespan_y": 19.9,
+    "speed_ms": {
+      "swim": 2.1
+    },
+    "diet": {
+      "fish": 0.6,
+      "invertebrate": 0.4
+    },
+    "social": {
+      "structure": "Colony",
+      "group_size": [
+        1000,
+        10000
+      ]
+    },
+    "activity_pattern": "Cathemeral",
+    "defense": "Flee",
+    "wariness": 0.3
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.6,
+      "aquatic": 0.4
+    },
+    "shelter_tag": "shelter",
+    "resources": [
+      {
+        "tag": "small_vertebrate",
+        "kind": "Predation",
+        "weight": 0.6
+      },
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.4
+      },
+      {
+        "tag": "shelter",
+        "kind": "Shelter",
+        "weight": 1.0
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Avoider",
+      "uses_gardens": false,
+      "notes": "Breeds on Antarctic sea ice far from any settlement; the only human contact is research stations and tourism. Chicks in a creche grow more apprehensive after a helicopter approach to 1,000 m."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "03-15",
+        "end": "12-15",
+        "region": "AQ",
+        "note": "Courtship starts in March/April; the female lays a single egg in May or early June, incubated by the male for 65-75 days; chicks leave the colony in December/January."
+      },
+      {
+        "name": "moult",
+        "start": "01-10",
+        "end": "02-28",
+        "region": "AQ",
+        "note": "Yearly moult in January and February, taking around 34 days."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg"
+      },
+      {
+        "stage": "Juvenile",
+        "duration_days": 150,
+        "scale": 0.5
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "AQ",
+        "monthly": [
+          0.12,
+          0.1,
+          0.17,
+          0.53,
+          0.73,
+          1.0,
+          0.99,
+          0.82,
+          0.51,
+          0.14,
+          0.11,
+          0.14
+        ],
+        "method": "gbif_share",
+        "observations": 108274,
+        "sources": [
+          "gbif-activity-aq"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "skipped": "could not resolve iNaturalist place id for AQ: no admin_level 0 iNaturalist place found for 'Antarctica'"
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "country",
+              "AQ"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2481661&country=AQ&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&country=AQ&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 108274,
+            "usable": true
+          },
+          "used": [
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-penguin-colony-v1"
+  },
+  "vocalizations": [
+    {
+      "call_id": "ecstatic",
+      "context": "Song",
+      "season_months": [
+        3,
+        4
+      ],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 60,
+      "loudness": "Loud",
+      "description": "Courtship call of 1-2 seconds given during the ecstatic display: the male stands still, head on chest, then calls while moving around the colony. Pairs also duet face to face holding the posture for minutes."
+    },
+    {
+      "call_id": "contact",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [],
+      "cooldown_s": 10,
+      "loudness": "Moderate",
+      "description": "Two-frequency-band calls used for individual recognition between mates, parents and offspring; chicks beg with a frequency-modulated whistle. The widest individual variation of any penguin."
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.1,
+      "leg_length_ratio": 0.2,
+      "head_scale": 0.7,
+      "neck_angle_deg": 70,
+      "tail_ratio": 0.2,
+      "wing_aspect": 2.5,
+      "beak_ratio": 0.5,
+      "girth_ratio": 1.1
+    },
+    "palette": {
+      "body": "#23272e",
+      "belly": "#f4f1e8",
+      "markings": "#f0ad28",
+      "accent": "#e6cf7a",
+      "eye": "#111111"
+    },
+    "part_colors": {
+      "beak": "eye",
+      "leg_left": "body",
+      "leg_right": "body"
+    },
+    "extra_parts": [
+      {
+        "name": "ear_patch",
+        "parent": "head",
+        "offset": [
+          0.1,
+          0.1,
+          0.55
+        ],
+        "size": [
+          0.35,
+          0.5,
+          0.2
+        ],
+        "color": "markings",
+        "mirror": true
+      },
+      {
+        "name": "breast_wash",
+        "parent": "breast",
+        "offset": [
+          0.15,
+          0.35,
+          0
+        ],
+        "size": [
+          0.5,
+          0.3,
+          0.95
+        ],
+        "color": "accent"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "swim": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2481661",
+      "title": "GBIF Backbone Taxonomy: Aptenodytes forsteri",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-09-30",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q161829",
+      "title": "Wikidata: Emperor penguin (Q161829)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-09-30",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Emperor_penguin",
+      "title": "Wikipedia: Emperor penguin",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-09-30",
+      "attribution": "Wikipedia contributors, \"Emperor penguin\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=174449",
+      "title": "ITIS: Aptenodytes forsteri, TSN 174449",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-09-30",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "gbif-activity-aq",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2481661&country=AQ&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Aptenodytes forsteri in AQ",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "itis"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "GBIF usage key from the issue's data pointers, confirmed ACCEPTED via the GBIF match API; iNaturalist, ITIS, NCBI and eBird ids via Wikidata (P3151, P815, P685, P3444)."
+    },
+    "common_names": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikidata",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Near Threatened (IUCN 3.1); Wikidata P141 with the downgrade history on Wikipedia."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Circumpolar in the Antarctic, almost exclusively between 66 and 77 degrees south; AQ is the ISO country for Antarctica."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Flightless; walks with a wobbling gait or toboggans on land, swims at sea."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Like all penguins, flightless; wings stiffened into flippers."
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Builds no nest; the single egg is balanced on the feet under a brood patch."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.size_class": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg (Medium is under 50 kg)."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Midpoint of Wikipedia's 22.7-45.4 kg range; mass varies strongly by sex and season (males fast ~120 days)."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "22.7-45.4 kg; males heavier than females."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Stonehouse (1975) average of 115 cm, via Wikipedia; adults 110-120 cm."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Average adult life expectancy 19.9 years at 95.1% yearly survival; 1% may reach 50."
+    },
+    "traits.speed_ms": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Midpoint of the 6-9 km/h average swimming speed (7.5 km/h = 2.08 m/s)."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Fish usually the most important food (Antarctic silverfish the bulk), plus krill and squid. Shares are judgement; cephalopods counted under invertebrate because the schema has no mollusc key."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Breeding colonies of up to several thousand individuals; ~595,000 adults across 46 colonies in 2009. Range is judgement."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "'Individuals may be active day or night.'"
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Adults are taken at sea by leopard seals and orcas; the response is flight (swimming away). No land predators of adults."
+    },
+    "traits.wariness": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored: little fear of people on foot (no land predators), but creche chicks grow apprehensive after helicopter approach."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Breeding cycle on the ice runs March-December with foraging trips to open water throughout; shares are judgement."
+    },
+    "habitat.shelter_tag": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored: the colony huddle on the ice is the shelter."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Fish (silverfish, other Nototheniidae) mapped to small_vertebrate -- the tag vocabulary has no fish tag; krill and squid to invertebrate. Weights follow the diet shares."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Avoider: breeds on remote sea ice; only research and tourism contact, with disturbance effects documented."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Resident in the Antarctic year-round; disperses to the oceans January-March but does not migrate or go dormant."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Breeding and moult windows from Wikipedia; exact start/end days are judgement."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Chicks hatch July/August and leave December/January (~150 days), fledging at ~50% of adult weight."
+    },
+    "vocalizations.ecstatic": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Courtship in March/April; cooldown and loudness are judgement."
+    },
+    "vocalizations.contact": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Two-band individual-recognition calls; chick begging whistle. Cooldown and loudness are judgement."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Black head/back sharply delineated from white belly, pale-yellow breast, bright-yellow ear patches, 8 cm bill. Proportions authored for an upright flightless bird."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored bespoke program: no shared program models a colonial seabird that commutes over ice and dives. See species/aptenodytes-forsteri/behavior.json."
+    }
+  },
+  "contributors": [
+    {
+      "name": "Sisyphus",
+      "agent": "opencode"
+    }
+  ]
+}

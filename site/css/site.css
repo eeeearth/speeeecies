@@ -605,3 +605,56 @@ textarea.paste-box {
   color: var(--fg-muted);
   font-size: 0.9rem;
 }
+
+/* Optional live captions beside the existing YouTube player controls. */
+.caption-controls {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 1rem 0;
+}
+
+.caption-controls select,
+.caption-controls input {
+  padding: 0.35rem;
+  font: inherit;
+  color: var(--fg);
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 0.3rem;
+}
+
+.caption-controls input {
+  width: 4.5rem;
+}
+
+.caption-player {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  max-width: 100%;
+  background: #000;
+}
+
+.caption-player iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.caption-overlay {
+  position: absolute;
+  bottom: 12%;
+  left: 8%;
+  width: 84%;
+  color: #fff;
+  font-size: clamp(1rem, 2.4vw, 2rem);
+  font-weight: 600;
+  text-align: center;
+  text-shadow: 0 1px 4px #000, 0 1px 8px #000;
+  pointer-events: none;
+}
+
+.caption-overlay:empty {
+  display: none;
+}
