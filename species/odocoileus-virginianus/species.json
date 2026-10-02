@@ -5,7 +5,9 @@
   "id": "Odocoileus virginianus",
   "slug": "odocoileus-virginianus",
   "common_names": {
-    "en": "White-tailed Deer"
+    "en": "white-tailed deer",
+    "fr": "cerf virginien",
+    "es": "venado cola blanca"
   },
   "taxonomy": {
     "kingdom": "Animalia",
@@ -20,26 +22,37 @@
   "external": {
     "gbif_usage_key": 2440965,
     "inat_taxon_id": 42223,
-    "wikidata": "Q215887"
+    "itis_tsn": 180699,
+    "wikidata": "Q215887",
+    "ncbi_taxon_id": 9874
+  },
+  "conservation": {
+    "iucn": "LC",
+    "notes": "Very common across its range and described by Wikipedia as a nuisance species in some areas, despite local declines in parts of North America since 2000."
   },
   "range": {
     "native": [
       "US",
       "CA",
       "MX",
-      "GT",
       "BZ",
-      "SV",
+      "CR",
+      "GT",
       "HN",
       "NI",
-      "CR",
       "PA",
       "CO",
       "VE",
       "EC",
-      "PE",
       "BO",
+      "PE",
+      "SV",
       "BR"
+    ],
+    "introduced": [
+      "CZ",
+      "FI",
+      "NZ"
     ]
   },
   "traits": {
@@ -55,71 +68,99 @@
     "flight": "None",
     "respiration": "Lungs",
     "metamorphosis": "None",
-    "nest_type": "None",
+    "nest_type": "Ground",
     "perching": false,
     "size_class": "Large",
-    "mass_kg": 68,
+    "mass_kg": 75.9,
     "mass_range_kg": [
       40,
       136
     ],
-    "length_m": 1.8,
-    "shoulder_height_m": 0.95,
-    "lifespan_y": 6,
-    "home_range_ha": 200,
+    "length_m": 1.75,
+    "shoulder_height_m": 1.0,
+    "speed_ms": {
+      "gallop": 16.7
+    },
+    "lifespan_y": 23,
+    "home_range_ha": 199.0,
     "diet": {
-      "browse": 0.5,
-      "mast": 0.2,
-      "graze": 0.3
+      "browse": 0.65,
+      "graze": 0.16,
+      "mast": 0.12,
+      "fruit": 0.05,
+      "vertebrate": 0.02
     },
     "social": {
-      "structure": "Group",
+      "structure": "Pair",
       "group_size": [
         1,
-        6
+        8
       ]
     },
     "activity_pattern": "Crepuscular",
     "defense": "Flee",
-    "wariness": 0.85
+    "wariness": 0.75
   },
   "habitat": {
     "use": {
       "ground": 1.0
     },
-    "shelter_tag": "shrub_thicket",
+    "shelter_tag": "shelter",
     "resources": [
       {
         "tag": "browse",
         "kind": "Herbivory",
-        "weight": 0.5
-      },
-      {
-        "tag": "mast",
-        "kind": "Herbivory",
-        "weight": 0.2
+        "weight": 0.65
       },
       {
         "tag": "graze",
         "kind": "Herbivory",
-        "weight": 0.3
+        "weight": 0.16
+      },
+      {
+        "tag": "mast",
+        "kind": "Herbivory",
+        "weight": 0.12
+      },
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.05
       },
       {
         "tag": "shrub_thicket",
         "kind": "Shelter",
-        "weight": 0.8
+        "weight": 0.5
       },
       {
-        "tag": "shrub_thicket",
+        "tag": "nest_ground",
         "kind": "Nesting",
         "weight": 0.5
+      },
+      {
+        "tag": "seed",
+        "kind": "Herbivory",
+        "weight": 0.1
+      },
+      {
+        "tag": "leaf_litter",
+        "kind": "Shelter",
+        "weight": 0.2
       }
     ],
     "human_tolerance": {
       "urban_affinity": "Adapter",
-      "uses_gardens": true,
+      "impervious_max": 0.35,
+      "dist_building_min_m": 50,
+      "flight_distance_m": 60,
       "road_mortality": "High",
-      "notes": "Lives in forest, farmland and suburban edges; browses gardens and crops; a major roadkill species."
+      "uses_gardens": true,
+      "notes": "Thrives in suburban landscapes: edge habitat, open farmland and home gardens together supply both cover and food, and the loss of most natural predators raises survival. Recorded as the second most commonly struck large mammal in North American vehicle collisions."
+    },
+    "density_per_ha": {
+      "min": 0.2,
+      "typical": 1.73,
+      "max": 17.32
     }
   },
   "seasonal": {
@@ -127,480 +168,154 @@
     "phases": [
       {
         "name": "mating",
-        "start": "10-01",
-        "end": "12-31",
-        "region": "US-TN",
-        "note": "The rut, October to December; males fight and call."
+        "start": "10-15",
+        "end": "12-15",
+        "note": "The rut. Does enter estrus in late October or early November, triggered mainly by the shortening photoperiod; bucks spar to establish a dominance hierarchy and travel little above 4 C."
       },
       {
         "name": "young",
         "start": "05-01",
-        "end": "07-31",
-        "note": "Fawns born in late May and June, hidden in cover."
+        "end": "07-15",
+        "note": "Fawns are born in mid-to-late spring, usually May or June, hidden in vegetation for their first four weeks, weaned at 8-10 weeks and spotted until the end of their first summer."
+      },
+      {
+        "name": "caching",
+        "start": "09-01",
+        "end": "11-30",
+        "note": "Autumn mast and browse: acorns, nuts and berry crops are cached and browsed hardest in the weeks before and after the rut."
+      },
+      {
+        "name": "moult",
+        "start": "04-01",
+        "end": "06-30",
+        "note": "The summer coat is shed in spring and the winter coat grows in through the autumn."
+      },
+      {
+        "name": "territorial",
+        "start": "11-01",
+        "end": "01-31",
+        "note": "Bucks rut in late autumn and early winter, and older antlered bucks do not hold large rutting territories, unlike yearlings."
+      },
+      {
+        "name": "mating",
+        "start": "10-01",
+        "end": "12-31",
+        "region": "US-TN",
+        "note": "The rut, October to December; males fight and call."
       }
     ],
     "life_stages": [
       {
         "stage": "Juvenile",
-        "duration_days": 180,
-        "scale": 0.6
+        "duration_days": 365,
+        "scale": 0.55,
+        "requires_tag": "nest_ground"
       },
       {
         "stage": "Adult"
       }
     ]
   },
-  "behavior": {
-    "program": "fsm-ground-forager-v1",
-    "params": {
-      "flee_m": 60,
-      "calm_m": 120,
-      "food_tag": "browse",
-      "food_m": 60,
-      "flee_gait": "gallop",
-      "forage_gait": "walk",
-      "rest_sun_lo_deg": 20,
-      "rest_sun_hi_deg": 90
-    }
-  },
-  "vocalizations": [
-    {
-      "call_id": "snort",
-      "context": "Alarm",
-      "season_months": [],
-      "time_windows": [
-        "Day",
-        "Dusk"
-      ],
-      "cooldown_s": 20,
-      "loudness": "Loud",
-      "description": "Loud, explosive snort of air through the nostrils, given when a deer is alarmed."
-    },
-    {
-      "call_id": "bleat",
-      "context": "Contact",
-      "season_months": [
-        5,
-        6,
-        7
-      ],
-      "time_windows": [
-        "Day"
-      ],
-      "cooldown_s": 30,
-      "loudness": "Quiet",
-      "description": "Soft bleat of a fawn, and a low grunt of a doe calling her young."
-    }
-  ],
-  "look": {
-    "body_plan": "quadruped",
-    "proportions": {
-      "torso_aspect": 2.1,
-      "leg_length_ratio": 0.5,
-      "head_scale": 0.65,
-      "neck_angle_deg": 30,
-      "tail_ratio": 0.25,
-      "ear_ratio": 0.35,
-      "beak_ratio": 0.4,
-      "girth_ratio": 0.85
-    },
-    "palette": {
-      "body": "#a8763f",
-      "belly": "#e8ddc8",
-      "markings": "#6b4a2a",
-      "accent": "#ffffff",
-      "eye": "#1c1712"
-    },
-    "part_colors": {
-      "tail": "accent",
-      "snout": "belly",
-      "ear_*": "markings",
-      "antlers_left": "markings",
-      "antlers_right": "markings"
-    },
-    "extra_parts": [
-      {
-        "name": "antlers",
-        "parent": "head",
-        "offset": [
-          -0.1,
-          0.5,
-          0
-        ],
-        "size": [
-          0.5,
-          0.6,
-          0.7
-        ],
-        "color": "markings",
-        "mirror": true
-      }
-    ],
-    "poses": {
-      "idle": {},
-      "walk": {},
-      "trot": {},
-      "gallop": {},
-      "rest": {}
-    }
-  },
-  "sources": [
-    {
-      "id": "gbif-backbone",
-      "url": "https://api.gbif.org/v1/species/2440965",
-      "title": "GBIF Backbone Taxonomy: Odocoileus virginianus",
-      "license": "CC-BY-4.0",
-      "kind": "database",
-      "accessed": "2026-10-01",
-      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
-      "license_url": "https://creativecommons.org/licenses/by/4.0/"
-    },
-    {
-      "id": "wikidata",
-      "url": "https://www.wikidata.org/wiki/Q215887",
-      "title": "Wikidata: White-tailed Deer (Q215887)",
-      "license": "CC0-1.0",
-      "kind": "database",
-      "accessed": "2026-10-01",
-      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
-    },
-    {
-      "id": "wikipedia",
-      "url": "https://en.wikipedia.org/wiki/White-tailed_deer",
-      "title": "Wikipedia: White-tailed Deer",
-      "license": "CC-BY-SA-4.0",
-      "kind": "webpage",
-      "accessed": "2026-10-01",
-      "attribution": "Wikipedia contributors, \"White-tailed Deer\", English Wikipedia, CC BY-SA 4.0",
-      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
-    },
-    {
-      "id": "eltontraits",
-      "url": "https://doi.org/10.6084/m9.figshare.3559887.v1",
-      "title": "EltonTraits 1.0: species-level foraging attributes of the world's birds and mammals (MamFuncDat)",
-      "license": "CC0-1.0",
-      "kind": "dataset",
-      "accessed": "2026-10-01",
-      "attribution": "Wilman, H. et al. (2014) EltonTraits 1.0. Ecology 95:2027",
-      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
-    },
-    {
-      "id": "pantheria",
-      "url": "https://esapubs.org/archive/ecol/E090/184/PanTHERIA_1-0_WR05_Aug2008.txt",
-      "title": "PanTHERIA 1.0: species-level life history, ecology and geography of extant mammals",
-      "license": "CC-BY-4.0",
-      "kind": "dataset",
-      "accessed": "2026-10-01",
-      "attribution": "Jones, K. E. et al. (2009) PanTHERIA. Ecology 90:2648",
-      "license_url": "https://creativecommons.org/licenses/by/4.0/"
-    },
-    {
-      "id": "inat-activity-us-tn",
-      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=42223&place_id=45&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
-      "title": "iNaturalist observations histogram for Odocoileus virginianus in US-TN",
-      "license": "CC-BY-4.0",
-      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
-      "accessed": "2026-10-01",
-      "kind": "api"
-    },
-    {
-      "id": "gbif-activity-us-tn",
-      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2440965&gadmGid=USA.43_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
-      "title": "GBIF occurrence search for Odocoileus virginianus in US-TN",
-      "license": "CC-BY-4.0",
-      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
-      "accessed": "2026-10-01",
-      "kind": "api"
-    }
-  ],
-  "provenance": {
-    "taxonomy": {
-      "sources": [
-        "gbif-backbone",
-        "wikidata"
-      ],
-      "confidence": "High"
-    },
-    "external": {
-      "sources": [
-        "gbif-backbone",
-        "wikidata"
-      ],
-      "confidence": "High",
-      "note": "iNaturalist and Wikidata ids from GBIF match and Wikidata."
-    },
-    "common_names": {
-      "sources": [
-        "wikidata",
-        "wikipedia"
-      ],
-      "confidence": "High"
-    },
-    "conservation": {
-      "sources": [
-        "wikidata"
-      ],
-      "confidence": "High",
-      "note": "Wikidata P141 = least concern (Q211005)."
-    },
-    "range": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Country list derived from 'Canada to Peru and Bolivia' in Wikipedia."
-    },
-    "traits.body_plan": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High"
-    },
-    "traits.limb_count": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High"
-    },
-    "traits.locomotion_modes": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "note": "Walks, trots and gallops; a bounding gallop is the escape gait."
-    },
-    "traits.thermoregulation": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High"
-    },
-    "traits.skin": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High"
-    },
-    "traits.flight": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High"
-    },
-    "traits.respiration": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High"
-    },
-    "traits.metamorphosis": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High"
-    },
-    "traits.perching": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Does not perch; set to false."
-    },
-    "traits.nest_type": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "note": "No nest; fawns are hidden in cover."
-    },
-    "traits.size_class": {
-      "sources": [
-        "eltontraits",
-        "pantheria"
-      ],
-      "confidence": "High",
-      "derived": true,
-      "note": "From mass_kg."
-    },
-    "traits.mass_kg": {
-      "sources": [
-        "eltontraits",
-        "pantheria"
-      ],
-      "confidence": "High",
-      "note": "Mean of EltonTraits BodyMass ~68 kg and PanTHERIA AdultBodyMass_g ~68 kg; consistent with Wikipedia's adult range of 40-136 kg."
-    },
-    "traits.mass_range_kg": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "note": "40-136 kg."
-    },
-    "traits.length_m": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "derived": true,
-      "note": "Midpoint of 1.5-2.0 m."
-    },
-    "traits.shoulder_height_m": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "derived": true,
-      "note": "Midpoint of 0.8-1.1 m."
-    },
-    "traits.lifespan_y": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "note": "Up to 6 years in the wild."
-    },
-    "traits.home_range_ha": {
-      "sources": [
-        "pantheria"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "PanTHERIA HomeRange_Indiv_km2 ~2 km2 converted to hectares; consistent with Wikipedia's 1-5 km2."
-    },
-    "traits.diet": {
-      "sources": [
-        "eltontraits",
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "note": "EltonTraits Diet-Browse 50, Diet-Mast 20, Diet-Graze 30; Wikipedia confirms browse, acorns and grasses."
-    },
-    "traits.social": {
-      "sources": [
-        "pantheria",
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "PanTHERIA SocialGrpSize 1-6; Wikipedia notes family groups and winter herds."
-    },
-    "traits.activity_pattern": {
-      "sources": [
-        "eltontraits",
-        "wikipedia"
-      ],
-      "confidence": "High"
-    },
-    "traits.defense": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Flees, bounding with the white tail raised."
-    },
-    "traits.wariness": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Very wary; flees at approaching people."
-    },
-    "habitat.use": {
-      "sources": [
-        "eltontraits"
-      ],
-      "confidence": "High",
-      "note": "ForStrat-ground 100."
-    },
-    "habitat.shelter_tag": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "note": "Beds in dense cover; fawns hidden in thickets."
-    },
-    "habitat.resources": {
-      "sources": [
-        "eltontraits",
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Browse, mast and graze all year; thicket cover for shelter and fawning from Wikipedia."
-    },
-    "habitat.human_tolerance": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "note": "Forest, farmland and suburban edges from Wikipedia; road mortality from Wikipedia."
-    },
-    "seasonal.strategy": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "note": "Year-round resident; non-migratory."
-    },
-    "seasonal.phases": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Rut and fawning from Wikipedia; dates are judgements for Tennessee."
-    },
-    "seasonal.life_stages": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Juvenile period ~6 months; scale authored."
-    },
-    "vocalizations.snort": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High"
-    },
-    "vocalizations.bleat": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High"
-    },
-    "look": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Reddish-brown summer coat, white belly and white tail underside from Wikipedia; proportions and antlers authored."
-    },
-    "behavior": {
-      "sources": [],
-      "confidence": "Low",
-      "derived": true,
-      "note": "Authored parameters for the shared ground-forager program; rest window set to midday for a crepuscular species."
-    }
-  },
-  "contributors": [
-    {
-      "name": "Sisyphus agent",
-      "agent": "claude-code"
-    }
-  ],
-  "conservation": {
-    "iucn": "LC"
-  },
   "activity": {
     "regions": [
+      {
+        "region": "US-NC",
+        "monthly": [
+          0.72,
+          0.58,
+          0.58,
+          0.45,
+          0.51,
+          0.83,
+          0.9,
+          1.0,
+          0.81,
+          0.8,
+          0.87,
+          0.78
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 2336,
+        "sources": [
+          "inat-activity-us-nc",
+          "gbif-activity-us-nc"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 30,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=42223&place_id=30&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=30&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "total": 1173,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.34_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2440965&gadmGid=USA.34_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.34_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 1163,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "US-IN",
+        "monthly": [
+          0.93,
+          0.86,
+          0.49,
+          0.59,
+          0.64,
+          0.72,
+          1.0,
+          0.78,
+          0.89,
+          0.45,
+          0.48,
+          0.54
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 738,
+        "sources": [
+          "inat-activity-us-in",
+          "gbif-activity-us-in"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 20,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=42223&place_id=20&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=20&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "total": 393,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.15_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2440965&gadmGid=USA.15_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.15_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 345,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
       {
         "region": "US-TN",
         "monthly": [
@@ -651,5 +366,599 @@
         }
       }
     ]
-  }
+  },
+  "behavior": {
+    "program": "fsm-ground-forager-v1",
+    "params": {
+      "flee_m": 45,
+      "calm_m": 60,
+      "food_tag": "browse",
+      "food_m": 80,
+      "flee_gait": "gallop",
+      "forage_gait": "walk",
+      "rest_sun_lo_deg": 10,
+      "rest_sun_hi_deg": 90
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "blow",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [],
+      "cooldown_s": 20,
+      "loudness": "Moderate",
+      "description": "Heavy, noisy breathing ('blowing') given on detecting a predator or a person; it warns other deer in the area and is the alarm call of the species."
+    },
+    {
+      "call_id": "snort",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [],
+      "cooldown_s": 20,
+      "loudness": "Moderate",
+      "description": "A short, forceful snort that often signals an imminent threat; both does and bucks give it, and they stamp their hooves at the same time to lay down an odour warning."
+    },
+    {
+      "call_id": "grunt",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [],
+      "cooldown_s": 15,
+      "loudness": "Moderate",
+      "description": "A guttural grunt used by does to call bedded fawns and by bucks to advertise presence. The fawn's high-pitched bleat deepens into this call as it grows."
+    },
+    {
+      "call_id": "bleat",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [],
+      "cooldown_s": 20,
+      "loudness": "Moderate",
+      "description": "The high-pitched squeal of a fawn calling for its mother; the pitch falls and the call lengthens with age until it becomes the adult grunt."
+    },
+    {
+      "call_id": "wheeze",
+      "context": "Hoot",
+      "season_months": [
+        10,
+        11,
+        12
+      ],
+      "time_windows": [],
+      "cooldown_s": 45,
+      "loudness": "Loud",
+      "description": "The grunt-snort-wheeze sequence of a mature buck, unique to each individual, asserting dominance, aggression and hostility during the rut."
+    },
+    {
+      "call_id": "alarm_blow",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [],
+      "cooldown_s": 20,
+      "loudness": "Moderate",
+      "description": "Heavy, audible breathing, often called blowing, given when the deer detects a predator; it is usually followed by flight, and the tail is raised to warn that it has been seen."
+    }
+  ],
+  "look": {
+    "body_plan": "quadruped",
+    "proportions": {
+      "torso_aspect": 2.1,
+      "leg_length_ratio": 0.66,
+      "head_scale": 0.5,
+      "neck_angle_deg": 22,
+      "tail_ratio": 0.22,
+      "ear_ratio": 0.5,
+      "beak_ratio": 0.15,
+      "girth_ratio": 0.72
+    },
+    "palette": {
+      "body": "#8d6b45",
+      "belly": "#e7ded0",
+      "markings": "#33261a",
+      "accent": "#f4f1ea",
+      "eye": "#140d06"
+    },
+    "part_colors": {
+      "snout": "markings",
+      "tail": "accent",
+      "ear_*": "body",
+      "leg_*": "body"
+    },
+    "extra_parts": [
+      {
+        "name": "antler",
+        "parent": "head",
+        "offset": [
+          0.1,
+          0.55,
+          0.32
+        ],
+        "size": [
+          0.5,
+          0.75,
+          0.55
+        ],
+        "color": "accent",
+        "mirror": true
+      },
+      {
+        "name": "rump",
+        "parent": "body",
+        "offset": [
+          -0.42,
+          0.22,
+          0
+        ],
+        "size": [
+          0.18,
+          0.42,
+          0.78
+        ],
+        "color": "belly"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "trot": {},
+      "gallop": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2440965",
+      "title": "GBIF Backbone Taxonomy: Odocoileus virginianus",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q215887",
+      "title": "Wikidata: white-tailed deer (Q215887)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/White-tailed_deer",
+      "title": "Wikipedia: White-tailed deer",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-01",
+      "attribution": "Wikipedia contributors, \"White-tailed deer\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=180699",
+      "title": "ITIS: Odocoileus virginianus, TSN 180699",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "pantheria",
+      "url": "https://esapubs.org/archive/ecol/E090/184/PanTHERIA_1-0_WR05_Aug2008.txt",
+      "title": "PanTHERIA 1.0: species-level life history, ecology and geography of extant mammals",
+      "license": "CC-BY-4.0",
+      "kind": "dataset",
+      "accessed": "2026-10-01",
+      "attribution": "Jones, K. E. et al. (2009) PanTHERIA. Ecology 90:2648",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "inat-activity-us-nc",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=42223&place_id=30&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Odocoileus virginianus in US-NC",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-nc",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2440965&gadmGid=USA.34_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Odocoileus virginianus in US-NC",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "eltontraits",
+      "url": "https://doi.org/10.6084/m9.figshare.3559887.v1",
+      "title": "EltonTraits 1.0: species-level foraging attributes of the world's birds and mammals (MamFuncDat)",
+      "license": "CC0-1.0",
+      "kind": "dataset",
+      "accessed": "2026-10-01",
+      "attribution": "Wilman, H. et al. (2014) EltonTraits 1.0. Ecology 95:2027",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "inat-activity-us-in",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=42223&place_id=20&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Odocoileus virginianus in US-IN",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-in",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2440965&gadmGid=USA.15_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Odocoileus virginianus in US-IN",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "inat-activity-us-tn",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=42223&place_id=45&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Odocoileus virginianus in US-TN",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-tn",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2440965&gadmGid=USA.43_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Odocoileus virginianus in US-TN",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "itis"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "GBIF usage key 2440965 from the GBIF backbone match; NCBI taxon id via Wikidata P685."
+    },
+    "common_names": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikidata",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Wikidata P141 = least concern (Q211005). The IUCN Red List page itself is not openly licensed, so it is not cited; Wikipedia's Population and controls section is used for the abundance note."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Native across temperate North America, Mexico, Central America (Belize, Costa Rica, Guatemala, Honduras, Nicaragua, Panama), northern South America (Colombia, Venezuela) and the Andes (Ecuador, Bolivia, Peru), per the Distribution and Ecology sections. Introduced populations are established in the Czech Republic (Brdy) and Finland (about 109,000 animals in 2020, spreading into Sweden, Norway and Russia's Karelia); New Zealand is omitted here as a failed introduction with no established population.",
+      "derived": true
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Predators section: 'recorded sprinting at speeds of 60 km per hour and sustaining speeds of 50 km per hour over distances of 5-6 km'; can jump 3 m high and 9 m forward. Walk and trot are the normal travelling and foraging gaits at the scale of a garden plot."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Direct development; no metamorphic stage."
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "No nest is built. Does give birth on the ground with the fawns hidden in vegetation for the first four weeks, so Ground is the closest single value the schema offers; Fawns are born wherever the doe beds down."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "A ground mammal; it does not perch.",
+      "derived": true
+    },
+    "traits.size_class": {
+      "sources": [
+        "pantheria"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg: 75.9 kg falls in the schema's 'Large' band."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "pantheria",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "PanTHERIA AdultBodyMass_g 75901.25 g. Consistent with Wikipedia's 'average summer weight of adult males is 68 kg and is 45 kg in adult females', taking a whole-species adult mean."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "North American does 40-90 kg and bucks 68-136 kg; the extremes of those two ranges are used. Larger exceptional bucks exist in the northern part of the range and smaller tropical deer reach 25 kg, both outside the ordinary North American range.",
+      "derived": true
+    },
+    "traits.length_m": {
+      "sources": [
+        "pantheria",
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "PanTHERIA AdultHeadBodyLen_mm 1513.69 mm plus the midpoint of Wikipedia's tail range 10-37 cm (23.5 cm), giving 174.9 cm nose to tail tip."
+    },
+    "traits.shoulder_height_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Wikipedia gives a shoulder height of 53-120 cm across all races; the midpoint 86.5 cm is used for a whole-species typical adult, which is close to a large doe or a small buck."
+    },
+    "traits.speed_ms": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "60 km/h (16.7 m/s) is Wikipedia's top recorded sprint speed, used as the gallop's peak."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "pantheria"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "PanTHERIA MaxLongevity_m 276 months, i.e. 23 years, is a documented maximum rather than a typical wild lifespan; most whitetails live far shorter, especially fawns in their first winter."
+    },
+    "traits.home_range_ha": {
+      "sources": [
+        "pantheria"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "PanTHERIA HomeRange_km2 1.99 converted to hectares. PanTHERIA reports no individual home range for this species and no open source found gives a Watauga County figure, so this is the continental species mean."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Wikipedia's Diet section describes a diet 'consist[ing] mostly of woody shoots, stems, and leaves of woody plants as well as grasses, cultivated crops, nuts, berries, and wildflowers', which sets the 0.65/0.16/0.12/0.05 split across browse, graze, mast and fruit. The 0.02 vertebrate share reflects the same section's note that deer 'have been known to opportunistically feed on nesting songbirds, field mice, and birds trapped in mist nets, if the need arises'."
+    },
+    "traits.social": {
+      "sources": [
+        "pantheria",
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "PanTHERIA SocialGrpSize 2.25, i.e. essentially a pair. Group size is given as 1-8 because a doe is commonly seen with one or two fawns, small groups of related does and their young form in summer, and mature bucks are solitary apart from the rut."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "pantheria",
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "PanTHERIA ActivityCycle 2.00 (crepuscular). Wikipedia's deer-vehicle collision and hunting sections both describe activity concentrated around dawn and dusk, with little movement above 4 C."
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Predators section: 'respond to the presence of potential predators by breathing very heavily (also called blowing) and fleeing'; if cornered a deer may charge with its antlers, but flight is the primary response.",
+      "derived": true
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: high, because a 75 kg deer is one of the few animals on a rural lot that can injure a person, and Wikipedia notes it is generally shy in places where large predators persist. Set below maximum only because suburban adults habituate to people."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia",
+        "pantheria"
+      ],
+      "confidence": "High",
+      "note": "Entirely terrestrial; PanTHERIA Terrestriality 1.00 agrees with Wikipedia's description of forest-edge, prairie and savanna use.",
+      "derived": true
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: the schema has no 'forest edge' or 'thicket' shelter tag, so the generic 'shelter' is used; Wikipedia describes deer depending 'on relatively small openings and edges' and bedding down in dense cover."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Herbivory weights follow traits.diet. The two shelter/nesting weights are judgement, since no open source ranks the relative use of thickets and open bedding sites."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Wikipedia's Diet section: 'White-tailed deer can easily thrive in suburban areas, as a combination of increased safety from some predators ... high quality and abundance of foods in home gardens, city parks, open farmland, and other factors all create landscapes with an abundance of edge habitat' - hence Adapter with uses_gardens true. Flight distance of 60 m is an authored typical value; the National Agricultural Statistics Service collision-loss figure in the Human interactions section supports road_mortality High."
+    },
+    "habitat.density_per_ha": {
+      "sources": [
+        "pantheria",
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Typical from PanTHERIA PopulationDensity_n/km2 17.32 converted to 1.73 per hectare; min and max are an authored hundredfold band either side, following the tenfold-band convention used elsewhere in this repository. Wikipedia's 'A population of around 8 deer per square kilometre' (0.8 per hectare) sits inside this band as a density capable of damaging forest regeneration."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Deer are active year round in their range; no source describes hibernation."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Rut dates from the Reproduction section ('normally in late October or early November', triggered by declining photoperiod). Fawn dates from the same section (born May or June, weaned at 8-10 weeks). The autumn caching window is judgement, tied to the acorn and mast availability described in the Diet section.",
+      "derived": true
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia",
+        "pantheria"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Juvenile duration one year, after which males leave their mothers ('Males leave their mothers after a year'); PanTHERIA SexualMaturityAge_d 365 agrees. Scale 0.55 is authored, based on the Reproduction section's fawn weight of 20-35 kg by the first winter against a 40-90 kg adult doe."
+    },
+    "vocalizations": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Call descriptions and contexts (blowing, snorting, grunting, the fawn bleat and the buck's grunt-snort-wheeze) from Wikipedia's Communication section. Season months for the wheeze, cooldowns and loudness are authored judgement, since no open source quantifies them. No frequency bands are given, so freq_hz is omitted."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Colours follow Wikipedia's description of a reddish- or grey-brown summer coat with a conspicuous white underside to the tail and a white rump patch; the antler pair and the rump patch are extra_parts, since the block plan has no antler part. Proportions are authored judgement for a long-legged deer: 53-120 cm shoulder height on a 95-220 cm body puts leg_length_ratio near two thirds of body depth."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared ground-forager program. The program description's default rest window (10 to 90 degrees) is kept because it is the setting its description gives for crepuscular species. food_tag browse is the dominant diet fraction; flee_gait gallop follows the recorded 60 km/h sprint, forage_gait walk; the radii are judgement, scaled up from the fox example for an animal an order of magnitude larger."
+    },
+    "vocalizations.alarm_blow": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Wikipedia describes the heavy breathing, called blowing, that the species gives in response to a potential predator, together with tail-flagging; the cooldown is authored judgement. No open source gives frequency bands, so freq_hz is omitted."
+    },
+    "vocalizations.grunt": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "No allow-listed open source describes the contact call of this species; the wording and cooldown here are authored."
+    },
+    "vocalizations.snort": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "vocalizations.bleat": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies fleet",
+      "agent": "opencode"
+    },
+    {
+      "name": "speeeecies maintainers",
+      "agent": "claude-code"
+    },
+    {
+      "name": "Sisyphus agent",
+      "agent": "claude-code"
+    }
+  ]
 }

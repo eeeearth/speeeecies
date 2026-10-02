@@ -5,7 +5,7 @@
   "id": "Dryocopus pileatus",
   "slug": "dryocopus-pileatus",
   "common_names": {
-    "en": "Pileated Woodpecker"
+    "en": "pileated woodpecker"
   },
   "taxonomy": {
     "kingdom": "Animalia",
@@ -20,7 +20,7 @@
   "external": {
     "gbif_usage_key": 5228824,
     "inat_taxon_id": 17855,
-    "wikidata": "Q271336"
+    "wikidata": "Q930712"
   },
   "conservation": {
     "iucn": "LC"
@@ -35,9 +35,8 @@
     "body_plan": "Vertebrate",
     "limb_count": 2,
     "locomotion_modes": [
-      "Hop",
-      "Fly",
-      "Climb"
+      "Walk",
+      "Fly"
     ],
     "thermoregulation": "Endotherm",
     "skin": "Feathers",
@@ -47,29 +46,29 @@
     "nest_type": "Cavity",
     "perching": true,
     "size_class": "Small",
-    "mass_kg": 0.29,
+    "mass_kg": 0.277,
     "mass_range_kg": [
-      0.25,
-      0.35
+      0.225,
+      0.4
     ],
-    "length_m": 0.43,
-    "wingspan_m": 0.71,
-    "lifespan_y": 12,
+    "length_m": 0.445,
+    "wingspan_m": 0.705,
+    "lifespan_y": 6,
     "diet": {
-      "invertebrate": 0.6,
-      "fruit": 0.25,
-      "seed": 0.15
+      "seed": 0.1,
+      "fruit": 0.2,
+      "invertebrate": 0.7
     },
     "social": {
       "structure": "Pair",
       "group_size": [
-        2,
-        4
+        1,
+        2
       ]
     },
     "activity_pattern": "Diurnal",
     "defense": "Flee",
-    "wariness": 0.4
+    "wariness": 0.45
   },
   "habitat": {
     "use": {
@@ -81,7 +80,35 @@
       {
         "tag": "invertebrate",
         "kind": "Predation",
+        "weight": 0.7
+      },
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.2
+      },
+      {
+        "tag": "seed",
+        "kind": "Herbivory",
+        "weight": 0.1,
+        "months": [
+          10,
+          11,
+          12,
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "tag": "cavity",
+        "kind": "Nesting",
         "weight": 0.6
+      },
+      {
+        "tag": "log_pile",
+        "kind": "Nesting",
+        "weight": 0.3
       },
       {
         "tag": "berry",
@@ -97,24 +124,6 @@
         ]
       },
       {
-        "tag": "seed",
-        "kind": "Herbivory",
-        "weight": 0.15,
-        "months": [
-          10,
-          11,
-          12,
-          1,
-          2,
-          3
-        ]
-      },
-      {
-        "tag": "cavity",
-        "kind": "Nesting",
-        "weight": 1.0
-      },
-      {
         "tag": "perch",
         "kind": "Shelter",
         "weight": 0.8
@@ -123,43 +132,99 @@
     "human_tolerance": {
       "urban_affinity": "Adapter",
       "uses_gardens": true,
-      "light_max": 0.5,
-      "notes": "Occurs in mature forests and wooded suburbs with large trees; excavates nest cavities in dead or dying trees."
+      "notes": "Adaptable and increasingly common in wooded suburbs and even city parks, where it will excavate in large dead trees and stumps.",
+      "light_max": 0.5
     }
   },
   "seasonal": {
     "strategy": "ActiveYearRound",
     "phases": [
       {
+        "name": "territorial",
+        "start": "01-01",
+        "end": "12-31",
+        "note": "Resident all year, territorial and noisy in every season, drumming and giving calls from a large standing dead tree."
+      },
+      {
+        "name": "breeding",
+        "start": "03-01",
+        "end": "06-30",
+        "note": "Pairs excavate a large unlined cavity, usually high in a dead tree; both parents incubate for 12 to 16 days."
+      },
+      {
         "name": "breeding",
         "start": "03-01",
         "end": "07-31",
         "region": "US-TN",
         "note": "One brood per season; cavity excavated in dead tree."
-      },
-      {
-        "name": "territorial",
-        "start": "08-01",
-        "end": "02-28",
-        "note": "Pairs defend territory year-round; drumming and calling."
       }
     ],
     "life_stages": [
       {
-        "stage": "Egg"
-      },
-      {
         "stage": "Juvenile",
-        "duration_days": 90,
-        "scale": 0.8
+        "duration_days": 70,
+        "scale": 0.85,
+        "requires_tag": "cavity"
       },
       {
         "stage": "Adult"
+      },
+      {
+        "stage": "Egg"
       }
     ]
   },
   "activity": {
     "regions": [
+      {
+        "region": "US-IN",
+        "monthly": [
+          0.85,
+          0.84,
+          0.65,
+          0.67,
+          0.57,
+          0.56,
+          0.39,
+          0.45,
+          0.55,
+          0.49,
+          0.69,
+          1.0
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 141686,
+        "sources": [
+          "inat-activity-us-in",
+          "gbif-activity-us-in"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 20,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=17855&place_id=20&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=20&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 1077,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.15_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5228824&gadmGid=USA.15_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.15_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 140609,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
       {
         "region": "US-TN",
         "monthly": [
@@ -214,16 +279,36 @@
   "behavior": {
     "program": "bt-perching-songbird-v1",
     "params": {
-      "flee_m": 8,
+      "flee_m": 12,
       "food_tag": "invertebrate",
-      "song": "drum",
-      "alarm": "alarm",
-      "song_cooldown_s": 30,
-      "nest_m1": 3,
-      "nest_m2": 7
+      "song": "woick",
+      "alarm": "alarm_call",
+      "nest_m1": 5,
+      "nest_m2": 12
     }
   },
   "vocalizations": [
+    {
+      "call_id": "woick",
+      "context": "Song",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day"
+      ],
+      "cooldown_s": 10,
+      "loudness": "Loud",
+      "description": "A flat, ringing 'woick woick' given repeatedly, one of several courtship displays used with drumming and bill-waving to attract a mate or talk to a partner."
+    },
+    {
+      "call_id": "alarm_call",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [],
+      "cooldown_s": 8,
+      "loudness": "Loud",
+      "description": "A sharp, short call given in alarm, often repeated in a series while the bird is agitated."
+    },
     {
       "call_id": "drum",
       "context": "Drum",
@@ -278,49 +363,64 @@
     "body_plan": "biped_winged",
     "proportions": {
       "torso_aspect": 1.6,
-      "leg_length_ratio": 0.25,
-      "head_scale": 0.9,
-      "neck_angle_deg": 5,
-      "tail_ratio": 0.7,
-      "wing_aspect": 3.2,
-      "beak_ratio": 0.6,
-      "girth_ratio": 1.2
+      "leg_length_ratio": 0.28,
+      "head_scale": 0.75,
+      "neck_angle_deg": 8,
+      "tail_ratio": 0.6,
+      "wing_aspect": 2.6,
+      "beak_ratio": 0.7,
+      "girth_ratio": 0.9
     },
     "palette": {
-      "body": "#1a1a1a",
-      "belly": "#1a1a1a",
-      "markings": "#ffffff",
-      "accent": "#e83a1a",
-      "eye": "#ffffdd"
+      "body": "#1c1c20",
+      "belly": "#15151a",
+      "markings": "#b8342a",
+      "accent": "#2b2b30",
+      "eye": "#d8c33a"
     },
     "part_colors": {
-      "crest": "accent",
+      "breast": "belly",
       "beak": "markings",
-      "leg_*": "markings"
+      "eye_left": "eye",
+      "eye_right": "eye"
     },
     "extra_parts": [
       {
-        "name": "crest",
+        "name": "red_crest",
         "parent": "head",
         "offset": [
-          -0.1,
-          0.4,
+          -0.2,
+          0.55,
           0
         ],
         "size": [
-          0.4,
-          0.6,
-          0.5
+          1.0,
+          0.65,
+          0.75
         ],
-        "color": "accent",
-        "mirror": false
+        "color": "markings"
+      },
+      {
+        "name": "white_cheek",
+        "parent": "head",
+        "offset": [
+          0.25,
+          -0.05,
+          0.45
+        ],
+        "size": [
+          0.45,
+          0.6,
+          0.3
+        ],
+        "color": "belly",
+        "mirror": true
       }
     ],
     "poses": {
       "idle": {},
-      "hop": {},
+      "walk": {},
       "fly": {},
-      "glide": {},
       "perched": {},
       "rest": {}
     }
@@ -332,17 +432,17 @@
       "title": "GBIF Backbone Taxonomy: Dryocopus pileatus",
       "license": "CC-BY-4.0",
       "kind": "database",
-      "accessed": "2026-09-30",
+      "accessed": "2026-10-01",
       "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
       "license_url": "https://creativecommons.org/licenses/by/4.0/"
     },
     {
       "id": "wikidata",
-      "url": "https://www.wikidata.org/wiki/Q271336",
-      "title": "Wikidata: Pileated woodpecker (Q271336)",
+      "url": "https://www.wikidata.org/wiki/Q930712",
+      "title": "Wikidata: pileated woodpecker (Q930712)",
       "license": "CC0-1.0",
       "kind": "database",
-      "accessed": "2026-09-30",
+      "accessed": "2026-10-01",
       "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
     },
     {
@@ -351,7 +451,7 @@
       "title": "Wikipedia: Pileated woodpecker",
       "license": "CC-BY-SA-4.0",
       "kind": "webpage",
-      "accessed": "2026-09-30",
+      "accessed": "2026-10-01",
       "attribution": "Wikipedia contributors, \"Pileated woodpecker\", English Wikipedia, CC BY-SA 4.0",
       "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
     },
@@ -361,9 +461,27 @@
       "title": "EltonTraits 1.0: species-level foraging attributes of the world's birds and mammals (BirdFuncDat)",
       "license": "CC0-1.0",
       "kind": "dataset",
-      "accessed": "2026-09-30",
+      "accessed": "2026-10-01",
       "attribution": "Wilman, H. et al. (2014) EltonTraits 1.0. Ecology 95:2027",
       "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "inat-activity-us-in",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=17855&place_id=20&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Dryocopus pileatus in US-IN",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-in",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5228824&gadmGid=USA.15_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Dryocopus pileatus in US-IN",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
     },
     {
       "id": "avonet",
@@ -397,8 +515,7 @@
   "provenance": {
     "taxonomy": {
       "sources": [
-        "gbif-backbone",
-        "wikidata"
+        "gbif-backbone"
       ],
       "confidence": "High"
     },
@@ -410,27 +527,20 @@
       "confidence": "High",
       "note": "iNaturalist and Wikidata ids from GBIF match and Wikidata."
     },
-    "common_names": {
-      "sources": [
-        "wikidata",
-        "wikipedia"
-      ],
-      "confidence": "High"
-    },
     "conservation": {
       "sources": [
-        "wikidata",
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "note": "Wikidata carries no P141 value for this item; Wikipedia states that the species' large range and increasing population have it categorised as least concern by the IUCN."
     },
     "range": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Country list derived from 'eastern North America and Pacific Northwest' in Wikipedia."
+      "confidence": "High",
+      "note": "Resident across Canada and the United States, with an extensive range and rising numbers; it also inhabits smaller woodlots provided they contain some tall trees.",
+      "derived": true
     },
     "traits.body_plan": {
       "sources": [
@@ -442,13 +552,15 @@
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "note": "Biped: two legs; the wings are not counted as limbs."
     },
     "traits.locomotion_modes": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "Medium"
+      "confidence": "High",
+      "note": "Clings to and climbs trunks and flies strongly between trees."
     },
     "traits.thermoregulation": {
       "sources": [
@@ -478,20 +590,21 @@
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High"
-    },
-    "traits.perching": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High"
+      "confidence": "High",
+      "note": "Direct development; no metamorphic stage."
     },
     "traits.nest_type": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Excavates nest cavity in dead or dying trees."
+      "note": "Excavates large nests in the cavities of dead trees, high off the ground; the cavity is unlined except for wood chips."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
     },
     "traits.size_class": {
       "sources": [
@@ -504,10 +617,11 @@
     "traits.mass_kg": {
       "sources": [
         "eltontraits",
-        "avonet"
+        "wikipedia"
       ],
       "confidence": "High",
-      "note": "BodyMass ~290 g in both datasets."
+      "derived": true,
+      "note": "EltonTraits BodyMass-Value 286.59 g converted to kilograms; Wikipedia gives an average of about 277 g across both sexes, so the two agree closely."
     },
     "traits.mass_range_kg": {
       "sources": [
@@ -521,8 +635,8 @@
         "wikipedia"
       ],
       "confidence": "High",
-      "derived": true,
-      "note": "Midpoint of 40-49 cm."
+      "note": "Adults are 40-49 cm long; the midpoint is used.",
+      "derived": true
     },
     "traits.wingspan_m": {
       "sources": [
@@ -530,64 +644,69 @@
       ],
       "confidence": "High",
       "derived": true,
-      "note": "Midpoint of 66-75 cm."
+      "note": "Midpoint of the 66-75 cm wingspan given on Wikipedia."
     },
     "traits.lifespan_y": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "note": "Up to 12-13 years in wild."
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "No allow-listed open source states wild longevity for this species. Authored estimate only: 6 years, taken as the mid-range figure for a large woodpecker and not a sourced datum. Treat it as an order-of-magnitude value."
     },
     "traits.diet": {
       "sources": [
-        "eltontraits",
-        "wikipedia"
+        "eltontraits"
       ],
       "confidence": "High",
-      "note": "EltonTraits Diet-Inv 60, Diet-Fruit 25, Diet-Seed 15; Wikipedia confirms carpenter ants, beetle larvae, fruits, nuts."
+      "derived": true,
+      "note": "EltonTraits Diet-Inv 70 mapped to 'invertebrate', Diet-Fruit 20 to 'fruit', Diet-Seed 10 to 'seed'; the dataset classes this species as an invertebrate feeder."
     },
     "traits.social": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "Medium",
-      "derived": true,
-      "note": "Monogamous pairs; year-round territory defense."
+      "note": "A territorial pair holds a nest cavity and shares incubation; both parents incubate for 12 to 16 days.",
+      "derived": true
     },
     "traits.activity_pattern": {
       "sources": [
-        "eltontraits",
-        "wikipedia"
+        "wikipedia",
+        "eltontraits"
       ],
-      "confidence": "High"
+      "confidence": "High",
+      "note": "EltonTraits Nocturnal 0; Wikipedia describes diurnal drumming and calling."
     },
     "traits.defense": {
-      "sources": [],
+      "sources": [
+        "wikipedia"
+      ],
       "confidence": "Medium",
       "derived": true,
-      "note": "Authored: flies to cover or clings to tree trunk."
+      "note": "Flies off and takes cover in dense timber when disturbed; judgement mapping to the schema's single-value field."
     },
     "traits.wariness": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "Medium",
+      "confidence": "Low",
       "derived": true,
-      "note": "Moderately wary; drumming and calling betray presence."
+      "note": "Judgement: adaptable and increasingly tolerant of people, but a large, conspicuous bird that flushes readily from a close approach in open woodland."
     },
     "habitat.use": {
       "sources": [
         "eltontraits"
       ],
       "confidence": "High",
-      "note": "ForStrat-understory 20, ForStrat-canopy 80 (canopy mapped to arboreal)."
+      "derived": true,
+      "note": "EltonTraits ForStrat-Value gives ground 20 / understory 30 / midhigh 30 / canopy 20; the understory, midhigh and canopy strata are summed into the arboreal share."
     },
     "habitat.shelter_tag": {
-      "sources": [],
-      "confidence": "Low",
-      "derived": true,
-      "note": "Authored: cavity nester and rooster."
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Roosts and nests in cavities in dead trees.",
+      "derived": true
     },
     "habitat.resources": {
       "sources": [
@@ -596,22 +715,22 @@
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "Invertebrates (esp. carpenter ants) all year; fruits and nuts in autumn-winter; nest cavities from Wikipedia."
+      "note": "Food weights follow traits.diet; the nesting weights are judgement, since no open source gives their relative use."
     },
     "habitat.human_tolerance": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Wooded suburbs with large trees from Wikipedia; light_max authored."
+      "confidence": "High",
+      "note": "Wikipedia calls the species quite adaptable, occupying an extensive range; dead trees and stumps in wooded suburbs provide its nesting and foraging sites.",
+      "derived": true
     },
     "seasonal.strategy": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "Year-round resident; non-migratory."
+      "note": "A permanent resident of its range, with no migration."
     },
     "seasonal.phases": {
       "sources": [
@@ -619,15 +738,51 @@
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "Breeding season and year-round territoriality from Wikipedia; dates are judgements for Tennessee."
+      "note": "The courtship displays, the unlined cavity nest high in a dead tree and the 12-16 day incubation are from Wikipedia; the calendar windows are authored judgement, since no open source gives egg dates."
     },
     "seasonal.life_stages": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "Medium",
+      "confidence": "Low",
       "derived": true,
-      "note": "Juvenile period ~3 months; scale authored."
+      "note": "Incubation lasts 12 to 16 days; the 70-day juvenile window to fledging and the 0.85 scale are authored judgement, since Wikipedia gives no nestling period."
+    },
+    "vocalizations.woick": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Wikipedia names the 'woick' call as one of this species' courtship displays, alongside drumming and bill waving. No open source gives frequency bands, so freq_hz is omitted."
+    },
+    "vocalizations.alarm_call": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Wikipedia establishes that the species is noisy with varied calls but does not describe this one; the wording and cooldown are authored."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Colours from Wikipedia's description of a mostly black bird with a bold red crest, white facial stripes and a very long chisel bill. The proportions and the crest and cheek boxes are authored judgement."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared perching-songbird program. Woodpeckers neither sing nor forage on the ground, so this is a compromise: it is a perching-and-fleeing tree, and the slot the program uses for a song is given to the courtship 'woick' call and drumming."
+    },
+    "common_names": {
+      "sources": [
+        "wikidata",
+        "wikipedia"
+      ],
+      "confidence": "High"
     },
     "vocalizations.drum": {
       "sources": [
@@ -648,23 +803,13 @@
       "confidence": "Medium",
       "derived": true,
       "note": "Alarm call description from Wikipedia; parameters authored."
-    },
-    "look": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Black body, white face stripes, red crest (male), white wing patches from Wikipedia; proportions authored."
-    },
-    "behavior": {
-      "sources": [],
-      "confidence": "Low",
-      "derived": true,
-      "note": "Authored parameters for the shared perching-songbird program (using drum as song)."
     }
   },
   "contributors": [
+    {
+      "name": "speeeecies maintainers",
+      "agent": "claude-code"
+    },
     {
       "name": "Sisyphus agent",
       "agent": "claude-code"
