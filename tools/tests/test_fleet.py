@@ -2861,8 +2861,10 @@ def test_a_missing_branch_does_not_break_the_no_pr_diagnosis():
     with the wrong cause. A diagnosis that cannot survive an absent branch is
     useless exactly when teardown is cleaning up after a spawn that never got one."""
     out = _no_pr_diagnosis("nope", "jt55401/does-not-exist-xyz", "species")
-    assert "never got as far as writing a record" in out, (
-        f"an absent branch was misdiagnosed: {out!r}"
+    # An absent branch must be refused, not guessed at: `rev-list BASE..` collapses
+    # to `BASE..HEAD` for an empty ref and returns a real-looking count.
+    assert "unknown locally" in out, (
+        f"an absent branch was misdiagnosed instead of refused: {out!r}"
     )
 
 
@@ -2878,16 +2880,20 @@ def test_the_no_pr_diagnosis_names_the_three_distinct_causes():
 
     # 1. No branch at all.
     out = _no_pr_diagnosis("nope", "jt55401/does-not-exist-xyz", "species")
-    assert "never got as far as writing a record" in out, (
-        f"an absent branch was misdiagnosed: {out!r}"
+    assert "unknown locally" in out, (
+        f"an absent branch was misdiagnosed instead of refused: {out!r}"
     )
 
     # 2. A real local branch carrying commits that was never pushed.
     br = f"jt55401/probe-diagnosis-{os.getpid()}"
+    sp.run(["git", "-C", str(REPO), "branch", "-D", br],
+           stdout=sp.DEVNULL, stderr=sp.DEVNULL)
     sp.run(["git", "-C", str(REPO), "branch", br, "origin/main"], check=True,
            stdout=sp.DEVNULL, stderr=sp.DEVNULL)
     wt = tempfile.mkdtemp()
     try:
+        sp.run(["git", "-C", str(REPO), "worktree", "remove", "--force", wt],
+               stdout=sp.DEVNULL, stderr=sp.DEVNULL)
         sp.run(["git", "-C", str(REPO), "worktree", "add", "-q", wt, br], check=True,
                stdout=sp.DEVNULL, stderr=sp.DEVNULL)
         Path(wt, "probe.txt").write_text("x\n", encoding="utf-8")
@@ -2907,3 +2913,30 @@ def test_the_no_pr_diagnosis_names_the_three_distinct_causes():
         sp.run(["git", "-C", str(REPO), "branch", "-D", br],
                stdout=sp.DEVNULL, stderr=sp.DEVNULL)
         sp.run(["rm", "-rf", wt], check=False)
+
+
+def test_the_no_pr_diagnosis_refuses_to_guess_on_an_unknown_branch():
+    """With no branch recorded, `git rev-list --count BASE..` silently collapses to
+    `BASE..HEAD` and returns a real-looking commit count for a branch that does not
+    exist. Run end-to-end against a slug with no branch, the line confidently said
+    "59 unpushed commits, ran out of session before pushing" for a slug that never
+    started. A diagnosis that invents a cause is worse than one that admits it
+    cannot tell."""
+    import tempfile as _tf
+    state = _tf.mkdtemp()
+    Path(state, "ghost-slug.meta").write_text(
+        "issue=9999\nkind=species\nmodel=test\n", encoding="utf-8")
+    env = dict(os.environ, FLEET_STATE_DIR=state, WORKTREE_ROOT=tempfile.mkdtemp(),
+               GH_REPO="jt55401/speeeecies")
+    p = subprocess.run(["bash", str(FLEET), "teardown", "ghost-slug", "--force"],
+                       capture_output=True, text=True, timeout=180, env=env)
+    out = p.stdout + p.stderr
+    subprocess.run(["rm", "-rf", state], check=False)
+    diag = [l for l in out.splitlines() if "diagnosis:" in l]
+    assert diag, f"no diagnosis line emitted: {out!r}"
+    assert "unknown locally" in diag[0], (
+        f"an unknown branch was diagnosed as though it existed: {diag[0]!r}"
+    )
+    assert "unpushed commit" not in diag[0], (
+        f"a commit count was invented for a branch that does not exist: {diag[0]!r}"
+    )

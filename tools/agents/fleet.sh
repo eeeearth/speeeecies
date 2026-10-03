@@ -984,6 +984,16 @@ row() {
 # One line naming WHY there is no PR, from facts rather than inference.
 no_pr_diagnosis() {  # slug branch kind
   local slug="$1" br="$2" kind="$3" pushed commits pr_attempt
+  # Refuse to diagnose an unknown branch. With br empty, `rev-list BASE..` silently
+  # collapses to `BASE..HEAD` and returns a real-looking commit count for a branch
+  # that does not exist, so the line confidently named the wrong cause. Verified by
+  # running the helper against a slug with no branch at all: it reported "59 unpushed
+  # commits, ran out of session before pushing" for a slug that never started.
+  if [ -z "$br" ] || ! git -C "$REPO" rev-parse --verify --quiet "$br" >/dev/null; then
+    printf 'branch %s unknown locally -- cannot say why; check the .meta and the agent log' \
+      "${br:-<empty>}"
+    return 0
+  fi
   pushed=$(git -C "$REPO" ls-remote --heads origin "$br" 2>/dev/null | wc -l | tr -d ' ')
   # 0, never "?": rev-list fails when the branch does not exist yet, and a
   # non-numeric value under `[ -gt ]` errors and then falls through to the else
