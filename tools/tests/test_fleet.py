@@ -2940,3 +2940,25 @@ def test_the_no_pr_diagnosis_refuses_to_guess_on_an_unknown_branch():
     assert "unpushed commit" not in diag[0], (
         f"a commit count was invented for a branch that does not exist: {diag[0]!r}"
     )
+
+
+def test_the_candidate_scan_fetches_before_judging_what_is_open():
+    """cmd_list_issues decides what is still open via record_exists and pr_for_slug,
+    and both read $BASE_REF (origin/main) and the remote refs. The only fetch in the
+    script lived inside cmd_spawn, so every scan judged against a stale
+    origin/main -- this clone was 289 commits behind with 184 species records merged
+    upstream that the scan could not see, and it offered already-merged work as
+    candidates. An agent spawned on such an issue collides on merge."""
+    text = FLEET.read_text(encoding="utf-8")
+    loop = text.split("cmd_supervise() {", 1)[1]
+    fetch_at = loop.index("git fetch --quiet origin")
+    scan_at = loop.index("pick=$(cmd_list_issues)")
+    assert fetch_at < scan_at, (
+        "the candidate scan runs before the fetch, so record_exists and pr_for_slug "
+        "judge against a stale origin/main"
+    )
+    # A network failure must degrade, not abort the poll.
+    tail = loop[fetch_at:fetch_at + 400]
+    assert "||" in tail and "fetch failed" in tail, (
+        "a failed fetch must be reported and survived, not abort the poll"
+    )

@@ -1387,6 +1387,18 @@ cmd_supervise() {
     if [ "$live" -lt "$FLEET_MIN" ]; then
       # A gh outage must not kill the loop, but it must not masquerade as an
       # empty queue either: report it and keep whatever is already running.
+      # Fetch before scanning, not just before spawning. cmd_list_issues decides
+      # what is still open using record_exists and pr_for_slug, and both read
+      # $BASE_REF and the remote refs. The only fetch in the script lived inside
+      # cmd_spawn, so the scan judged against a stale origin/main -- this clone was
+      # 289 commits behind, with 184 species records merged upstream that the scan
+      # could not see. It therefore offered already-merged work as candidates, and
+      # could spawn an agent whose record would collide on merge.
+      #
+      # Guarded: a network failure must not abort the poll, it just means the scan
+      # runs on what we already have, which is the pre-existing behaviour.
+      ( cd "$REPO" && git fetch --quiet origin ) >/dev/null 2>&1 || \
+        echo "[$(date -u +%FT%TZ)] fetch failed; scanning candidates against the refs we already have"
       if ! pick=$(cmd_list_issues); then
         fleet_state=GH_UNREACHABLE
         echo "[$(date -u +%FT%TZ)] issue listing failed (GitHub unreachable); not refilling this poll"
