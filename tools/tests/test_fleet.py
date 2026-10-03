@@ -2805,3 +2805,30 @@ def test_the_retry_budget_expires_attempts_instead_of_counting_forever():
     assert '"$issue" "$kind" "$slug" "$(date +%s)"' in text, (
         "attempts are not timestamped, so the cooldown can never take effect"
     )
+
+
+def test_a_successful_teardown_archives_the_log_instead_of_deleting_it():
+    """The no-PR path already kept its log "for diagnosis", but the SUCCESS path
+    deleted it. A slug that failed twice and succeeded on the third attempt was
+    therefore destroying the evidence of why it failed on that successful teardown.
+    That is exactly how ~50% no-PR became undiagnosable: 36 no-PR events across
+    retried slugs, and by the end a single surviving log out of 63 spawned slugs."""
+    text = FLEET.read_text(encoding="utf-8")
+    body = text.split("cmd_teardown() {", 1)[1].split("\n}\n", 1)[0]
+    move = 'mv "$STATE_DIR/$slug.log" "$STATE_DIR/archive/$slug.log"'
+    assert move in body, (
+        "the success path must archive the log rather than remove it"
+    )
+    # A bare rm may only survive as the fallback when the move itself fails, e.g.
+    # an unwritable archive dir. An unconditional rm before the move is the bug.
+    for line in body.split("\n"):
+        if 'rm -f "$STATE_DIR/$slug.log"' in line and "||" not in line:
+            raise AssertionError(
+                "the success path still deletes the agent log outright: "
+                + line.strip()
+            )
+    # And the archive directory has to exist before the first teardown moves
+    # anything into it.
+    assert 'mkdir -p "$STATE_DIR/archive"' in text, (
+        "the archive directory is never created, so the move would fail"
+    )

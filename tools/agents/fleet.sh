@@ -79,6 +79,9 @@ VISUAL_CHECK=${VISUAL_CHECK:-0}
 
 
 mkdir -p "$WORKTREE_ROOT" "$STATE_DIR"
+# Archive of past agent runs. Teardown moves logs here instead of deleting them,
+# so a slug that failed before it succeeded still leaves evidence behind.
+mkdir -p "$STATE_DIR/archive" 2>/dev/null || true
 
 # --- the free-tier model pool ------------------------------------------------
 # Probed working. The same model published under two provider ids is two routes
@@ -1044,7 +1047,15 @@ cmd_teardown() {
   case "$pr_st" in
     2) say "torn down $slug; could NOT verify whether a PR exists (GitHub unreachable), so claiming neither way"
        say "  branch $br and log kept: $STATE_DIR/$slug.log" ;;
-    0) rm -f "$STATE_DIR/$slug.log"
+    0) # Archived, not deleted. A slug that fails twice and succeeds on the third
+       # attempt was deleting the log of the failure on that successful teardown,
+       # so the evidence of why it failed was gone by the time anyone looked. The
+       # no-PR path already kept its log "for diagnosis"; this is the same
+       # reasoning applied to the case that actually destroys it.
+       if [ -f "$STATE_DIR/$slug.log" ]; then
+         mv "$STATE_DIR/$slug.log" "$STATE_DIR/archive/$slug.log" 2>/dev/null \
+           || rm -f "$STATE_DIR/$slug.log"
+       fi
        say "torn down $slug; branch kept ($br) because it is the PR" ;;
     *) say "torn down $slug; NO PR was opened, branch $br kept for salvage, issue still needs work"
        say "  agent log kept for diagnosis: $STATE_DIR/$slug.log" ;;
