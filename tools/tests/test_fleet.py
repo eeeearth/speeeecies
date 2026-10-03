@@ -2832,3 +2832,78 @@ def test_a_successful_teardown_archives_the_log_instead_of_deleting_it():
     assert 'mkdir -p "$STATE_DIR/archive"' in text, (
         "the archive directory is never created, so the move would fail"
     )
+
+
+def _no_pr_diagnosis(slug: str, branch: str, kind: str, log_body: str = "") -> str:
+    """Run the real helper under set -euo pipefail, as the teardown does."""
+    import tempfile as _tf
+    state = _tf.mkdtemp()
+    if log_body:
+        Path(state, f"{slug}.log").write_text(log_body, encoding="utf-8")
+    text = FLEET.read_text(encoding="utf-8")
+    start = re.search(r"\nno_pr_diagnosis\(\) \{", text).start()
+    fn = text[start:text.index("\n}\n", start) + 3]
+    script = (f"set -euo pipefail\n{fn}\n"
+              f'STATE_DIR={state} REPO={REPO} BASE_REF=origin/main\n'
+              f'no_pr_diagnosis {slug} {branch} {kind}\n')
+    p = subprocess.run(["bash", "-c", script], capture_output=True, text=True, timeout=60)
+    subprocess.run(["rm", "-rf", state], check=False)
+    assert p.returncode == 0, f"the diagnosis aborted under errexit: {p.stderr}"
+    assert "integer expected" not in p.stderr, (
+        f"a non-numeric commit count broke the numeric test: {p.stderr}"
+    )
+    return p.stdout.strip()
+
+
+def test_a_missing_branch_does_not_break_the_no_pr_diagnosis():
+    """The commit count falls back to "?" when the branch does not exist, and "?"
+    under `[ -gt ]` errors and then falls through, so an absent branch was reported
+    with the wrong cause. A diagnosis that cannot survive an absent branch is
+    useless exactly when teardown is cleaning up after a spawn that never got one."""
+    out = _no_pr_diagnosis("nope", "jt55401/does-not-exist-xyz", "species")
+    assert "never got as far as writing a record" in out, (
+        f"an absent branch was misdiagnosed: {out!r}"
+    )
+
+
+def test_the_no_pr_diagnosis_names_the_three_distinct_causes():
+    """The point of the line is to separate three causes that need three different
+    fixes: never started, ran out of session before pushing, and finished-but-no-PR.
+    Guessing between them is what falsified seven hypotheses in a row.
+
+    Only cases this test can set up deterministically are asserted. The pushed case
+    needs a branch that genuinely exists on the remote, which would make the test
+    rot the moment that branch is merged away."""
+    import subprocess as sp
+
+    # 1. No branch at all.
+    out = _no_pr_diagnosis("nope", "jt55401/does-not-exist-xyz", "species")
+    assert "never got as far as writing a record" in out, (
+        f"an absent branch was misdiagnosed: {out!r}"
+    )
+
+    # 2. A real local branch carrying commits that was never pushed.
+    br = f"jt55401/probe-diagnosis-{os.getpid()}"
+    sp.run(["git", "-C", str(REPO), "branch", br, "origin/main"], check=True,
+           stdout=sp.DEVNULL, stderr=sp.DEVNULL)
+    wt = tempfile.mkdtemp()
+    try:
+        sp.run(["git", "-C", str(REPO), "worktree", "add", "-q", wt, br], check=True,
+               stdout=sp.DEVNULL, stderr=sp.DEVNULL)
+        Path(wt, "probe.txt").write_text("x\n", encoding="utf-8")
+        sp.run(["git", "-C", wt, "add", "-A"], check=True,
+               stdout=sp.DEVNULL, stderr=sp.DEVNULL)
+        sp.run(["git", "-C", wt, "-c", "user.email=a@a", "-c", "user.name=a",
+                "commit", "-qm", "probe"], check=True,
+               stdout=sp.DEVNULL, stderr=sp.DEVNULL)
+        out = _no_pr_diagnosis("probe2", br, "species",
+                               log_body="ran gh pr create --title x")
+        assert "gh-pr-attempted=yes" in out, f"PR attempt not detected: {out!r}"
+        assert "branch NOT pushed" in out, f"unpushed work misdiagnosed: {out!r}"
+        assert "ran out of session before pushing" in out, f"wrong cause: {out!r}"
+    finally:
+        sp.run(["git", "-C", str(REPO), "worktree", "remove", "--force", wt],
+               stdout=sp.DEVNULL, stderr=sp.DEVNULL)
+        sp.run(["git", "-C", str(REPO), "branch", "-D", br],
+               stdout=sp.DEVNULL, stderr=sp.DEVNULL)
+        sp.run(["rm", "-rf", wt], check=False)

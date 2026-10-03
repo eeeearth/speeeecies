@@ -981,6 +981,31 @@ row() {
   printf '%-26s %-7s %-40s %-8s %-6s %-3s %-8s %s\n' "$slug" "$kind" "$model" "$run" "${age}m" "$pr" "$ci" "$last"
 }
 
+# One line naming WHY there is no PR, from facts rather than inference.
+no_pr_diagnosis() {  # slug branch kind
+  local slug="$1" br="$2" kind="$3" pushed commits pr_attempt
+  pushed=$(git -C "$REPO" ls-remote --heads origin "$br" 2>/dev/null | wc -l | tr -d ' ')
+  # 0, never "?": rev-list fails when the branch does not exist yet, and a
+  # non-numeric value under `[ -gt ]` errors and then falls through to the else
+  # branch, reporting "no commits" for a branch that simply is not there.
+  commits=$(git -C "$REPO" rev-list --count "$BASE_REF..$br" 2>/dev/null) || commits=0
+  case "$commits" in ''|*[!0-9]*) commits=0 ;; esac
+  case "$pushed" in ''|*[!0-9]*) pushed=0 ;; esac
+  pr_attempt=no
+  if [ -f "$STATE_DIR/$slug.log" ] && grep -qiE 'gh pr create|pull request' "$STATE_DIR/$slug.log" 2>/dev/null; then
+    pr_attempt=yes
+  fi
+  if [ "$pushed" -gt 0 ]; then
+    printf 'branch PUSHED with %s commit(s), gh-pr-attempted=%s -> work was finished but never turned into a PR' \
+      "$commits" "$pr_attempt"
+  elif [ "${commits:-0}" -gt 0 ]; then
+    printf 'branch NOT pushed, %s unpushed commit(s), gh-pr-attempted=%s -> ran out of session before pushing' \
+      "$commits" "$pr_attempt"
+  else
+    printf 'no commits on branch, gh-pr-attempted=%s -> never got as far as writing a record' "$pr_attempt"
+  fi
+}
+
 cmd_teardown() {
   need_repo
   local slug force=0 pr_st
@@ -1058,6 +1083,11 @@ cmd_teardown() {
        fi
        say "torn down $slug; branch kept ($br) because it is the PR" ;;
     *) say "torn down $slug; NO PR was opened, branch $br kept for salvage, issue still needs work"
+       # Structured diagnosis. The 5-line log tail below is mostly session noise and
+       # could not answer the obvious question: did this agent never reach the PR
+       # step, try and fail, or finish work and never push? Those three need
+       # completely different fixes, and guessing cost seven falsified hypotheses.
+       say "  diagnosis: $(no_pr_diagnosis "$slug" "$br" "$kind")"
        say "  agent log kept for diagnosis: $STATE_DIR/$slug.log" ;;
   esac
 }
