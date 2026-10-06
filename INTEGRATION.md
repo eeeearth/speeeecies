@@ -21,6 +21,17 @@ Suggested PR-body update:
 
 # Atlanta flora resource tag correction
 
+## Release hold
+
+**HOLD merge and publication.** The automatic locale sync fetches public
+`main` every 30 minutes and can rebuild and publish changed locale content.
+Merging this correction can therefore change the live inputs protected by
+eeeearth PR131 while its natural visual acceptance is pending. Keep this PR
+as a draft. Merge only after PR131 natural visual acceptance completes, or
+after a separately reviewed boundary makes the source update compatible with
+that acceptance and its rollback checks. Source review and green CI do not
+clear this operational hold.
+
 ## Source change
 
 The `Ilex opaca` entry in `locales/ga-atlanta/flora-catalog.json` now uses
@@ -38,12 +49,15 @@ This keeps validation offline while giving reviewers a reproducible source.
 
 ## Verification
 
+The source change was rebased onto public `main` at `e8a76ad` before the
+checks below. The final diff retains the same seven-file functional scope.
+
 | Command | Result |
 |---|---|
-| `uv run --with pytest --with 'jsonschema>=4.18' pytest -q tools/tests` | 189 passed, including typo rejection and a valid declared tag |
+| `uv run --with pytest --with 'jsonschema>=4.18' pytest -q tools/tests` | 190 passed, including typo rejection and a valid declared tag |
 | `uv run tools/validate.py --locale ga-atlanta --report` | Passed; 12 species, 12 flora taxa, 3 evergreens, no errors |
-| `uv run tools/validate.py --locale all --json` | Passed; 18 locales, no locale or flora errors |
-| `uv run tools/validate.py --self-check` | Passed; 355 files scanned, 0 findings |
+| `uv run tools/validate.py --locale all --json` | Passed; 33 locales, no locale or flora errors |
+| `uv run tools/validate.py --self-check` | Passed; 553 files scanned, 0 findings |
 | `python3 tools/sync_resource_tags.py <seeeeds ids.rs> <pinned revision> --check` | Snapshot matches the clean upstream revision named in the JSON |
 | `git diff --check` | Passed |
 
@@ -54,14 +68,17 @@ does not call that validator, so a placement run would not supply this check.
 
 ## Release handoff
 
-1. Review and merge the public source change, then confirm CI is green at the
-   merge commit.
-2. Run seeeeds `validate_flora_catalog` on the corrected catalog during the
-   private import preflight.
-3. Confirm `Ilex opaca.resource_tags` contains `shrub_thicket` in the staged
-   import and staged pack before publication.
-4. Complete the normal private import and rotation checks after the separate
-   live application acceptance work is complete.
+1. Resolve the release hold above and review the publication and rollback
+   boundary with the coordinator.
+2. Merge the public source change, then confirm CI is green at the merge
+   commit. Automatic locale sync can act on that merge; coordinate this step
+   with the release boundary.
+3. Run seeeeds `validate_flora_catalog` on the corrected catalog during the
+   private import preflight. Confirm `Ilex opaca.resource_tags` contains
+   `shrub_thicket` in the staged import and staged pack before publication.
+4. Complete the normal private import and rotation checks, including the
+   confirmed-release chart update.
 
 This branch changes public source and its validator only. It is ready for
-review; no import, pack, service, or rotation state was changed.
+source review under the release hold; no import, pack, service, or rotation
+state was changed.
