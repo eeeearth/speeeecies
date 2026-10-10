@@ -1,5 +1,5 @@
 {
-  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "$schema": "https://eeeearth.github.io/speeeecies/schema/v0.1/species.schema.json",
   "format": "speeeecies/species",
   "format_version": "0.1",
   "id": "Passer montanus",
@@ -397,48 +397,50 @@
         }
       },
       {
-        "region": "TH-50",
+        "region": "KR-11",
         "monthly": [
-          0.32,
-          0.35,
-          0.36,
-          0.53,
-          0.83,
-          0.9,
-          0.95,
+          0.56,
+          0.55,
+          0.54,
+          0.65,
+          0.85,
+          0.97,
           1.0,
-          0.78,
-          0.58,
-          0.38,
-          0.3
+          0.92,
+          0.74,
+          0.69,
+          0.71,
+          0.67
         ],
-        "method": "gbif_share",
-        "observations": 8599,
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 11125,
         "sources": [
-          "gbif-activity-th-50"
+          "inat-activity-kr-11",
+          "gbif-activity-kr-11"
         ],
         "query": {
           "min_obs": 300,
           "inat": {
             "tier": "C",
-            "place_id": 13320,
-            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=13851&place_id=13320&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
-            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=13320&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
-            "total": 107,
-            "usable": false
+            "place_id": 11005,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=13851&place_id=11005&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=11005&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 712,
+            "usable": true
           },
           "gbif": {
             "tier": "A",
             "area": [
               "gadmGid",
-              "THA.10_1"
+              "KOR.16_1"
             ],
-            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5231198&gadmGid=THA.10_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
-            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=THA.10_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
-            "total": 8599,
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5231198&gadmGid=KOR.16_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=KOR.16_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 10413,
             "usable": true
           },
           "used": [
+            "inat",
             "gbif"
           ]
         }
@@ -693,9 +695,18 @@
       "kind": "api"
     },
     {
-      "id": "gbif-activity-th-50",
-      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5231198&gadmGid=THA.10_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
-      "title": "GBIF occurrence search for Passer montanus in TH-50",
+      "id": "inat-activity-kr-11",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=13851&place_id=11005&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Passer montanus in KR-11",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-kr-11",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5231198&gadmGid=KOR.16_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Passer montanus in KR-11",
       "license": "CC-BY-4.0",
       "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
       "accessed": "2026-10-01",

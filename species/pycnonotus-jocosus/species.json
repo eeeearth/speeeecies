@@ -1,11 +1,11 @@
 {
-  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "$schema": "https://eeeearth.github.io/speeeecies/schema/v0.1/species.schema.json",
   "format": "speeeecies/species",
   "format_version": "0.1",
   "id": "Pycnonotus jocosus",
   "slug": "pycnonotus-jocosus",
   "common_names": {
-    "en": "red-whiskered bulbul"
+    "en": "Red-whiskered bulbul"
   },
   "taxonomy": {
     "kingdom": "Animalia",
@@ -20,9 +20,9 @@
   "external": {
     "gbif_usage_key": 2486151,
     "inat_taxon_id": 14591,
-    "wikidata": "Q501063",
     "ncbi_taxon_id": 182897,
-    "ebird_code": "rewbul"
+    "ebird_code": "rewbul",
+    "wikidata": "Q501063"
   },
   "conservation": {
     "iucn": "LC"
@@ -31,22 +31,17 @@
     "native": [
       "IN",
       "NP",
-      "BD",
       "BT",
+      "BD",
+      "LK",
       "MM",
       "TH",
       "LA",
       "KH",
       "VN",
+      "CN",
       "MY",
-      "CN"
-    ],
-    "introduced": [
-      "AU",
-      "US",
-      "MU",
-      "RE",
-      "SG"
+      "ID"
     ]
   },
   "traits": {
@@ -64,36 +59,39 @@
     "nest_type": "Cup",
     "perching": true,
     "size_class": "Tiny",
-    "mass_kg": 0.0295,
+    "mass_kg": 0.02947,
     "length_m": 0.2,
-    "wingspan_m": 0.28,
-    "lifespan_y": 5,
+    "wingspan_m": 0.26,
+    "lifespan_y": 8,
     "diet": {
-      "invertebrate": 0.2,
-      "fruit": 0.2,
+      "invertebrate": 0.3,
+      "fruit": 0.3,
       "nectar": 0.2,
-      "seed": 0.2,
-      "browse": 0.2
+      "seed": 0.2
     },
     "social": {
       "structure": "Flock",
       "group_size": [
         2,
-        10
+        100
       ]
     },
     "activity_pattern": "Diurnal",
     "defense": "Flee",
-    "wariness": 0.25
+    "wariness": 0.3
   },
   "habitat": {
     "use": {
       "ground": 0.2,
-      "arboreal": 0.7,
-      "aerial": 0.1
+      "arboreal": 0.8
     },
     "shelter_tag": "shrub_thicket",
     "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.6
+      },
       {
         "tag": "fruit",
         "kind": "Herbivory",
@@ -102,17 +100,12 @@
       {
         "tag": "nectar",
         "kind": "Nectarivory",
-        "weight": 0.25
-      },
-      {
-        "tag": "invertebrate",
-        "kind": "Predation",
-        "weight": 0.25
+        "weight": 0.3
       },
       {
         "tag": "seed",
         "kind": "Herbivory",
-        "weight": 0.1
+        "weight": 0.2
       },
       {
         "tag": "nest_cup",
@@ -122,19 +115,19 @@
       {
         "tag": "perch",
         "kind": "Shelter",
-        "weight": 0.7
+        "weight": 0.6
       },
       {
         "tag": "shrub_thicket",
         "kind": "Shelter",
-        "weight": 0.6
+        "weight": 0.8
       }
     ],
     "human_tolerance": {
       "urban_affinity": "Adapter",
       "uses_gardens": true,
       "light_max": 0.8,
-      "notes": "Common in urban gardens and lightly wooded country; perches conspicuously on treetops and garden shrubs."
+      "notes": "Common in urban gardens and lightly wooded country; perches conspicuously on trees."
     }
   },
   "seasonal": {
@@ -142,20 +135,16 @@
     "phases": [
       {
         "name": "breeding",
-        "start": "02-01",
-        "end": "06-30",
-        "note": "Breeding is spread out and peaks in the warm season; cup nest in a bush or small tree."
-      },
-      {
-        "name": "moult",
-        "start": "07-01",
-        "end": "09-30"
+        "start": "12-01",
+        "end": "05-31",
+        "region": "IN",
+        "note": "Peaks December to May in southern India; one or two broods."
       },
       {
         "name": "flocking",
-        "start": "10-01",
-        "end": "01-31",
-        "note": "Roosts communally in loose groups, sometimes of a hundred or more birds."
+        "start": "06-01",
+        "end": "08-31",
+        "note": "Roosts communally in loose groups."
       }
     ],
     "life_stages": [
@@ -164,76 +153,23 @@
       },
       {
         "stage": "Juvenile",
-        "duration_days": 45,
-        "scale": 0.85
+        "duration_days": 60,
+        "scale": 0.9
       },
       {
         "stage": "Adult"
       }
     ]
   },
-  "activity": {
-    "regions": [
-      {
-        "region": "TH-50",
-        "monthly": [
-          0.28,
-          0.33,
-          0.34,
-          0.53,
-          0.4,
-          0.44,
-          1.0,
-          0.49,
-          0.17,
-          0.44,
-          0.18,
-          0.26
-        ],
-        "method": "mean(inat_share, gbif_share)",
-        "observations": 785,
-        "sources": [
-          "inat-activity-th-50",
-          "gbif-activity-th-50"
-        ],
-        "query": {
-          "min_obs": 300,
-          "inat": {
-            "tier": "C",
-            "place_id": 13320,
-            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=14591&place_id=13320&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
-            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=13320&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
-            "total": 475,
-            "usable": true
-          },
-          "gbif": {
-            "tier": "C",
-            "area": [
-              "gadmGid",
-              "THA.10_1"
-            ],
-            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2486151&gadmGid=THA.10_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
-            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=THA.10_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
-            "total": 310,
-            "usable": true
-          },
-          "used": [
-            "inat",
-            "gbif"
-          ]
-        }
-      }
-    ]
-  },
   "behavior": {
     "program": "bt-perching-songbird-v1",
     "params": {
-      "flee_m": 5,
-      "food_tag": "fruit",
+      "flee_m": 4,
+      "food_tag": "invertebrate",
       "song": "song",
       "alarm": "alarm",
-      "nest_m1": 2,
-      "nest_m2": 6
+      "nest_m1": 12,
+      "nest_m2": 5
     }
   },
   "vocalizations": [
@@ -248,7 +184,7 @@
       ],
       "cooldown_s": 20,
       "loudness": "Moderate",
-      "description": "A loud, ringing three- or four-note call, kink-a-joo, delivered from a conspicuous treetop perch, especially in the morning."
+      "description": "Loud, cheerful three- or four-note whistled call, transcribed kink-a-joo or pleased-to-meet-you."
     },
     {
       "call_id": "alarm",
@@ -258,33 +194,33 @@
         "Day",
         "Dusk"
       ],
-      "cooldown_s": 5,
+      "cooldown_s": 6,
       "loudness": "Moderate",
-      "description": "A scolding, chattering alarm given from cover when the bird is disturbed."
+      "description": "Sharp scolding chatter given from cover when disturbed."
     }
   ],
   "look": {
     "body_plan": "biped_winged",
     "proportions": {
-      "torso_aspect": 1.6,
-      "leg_length_ratio": 0.32,
+      "torso_aspect": 1.5,
+      "leg_length_ratio": 0.35,
       "head_scale": 0.8,
       "neck_angle_deg": 15,
-      "tail_ratio": 0.85,
+      "tail_ratio": 0.95,
       "wing_aspect": 2.6,
-      "beak_ratio": 0.4,
-      "girth_ratio": 0.95
+      "beak_ratio": 0.35,
+      "girth_ratio": 1.0
     },
     "palette": {
-      "body": "#6b4f3a",
-      "belly": "#f2ede3",
-      "markings": "#111111",
-      "accent": "#c62828",
+      "body": "#6b4a33",
+      "belly": "#efe9dc",
+      "markings": "#1a1a1a",
+      "accent": "#c0392b",
       "eye": "#111111"
     },
     "part_colors": {
-      "head": "markings",
       "breast": "belly",
+      "beak": "markings",
       "tail": "body"
     },
     "extra_parts": [
@@ -292,31 +228,32 @@
         "name": "crest",
         "parent": "head",
         "offset": [
-          0.1,
-          0.5,
+          0,
+          0.8,
           0
         ],
         "size": [
           0.5,
-          0.5,
-          0.4
+          0.6,
+          0.5
         ],
         "color": "markings"
       },
       {
-        "name": "face_patch",
+        "name": "face",
         "parent": "head",
         "offset": [
           0.3,
           0,
-          0
+          0.35
         ],
         "size": [
           0.5,
           0.5,
-          1.05
+          0.6
         ],
-        "color": "accent"
+        "color": "accent",
+        "mirror": true
       },
       {
         "name": "vent",
@@ -338,7 +275,6 @@
       "idle": {},
       "hop": {},
       "fly": {},
-      "glide": {},
       "perched": {},
       "rest": {}
     }
@@ -357,7 +293,7 @@
     {
       "id": "wikidata",
       "url": "https://www.wikidata.org/wiki/Q501063",
-      "title": "Wikidata: red-whiskered bulbul (Q501063)",
+      "title": "Wikidata: Red-whiskered bulbul (Q501063)",
       "license": "CC0-1.0",
       "kind": "database",
       "accessed": "2026-10-01",
@@ -380,23 +316,34 @@
       "license": "CC0-1.0",
       "kind": "dataset",
       "accessed": "2026-10-01",
+      "attribution": "Wilman, H. et al. (2014) EltonTraits 1.0. Ecology 95:2027",
       "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
     },
     {
-      "id": "inat-activity-th-50",
-      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=14591&place_id=13320&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
-      "title": "iNaturalist observations histogram for Pycnonotus jocosus in TH-50",
+      "id": "avonet",
+      "url": "https://doi.org/10.6084/m9.figshare.16586228",
+      "title": "AVONET: morphological, ecological and geographical data for all birds",
+      "license": "CC-BY-4.0",
+      "kind": "dataset",
+      "accessed": "2026-10-01",
+      "attribution": "Tobias, J. A. et al. (2022) AVONET. Ecology Letters 25:581-597",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "inat-activity-in-ka",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=14591&place_id=7043&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Pycnonotus jocosus in IN-KA",
       "license": "CC-BY-NC-4.0",
       "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
       "accessed": "2026-10-01",
       "kind": "api"
     },
     {
-      "id": "gbif-activity-th-50",
-      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2486151&gadmGid=THA.10_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
-      "title": "GBIF occurrence search for Pycnonotus jocosus in TH-50",
-      "license": "CC-BY-NC-4.0",
-      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
+      "id": "gbif-activity-in-ka",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2486151&gadmGid=IND.16_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Pycnonotus jocosus in IN-KA",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
       "accessed": "2026-10-01",
       "kind": "api"
     }
@@ -418,17 +365,16 @@
     },
     "common_names": {
       "sources": [
-        "wikidata",
-        "wikipedia"
+        "wikidata"
       ],
       "confidence": "High"
     },
     "conservation": {
       "sources": [
-        "wikidata"
+        "wikidata",
+        "wikipedia"
       ],
-      "confidence": "High",
-      "note": "IUCN Red List category (P141): least concern."
+      "confidence": "High"
     },
     "range": {
       "sources": [
@@ -436,47 +382,217 @@
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "Native countries inferred from the article's distribution (Indian subcontinent, southern China, Southeast Asia); introduced countries from the article's introduction history (Australia, Florida, Mauritius, Reunion, Singapore)."
+      "note": "Native range across the Indian subcontinent and Southeast Asia, from the distribution section; country list derived."
     },
-    "traits": {
-      "sources": [
-        "wikipedia",
-        "eltontraits"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Diet shares, body mass and foraging stratum from EltonTraits 1.0 (BirdFuncDat, BodyMass 29.47 g); total length (~20 cm), plumage, cup nest and flight from Wikipedia. size_class derived from mass_kg. wingspan_m and lifespan_y are judgement: neither is stated in the cited sources, so a small-passerine wingspan and a 5-year lifespan were assumed."
-    },
-    "habitat": {
-      "sources": [
-        "wikipedia",
-        "eltontraits"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Stratum shares adapted from EltonTraits ForStrat (ground 20, understory 40, mid-high 40); resource use and garden tolerance from the article's habitat and feeding sections; weights are judgement."
-    },
-    "seasonal": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Low",
-      "derived": true,
-      "note": "Active year round. Breeding window follows the article's breeding season; phase boundaries and the moult/flocking windows are judgement for Thailand."
-    },
-    "vocalizations.song": {
+    "traits.body_plan": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High"
     },
-    "vocalizations.alarm": {
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "Call described from the article's call description; timing is judgement."
+      "note": "Hops on the ground and flies; article describes it perching conspicuously on trees."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'The nest is cup-shaped, and is built on bushes'."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.size_class": {
+      "sources": [
+        "eltontraits"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "eltontraits",
+        "avonet"
+      ],
+      "confidence": "High",
+      "note": "BodyMass 29.47 g in both."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'about 20 cm (7.9 in) in length'."
+    },
+    "traits.wingspan_m": {
+      "sources": [
+        "avonet"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "No wingspan is given by the sources; estimated as three times AVONET's flattened wing chord (86.8 mm), a standard morphometric approximation for a passerine."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "The article gives about 11 years in captivity; 8 years is a judgement for wild birds."
+    },
+    "traits.diet": {
+      "sources": [
+        "eltontraits",
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "EltonTraits Diet-Inv 20, Diet-Fruit 20, Diet-Nect 20, Diet-Seed 20, Diet-PlantO 20; article confirms insects, nectar and fruits."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Territorial pairs in the breeding season, communal roosts of a hundred or more birds."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "eltontraits"
+      ],
+      "confidence": "High",
+      "note": "EltonTraits Nocturnal 0."
+    },
+    "traits.defense": {
+      "sources": [],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Authored: flies to cover."
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Common in urban gardens; 0.3 is a judgement."
+    },
+    "habitat.use": {
+      "sources": [
+        "eltontraits"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "ForStrat ground 20, understory 40, midhigh 40; understory and midhigh mapped to arboreal."
+    },
+    "habitat.shelter_tag": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored."
+    },
+    "habitat.resources": {
+      "sources": [
+        "eltontraits",
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Invertebrates, fruit, nectar and seeds from EltonTraits; cup nest in bushes from the article."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Urban garden bird; light_max and notes authored."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Resident; no migration."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Breeding peaks December to May in southern India; end dates are judgements."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Eggs hatch in about 12 days; chicks are fed by both parents."
+    },
+    "vocalizations.song": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Loud three- or four-note call, transcribed kink-a-joo."
+    },
+    "vocalizations.alarm": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Scolding alarm; description limited."
     },
     "look": {
       "sources": [
@@ -484,7 +600,7 @@
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "Brown upperparts, whitish underparts, tall black crest, red face patch and red vent from the article's description; proportions and part placement are authored for the block mesh."
+      "note": "Brown upperparts, whitish underparts, black crest, red face patch and red vent; proportions authored."
     },
     "behavior": {
       "sources": [],
@@ -495,8 +611,61 @@
   },
   "contributors": [
     {
-      "name": "speeeecies locale agent",
+      "name": "speeeecies maintainers",
       "agent": "opencode"
     }
-  ]
+  ],
+  "activity": {
+    "regions": [
+      {
+        "region": "IN-KA",
+        "monthly": [
+          0.56,
+          0.69,
+          0.77,
+          0.9,
+          1.0,
+          0.89,
+          0.97,
+          0.75,
+          0.74,
+          0.6,
+          0.55,
+          0.52
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 229608,
+        "sources": [
+          "inat-activity-in-ka",
+          "gbif-activity-in-ka"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 7043,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=14591&place_id=7043&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=7043&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 1243,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "IND.16_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2486151&gadmGid=IND.16_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=IND.16_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 228365,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  }
 }

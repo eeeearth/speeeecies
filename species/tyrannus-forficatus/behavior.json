@@ -1,0 +1,192 @@
+{
+  "schema_version": 1,
+  "format": "speeeecies/behavior",
+  "id": "bt-perch-sally-flycatcher-v1",
+  "kind": "bt",
+  "description": "Perch-and-sally aerial insectivore (scissor-tailed flycatcher, kingbirds): sits on an exposed perch, flies out to take a flying insect, eats it and returns to a perch, roosts out of the wind at night, flees a threat by flight, and builds a cup nest in `nest_m1`-`nest_m2`. Deliberately has no song or alarm branch: the only openly licensed source this record cites documents no vocalization for the species, so it drives the animal silently rather than pointing at a call the record cannot source.",
+  "params": {
+    "flee_m": 30,
+    "food_tag": "invertebrate",
+    "food_m": 40,
+    "sally_cooldown_s": 6,
+    "nest_m1": 4,
+    "nest_m2": 8
+  },
+  "root": {
+    "selector": [
+      {
+        "sequence": [
+          {
+            "cond": {
+              "threat_within_m": "${flee_m}"
+            }
+          },
+          {
+            "act": {
+              "do": "take_off"
+            }
+          },
+          {
+            "act": {
+              "do": "flee",
+              "gait": "fly"
+            }
+          }
+        ]
+      },
+      {
+        "sequence": [
+          {
+            "cond": {
+              "need": "fear",
+              "gt": 0.2
+            }
+          },
+          {
+            "act": {
+              "do": "take_off"
+            }
+          },
+          {
+            "act": {
+              "do": "flee",
+              "gait": "fly"
+            }
+          }
+        ]
+      },
+      {
+        "sequence": [
+          {
+            "cond": {
+              "player_touch": true
+            }
+          },
+          {
+            "act": {
+              "do": "tolerate_touch"
+            }
+          }
+        ]
+      },
+      {
+        "sequence": [
+          {
+            "cond": {
+              "is_day": false
+            }
+          },
+          {
+            "act": {
+              "do": "perch_nearest",
+              "tag": "shelter"
+            }
+          },
+          {
+            "act": {
+              "do": "rest"
+            }
+          }
+        ]
+      },
+      {
+        "sequence": [
+          {
+            "cond": {
+              "need": "nest",
+              "gt": 0.5
+            }
+          },
+          {
+            "cond": {
+              "month_in": [
+                "${nest_m1}",
+                4,
+                5,
+                6,
+                7,
+                "${nest_m2}"
+              ]
+            }
+          },
+          {
+            "cond": {
+              "nest_site_within_m": 40
+            }
+          },
+          {
+            "act": {
+              "do": "build_nest"
+            }
+          }
+        ]
+      },
+      {
+        "sequence": [
+          {
+            "cond": {
+              "need": "hunger",
+              "gt": 0.4
+            }
+          },
+          {
+            "act": {
+              "do": "perch_nearest"
+            }
+          },
+          {
+            "act": {
+              "do": "take_off"
+            }
+          },
+          {
+            "act": {
+              "do": "fly_to_nearest",
+              "tag": "${food_tag}"
+            }
+          }
+        ]
+      },
+      {
+        "act": {
+          "do": "perch_nearest"
+        }
+      },
+      {
+        "cooldown_s": "${sally_cooldown_s}",
+        "child": {
+          "sequence": [
+            {
+              "cond": {
+                "food_within_m": "${food_m}",
+                "tag": "${food_tag}"
+              }
+            },
+            {
+              "act": {
+                "do": "take_off"
+              }
+            },
+            {
+              "act": {
+                "do": "fly_to_nearest",
+                "tag": "${food_tag}"
+              }
+            },
+            {
+              "act": {
+                "do": "eat_nearest",
+                "tag": "${food_tag}"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "act": {
+          "do": "idle"
+        }
+      }
+    ]
+  }
+}
