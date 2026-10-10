@@ -933,6 +933,8 @@ def test_spawn_actually_completes_on_a_clean_state_dir(tmp_path):
     agent = bin_ / "agentstub"
     marker = tmp_path / "shell-injection-ran"
     capture = tmp_path / "agent args.txt"
+    hostile_model = f'fixture\n"; touch {marker}; echo "'
+    hostile_variant = f'variant\n"; touch {marker}; echo "'
     agent.write_text('#!/usr/bin/env bash\nprintf "%s\\n" "$@" > "$CAPTURE_ARGS"\nexit 0\n')
     agent.chmod(0o755)
     gh = bin_ / "gh"
@@ -966,7 +968,8 @@ def test_spawn_actually_completes_on_a_clean_state_dir(tmp_path):
         [
             "bash", str(FLEET), "spawn",
             "--issue", "7", "--slug", "test-species", "--scientific",
-            f"Testus $(touch {marker})", "--model", f"fixture$(touch {marker})",
+            f"Testus $(touch {marker})", "--model", hostile_model,
+            "--variant", hostile_variant,
         ],
         cwd=repo, env=env, capture_output=True, text=True,
     )
@@ -984,7 +987,12 @@ def test_spawn_actually_completes_on_a_clean_state_dir(tmp_path):
     assert capture.exists(), "detached launcher did not invoke the agent stub"
     args = capture.read_text(encoding="utf-8")
     assert f"Testus $(touch {marker})" in args, args
-    assert f"fixture$(touch {marker})" in args, args
+    assert hostile_model in args, args
+    assert hostile_variant in args, args
+    launcher = (state / "test-species.launch.sh").read_text(encoding="utf-8")
+    assert "printf '=== fleet.sh spawn %s model=%s variant=%s\\n'" in launcher
+    assert "$'fixture\\n" in launcher, "test input did not exercise Bash ANSI-C %q quoting"
+    assert "$'variant\\n" in launcher, "variant did not exercise Bash ANSI-C %q quoting"
     assert not marker.exists(), "scientific name or model was executed as shell source"
 
     # The bug that started this: the status path must be substituted, not empty.

@@ -869,14 +869,15 @@ exec > $q_log 2>&1
 # stop this agent, so it must not run at all: continuing left a live process in a
 # worktree the parent then force-removed, the one failure that loses work outright.
 echo \$\$ > $q_state_dir/$q_slug.pid || {
-  echo "=== fleet.sh spawn FAILED: could not publish $q_slug.pid" >&2
+  printf '=== fleet.sh spawn FAILED: could not publish %s.pid\n' $q_slug >&2
   exit 8
   }
 [ -s $q_state_dir/$q_slug.pid ] || {
-  echo "=== fleet.sh spawn FAILED: $q_slug.pid is empty" >&2
+  printf '=== fleet.sh spawn FAILED: %s.pid is empty\n' $q_slug >&2
   exit 8
   }
-echo "=== fleet.sh spawn \$(date -u +%FT%TZ) model=$q_model variant=$q_variant"
+printf '=== fleet.sh spawn %s model=%s variant=%s\n' \\
+  "\$(date -u +%FT%TZ)" $q_model $q_variant
 cd $q_wpath || exit 9
 if [ ! -f $q_permissions ] || [ ! -r $q_permissions ] || [ ! -s $q_permissions ] \
     || ! python3 -m json.tool $q_permissions >/dev/null 2>&1; then
