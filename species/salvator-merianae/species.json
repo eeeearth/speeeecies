@@ -14,7 +14,7 @@
     "order": "Squamata",
     "family": "Teiidae",
     "genus": "Salvator",
-    "authority": "(Dum\u00e9ril & Bibron, 1839)",
+    "authority": "(Duméril & Bibron, 1839)",
     "status": "Accepted"
   },
   "external": {
@@ -358,6 +358,55 @@
             "gbif"
           ]
         }
+      },
+      {
+        "region": "AR-C",
+        "monthly": [
+          0.76,
+          0.39,
+          0.3,
+          0.04,
+          0.03,
+          0.01,
+          0.0,
+          0.0,
+          0.29,
+          1.0,
+          0.86,
+          0.53
+        ],
+        "method": "mean(inat_raw, gbif_raw)",
+        "observations": 620,
+        "sources": [
+          "inat-activity-ar-c",
+          "gbif-activity-ar-c"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 10434,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=318758&place_id=10434&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": null,
+            "total": 312,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "ARG.5_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5227370&gadmGid=ARG.5_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": null,
+            "total": 308,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
       }
     ]
   },
@@ -550,7 +599,7 @@
       "license": "CC0-1.0",
       "kind": "database",
       "accessed": "2026-10-10",
-      "note": "Distribution and habitat treatment by Ribeiro-J\u00fanior and Amaral (2016); Zenodo record states CC0-1.0."
+      "note": "Distribution and habitat treatment by Ribeiro-Júnior and Amaral (2016); Zenodo record states CC0-1.0."
     },
     {
       "id": "campagnoli-christianini-2024",
@@ -561,6 +610,24 @@
       "accessed": "2026-10-10",
       "attribution": "Campagnoli, M. L. and Christianini, A. V. 2024. Tegu lizard (Salvator merianae) disperses the invasive plant Eugenia uniflora. Acta Botanica Brasilica 38: e20230211. https://doi.org/10.1590/1677-941X-ABB-2023-0211",
       "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "inat-activity-ar-c",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=318758&place_id=10434&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Salvator merianae in AR-C",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-ar-c",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5227370&gadmGid=ARG.5_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Salvator merianae in AR-C",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
     }
   ],
   "provenance": {
@@ -673,7 +740,7 @@
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "Wikipedia notes adult tegus reach 1\u20131.5 kg; range 0.5\u20133.0 kg authored based on size variation between males and females."
+      "note": "Wikipedia notes adult tegus reach 1–1.5 kg; range 0.5–3.0 kg authored based on size variation between males and females."
     },
     "traits.length_m": {
       "sources": [],
@@ -765,7 +832,7 @@
       "sources": [],
       "confidence": "Low",
       "derived": true,
-      "note": "Authored density range: 0.01\u20131.0 per ha; typical 0.1 per ha for forest-edge/savanna populations."
+      "note": "Authored density range: 0.01–1.0 per ha; typical 0.1 per ha for forest-edge/savanna populations."
     },
     "seasonal.strategy": {
       "sources": [
@@ -882,7 +949,7 @@
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "Brumation triggers: enter below 10\u00b0C for 30 days, exit above 10\u00b0C for 7 days, authored from thermal ecology of South American tegu species."
+      "note": "Brumation triggers: enter below 10°C for 30 days, exit above 10°C for 7 days, authored from thermal ecology of South American tegu species."
     },
     "traits.nest_type": {
       "sources": [
