@@ -76,7 +76,7 @@
     "nest_type": "Cup",
     "perching": true,
     "size_class": "Small",
-    "mass_kg": 0.062,
+    "mass_kg": 0.06944,
     "mass_range_kg": [
       0.059,
       0.078
@@ -86,8 +86,7 @@
     "lifespan_y": 2.4,
     "diet": {
       "fruit": 0.5,
-      "invertebrate": 0.4,
-      "seed": 0.1
+      "invertebrate": 0.5
     },
     "social": {
       "structure": "Pair",
@@ -102,25 +101,19 @@
   },
   "habitat": {
     "use": {
-      "ground": 0.5,
-      "arboreal": 0.5
+      "ground": 1.0
     },
     "shelter_tag": "shrub_thicket",
     "resources": [
       {
         "tag": "invertebrate",
         "kind": "Predation",
-        "weight": 0.6
+        "weight": 0.5
       },
       {
         "tag": "fruit",
         "kind": "Herbivory",
-        "weight": 0.7
-      },
-      {
-        "tag": "seed",
-        "kind": "Herbivory",
-        "weight": 0.3
+        "weight": 0.5
       },
       {
         "tag": "nest_cup",
@@ -380,14 +373,12 @@
     ]
   },
   "behavior": {
-    "program": "bt-perching-songbird-v1",
+    "program": "bt-turdus-rufiventris-v1",
     "params": {
       "flee_m": 5,
       "food_tag": "invertebrate",
       "song": "song",
-      "alarm": "alarm",
-      "nest_m1": 8,
-      "nest_m2": 3
+      "alarm": "alarm"
     }
   },
   "vocalizations": [
@@ -505,13 +496,13 @@
     },
     {
       "id": "eltontraits",
-      "url": "https://doi.org/10.6084/m9.figshare.3559887.v1",
+      "url": "https://doi.org/10.6084/m9.figshare.c.3306933.v1",
       "title": "EltonTraits 1.0: species-level foraging attributes of the world's birds and mammals (BirdFuncDat)",
-      "license": "CC0-1.0",
+      "license": "CC-BY-4.0",
       "kind": "dataset",
-      "accessed": "2026-09-30",
+      "accessed": "2026-10-10",
       "attribution": "Wilman, H. et al. (2014) EltonTraits 1.0. Ecology 95:2027",
-      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
     },
     {
       "id": "avonet",
@@ -689,21 +680,18 @@
     },
     "traits.size_class": {
       "sources": [
-        "eltontraits",
-        "avonet"
+        "eltontraits"
       ],
       "confidence": "High",
       "derived": true,
-      "note": "From mass_kg (0.062 kg falls in the Small band < 1 kg)."
+      "note": "From mass_kg (0.06944 kg falls in the Small band < 1 kg)."
     },
     "traits.mass_kg": {
       "sources": [
-        "wikipedia",
-        "eltontraits",
-        "avonet"
+        "eltontraits"
       ],
       "confidence": "High",
-      "note": "Wikipedia: typical weights ~59 g males, ~64 g females; max 68 g males, 78 g females. EltonTraits/AVONET expected to have similar values for Turdus rufiventris."
+      "note": "EltonTraits 1.0 BirdFuncDat row for Turdus rufiventris (SpecID 8985): BodyMass-Value 69.44 g, converted to 0.06944 kg."
     },
     "traits.mass_range_kg": {
       "sources": [
@@ -742,7 +730,7 @@
         "eltontraits"
       ],
       "confidence": "High",
-      "note": "Wikipedia: 'food consists mainly of fruits and arthropods'. EltonTraits expected to show high Diet-Fruit and Diet-Inv for this frugivorous-insectivorous thrush."
+      "note": "EltonTraits 1.0 BirdFuncDat row reports Diet-Inv 50 and Diet-Fruit 50, with Diet-Seed 0; values recorded as fractions."
     },
     "traits.social": {
       "sources": [
@@ -778,12 +766,11 @@
     },
     "habitat.use": {
       "sources": [
-        "eltontraits",
-        "wikipedia"
+        "eltontraits"
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "Wikipedia: 'Found in forests and urban wooded areas'; EltonTraits ForStrat-ground and ForStrat-understory expected high for ground-foraging thrush that also uses mid-story."
+      "note": "EltonTraits 1.0 BirdFuncDat row reports ForStrat-ground 100 and all other foraging strata 0. This is a foraging-stratum measure, not a claim that the species never uses trees for nesting or shelter."
     },
     "habitat.shelter_tag": {
       "sources": [],
@@ -798,7 +785,7 @@
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "Invertebrates and fruit year-round from EltonTraits/Wikipedia; seeds minor component; nest and shelter tags from breeding/habitat description."
+      "note": "Invertebrate and fruit resource weights match the EltonTraits diet proportions (50/50); cup nest and shrub/perch shelter tags reflect the documented nesting and cover use."
     },
     "habitat.human_tolerance": {
       "sources": [
@@ -858,7 +845,7 @@
       "sources": [],
       "confidence": "Low",
       "derived": true,
-      "note": "Authored parameters for shared perching-songbird program; nest_m1=8, nest_m2=3 covers Aug–Mar breeding window across range."
+      "note": "Authored use of the perching-songbird program; nesting months are explicitly set to August through March to cover the reported Brazil (Aug–Jan) and Argentina (Oct–Mar) breeding windows."
     }
   },
   "contributors": [
