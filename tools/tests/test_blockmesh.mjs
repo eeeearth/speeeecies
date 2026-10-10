@@ -6,6 +6,7 @@ import { buildModel, poseModel } from "../../site/js/blockmesh.js";
 
 const bodyPlans = JSON.parse(await readFile(new URL("../../schema/v0.1/body-plans.json", import.meta.url)));
 const fox = JSON.parse(await readFile(new URL("../../species/vulpes-vulpes/species.json", import.meta.url)));
+const dove = JSON.parse(await readFile(new URL("../../species/spilopelia-senegalensis/species.json", import.meta.url)));
 // The pre-merge tegu record supplies these geometry inputs. Keep only the
 // fields buildQuadrupedLike uses so this renderer test does not depend on PR #103.
 const tegu = {
@@ -96,4 +97,16 @@ test("geometry limit preserves tegu gallop and relative fox gait sizes", () => {
 
   assert.ok(foxWalk > 0 && foxWalk < foxTrot && foxTrot < foxGallop && foxGallop < 35);
   assert.equal(teguGallop, 35, "tegu geometry should retain the full gallop swing");
+});
+
+test("laughing dove preview builds wings when optional wingspan is absent", () => {
+  assert.equal(Object.hasOwn(dove.traits, "wingspan_m"), false);
+
+  const model = buildModel(dove, bodyPlans);
+  const leftWing = model.parts.find((part) => part.name === "wing_left");
+  const rightWing = model.parts.find((part) => part.name === "wing_right");
+
+  assert.ok(leftWing && rightWing);
+  assert.ok(leftWing.size[2] > 0 && rightWing.size[2] > 0);
+  assert.equal(leftWing.size[2], rightWing.size[2]);
 });

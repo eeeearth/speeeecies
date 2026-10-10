@@ -416,9 +416,7 @@
     "params": {
       "flee_m": 6,
       "food_tag": "seed",
-      "song": "coo",
-      "nest_m1": 5,
-      "nest_m2": 11
+      "song": "coo"
     }
   },
   "vocalizations": [
@@ -623,11 +621,11 @@
       "id": "inat-activity-eg",
       "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=1455922&place_id=7055&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
       "title": "iNaturalist observations histogram for Spilopelia senegalensis in EG",
-      "license": "CC-BY-NC-4.0",
+      "license": "CC-BY-NC-SA-4.0",
       "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API, queried 2026-09-30",
       "accessed": "2026-09-30",
       "kind": "api",
-      "note": "The tool had to widen the iNaturalist licence filter beyond CC0/CC BY for Egypt (tier C) because only 293 Egyptian records carry a CC0 or CC BY licence. The GBIF series for the same region is CC0/CC BY only and dominates the combined curve, so the NC share of this curve is small; the source is kept on its own licence and flagged rather than relicensed."
+      "note": "The CC0/CC BY-only iNaturalist pool has 293 Egyptian records, below the fetcher's 300-observation floor. Tier C was retained as a last-resort supplementary activity source; its query includes CC BY-SA, CC BY-NC and CC BY-NC-SA records, so the composite source uses CC-BY-NC-SA-4.0 to preserve the share-alike and non-commercial terms. tools/fetch_activity.py normalizes each source curve and averages iNaturalist and GBIF equally, so this source contributes half of the combined monthly pattern. A GBIF-only CC0/CC BY curve was available; the tier C source is retained for the additional iNaturalist activity evidence and flagged here and in ATTRIBUTION.md."
     },
     {
       "id": "gbif-activity-eg",
@@ -918,7 +916,7 @@
       "sources": [],
       "confidence": "Low",
       "derived": true,
-      "note": "A species-specific copy of the shared perching-songbird tree preserves perching, nesting, singing and flight responses while using walk for ground-feeding, consistent with this record's Walk locomotion mode. Its threat response flees without emitting the courtship coo as an alarm, since no separate alarm call is sourced. food_tag = seed follows the documented grass seeds; flee_m = 6 is judgement; nest_m1/nest_m2 = 5-11 map the Zimbabwe May-November breeding window to the tree's inclusive month test."
+      "note": "A species-specific copy of the shared perching-songbird tree preserves perching, nesting, singing and flight responses while using walk for ground-feeding, consistent with this record's Walk locomotion mode. Its threat response flees without emitting the courtship coo as an alarm, since no separate alarm call is sourced. The local defaults use seed for food and coo for song. flee_m = 6 is judgement; nest building is limited explicitly to May-November, matching the Zimbabwe breeding window."
     }
   },
   "contributors": [

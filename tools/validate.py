@@ -270,6 +270,9 @@ def check_traits(species: dict, findings: list[Finding]) -> None:
             )
 
     if "Fly" in locomotion_modes:
+        # wingspan_m is optional in the species schema. The browser renderer
+        # supplies a fallback for these two winged plans, so keep validation
+        # aligned with schema-valid records; other plans still need a value.
         winged_body_plan = species.get("look", {}).get("body_plan") in {"biped_winged", "hexapod_winged"}
         if not is_number(traits.get("wingspan_m")) and not winged_body_plan:
             findings.append(

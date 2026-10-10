@@ -67,3 +67,46 @@ def test_species_behavior_walks_to_food_and_does_not_use_coo_as_alarm() -> None:
     assert all(action["do"] != "alarm" for action in program_actions)
     assert species["behavior"]["params"]["song"] == "coo"
     assert "alarm" not in species["behavior"]["params"]
+
+
+def test_local_behavior_defaults_match_laughing_dove_diet_and_call() -> None:
+    defaults = load_behavior()["params"]
+
+    assert defaults["food_tag"] == "seed"
+    assert defaults["song"] == "coo"
+
+
+def test_nest_building_months_are_may_through_november() -> None:
+    program = load_behavior()
+
+    def nodes(node: dict):
+        yield node
+        for key in ("selector", "sequence"):
+            for child in node.get(key, []):
+                yield from nodes(child)
+        if "child" in node:
+            yield from nodes(node["child"])
+
+    nesting_branch = next(
+        node for node in nodes(program["root"])
+        if any(action.get("do") == "build_nest" for action in actions(node))
+    )
+    month_conditions = [
+        node["cond"]["month_in"] for node in nodes(nesting_branch)
+        if "cond" in node and "month_in" in node["cond"]
+    ]
+
+    assert month_conditions == [[5, 6, 7, 8, 9, 10, 11]]
+    assert not {"nest_m1", "nest_m2"} & program["params"].keys()
+
+
+def test_egypt_activity_note_describes_equal_curve_weighting() -> None:
+    source = next(
+        source for source in load_species()["sources"] if source["id"] == "inat-activity-eg"
+    )
+
+    assert "293" in source["note"]
+    assert "equal" in source["note"].lower()
+    assert "share of this curve is small" not in source["note"]
+    assert source["license"] == "CC-BY-NC-SA-4.0"
+    assert "cc-by-sa" in source["url"] and "cc-by-nc-sa" in source["url"]
