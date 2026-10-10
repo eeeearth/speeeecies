@@ -368,6 +368,54 @@
             "gbif"
           ]
         }
+      },
+      {
+        "region": "KE-30",
+        "monthly": [
+          0.67,
+          0.89,
+          0.54,
+          0.55,
+          0.58,
+          0.74,
+          0.61,
+          0.81,
+          0.5,
+          0.54,
+          1.0,
+          0.51
+        ],
+        "method": "gbif_share",
+        "observations": 201,
+        "sources": [
+          "gbif-activity-ke-30"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 10957,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=68137&place_id=10957&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=10957&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 199,
+            "usable": false
+          },
+          "gbif": {
+            "tier": "C",
+            "area": [
+              "gadmGid",
+              "KEN.30_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=7262034&gadmGid=KEN.30_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=KEN.30_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "total": 201,
+            "usable": false
+          },
+          "used": [
+            "gbif"
+          ],
+          "fallback_note": "The best available Nairobi County observations did not reach min_obs=300 (GBIF n=201; iNaturalist n=199). This is a low-count fallback curve, not a validated seasonal estimate; use with caution."
+        }
       }
     ]
   },
@@ -739,6 +787,15 @@
       "license": "CC-BY-4.0",
       "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
       "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-ke-30",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=7262034&gadmGid=KEN.30_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+      "title": "GBIF occurrence search for Chlorocebus pygerythrus in KE-30",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
+      "accessed": "2026-10-01",
       "kind": "api"
     }
   ],

@@ -252,6 +252,15 @@
       "accessed": "2026-09-30",
       "attribution": "Mühlenhaupt et al., iScience 29 (2026), 115401",
       "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "gbif-activity-ke-30",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=9456514&gadmGid=KEN.30_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+      "title": "GBIF occurrence search for Sclerophrys gutturalis in KE-30",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
     }
   ],
   "provenance": {
@@ -458,6 +467,54 @@
           "used": [
             "gbif"
           ]
+        }
+      },
+      {
+        "region": "KE-30",
+        "monthly": [
+          0.1,
+          0.05,
+          0.05,
+          0.1,
+          0.67,
+          0.14,
+          0.0,
+          0.05,
+          0.05,
+          0.33,
+          1.0,
+          0.86
+        ],
+        "method": "gbif_raw",
+        "observations": 71,
+        "sources": [
+          "gbif-activity-ke-30"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 10957,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=517053&place_id=10957&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": null,
+            "total": 25,
+            "usable": false
+          },
+          "gbif": {
+            "tier": "C",
+            "area": [
+              "gadmGid",
+              "KEN.30_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=9456514&gadmGid=KEN.30_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "baseline_url": null,
+            "total": 71,
+            "usable": false
+          },
+          "used": [
+            "gbif"
+          ],
+          "fallback_note": "The best available Nairobi County observations did not reach min_obs=300 (GBIF n=71; iNaturalist n=25). This is a low-count fallback curve, not a validated seasonal estimate; use with caution."
         }
       }
     ]
