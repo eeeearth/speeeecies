@@ -62,7 +62,6 @@
     "size_class": "Small",
     "mass_kg": 0.159,
     "length_m": 0.3,
-    "wingspan_m": 0.42,
     "lifespan_y": 5,
     "diet": {
       "seed": 0.8,
@@ -146,14 +145,12 @@
     ]
   },
   "behavior": {
-    "program": "bt-perching-songbird-v1",
+    "program": "bt-spilopelia-chinensis-chiangmai-v1",
     "params": {
       "flee_m": 5,
       "food_tag": "seed",
       "song": "song",
-      "alarm": "alarm",
-      "nest_m1": 3,
-      "nest_m2": 9
+      "alarm": "alarm"
     }
   },
   "vocalizations": [
@@ -300,7 +297,7 @@
       "id": "inat-activity-in-ka",
       "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=1455918&place_id=7043&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
       "title": "iNaturalist observations histogram for Spilopelia chinensis in IN-KA",
-      "license": "CC-BY-NC-4.0",
+      "license": "CC-BY-NC-SA-4.0",
       "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
       "accessed": "2026-10-01",
       "kind": "api"
@@ -312,6 +309,15 @@
       "license": "CC-BY-4.0",
       "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
       "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-th-50",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=6101224&gadmGid=THA.10_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Spilopelia chinensis in TH-50",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-10) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-10",
       "kind": "api"
     }
   ],
@@ -438,21 +444,13 @@
       "derived": true,
       "note": "Midpoint of 'the length ranges from 28 to 32 centimetres'."
     },
-    "traits.wingspan_m": {
-      "sources": [
-        "avonet"
-      ],
-      "confidence": "Low",
-      "derived": true,
-      "note": "No wingspan is given by the sources; estimated as three times AVONET's flattened wing chord (138.8 mm)."
-    },
     "traits.lifespan_y": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "Low",
       "derived": true,
-      "note": "No lifespan is stated; 5 years is a judgement for a small dove."
+      "note": "5 years is a simulation model setting; the cited sources do not establish a typical lifespan."
     },
     "traits.diet": {
       "sources": [
@@ -569,7 +567,7 @@
       "sources": [],
       "confidence": "Low",
       "derived": true,
-      "note": "Authored parameters for the shared perching-songbird program."
+      "note": "Species-local routine omits the shared program's unsupported month-gated nest-building action and uses walking for ground forage, matching the record's declared pose. Other authored parameters tune routine movement and vocalization."
     }
   },
   "contributors": [
@@ -625,6 +623,48 @@
           },
           "used": [
             "inat",
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "TH-50",
+        "monthly": [
+          0.54,
+          0.46,
+          0.47,
+          0.55,
+          0.72,
+          0.72,
+          0.89,
+          1.0,
+          0.94,
+          0.74,
+          0.59,
+          0.54
+        ],
+        "method": "gbif_share",
+        "observations": 19163,
+        "sources": [
+          "gbif-activity-th-50"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "skipped": "ISO 3166-2 region given without --inat-place-id; pass --inat-place-id <id> (look it up at https://www.inaturalist.org/places) to query iNaturalist for this subdivision"
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "THA.10_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=6101224&gadmGid=THA.10_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=THA.10_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 19163,
+            "usable": true
+          },
+          "used": [
             "gbif"
           ]
         }

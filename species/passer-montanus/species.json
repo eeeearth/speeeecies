@@ -81,7 +81,8 @@
       "JP",
       "TW",
       "MM",
-      "ID"
+      "ID",
+      "TH"
     ],
     "introduced": [
       "US",
@@ -119,7 +120,6 @@
     "size_class": "Tiny",
     "mass_kg": 0.024,
     "length_m": 0.1325,
-    "wingspan_m": 0.21,
     "lifespan_y": 3,
     "diet": {
       "seed": 0.6,
@@ -134,7 +134,8 @@
     },
     "activity_pattern": "Diurnal",
     "defense": "Flee",
-    "wariness": 0.45
+    "wariness": 0.45,
+    "wingspan_m": 0.21
   },
   "habitat": {
     "use": {
@@ -444,18 +445,63 @@
             "gbif"
           ]
         }
+      },
+      {
+        "region": "TH-50",
+        "monthly": [
+          0.32,
+          0.35,
+          0.36,
+          0.53,
+          0.82,
+          0.9,
+          0.95,
+          1.0,
+          0.78,
+          0.57,
+          0.38,
+          0.3
+        ],
+        "method": "gbif_share",
+        "observations": 8608,
+        "sources": [
+          "gbif-activity-th-50"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 13320,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=13851&place_id=13320&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=13320&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 107,
+            "usable": false
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "THA.10_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5231198&gadmGid=THA.10_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=THA.10_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 8608,
+            "usable": true
+          },
+          "used": [
+            "gbif"
+          ]
+        }
       }
     ]
   },
   "behavior": {
-    "program": "bt-perching-songbird-v1",
+    "program": "bt-passer-montanus-chiangmai-v1",
     "params": {
       "flee_m": 5,
       "food_tag": "seed",
       "song": "tschip",
-      "alarm": "teck",
-      "nest_m1": 3,
-      "nest_m2": 8
+      "alarm": "teck"
     }
   },
   "vocalizations": [
@@ -698,7 +744,7 @@
       "id": "inat-activity-kr-11",
       "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=13851&place_id=11005&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
       "title": "iNaturalist observations histogram for Passer montanus in KR-11",
-      "license": "CC-BY-NC-4.0",
+      "license": "CC-BY-NC-SA-4.0",
       "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
       "accessed": "2026-10-01",
       "kind": "api"
@@ -710,6 +756,15 @@
       "license": "CC-BY-4.0",
       "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
       "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-th-50",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5231198&gadmGid=THA.10_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Passer montanus in TH-50",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-10) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-10",
       "kind": "api"
     }
   ],
@@ -753,7 +808,7 @@
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "Country lists derived from the range, distribution and subspecies sections. Native: the general statement is 'most of temperate Europe and Asia south of about latitude 68 degrees N ... and through Southeast Asia to Java and Bali'. P. m. montanus covers Europe except 'the southwestern Iberian Peninsula, southern Greece and the former Yugoslavia', and Asia east to the Lena River and south to northern Turkey, the Caucasus, Kazakhstan, Mongolia and North Korea; transcaucasicus the southern Caucasus east to northern Iran; dilutus extreme northeastern Iran, northern Pakistan and northwestern India, plus Uzbekistan and Tajikistan east to China; tibetanus Nepal east through Tibet to northwestern China; saturatus Sakhalin, the Kuril Islands, Japan, Taiwan and South Korea; malaccensis the southern Himalayas east to Hainan and Indonesia; hepaticus northeastern Assam to northwestern Burma. GR is omitted because southern Greece is explicitly excepted, and FO, MT and GO are omitted because the article says the species 'formerly bred in the Faroes, Malta and Gozo', which is extirpation rather than native range. Introduced: 'introduced successfully to Sardinia, eastern Indonesia, the Philippines and Micronesia'; ship-carried birds that 'colonised Borneo' (MY); the established population of about 15,000 birds around St. Louis descended from 20 imported from Germany and released in 1870 (US); and presence in Melbourne, towns in central and northern Victoria and the Riverina region of New South Wales (AU). NZ and BM are omitted because 'introductions to New Zealand and Bermuda did not take root'. Sardinia sits inside the native IT and eastern Indonesia inside the native ID, which country codes cannot express. Occasional vagrants (Gibraltar, Tunisia, Algeria, Egypt, Israel, the United Arab Emirates, Morocco, Iceland) are not listed as range. Koppen classes are a judgement from the described range: Cfb for temperate oceanic western Europe; Cfa and Cwa for humid subtropical and monsoon-influenced eastern China, Korea and southern Japan; Csa for the Mediterranean part of the European range; Dfa, Dfb and Dfc for the Manchurian, Siberian continental and subarctic belt below 68 degrees N; BSh for the Caspian, Central Asian and Iranian steppe; and Am for Java and Bali."
+      "note": "Country lists derived from the range, distribution and subspecies sections. Native: the general statement is 'most of temperate Europe and Asia south of about latitude 68 degrees N ... and through Southeast Asia to Java and Bali'. P. m. montanus covers Europe except 'the southwestern Iberian Peninsula, southern Greece and the former Yugoslavia', and Asia east to the Lena River and south to northern Turkey, the Caucasus, Kazakhstan, Mongolia and North Korea; transcaucasicus the southern Caucasus east to northern Iran; dilutus extreme northeastern Iran, northern Pakistan and northwestern India, plus Uzbekistan and Tajikistan east to China; tibetanus Nepal east through Tibet to northwestern China; saturatus Sakhalin, the Kuril Islands, Japan, Taiwan and South Korea; malaccensis the southern Himalayas east to Hainan and Indonesia; hepaticus northeastern Assam to northwestern Burma. GR is omitted because southern Greece is explicitly excepted, and FO, MT and GO are omitted because the article says the species 'formerly bred in the Faroes, Malta and Gozo', which is extirpation rather than native range. Introduced: 'introduced successfully to Sardinia, eastern Indonesia, the Philippines and Micronesia'; ship-carried birds that 'colonised Borneo' (MY); the established population of about 15,000 birds around St. Louis descended from 20 imported from Germany and released in 1870 (US); and presence in Melbourne, towns in central and northern Victoria and the Riverina region of New South Wales (AU). NZ and BM are omitted because 'introductions to New Zealand and Bermuda did not take root'. Sardinia sits inside the native IT and eastern Indonesia inside the native ID, which country codes cannot express. Occasional vagrants (Gibraltar, Tunisia, Algeria, Egypt, Israel, the United Arab Emirates, Morocco, Iceland) are not listed as range. Koppen classes are a judgement from the described range: Cfb for temperate oceanic western Europe; Cfa and Cwa for humid subtropical and monsoon-influenced eastern China, Korea and southern Japan; Csa for the Mediterranean part of the European range; Dfa, Dfb and Dfc for the Manchurian, Siberian continental and subarctic belt below 68 degrees N; BSh for the Caspian, Central Asian and Iranian steppe; and Am for Java and Bali. Thailand is included from the article's Southeast Asian range; TH-50 occurrence data provides regional activity, not the basis for nativeness."
     },
     "traits.body_plan": {
       "sources": [
@@ -843,13 +898,6 @@
       "confidence": "High",
       "derived": true,
       "note": "Midpoint of '12.5-14 cm long', which is 0.125-0.14 m."
-    },
-    "traits.wingspan_m": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "note": "'a wingspan of about 21 cm'."
     },
     "traits.lifespan_y": {
       "sources": [
@@ -985,7 +1033,14 @@
       "sources": [],
       "confidence": "Low",
       "derived": true,
-      "note": "Authored parameters for the shared perching-songbird program. food_tag seed follows the EltonTraits and Wikipedia diet. song is bound to the courtship tschip and alarm to the harsh flight teck because the species has no true song; both are calls the program needs and both are described. flee_m 5 reflects a species with higher neophobia than the house sparrow. nest_m1 3 and nest_m2 8 bracket two or three broods a year and must include months 4 and 5, which the program hardcodes."
+      "note": "Species-local routine omits the shared program's unsupported month-gated nest-building action and uses hopping for ground forage, matching the record's declared pose. Other authored parameters tune routine movement and vocalization."
+    },
+    "traits.wingspan_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'a wingspan of about 21 cm'."
     }
   },
   "contributors": [
