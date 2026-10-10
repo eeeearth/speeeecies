@@ -88,7 +88,7 @@
       "id": "inat-activity-in-ka",
       "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=62345&place_id=7043&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
       "title": "iNaturalist observations histogram for Duttaphrynus melanostictus in IN-KA",
-      "license": "CC-BY-NC-4.0",
+      "license": "CC-BY-NC-SA-4.0",
       "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
       "accessed": "2026-10-01",
       "kind": "api"
@@ -101,6 +101,25 @@
       "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
       "accessed": "2026-10-01",
       "kind": "api"
+    },
+    {
+      "id": "inat-activity-th-50",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=62345&place_id=13320&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Duttaphrynus melanostictus in TH-50",
+      "license": "CC-BY-NC-SA-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-10",
+      "kind": "api"
+    },
+    {
+      "id": "toad-age-study",
+      "url": "https://doi.org/10.3390/ani13132099",
+      "title": "Life History Traits and Longevity of the Invasive Asian Common Toad Duttaphrynus melanostictus (Schneider, 1799) in Madagascar",
+      "license": "CC-BY-4.0",
+      "kind": "literature",
+      "accessed": "2026-10-10",
+      "attribution": "Guarino, F. M. et al. (2023), Animals 13(13), 2099, https://doi.org/10.3390/ani13132099",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
     }
   ],
   "traits": {
@@ -207,16 +226,14 @@
     ]
   },
   "behavior": {
-    "program": "fsm-anuran-nocturnal-v1",
+    "program": "fsm-duttaphrynus-melanostictus-chiangmai-v1",
     "params": {
       "flee_m": 2,
       "freeze_m": 5,
       "food_tag": "invertebrate",
       "call": "croak",
       "min_temp_c": 15,
-      "max_temp_c": 38,
-      "call_m1": 6,
-      "call_m2": 9
+      "max_temp_c": 38
     }
   },
   "vocalizations": [
@@ -418,10 +435,11 @@
     },
     "traits.lifespan_y": {
       "sources": [
-        "amphibo"
+        "toad-age-study"
       ],
-      "confidence": "Medium",
-      "note": "AmphiBIO Longevity_max_y 4."
+      "confidence": "Low",
+      "derived": true,
+      "note": "4 years is a required simulation value chosen as a conservative model setting, not a measured typical lifespan. The cited skeletochronology study reports maximum ages of 3 years for males and 6 for females, not average lifespan."
     },
     "traits.diet": {
       "sources": [
@@ -529,10 +547,20 @@
       "note": "Yellowish or brownish above with black spiny warts and prominent kidney-shaped parotoids; proportions authored."
     },
     "behavior": {
-      "sources": [],
+      "sources": [
+        "wikipedia"
+      ],
       "confidence": "Low",
       "derived": true,
-      "note": "Authored parameters for the shared nocturnal-anuran program, with monsoon call months."
+      "note": "Species-local copy uses an explicit May–September call gate because the shared two-endpoint parameter gate would omit June–August. Monsoon calling is supported generally; this month range is a Chiang Mai simulation setting."
+    },
+    "activity.TH-50": {
+      "sources": [
+        "inat-activity-th-50"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Fallback activity curve from 177 iNaturalist records, below the 300-record minimum; interpret as provisional."
     }
   },
   "activity": {
@@ -583,6 +611,53 @@
           "used": [
             "inat",
             "gbif"
+          ]
+        }
+      },
+      {
+        "region": "TH-50",
+        "monthly": [
+          0.71,
+          0.81,
+          0.86,
+          0.62,
+          0.62,
+          0.29,
+          0.57,
+          0.81,
+          0.95,
+          1.0,
+          0.38,
+          0.81
+        ],
+        "method": "inat_raw",
+        "observations": 177,
+        "sources": [
+          "inat-activity-th-50"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 13320,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=62345&place_id=13320&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": null,
+            "total": 177,
+            "usable": false
+          },
+          "gbif": {
+            "tier": "C",
+            "area": [
+              "gadmGid",
+              "THA.10_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2422538&gadmGid=THA.10_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "baseline_url": null,
+            "total": 153,
+            "usable": false
+          },
+          "used": [
+            "inat"
           ]
         }
       }

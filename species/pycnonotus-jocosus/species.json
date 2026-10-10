@@ -61,7 +61,6 @@
     "size_class": "Tiny",
     "mass_kg": 0.02947,
     "length_m": 0.2,
-    "wingspan_m": 0.26,
     "lifespan_y": 8,
     "diet": {
       "invertebrate": 0.3,
@@ -162,14 +161,12 @@
     ]
   },
   "behavior": {
-    "program": "bt-perching-songbird-v1",
+    "program": "bt-pycnonotus-jocosus-chiangmai-v1",
     "params": {
       "flee_m": 4,
       "food_tag": "invertebrate",
       "song": "song",
-      "alarm": "alarm",
-      "nest_m1": 12,
-      "nest_m2": 5
+      "alarm": "alarm"
     }
   },
   "vocalizations": [
@@ -333,7 +330,7 @@
       "id": "inat-activity-in-ka",
       "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=14591&place_id=7043&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
       "title": "iNaturalist observations histogram for Pycnonotus jocosus in IN-KA",
-      "license": "CC-BY-NC-4.0",
+      "license": "CC-BY-NC-SA-4.0",
       "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
       "accessed": "2026-10-01",
       "kind": "api"
@@ -345,6 +342,24 @@
       "license": "CC-BY-4.0",
       "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
       "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "inat-activity-th-50",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=14591&place_id=13320&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Pycnonotus jocosus in TH-50",
+      "license": "CC-BY-NC-SA-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-10",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-th-50",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2486151&gadmGid=THA.10_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+      "title": "GBIF occurrence search for Pycnonotus jocosus in TH-50",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "GBIF.org (2026-10-10) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
+      "accessed": "2026-10-10",
       "kind": "api"
     }
   ],
@@ -470,21 +485,13 @@
       "confidence": "High",
       "note": "'about 20 cm (7.9 in) in length'."
     },
-    "traits.wingspan_m": {
-      "sources": [
-        "avonet"
-      ],
-      "confidence": "Low",
-      "derived": true,
-      "note": "No wingspan is given by the sources; estimated as three times AVONET's flattened wing chord (86.8 mm), a standard morphometric approximation for a passerine."
-    },
     "traits.lifespan_y": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "Low",
       "derived": true,
-      "note": "The article gives about 11 years in captivity; 8 years is a judgement for wild birds."
+      "note": "8 years is a simulation model setting; the cited sources do not establish a typical lifespan."
     },
     "traits.diet": {
       "sources": [
@@ -606,7 +613,7 @@
       "sources": [],
       "confidence": "Low",
       "derived": true,
-      "note": "Authored parameters for the shared perching-songbird program."
+      "note": "Species-local routine omits the shared program's unsupported month-gated nest-building action and uses walking for ground forage. Other authored parameters tune routine movement and vocalization."
     }
   },
   "contributors": [
@@ -658,6 +665,55 @@
             "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2486151&gadmGid=IND.16_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
             "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=IND.16_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
             "total": 228365,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "TH-50",
+        "monthly": [
+          0.28,
+          0.33,
+          0.34,
+          0.53,
+          0.4,
+          0.44,
+          1.0,
+          0.49,
+          0.17,
+          0.44,
+          0.18,
+          0.26
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 785,
+        "sources": [
+          "inat-activity-th-50",
+          "gbif-activity-th-50"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 13320,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=14591&place_id=13320&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=13320&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 475,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "C",
+            "area": [
+              "gadmGid",
+              "THA.10_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2486151&gadmGid=THA.10_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=THA.10_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "total": 310,
             "usable": true
           },
           "used": [
