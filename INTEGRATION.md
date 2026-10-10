@@ -38,7 +38,12 @@ paper, not public domain, and the other supplied sources did not establish a
 permissive basis for the traits. The 11 retained US-NM activity curves use
 GBIF Tier A records only, each above the 300-record minimum. Nine existing
 main records receive only the US-NM curve and its source/provenance changes;
-all other species fields and regional curves are covered by a regression test.
+all other species fields and regional curves are covered by a regression test. The test
+checks them against committed SHA-256 fingerprints at `fdd777e` in
+`tools/tests/fixtures/pr118_albuquerque_existing_species.json`. Each fingerprint covers
+the complete canonical record after removing only the US-NM region, source IDs and
+provenance entry. This keeps the preservation check independent of Git history in shallow
+CI checkouts; curve quality assertions still cover all 11 roster species.
 
 The two new records use species-local programs. Lesser goldfinch nesting is
 explicitly gated April-September from broad species-level evidence; it is not
@@ -52,7 +57,6 @@ phase; its note says occurrence does not establish territory timing.
 
 Checks: locale validation has no errors and warns that 11 is below the 12-species
 richness target. All-locale validation completed without errors; repository
-self-check scanned 593 files with zero findings. Four focused regression tests
-passed. Browser smoke rendered all 12 poses declared by the two new records.
+self-check scanned 593 files with zero findings. Five focused Albuquerque regression tests passed; record preservation uses the committed fixture above. Browser smoke rendered all 12 poses declared by the two new records.
 These rendering checks confirm preview loads and pose selection, not visual
 biological accuracy.

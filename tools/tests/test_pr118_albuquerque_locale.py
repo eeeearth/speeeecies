@@ -1,31 +1,52 @@
 """Focused regression checks for Albuquerque PR #118 review repairs."""
 import copy
+import hashlib
 import json
-import subprocess
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-BASE = "fdd777ed1ccb82dbc857210adf432e7d6da96dfc"
+BASELINE_FIXTURE = "tools/tests/fixtures/pr118_albuquerque_existing_species.json"
+BASELINE_COMMIT = "fdd777ed1ccb82dbc857210adf432e7d6da96dfc"
 ROSTER = [
     "geococcyx-californianus", "haemorhous-mexicanus", "columba-livia",
     "zenaida-asiatica", "toxostoma-curvirostre", "spinus-psaltria",
     "archilochus-alexandri", "astur-cooperii", "sylvilagus-audubonii",
     "otospermophilus-variegatus", "tadarida-brasiliensis",
 ]
-BASE_SPECIES = set(
-    subprocess.check_output(
-        ["git", "ls-tree", "-r", "--name-only", BASE, "--", "species"],
-        cwd=ROOT,
-        text=True,
-    ).splitlines()
+EXISTING = (
+    "geococcyx-californianus",
+    "haemorhous-mexicanus",
+    "columba-livia",
+    "zenaida-asiatica",
+    "toxostoma-curvirostre",
+    "archilochus-alexandri",
+    "sylvilagus-audubonii",
+    "otospermophilus-variegatus",
+    "tadarida-brasiliensis",
 )
-EXISTING = [
-    slug for slug in ROSTER if f"species/{slug}/species.json" in BASE_SPECIES
-]
 
 
 def read(path):
     return json.loads((ROOT / path).read_text())
+
+
+def without_new_mexico_activity(species):
+    normalized = copy.deepcopy(species)
+    normalized["activity"]["regions"] = [
+        region for region in normalized["activity"]["regions"]
+        if region["region"] != "US-NM"
+    ]
+    normalized["sources"] = [
+        source for source in normalized["sources"]
+        if source["id"] not in {"gbif-activity-us-nm", "inat-activity-us-nm"}
+    ]
+    normalized["provenance"].pop("activity.US-NM", None)
+    return normalized
+
+
+def species_fingerprint(species):
+    canonical = json.dumps(species, sort_keys=True, separators=(",", ":"))
+    return hashlib.sha256(canonical.encode("utf-8")).hexdigest()
 
 
 def test_albuquerque_uses_verified_public_site_and_flora():
@@ -59,16 +80,12 @@ def test_us_nm_curves_are_tier_a_and_old_records_are_otherwise_unchanged():
         assert region["sources"] == ["gbif-activity-us-nm"]
         src = next(s for s in species["sources"] if s["id"] == "gbif-activity-us-nm")
         assert src["license"] == "CC-BY-4.0"
+    baseline = read(BASELINE_FIXTURE)
+    assert baseline["base_commit"] == BASELINE_COMMIT
+    assert set(baseline["species_sha256"]) == set(EXISTING)
     for slug in EXISTING:
-        base = json.loads(subprocess.check_output(["git", "show", f"{BASE}:species/{slug}/species.json"], cwd=ROOT))
-        current = read(f"species/{slug}/species.json")
-        base["activity"]["regions"] = [r for r in base["activity"]["regions"] if r["region"] != "US-NM"]
-        base["sources"] = [s for s in base["sources"] if s["id"] not in {"gbif-activity-us-nm", "inat-activity-us-nm"}]
-        base["provenance"].pop("activity.US-NM", None)
-        current["activity"]["regions"] = [r for r in current["activity"]["regions"] if r["region"] != "US-NM"]
-        current["sources"] = [s for s in current["sources"] if s["id"] not in {"gbif-activity-us-nm", "inat-activity-us-nm"}]
-        current["provenance"].pop("activity.US-NM", None)
-        assert current == base, slug
+        current = without_new_mexico_activity(read(f"species/{slug}/species.json"))
+        assert species_fingerprint(current) == baseline["species_sha256"][slug], slug
 
 
 def test_goldfinch_mass_range_and_habitat_sources_match_provenance():
