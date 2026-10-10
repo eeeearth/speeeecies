@@ -53,6 +53,10 @@ def test_house_gecko_brazil_range_is_introduced():
     assert "BR" in gecko["range"]["invasive_in"]
     source = next(s for s in gecko["sources"] if s["id"] == "mabouia-biogeography")
     assert source["license"] == "CC-BY-4.0"
+    reproduction = next(s for s in gecko["sources"] if s["id"] == "mabouia-reproduction-sp")
+    assert reproduction["url"] == "https://www.scielo.br/j/isz/a/HSrqsKVMKNfCqxrjwrYgSsS/?lang=en"
+    assert "10.1590/S0073-47212008000200006" in reproduction["attribution"]
+    assert reproduction["license"] == "CC-BY-NC-4.0"
 
 
 def test_six_local_curves_use_verified_gbif_tier_a_only():
@@ -89,12 +93,12 @@ def test_ground_gaits_use_species_local_programs_without_shared_changes():
     dove = record("columbina-talpacoti")
     hornero = record("furnarius-rufus")
     local_dir = ROOT / "species"
-    assert parakeet["behavior"]["program"] == "bt-brotogeris-arboreal-forager-v1"
-    assert dove["behavior"]["program"] == "bt-columbina-walking-forager-v1"
-    assert hornero["behavior"]["program"] == "bt-ground-probing-bird-v1"
+    assert parakeet["behavior"]["program"] == "bt-brotogeris-season-neutral-v1"
+    assert dove["behavior"]["program"] == "bt-columbina-season-neutral-v1"
+    assert hornero["behavior"]["program"] == "bt-furnarius-ground-forager-v1"
     assert "hop" not in hornero["look"]["poses"]
     assert "Walk" in hornero["traits"]["locomotion_modes"]
-    for slug, gait in (("brotogeris-tirica", "climb"), ("columbina-talpacoti", "walk")):
+    for slug, gait in (("brotogeris-tirica", "climb"), ("columbina-talpacoti", "walk"), ("furnarius-rufus", "walk")):
         local = json.loads((local_dir / slug / "behavior.json").read_text())
         gaits = [node["act"].get("gait") for node in _walk_nodes(local.get("root", {})) if "act" in node]
         assert gait in gaits
@@ -108,3 +112,60 @@ def _walk_nodes(node):
     elif isinstance(node, list):
         for value in node:
             yield from _walk_nodes(value)
+
+
+def _nodes(node):
+    if isinstance(node, dict):
+        yield node
+        for value in node.values():
+            yield from _nodes(value)
+    elif isinstance(node, list):
+        for value in node:
+            yield from _nodes(value)
+
+
+def _resolved_month_gates(program, overrides):
+    params = dict(program.get("params", {}))
+    params.update(overrides)
+    gates = []
+    for node in _nodes(program):
+        if "month_in" not in node:
+            continue
+        resolved = []
+        for month in node["month_in"]:
+            if isinstance(month, str) and month.startswith("${") and month.endswith("}"):
+                resolved.append(params[month[2:-1]])
+            else:
+                resolved.append(month)
+        gates.append(resolved)
+    return gates
+
+
+def test_rhinella_executed_call_gate_covers_supported_months_only():
+    species = record("rhinella-ornata")
+    program = json.loads((ROOT / "species/rhinella-ornata/behavior.json").read_text())
+    gates = _resolved_month_gates(program, species["behavior"]["params"])
+    assert gates == [[8, 9, 10, 11]]
+    assert gates[0] == species["vocalizations"][0]["season_months"]
+    assert {month: month in gates[0] for month in (7, 8, 9, 10, 11, 12)} == {
+        7: False, 8: True, 9: True, 10: True, 11: True, 12: False
+    }
+
+
+def test_birds_with_no_supported_breeding_calendar_have_no_hidden_nest_gate():
+    for slug in ("brotogeris-tirica", "columbina-talpacoti", "furnarius-rufus", "pitangus-sulphuratus", "thraupis-sayaca"):
+        species = record(slug)
+        program = json.loads((ROOT / "species" / slug / "behavior.json").read_text())
+        assert species["behavior"]["program"] == program["id"]
+        assert _resolved_month_gates(program, species["behavior"]["params"]) == []
+        serialized = json.dumps(program)
+        assert '"do": "build_nest"' not in serialized
+        assert "nest_m1" not in program.get("params", {})
+        assert "nest_m2" not in program.get("params", {})
+
+
+def test_toad_collection_note_does_not_claim_the_whole_breeding_window():
+    species = record("rhinella-ornata")
+    phase = next(p for p in species["seasonal"]["phases"] if p["name"] == "breeding")
+    assert "overlaps only the early part" in phase["note"]
+    assert "does not establish the full window" in phase["note"]

@@ -1,17 +1,15 @@
 {
   "schema_version": 1,
   "format": "speeeecies/behavior",
-  "id": "bt-columbina-walking-forager-v1",
+  "id": "bt-columbina-season-neutral-v1",
   "kind": "bt",
-  "description": "Small ground-foraging dove: walks while pecking seeds, flies to a perch to roost or escape a nearby threat, and maintains a pair bond. This local copy changes the shared perching songbird ground-foraging hop to a walking gait for this species.",
+  "description": "A small ground-foraging dove that walks while pecking seeds and flies to a perch to roost or escape. Nest-building behavior is omitted because a São Paulo breeding calendar is not established by the cited sources.",
   "params": {
     "flee_m": 6,
     "food_tag": "invertebrate",
     "song": "song",
     "alarm": "alarm",
-    "song_cooldown_s": 8,
-    "nest_m1": 3,
-    "nest_m2": 6
+    "song_cooldown_s": 8
   },
   "root": {
     "selector": [
@@ -153,36 +151,6 @@
                 "do": "sing",
                 "call": "${song}"
               }
-            }
-          }
-        ]
-      },
-      {
-        "sequence": [
-          {
-            "cond": {
-              "need": "nest",
-              "gt": 0.5
-            }
-          },
-          {
-            "cond": {
-              "month_in": [
-                "${nest_m1}",
-                4,
-                5,
-                "${nest_m2}"
-              ]
-            }
-          },
-          {
-            "cond": {
-              "nest_site_within_m": 40
-            }
-          },
-          {
-            "act": {
-              "do": "build_nest"
             }
           }
         ]
