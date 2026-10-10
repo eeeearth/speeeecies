@@ -1,0 +1,303 @@
+{
+  "format": "speeeecies/behavior",
+  "schema_version": 1,
+  "id": "fsm-perch-hunting-raptor-v1",
+  "kind": "fsm",
+  "description": "A large perched raptor (hawk, falcon, owl): spends most of the day on a high perch scanning for prey, drops off the perch to seize small animals, soars between perches, calls from the perch and defends the nest, and goes to roost in a tall tree. Written for Buteo jamaicensis; the shared perching-songbird program is a poor fit because it forages by hopping on the ground and sings a territorial song, neither of which a buteo does.",
+  "params": {
+    "flee_m": 60,
+    "calm_m": 150,
+    "food_tag": "vertebrate",
+    "food_m": 120,
+    "perch_m": 90,
+    "nest_m": 60,
+    "call": "scream",
+    "roost_sun_hi_deg": -6
+  },
+  "initial": "perch",
+  "states": {
+    "perch": {
+      "action": {
+        "do": "perch_nearest"
+      },
+      "min_dwell_s": 20
+    },
+    "scan": {
+      "action": {
+        "do": "idle",
+        "kind": "scan"
+      },
+      "min_dwell_s": 15
+    },
+    "stoop": {
+      "action": {
+        "do": "fly_to_nearest",
+        "tag": "${food_tag}",
+        "gait": "fly"
+      }
+    },
+    "seize": {
+      "action": {
+        "do": "eat_nearest",
+        "tag": "${food_tag}",
+        "gait": "fly"
+      },
+      "min_dwell_s": 20
+    },
+    "soar": {
+      "action": {
+        "do": "wander",
+        "gait": "fly"
+      },
+      "min_dwell_s": 25
+    },
+    "call_from_perch": {
+      "action": {
+        "do": "alarm",
+        "call": "${call}"
+      },
+      "min_dwell_s": 4
+    },
+    "nest": {
+      "action": {
+        "do": "incubate"
+      },
+      "min_dwell_s": 30
+    },
+    "build": {
+      "action": {
+        "do": "build_nest"
+      },
+      "min_dwell_s": 30
+    },
+    "roost": {
+      "action": {
+        "do": "rest",
+        "at": "shelter"
+      },
+      "min_dwell_s": 120
+    },
+    "flee": {
+      "action": {
+        "do": "flee",
+        "gait": "fly"
+      },
+      "min_dwell_s": 3
+    }
+  },
+  "transitions": [
+    {
+      "from": "*",
+      "to": "flee",
+      "when": {
+        "threat_within_m": "${flee_m}"
+      },
+      "priority": 100
+    },
+    {
+      "from": "flee",
+      "to": "perch",
+      "when": {
+        "not": {
+          "threat_within_m": "${calm_m}"
+        }
+      }
+    },
+    {
+      "from": "*",
+      "to": "call_from_perch",
+      "when": {
+        "all": [
+          {
+            "need": "fear",
+            "gt": 0.4
+          },
+          {
+            "perch_within_m": "${perch_m}"
+          }
+        ]
+      },
+      "priority": 80
+    },
+    {
+      "from": "call_from_perch",
+      "to": "perch",
+      "when": {
+        "chance": 0.3
+      }
+    },
+    {
+      "from": "perch",
+      "to": "stoop",
+      "when": {
+        "all": [
+          {
+            "need": "hunger",
+            "gt": 0.5
+          },
+          {
+            "food_within_m": "${food_m}",
+            "tag": "${food_tag}"
+          },
+          {
+            "sun_elevation_between_deg": [
+              5,
+              60
+            ]
+          }
+        ]
+      },
+      "priority": 70
+    },
+    {
+      "from": "stoop",
+      "to": "seize",
+      "when": {
+        "chance": 0.5
+      }
+    },
+    {
+      "from": "stoop",
+      "to": "perch",
+      "when": {
+        "chance": 0.5
+      }
+    },
+    {
+      "from": "seize",
+      "to": "perch",
+      "when": {
+        "need": "hunger",
+        "lt": 0.3
+      }
+    },
+    {
+      "from": "perch",
+      "to": "scan",
+      "when": {
+        "need": "hunger",
+        "lt": 0.5
+      },
+      "priority": 50
+    },
+    {
+      "from": "scan",
+      "to": "perch",
+      "when": {
+        "chance": 0.4
+      },
+      "priority": 50
+    },
+    {
+      "from": "build",
+      "to": "perch",
+      "when": {
+        "month_in": [
+          4,
+          5,
+          6
+        ]
+      }
+    },
+    {
+      "from": "nest",
+      "to": "perch",
+      "when": {
+        "month_in": [
+          7,
+          8,
+          9
+        ]
+      }
+    },
+    {
+      "from": "soar",
+      "to": "perch",
+      "when": {
+        "chance": 0.4
+      }
+    },
+    {
+      "from": "*",
+      "to": "nest",
+      "when": {
+        "all": [
+          {
+            "month_in": [
+              3,
+              4,
+              5,
+              6
+            ]
+          },
+          {
+            "nest_site_within_m": "${nest_m}"
+          }
+        ]
+      },
+      "priority": 60
+    },
+    {
+      "from": "*",
+      "to": "build",
+      "when": {
+        "all": [
+          {
+            "month_in": [
+              2,
+              3
+            ]
+          },
+          {
+            "nest_site_within_m": "${nest_m}"
+          }
+        ]
+      },
+      "priority": 65
+    },
+    {
+      "from": "*",
+      "to": "roost",
+      "when": {
+        "sun_elevation_between_deg": [
+          -18,
+          "${roost_sun_hi_deg}"
+        ]
+      },
+      "priority": 40
+    },
+    {
+      "from": "roost",
+      "to": "perch",
+      "when": {
+        "sun_elevation_between_deg": [
+          0,
+          90
+        ]
+      },
+      "priority": 40
+    },
+    {
+      "from": "*",
+      "to": "soar",
+      "when": {
+        "all": [
+          {
+            "chance": 0.15
+          },
+          {
+            "sun_elevation_between_deg": [
+              10,
+              70
+            ]
+          },
+          {
+            "need": "energy",
+            "lt": 0.4
+          }
+        ]
+      },
+      "priority": 20
+    }
+  ]
+}

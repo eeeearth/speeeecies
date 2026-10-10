@@ -1,0 +1,191 @@
+{
+  "schema_version": 1,
+  "format": "speeeecies/behavior",
+  "id": "fsm-seabird-predator-v1",
+  "kind": "fsm",
+  "description": "A territorial seabird that flies between feeding sites, takes live prey, scavenges carrion, and retreats from nearby threats.",
+  "params": {
+    "flee_m": 12,
+    "calm_m": 35,
+    "live_food_m": 60,
+    "carrion_m": 40
+  },
+  "initial": "idle",
+  "states": {
+    "idle": {
+      "action": {
+        "do": "idle"
+      },
+      "min_dwell_s": 2
+    },
+    "patrol": {
+      "action": {
+        "do": "wander",
+        "gait": "fly"
+      }
+    },
+    "hunt": {
+      "action": {
+        "do": "eat_nearest",
+        "tag": "small_vertebrate",
+        "gait": "walk"
+      }
+    },
+    "scavenge": {
+      "action": {
+        "do": "eat_nearest",
+        "tag": "carrion",
+        "gait": "walk"
+      }
+    },
+    "drink": {
+      "action": {
+        "do": "drink_nearest",
+        "gait": "walk"
+      }
+    },
+    "flee": {
+      "action": {
+        "do": "flee",
+        "gait": "fly"
+      },
+      "min_dwell_s": 3
+    },
+    "rest": {
+      "action": {
+        "do": "rest",
+        "at": "shelter"
+      },
+      "min_dwell_s": 30
+    }
+  },
+  "transitions": [
+    {
+      "from": "*",
+      "to": "flee",
+      "when": {
+        "threat_within_m": "${flee_m}"
+      },
+      "priority": 100
+    },
+    {
+      "from": "*",
+      "to": "flee",
+      "when": {
+        "need": "fear",
+        "gt": 0.25
+      },
+      "priority": 90
+    },
+    {
+      "from": "flee",
+      "to": "idle",
+      "when": {
+        "not": {
+          "threat_within_m": "${calm_m}"
+        }
+      }
+    },
+    {
+      "from": "idle",
+      "to": "hunt",
+      "when": {
+        "all": [
+          {
+            "need": "hunger",
+            "gt": 0.45
+          },
+          {
+            "food_within_m": "${live_food_m}",
+            "tag": "small_vertebrate"
+          }
+        ]
+      }
+    },
+    {
+      "from": "idle",
+      "to": "scavenge",
+      "when": {
+        "all": [
+          {
+            "need": "hunger",
+            "gt": 0.45
+          },
+          {
+            "food_within_m": "${carrion_m}",
+            "tag": "carrion"
+          }
+        ]
+      }
+    },
+    {
+      "from": "idle",
+      "to": "drink",
+      "when": {
+        "all": [
+          {
+            "need": "thirst",
+            "gt": 0.6
+          },
+          {
+            "water_within_m": 60
+          }
+        ]
+      }
+    },
+    {
+      "from": "idle",
+      "to": "rest",
+      "when": {
+        "need": "energy",
+        "gt": 0.75
+      }
+    },
+    {
+      "from": "idle",
+      "to": "patrol",
+      "when": {
+        "chance": 0.2
+      }
+    },
+    {
+      "from": "patrol",
+      "to": "idle",
+      "when": {
+        "chance": 0.15
+      }
+    },
+    {
+      "from": "hunt",
+      "to": "idle",
+      "when": {
+        "need": "hunger",
+        "lt": 0.2
+      }
+    },
+    {
+      "from": "scavenge",
+      "to": "idle",
+      "when": {
+        "need": "hunger",
+        "lt": 0.2
+      }
+    },
+    {
+      "from": "drink",
+      "to": "idle",
+      "when": {
+        "need": "thirst",
+        "lt": 0.1
+      }
+    },
+    {
+      "from": "rest",
+      "to": "idle",
+      "when": {
+        "need": "energy",
+        "lt": 0.2
+      }
+    }
+  ]
+}
