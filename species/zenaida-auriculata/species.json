@@ -1,12 +1,12 @@
 {
-  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "$schema": "https://eeeearth.github.io/speeeecies/schema/v0.1/species.schema.json",
   "format": "speeeecies/species",
   "format_version": "0.1",
   "id": "Zenaida auriculata",
   "slug": "zenaida-auriculata",
   "common_names": {
-    "en": "eared dove",
-    "es": "zenaida torcaza"
+    "en": "Eared dove",
+    "es": "Zenaida torcaza"
   },
   "taxonomy": {
     "kingdom": "Animalia",
@@ -15,30 +15,42 @@
     "order": "Columbiformes",
     "family": "Columbidae",
     "genus": "Zenaida",
-    "authority": "(Des Murs), 1847",
+    "authority": "Des Murs, 1847",
     "status": "Accepted"
   },
   "external": {
     "gbif_usage_key": 2495358,
     "inat_taxon_id": 3439,
-    "wikidata": "Q1006452"
+    "itis_tsn": 177129,
+    "wikidata": "Q1006452",
+    "ebird_code": "eardov1"
   },
   "conservation": {
     "iucn": "LC"
   },
   "range": {
     "native": [
+      "CL",
       "AR",
       "BO",
       "BR",
       "CO",
-      "EC",
-      "GY",
-      "PE",
       "PY",
-      "SR",
+      "PE",
       "UY",
       "VE"
+    ],
+    "koppen": [
+      "Csb",
+      "Cfb",
+      "Cfa",
+      "Aw",
+      "BSh",
+      "BSk"
+    ],
+    "elevation_m": [
+      0,
+      4000
     ]
   },
   "traits": {
@@ -56,73 +68,75 @@
     "nest_type": "Platform",
     "perching": true,
     "size_class": "Small",
-    "mass_kg": 0.11,
+    "mass_kg": 0.112,
     "length_m": 0.24,
-    "wingspan_m": 0.34,
-    "lifespan_y": 5.0,
+    "lifespan_y": 3.5,
     "diet": {
-      "seed": 1.0
+      "seed": 0.8,
+      "invertebrate": 0.2
     },
     "social": {
       "structure": "Flock",
       "group_size": [
         2,
-        100
+        50
       ]
     },
     "activity_pattern": "Diurnal",
     "defense": "Flee",
-    "wariness": 0.3
+    "wariness": 0.3,
+    "wingspan_m": 0.32
   },
   "habitat": {
     "use": {
-      "ground": 0.2,
-      "arboreal": 0.8
+      "ground": 0.7,
+      "arboreal": 0.3
     },
     "shelter_tag": "perch",
     "resources": [
       {
         "tag": "seed",
         "kind": "Herbivory",
-        "weight": 1.0
+        "weight": 0.7
+      },
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.2
       },
       {
         "tag": "perch",
         "kind": "Shelter",
-        "weight": 0.9
-      },
-      {
-        "tag": "nest_platform",
-        "kind": "Nesting",
         "weight": 0.5
       }
     ],
     "human_tolerance": {
       "urban_affinity": "Exploiter",
       "uses_gardens": true,
-      "light_max": 0.6,
-      "road_mortality": "Medium",
-      "notes": "Described as readily adapting to human habitation, seen on wires and telephone posts near towns and in almost all public spaces of large cities; it can be an agricultural pest on grain."
+      "light_max": 0.9,
+      "notes": "Readily adapts to human habitation; seen on wires and telephone posts near towns and in public spaces of large urban areas."
     }
   },
   "seasonal": {
-    "strategy": "ActiveYearRound",
+    "strategy": "PartialMigration",
+    "winter_fraction": 0.8,
     "phases": [
       {
         "name": "breeding",
         "start": "01-01",
         "end": "12-31",
-        "note": "'No fixed breeding season is seen in most of their range, and provided with plentiful food and habitat, birds breed almost continuously', so the phase covers the whole year."
+        "note": "No fixed breeding season in most of range; breeds almost continuously where food is plentiful."
       }
     ],
     "life_stages": [
       {
-        "stage": "Egg"
+        "stage": "Egg",
+        "duration_days": 14
       },
       {
         "stage": "Juvenile",
-        "duration_days": 21,
-        "scale": 0.8
+        "duration_days": 30,
+        "scale": 0.85
       },
       {
         "stage": "Adult"
@@ -131,6 +145,55 @@
   },
   "activity": {
     "regions": [
+      {
+        "region": "CL-RM",
+        "monthly": [
+          0.95,
+          0.89,
+          0.96,
+          1.0,
+          0.83,
+          0.85,
+          0.71,
+          0.91,
+          0.89,
+          0.84,
+          0.71,
+          0.75
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 69929,
+        "sources": [
+          "inat-activity-cl-rm",
+          "gbif-activity-cl-rm"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 12691,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3439&place_id=12691&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=12691&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 1034,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "CHL.14_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2495358&gadmGid=CHL.14_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=CHL.14_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 68895,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
       {
         "region": "AR-C",
         "monthly": [
@@ -183,89 +246,65 @@
     ]
   },
   "behavior": {
-    "program": "fsm-ground-forager-v1",
+    "program": "bt-perching-songbird-v1",
     "params": {
-      "flee_m": 10,
-      "calm_m": 25,
+      "flee_m": 6,
       "food_tag": "seed",
-      "food_m": 30,
-      "flee_gait": "walk",
-      "forage_gait": "walk",
-      "rest_sun_lo_deg": 10,
-      "rest_sun_hi_deg": 90
+      "song": "call",
+      "alarm": "alarm",
+      "nest_m1": 1,
+      "nest_m2": 12
     }
   },
   "vocalizations": [
     {
-      "call_id": "song",
-      "context": "Song",
+      "call_id": "call",
+      "context": "Contact",
       "season_months": [],
       "time_windows": [
-        "DawnChorus",
-        "Day",
-        "Dusk"
+        "Day"
       ],
-      "cooldown_s": 12,
+      "cooldown_s": 15,
       "loudness": "Moderate",
-      "description": "A deep, soft 'oo-ah-oo', repeated in a rising and falling series from a wire, post or tree; also used in the steep-climb and semicircular-glide breeding display."
+      "description": "Deep soft oo-ah-oo, the characteristic call of the eared dove."
+    },
+    {
+      "call_id": "alarm",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 5,
+      "loudness": "Moderate",
+      "description": "Short alarm note when disturbed."
     }
   ],
   "look": {
     "body_plan": "biped_winged",
     "proportions": {
-      "torso_aspect": 1.7,
-      "leg_length_ratio": 0.36,
+      "torso_aspect": 1.6,
+      "leg_length_ratio": 0.3,
       "head_scale": 0.75,
-      "neck_angle_deg": 20,
-      "tail_ratio": 0.52,
+      "neck_angle_deg": 15,
+      "tail_ratio": 0.7,
       "wing_aspect": 2.8,
       "beak_ratio": 0.3,
-      "girth_ratio": 0.95
+      "girth_ratio": 1.0
     },
     "palette": {
-      "body": "#7a6b52",
-      "belly": "#b08a72",
-      "markings": "#2e2822",
-      "accent": "#a9a49a",
-      "eye": "#141414"
+      "body": "#8a7a5a",
+      "belly": "#a08060",
+      "markings": "#2a2a2a",
+      "accent": "#6a5a40",
+      "eye": "#111111"
     },
     "part_colors": {
-      "beak": "eye",
-      "leg_left": "markings",
-      "leg_right": "markings"
+      "breast": "belly",
+      "beak": "markings",
+      "leg_left": "accent",
+      "leg_right": "accent"
     },
-    "extra_parts": [
-      {
-        "name": "ear_coverts",
-        "parent": "head",
-        "offset": [
-          0.1,
-          -0.06,
-          0.24
-        ],
-        "size": [
-          0.3,
-          0.22,
-          0.14
-        ],
-        "color": "markings"
-      },
-      {
-        "name": "crown",
-        "parent": "head",
-        "offset": [
-          0.1,
-          0.26,
-          0.0
-        ],
-        "size": [
-          0.45,
-          0.16,
-          0.45
-        ],
-        "color": "accent"
-      }
-    ],
     "poses": {
       "idle": {},
       "walk": {},
@@ -288,7 +327,7 @@
     {
       "id": "wikidata",
       "url": "https://www.wikidata.org/wiki/Q1006452",
-      "title": "Wikidata: Zenaida auriculata (Q1006452)",
+      "title": "Wikidata: Eared dove (Q1006452)",
       "license": "CC0-1.0",
       "kind": "database",
       "accessed": "2026-10-01",
@@ -297,7 +336,7 @@
     {
       "id": "wikipedia",
       "url": "https://en.wikipedia.org/wiki/Eared_dove",
-      "title": "Wikipedia: Eared dove (English)",
+      "title": "Wikipedia: Eared dove",
       "license": "CC-BY-SA-4.0",
       "kind": "webpage",
       "accessed": "2026-10-01",
@@ -305,24 +344,31 @@
       "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
     },
     {
-      "id": "wikipedia-es",
-      "url": "https://es.wikipedia.org/wiki/Zenaida_auriculata",
-      "title": "Wikipedia: Zenaida auriculata (español)",
-      "license": "CC-BY-SA-4.0",
-      "kind": "webpage",
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=177129",
+      "title": "ITIS: Zenaida auriculata, TSN 177129",
+      "license": "public-domain",
+      "kind": "database",
       "accessed": "2026-10-01",
-      "attribution": "Wikipedia contributors, \"Zenaida auriculata\", Spanish Wikipedia, CC BY-SA 4.0",
-      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      "note": "US federal government database; public domain in the United States."
     },
     {
-      "id": "eltontraits",
-      "url": "https://doi.org/10.6084/m9.figshare.3559887.v1",
-      "title": "EltonTraits 1.0: species-level foraging attributes of the world's birds and mammals (BirdFuncDat, Wilman et al. 2014)",
-      "license": "CC0-1.0",
-      "kind": "dataset",
+      "id": "inat-activity-cl-rm",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3439&place_id=12691&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Zenaida auriculata in CL-RM",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
       "accessed": "2026-10-01",
-      "attribution": "Wilman, H. et al. (2014) EltonTraits 1.0. Ecology 95:2027",
-      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-cl-rm",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2495358&gadmGid=CHL.14_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Zenaida auriculata in CL-RM",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
     },
     {
       "id": "inat-activity-ar-c",
@@ -347,35 +393,172 @@
     "taxonomy": {
       "sources": [
         "gbif-backbone",
-        "wikidata"
+        "itis"
       ],
-      "confidence": "High",
-      "note": "Rank and accepted name from the GBIF Backbone Taxonomy."
+      "confidence": "High"
     },
     "external": {
       "sources": [
         "gbif-backbone",
         "wikidata"
       ],
+      "confidence": "High"
+    },
+    "common_names": {
+      "sources": [
+        "wikidata"
+      ],
       "confidence": "High",
-      "note": "GBIF usage key from the GBIF Backbone match for the scientific name; iNaturalist taxon id and Wikidata Q-id from Wikidata."
+      "note": "en label and es alias from Wikidata Q1006452; the Spanish name is the item's es alias ('Zenaida torcaza'), the name the Spanish Wikipedia article uses."
     },
     "conservation": {
+      "sources": [
+        "wikidata",
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Resident breeder throughout South America from Colombia to southern Argentina and Chile."
+    },
+    "traits.mass_kg": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "The article's taxobox gives the IUCN status as LC."
+      "note": "About 112 g."
     },
-    "range": {
+    "traits.length_m": {
       "sources": [
-        "wikipedia-es"
+        "wikipedia"
       ],
+      "confidence": "High",
+      "note": "24 cm long."
+    },
+    "traits.lifespan_y": {
+      "sources": [],
       "confidence": "Low",
       "derived": true,
-      "note": "The Spanish article's distribution section says only 'Vive comunmente en Sudamerica, habiendo aparecido pequenas colonias en Trinidad y Tobago y las Antillas Neerlandesas', which does not enumerate countries. The country list here is a conservative selection of the South American range the article describes and is not an exhaustive transcription."
+      "note": "Authored: typical dove lifespan 3-5 years; no specific source found."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Feeds mainly on seed and grain; also caterpillars, insect pupae, aphids, and snails."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Gregarious when not feeding; forms flocks especially at migration time or at communal roosts."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Readily adapts to human habitation; seen in urban areas."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Feeds on the ground; nests in trees."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Seeds and grain from ground; some animal food."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Readily adapts to human habitation; seen in urban areas."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Partially migratory; movements driven by food supplies."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "No fixed breeding season; breeds almost continuously where food is plentiful."
+    },
+    "vocalizations.call": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Olive-brown upperparts, vinous underparts, black bill, dark red legs; proportions authored."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared perching-songbird program."
+    },
+    "habitat.shelter_tag": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Life stages from Wikipedia; durations authored."
     },
     "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.defense": {
+      "sources": [],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Authored: flies to cover."
+    },
+    "traits.flight": {
       "sources": [
         "wikipedia"
       ],
@@ -391,32 +574,7 @@
       "sources": [
         "wikipedia"
       ],
-      "confidence": "Medium",
-      "note": "'Eared doves feed mainly on seed and grain taken from the ground', walking to forage, and 'Its flight is high, fast, and direct'; the record declares those two gaits. Swimming and climbing are not described."
-    },
-    "traits.thermoregulation": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High"
-    },
-    "traits.skin": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High"
-    },
-    "traits.flight": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High"
-    },
-    "traits.respiration": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High"
+      "confidence": "Medium"
     },
     "traits.metamorphosis": {
       "sources": [
@@ -428,171 +586,61 @@
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High",
-      "note": "'It builds a small stick nest several meters up in a tree' - a thin stick platform, which the schema calls a Platform."
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Nest type from Wikipedia."
     },
     "traits.perching": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High",
-      "note": "Described as 'being seen on wires and telephone posts near towns' and nesting in trees."
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
     },
     "traits.size_class": {
       "sources": [
-        "eltontraits"
+        "wikipedia"
       ],
       "confidence": "High",
       "derived": true,
-      "note": "From mass_kg (< 1 kg)."
+      "note": "From mass_kg."
     },
-    "traits.mass_kg": {
+    "traits.skin": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High",
-      "note": "'The eared dove is 24 cm long with a long, wedge-shaped tail, and weighs normally about 112 g.'"
+      "confidence": "High"
     },
-    "traits.length_m": {
+    "traits.thermoregulation": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High",
-      "note": "'The eared dove is 24 cm long with a long, wedge-shaped tail.'"
+      "confidence": "High"
     },
     "traits.wingspan_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Estimated from body size and wing shape."
+    },
+    "vocalizations.alarm": {
       "sources": [],
       "confidence": "Low",
       "derived": true,
-      "note": "Neither Wikipedia article states a wingspan. Derived as roughly 1.4x body length (0.24 m), the usual span-to-length ratio for a medium pigeon or dove, giving about 0.34 m. This is an approximation, not a sourced figure."
-    },
-    "traits.lifespan_y": {
-      "sources": [],
-      "confidence": "Low",
-      "derived": true,
-      "note": "No open-licensed source gives a typical or maximum lifespan for Zenaida auriculata: the English and Spanish Wikipedia articles, Wikidata and GBIF carry none, and the field-guide and Animal Diversity Web pages were avoided under the licence policy. 5.0 years is a documented judgement placeholder, not a sourced figure."
-    },
-    "traits.diet": {
-      "sources": [
-        "eltontraits",
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "derived": true,
-      "note": "EltonTraits 1.0 Diet-Seed 100 (BirdFuncDat row, Diet-Certainty A). The article is explicit: 'Eared doves feed mainly on seed and grain taken from the ground', with 'animal foods, such as caterpillars, insect pupae, aphids and snails' only augmenting the diet, so the record keeps a single seed share."
-    },
-    "traits.social": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "derived": true,
-      "note": "'This is a gregarious bird when not feeding or nesting'; group_size is a judgement for a flock of doves."
-    },
-    "traits.activity_pattern": {
-      "sources": [
-        "eltontraits",
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "note": "EltonTraits 1.0 Nocturnal 0; the bird feeds on the ground and perches on wires by day."
-    },
-    "traits.defense": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Low",
-      "derived": true,
-      "note": "Authored: the bird flushes from the ground to a wire or tree when approached, the escape the shared ground-forager program encodes."
-    },
-    "traits.wariness": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Judgement from the described habit of feeding in almost all public spaces of large cities and on telephone posts near towns."
-    },
-    "habitat.use": {
-      "sources": [
-        "eltontraits"
-      ],
-      "confidence": "High",
-      "note": "ForStrat-ground 20, ForStrat-understory 20, ForStrat-midhigh 40, ForStrat-canopy 20; the mid-high and canopy shares are mapped to arboreal, giving 0.2 ground against 0.8 arboreal."
-    },
-    "habitat.shelter_tag": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Roosts on wires, posts and in trees between feeding bouts."
-    },
-    "habitat.resources": {
-      "sources": [
-        "eltontraits"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "The seed weight follows the EltonTraits diet share of 100; perch and nest_platform follow the described perching and nest sites."
-    },
-    "habitat.human_tolerance": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "urban_affinity, uses_gardens and road_mortality from 'it readily adapts to human habitation, being seen on wires and telephone posts near towns ... in almost all public spaces of large urban areas' and from its pest status in grain fields; light_max is a judgement."
-    },
-    "seasonal.strategy": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "note": "'No fixed breeding season is seen in most of their range, and provided with plentiful food and habitat, birds breed almost continuously' - the bird is present and breeding year-round."
-    },
-    "seasonal.phases": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "derived": true,
-      "note": "'No fixed breeding season is seen in most of their range, and provided with plentiful food and habitat, birds breed almost continuously', so the phase spans 01-01 to 12-31 rather than a fixed window."
-    },
-    "seasonal.life_stages": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Low",
-      "derived": true,
-      "note": "'It builds a small stick nest several meters up in a tree and lays two white eggs. These hatch in 12-14 days with another 9 days to fledging.' duration_days 21 is the midpoint 13 + 9 (rounded), and scale is a judgement for a recently fledged bird."
-    },
-    "vocalizations.song": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "note": "'The species' call is a deep soft oo-ah-oo.'"
-    },
-    "look": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "'Adult males have mainly olive-brown upperpart plumage, with black spots on the wings. The head has a grey crown, black line behind the eye, and the blue-black on the lower ear coverts ... The underparts are vinous, and the tail is tipped with cinnamon. The bill is black and the legs dark red.' Proportions and extra-part placement are judgement."
-    },
-    "behavior": {
-      "sources": [],
-      "confidence": "Low",
-      "derived": true,
-      "note": "Authored parameters for the shared ground-forager program: seed-based foraging with a walking gait, a daytime rest window, and flee and calm distances for a bird that habitually feeds in the open."
+      "note": "Authored: typical alarm call."
     }
   },
   "contributors": [
     {
-      "name": "speeeecies fleet delegate",
-      "agent": "opencode-go/space-bunny-free"
+      "name": "speeeecies maintainers",
+      "agent": "claude-code"
     }
   ]
 }

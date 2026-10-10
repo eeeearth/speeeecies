@@ -1,12 +1,15 @@
 {
-  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "$schema": "https://eeeearth.github.io/speeeecies/schema/v0.1/species.schema.json",
   "format": "speeeecies/species",
   "format_version": "0.1",
   "id": "Myiopsitta monachus",
   "slug": "myiopsitta-monachus",
   "common_names": {
-    "en": "monk parakeet",
-    "es": "cotorra monotona"
+    "en": "Monk parakeet",
+    "es": "Cotorra argentina",
+    "fr": "conure veuve",
+    "de": "Mönchssittich",
+    "nl": "mönchsparakiet"
   },
   "taxonomy": {
     "kingdom": "Animalia",
@@ -15,83 +18,140 @@
     "order": "Psittaciformes",
     "family": "Psittacidae",
     "genus": "Myiopsitta",
-    "authority": "(Boddaert), 1783",
+    "authority": "Boddaert, 1783",
     "status": "Accepted"
   },
   "external": {
     "gbif_usage_key": 2479407,
     "inat_taxon_id": 19349,
-    "wikidata": "Q724987"
+    "wikidata": "Q724987",
+    "ebird_code": "monpar1",
+    "itis_tsn": 554304
   },
   "conservation": {
     "iucn": "LC"
   },
   "range": {
     "native": [
+      "CL",
       "AR",
       "BO",
       "BR",
       "PY",
       "UY"
     ],
+    "koppen": [
+      "Csb",
+      "Cfb",
+      "Cfa",
+      "BSh"
+    ],
+    "elevation_m": [
+      0,
+      2000
+    ],
     "introduced": [
-      "US"
+      "ES",
+      "PT",
+      "IT",
+      "FR",
+      "BE",
+      "NL",
+      "DE",
+      "GB",
+      "US",
+      "PR",
+      "MX",
+      "BM",
+      "KY",
+      "JP",
+      "IL",
+      "AE",
+      "QA",
+      "BH",
+      "KW",
+      "SA"
     ]
   },
   "traits": {
     "body_plan": "Vertebrate",
     "limb_count": 2,
     "locomotion_modes": [
-      "Hop",
-      "Climb",
-      "Fly"
+      "Walk",
+      "Fly",
+      "Climb"
     ],
     "thermoregulation": "Endotherm",
     "skin": "Feathers",
     "flight": "Powered",
     "respiration": "Lungs",
     "metamorphosis": "None",
-    "nest_type": "Cavity",
+    "nest_type": "Platform",
     "perching": true,
     "size_class": "Small",
-    "mass_kg": 0.12,
+    "mass_kg": 0.108,
     "mass_range_kg": [
       0.095,
       0.12
     ],
     "length_m": 0.29,
     "wingspan_m": 0.48,
-    "lifespan_y": 6.0,
+    "lifespan_y": 6,
     "diet": {
-      "invertebrate": 0.1,
-      "seed": 0.3,
-      "fruit": 0.6
+      "seed": 0.4,
+      "fruit": 0.3,
+      "nectar": 0.1,
+      "browse": 0.1,
+      "invertebrate": 0.1
     },
     "social": {
       "structure": "Colony",
       "group_size": [
         2,
-        5
+        50
       ]
     },
     "activity_pattern": "Diurnal",
     "defense": "Flee",
-    "wariness": 0.2
+    "wariness": 0.3
   },
   "habitat": {
     "use": {
-      "ground": 0.2,
-      "arboreal": 0.8
+      "ground": 0.3,
+      "arboreal": 0.7
     },
-    "shelter_tag": "cavity",
+    "shelter_tag": "perch",
     "resources": [
+      {
+        "tag": "seed",
+        "kind": "Herbivory",
+        "weight": 0.5
+      },
       {
         "tag": "fruit",
         "kind": "Herbivory",
+        "weight": 0.3,
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
         "weight": 0.6
       },
       {
-        "tag": "seed",
+        "tag": "nest_platform",
+        "kind": "Nesting",
+        "weight": 1.0
+      },
+      {
+        "tag": "browse",
         "kind": "Herbivory",
         "weight": 0.3
       },
@@ -102,11 +162,6 @@
       },
       {
         "tag": "cavity",
-        "kind": "Nesting",
-        "weight": 1.0
-      },
-      {
-        "tag": "perch",
         "kind": "Shelter",
         "weight": 0.7
       }
@@ -114,9 +169,8 @@
     "human_tolerance": {
       "urban_affinity": "Exploiter",
       "uses_gardens": true,
-      "light_max": 0.7,
-      "road_mortality": "Medium",
-      "notes": "Highly urban and colonial: it builds huge communal stick nests on trees, pylons and buildings, and is described as very common in its native range. Bold around people."
+      "light_max": 0.9,
+      "notes": "Gregarious; breeds colonially building large stick nests in trees or on manmade structures; common in urban areas."
     }
   },
   "seasonal": {
@@ -124,18 +178,32 @@
     "phases": [
       {
         "name": "breeding",
-        "start": "10-01",
-        "end": "01-31",
-        "note": "Judgement. The article gives clutch size and incubation but no regional calendar window; a spring-to-early-summer window is used for the southern-hemisphere breeding season."
+        "start": "09-01",
+        "end": "02-28",
+        "region": "CL",
+        "note": "Breeds in spring and summer in the Southern Hemisphere."
+      },
+      {
+        "name": "breeding",
+        "start": "03-01",
+        "end": "08-31",
+        "note": "Breeds March to August in introduced European range; colonial breeder with communal nests containing multiple chambers; up to two broods per year."
+      },
+      {
+        "name": "flocking",
+        "start": "09-01",
+        "end": "02-28",
+        "note": "Remains in colony year-round; forages in flocks in parks, gardens and agricultural areas."
       }
     ],
     "life_stages": [
       {
-        "stage": "Egg"
+        "stage": "Egg",
+        "duration_days": 24
       },
       {
         "stage": "Juvenile",
-        "duration_days": 45,
+        "duration_days": 60,
         "scale": 0.85
       },
       {
@@ -145,6 +213,104 @@
   },
   "activity": {
     "regions": [
+      {
+        "region": "CL-RM",
+        "monthly": [
+          0.68,
+          0.65,
+          0.8,
+          1.0,
+          0.71,
+          0.85,
+          0.67,
+          0.82,
+          0.63,
+          0.48,
+          0.42,
+          0.85
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 35744,
+        "sources": [
+          "inat-activity-cl-rm",
+          "gbif-activity-cl-rm"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 12691,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=19349&place_id=12691&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=12691&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 613,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "CHL.14_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2479407&gadmGid=CHL.14_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=CHL.14_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 35131,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "ES-MD",
+        "monthly": [
+          0.55,
+          0.75,
+          1.0,
+          0.44,
+          0.48,
+          0.53,
+          0.52,
+          0.51,
+          0.58,
+          0.68,
+          0.65,
+          0.58
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 50252,
+        "sources": [
+          "inat-activity-es-md",
+          "gbif-activity-es-md"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 10543,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=19349&place_id=10543&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=10543&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 3821,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "ESP.8_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2479407&gadmGid=ESP.8_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=ESP.8_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 46431,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
       {
         "region": "AR-C",
         "monthly": [
@@ -199,26 +365,25 @@
   "behavior": {
     "program": "bt-perching-songbird-v1",
     "params": {
-      "flee_m": 12,
+      "flee_m": 6,
       "food_tag": "seed",
-      "song": "song",
+      "song": "call",
       "alarm": "alarm",
-      "nest_m1": 10,
-      "nest_m2": 12
+      "nest_m1": 9,
+      "nest_m2": 2
     }
   },
   "vocalizations": [
     {
-      "call_id": "song",
-      "context": "Song",
+      "call_id": "call",
+      "context": "Contact",
       "season_months": [],
       "time_windows": [
-        "DawnChorus",
         "Day"
       ],
-      "cooldown_s": 7,
+      "cooldown_s": 10,
       "loudness": "Loud",
-      "description": "A loud, throaty 'chape(-yee)' or 'quak quak, quak-wi quarr', given in the colony's continuous loud calling from a perch or at the nest."
+      "description": "Loud throaty chape-yee or quak quaki quak-wi quarr; screeches skveet."
     },
     {
       "call_id": "alarm",
@@ -227,55 +392,41 @@
       "time_windows": [
         "Day"
       ],
-      "cooldown_s": 6,
+      "cooldown_s": 5,
       "loudness": "Loud",
-      "description": "A penetrating 'skveet' screech, the harsh alarm note the colony gives when a bird is startled at the nest."
+      "description": "Harsh screeching alarm call."
     }
   ],
   "look": {
     "body_plan": "biped_winged",
     "proportions": {
-      "torso_aspect": 1.6,
-      "leg_length_ratio": 0.28,
-      "head_scale": 0.82,
-      "neck_angle_deg": 18,
+      "torso_aspect": 1.5,
+      "leg_length_ratio": 0.3,
+      "head_scale": 0.8,
+      "neck_angle_deg": 15,
       "tail_ratio": 0.8,
-      "wing_aspect": 2.4,
-      "beak_ratio": 0.55,
-      "girth_ratio": 0.85
+      "wing_aspect": 2.5,
+      "beak_ratio": 0.4,
+      "girth_ratio": 1.0
     },
     "palette": {
-      "body": "#4f9b3a",
-      "belly": "#b9b6ac",
-      "markings": "#3d7a2c",
-      "accent": "#d8d5cc",
-      "eye": "#141414"
+      "body": "#4a8c3f",
+      "belly": "#8a9a7a",
+      "markings": "#6a6a6a",
+      "accent": "#2a5a8a",
+      "eye": "#111111"
     },
     "part_colors": {
-      "beak": "accent",
+      "breast": "markings",
+      "beak": "markings",
+      "wing_left_outer": "accent",
+      "wing_right_outer": "accent",
       "leg_left": "markings",
       "leg_right": "markings"
     },
-    "extra_parts": [
-      {
-        "name": "pale_breast",
-        "parent": "breast",
-        "offset": [
-          0.2,
-          -0.2,
-          0.0
-        ],
-        "size": [
-          0.7,
-          0.5,
-          0.6
-        ],
-        "color": "belly"
-      }
-    ],
     "poses": {
       "idle": {},
-      "hop": {},
+      "walk": {},
       "fly": {},
       "perched": {},
       "rest": {}
@@ -295,7 +446,7 @@
     {
       "id": "wikidata",
       "url": "https://www.wikidata.org/wiki/Q724987",
-      "title": "Wikidata: Myiopsitta monachus (Q724987)",
+      "title": "Wikidata: Monk parakeet (Q724987)",
       "license": "CC0-1.0",
       "kind": "database",
       "accessed": "2026-10-01",
@@ -304,7 +455,7 @@
     {
       "id": "wikipedia",
       "url": "https://en.wikipedia.org/wiki/Monk_parakeet",
-      "title": "Wikipedia: Monk parakeet (English)",
+      "title": "Wikipedia: Monk parakeet",
       "license": "CC-BY-SA-4.0",
       "kind": "webpage",
       "accessed": "2026-10-01",
@@ -312,24 +463,49 @@
       "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
     },
     {
-      "id": "wikipedia-es",
-      "url": "https://es.wikipedia.org/wiki/Myiopsitta_monachus",
-      "title": "Wikipedia: Myiopsitta monachus (español)",
-      "license": "CC-BY-SA-4.0",
-      "kind": "webpage",
+      "id": "inat-activity-cl-rm",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=19349&place_id=12691&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Myiopsitta monachus in CL-RM",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
       "accessed": "2026-10-01",
-      "attribution": "Wikipedia contributors, \"Myiopsitta monachus\", Spanish Wikipedia, CC BY-SA 4.0",
-      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      "kind": "api"
     },
     {
-      "id": "eltontraits",
-      "url": "https://doi.org/10.6084/m9.figshare.3559887.v1",
-      "title": "EltonTraits 1.0: species-level foraging attributes of the world's birds and mammals (BirdFuncDat, Wilman et al. 2014)",
-      "license": "CC0-1.0",
-      "kind": "dataset",
+      "id": "gbif-activity-cl-rm",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2479407&gadmGid=CHL.14_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Myiopsitta monachus in CL-RM",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
       "accessed": "2026-10-01",
-      "attribution": "Wilman, H. et al. (2014) EltonTraits 1.0. Ecology 95:2027",
-      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+      "kind": "api"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=554304",
+      "title": "ITIS: Myiopsitta monachus, TSN 554304",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-10-01",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "inat-activity-es-md",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=19349&place_id=10543&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Myiopsitta monachus in ES-MD",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-es-md",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2479407&gadmGid=ESP.8_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Myiopsitta monachus in ES-MD",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
     },
     {
       "id": "inat-activity-ar-c",
@@ -353,26 +529,30 @@
   "provenance": {
     "taxonomy": {
       "sources": [
-        "gbif-backbone",
-        "wikidata"
+        "gbif-backbone"
       ],
-      "confidence": "High",
-      "note": "Rank and accepted name from the GBIF Backbone Taxonomy."
+      "confidence": "High"
     },
     "external": {
       "sources": [
         "gbif-backbone",
         "wikidata"
       ],
+      "confidence": "High"
+    },
+    "common_names": {
+      "sources": [
+        "wikidata"
+      ],
       "confidence": "High",
-      "note": "GBIF usage key from the GBIF Backbone match for the scientific name; iNaturalist taxon id and Wikidata Q-id from Wikidata."
+      "note": "en label from Wikidata Q724987; the Spanish name is the item's es alias ('cotorra argentina')."
     },
     "conservation": {
       "sources": [
+        "wikidata",
         "wikipedia"
       ],
-      "confidence": "High",
-      "note": "The article's taxobox gives the IUCN status as LC."
+      "confidence": "High"
     },
     "range": {
       "sources": [
@@ -380,9 +560,159 @@
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "The article describes the species as native to South America and 'very common' there, with the Spanish article giving a Chilean extent from Arica to Puerto Montt, and documents introductions from the pet trade into North America, the Caribbean, Europe, the Middle East and Australasia. The native list is a conservative selection of the South American core range and introduced lists only the United States, the clearest documented case; neither list is an exhaustive transcription of the article's subsections."
+      "note": "Native to temperate and subtropical South America; country list from distribution text."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of 95-120 g."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "95-120 g."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "29 cm long."
+    },
+    "traits.wingspan_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "48 cm wingspan."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Average lifespan 6 years in natural environment."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Seeds, fruit, and other plant matter; exact proportions authored."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Gregarious; breeds colonially."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Common in urban areas; moderate wariness."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Arboreal parrot that also forages on the ground."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Seeds and fruit; builds large stick nests in trees or structures."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Common in urban areas; builds nests on manmade structures.",
+      "derived": true
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Active year-round."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Breeding season in Southern Hemisphere spring/summer."
+    },
+    "vocalizations.call": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Bright green upperparts, grey breast, blue remiges, long tapering tail, orange bill; proportions authored."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared perching-songbird program."
+    },
+    "habitat.shelter_tag": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Life stages from Wikipedia; durations authored."
     },
     "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.defense": {
+      "sources": [],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Authored: flies to cover."
+    },
+    "traits.flight": {
       "sources": [
         "wikipedia"
       ],
@@ -398,32 +728,7 @@
       "sources": [
         "wikipedia"
       ],
-      "confidence": "Medium",
-      "note": "The bird hops and climbs through branches and around its nest structures and flies strongly and in flocks; the shared perching-songbird program forages by hop, so Hop is the declared ground gait. It also walks on the ground, which the chosen program does not represent. Swimming is not described."
-    },
-    "traits.thermoregulation": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High"
-    },
-    "traits.skin": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High"
-    },
-    "traits.flight": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High"
-    },
-    "traits.respiration": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High"
+      "confidence": "Medium"
     },
     "traits.metamorphosis": {
       "sources": [
@@ -435,188 +740,57 @@
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High",
-      "note": "The species' defining feature is a large enclosed stick nest with a central chamber that the pair builds and defends as a colony; the enclosed chamber is what the schema calls a cavity."
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Nest type from Wikipedia."
     },
     "traits.perching": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High",
-      "note": "Parrots perch by definition; the bird is described perching and clambering on its nest and in trees."
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
     },
     "traits.size_class": {
       "sources": [
-        "eltontraits"
-      ],
-      "confidence": "High",
-      "derived": true,
-      "note": "From mass_kg (< 1 kg)."
-    },
-    "traits.mass_kg": {
-      "sources": [
-        "eltontraits"
-      ],
-      "confidence": "High",
-      "note": "EltonTraits 1.0 BirdFuncDat row for Myiopsitta monachus: BodyMass-Value 120 g, the top of the stated range."
-    },
-    "traits.mass_range_kg": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "note": "'The nominate subspecies of this parrot is 29 cm long on average, with a 48 cm wingspan, and weighs 95-120 g.'"
-    },
-    "traits.length_m": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "note": "'The nominate subspecies of this parrot is 29 cm long on average'."
-    },
-    "traits.wingspan_m": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "note": "'with a 48 cm wingspan' - recorded as 0.48 m."
-    },
-    "traits.lifespan_y": {
-      "sources": [
         "wikipedia"
       ],
       "confidence": "High",
       "derived": true,
-      "note": "'Monk parakeets have an average lifespan in their natural environment of 6 years. However, monk parakeets in captivity can reach 25-30 years.' The wild average is used; the captivity figure is not a field lifespan."
+      "note": "From mass_kg."
     },
-    "traits.diet": {
-      "sources": [
-        "eltontraits",
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "derived": true,
-      "note": "EltonTraits 1.0 Diet-Inv 10, Diet-Fruit 30, Diet-Seed 30, Diet-PlantO 30 (BirdFuncDat row, Diet-Certainty A); Diet-PlantO is mapped to the schema's fruit share, giving 0.6 fruit in total. The article is consistent: 'their diet mostly consists of seeds, fruits and vegetables, and grains', though it calls the bird primarily herbivorous."
-    },
-    "traits.social": {
+    "traits.skin": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High",
-      "derived": true,
-      "note": "'Monk parakeets also sometimes breed in groups, with a Barcelona-based study finding that about 20% of monk parakeet breeding units are composed of three to five birds.' The species nests colonially, so structure is Colony with the group sizes that study reports."
+      "confidence": "High"
     },
-    "traits.activity_pattern": {
-      "sources": [
-        "eltontraits",
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "note": "EltonTraits 1.0 Nocturnal 0; the bird feeds and calls by day."
-    },
-    "traits.defense": {
+    "traits.thermoregulation": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "Low",
-      "derived": true,
-      "note": "Authored: the bird flushes from a feeding patch to a perch or back to its nest, the escape the shared perching-songbird program encodes."
-    },
-    "traits.wariness": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Judgement from the described boldness of a colonial parrot that feeds in the open and nests on buildings and pylons in populated areas."
-    },
-    "habitat.use": {
-      "sources": [
-        "eltontraits"
-      ],
-      "confidence": "High",
-      "note": "ForStrat-ground 20, ForStrat-understory 20, ForStrat-midhigh 40, ForStrat-canopy 20; the mid-high and canopy shares are mapped to arboreal, giving 0.2 ground against 0.8 arboreal."
-    },
-    "habitat.shelter_tag": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "derived": true,
-      "note": "Rests and breeds inside the enclosed chamber of its own nest structure, which is the clearest cavity user of any species in this locale."
-    },
-    "habitat.resources": {
-      "sources": [
-        "eltontraits"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Food weights follow the EltonTraits diet shares; the cavity nesting weight of 1.0 reflects that the bird builds and defends its own enclosed nest, and the perch tag reflects its clambering and perching."
-    },
-    "habitat.human_tolerance": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "urban_affinity and uses_gardens from the described colonial nesting on trees and structures in populated landscapes and from the species' ubiquity in towns; road_mortality and light_max are judgement."
-    },
-    "seasonal.strategy": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "note": "The species is a permanent resident in its native range, breeding in every month of the year."
-    },
-    "seasonal.phases": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Low",
-      "derived": true,
-      "note": "The article gives 'Their 1-11 white eggs are incubated continuously by the female' but no regional calendar window; the phase dates are a judgement for the southern-hemisphere spring and summer."
-    },
-    "seasonal.life_stages": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Low",
-      "derived": true,
-      "note": "The article gives a 1-11 egg clutch and continuous female incubation but no day counts; duration_days 45 is a documented judgement for a parrot incubation and nestling period, not a sourced figure, and scale is a judgement for a recently fledged bird."
-    },
-    "vocalizations.song": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "note": "'The call is a loud and throaty chape(-yee) or quak quaki quak-wi quarr.'"
+      "confidence": "High"
     },
     "vocalizations.alarm": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "note": "'and screeches skveet' - the separate alarm screech described in the same sentence."
-    },
-    "look": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "'It has bright-green upperparts. The forehead and breast are pale grey with darker scalloping and the rest of the underparts are very light-green to yellow. The remiges are dark blue, and the tail is long and tapering. The bill is orange.' Proportions and extra-part placement are judgement."
-    },
-    "behavior": {
       "sources": [],
       "confidence": "Low",
       "derived": true,
-      "note": "Authored parameters for the shared perching-songbird program: seed-based foraging, an October-December nest-building window, and a long flee distance for a bold colonial parrot that is slow to alarm. The limitation to note in the pull request: this program is written for songbirds, so the parakeet's climbing is declared in traits but not animated."
+      "note": "Authored: typical alarm call."
     }
   },
   "contributors": [
     {
-      "name": "speeeecies fleet delegate",
-      "agent": "opencode-go/space-bunny-free"
+      "name": "speeeecies maintainers",
+      "agent": "claude-code"
+    },
+    {
+      "name": "Sisyphus (agent)",
+      "agent": "opencode"
     }
   ]
 }

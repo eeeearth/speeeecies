@@ -721,7 +721,32 @@ function legSwing(base, name, angle) {
   base[name].rot = addv(base[name].rot, [angle, 0, 0]);
 }
 
-function animateLeggedWalker(base, poseName, phase, amp) {
+function quadrupedLegSwing(base, name, angle) {
+  ensure(base, name);
+  // x is forward and y is up, so z rotation swings the foot in profile.
+  base[name].rot = addv(base[name].rot, [0, 0, angle]);
+}
+
+function quadrupedSwingLimitDeg(model, requestedDeg) {
+  let limitDeg = requestedDeg;
+  for (const side of ["left", "right"]) {
+    const front = model.parts.find((part) => part.name === `leg_front_${side}`);
+    const rear = model.parts.find((part) => part.name === `leg_rear_${side}`);
+    if (!front || !rear) continue;
+
+    const hipSpacing = Math.abs(front.pivot[0] - rear.pivot[0]);
+    const legLength = Math.min(front.size[1], rear.size[1]);
+    const legThickness = Math.max(front.size[0], rear.size[0]);
+    // Opposite swings close the gap by 2 * length * sin(angle). Keep a
+    // 25% thickness margin so the rendered leg boxes clear one another.
+    const clearSpacing = Math.max(0, hipSpacing - 1.25 * legThickness);
+    const safeRatio = Math.min(1, clearSpacing / (2 * legLength));
+    limitDeg = Math.min(limitDeg, Math.asin(safeRatio) / DEG);
+  }
+  return limitDeg;
+}
+
+function animateLeggedWalker(base, poseName, phase, amp, model) {
   if (poseName === "idle") {
     addIdleBob(base, phase, amp);
     return;
@@ -730,17 +755,20 @@ function animateLeggedWalker(base, poseName, phase, amp) {
     ensure(base, "body");
     base.body.pos = addv(base.body.pos, [0, -0.02 * amp, 0]);
     for (const n of ["leg_front_left", "leg_front_right", "leg_rear_left", "leg_rear_right"]) {
-      legSwing(base, n, 8);
+      quadrupedLegSwing(base, n, 8);
     }
     return;
   }
   const swingDeg = poseName === "gallop" ? 35 : poseName === "trot" ? 28 : 22;
-  const s = swingDeg * amp;
+  const requestedMaxDeg = 35 * Math.abs(amp);
+  const safeMaxDeg = quadrupedSwingLimitDeg(model, requestedMaxDeg);
+  const gaitScale = requestedMaxDeg > 0 ? safeMaxDeg / requestedMaxDeg : 1;
+  const s = swingDeg * amp * gaitScale;
   // diagonal pairs: front-left+rear-right vs front-right+rear-left.
-  legSwing(base, "leg_front_left", s * sinCycle(phase));
-  legSwing(base, "leg_rear_right", s * sinCycle(phase));
-  legSwing(base, "leg_front_right", s * sinCycle(phase, 0.5));
-  legSwing(base, "leg_rear_left", s * sinCycle(phase, 0.5));
+  quadrupedLegSwing(base, "leg_front_left", s * sinCycle(phase));
+  quadrupedLegSwing(base, "leg_rear_right", s * sinCycle(phase));
+  quadrupedLegSwing(base, "leg_front_right", s * sinCycle(phase, 0.5));
+  quadrupedLegSwing(base, "leg_rear_left", s * sinCycle(phase, 0.5));
   if (poseName === "gallop") {
     ensure(base, "body");
     base.body.rot = addv(base.body.rot, [0, 0, 6 * amp * sinCycle(phase, 0.25)]);

@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "format": "speeeecies/behavior",
+  "id": "fsm-nocturnal-bat-v1",
+  "kind": "fsm",
+  "description": "Nocturnal bat (tricolored bat): hangs in a foliage or cavity roost by day, emerges early in the evening to hawk insects in slow fluttery flight over water and forest edges, and retreats from threats.",
+  "params": {
+    "flee_m": 8,
+    "calm_m": 20,
+    "food_tag": "invertebrate",
+    "food_m": 40
+  },
+  "initial": "roost",
+  "states": {
+    "roost": {
+      "action": {
+        "do": "perch_nearest",
+        "tag": "shelter"
+      },
+      "min_dwell_s": 30
+    },
+    "forage": {
+      "action": {
+        "do": "eat_nearest",
+        "tag": "${food_tag}",
+        "gait": "fly"
+      }
+    },
+    "wander": {
+      "action": {
+        "do": "wander",
+        "gait": "fly"
+      }
+    },
+    "flee": {
+      "action": {
+        "do": "flee",
+        "gait": "fly"
+      },
+      "min_dwell_s": 3
+    }
+  },
+  "transitions": [
+    {
+      "from": "*",
+      "to": "flee",
+      "when": {
+        "threat_within_m": "${flee_m}"
+      },
+      "priority": 100
+    },
+    {
+      "from": "flee",
+      "to": "roost",
+      "when": {
+        "not": {
+          "threat_within_m": "${calm_m}"
+        }
+      }
+    },
+    {
+      "from": "roost",
+      "to": "forage",
+      "when": {
+        "all": [
+          {
+            "is_day": false
+          },
+          {
+            "need": "hunger",
+            "gt": 0.4
+          },
+          {
+            "food_within_m": "${food_m}",
+            "tag": "${food_tag}"
+          }
+        ]
+      }
+    },
+    {
+      "from": "roost",
+      "to": "wander",
+      "when": {
+        "all": [
+          {
+            "is_day": false
+          },
+          {
+            "chance": 0.3
+          }
+        ]
+      }
+    },
+    {
+      "from": "forage",
+      "to": "roost",
+      "when": {
+        "need": "hunger",
+        "lt": 0.15
+      }
+    },
+    {
+      "from": "wander",
+      "to": "roost",
+      "when": {
+        "chance": 0.2
+      }
+    }
+  ]
+}

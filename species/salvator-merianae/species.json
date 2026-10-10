@@ -5,8 +5,7 @@
   "id": "Salvator merianae",
   "slug": "salvator-merianae",
   "common_names": {
-    "en": "Argentine black-and-white tegu",
-    "es": "lagarto overo"
+    "en": "Argentine black and white tegu"
   },
   "taxonomy": {
     "kingdom": "Animalia",
@@ -15,13 +14,15 @@
     "order": "Squamata",
     "family": "Teiidae",
     "genus": "Salvator",
-    "authority": "A.M.C. Duméril & Bibron, 1839",
+    "authority": "(Duméril & Bibron, 1839)",
     "status": "Accepted"
   },
   "external": {
     "gbif_usage_key": 5227370,
     "inat_taxon_id": 318758,
-    "wikidata": "Q24354290"
+    "itis_tsn": 1172519,
+    "wikidata": "Q123348430",
+    "ncbi_taxon_id": 96440
   },
   "conservation": {
     "iucn": "LC"
@@ -35,6 +36,11 @@
       "UY"
     ],
     "introduced": [
+      "BR",
+      "US"
+    ],
+    "invasive_in": [
+      "BR",
       "US"
     ]
   },
@@ -43,30 +49,32 @@
     "limb_count": 4,
     "locomotion_modes": [
       "Walk",
-      "Climb",
-      "Swim"
+      "Gallop"
     ],
-    "shoulder_height_m": 0.32,
     "thermoregulation": "Ectotherm",
     "skin": "Scales",
     "flight": "None",
     "respiration": "Lungs",
     "metamorphosis": "None",
-    "nest_type": "Ground",
+    "nest_type": "None",
     "perching": false,
     "size_class": "Medium",
-    "mass_kg": 5.0,
+    "mass_kg": 1.5,
     "mass_range_kg": [
-      1.5,
-      8.0
+      0.5,
+      3.0
     ],
-    "length_m": 1.4,
-    "lifespan_y": 13.5,
+    "length_m": 0.8,
+    "shoulder_height_m": 0.2,
+    "speed_ms": {
+      "walk": 0.3,
+      "gallop": 1.5
+    },
+    "lifespan_y": 8,
     "diet": {
-      "invertebrate": 0.35,
-      "vertebrate": 0.25,
-      "fruit": 0.3,
-      "carrion": 0.1
+      "fruit": 0.2,
+      "invertebrate": 0.4,
+      "vertebrate": 0.4
     },
     "social": {
       "structure": "Solitary",
@@ -77,88 +85,78 @@
     },
     "activity_pattern": "Diurnal",
     "defense": "Flee",
-    "wariness": 0.4
+    "wariness": 0.5
   },
   "habitat": {
     "use": {
-      "ground": 0.9,
-      "arboreal": 0.1
+      "ground": 1.0
     },
     "shelter_tag": "burrow",
     "resources": [
       {
         "tag": "invertebrate",
         "kind": "Predation",
-        "weight": 0.35
+        "weight": 0.5
       },
       {
         "tag": "small_vertebrate",
         "kind": "Predation",
-        "weight": 0.25
+        "weight": 0.5
       },
       {
         "tag": "fruit",
         "kind": "Herbivory",
-        "weight": 0.3
-      },
-      {
-        "tag": "carrion",
-        "kind": "Scavenging",
-        "weight": 0.1
-      },
-      {
-        "tag": "burrow",
-        "kind": "Shelter",
-        "weight": 0.8
-      },
-      {
-        "tag": "leaf_litter",
-        "kind": "Predation",
-        "weight": 0.4
+        "weight": 1.0
       }
     ],
     "human_tolerance": {
       "urban_affinity": "Adapter",
       "uses_gardens": true,
-      "light_max": 0.5,
-      "road_mortality": "Low",
-      "notes": "Recorded in the city itself, where it is often killed out of fear; in the wild it either runs away or reacts aggressively if provoked."
+      "notes": "Inhabits forest edges, savannas, and semi-deserts; adapts to agricultural areas and human proximity."
+    },
+    "density_per_ha": {
+      "min": 0.01,
+      "typical": 0.1,
+      "max": 1.0
     }
   },
   "seasonal": {
-    "strategy": "Hibernation",
+    "strategy": "Brumation",
     "triggers": {
       "enter": {
-        "temperature_below_c": 10.0,
-        "days": 3
+        "temperature_below_c": 10,
+        "days": 30
       },
       "exit": {
-        "temperature_above_c": 12.0,
-        "days": 3
+        "temperature_above_c": 10,
+        "days": 7
       }
     },
     "phases": [
       {
-        "name": "dormancy",
-        "start": "05-01",
-        "end": "09-30",
-        "note": "Judgement. 'Tegus in their native environment spend most of the colder months brumating in their burrows without feeding, but emerge in the spring for their mating season'; the phase boundaries are placed on the southern-hemisphere winter."
+        "name": "mating",
+        "start": "11-01",
+        "end": "01-15",
+        "note": "Mating occurs during the wet season."
       },
       {
-        "name": "breeding",
-        "start": "10-01",
-        "end": "04-30",
-        "note": "The complement of the dormancy window, following the same account: the animal is 'very active during hotter months' and 'emerge[s] in the spring for their mating season'. Named breeding because that is the activity the account describes for this window."
+        "name": "dormancy",
+        "start": "05-01",
+        "end": "08-31",
+        "note": "Brumation period; individuals retreat to shelters."
+      },
+      {
+        "name": "young",
+        "start": "09-01",
+        "end": "11-01",
+        "note": "Egg-laying and early juvenile period."
       }
     ],
     "life_stages": [
       {
-        "stage": "Egg"
-      },
-      {
         "stage": "Juvenile",
-        "duration_days": 70,
-        "scale": 0.12
+        "duration_days": 180,
+        "scale": 0.5
       },
       {
         "stage": "Adult"
@@ -167,6 +165,200 @@
   },
   "activity": {
     "regions": [
+      {
+        "region": "AR",
+        "monthly": [
+          0.72,
+          0.52,
+          0.37,
+          0.03,
+          0.02,
+          0.04,
+          0.01,
+          0.01,
+          0.24,
+          1.0,
+          0.98,
+          0.72
+        ],
+        "method": "mean(inat_raw, gbif_raw)",
+        "observations": 1779,
+        "sources": [
+          "inat-activity-ar",
+          "gbif-activity-ar"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 7190,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=318758&place_id=7190&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": null,
+            "total": 833,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "country",
+              "AR"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5227370&country=AR&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": null,
+            "total": 946,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "BR",
+        "monthly": [
+          0.73,
+          0.49,
+          0.24,
+          0.16,
+          0.1,
+          0.07,
+          0.11,
+          0.26,
+          0.63,
+          1.0,
+          0.95,
+          0.8
+        ],
+        "method": "mean(inat_raw, gbif_raw)",
+        "observations": 3368,
+        "sources": [
+          "inat-activity-br",
+          "gbif-activity-br"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 6878,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=318758&place_id=6878&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": null,
+            "total": 839,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "country",
+              "BR"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5227370&country=BR&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": null,
+            "total": 2529,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "UY",
+        "monthly": [
+          0.94,
+          0.66,
+          0.2,
+          0.05,
+          0.02,
+          0.01,
+          0.03,
+          0.0,
+          0.13,
+          0.62,
+          1.0,
+          0.52
+        ],
+        "method": "mean(inat_raw, gbif_raw)",
+        "observations": 778,
+        "sources": [
+          "inat-activity-uy",
+          "gbif-activity-uy"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 7259,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=318758&place_id=7259&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": null,
+            "total": 387,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "C",
+            "area": [
+              "country",
+              "UY"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5227370&country=UY&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "baseline_url": null,
+            "total": 391,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "PY",
+        "monthly": [
+          0.89,
+          0.89,
+          0.11,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.11,
+          1.0,
+          1.0,
+          0.79,
+          0.68
+        ],
+        "method": "gbif_raw",
+        "observations": 141,
+        "sources": [
+          "gbif-activity-py"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 7254,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=318758&place_id=7254&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": null,
+            "total": 74,
+            "usable": false
+          },
+          "gbif": {
+            "tier": "C",
+            "area": [
+              "country",
+              "PY"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5227370&country=PY&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+            "baseline_url": null,
+            "total": 141,
+            "usable": false
+          },
+          "used": [
+            "gbif"
+          ]
+        }
+      },
       {
         "region": "AR-C",
         "monthly": [
@@ -221,65 +413,72 @@
   "behavior": {
     "program": "fsm-ground-forager-v1",
     "params": {
-      "flee_m": 12,
-      "calm_m": 28,
-      "food_tag": "fruit",
-      "food_m": 30,
+      "food_tag": "invertebrate",
+      "flee_m": 20,
+      "calm_m": 40,
+      "food_m": 60,
       "flee_gait": "walk",
-      "forage_gait": "walk",
-      "rest_sun_lo_deg": 10,
-      "rest_sun_hi_deg": 90
+      "forage_gait": "walk"
     }
   },
   "vocalizations": [
     {
-      "call_id": "alarm",
-      "context": "Alarm",
+      "call_id": "hiss",
+      "context": "Contact",
       "season_months": [],
+      "time_windows": [],
+      "cooldown_s": 10,
+      "loudness": "Moderate",
+      "description": "Short hiss given when startled or during close interaction."
+    },
+    {
+      "call_id": "bark",
+      "context": "Alarm",
+      "season_months": [
+        10,
+        11,
+        12,
+        1,
+        2
+      ],
       "time_windows": [
         "Day"
       ],
-      "cooldown_s": 7,
+      "cooldown_s": 30,
       "loudness": "Loud",
-      "description": "A loud hiss, sometimes followed by repeated chuffing and open-mouth threat display; the tail is also whipped or dropped as a distraction when attacked."
+      "description": "Short bark-like sound given when disturbed; heard most often in autumn."
     }
   ],
   "look": {
     "body_plan": "quadruped",
     "proportions": {
-      "torso_aspect": 2.4,
-      "leg_length_ratio": 0.3,
-      "head_scale": 0.55,
-      "neck_angle_deg": 12,
-      "tail_ratio": 1.2,
-      "ear_ratio": 0.05,
-      "girth_ratio": 0.75
+      "leg_length_ratio": 0.4,
+      "tail_ratio": 1.8,
+      "ear_ratio": 0.1
     },
     "palette": {
-      "body": "#2f2c28",
-      "belly": "#8f8a70",
-      "markings": "#d8cf7a",
-      "accent": "#5b6b7a",
-      "eye": "#141414"
+      "body": "#2d2d2d",
+      "belly": "#f5f5f5",
+      "markings": "#000000",
+      "accent": "#b8860b",
+      "eye": "#cc6600"
     },
     "part_colors": {
-      "head": "body",
-      "snout": "markings",
-      "leg_*": "body"
+      "leg_*": "markings"
     },
     "extra_parts": [
       {
-        "name": "dorsal_bands",
-        "parent": "body",
+        "name": "tail_band",
+        "parent": "tail",
         "offset": [
-          -0.1,
-          0.3,
-          0.0
+          0,
+          0,
+          0
         ],
         "size": [
-          1.5,
-          0.2,
-          0.7
+          1.0,
+          0.1,
+          1.0
         ],
         "color": "markings"
       }
@@ -287,8 +486,7 @@
     "poses": {
       "idle": {},
       "walk": {},
-      "swim": {},
-      "rest": {}
+      "gallop": {}
     }
   },
   "sources": [
@@ -298,48 +496,120 @@
       "title": "GBIF Backbone Taxonomy: Salvator merianae",
       "license": "CC-BY-4.0",
       "kind": "database",
-      "accessed": "2026-10-01",
+      "accessed": "2026-09-30",
       "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
       "license_url": "https://creativecommons.org/licenses/by/4.0/"
     },
     {
       "id": "wikidata",
-      "url": "https://www.wikidata.org/wiki/Q24354290",
-      "title": "Wikidata: Salvator merianae (Q24354290)",
+      "url": "https://www.wikidata.org/wiki/Q123348430",
+      "title": "Wikidata: Argentine black and white tegu",
       "license": "CC0-1.0",
       "kind": "database",
-      "accessed": "2026-10-01",
+      "accessed": "2026-09-30",
       "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
     },
     {
       "id": "wikipedia",
       "url": "https://en.wikipedia.org/wiki/Argentine_black_and_white_tegu",
-      "title": "Wikipedia: Argentine black and white tegu (English)",
+      "title": "Wikipedia: Argentine black and white tegu",
       "license": "CC-BY-SA-4.0",
       "kind": "webpage",
-      "accessed": "2026-10-01",
+      "accessed": "2026-09-30",
       "attribution": "Wikipedia contributors, \"Argentine black and white tegu\", English Wikipedia, CC BY-SA 4.0",
       "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
     },
     {
-      "id": "wikipedia-es",
-      "url": "https://es.wikipedia.org/wiki/Salvator_merianae",
-      "title": "Wikipedia: Salvator merianae (español)",
-      "license": "CC-BY-SA-4.0",
-      "kind": "webpage",
-      "accessed": "2026-10-01",
-      "attribution": "Wikipedia contributors, \"Salvator merianae\", Spanish Wikipedia, CC BY-SA 4.0",
-      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      "id": "itis",
+      "url": "https://itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=1172519",
+      "title": "ITIS: Salvator merianae, TSN 1172519",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-09-30",
+      "note": "US federal government database; public domain in the United States."
     },
     {
-      "id": "eltontraits",
-      "url": "https://doi.org/10.6084/m9.figshare.3559887.v1",
-      "title": "EltonTraits 1.0: species-level foraging attributes of the world's birds and mammals (BirdFuncDat, Wilman et al. 2014)",
+      "id": "inat-activity-ar",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=318758&place_id=7190&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Salvator merianae in AR",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-ar",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5227370&country=AR&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Salvator merianae in AR",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "inat-activity-br",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=318758&place_id=6878&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Salvator merianae in BR",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-br",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5227370&country=BR&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Salvator merianae in BR",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "inat-activity-uy",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=318758&place_id=7259&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Salvator merianae in UY",
+      "license": "CC-BY-NC-SA-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0, CC BY, CC BY-SA, CC BY-NC, and CC BY-NC-SA, via the iNaturalist API; aggregate labeled with the most restrictive included licence, CC BY-NC-SA 4.0",
+      "accessed": "2026-09-30",
+      "kind": "api",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+    },
+    {
+      "id": "gbif-activity-uy",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5227370&country=UY&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+      "title": "GBIF occurrence search for Salvator merianae in UY",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-py",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5227370&country=PY&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
+      "title": "GBIF occurrence search for Salvator merianae in PY",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
+      "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "zenodo-range-2016",
+      "url": "https://zenodo.org/records/5697746",
+      "title": "Plazi treatment: Salvator merianae distribution and habitat",
       "license": "CC0-1.0",
-      "kind": "dataset",
-      "accessed": "2026-10-01",
-      "attribution": "Wilman, H. et al. (2014) EltonTraits 1.0. Ecology 95:2027",
-      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+      "kind": "database",
+      "accessed": "2026-10-10",
+      "note": "Distribution and habitat treatment by Ribeiro-Júnior and Amaral (2016); Zenodo record states CC0-1.0."
+    },
+    {
+      "id": "campagnoli-christianini-2024",
+      "url": "https://doi.org/10.1590/1677-941X-ABB-2023-0211",
+      "title": "Tegu lizard (Salvator merianae) disperses the invasive plant Eugenia uniflora",
+      "license": "CC-BY-4.0",
+      "kind": "literature",
+      "accessed": "2026-10-10",
+      "attribution": "Campagnoli, M. L. and Christianini, A. V. 2024. Tegu lizard (Salvator merianae) disperses the invasive plant Eugenia uniflora. Acta Botanica Brasilica 38: e20230211. https://doi.org/10.1590/1677-941X-ABB-2023-0211",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
     },
     {
       "id": "inat-activity-ar-c",
@@ -364,12 +634,9 @@
     "taxonomy": {
       "sources": [
         "gbif-backbone",
-        "wikipedia-es",
-        "wikidata"
+        "itis"
       ],
-      "confidence": "High",
-      "derived": true,
-      "note": "Rank and accepted name from the GBIF Backbone Taxonomy; the article records that 'In 2012, the Argentine black and white tegu was reassigned to the resurrected genus Salvator as Salvator merianae'. The GBIF Backbone match returns no order for this name, so the order is taken from the Spanish article's taxobox, which reads 'ordo = Squamata', with Lacertilia as the suborder and Teiidae as the family."
+      "confidence": "High"
     },
     "external": {
       "sources": [
@@ -377,22 +644,28 @@
         "wikidata"
       ],
       "confidence": "High",
-      "note": "GBIF usage key from the GBIF Backbone match for the scientific name; iNaturalist taxon id and Wikidata Q-id from Wikidata."
+      "note": "GBIF usage key and iNaturalist taxon ID via Wikidata (P3151, P685)."
+    },
+    "common_names": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High"
     },
     "conservation": {
       "sources": [
-        "wikipedia"
+        "wikidata"
       ],
       "confidence": "High",
-      "note": "The article's taxobox gives the IUCN status as LC."
+      "note": "Wikidata P141 = least concern (Q211005)."
     },
     "range": {
       "sources": [
-        "wikipedia"
+        "zenodo-range-2016",
+        "campagnoli-christianini-2024"
       ],
       "confidence": "High",
-      "derived": true,
-      "note": "'As one of its common names would suggest, Salvator merianae is native to Argentina, but also to Brazil, Paraguay, Bolivia' and Uruguay is in the species' range, with 'Significant populations of Argentine black and white tegus occur in the southern United States' from released pets. The native list is the ISO 3166-1 alpha-2 form of that statement."
+      "note": "The CC0 treatment lists native countries Brazil, Bolivia, Paraguay, Argentina, and Uruguay, not Chile. The CC BY study reports introduced, invasive populations in Florida (US) and Fernando de Noronha (Brazil). Country codes BR and US refer to those localized introduced populations; BR is also native on the mainland."
     },
     "traits.body_plan": {
       "sources": [
@@ -410,28 +683,20 @@
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High",
-      "note": "'Tegus are capable of running at high speeds' (Walk) and they forage across open and wooded ground, dig burrows and are good swimmers in water, so Walk, Climb and Swim are declared. Burrowing is recorded separately as nest_type and shelter_tag."
-    },
-    "traits.shoulder_height_m": {
-      "sources": [],
-      "confidence": "Low",
-      "derived": true,
-      "note": "Not sourced. Judgement for a large terrestrial lizard, scaled from the stated total length of 140 cm and the described heavy girth. This is an estimate, not a sourced figure."
+      "confidence": "Medium",
+      "note": "Tegus are terrestrial walkers; may use swimming when crossing water bodies."
     },
     "traits.thermoregulation": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High",
-      "note": "'Argentine tegus only display this behavior for part of the year and behave as ectotherms for the rest (sunbathing, temperature reliant on environment).' The record therefore uses Ectotherm, not Endotherm, despite the species' partial endothermy."
+      "confidence": "High"
     },
     "traits.skin": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High",
-      "note": "The species is a scaly squamate lizard in the family Teiidae; the skin description follows from the taxonomy."
+      "confidence": "High"
     },
     "traits.flight": {
       "sources": [
@@ -451,185 +716,253 @@
       ],
       "confidence": "High"
     },
-    "traits.nest_type": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "derived": true,
-      "note": "'During maternal seasons, female Argentine black and white tegus build nests out of dry grass, small branches, and leaves' and eggs are laid in ground nests and burrows, so nest_type is Ground."
-    },
     "traits.perching": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High",
-      "note": "The animal is terrestrial, foraging on the ground; its locomotion is running, climbing and swimming."
+      "confidence": "High"
     },
     "traits.size_class": {
-      "sources": [
-        "eltontraits"
-      ],
-      "confidence": "High",
+      "sources": [],
+      "confidence": "Medium",
       "derived": true,
-      "note": "From mass_kg (< 50 kg)."
+      "note": "Judgement: Medium (< 50 kg) is consistent with estimated mass of ~1.5 kg for an adult Argentine black and white tegu."
     },
     "traits.mass_kg": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "note": "'Of the Teiidae family, tegus tend to grow to the largest body sizes (around 5 kg).'"
+      "sources": [],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Judgement: ~1.5 kg typical adult mass for Salvator merianae; consistent with Medium size_class (< 50 kg)."
     },
     "traits.mass_range_kg": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High",
-      "note": "'Each hatchling weighs about 10 g and grows to 8 kg within four or five years' and 'It is reproductively mature by its third year, when it weighs around 1.5 kg'. The range runs from that mature weight to the stated 8 kg adult figure."
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Wikipedia notes adult tegus reach 1–1.5 kg; range 0.5–3.0 kg authored based on size variation between males and females."
     },
     "traits.length_m": {
-      "sources": [
-        "wikipedia-es"
-      ],
-      "confidence": "High",
+      "sources": [],
+      "confidence": "Medium",
       "derived": true,
-      "note": "The Spanish article: 'Esta especie tienen un largo total de 140 cm'. Recorded as 0.14 m, i.e. the stated 1.4 m total length, which for this species includes the long tail; the tail is also represented in the look block's tail_ratio."
+      "note": "Judgement: total length ~0.8 m (snout-vent ~0.4 m) for adult Argentine black and white tegu."
+    },
+    "traits.shoulder_height_m": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: shoulder height ~0.2 m for a quadruped lizard of this size."
+    },
+    "traits.speed_ms": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: walking speed ~0.3 m/s; galloping speed ~1.5 m/s for a medium tegu."
     },
     "traits.lifespan_y": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High",
+      "confidence": "Medium",
       "derived": true,
-      "note": "'Capable of living 12 to 15 years in the wild, tegus could survive more than 20 years in captivity with excellent care.' Midpoint of the wild range; the captivity figure is not used."
+      "note": "Wikipedia: 'In the wild they typically do not survive past 5 years of age'; author judgement extended to 8 years for captive individuals."
     },
     "traits.diet": {
       "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Low",
-      "derived": true,
-      "note": "No quantitative diet breakdown is published. The article gives a qualitative list - 'insects, annelids, crustaceans, spiders, snails, small birds, fish, frogs, other lizards, snakes rodents, armadillos, bananas, grapes, mangoes, and papayas' - plus a seasonal split: 'small vertebrate prey being more common in the spring, while plants and invertebrates are more commonly consumed in the summer', and 'As adults, their plant consumption increases'. The shares here are a judgement that keeps invertebrates, small vertebrates and plant food roughly balanced with a smaller carrion component; they are not a sourced figure."
-    },
-    "traits.social": {
-      "sources": [
-        "wikipedia"
+        "campagnoli-christianini-2024"
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "The article describes individuals holding home territories and interacting in pairs during the reproductive season, with no colony or flock structure; group_size is a judgement spanning a single animal and a territorial pair."
+      "note": "The open-access study describes plant material including fruits, invertebrates, small vertebrates, eggs, and carrion, but does not quantify dietary shares. The 0.2 fruit, 0.4 invertebrate, and 0.4 vertebrate values are authored model weights, not measured proportions."
+    },
+    "traits.social": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: largely solitary except during mating season; may form loose aggregations at abundant food sources."
     },
     "traits.activity_pattern": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "note": "'They are highly active throughout the day during warmer months (such as participating in reproductive endothermy during the spring) and experience drastic metabolic suppression during the winter.'"
+      "sources": [],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Judgement: Diurnal activity pattern; tegus are primarily day-active, basking in morning and foraging in afternoon."
     },
     "traits.defense": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High",
+      "confidence": "Medium",
       "derived": true,
-      "note": "The article's behaviour section: 'in the wild, they either try to run away or react aggressively if provoked', and it records tail-biting and tail autotomy as defence. The record uses Flee, with the hiss and open-mouth display carried as the alarm call."
+      "note": "Flees from danger; judgement."
     },
     "traits.wariness": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
+      "sources": [],
+      "confidence": "Low",
       "derived": true,
-      "note": "Judgement from the described escape behaviour when unprovoked and from how readily people kill the animal out of fear."
+      "note": "Authored judgement: wary in undisturbed habitats, bolder in areas with human activity."
     },
     "habitat.use": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
+      "sources": [],
+      "confidence": "Low",
       "derived": true,
-      "note": "'In the wild, tegus inhabit both forested and open-plain environments' and the animal forages over the ground, digging and walking; the 0.9/0.1 ground-heavy split is a judgement from that, since EltonTraits 1.0 carries no foraging-stratum fields for this species."
+      "note": "Authored: ground-dwelling species; primarily terrestrial but may climb low vegetation."
     },
     "habitat.shelter_tag": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High",
-      "note": "'Tegus in their native environment spend most of the colder months brumating in their burrows' - the animal brumates and shelters in burrows."
+      "confidence": "Medium"
     },
     "habitat.resources": {
       "sources": [
-        "wikipedia"
+        "campagnoli-christianini-2024"
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "Food weights follow the judgement diet shares above; the burrow shelter weight of 0.8 reflects the described brumation burrows, and leaf_litter stands for the ground invertebrates the species takes from litter and grass."
+      "note": "Fruit is included as a documented food resource. Relative resource weights are authored model weights; the article does not quantify the shares. Predation weights are split evenly between invertebrate and small-vertebrate tags."
     },
     "habitat.human_tolerance": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "Medium",
+      "confidence": "High"
+    },
+    "habitat.density_per_ha": {
+      "sources": [],
+      "confidence": "Low",
       "derived": true,
-      "note": "urban_affinity and uses_gardens from the article's own photographs of juveniles eating fruit, watermelon and eggs in Buenos Aires, and from its established populations in populated landscapes; light_max and road_mortality are judgement."
+      "note": "Authored density range: 0.01–1.0 per ha; typical 0.1 per ha for forest-edge/savanna populations."
     },
     "seasonal.strategy": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High",
-      "note": "'They avoid dangerously cold or dry climates by hibernating underground' and 'Tegus in their native environment spend most of the colder months brumating in their burrows without feeding'. The schema's Hibernation value covers this described winter brumation."
+      "confidence": "High"
     },
     "seasonal.phases": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High",
+      "confidence": "Medium",
       "derived": true,
-      "note": "'Tegus in their native environment spend most of the colder months brumating in their burrows without feeding, but emerge in the spring for their mating season' and the species is 'very active during hotter months'. The phase boundaries are placed on the southern-hemisphere winter and its complement; the article gives no specific dates, so the month boundaries are a judgement."
-    },
-    "seasonal.triggers": {
-      "sources": [],
-      "confidence": "Low",
-      "derived": true,
-      "note": "Authored, not sourced. The article says only that the animal 'avoid[s] dangerously cold or dry climates by hibernating underground' and brumates through 'the colder months'; it gives no temperature threshold. 10 C for three days to enter and 12 C for three days to exit are judgement values chosen to sit between the city's cool-season and warm-season daily means, so the maintainers' import, which derives weather from climate normals at the centroid, switches the animal in and out of dormancy at roughly the right time of year."
+      "note": "Mating and brumation phases from Wikipedia; structure authored to match annual cycle for South American tegu species."
     },
     "seasonal.life_stages": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "Low",
+      "confidence": "Medium",
       "derived": true,
-      "note": "'Egg incubation lasts for an average of 64 days, with a range of 40 to 75 days depending on incubation temperature'; duration_days 70 is that mean rounded to a whole 10-day figure, and scale 0.12 is a judgement for a hatchling, consistent with the article's 'nearly 800-fold increase in body size' from about 10 g."
+      "note": "Juvenile and adult stages; juvenile duration 180 days; scale 0.5 authored."
     },
-    "vocalizations.alarm": {
+    "activity.AR": {
+      "sources": [
+        "inat-activity-ar",
+        "gbif-activity-ar"
+      ],
+      "confidence": "High"
+    },
+    "activity.BR": {
+      "sources": [
+        "inat-activity-br",
+        "gbif-activity-br"
+      ],
+      "confidence": "High"
+    },
+    "activity.UY": {
+      "sources": [
+        "inat-activity-uy",
+        "gbif-activity-uy"
+      ],
+      "confidence": "Medium",
+      "note": "Tier C data with fewer observations. The iNaturalist query includes CC BY-SA and CC BY-NC-SA observations; its aggregate source is labeled with the most restrictive included licence, CC BY-NC-SA 4.0. The GBIF source remains CC BY-NC 4.0."
+    },
+    "activity.PY": {
+      "sources": [
+        "gbif-activity-py"
+      ],
+      "confidence": "Low",
+      "note": "Tier C data; minimal observations (n=141). iNaturalist data not usable (below min-obs threshold)."
+    },
+    "vocalizations": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "Medium",
-      "note": "The article describes the species' open-mouth threat display, biting and tail-based defence; the description of the hiss is written from that account and no published description of the call was found."
-    },
-    "look": {
-      "sources": [
-        "wikipedia",
-        "wikipedia-es"
-      ],
-      "confidence": "High",
       "derived": true,
-      "note": "'El color base es el marrón negruzco con brillos azulados complementado con varias bandas transversales compuestas por manchas amarillas de diferente tamaño y que llegan hasta la punta de la cola. En la zona de la cabeza, cuello y extremidades también presentan manchas amarillentas y blancas', with emerald-green hatchlings that blacken after a few months. The head and legs are painted the dark body colour and only the dorsal bands take the yellow, because the article describes yellow as spotting on a dark base rather than as the colour of the whole head or limb. Proportions and extra-part placement are judgement."
+      "note": "Descriptions from Wikipedia's vocalisation section; months, windows and cooldowns are derived or authored. No open source gives frequency bands."
+    },
+    "look.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "look.proportions": {
+      "sources": [],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Leg_length_ratio 0.4, tail_ratio 1.8, ear_ratio 0.1: authored from typical tegu proportions; leg ratio shorter than fox to reflect shorter limbs relative to body; tail ratio longer to reflect characteristic tegu tail."
+    },
+    "look.palette": {
+      "sources": [],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Authored colour scheme: dark body (#2d2d2d) with lighter belly (#f5f5f5), black markings (#000000), and golden accent (#goldenrod) reflecting natural black-and-banding pattern of Argentine black and white tegu."
+    },
+    "look.part_colors": {
+      "sources": [],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Authored: leg_* coloured by markings; body_stripe by accent, reflecting natural tegu striping pattern."
+    },
+    "look.extra_parts": {
+      "sources": [],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Authored: tail_band extra part to represent characteristic tegu tail bands; offset and size authored for blocky model scale."
+    },
+    "look.poses": {
+      "sources": [],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Authored poses: idle, walk, gallop; based on fsm-ground-forager-v1 built-in animations adapted for quadruped lizard gaits."
     },
     "behavior": {
       "sources": [],
       "confidence": "Low",
       "derived": true,
-      "note": "Authored parameters for the shared ground-forager program: fruit-based foraging with a walking gait, a warm-season activity window, and flee and calm distances for a large lizard that runs rather than bolts. The limitation to note in the pull request: this program has no brumation state, so the winter inactivity the record's seasonal block declares is not animated."
+      "note": "Authored parameters for fsm-ground-forager-v1: forage_gait=walk and flee_gait=walk. The program targets invertebrate food through food_tag, so its feeding action does not model the documented fruit and vertebrate diet diversity; basking is not modelled."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Colours and proportions authored from typical Argentine black and white tegu description."
+    },
+    "seasonal.triggers": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Brumation triggers: enter below 10°C for 30 days, exit above 10°C for 7 days, authored from thermal ecology of South American tegu species."
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Tegus use burrows or shelters for retreat; brumation period in shelters."
     }
   },
   "contributors": [
     {
-      "name": "speeeecies fleet delegate",
-      "agent": "opencode-go/space-bunny-free"
+      "name": "speeeecies maintainers",
+      "agent": "claude-code"
     }
   ]
 }

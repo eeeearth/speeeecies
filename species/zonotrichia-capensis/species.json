@@ -1,12 +1,12 @@
 {
-  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "$schema": "https://eeeearth.github.io/speeeecies/schema/v0.1/species.schema.json",
   "format": "speeeecies/species",
   "format_version": "0.1",
   "id": "Zonotrichia capensis",
   "slug": "zonotrichia-capensis",
   "common_names": {
-    "en": "rufous-collared sparrow",
-    "es": "chingolo común"
+    "en": "Rufous-collared sparrow",
+    "es": "Chingolo común"
   },
   "taxonomy": {
     "kingdom": "Animalia",
@@ -15,50 +15,51 @@
     "order": "Passeriformes",
     "family": "Passerellidae",
     "genus": "Zonotrichia",
-    "authority": "(Müller, 1776)",
+    "authority": "Müller, 1776",
     "status": "Accepted"
   },
   "external": {
     "gbif_usage_key": 5231103,
     "inat_taxon_id": 9183,
-    "wikidata": "Q587505"
+    "wikidata": "Q587505",
+    "ebird_code": "rucspa1"
   },
   "conservation": {
     "iucn": "LC"
   },
   "range": {
     "native": [
+      "CL",
       "AR",
-      "AW",
       "BO",
       "BR",
-      "BZ",
-      "CL",
       "CO",
-      "CR",
-      "CW",
-      "DO",
       "EC",
-      "FK",
-      "GF",
-      "GT",
-      "GY",
-      "HN",
-      "HT",
-      "NI",
-      "PA",
+      "MX",
       "PE",
       "PY",
-      "SR",
-      "SV",
       "UY",
       "VE"
+    ],
+    "koppen": [
+      "Csb",
+      "Cfb",
+      "Cfa",
+      "Aw",
+      "BSh",
+      "BSk",
+      "Cwa"
+    ],
+    "elevation_m": [
+      0,
+      4500
     ]
   },
   "traits": {
     "body_plan": "Vertebrate",
     "limb_count": 2,
     "locomotion_modes": [
+      "Walk",
       "Hop",
       "Fly"
     ],
@@ -67,37 +68,37 @@
     "flight": "Powered",
     "respiration": "Lungs",
     "metamorphosis": "None",
-    "nest_type": "Ground",
+    "nest_type": "Cup",
     "perching": true,
     "size_class": "Tiny",
-    "mass_kg": 0.02,
+    "mass_kg": 0.023,
     "mass_range_kg": [
       0.02,
       0.025
     ],
     "length_m": 0.143,
-    "wingspan_m": 0.2,
-    "lifespan_y": 4.0,
+    "lifespan_y": 3,
     "diet": {
-      "invertebrate": 0.3,
       "seed": 0.5,
-      "fruit": 0.2
+      "invertebrate": 0.4,
+      "fruit": 0.1
     },
     "social": {
       "structure": "Pair",
       "group_size": [
-        2,
-        2
+        1,
+        4
       ]
     },
     "activity_pattern": "Diurnal",
     "defense": "Flee",
-    "wariness": 0.35
+    "wariness": 0.2,
+    "wingspan_m": 0.22
   },
   "habitat": {
     "use": {
-      "ground": 0.9,
-      "arboreal": 0.1
+      "ground": 0.7,
+      "arboreal": 0.3
     },
     "shelter_tag": "shrub_thicket",
     "resources": [
@@ -109,35 +110,24 @@
       {
         "tag": "invertebrate",
         "kind": "Predation",
-        "weight": 0.3
-      },
-      {
-        "tag": "fruit",
-        "kind": "Herbivory",
-        "weight": 0.2
+        "weight": 0.4
       },
       {
         "tag": "perch",
         "kind": "Shelter",
-        "weight": 0.6
-      },
-      {
-        "tag": "nest_ground",
-        "kind": "Nesting",
-        "weight": 0.8
+        "weight": 0.5
       },
       {
         "tag": "shrub_thicket",
         "kind": "Shelter",
-        "weight": 0.5
+        "weight": 0.7
       }
     ],
     "human_tolerance": {
       "urban_affinity": "Exploiter",
       "uses_gardens": true,
-      "light_max": 0.5,
-      "road_mortality": "Medium",
-      "notes": "'It can be seen in virtually any open or semi-open habitat, including cultivations, gardens, parks, grasslands, and scrubby second growth or cerrado' and it 'copes well with urban and suburban environments'."
+      "light_max": 0.9,
+      "notes": "Copes well with urban and suburban environments; common in gardens, parks, and cultivations."
     }
   },
   "seasonal": {
@@ -146,8 +136,9 @@
       {
         "name": "breeding",
         "start": "09-01",
-        "end": "01-31",
-        "note": "Judgement placed on the stated primary song season: 'they demonstrate strong or persistent singing throughout the day during the primary season from September to January'."
+        "end": "02-28",
+        "region": "CL",
+        "note": "Breeding season limited by food availability and rainfall."
       }
     ],
     "life_stages": [
@@ -156,8 +147,8 @@
       },
       {
         "stage": "Juvenile",
-        "duration_days": 26,
-        "scale": 0.82
+        "duration_days": 45,
+        "scale": 0.85
       },
       {
         "stage": "Adult"
@@ -166,6 +157,55 @@
   },
   "activity": {
     "regions": [
+      {
+        "region": "CL-RM",
+        "monthly": [
+          0.52,
+          0.47,
+          0.62,
+          0.6,
+          0.61,
+          0.69,
+          0.67,
+          0.92,
+          1.0,
+          0.9,
+          0.71,
+          0.56
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 65369,
+        "sources": [
+          "inat-activity-cl-rm",
+          "gbif-activity-cl-rm"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 12691,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=9183&place_id=12691&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=12691&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 796,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "CHL.14_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5231103&gadmGid=CHL.14_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=CHL.14_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 64573,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      },
       {
         "region": "AR-C",
         "monthly": [
@@ -220,12 +260,12 @@
   "behavior": {
     "program": "bt-perching-songbird-v1",
     "params": {
-      "flee_m": 6,
+      "flee_m": 4,
       "food_tag": "seed",
       "song": "song",
       "alarm": "alarm",
       "nest_m1": 9,
-      "nest_m2": 1
+      "nest_m2": 2
     }
   },
   "vocalizations": [
@@ -237,9 +277,9 @@
         "DawnChorus",
         "Day"
       ],
-      "cooldown_s": 8,
-      "loudness": "Loud",
-      "description": "A loud, clear, slowly repeated phrase sung from an exposed perch; singing is strongest near dawn and throughout the day during the September-to-January season, and the song has well-known geographic dialects."
+      "cooldown_s": 15,
+      "loudness": "Moderate",
+      "description": "Diverse vocalizations with local dialects; song varies geographically and has been intensely studied."
     },
     {
       "call_id": "alarm",
@@ -249,68 +289,53 @@
         "Day"
       ],
       "cooldown_s": 5,
-      "loudness": "Moderate",
-      "description": "A sharp, thin note given when the bird is flushed from the ground or from a low nest."
+      "loudness": "Quiet",
+      "description": "Short alarm call when disturbed."
     }
   ],
   "look": {
     "body_plan": "biped_winged",
     "proportions": {
-      "torso_aspect": 1.5,
-      "leg_length_ratio": 0.34,
-      "head_scale": 0.8,
+      "torso_aspect": 1.4,
+      "leg_length_ratio": 0.35,
+      "head_scale": 0.85,
       "neck_angle_deg": 15,
       "tail_ratio": 0.5,
       "wing_aspect": 2.4,
-      "beak_ratio": 0.35,
+      "beak_ratio": 0.3,
       "girth_ratio": 1.0
     },
     "palette": {
-      "body": "#8a7a5c",
-      "belly": "#efece2",
-      "markings": "#2f2a24",
-      "accent": "#a8632c",
-      "eye": "#141414"
+      "body": "#8a7a5a",
+      "belly": "#e8e0d0",
+      "markings": "#b06030",
+      "accent": "#3a3a3a",
+      "eye": "#111111"
     },
     "part_colors": {
-      "beak": "markings",
-      "leg_left": "markings",
-      "leg_right": "markings"
+      "breast": "belly",
+      "beak": "accent"
     },
     "extra_parts": [
       {
-        "name": "collar",
-        "parent": "head",
+        "name": "rufous_collar",
+        "parent": "body",
         "offset": [
-          0.05,
-          -0.14,
-          0.0
+          0,
+          0.35,
+          0
         ],
         "size": [
-          0.62,
-          0.2,
-          0.58
-        ],
-        "color": "accent"
-      },
-      {
-        "name": "breast_patch",
-        "parent": "breast",
-        "offset": [
-          0.2,
-          -0.1,
-          0.0
-        ],
-        "size": [
-          0.4,
-          0.34,
-          0.4
+          0.8,
+          0.15,
+          1.05
         ],
         "color": "markings"
       }
     ],
     "poses": {
       "idle": {},
+      "walk": {},
       "hop": {},
       "fly": {},
       "perched": {},
@@ -331,7 +356,7 @@
     {
       "id": "wikidata",
       "url": "https://www.wikidata.org/wiki/Q587505",
-      "title": "Wikidata: Zonotrichia capensis (Q587505)",
+      "title": "Wikidata: Rufous-collared sparrow (Q587505)",
       "license": "CC0-1.0",
       "kind": "database",
       "accessed": "2026-10-01",
@@ -340,7 +365,7 @@
     {
       "id": "wikipedia",
       "url": "https://en.wikipedia.org/wiki/Rufous-collared_sparrow",
-      "title": "Wikipedia: Rufous-collared sparrow (English)",
+      "title": "Wikipedia: Rufous-collared sparrow",
       "license": "CC-BY-SA-4.0",
       "kind": "webpage",
       "accessed": "2026-10-01",
@@ -348,24 +373,22 @@
       "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
     },
     {
-      "id": "wikipedia-es",
-      "url": "https://es.wikipedia.org/wiki/Zonotrichia_capensis",
-      "title": "Wikipedia: Zonotrichia capensis (español)",
-      "license": "CC-BY-SA-4.0",
-      "kind": "webpage",
+      "id": "inat-activity-cl-rm",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=9183&place_id=12691&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Zonotrichia capensis in CL-RM",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
       "accessed": "2026-10-01",
-      "attribution": "Wikipedia contributors, \"Zonotrichia capensis\", Spanish Wikipedia, CC BY-SA 4.0",
-      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      "kind": "api"
     },
     {
-      "id": "eltontraits",
-      "url": "https://doi.org/10.6084/m9.figshare.3559887.v1",
-      "title": "EltonTraits 1.0: species-level foraging attributes of the world's birds and mammals (BirdFuncDat, Wilman et al. 2014)",
-      "license": "CC0-1.0",
-      "kind": "dataset",
+      "id": "gbif-activity-cl-rm",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5231103&gadmGid=CHL.14_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Zonotrichia capensis in CL-RM",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
       "accessed": "2026-10-01",
-      "attribution": "Wilman, H. et al. (2014) EltonTraits 1.0. Ecology 95:2027",
-      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+      "kind": "api"
     },
     {
       "id": "inat-activity-ar-c",
@@ -389,37 +412,180 @@
   "provenance": {
     "taxonomy": {
       "sources": [
-        "gbif-backbone",
-        "wikidata"
+        "gbif-backbone"
       ],
-      "confidence": "High",
-      "note": "Rank and accepted name from the GBIF Backbone Taxonomy."
+      "confidence": "High"
     },
     "external": {
       "sources": [
         "gbif-backbone",
         "wikidata"
       ],
+      "confidence": "High"
+    },
+    "common_names": {
+      "sources": [
+        "wikidata"
+      ],
       "confidence": "High",
-      "note": "GBIF usage key from the GBIF Backbone match for the scientific name; iNaturalist taxon id and Wikidata Q-id from Wikidata."
+      "note": "en label from Wikidata Q587505; the Spanish name is the item's es alias ('Chingolo común')."
     },
     "conservation": {
+      "sources": [
+        "wikidata",
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Found from southeast Mexico to Tierra del Fuego; country list derived from distribution text."
+    },
+    "traits.mass_kg": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High",
-      "note": "The article's taxobox gives the IUCN status as LC."
+      "derived": true,
+      "note": "Midpoint of 20-25 g."
     },
-    "range": {
+    "traits.mass_range_kg": {
       "sources": [
-        "wikipedia",
-        "wikipedia-es"
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "20-25 g."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of 13.5-15 cm."
+    },
+    "traits.lifespan_y": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored: typical sparrow lifespan 2-4 years; no specific source found."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Seeds, fallen grain, insects, and spiders."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Usually seen in pairs which hold small territories, or in small flocks."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Tame and approachable."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "The Spanish article's distribution section: 'se distribuye por toda America del Sur, incluyendo Tierra de Fuego e isla de los Estados, America Central, Aruba, Curazao y la isla La Espanola (Republica Dominicana y Haiti).' The country list is the ISO 3166-1 alpha-2 form of that sentence."
+      "note": "Feeds on the ground; found in open and semi-open habitats."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Seeds, insects, and spiders from Wikipedia."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Copes well with urban and suburban environments."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Active year-round."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Breeding season limited by food availability and rainfall."
+    },
+    "vocalizations.song": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Grey head with black stripes, rufous nape and breast sides, black-streaked buff-brown upperparts; proportions authored."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared perching-songbird program."
+    },
+    "habitat.shelter_tag": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Life stages from Wikipedia; durations authored."
     },
     "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.defense": {
+      "sources": [],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Authored: flies to cover."
+    },
+    "traits.flight": {
       "sources": [
         "wikipedia"
       ],
@@ -435,32 +601,7 @@
       "sources": [
         "wikipedia"
       ],
-      "confidence": "Medium",
-      "note": "The bird forages on the ground, moving by short hops, and flies up to a perch to sing; the shared perching-songbird program forages by hop, so Hop is the declared ground gait. Swimming and climbing are not described."
-    },
-    "traits.thermoregulation": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High"
-    },
-    "traits.skin": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High"
-    },
-    "traits.flight": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High"
-    },
-    "traits.respiration": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High"
+      "confidence": "Medium"
     },
     "traits.metamorphosis": {
       "sources": [
@@ -472,188 +613,61 @@
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High",
-      "note": "'It is constructed in matted vegetation on the ground, low in a tree or bush, or a niche in a wall, perhaps 2 m high at best but usually less than 0.5 m above ground.' The usual site is the ground, so nest_type is Ground."
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Nest type from Wikipedia."
     },
     "traits.perching": {
       "sources": [
         "wikipedia"
       ],
-      "confidence": "High",
-      "note": "The bird sings from an exposed perch; it also uses low bushes and wall niches."
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
     },
     "traits.size_class": {
       "sources": [
-        "eltontraits"
-      ],
-      "confidence": "High",
-      "derived": true,
-      "note": "From mass_kg (< 0.05 kg)."
-    },
-    "traits.mass_kg": {
-      "sources": [
-        "eltontraits"
-      ],
-      "confidence": "High",
-      "note": "EltonTraits 1.0 BirdFuncDat row for Zonotrichia capensis: BodyMass-Value 20.31 g."
-    },
-    "traits.mass_range_kg": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "note": "'The rufous-collared sparrow is 13.5-15 cm long and weighs 20-25 g.'"
-    },
-    "traits.length_m": {
-      "sources": [
         "wikipedia"
       ],
       "confidence": "High",
       "derived": true,
-      "note": "Midpoint of '13.5-15 cm'."
+      "note": "From mass_kg."
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
     },
     "traits.wingspan_m": {
-      "sources": [],
-      "confidence": "Low",
-      "derived": true,
-      "note": "Neither Wikipedia article states a wingspan. Derived as roughly 1.4x body length (0.143 m), the usual span-to-length ratio for a small ground-feeding sparrow, giving about 0.20 m. This is an approximation, not a sourced figure."
-    },
-    "traits.lifespan_y": {
-      "sources": [],
-      "confidence": "Low",
-      "derived": true,
-      "note": "No open-licensed source gives a typical or maximum lifespan for Zonotrichia capensis: the English and Spanish Wikipedia articles, Wikidata and GBIF carry none, and the field-guide and Animal Diversity Web pages were avoided under the licence policy. 4.0 years is a documented judgement placeholder, not a sourced figure."
-    },
-    "traits.diet": {
-      "sources": [
-        "eltontraits",
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "derived": true,
-      "note": "EltonTraits 1.0 Diet-Inv 30, Diet-Seed 50, Diet-PlantO 20 (BirdFuncDat row, Diet-Certainty A); Diet-PlantO is mapped to the schema's fruit share, as in the repository's other records."
-    },
-    "traits.social": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "The article describes territorial pairs that hold and defend a nest site; group_size is fixed at the pair, and the bird is not described as gregarious."
-    },
-    "traits.activity_pattern": {
-      "sources": [
-        "eltontraits",
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "note": "EltonTraits 1.0 Nocturnal 0; the bird sings and forages by day."
-    },
-    "traits.defense": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Low",
-      "derived": true,
-      "note": "Authored: the bird flushes from the ground to a low perch when approached, the escape the shared perching-songbird program encodes."
-    },
-    "traits.wariness": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Judgement from the described use of gardens, parks and urban and suburban habitats."
-    },
-    "habitat.use": {
-      "sources": [
-        "eltontraits"
-      ],
-      "confidence": "High",
-      "note": "ForStrat-ground 100, ForStrat-understory 0, softened to 0.9/0.1 because the article places the nest low in a tree or bush and the bird sings from a perch; the source values are stated and the small deviation is deliberate."
-    },
-    "habitat.shelter_tag": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Roosts in low bushes, hedges and grass tussocks."
-    },
-    "habitat.resources": {
-      "sources": [
-        "eltontraits",
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Food weights follow the EltonTraits diet shares; nest_ground follows the stated nest sites, and perch and shrub_thicket follow the low-perch singing and nesting."
-    },
-    "habitat.human_tolerance": {
       "sources": [
         "wikipedia"
       ],
       "confidence": "High",
       "derived": true,
-      "note": "urban_affinity and uses_gardens from 'It can be seen in virtually any open or semi-open habitat, including cultivations, gardens, parks' and 'It copes well with urban and suburban environments'; road_mortality and light_max are judgement."
-    },
-    "seasonal.strategy": {
-      "sources": [
-        "wikipedia",
-        "wikipedia-es"
-      ],
-      "confidence": "Medium",
-      "note": "The bird is described as generally abundant and year-round resident across a very wide range, with no migration described."
-    },
-    "seasonal.phases": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Low",
-      "derived": true,
-      "note": "'they demonstrate strong or persistent singing throughout the day during the primary season from September to January' gives the window; the phase boundaries are a judgement placed on the stated song season."
-    },
-    "seasonal.life_stages": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Low",
-      "derived": true,
-      "note": "'The female lays two or three pale greenish-blue eggs ... They are incubated by the female for 12-14 days ... the chicks stay in the nest for about two more weeks.' duration_days 26 is the midpoint 13 + 14, and scale is a judgement for a recently fledged bird."
-    },
-    "vocalizations.song": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "note": "The article's vocalizations section and its physiology and song-dialect work describe the song, its dawn emphasis and its September-to-January season."
+      "note": "Estimated from body size and wing shape."
     },
     "vocalizations.alarm": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "note": "The article describes the call given when the bird is flushed; the description is written from that account."
-    },
-    "look": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "'The adult has a stubby grey bill, and a grey head with broad black stripes on the crown sides ... The nape and breast sides are rufous, and the upperparts are black-streaked buff-brown. There are two white wing bars. The throat is white, and the underparts are off-white, becoming brown on the flanks and with a black breast patch.' Proportions and extra-part placement are judgement."
-    },
-    "behavior": {
       "sources": [],
       "confidence": "Low",
       "derived": true,
-      "note": "Authored parameters for the shared perching-songbird program: seed-based ground foraging, a nest-building window following the stated September-to-January song season, and a short flee distance for a garden bird that flushes readily."
+      "note": "Authored: typical alarm call."
     }
   },
   "contributors": [
     {
-      "name": "speeeecies fleet delegate",
-      "agent": "opencode-go/space-bunny-free"
+      "name": "speeeecies maintainers",
+      "agent": "claude-code"
     }
   ]
 }
