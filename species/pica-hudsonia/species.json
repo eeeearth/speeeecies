@@ -242,6 +242,48 @@
             "gbif"
           ]
         }
+      },
+      {
+        "region": "US-OR",
+        "monthly": [
+          0.87,
+          0.84,
+          0.84,
+          0.71,
+          1.0,
+          1.0,
+          0.48,
+          0.6,
+          0.97,
+          0.84,
+          0.75,
+          0.86
+        ],
+        "method": "gbif_share",
+        "observations": 98445,
+        "sources": [
+          "gbif-activity-us-or"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "skipped": "ISO 3166-2 region given without --inat-place-id; pass --inat-place-id <id> (look it up at https://www.inaturalist.org/places) to query iNaturalist for this subdivision"
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.38_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5229487&gadmGid=USA.38_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.38_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 98445,
+            "usable": true
+          },
+          "used": [
+            "gbif"
+          ]
+        }
       }
     ]
   },
@@ -373,6 +415,15 @@
       "license": "CC-BY-4.0",
       "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
       "accessed": "2026-09-30",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-or",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5229487&gadmGid=USA.38_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Pica hudsonia in US-OR",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-10) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-10",
       "kind": "api"
     }
   ],
@@ -591,6 +642,13 @@
       "confidence": "Low",
       "derived": true,
       "note": "Authored parameters for the shared perching-songbird program: flee_m and wariness reflect a wary corvid that is fairly tolerant of people; food_tag is the largest seasonal diet component, matching the program default's insect foraging; song and alarm both point at the single chatter call, which the shared program requires and which the source gives no separate song for."
+    },
+    "activity.US-OR": {
+      "sources": [
+        "gbif-activity-us-or"
+      ],
+      "confidence": "Medium",
+      "note": "GBIF-only US-OR curve regenerated 2026-10-10. CC0 and CC BY records were used at tier A where at least 300 matched; jackrabbit and frog use tier C because tier-A samples do not meet the 300-record minimum."
     }
   },
   "contributors": [
