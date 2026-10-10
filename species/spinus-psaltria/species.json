@@ -1,0 +1,461 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Spinus psaltria",
+  "slug": "spinus-psaltria",
+  "common_names": {
+    "en": "Lesser goldfinch"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Passeriformes",
+    "family": "Fringillidae",
+    "genus": "Spinus",
+    "authority": "(Say, 1822)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 5231647,
+    "inat_taxon_id": 145308,
+    "itis_tsn": 179254,
+    "wikidata": "Q27075863",
+    "ncbi_taxon_id": 54559,
+    "ebird_code": "lesgol"
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "US",
+      "MX",
+      "BZ",
+      "GT",
+      "HN",
+      "SV",
+      "NI",
+      "CR",
+      "PA",
+      "CO",
+      "VE",
+      "EC",
+      "PE"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Hop",
+      "Fly"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Cup",
+    "perching": true,
+    "size_class": "Tiny",
+    "mass_kg": 0.0088,
+    "mass_range_kg": [
+      0.008,
+      0.0115
+    ],
+    "length_m": 0.105,
+    "lifespan_y": 3,
+    "diet": {
+      "seed": 0.8,
+      "invertebrate": 0.2
+    },
+    "social": {
+      "structure": "Flock",
+      "group_size": [
+        2,
+        20
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.25
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.25,
+      "arboreal": 0.75
+    },
+    "shelter_tag": "perch",
+    "resources": [
+      {
+        "tag": "seed",
+        "kind": "Herbivory",
+        "weight": 0.8
+      },
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.2
+      },
+      {
+        "tag": "nest_cup",
+        "kind": "Nesting",
+        "weight": 1.0
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.8
+      },
+      {
+        "tag": "shrub_thicket",
+        "kind": "Shelter",
+        "weight": 0.5
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "flight_distance_m": 5,
+      "notes": "Uses nearly any habitat with trees or shrubs except dense forest; common near houses and at thistle feeders in the southwestern United States."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "04-01",
+        "end": "09-30",
+        "note": "Broad species account reports breeding April through September; timing is not New Mexico specific."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg"
+      },
+      {
+        "stage": "Juvenile",
+        "duration_days": 14,
+        "scale": 0.85
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US-NM",
+        "monthly": [
+          0.4,
+          0.51,
+          0.52,
+          0.49,
+          0.48,
+          0.78,
+          0.93,
+          1.0,
+          0.91,
+          0.74,
+          0.43,
+          0.42
+        ],
+        "method": "gbif_share",
+        "observations": 190469,
+        "sources": [
+          "gbif-activity-us-nm"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "skipped": "ISO 3166-2 region given without --inat-place-id; pass --inat-place-id <id> (look it up at https://www.inaturalist.org/places) to query iNaturalist for this subdivision"
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.32_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5231647&gadmGid=USA.32_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.32_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 190469,
+            "usable": true
+          },
+          "used": [
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "bt-lesser-goldfinch-v1",
+    "params": {
+      "flee_m": 5,
+      "food_tag": "seed",
+      "song": "song",
+      "alarm": "alarm",
+      "song_cooldown_s": 10
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "song",
+      "context": "Song",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day"
+      ],
+      "cooldown_s": 25,
+      "loudness": "Moderate",
+      "description": "Prolonged warble or twitter, often incorporating imitations of other species."
+    },
+    {
+      "call_id": "alarm",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 6,
+      "loudness": "Moderate",
+      "description": "Harsh chig chig chig flight call and high drawn-out teeeyeee or teeeyooo whistle."
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.45,
+      "leg_length_ratio": 0.28,
+      "head_scale": 0.78,
+      "neck_angle_deg": 18,
+      "tail_ratio": 0.55,
+      "wing_aspect": 3.2,
+      "beak_ratio": 0.32,
+      "girth_ratio": 0.9
+    },
+    "palette": {
+      "body": "#c9b31f",
+      "belly": "#f0d438",
+      "markings": "#111111",
+      "accent": "#ffffff",
+      "eye": "#0b0b0b"
+    },
+    "part_colors": {
+      "head": "markings",
+      "wing_*": "markings",
+      "tail": "markings",
+      "breast": "belly",
+      "beak": "eye"
+    },
+    "extra_parts": [
+      {
+        "name": "wing_patch",
+        "parent": "wing_left",
+        "offset": [
+          0,
+          0,
+          0
+        ],
+        "size": [
+          0.55,
+          0.18,
+          1.04
+        ],
+        "color": "accent",
+        "mirror": true
+      },
+      {
+        "name": "black_cap",
+        "parent": "head",
+        "offset": [
+          0,
+          0.38,
+          0
+        ],
+        "size": [
+          0.82,
+          0.28,
+          1.04
+        ],
+        "color": "markings"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "hop": {},
+      "fly": {},
+      "glide": {},
+      "perched": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/5231647",
+      "title": "GBIF Backbone Taxonomy: Spinus psaltria",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-09-30",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q27075863",
+      "title": "Wikidata: Spinus psaltria (Q27075863)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-09-30",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Lesser_goldfinch",
+      "title": "Wikipedia: Lesser goldfinch",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-09-30",
+      "attribution": "Wikipedia contributors, \"Lesser goldfinch\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=179254",
+      "title": "ITIS: Spinus psaltria, TSN 179254",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-09-30",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "avonet",
+      "url": "https://doi.org/10.6084/m9.figshare.16586228",
+      "title": "AVONET: morphological, ecological and geographical data for all birds",
+      "license": "CC-BY-4.0",
+      "kind": "dataset",
+      "accessed": "2026-09-30",
+      "attribution": "Tobias, J. A. et al. (2022) AVONET. Ecology Letters 25:581-597",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "adw",
+      "url": "https://animaldiversity.org/accounts/Spinus_psaltria/",
+      "title": "Animal Diversity Web: Spinus psaltria",
+      "license": "CC-BY-NC-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-09-30",
+      "attribution": "Animal Diversity Web contributors, Spinus psaltria account, CC BY-NC-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+    },
+    {
+      "id": "gbif-activity-us-nm",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5231647&gadmGid=USA.32_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Spinus psaltria in US-NM",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-10) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-10",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "itis"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata",
+        "itis"
+      ],
+      "confidence": "High"
+    },
+    "common_names": {
+      "sources": [
+        "wikidata",
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Country list derived from the stated range from the southwestern United States south to Venezuela and Peru."
+    },
+    "traits": {
+      "sources": [
+        "adw",
+        "avonet"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Mass and length use AVONET and Animal Diversity Web ranges. Wingspan is omitted because the source value appears to be wing length. Typical lifespan is a simple midpoint of ADW typical 1-5 year interval, not a measured mean. Diet shares are authored low-confidence model weights from qualitative seed and insect diet descriptions."
+    },
+    "habitat": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Habitat and qualitative seed/insect foods summarized from ADW; stratum, resource weights, and wariness are authored model choices."
+    },
+    "seasonal": {
+      "sources": [
+        "adw",
+        "gbif-activity-us-nm"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "ADW reports April-September breeding across the species range, not specifically New Mexico. ActiveYearRound reflects GBIF occurrence records in all US-NM months; it does not imply individual residency."
+    },
+    "vocalizations": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Descriptions from Wikipedia; timing and cooldowns authored."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Male black forehead/cap, yellow underparts, dark wings and white wing/tail patches from Wikipedia; colours and proportions authored."
+    },
+    "behavior": {
+      "sources": [
+        "adw"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Species-local copy of the perching songbird program. The explicit April-September nest gate follows broad species breeding months in ADW; it is not local phenology. Other parameters are simulation choices."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies maintainers",
+      "agent": "opencode"
+    }
+  ]
+}
