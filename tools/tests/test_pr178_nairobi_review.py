@@ -41,6 +41,9 @@ def test_nairobi_songbirds_have_no_unsupported_nesting_month_gates_or_phases():
         "pycnonotus-barbatus", "motacilla-aguimp", "corvus-albus",
     ):
         species, program = behavior_for(slug)
+        behavior_note = species["provenance"]["behavior"]["note"].lower()
+        assert "shared perching-songbird" not in behavior_note
+        assert "species-local" in behavior_note
         assert "wingspan_m" not in species["traits"]
         assert "traits.wingspan_m" not in species["provenance"]
         assert species["provenance"]["traits.lifespan_y"]["derived"] is True
@@ -71,46 +74,39 @@ def test_sunbird_never_uses_hop_to_feed_on_nectar():
     feed_index = next(i for i, action in enumerate(actions) if action.get("do") == "eat_nearest")
     assert actions[feed_index - 1] == {"do": "perch_nearest", "tag": "perch"}
     assert "gait" not in actions[feed_index]
+    diet_provenance = species["provenance"]["traits.diet"]
+    assert diet_provenance["confidence"] == "Low"
+    assert diet_provenance["derived"] is True
+    assert "70/30" in diet_provenance["note"] and "modeled" in diet_provenance["note"].lower()
 
 
-def test_black_kite_behavior_matches_daylight_call_and_diet_tags():
-    species, program = behavior_for("milvus-migrans")
-    assert program["id"] == species["behavior"]["program"]
-    assert program["id"] == "fsm-black-kite-forager-v1"
-    states = program["states"]
-    assert states["call"]["action"]["do"] == "sing"
-    call = states["call"]["action"]["call"]
-    assert program["params"][call[2:-1]] == species["vocalizations"][0]["call_id"]
-    tags = {n["tag"] for n in walk(program) if isinstance(n.get("tag"), str)}
-    diet = species["traits"]["diet"]
-    assert diet["carrion"] > 0 and "carrion" in tags
-    assert diet["vertebrate"] > 0 and "small_vertebrate" in tags
-    assert "fish" in diet and "fish" not in tags
-    assert "fish" in species["provenance"]["behavior"]["note"].lower()
-    for state in ("patrol", "hunt", "scavenge", "call"):
-        assert any(
-            t.get("to") == state and has_predicate(t.get("when", {}), "is_day", True)
-            for t in program["transitions"]
-        ), f"{state} lacks a daytime gate"
-    assert any(t.get("to") == "rest" and has_predicate(t.get("when", {}), "is_day", False) for t in program["transitions"])
+def test_crow_and_wagtail_food_search_uses_walking():
+    for slug in ("motacilla-aguimp", "corvus-albus"):
+        _, program = behavior_for(slug)
+        food_actions = [
+            n["act"] for n in walk(program)
+            if isinstance(n, dict) and n.get("act", {}).get("do") == "eat_nearest"
+        ]
+        assert food_actions and all(a.get("gait") == "walk" for a in food_actions)
 
 
-def test_nairobi_weak_curves_are_disclosed_unusable_and_kite_is_gbif_only():
+def test_unresolved_black_kite_taxon_is_omitted_from_nairobi():
+    locale = load_json("locales/nairobi-ke/locale.json")
+    kite = load_json("species/milvus-migrans/species.json")
+    assert len(locale["species"]) == 11
+    assert "milvus-migrans" not in locale["species"]
+    assert all(r["region"] != "KE-30" for r in kite["activity"]["regions"])
+    assert kite["behavior"]["program"] == "fsm-seabird-predator-v1"
+    assert not (ROOT / "species/milvus-migrans/behavior.json").exists()
+
+
+def test_nairobi_weak_curves_are_disclosed_unusable():
     for slug in ("chlorocebus-pygerythrus", "sclerophrys-gutturalis"):
         species = load_json(f"species/{slug}/species.json")
         curve = next(r for r in species["activity"]["regions"] if r["region"] == "KE-30")
         assert curve["query"]["gbif"]["usable"] is False
         assert curve["query"]["gbif"]["total"] < curve["query"]["min_obs"]
         assert "low-count fallback" in curve["query"]["fallback_note"].lower()
-    kite = load_json("species/milvus-migrans/species.json")
-    curve = next(r for r in kite["activity"]["regions"] if r["region"] == "KE-30")
-    assert curve["method"] == "gbif_share"
-    assert curve["query"]["gbif"]["tier"] == "A"
-    source = next(s for s in kite["sources"] if s["id"] == "gbif-activity-ke-30")
-    assert source["license"] == "CC-BY-4.0"
-    assert curve["query"]["used"] == ["gbif"]
-    assert curve["sources"] == ["gbif-activity-ke-30"]
-    assert all(s["id"] != "inat-activity-ke-30" for s in kite["sources"])
 
 
 def test_ke30_additions_preserve_existing_regional_curves():

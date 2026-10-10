@@ -154,13 +154,12 @@
     ]
   },
   "behavior": {
-    "program": "fsm-black-kite-forager-v1",
+    "program": "fsm-seabird-predator-v1",
     "params": {
       "flee_m": 15,
       "calm_m": 40,
       "live_food_m": 80,
-      "carrion_m": 80,
-      "call": "call"
+      "carrion_m": 80
     }
   },
   "vocalizations": [
@@ -317,15 +316,6 @@
       "license": "CC-BY-4.0",
       "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
       "accessed": "2026-10-01",
-      "kind": "api"
-    },
-    {
-      "id": "gbif-activity-ke-30",
-      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5229167&gadmGid=KEN.30_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
-      "title": "GBIF occurrence search for Milvus migrans in KE-30",
-      "license": "CC-BY-4.0",
-      "attribution": "GBIF.org (2026-10-10) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
-      "accessed": "2026-10-10",
       "kind": "api"
     }
   ],
@@ -574,10 +564,12 @@
       "note": "Dark brown plumage, paler head and neck, pale brown underparts, yellow cere and legs, forked tail; proportions authored."
     },
     "behavior": {
-      "sources": [],
+      "sources": [
+        "wikipedia"
+      ],
       "confidence": "Low",
       "derived": true,
-      "note": "Species-local program follows the record’s diurnal activity pattern, call, carrion and vertebrate diet, and declared fly/walk poses. Distances, thresholds, and chance values are authored simulation parameters. The record also reports fish in the diet, but the v0.1 habitat resource tags do not include fish, so this behavior does not simulate a fish target."
+      "note": "The shared seabird-predator program (fly between sites, take live prey, scavenge carrion) is the closest fit for a soaring scavenging raptor; params authored."
     }
   },
   "contributors": [
@@ -633,48 +625,6 @@
           },
           "used": [
             "inat",
-            "gbif"
-          ]
-        }
-      },
-      {
-        "region": "KE-30",
-        "monthly": [
-          0.78,
-          0.84,
-          0.78,
-          0.71,
-          0.82,
-          0.93,
-          1.0,
-          0.89,
-          0.9,
-          0.79,
-          0.73,
-          0.77
-        ],
-        "method": "gbif_share",
-        "observations": 11137,
-        "sources": [
-          "gbif-activity-ke-30"
-        ],
-        "query": {
-          "min_obs": 300,
-          "inat": {
-            "skipped": "ISO 3166-2 region given without --inat-place-id; pass --inat-place-id <id> (look it up at https://www.inaturalist.org/places) to query iNaturalist for this subdivision"
-          },
-          "gbif": {
-            "tier": "A",
-            "area": [
-              "gadmGid",
-              "KEN.30_1"
-            ],
-            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5229167&gadmGid=KEN.30_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
-            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=KEN.30_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
-            "total": 11137,
-            "usable": true
-          },
-          "used": [
             "gbif"
           ]
         }
