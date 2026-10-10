@@ -58,6 +58,10 @@ def test_resolved_species_local_month_gates_match_local_claims():
         assert months[0] in gates[0] and months[-1] in gates[0]
         assert len(gates[0]) == len(set(gates[0]))
 
+    tui_behavior_note = record("prosthemadera-novaeseelandiae")["provenance"]["behavior"]["note"]
+    assert "September and October" in tui_behavior_note
+    assert "September-January" not in tui_behavior_note
+
 def test_silent_species_have_no_unresolved_songbird_call_actions():
     for slug in ("todiramphus-sanctus", "zosterops-lateralis"):
         d = record(slug); b = program(slug)
@@ -90,10 +94,13 @@ def test_uncertain_measurements_and_low_sample_curves_are_explicit():
 def test_nz_hedgehog_seasons_are_scoped_away_from_european_months():
     d = record("erinaceus-europaeus"); phases = d["seasonal"]["phases"]
     nz = [p for p in phases if p.get("region") == "NZ-AUK"]
-    assert [(p["name"], p["start"], p["end"]) for p in nz] == [
-        ("dormancy", "07-01", "10-31"), ("mating", "08-15", "03-31")]
-    assert {p.get("region") for p in phases} == {"GB-ENG", "FR-IDF", "ES-MD", "IE", "DE-BE", "NZ-AUK"}
-    assert "parkes-thesis" in d["provenance"]["seasonal.phases"]["sources"]
+    assert nz == []
+    assert {p.get("region") for p in phases} == {"GB-ENG", "FR-IDF", "ES-MD", "IE", "DE-BE"}
+    evidence = d["provenance"]["seasonal.phases"]
+    assert evidence["sources"] == ["wikipedia"]
+    assert "No Auckland phase dates are included" in evidence["note"]
+    assert "does not model hibernation" in evidence["note"]
+    assert not any(s["id"] == "parkes-thesis" for s in d["sources"])
 
 def test_permissive_gbif_alternative_replaces_tier_c_inat_for_myna_and_silvereye():
     for slug in ("acridotheres-tristis", "zosterops-lateralis"):
