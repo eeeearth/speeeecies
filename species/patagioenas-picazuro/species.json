@@ -51,9 +51,6 @@
     "perching": true,
     "size_class": "Small",
     "mass_kg": 0.279,
-    "length_m": 0.36,
-    "wingspan_m": 0.56,
-    "lifespan_y": 8.0,
     "diet": {
       "invertebrate": 0.1,
       "seed": 0.3,
@@ -68,7 +65,9 @@
     },
     "activity_pattern": "Diurnal",
     "defense": "Flee",
-    "wariness": 0.35
+    "wariness": 0.35,
+    "length_m": 0.32,
+    "lifespan_y": 8.0
   },
   "habitat": {
     "use": {
@@ -116,9 +115,9 @@
     "phases": [
       {
         "name": "breeding",
-        "start": "10-01",
-        "end": "01-31",
-        "note": "Judgement. The article describes no migration and gives no regional breeding calendar; a spring-to-early-summer window is used for the southern-hemisphere breeding season."
+        "start": "01-01",
+        "end": "12-31",
+        "note": "The species account reports nesting throughout the year."
       }
     ],
     "life_stages": [
@@ -195,10 +194,10 @@
       "calm_m": 25,
       "food_tag": "seed",
       "food_m": 35,
-      "flee_gait": "walk",
+      "flee_gait": "fly",
       "forage_gait": "walk",
-      "rest_sun_lo_deg": 10,
-      "rest_sun_hi_deg": 90
+      "rest_sun_lo_deg": -90,
+      "rest_sun_hi_deg": -6
     }
   },
   "vocalizations": [
@@ -331,6 +330,15 @@
       "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
       "accessed": "2026-10-01",
       "kind": "api"
+    },
+    {
+      "id": "wikipedia-pt",
+      "url": "https://pt.wikipedia.org/wiki/Patagioenas_picazuro",
+      "title": "Wikipédia contributors, “Patagioenas picazuro”, Portuguese Wikipedia, CC BY-SA 4.0",
+      "license": "CC-BY-SA-4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "attribution": "Wikipédia contributors, “Patagioenas picazuro”, https://pt.wikipedia.org/wiki/Patagioenas_picazuro, CC BY-SA 4.0.",
+      "accessed": "2026-10-10"
     }
   ],
   "provenance": {
@@ -444,25 +452,6 @@
       "confidence": "High",
       "note": "EltonTraits 1.0 BirdFuncDat row for Patagioenas picazuro: BodyMass-Value 279 g."
     },
-    "traits.length_m": {
-      "sources": [],
-      "confidence": "Low",
-      "derived": true,
-      "note": "Neither Wikipedia article states a body length; the English article gives only 'a large pigeon with a wingspan of up to 22 inches'. Derived as roughly 0.65x that stated maximum wingspan (22 in = 0.56 m), the usual wingspan-to-body-length proportion for a large pigeon, giving about 0.36 m. This is an approximation, not a sourced figure."
-    },
-    "traits.wingspan_m": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "High",
-      "note": "'It is a large pigeon with a wingspan of up to 22 inches' - recorded as 0.56 m, the stated maximum converted from inches."
-    },
-    "traits.lifespan_y": {
-      "sources": [],
-      "confidence": "Low",
-      "derived": true,
-      "note": "No open-licensed source gives a typical or maximum lifespan for Patagioenas picazuro: the English and Spanish Wikipedia articles, Wikidata and GBIF carry none, and the field-guide and Animal Diversity Web pages were avoided under the licence policy. 8.0 years is a documented judgement placeholder for a large pigeon, not a sourced figure."
-    },
     "traits.diet": {
       "sources": [
         "eltontraits",
@@ -543,14 +532,6 @@
       "confidence": "Medium",
       "note": "The article describes no migration for the species."
     },
-    "seasonal.phases": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Low",
-      "derived": true,
-      "note": "The article gives no regional breeding calendar; the phase dates are a judgement for the southern-hemisphere spring and summer."
-    },
     "seasonal.life_stages": {
       "sources": [
         "wikipedia"
@@ -578,7 +559,28 @@
       "sources": [],
       "confidence": "Low",
       "derived": true,
-      "note": "Authored parameters for the shared ground-forager program: seed-based foraging with a walking gait, a daytime rest window, and flee and calm distances for a wary but habitat-tolerant large pigeon."
+      "note": "Species-specific parameter choices: walk for ground feeding, fly for escape using the declared fly pose, and rest during the below-horizon sun interval."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia-pt"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Midpoint of the sex-specific lengths in the Portuguese species article: female up to 30 cm, male up to 34 cm, midpoint 32 cm. This is a derived adult size estimate."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "The species account states that Picazuro pigeons nest in every month of the year."
+    },
+    "traits.lifespan_y": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "No open-licensed source gives a typical or maximum lifespan for Patagioenas picazuro. This 8.0-year value is an authored model placeholder, not a measured species average; it remains a publication risk because the schema requires this field."
     }
   },
   "contributors": [

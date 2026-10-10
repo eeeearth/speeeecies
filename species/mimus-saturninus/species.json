@@ -56,8 +56,6 @@
       0.073
     ],
     "length_m": 0.248,
-    "wingspan_m": 0.3,
-    "lifespan_y": 6.0,
     "diet": {
       "invertebrate": 0.6,
       "fruit": 0.25,
@@ -72,7 +70,8 @@
     },
     "activity_pattern": "Diurnal",
     "defense": "Flee",
-    "wariness": 0.35
+    "wariness": 0.35,
+    "lifespan_y": 6.0
   },
   "habitat": {
     "use": {
@@ -125,9 +124,9 @@
     "phases": [
       {
         "name": "breeding",
-        "start": "10-01",
+        "start": "09-01",
         "end": "01-31",
-        "note": "Judgement. The article gives breeding biology but no regional calendar window; a spring-to-early-summer window is used for the southern-hemisphere breeding season."
+        "note": "September-January breeding season reported for this species."
       }
     ],
     "life_stages": [
@@ -198,14 +197,12 @@
     ]
   },
   "behavior": {
-    "program": "bt-perching-songbird-v1",
+    "program": "bt-mimus-saturninus-v1",
     "params": {
       "flee_m": 8,
       "food_tag": "invertebrate",
       "song": "song",
-      "alarm": "alarm",
-      "nest_m1": 10,
-      "nest_m2": 12
+      "alarm": "alarm"
     }
   },
   "vocalizations": [
@@ -477,18 +474,6 @@
       "derived": true,
       "note": "Midpoint of '23.5 to 26 cm'."
     },
-    "traits.wingspan_m": {
-      "sources": [],
-      "confidence": "Low",
-      "derived": true,
-      "note": "Neither Wikipedia article states a wingspan. Derived as roughly 1.2x body length (0.248 m), the usual span-to-length ratio for a long-tailed mockingbird, giving about 0.30 m. This is an approximation, not a sourced figure."
-    },
-    "traits.lifespan_y": {
-      "sources": [],
-      "confidence": "Low",
-      "derived": true,
-      "note": "No open-licensed source gives a typical or maximum lifespan for Mimus saturninus: the English and Spanish Wikipedia articles, Wikidata and GBIF carry none, and the field-guide and Animal Diversity Web pages were avoided under the licence policy. 6.0 years is a documented judgement placeholder, not a sourced figure."
-    },
     "traits.diet": {
       "sources": [
         "eltontraits",
@@ -574,9 +559,8 @@
       "sources": [
         "wikipedia"
       ],
-      "confidence": "Low",
-      "derived": true,
-      "note": "The article gives breeding biology but no regional calendar window; the phase dates are a judgement for the southern-hemisphere spring and summer."
+      "confidence": "Medium",
+      "note": "The species account states a September-January breeding season."
     },
     "seasonal.life_stages": {
       "sources": [
@@ -609,10 +593,18 @@
       "note": "'Adults of the nominate subspecies have a dark brown crown, a broad white supercilium, a blackish line through the eye, and white cheeks. Their upperparts are brownish with some darker streaks... The underside of their body is white from the throat to the vent.' Proportions and extra-part placement are judgement."
     },
     "behavior": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Species-local copy of the perching-songbird program; its nest-building month gate is set to September-January as stated in the species account."
+    },
+    "traits.lifespan_y": {
       "sources": [],
       "confidence": "Low",
       "derived": true,
-      "note": "Authored parameters for the shared perching-songbird program: invertebrate-based ground foraging, an October-December nest-building window, and a moderate flee distance for a bird that habitually works open ground."
+      "note": "No open-licensed source gives a typical or maximum lifespan for Mimus saturninus. This 6.0-year value is an authored model placeholder, not a measured species average; it remains a publication risk because the schema requires this field."
     }
   },
   "contributors": [

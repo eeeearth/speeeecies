@@ -70,8 +70,6 @@
       0.0715
     ],
     "length_m": 0.265,
-    "wingspan_m": 0.3,
-    "lifespan_y": 6.0,
     "diet": {
       "invertebrate": 0.4,
       "vertebrate": 0.3,
@@ -86,7 +84,8 @@
     },
     "activity_pattern": "Diurnal",
     "defense": "Flee",
-    "wariness": 0.3
+    "wariness": 0.3,
+    "lifespan_y": 6.916666666666667
   },
   "habitat": {
     "use": {
@@ -139,9 +138,9 @@
     "phases": [
       {
         "name": "breeding",
-        "start": "10-01",
-        "end": "01-31",
-        "note": "Judgement. The article gives clutch size, incubation and nestling periods but no calendar window for the region; a spring-to-early-summer window is used for the southern-hemisphere breeding season."
+        "start": "01-01",
+        "end": "12-31",
+        "note": "No regional breeding calendar is represented in this phase."
       }
     ],
     "life_stages": [
@@ -212,14 +211,12 @@
     ]
   },
   "behavior": {
-    "program": "bt-perching-songbird-v1",
+    "program": "bt-pitangus-sulphuratus-v1",
     "params": {
       "flee_m": 8,
       "food_tag": "invertebrate",
       "song": "song",
-      "alarm": "alarm",
-      "nest_m1": 10,
-      "nest_m2": 12
+      "alarm": "alarm"
     }
   },
   "vocalizations": [
@@ -380,6 +377,15 @@
       "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
       "accessed": "2026-10-01",
       "kind": "api"
+    },
+    {
+      "id": "animal-diversity-web",
+      "url": "https://animaldiversity.org/accounts/Pitangus_sulphuratus/",
+      "title": "Hsiao, “Pitangus sulphuratus”, Animal Diversity Web, CC BY-NC-SA 3.0",
+      "license": "CC-BY-NC-SA-3.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/3.0/",
+      "attribution": "Hsiao, A. 2001. “Pitangus sulphuratus” (On-line), Animal Diversity Web. https://animaldiversity.org/accounts/Pitangus_sulphuratus/.",
+      "accessed": "2026-10-10"
     }
   ],
   "provenance": {
@@ -507,18 +513,6 @@
       "derived": true,
       "note": "Midpoint of '25 to 28 cm'."
     },
-    "traits.wingspan_m": {
-      "sources": [],
-      "confidence": "Low",
-      "derived": true,
-      "note": "Neither Wikipedia article states a wingspan. Derived as roughly 1.13x body length (0.265 m), the usual span-to-length ratio for a medium tyrant flycatcher with long wings, giving about 0.30 m. This is an approximation, not a sourced figure."
-    },
-    "traits.lifespan_y": {
-      "sources": [],
-      "confidence": "Low",
-      "derived": true,
-      "note": "No open-licensed source gives a typical or maximum lifespan for Pitangus sulphuratus: the English and Spanish Wikipedia articles, Wikidata and GBIF carry none, and the field-guide and Animal Diversity Web pages were avoided under the licence policy. 6.0 years is a documented judgement placeholder, not a sourced figure."
-    },
     "traits.diet": {
       "sources": [
         "eltontraits",
@@ -599,14 +593,6 @@
       "confidence": "Medium",
       "note": "The species is resident across its range and the article describes year-round territorial and breeding behaviour with no migration or hibernation."
     },
-    "seasonal.phases": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Low",
-      "derived": true,
-      "note": "The article gives 'The clutch is 3 to 4 eggs', a 16-17 day incubation and a 17-18 day nestling period but no calendar window; the phase dates are a judgement for the southern-hemisphere spring and summer."
-    },
     "seasonal.life_stages": {
       "sources": [
         "wikipedia"
@@ -641,7 +627,20 @@
       "sources": [],
       "confidence": "Low",
       "derived": true,
-      "note": "Authored parameters for the shared perching-songbird program: invertebrate-based sallying from a perch, an October-December nest-building window, and a moderate flee distance for a bird that works in the open."
+      "note": "Species-local copy of the shared perching-songbird actions; nesting is omitted because no licensed source for a Buenos Aires month gate was found."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "animal-diversity-web"
+      ],
+      "confidence": "Medium",
+      "note": "Animal Diversity Web reports an average wild lifespan of 83 months, converted to years (83/12). The source uses the NC-SA licence; no more permissively licensed species-specific lifespan source was found."
+    },
+    "seasonal.phases": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Schema-required year-round placeholder. No Buenos Aires breeding-month claim is made, and the behavior program has no seasonal nest-building action."
     }
   },
   "contributors": [

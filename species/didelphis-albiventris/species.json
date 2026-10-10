@@ -46,7 +46,6 @@
       "Climb",
       "Burrow"
     ],
-    "shoulder_height_m": 0.22,
     "thermoregulation": "Endotherm",
     "skin": "Fur",
     "flight": "None",
@@ -60,8 +59,6 @@
       0.5,
       2.0
     ],
-    "length_m": 0.55,
-    "lifespan_y": 3.0,
     "diet": {
       "invertebrate": 0.2,
       "vertebrate": 0.3,
@@ -77,7 +74,9 @@
     },
     "activity_pattern": "Nocturnal",
     "defense": "Flee",
-    "wariness": 0.5
+    "wariness": 0.5,
+    "length_m": 1.08,
+    "lifespan_y": 1.6666666666666667
   },
   "habitat": {
     "use": {
@@ -130,15 +129,12 @@
     "phases": [
       {
         "name": "breeding",
-        "start": "10-01",
-        "end": "03-31",
-        "note": "Judgement. The article describes a breeding season and greater numbers of young in the wetter season but gives no calendar dates; a warm-season window is used for a South American marsupial."
+        "start": "01-01",
+        "end": "12-31",
+        "note": "No Buenos Aires breeding months are asserted."
       }
     ],
     "life_stages": [
-      {
-        "stage": "Egg"
-      },
       {
         "stage": "Juvenile",
         "duration_days": 90,
@@ -213,30 +209,7 @@
       "rest_sun_hi_deg": 90
     }
   },
-  "vocalizations": [
-    {
-      "call_id": "alarm",
-      "context": "Alarm",
-      "season_months": [],
-      "time_windows": [
-        "Night"
-      ],
-      "cooldown_s": 6,
-      "loudness": "Loud",
-      "description": "A loud, hoarse hiss with the mouth open, used in threat; the animal also barks and squeals when disturbed at night."
-    },
-    {
-      "call_id": "chatter",
-      "context": "Contact",
-      "season_months": [],
-      "time_windows": [
-        "Night"
-      ],
-      "cooldown_s": 8,
-      "loudness": "Moderate",
-      "description": "A rapid clicking chatter used between individuals at a shared burrow or feeding site."
-    }
-  ],
+  "vocalizations": [],
   "look": {
     "body_plan": "quadruped",
     "proportions": {
@@ -339,10 +312,20 @@
       "id": "inat-activity-ar-c",
       "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=42658&place_id=10434&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
       "title": "iNaturalist observations histogram for Didelphis albiventris in AR-C",
-      "license": "CC-BY-NC-4.0",
+      "license": "CC-BY-NC-SA-4.0",
       "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
       "accessed": "2026-10-01",
-      "kind": "api"
+      "kind": "api",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+    },
+    {
+      "id": "animal-diversity-web",
+      "url": "https://animaldiversity.org/accounts/Didelphis_albiventris/",
+      "title": "“Didelphis albiventris”, Animal Diversity Web, CC BY-NC-SA 3.0",
+      "license": "CC-BY-NC-SA-3.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/3.0/",
+      "attribution": "Animal Diversity Web. “Didelphis albiventris” (On-line). https://animaldiversity.org/accounts/Didelphis_albiventris/.",
+      "accessed": "2026-10-10"
     }
   ],
   "provenance": {
@@ -395,12 +378,6 @@
       ],
       "confidence": "High",
       "note": "The Spanish article describes 'manos con pulgares oponibles' (opposable thumbs on the hands) and an animal that shelters in burrows, holes and under houses, so the gaits are Walk, Climb and Burrow. Swimming is not described."
-    },
-    "traits.shoulder_height_m": {
-      "sources": [],
-      "confidence": "Low",
-      "derived": true,
-      "note": "Not sourced. Judgement for a medium-sized didelphid, scaled from the stated head-and-body length of 41-70 cm and the body shape described ('su apariencia general ... recuerda a un cerdo pequeno, un zorro o un gran raton'). This is an estimate, not a sourced figure."
     },
     "traits.thermoregulation": {
       "sources": [
@@ -470,20 +447,6 @@
       ],
       "confidence": "High",
       "note": "'El peso en los adultos varia entre los 500 grs y los 2 kgs.'"
-    },
-    "traits.length_m": {
-      "sources": [
-        "wikipedia-es"
-      ],
-      "confidence": "High",
-      "derived": true,
-      "note": "The Spanish article gives head-and-body length by sex: 'los machos suelen medir entre 45 y 70 cm de longitud, mientras que las hembras ... entre 41 y 60 cm'. Midpoint of the whole stated span, 41-70 cm, giving about 0.55 m; the separate 40-65 cm tail is not included, matching how the schema's length_m is used elsewhere in the repository."
-    },
-    "traits.lifespan_y": {
-      "sources": [],
-      "confidence": "Low",
-      "derived": true,
-      "note": "No open-licensed source gives a typical or maximum lifespan for Didelphis albiventris: the English and Spanish Wikipedia articles, Wikidata and GBIF carry none, and the field-guide and Animal Diversity Web pages were avoided under the licence policy. 3.0 years is a documented judgement placeholder for a small marsupial, not a sourced figure."
     },
     "traits.diet": {
       "sources": [
@@ -566,14 +529,6 @@
       "confidence": "Medium",
       "note": "The animal is described as shifting habitat with its breeding season and occurring in warm temperate to subtropical South America year-round, with no migration or hibernation described."
     },
-    "seasonal.phases": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Low",
-      "derived": true,
-      "note": "'Usually populations are higher in the wetter seasons when the young are weaned and begin venturing out for food' and the animal 'often changes its habitat depending on its breeding season'; the phase dates are a judgement for a warm-season breeding period."
-    },
     "seasonal.life_stages": {
       "sources": [
         "wikipedia"
@@ -581,20 +536,6 @@
       "confidence": "Low",
       "derived": true,
       "note": "The article describes a marsupial carrying and weaning its young but gives no day counts; duration_days 90 and scale 0.5 are a documented judgement for the pouch and weaning period, not a sourced figure."
-    },
-    "vocalizations.alarm": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "note": "The article describes the animal's hissing and vocal defence and records it at night; the description is written from that account."
-    },
-    "vocalizations.chatter": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "note": "The article's account of animals gathering in burrows and holes, and foraging in groups when young are weaned, supports a contact call; the description is written from that account and no published description of the call was found."
     },
     "look": {
       "sources": [
@@ -608,7 +549,29 @@
       "sources": [],
       "confidence": "Low",
       "derived": true,
-      "note": "Authored parameters for the shared ground-forager program: fruit-based nocturnal foraging with a walking gait and a trotting escape, the program's default sun window for a nocturnal species, and flee and calm distances for a wary marsupial."
+      "note": "Authored parameters for a nocturnal ground-foraging opossum: fruit-based foraging with a walking gait and trotting escape; this does not assert a seasonal breeding calendar."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia-es"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The Spanish species article gives head-body ranges of 41–70 cm for males and 41–60 cm for females, plus tail length 40–65 cm. The schema requires nose-to-tail length, so the midpoint of the combined reported bounds is used: ((41+40)+(70+65))/2 = 1.08 m. This is a derived size estimate, not a direct measurement."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "animal-diversity-web"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Animal Diversity Web reports an average wild lifespan of 20 months, converted to years (20/12). Its CC BY-NC-SA 3.0 text licence is accepted as a last resort; no more permissively licensed species-specific lifespan source was found."
+    },
+    "seasonal.phases": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Schema-required year-round placeholder. No regional breeding calendar is modeled."
     }
   },
   "contributors": [
