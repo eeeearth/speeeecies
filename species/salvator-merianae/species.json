@@ -30,11 +30,10 @@
   "range": {
     "native": [
       "AR",
+      "BO",
       "BR",
       "PY",
-      "UY",
-      "BO",
-      "CL"
+      "UY"
     ],
     "introduced": [],
     "invasive_in": []
@@ -66,9 +65,9 @@
       "gallop": 1.5
     },
     "lifespan_y": 8,
-    "home_range_ha": 50,
     "diet": {
-      "invertebrate": 0.6,
+      "fruit": 0.2,
+      "invertebrate": 0.4,
       "vertebrate": 0.4
     },
     "social": {
@@ -91,12 +90,17 @@
       {
         "tag": "invertebrate",
         "kind": "Predation",
-        "weight": 0.6
+        "weight": 0.5
       },
       {
         "tag": "small_vertebrate",
         "kind": "Predation",
-        "weight": 0.4
+        "weight": 0.5
+      },
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 1.0
       }
     ],
     "human_tolerance": {
@@ -531,6 +535,25 @@
       "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
       "accessed": "2026-09-30",
       "kind": "api"
+    },
+    {
+      "id": "zenodo-range-2016",
+      "url": "https://zenodo.org/records/5697746",
+      "title": "Plazi treatment: Salvator merianae distribution and habitat",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-10",
+      "note": "Distribution and habitat treatment by Ribeiro-J\u00fanior and Amaral (2016); Zenodo record states CC0-1.0."
+    },
+    {
+      "id": "campagnoli-christianini-2024",
+      "url": "https://doi.org/10.1590/1677-941X-ABB-2023-0211",
+      "title": "Tegu lizard (Salvator merianae) disperses the invasive plant Eugenia uniflora",
+      "license": "CC-BY-4.0",
+      "kind": "literature",
+      "accessed": "2026-10-10",
+      "attribution": "Campagnoli, M. L. and Christianini, A. V. 2024. Tegu lizard (Salvator merianae) disperses the invasive plant Eugenia uniflora. Acta Botanica Brasilica 38: e20230211. https://doi.org/10.1590/1677-941X-ABB-2023-0211",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
     }
   ],
   "provenance": {
@@ -564,11 +587,10 @@
     },
     "range": {
       "sources": [
-        "wikipedia"
+        "zenodo-range-2016"
       ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Country list derived from known distribution: central South America including Argentina, Brazil, Paraguay, Uruguay, Bolivia, Chile."
+      "confidence": "High",
+      "note": "The cited taxonomic treatment lists Brazil, Bolivia, Paraguay, Argentina, and Uruguay; it does not list Chile."
     },
     "traits.body_plan": {
       "sources": [
@@ -671,17 +693,13 @@
       "derived": true,
       "note": "Wikipedia: 'In the wild they typically do not survive past 5 years of age'; author judgement extended to 8 years for captive individuals."
     },
-    "traits.home_range_ha": {
-      "sources": [],
-      "confidence": "Low",
-      "derived": true,
-      "note": "Judgement: home range approximately 5 ha based on typical tegu ranging behavior in seasonally dry habitats."
-    },
     "traits.diet": {
-      "sources": [],
+      "sources": [
+        "campagnoli-christianini-2024"
+      ],
       "confidence": "Medium",
       "derived": true,
-      "note": "Judgement: diet split 60% invertebrate (insects, crustaceans) and 40% vertebrate (small mammals, birds, eggs, reptiles) based on omnivorous tegu feeding ecology."
+      "note": "The open-access study describes plant material including fruits, invertebrates, small vertebrates, eggs, and carrion, but does not quantify dietary shares. The 0.2 fruit, 0.4 invertebrate, and 0.4 vertebrate values are authored model weights, not measured proportions."
     },
     "traits.social": {
       "sources": [],
@@ -722,10 +740,12 @@
       "confidence": "Medium"
     },
     "habitat.resources": {
-      "sources": [],
+      "sources": [
+        "campagnoli-christianini-2024"
+      ],
       "confidence": "Medium",
       "derived": true,
-      "note": "Weights follow diet shares: invertebrate 0.6, vertebrate 0.4; Wikipedia notes consumption of carrion and fallen fruit."
+      "note": "Fruit is included as a documented food resource. Relative resource weights are authored model weights; the article does not quantify the shares. Predation weights are split evenly between invertebrate and small-vertebrate tags."
     },
     "habitat.human_tolerance": {
       "sources": [
@@ -838,7 +858,7 @@
       "sources": [],
       "confidence": "Low",
       "derived": true,
-      "note": "Authored parameters for fsm-ground-forager-v1: forage_gait=walk, flee_gait=walk, diet split across invertebrate and vertebrate. Basking not modelled in this program."
+      "note": "Authored parameters for fsm-ground-forager-v1: forage_gait=walk and flee_gait=walk. The program targets invertebrate food through food_tag, so its feeding action does not model the documented fruit and vertebrate diet diversity; basking is not modelled."
     },
     "look": {
       "sources": [
