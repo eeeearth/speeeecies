@@ -48,9 +48,9 @@ tools/agents/fleet.sh teardown tiliqua-scincoides
 
 State lives in `~/.local/state/speeeecies-fleet/`: one `.meta` per agent, its
 log, its filled brief, and the cursor into the model pool. Worktrees go to
-`$WORKTREE_ROOT`, default `$(dirname "$REPO")/worktrees` — a sibling of the
-checkout, not under `$HOME`. Nothing is written
-inside the repository, so no state file can end up in a pull request.
+`$WORKTREE_ROOT`, default `$HOME/worktrees/speeeecies`. Set `WORKTREE_ROOT` to
+the full project namespace when redirecting a run. Nothing is written inside
+the repository, so no state file can end up in a pull request.
 
 Two things resolve against the **script's own directory**, not the repository:
 `BRIEF_TEMPLATE` and `PERMISSIONS`. That is deliberate. A harness under
@@ -60,7 +60,7 @@ missing-template error while the template sat next to it. Override
 `WORKTREE_ROOT` to put a run's worktrees somewhere specific:
 
 ```bash
-WORKTREE_ROOT="$PWD/../worktrees" tools/agents/fleet.sh supervise --min 3 --max 5
+WORKTREE_ROOT="$HOME/worktrees/speeeecies" tools/agents/fleet.sh supervise --min 3 --max 5
 ```
 
 ## How an agent is spawned
@@ -124,15 +124,17 @@ which is normal and not a hang.
 
 ## Safety rails
 
-`agent-permissions.json` is loaded as the agent's config. It denies
-`gh pr merge`, force-push, amending, and pushing to `main`, and everything else is
-allowed. This matters when the account running the fleet has maintainer rights:
-without the rails a confused agent can merge its own work. The rails are what
-makes "a human merges" true rather than aspirational.
+`agent-permissions.json` is loaded as the agent's config and contains deny
+patterns for merging, force-pushing, amending, and pushing to `main`. It has no
+catch-all bash allow. These patterns are best-effort controls, not a security
+boundary: an agent with arbitrary bash or external tools can invoke commands
+outside those patterns. Run the fleet with credentials that cannot merge or
+write protected branches, and enable repository protections that enforce the
+same limits. The maintainer remains responsible for merging.
 
-The agent is also told, in the brief, never to merge, never to push to `main`,
-and never to add itself as a reviewer. The permission file is the enforcement;
-the brief is the explanation.
+The brief also tells the agent never to merge, push to `main`, or add itself as a
+reviewer. That instruction and the permission patterns reduce mistakes, while
+scoped credentials and repository protections enforce the boundary.
 
 ## Why this does not drive herdr
 

@@ -31,10 +31,9 @@ REPO=$(git rev-parse --show-toplevel 2>/dev/null || true)
 GH_REPO=${GH_REPO:-$(gh repo view --json nameWithOwner -q .nameWithOwner 2>/dev/null || echo "")}
 [ -n "$GH_REPO" ] || { echo "cannot determine the GitHub repo; set GH_REPO=<owner/name>" >&2; exit 2; }
 
-# Worktrees land in a `worktrees/` sibling of the checkout, so a run stays
-# inside the project directory instead of scattering across $HOME. An exported
-# WORKTREE_ROOT still wins, which is how a caller redirects a whole run.
-WORKTREE_ROOT=${WORKTREE_ROOT:-$(dirname "$REPO")/worktrees}
+# WORKTREE_ROOT is a shared parent for project worktrees. Keep this fleet in its
+# own namespace; by default use the workspace root under HOME.
+WORKTREE_ROOT=${WORKTREE_ROOT:-$HOME/worktrees/speeeecies}
 STATE_DIR=${FLEET_STATE_DIR:-$HOME/.local/state/speeeecies-fleet}
 AGENT_BIN=${AGENT_BIN:-opencode}
 BASE_REF=${BASE_REF:-origin/main}
@@ -717,6 +716,11 @@ cmd_spawn() {
   [ -n "$model" ] || model=$(next_model)
   [ -n "$variant" ] || variant=$(model_variant "$model")
 
+  if [ ! -f "$PERMISSIONS" ] || [ ! -r "$PERMISSIONS" ] || [ ! -s "$PERMISSIONS" ] \
+      || ! python3 -m json.tool "$PERMISSIONS" >/dev/null 2>&1; then
+    die "permissions file is missing, unreadable, empty, or invalid JSON: $PERMISSIONS"
+  fi
+
   local branch wpath
   branch="$BRANCH_PREFIX/$kind-$issue-$slug"
   wpath="$WORKTREE_ROOT/$kind-$slug"
@@ -840,6 +844,19 @@ print(" ".join(re.findall(r"`([A-Z]{2}(?:-[A-Z0-9]{1,3})?)`", m.group(1))) if m 
 # and bash suspends `set -e` in a condition context. The phantom was reaped on
 # the next poll, which died tailing a log that was never created.
   launch_tmp="$launch.building"
+  # Values substituted into this generated program must stay shell data when
+  # the launcher is parsed later. In particular, scientific names and paths can
+  # contain shell metacharacters, so quote them with Bash's reusable %q format.
+  printf -v q_log '%q' "$log"
+  printf -v q_state_dir '%q' "$STATE_DIR"
+  printf -v q_slug '%q' "$slug"
+  printf -v q_permissions '%q' "$PERMISSIONS"
+  printf -v q_wpath '%q' "$wpath"
+  printf -v q_agent_bin '%q' "$AGENT_BIN"
+  printf -v q_model '%q' "$model"
+  printf -v q_variant '%q' "$variant"
+  printf -v q_title '%q' "$kind $sci #$issue"
+  printf -v q_brief '%q' "$brief"
   cat > "$launch_tmp" <<LAUNCHER
 #!/usr/bin/env bash
 # Drop the supervisor's lock fd before doing anything else. bash does not set
@@ -847,23 +864,28 @@ print(" ".join(re.findall(r"`([A-Z]{2}(?:-[A-Z0-9]{1,3})?)`", m.group(1))) if m 
 # the flock stayed held for the lifetime of the fleet: a second supervisor could
 # never start, because the agents were holding the lock meant to exclude one.
 exec 9>&-
-exec > "$log" 2>&1
+exec > $q_log 2>&1
 # Fail closed. If the pidfile cannot be published the supervisor cannot see or
 # stop this agent, so it must not run at all: continuing left a live process in a
 # worktree the parent then force-removed, the one failure that loses work outright.
-echo \$\$ > "$STATE_DIR/$slug.pid" || {
-  echo "=== fleet.sh spawn FAILED: could not publish $slug.pid" >&2
+echo \$\$ > $q_state_dir/$q_slug.pid || {
+  echo "=== fleet.sh spawn FAILED: could not publish $q_slug.pid" >&2
   exit 8
   }
-[ -s "$STATE_DIR/$slug.pid" ] || {
-  echo "=== fleet.sh spawn FAILED: $slug.pid is empty" >&2
+[ -s $q_state_dir/$q_slug.pid ] || {
+  echo "=== fleet.sh spawn FAILED: $q_slug.pid is empty" >&2
   exit 8
   }
-echo "=== fleet.sh spawn \$(date -u +%FT%TZ) model=$model variant=$variant"
-cd "$wpath" || exit 9
-[ -f "$PERMISSIONS" ] && export OPENCODE_CONFIG="$PERMISSIONS"
-"$AGENT_BIN" run --model "$model" --variant "$variant" --dir "$wpath" \
-  --title "$kind $sci #$issue" --auto "\$(cat "$brief")"
+echo "=== fleet.sh spawn \$(date -u +%FT%TZ) model=$q_model variant=$q_variant"
+cd $q_wpath || exit 9
+if [ ! -f $q_permissions ] || [ ! -r $q_permissions ] || [ ! -s $q_permissions ] \
+    || ! python3 -m json.tool $q_permissions >/dev/null 2>&1; then
+  echo "=== fleet.sh spawn FAILED: permissions file unavailable or invalid" >&2
+  exit 10
+fi
+export OPENCODE_CONFIG=$q_permissions
+$q_agent_bin run --model $q_model --variant $q_variant --dir $q_wpath \
+  --title $q_title --auto "\$(cat $q_brief)"
 rc=\$?
 echo "=== agent exited rc=\$rc \$(date -u +%FT%TZ)"
 LAUNCHER
@@ -983,7 +1005,7 @@ row() {
 
 # One line naming WHY there is no PR, from facts rather than inference.
 no_pr_diagnosis() {  # slug branch kind
-  local slug="$1" br="$2" kind="$3" pushed commits pr_attempt
+  local slug="$1" br="$2" kind="$3" pushed commits pr_attempt remote_refs
   # Refuse to diagnose an unknown branch. With br empty, `rev-list BASE..` silently
   # collapses to `BASE..HEAD` and returns a real-looking commit count for a branch
   # that does not exist, so the line confidently named the wrong cause. Verified by
@@ -994,7 +1016,13 @@ no_pr_diagnosis() {  # slug branch kind
       "${br:-<empty>}"
     return 0
   fi
-  pushed=$(git -C "$REPO" ls-remote --heads origin "$br" 2>/dev/null | wc -l | tr -d ' ')
+  # Do not put ls-remote inside a pipeline: with pipefail, an offline or
+  # unauthenticated remote made teardown exit before it could explain the state.
+  if ! remote_refs=$(git -C "$REPO" ls-remote --heads origin "$br" 2>/dev/null); then
+    printf 'branch %s remote-state-unknown -- could not verify push state; check network and credentials' "$br"
+    return 0
+  fi
+  pushed=$(printf '%s\n' "$remote_refs" | awk 'NF { count++ } END { print count+0 }')
   # 0, never "?": rev-list fails when the branch does not exist yet, and a
   # non-numeric value under `[ -gt ]` errors and then falls through to the else
   # branch, reporting "no commits" for a branch that simply is not there.

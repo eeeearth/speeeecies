@@ -614,12 +614,11 @@ def test_model_pool_interleaves_both_providers():
     assert any(m.startswith("opencode-go/") for m in models), "no opencode-go models"
 
 
-def test_worktree_root_defaults_beside_the_checkout():
-    """Worktrees must land in a worktrees/ sibling of the repo, not under $HOME,
-    or a run scatters checkouts across the home directory."""
+def test_worktree_root_defaults_to_home_worktrees_project_namespace():
+    """The configurable root is shared by projects; fleet worktrees are namespaced."""
     text = FLEET.read_text(encoding="utf-8")
-    assert 'WORKTREE_ROOT=${WORKTREE_ROOT:-$(dirname "$REPO")/worktrees}' in text, (
-        "WORKTREE_ROOT default regressed away from the project directory"
+    assert 'WORKTREE_ROOT=${WORKTREE_ROOT:-$HOME/worktrees/speeeecies}' in text, (
+        "worktrees must use the configured root (or HOME/worktrees) under speeeecies"
     )
 
 
@@ -916,9 +915,9 @@ def test_spawn_actually_completes_on_a_clean_state_dir(tmp_path):
 
     origin = tmp_path / "origin.git"
     repo = tmp_path / "repo"
-    state = tmp_path / "state"
-    worktrees = tmp_path / "wt"
-    bin_ = tmp_path / "bin"
+    state = tmp_path / "state files"
+    worktrees = tmp_path / "work trees"
+    bin_ = tmp_path / "bin tools"
     for d in (state, worktrees, bin_):
         d.mkdir()
 
@@ -932,7 +931,9 @@ def test_spawn_actually_completes_on_a_clean_state_dir(tmp_path):
     subprocess.run(["git", "-C", str(repo), "push", "-q", "origin", "main"], check=True)
 
     agent = bin_ / "agentstub"
-    agent.write_text("#!/usr/bin/env bash\nexit 0\n")
+    marker = tmp_path / "shell-injection-ran"
+    capture = tmp_path / "agent args.txt"
+    agent.write_text('#!/usr/bin/env bash\nprintf "%s\\n" "$@" > "$CAPTURE_ARGS"\nexit 0\n')
     agent.chmod(0o755)
     gh = bin_ / "gh"
     # `gh -q` prints bare values, so the state probe must be unquoted JSON-free text.
@@ -954,6 +955,7 @@ def test_spawn_actually_completes_on_a_clean_state_dir(tmp_path):
     env["PATH"] = f"{bin_}{os.pathsep}{env['PATH']}"
     env.update(
         AGENT_BIN=str(agent),
+        CAPTURE_ARGS=str(capture),
         GH_REPO="jt55401/speeeecies",
         WORKTREE_ROOT=str(worktrees),
         FLEET_STATE_DIR=str(state),
@@ -963,7 +965,8 @@ def test_spawn_actually_completes_on_a_clean_state_dir(tmp_path):
     proc = subprocess.run(
         [
             "bash", str(FLEET), "spawn",
-            "--issue", "7", "--slug", "test-species", "--scientific", "Testus species",
+            "--issue", "7", "--slug", "test-species", "--scientific",
+            f"Testus $(touch {marker})", "--model", f"fixture$(touch {marker})",
         ],
         cwd=repo, env=env, capture_output=True, text=True,
     )
@@ -972,6 +975,17 @@ def test_spawn_actually_completes_on_a_clean_state_dir(tmp_path):
     for suffix in ("meta", "brief.md", "status.md", "launch.sh"):
         assert (state / f"test-species.{suffix}").is_file(), f"spawn wrote no {suffix}"
     assert (worktrees / "species-test-species").is_dir(), "spawn created no worktree"
+    # Wait for the detached launcher and verify attacker-controlled values reach
+    # the agent as arguments without executing substitutions in generated shell.
+    for _ in range(100):
+        if capture.exists():
+            break
+        time.sleep(0.02)
+    assert capture.exists(), "detached launcher did not invoke the agent stub"
+    args = capture.read_text(encoding="utf-8")
+    assert f"Testus $(touch {marker})" in args, args
+    assert f"fixture$(touch {marker})" in args, args
+    assert not marker.exists(), "scientific name or model was executed as shell source"
 
     # The bug that started this: the status path must be substituted, not empty.
     brief = (state / "test-species.brief.md").read_text()
@@ -991,6 +1005,27 @@ def test_spawn_actually_completes_on_a_clean_state_dir(tmp_path):
 
     for leftover in (origin, repo, worktrees):
         shutil.rmtree(leftover, ignore_errors=True)
+
+
+def test_agent_permissions_have_no_catch_all_bash_allow():
+    import json
+    policy = json.loads((FLEET.parent / "agent-permissions.json").read_text(encoding="utf-8"))
+    assert policy["permission"]["bash"].get("*") != "allow"
+    assert "gh pr merge*" in policy["permission"]["bash"]
+    readme = (FLEET.parent / "README.md").read_text(encoding="utf-8")
+    assert "not a security" in readme
+    assert "scoped credentials" in readme and "repository protections" in readme
+
+
+def test_spawn_fails_closed_when_permissions_file_is_unavailable():
+    text = FLEET.read_text(encoding="utf-8")
+    spawn = text.split("cmd_spawn() {", 1)[1].split("\n}\n", 1)[0]
+    validation = spawn.index('! -f "$PERMISSIONS"')
+    worktree = spawn.index('git worktree add')
+    assert validation < worktree, "spawn must validate permissions before creating/publishing work"
+    assert 'python3 -m json.tool "$PERMISSIONS"' in spawn
+    launcher = spawn.split("cat > \"$launch_tmp\" <<LAUNCHER", 1)[1]
+    assert "permissions file unavailable or invalid" in launcher
 
 
 def test_a_failed_spawn_leaves_no_orphaned_worktree():
@@ -1161,8 +1196,8 @@ def test_launch_title_names_the_work_kind():
     """Every run was titled "species <name> #<issue>", including locales, so the
     agent list and logs mislabelled locale work as species records."""
     text = FLEET.read_text(encoding="utf-8")
-    assert '--title "$kind $sci #$issue"' in text, (
-        "the launch title hardcodes species, mislabelling locale agents"
+    assert 'printf -v q_title \'%q\' "$kind $sci #$issue"' in text, (
+        "the launch title must include the work kind and safely quote user input"
     )
     assert '--title "species $sci' not in text, "the hardcoded species title is back"
 
@@ -1314,8 +1349,8 @@ def test_the_launcher_records_its_own_pid():
     directory: five live processes for three agents."""
     text = FLEET.read_text(encoding="utf-8")
     spawn = text.split("cmd_spawn() {", 1)[1].split("\n}\n", 1)[0]
-    assert 'echo \\$\\$ > "$STATE_DIR/$slug.pid"' in spawn, (
-        "the launcher must write its own pid; setsid makes it a group leader"
+    assert 'echo \\$\\$ > $q_state_dir/$q_slug.pid' in spawn, (
+        "the launcher must safely quote its pid path; setsid makes it a group leader"
     )
 
 
@@ -2834,19 +2869,40 @@ def test_a_successful_teardown_archives_the_log_instead_of_deleting_it():
     )
 
 
-def _no_pr_diagnosis(slug: str, branch: str, kind: str, log_body: str = "") -> str:
+def _scratch_repo(tmp_path: Path) -> tuple[Path, Path]:
+    """Create a disposable clone and local bare origin with a main branch."""
+    tmp_path.mkdir(parents=True, exist_ok=True)
+    origin = tmp_path / "origin.git"
+    repo = tmp_path / "repo"
+    subprocess.run(["git", "init", "-q", "--bare", "-b", "main", str(origin)], check=True)
+    subprocess.run(["git", "clone", "-q", str(origin), str(repo)], check=True)
+    for key, value in (("user.email", "test@example.invalid"), ("user.name", "Test")):
+        subprocess.run(["git", "-C", str(repo), "config", key, value], check=True)
+    (repo / "base.txt").write_text("base\n", encoding="utf-8")
+    subprocess.run(["git", "-C", str(repo), "add", "base.txt"], check=True)
+    subprocess.run(["git", "-C", str(repo), "commit", "-qm", "base"], check=True)
+    subprocess.run(["git", "-C", str(repo), "push", "-q", "origin", "main"], check=True)
+    subprocess.run(["git", "-C", str(repo), "fetch", "-q", "origin"], check=True)
+    return repo, origin
+
+
+def _no_pr_diagnosis(slug: str, branch: str, kind: str, log_body: str = "", *,
+                     repo: Path | None = None, extra_env: dict[str, str] | None = None) -> str:
     """Run the real helper under set -euo pipefail, as the teardown does."""
     import tempfile as _tf
     state = _tf.mkdtemp()
+    if repo is None:
+        repo, _ = _scratch_repo(Path(state) / "git")
     if log_body:
         Path(state, f"{slug}.log").write_text(log_body, encoding="utf-8")
     text = FLEET.read_text(encoding="utf-8")
     start = re.search(r"\nno_pr_diagnosis\(\) \{", text).start()
     fn = text[start:text.index("\n}\n", start) + 3]
     script = (f"set -euo pipefail\n{fn}\n"
-              f'STATE_DIR={state} REPO={REPO} BASE_REF=origin/main\n'
+              f'STATE_DIR={state} REPO={repo} BASE_REF=origin/main\n'
               f'no_pr_diagnosis {slug} {branch} {kind}\n')
-    p = subprocess.run(["bash", "-c", script], capture_output=True, text=True, timeout=60)
+    env = dict(os.environ, **(extra_env or {}))
+    p = subprocess.run(["bash", "-c", script], capture_output=True, text=True, timeout=60, env=env)
     subprocess.run(["rm", "-rf", state], check=False)
     assert p.returncode == 0, f"the diagnosis aborted under errexit: {p.stderr}"
     assert "integer expected" not in p.stderr, (
@@ -2876,62 +2932,69 @@ def test_the_no_pr_diagnosis_names_the_three_distinct_causes():
     Only cases this test can set up deterministically are asserted. The pushed case
     needs a branch that genuinely exists on the remote, which would make the test
     rot the moment that branch is merged away."""
-    import subprocess as sp
-
     # 1. No branch at all.
-    out = _no_pr_diagnosis("nope", "jt55401/does-not-exist-xyz", "species")
+    with tempfile.TemporaryDirectory() as scratch:
+      repo, _ = _scratch_repo(Path(scratch))
+      out = _no_pr_diagnosis("nope", "test/does-not-exist", "species", repo=repo)
     assert "unknown locally" in out, (
         f"an absent branch was misdiagnosed instead of refused: {out!r}"
     )
 
     # 2. A real local branch carrying commits that was never pushed.
-    br = f"jt55401/probe-diagnosis-{os.getpid()}"
-    sp.run(["git", "-C", str(REPO), "branch", "-D", br],
-           stdout=sp.DEVNULL, stderr=sp.DEVNULL)
-    sp.run(["git", "-C", str(REPO), "branch", br, "origin/main"], check=True,
-           stdout=sp.DEVNULL, stderr=sp.DEVNULL)
-    wt = tempfile.mkdtemp()
-    try:
-        sp.run(["git", "-C", str(REPO), "worktree", "remove", "--force", wt],
-               stdout=sp.DEVNULL, stderr=sp.DEVNULL)
-        sp.run(["git", "-C", str(REPO), "worktree", "add", "-q", wt, br], check=True,
-               stdout=sp.DEVNULL, stderr=sp.DEVNULL)
-        Path(wt, "probe.txt").write_text("x\n", encoding="utf-8")
-        sp.run(["git", "-C", wt, "add", "-A"], check=True,
-               stdout=sp.DEVNULL, stderr=sp.DEVNULL)
-        sp.run(["git", "-C", wt, "-c", "user.email=a@a", "-c", "user.name=a",
-                "commit", "-qm", "probe"], check=True,
-               stdout=sp.DEVNULL, stderr=sp.DEVNULL)
-        out = _no_pr_diagnosis("probe2", br, "species",
-                               log_body="ran gh pr create --title x")
-        assert "gh-pr-attempted=yes" in out, f"PR attempt not detected: {out!r}"
-        assert "branch NOT pushed" in out, f"unpushed work misdiagnosed: {out!r}"
-        assert "ran out of session before pushing" in out, f"wrong cause: {out!r}"
-    finally:
-        sp.run(["git", "-C", str(REPO), "worktree", "remove", "--force", wt],
-               stdout=sp.DEVNULL, stderr=sp.DEVNULL)
-        sp.run(["git", "-C", str(REPO), "branch", "-D", br],
-               stdout=sp.DEVNULL, stderr=sp.DEVNULL)
-        sp.run(["rm", "-rf", wt], check=False)
+    with tempfile.TemporaryDirectory() as scratch:
+      repo, _ = _scratch_repo(Path(scratch))
+      br = "test/probe-diagnosis"
+      subprocess.run(["git", "-C", str(repo), "switch", "-qc", br], check=True)
+      (repo / "probe.txt").write_text("x\n", encoding="utf-8")
+      subprocess.run(["git", "-C", str(repo), "add", "-A"], check=True)
+      subprocess.run(["git", "-C", str(repo), "commit", "-qm", "probe"], check=True)
+      out = _no_pr_diagnosis("probe2", br, "species", log_body="ran gh pr create --title x", repo=repo)
+      assert "gh-pr-attempted=yes" in out, f"PR attempt not detected: {out!r}"
+      assert "branch NOT pushed" in out, f"unpushed work misdiagnosed: {out!r}"
+      assert "ran out of session before pushing" in out, f"wrong cause: {out!r}"
 
 
-def test_the_no_pr_diagnosis_refuses_to_guess_on_an_unknown_branch():
+def test_no_pr_diagnosis_survives_offline_remote_and_reports_unknown(tmp_path):
+    repo, _ = _scratch_repo(tmp_path)
+    subprocess.run(["git", "-C", str(repo), "switch", "-qc", "test/offline"], check=True)
+    (repo / "probe.txt").write_text("x\n", encoding="utf-8")
+    subprocess.run(["git", "-C", str(repo), "add", "probe.txt"], check=True)
+    subprocess.run(["git", "-C", str(repo), "commit", "-qm", "probe"], check=True)
+    bin_dir = tmp_path / "bin"
+    bin_dir.mkdir()
+    stub = bin_dir / "git"
+    real_git = subprocess.run(["which", "git"], capture_output=True, text=True, check=True).stdout.strip()
+    stub.write_text(f"#!/usr/bin/env bash\nif [[ \"$*\" == *' ls-remote '* ]]; then exit 128; fi\nexec {real_git} \"$@\"\n", encoding="utf-8")
+    stub.chmod(0o755)
+    out = _no_pr_diagnosis("offline", "test/offline", "species", repo=repo,
+                           extra_env={"PATH": f"{bin_dir}:{os.environ['PATH']}"})
+    assert "remote-state-unknown" in out, out
+
+
+def test_the_no_pr_diagnosis_refuses_to_guess_on_an_unknown_branch(tmp_path):
     """With no branch recorded, `git rev-list --count BASE..` silently collapses to
     `BASE..HEAD` and returns a real-looking commit count for a branch that does not
     exist. Run end-to-end against a slug with no branch, the line confidently said
     "59 unpushed commits, ran out of session before pushing" for a slug that never
     started. A diagnosis that invents a cause is worse than one that admits it
     cannot tell."""
-    import tempfile as _tf
-    state = _tf.mkdtemp()
+    repo, _ = _scratch_repo(tmp_path / "git")
+    state = tmp_path / "state"
+    state.mkdir()
     Path(state, "ghost-slug.meta").write_text(
         "issue=9999\nkind=species\nmodel=test\n", encoding="utf-8")
-    env = dict(os.environ, FLEET_STATE_DIR=state, WORKTREE_ROOT=tempfile.mkdtemp(),
+    bin_dir = tmp_path / "bin"
+    bin_dir.mkdir()
+    gh = bin_dir / "gh"
+    gh.write_text("#!/usr/bin/env bash\ncase \"$*\" in *'pr list'*) printf '0\\n';; *) printf '\\n';; esac\n", encoding="utf-8")
+    gh.chmod(0o755)
+    env = dict(os.environ, PATH=f"{bin_dir}:{os.environ['PATH']}", FLEET_STATE_DIR=str(state),
+               WORKTREE_ROOT=str(tmp_path / "worktrees"), BASE_REF="origin/main",
                GH_REPO="jt55401/speeeecies")
     p = subprocess.run(["bash", str(FLEET), "teardown", "ghost-slug", "--force"],
-                       capture_output=True, text=True, timeout=180, env=env)
+                       cwd=repo, capture_output=True, text=True, timeout=180, env=env)
     out = p.stdout + p.stderr
-    subprocess.run(["rm", "-rf", state], check=False)
+    assert p.returncode == 0, out
     diag = [l for l in out.splitlines() if "diagnosis:" in l]
     assert diag, f"no diagnosis line emitted: {out!r}"
     assert "unknown locally" in diag[0], (
