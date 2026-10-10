@@ -162,14 +162,14 @@
           0.45,
           0.46,
           0.67,
-          0.35,
+          0.33,
           0.4,
-          0.36,
+          0.38,
           0.42,
           0.63
         ],
         "method": "inat_share",
-        "observations": 630,
+        "observations": 634,
         "sources": [
           "inat-activity-jp-13"
         ],
@@ -180,7 +180,7 @@
             "place_id": 10935,
             "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=855310&place_id=10935&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
             "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=10935&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
-            "total": 630,
+            "total": 634,
             "usable": true
           },
           "gbif": {
@@ -191,7 +191,7 @@
             ],
             "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=6164330&gadmGid=JPN.41_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
             "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=JPN.41_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&license=CC_BY_NC_4_0",
-            "total": 0,
+            "total": 64,
             "usable": false
           },
           "used": [
@@ -368,9 +368,9 @@
       "id": "inat-activity-jp-13",
       "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=855310&place_id=10935&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
       "title": "iNaturalist observations histogram for Nyctereutes viverrinus in JP-13",
-      "license": "CC-BY-NC-4.0",
-      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
-      "accessed": "2026-10-01",
+      "license": "CC-BY-NC-SA-4.0",
+      "attribution": "iNaturalist contributors; JP-13 query permits CC0, CC BY, CC BY-SA, CC BY-NC, and CC BY-NC-SA observations, via the iNaturalist API",
+      "accessed": "2026-10-10",
       "kind": "api"
     }
   ],
@@ -405,9 +405,9 @@
         "wikipedia-ja",
         "eltontraits"
       ],
-      "confidence": "High",
+      "confidence": "Medium",
       "derived": true,
-      "note": "The Japanese article gives head-body 50-68 cm, tail 12.5-25 cm and mass 4-6 kg (rising to 6-10 kg in autumn); length_m 0.78 is the midpoint of head-body plus tail, and mass 5.0 kg is the midpoint of 4-6 kg. Locomotion Walk, Trot and Climb: the English article says the species climbs trees for fruit using curved claws. Diet is from the Japanese article's omnivorous account (rodents, birds and eggs, amphibians, fish, insects, myriapods, crustaceans, molluscs, carrion and plant material including fruit and nuts), aligned with the EltonTraits MamFuncDat row for the congener Nyctereutes procyonoides (invertebrate 20, vertebrate 40, fruit 30, seed 10). Lifespan 7.5 years is the midpoint of the English article's 7-8 years in the wild. Shoulder height is not given by any source; 0.25 m is a judgement for this famously short-legged canid, whose leg length the article contrasts with the longer-legged mainland raccoon dog."
+      "note": "The sourced dimensions and mass come from the Japanese article; the length and mass are midpoints of stated ranges. Diet uses a low-confidence congener proxy from the EltonTraits row for Nyctereutes procyonoides, disclosed separately under traits.diet. Lifespan is the midpoint of the cited 7-8 year wild range. Shoulder height remains an authored judgement."
     },
     "habitat": {
       "sources": [
@@ -451,6 +451,14 @@
       "confidence": "Medium",
       "derived": true,
       "note": "Authored parameters for the shared ground-forager program: the default rest window (sun between 10 and 90 degrees) puts the animal in shelter by day and out at night, matching its nocturnal habit; food_tag invertebrate, walk foraging and a trot escape follow the article's account, and flee_m 30 reflects a wary animal that lives close to people."
+    },
+    "traits.diet": {
+      "sources": [
+        "eltontraits"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Proxy from the only EltonTraits MamFuncDat row, Nyctereutes procyonoides. This is not a measured or species-specific estimate for Nyctereutes viverrinus; the diet fractions are modeled from the congener row."
     }
   },
   "contributors": [
