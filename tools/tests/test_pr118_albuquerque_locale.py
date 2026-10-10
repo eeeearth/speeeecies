@@ -12,7 +12,16 @@ ROSTER = [
     "archilochus-alexandri", "astur-cooperii", "sylvilagus-audubonii",
     "otospermophilus-variegatus", "tadarida-brasiliensis",
 ]
-EXISTING = [s for s in ROSTER if s not in {"spinus-psaltria", "astur-cooperii"}]
+BASE_SPECIES = set(
+    subprocess.check_output(
+        ["git", "ls-tree", "-r", "--name-only", BASE, "--", "species"],
+        cwd=ROOT,
+        text=True,
+    ).splitlines()
+)
+EXISTING = [
+    slug for slug in ROSTER if f"species/{slug}/species.json" in BASE_SPECIES
+]
 
 
 def read(path):
