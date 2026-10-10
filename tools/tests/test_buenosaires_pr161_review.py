@@ -91,6 +91,9 @@ def test_opossum_has_no_egg_stage_or_unsupported_calls_or_measurements():
     assert all(stage["stage"] != "Egg" for stage in data["seasonal"]["life_stages"])
     assert data["vocalizations"] == []
     assert data["traits"]["length_m"] == 1.08
+    length_note = data["provenance"]["traits.length_m"]["note"]
+    assert "45–70 cm for males" in length_note and "41–60 cm for females" in length_note
+    assert "((41+40)+(70+65))/2 = 1.08 m" in length_note
     assert "shoulder_height_m" not in data["traits"]
     assert "wingspan_m" not in data["traits"]
     assert "lifespan_y" in data["traits"]
@@ -103,6 +106,17 @@ def test_guessed_optional_wingspans_are_omitted():
         assert "lifespan_y" in traits
     assert record("patagioenas-picazuro")["traits"]["length_m"] == 0.32
     assert record("patagioenas-picazuro")["provenance"]["traits.lifespan_y"]["confidence"] == "Low"
+
+
+def test_kiskadee_lifespan_is_labeled_as_usgs_maximum_record():
+    data = record("pitangus-sulphuratus")
+    assert data["traits"]["lifespan_y"] == 83 / 12
+    source = next(s for s in data["sources"] if s["id"] == "usgs-bbl-longevity")
+    assert source["license"] == "US-Gov-PD"
+    note = data["provenance"]["traits.lifespan_y"]["note"]
+    assert "6 years 11 months" in note
+    assert "not a typical or average lifespan" in note
+    assert "no more permissively licensed" not in note
 
 
 def test_opossum_mixed_license_and_low_count_curves_are_explicit():
@@ -127,6 +141,9 @@ def test_buenos_aires_mesquite_is_native_algarrobo_stand_in():
     assert entry["stand_in_for"] == "Prosopis alba"
     assert entry["native_status"]["buenosaires-ar"] == "Native"
     assert any("prosopis_alba" in s["url"].lower() and s["license"] == "CC-BY-SA-4.0" for s in entry["provenance"]["sources"])
+    source = next(s for s in entry["provenance"]["sources"] if "argentina.gob.ar" in s["url"])
+    assert source["license"] == "CC-BY-4.0"
+    assert "San Isidro" in entry["provenance"]["note"]
 
 
 def test_every_locale_species_has_one_ar_c_curve():

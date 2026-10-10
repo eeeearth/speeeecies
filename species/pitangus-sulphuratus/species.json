@@ -379,13 +379,13 @@
       "kind": "api"
     },
     {
-      "id": "animal-diversity-web",
-      "url": "https://animaldiversity.org/accounts/Pitangus_sulphuratus/",
-      "title": "Hsiao, “Pitangus sulphuratus”, Animal Diversity Web, CC BY-NC-SA 3.0",
-      "license": "CC-BY-NC-SA-3.0",
-      "license_url": "https://creativecommons.org/licenses/by-nc-sa/3.0/",
-      "attribution": "Hsiao, A. 2001. “Pitangus sulphuratus” (On-line), Animal Diversity Web. https://animaldiversity.org/accounts/Pitangus_sulphuratus/.",
-      "accessed": "2026-10-10"
+      "id": "usgs-bbl-longevity",
+      "url": "https://www.pwrc.usgs.gov/BBL/Bander_Portal/login/Longevity_main.php",
+      "title": "USGS Bird Banding Laboratory, North American Bird Banding Program Longevity Records: Great Kiskadee (6 years 11 months)",
+      "license": "US-Gov-PD",
+      "kind": "dataset",
+      "accessed": "2026-10-10",
+      "attribution": "U.S. Geological Survey, Bird Banding Laboratory, North American Bird Banding Program Longevity Records"
     }
   ],
   "provenance": {
@@ -631,10 +631,11 @@
     },
     "traits.lifespan_y": {
       "sources": [
-        "animal-diversity-web"
+        "usgs-bbl-longevity"
       ],
       "confidence": "Medium",
-      "note": "Animal Diversity Web reports an average wild lifespan of 83 months, converted to years (83/12). The source uses the NC-SA licence; no more permissively licensed species-specific lifespan source was found."
+      "derived": true,
+      "note": "The USGS Bird Banding Laboratory longevity table records a Great Kiskadee at 6 years 11 months (83 months). Converted as 6 + 11/12 = 6.9167 years. This is a documented maximum longevity record, not a typical or average lifespan; the schema's required lifespan_y field cannot distinguish the record type."
     },
     "seasonal.phases": {
       "sources": [],
