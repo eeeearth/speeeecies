@@ -58,7 +58,7 @@
       0.7
     ],
     "length_m": 0.5,
-    "lifespan_y": 20,
+    "lifespan_y": 13.5,
     "diet": {
       "invertebrate": 0.4,
       "fruit": 0.3,
@@ -204,6 +204,55 @@
             "gbif"
           ]
         }
+      },
+      {
+        "region": "AU",
+        "monthly": [
+          0.87,
+          0.62,
+          0.45,
+          0.39,
+          0.23,
+          0.16,
+          0.18,
+          0.43,
+          0.88,
+          1.0,
+          0.81,
+          0.89
+        ],
+        "method": "mean(inat_raw, gbif_raw)",
+        "observations": 54109,
+        "sources": [
+          "inat-activity-au",
+          "gbif-activity-au"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 6744,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=37456&place_id=6744&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": null,
+            "total": 1037,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "country",
+              "AU"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2462503&country=AU&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": null,
+            "total": 53072,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
       }
     ]
   },
@@ -289,13 +338,24 @@
     },
     {
       "id": "wikipedia",
-      "url": "https://en.wikipedia.org/wiki/Common_bluetongue",
-      "title": "Wikipedia: Common bluetongue",
+      "url": "https://en.wikipedia.org/wiki/Tiliqua_scincoides",
+      "title": "Wikipedia: Tiliqua scincoides",
       "license": "CC-BY-SA-4.0",
       "kind": "webpage",
-      "accessed": "2026-10-01",
-      "attribution": "Wikipedia contributors, \"Common bluetongue\", English Wikipedia, CC BY-SA 4.0",
+      "accessed": "2026-10-10",
+      "attribution": "Wikipedia contributors, \"Tiliqua scincoides\", English Wikipedia, CC BY-SA 4.0",
       "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "victoria-wildlife-guidelines",
+      "url": "https://www.wildlife.vic.gov.au/__data/assets/pdf_file/0026/671264/Part-B-Reptiles-Amphibians-Chapter1.pdf",
+      "title": "Victorian Wildlife Rehabilitation Guidelines, Part B: Lizards, eastern blue tongue lizard profile",
+      "license": "CC-BY-4.0",
+      "license_url": "https://www.deeca.vic.gov.au/copyright",
+      "attribution": "© State of Victoria (Department of Energy, Environment and Climate Action), Victorian Wildlife Rehabilitation Guidelines, Part B: Lizards",
+      "accessed": "2026-10-10",
+      "kind": "literature",
+      "note": "The government-authored species profile gives longevity as 12–15 years without specifying wild or captive conditions. DEECA's copyright page licenses its material CC BY 4.0, excluding third-party content. The profile text is used here, not its third-party photographs."
     },
     {
       "id": "inat-activity-au-nsw",
@@ -313,6 +373,24 @@
       "license": "CC-BY-4.0",
       "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
       "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "inat-activity-au",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=37456&place_id=6744&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Tiliqua scincoides in AU",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-10-10",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-au",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2462503&country=AU&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Tiliqua scincoides in AU",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-10) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-10",
       "kind": "api"
     }
   ],
@@ -442,9 +520,11 @@
     },
     "traits.lifespan_y": {
       "sources": [
-        "wikipedia"
+        "victoria-wildlife-guidelines"
       ],
-      "confidence": "Medium"
+      "confidence": "Low",
+      "derived": true,
+      "note": "13.5 years is the midpoint of the Victorian government profile's unqualified 12–15 year longevity range. It is a proxy for the schema's typical wild lifespan; the source does not identify a wild cohort. The previously used 20 years came from captive-longevity claims and is not evidence of a typical wild lifespan."
     },
     "traits.diet": {
       "sources": [
