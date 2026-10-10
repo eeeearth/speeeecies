@@ -1,0 +1,209 @@
+{
+  "schema_version": 1,
+  "format": "speeeecies/behavior",
+  "id": "fsm-vervet-forager-v1",
+  "kind": "fsm",
+  "description": "Species-local vervet FSM: walks to eat the nearest invertebrate-tagged resource, enters an alert emote at low hunger, grooms when another conspecific is nearby, rests at shelter, and uses a walking flee action when threatened. The alert is an emote, not a sentinel role or alarm call; the FSM does not coordinate troop feeding, escape to trees, or keep resting animals near one another. This species-local program adds grooming and alert states that the shared ground-forager program does not provide.",
+  "params": {
+    "flee_m": 12,
+    "calm_m": 30,
+    "food_tag": "invertebrate",
+    "alert_min_dwell_s": 300,
+    "social_distance_m": 15
+  },
+  "initial": "forage",
+  "states": {
+    "forage": {
+      "action": {
+        "do": "eat_nearest",
+        "tag": "${food_tag}",
+        "gait": "walk"
+      }
+    },
+    "alert": {
+      "action": {
+        "do": "emote",
+        "kind": "alert"
+      },
+      "min_dwell_s": "${alert_min_dwell_s}"
+    },
+    "groom": {
+      "action": {
+        "do": "emote",
+        "kind": "groom"
+      }
+    },
+    "rest": {
+      "action": {
+        "do": "rest",
+        "at": "shelter"
+      },
+      "min_dwell_s": 30
+    },
+    "flee": {
+      "action": {
+        "do": "flee",
+        "gait": "walk"
+      },
+      "min_dwell_s": 3
+    },
+    "touched": {
+      "action": {
+        "do": "tolerate_touch"
+      }
+    },
+    "accept": {
+      "action": {
+        "do": "accept_offer"
+      }
+    }
+  },
+  "transitions": [
+    {
+      "from": "*",
+      "to": "flee",
+      "when": {
+        "threat_within_m": "${flee_m}"
+      },
+      "priority": 100
+    },
+    {
+      "from": "*",
+      "to": "flee",
+      "when": {
+        "need": "fear",
+        "gt": 0.2
+      },
+      "priority": 90
+    },
+    {
+      "from": "*",
+      "to": "touched",
+      "when": {
+        "all": [
+          {
+            "player_touch": true
+          },
+          {
+            "need": "fear",
+            "lt": 0.2
+          },
+          {
+            "not": {
+              "threat_within_m": "${flee_m}"
+            }
+          }
+        ]
+      },
+      "priority": 60
+    },
+    {
+      "from": "*",
+      "to": "accept",
+      "when": {
+        "all": [
+          {
+            "player_offer": "food"
+          },
+          {
+            "need": "fear",
+            "lt": 0.2
+          },
+          {
+            "not": {
+              "threat_within_m": "${flee_m}"
+            }
+          }
+        ]
+      },
+      "priority": 40
+    },
+    {
+      "from": "touched",
+      "to": "forage",
+      "when": {
+        "player_touch": false
+      }
+    },
+    {
+      "from": "accept",
+      "to": "forage",
+      "when": {
+        "not": {
+          "player_offer": "food"
+        }
+      }
+    },
+    {
+      "from": "flee",
+      "to": "forage",
+      "when": {
+        "not": {
+          "threat_within_m": "${calm_m}"
+        }
+      }
+    },
+    {
+      "from": "forage",
+      "to": "alert",
+      "when": {
+        "need": "hunger",
+        "lt": 0.3
+      }
+    },
+    {
+      "from": "forage",
+      "to": "rest",
+      "when": {
+        "need": "energy",
+        "gt": 0.7
+      }
+    },
+    {
+      "from": "alert",
+      "to": "groom",
+      "when": {
+        "all": [
+          {
+            "conspecifics_within_m": "${social_distance_m}",
+            "gte": 1
+          },
+          {
+            "chance": 0.5
+          }
+        ]
+      }
+    },
+    {
+      "from": "alert",
+      "to": "forage",
+      "when": {
+        "need": "hunger",
+        "gt": 0.5
+      }
+    },
+    {
+      "from": "groom",
+      "to": "rest",
+      "when": {
+        "chance": 0.4
+      }
+    },
+    {
+      "from": "groom",
+      "to": "forage",
+      "when": {
+        "need": "hunger",
+        "gt": 0.5
+      }
+    },
+    {
+      "from": "rest",
+      "to": "forage",
+      "when": {
+        "need": "hunger",
+        "gt": 0.4
+      }
+    }
+  ]
+}

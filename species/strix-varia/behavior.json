@@ -1,0 +1,148 @@
+{
+  "schema_version": 1,
+  "format": "speeeecies/behavior",
+  "id": "fsm-nocturnal-owl-v1",
+  "kind": "fsm",
+  "description": "Nocturnal owl (barred owl): roosts by day in a tree cavity or dense canopy, hunts small vertebrates at night from a perch, hoots in the breeding months, and retreats from threats.",
+  "params": {
+    "flee_m": 15,
+    "calm_m": 30,
+    "food_tag": "vertebrate",
+    "food_m": 40,
+    "hoot_m1": 1,
+    "hoot_m2": 4
+  },
+  "initial": "roost",
+  "states": {
+    "roost": {
+      "action": {
+        "do": "perch_nearest",
+        "tag": "shelter"
+      },
+      "min_dwell_s": 30
+    },
+    "hunt": {
+      "action": {
+        "do": "eat_nearest",
+        "tag": "${food_tag}",
+        "gait": "fly"
+      }
+    },
+    "wander": {
+      "action": {
+        "do": "wander",
+        "gait": "fly"
+      }
+    },
+    "hoot": {
+      "action": {
+        "do": "sing",
+        "call": "hoot"
+      },
+      "min_dwell_s": 3
+    },
+    "flee": {
+      "action": {
+        "do": "flee",
+        "gait": "fly"
+      },
+      "min_dwell_s": 3
+    }
+  },
+  "transitions": [
+    {
+      "from": "*",
+      "to": "flee",
+      "when": {
+        "threat_within_m": "${flee_m}"
+      },
+      "priority": 100
+    },
+    {
+      "from": "flee",
+      "to": "roost",
+      "when": {
+        "not": {
+          "threat_within_m": "${calm_m}"
+        }
+      }
+    },
+    {
+      "from": "roost",
+      "to": "hoot",
+      "when": {
+        "all": [
+          {
+            "is_day": false
+          },
+          {
+            "month_in": [
+              "${hoot_m1}",
+              2,
+              3,
+              "${hoot_m2}"
+            ]
+          },
+          {
+            "chance": 0.1
+          }
+        ]
+      }
+    },
+    {
+      "from": "roost",
+      "to": "hunt",
+      "when": {
+        "all": [
+          {
+            "is_day": false
+          },
+          {
+            "need": "hunger",
+            "gt": 0.4
+          },
+          {
+            "food_within_m": "${food_m}",
+            "tag": "${food_tag}"
+          }
+        ]
+      }
+    },
+    {
+      "from": "roost",
+      "to": "wander",
+      "when": {
+        "all": [
+          {
+            "is_day": false
+          },
+          {
+            "chance": 0.3
+          }
+        ]
+      }
+    },
+    {
+      "from": "hoot",
+      "to": "roost",
+      "when": {
+        "chance": 0.4
+      }
+    },
+    {
+      "from": "hunt",
+      "to": "roost",
+      "when": {
+        "need": "hunger",
+        "lt": 0.15
+      }
+    },
+    {
+      "from": "wander",
+      "to": "roost",
+      "when": {
+        "chance": 0.2
+      }
+    }
+  ]
+}

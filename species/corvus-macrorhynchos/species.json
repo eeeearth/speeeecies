@@ -1,12 +1,12 @@
 {
-  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "$schema": "https://eeeearth.github.io/speeeecies/schema/v0.1/species.schema.json",
   "format": "speeeecies/species",
   "format_version": "0.1",
   "id": "Corvus macrorhynchos",
   "slug": "corvus-macrorhynchos",
   "common_names": {
-    "en": "Large-billed crow",
-    "ja": "ハシブトガラス"
+    "en": "Large-billed Crow",
+    "ko": "큰부리까마귀"
   },
   "taxonomy": {
     "kingdom": "Animalia",
@@ -28,37 +28,21 @@
   },
   "range": {
     "native": [
-      "JP",
+      "RU",
+      "CN",
       "KR",
       "KP",
-      "CN",
-      "RU",
-      "TW",
-      "VN",
-      "LA",
-      "KH",
-      "TH",
-      "MM",
-      "MY",
-      "ID",
-      "PH",
+      "JP",
+      "MN",
       "IN",
       "NP",
-      "BT",
-      "BD",
+      "MM",
+      "VN",
+      "LA",
+      "TH",
       "LK",
-      "PK",
-      "IR"
-    ],
-    "koppen": [
-      "Cfa",
-      "Cfb",
-      "Cwa",
-      "Cwb",
-      "Am",
-      "Aw",
-      "Dfa",
-      "Dfb"
+      "ID",
+      "PH"
     ]
   },
   "traits": {
@@ -66,6 +50,7 @@
     "limb_count": 2,
     "locomotion_modes": [
       "Walk",
+      "Hop",
       "Fly"
     ],
     "thermoregulation": "Endotherm",
@@ -76,22 +61,26 @@
     "nest_type": "Platform",
     "perching": true,
     "size_class": "Small",
-    "mass_kg": 0.51,
-    "length_m": 0.57,
-    "wingspan_m": 1.15,
-    "lifespan_y": 10,
+    "mass_kg": 0.65,
+    "mass_range_kg": [
+      0.45,
+      1.0
+    ],
+    "length_m": 0.52,
+    "wingspan_m": 1.1,
+    "lifespan_y": 8,
     "diet": {
       "invertebrate": 0.3,
-      "carrion": 0.3,
+      "carrion": 0.25,
       "fruit": 0.2,
-      "vertebrate": 0.1,
+      "vertebrate": 0.15,
       "seed": 0.1
     },
     "social": {
-      "structure": "Pair",
+      "structure": "Flock",
       "group_size": [
         2,
-        2
+        20
       ]
     },
     "activity_pattern": "Diurnal",
@@ -100,53 +89,52 @@
   },
   "habitat": {
     "use": {
-      "ground": 0.4,
-      "arboreal": 0.6
+      "ground": 0.5,
+      "arboreal": 0.5
     },
     "shelter_tag": "perch",
     "resources": [
       {
         "tag": "invertebrate",
         "kind": "Predation",
-        "weight": 0.3
-      },
-      {
-        "tag": "small_vertebrate",
-        "kind": "Predation",
-        "weight": 0.1
+        "weight": 0.5
       },
       {
         "tag": "carrion",
         "kind": "Scavenging",
-        "weight": 0.3
+        "weight": 0.6
       },
       {
         "tag": "fruit",
         "kind": "Herbivory",
-        "weight": 0.2
+        "weight": 0.4
+      },
+      {
+        "tag": "small_vertebrate",
+        "kind": "Predation",
+        "weight": 0.4
       },
       {
         "tag": "seed",
         "kind": "Herbivory",
-        "weight": 0.1
-      },
-      {
-        "tag": "perch",
-        "kind": "Shelter",
-        "weight": 0.6
+        "weight": 0.3
       },
       {
         "tag": "nest_platform",
         "kind": "Nesting",
         "weight": 1.0
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.8
       }
     ],
     "human_tolerance": {
       "urban_affinity": "Exploiter",
       "uses_gardens": true,
-      "light_max": 0.8,
-      "road_mortality": "High",
-      "notes": "The article calls the species 'very adaptable' and 'able to survive on a wide range of food sources', often 'considered a nuisance'; the Japanese article records it as a year-round resident throughout Japan from lowlands to mountains, including cities, feeding on refuse as well as wild food."
+      "flight_distance_m": 20,
+      "notes": "Highly adaptable to urban areas; common in cities and towns across Asia."
     }
   },
   "seasonal": {
@@ -154,15 +142,15 @@
     "phases": [
       {
         "name": "breeding",
-        "start": "04-01",
+        "start": "03-01",
         "end": "07-31",
-        "note": "Nests in spring and early summer in a large stick platform in a tree."
+        "note": "Breeding season in spring and summer."
       },
       {
-        "name": "dispersal",
-        "start": "08-01",
-        "end": "10-31",
-        "note": "Young birds join wandering flocks after fledging."
+        "name": "flocking",
+        "start": "10-01",
+        "end": "02-28",
+        "note": "Winter communal roosting."
       }
     ],
     "life_stages": [
@@ -170,9 +158,7 @@
         "stage": "Egg"
       },
       {
-        "stage": "Juvenile",
-        "duration_days": 50,
-        "scale": 0.8
+        "stage": "Juvenile"
       },
       {
         "stage": "Adult"
@@ -182,46 +168,46 @@
   "activity": {
     "regions": [
       {
-        "region": "JP-13",
+        "region": "KR-11",
         "monthly": [
-          0.45,
-          0.57,
-          0.58,
-          0.62,
+          0.5,
+          0.59,
           0.71,
-          0.79,
-          0.97,
-          0.79,
+          0.93,
+          0.76,
+          0.89,
+          0.99,
           1.0,
-          0.71,
-          0.69,
-          0.55
+          0.87,
+          0.98,
+          0.81,
+          0.66
         ],
         "method": "mean(inat_share, gbif_share)",
-        "observations": 27178,
+        "observations": 10501,
         "sources": [
-          "inat-activity-jp-13",
-          "gbif-activity-jp-13"
+          "inat-activity-kr-11",
+          "gbif-activity-kr-11"
         ],
         "query": {
           "min_obs": 300,
           "inat": {
-            "tier": "A",
-            "place_id": 10935,
-            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=8026&place_id=10935&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
-            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=10935&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
-            "total": 581,
+            "tier": "C",
+            "place_id": 11005,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=8026&place_id=11005&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=11005&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 354,
             "usable": true
           },
           "gbif": {
             "tier": "A",
             "area": [
               "gadmGid",
-              "JPN.41_1"
+              "KOR.16_1"
             ],
-            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2482487&gadmGid=JPN.41_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
-            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=JPN.41_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
-            "total": 26597,
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2482487&gadmGid=KOR.16_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=KOR.16_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 10147,
             "usable": true
           },
           "used": [
@@ -235,13 +221,13 @@
   "behavior": {
     "program": "bt-perching-songbird-v1",
     "params": {
-      "flee_m": 8,
-      "food_tag": "invertebrate",
+      "flee_m": 10,
+      "food_tag": "carrion",
       "song": "caw",
-      "alarm": "alarm_caw",
-      "song_cooldown_s": 10,
-      "nest_m1": 4,
-      "nest_m2": 7
+      "alarm": "caw",
+      "song_cooldown_s": 15,
+      "nest_m1": 3,
+      "nest_m2": 6
     }
   },
   "vocalizations": [
@@ -251,83 +237,51 @@
       "season_months": [],
       "time_windows": [
         "DawnChorus",
-        "Day",
-        "Dusk"
-      ],
-      "cooldown_s": 6,
-      "loudness": "Loud",
-      "description": "The familiar deep, resonant 'caw'; the Japanese article notes the large-billed crow's voice is lower than the carrion crow's. Used here for the behaviour program's song slot, as crows have no true song."
-    },
-    {
-      "call_id": "rattle",
-      "context": "Contact",
-      "season_months": [],
-      "time_windows": [
         "Day"
       ],
-      "cooldown_s": 10,
-      "loudness": "Moderate",
-      "description": "Short rattling and knocking notes exchanged between a pair or flock."
+      "cooldown_s": 12,
+      "loudness": "Loud",
+      "description": "A harsh, loud 'kaa' or 'caw', the most common call; used as contact call and alarm."
     },
     {
-      "call_id": "alarm_caw",
+      "call_id": "alarm",
       "context": "Alarm",
       "season_months": [],
-      "time_windows": [
-        "DawnChorus",
-        "Day",
-        "Dusk"
-      ],
-      "cooldown_s": 4,
+      "time_windows": [],
+      "cooldown_s": 8,
       "loudness": "Loud",
-      "description": "Rapid, harsh cawing given at a threat, which draws other crows and mobs predators."
+      "description": "A rapid, repetitive cawing when alarmed or mobbing predators."
     }
   ],
   "look": {
     "body_plan": "biped_winged",
     "proportions": {
-      "torso_aspect": 1.5,
-      "leg_length_ratio": 0.32,
-      "head_scale": 0.75,
-      "neck_angle_deg": 12,
-      "tail_ratio": 0.6,
-      "wing_aspect": 2.9,
-      "beak_ratio": 0.7,
-      "girth_ratio": 1.05
+      "torso_aspect": 1.6,
+      "leg_length_ratio": 0.35,
+      "head_scale": 0.65,
+      "neck_angle_deg": 15,
+      "tail_ratio": 1.1,
+      "wing_aspect": 2.8,
+      "beak_ratio": 0.55,
+      "girth_ratio": 0.9
     },
     "palette": {
-      "body": "#17171b",
-      "belly": "#1d1d22",
-      "markings": "#3a2f52",
-      "accent": "#26262c",
-      "eye": "#0a0a0c"
+      "body": "#0a0a0a",
+      "belly": "#1a1a1a",
+      "markings": "#2a2a3a",
+      "accent": "#0a0a0a",
+      "eye": "#1a1a1a"
     },
     "part_colors": {
-      "wing_*": "body",
-      "tail": "body",
       "beak": "accent",
-      "leg_*": "accent"
+      "wing_left_outer": "markings",
+      "wing_right_outer": "markings"
     },
-    "extra_parts": [
-      {
-        "name": "gloss",
-        "parent": "body",
-        "offset": [
-          0.0,
-          0.25,
-          0.0
-        ],
-        "size": [
-          0.9,
-          0.4,
-          0.9
-        ],
-        "color": "markings"
-      }
-    ],
+    "extra_parts": [],
     "poses": {
       "idle": {},
       "walk": {},
+      "hop": {},
       "fly": {},
       "perched": {},
       "rest": {}
@@ -339,18 +293,18 @@
       "url": "https://api.gbif.org/v1/species/2482487",
       "title": "GBIF Backbone Taxonomy: Corvus macrorhynchos",
       "license": "CC-BY-4.0",
-      "accessed": "2026-10-01",
       "kind": "database",
+      "accessed": "2026-10-01",
       "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
       "license_url": "https://creativecommons.org/licenses/by/4.0/"
     },
     {
       "id": "wikidata",
       "url": "https://www.wikidata.org/wiki/Q111674",
-      "title": "Wikidata: Large-billed crow (Q111674)",
+      "title": "Wikidata: Large-billed Crow (Q111674)",
       "license": "CC0-1.0",
-      "accessed": "2026-10-01",
       "kind": "database",
+      "accessed": "2026-10-01",
       "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
     },
     {
@@ -358,44 +312,24 @@
       "url": "https://en.wikipedia.org/wiki/Large-billed_crow",
       "title": "Wikipedia: Large-billed crow",
       "license": "CC-BY-SA-4.0",
-      "accessed": "2026-10-01",
       "kind": "webpage",
+      "accessed": "2026-10-01",
       "attribution": "Wikipedia contributors, \"Large-billed crow\", English Wikipedia, CC BY-SA 4.0",
       "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
     },
     {
-      "id": "wikipedia-ja",
-      "url": "https://ja.wikipedia.org/wiki/%E3%83%8F%E3%82%B7%E3%83%96%E3%83%88%E3%82%AC%E3%83%A9%E3%82%B9",
-      "title": "Wikipedia (Japanese): ハシブトガラス",
-      "license": "CC-BY-SA-4.0",
-      "accessed": "2026-10-01",
-      "kind": "webpage",
-      "attribution": "Wikipedia contributors, \"ハシブトガラス\", Japanese Wikipedia, CC BY-SA 4.0",
-      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
-    },
-    {
-      "id": "eltontraits",
-      "url": "https://doi.org/10.6084/m9.figshare.3559887.v1",
-      "title": "EltonTraits 1.0: species-level foraging attributes of the world's birds (BirdFuncDat)",
-      "license": "CC0-1.0",
-      "accessed": "2026-10-01",
-      "kind": "dataset",
-      "attribution": "Wilman, H. et al. (2014) EltonTraits 1.0. Ecology 95:2027",
-      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
-    },
-    {
-      "id": "inat-activity-jp-13",
-      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=8026&place_id=10935&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
-      "title": "iNaturalist observations histogram for Corvus macrorhynchos in JP-13",
-      "license": "CC-BY-4.0",
-      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "id": "inat-activity-kr-11",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=8026&place_id=11005&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Corvus macrorhynchos in KR-11",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
       "accessed": "2026-10-01",
       "kind": "api"
     },
     {
-      "id": "gbif-activity-jp-13",
-      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2482487&gadmGid=JPN.41_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
-      "title": "GBIF occurrence search for Corvus macrorhynchos in JP-13",
+      "id": "gbif-activity-kr-11",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2482487&gadmGid=KOR.16_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Corvus macrorhynchos in KR-11",
       "license": "CC-BY-4.0",
       "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
       "accessed": "2026-10-01",
@@ -407,93 +341,251 @@
       "sources": [
         "gbif-backbone"
       ],
-      "confidence": "High",
-      "note": "The GBIF species match on Corvus macrorhynchos returns usageKey 2482487, rank SPECIES, status ACCEPTED, order Passeriformes, family Corvidae, genus Corvus, authorship Wagler, 1827."
+      "confidence": "High"
     },
     "external": {
       "sources": [
         "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "common_names": {
+      "sources": [
         "wikidata",
         "wikipedia"
       ],
-      "confidence": "High",
-      "note": "gbif_usage_key 2482487 from the GBIF species match; inat_taxon_id 8026 from the iNaturalist taxa API (active, rank species, preferred common name 'Large-billed Crow'); wikidata Q111674 from the English Wikipedia page's wikibase item."
-    },
-    "range": {
-      "sources": [
-        "wikipedia",
-        "wikipedia-ja"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "The English article lists subspecies from Sakhalin, the Kuril Islands and northern Japan through northeastern Asia, China, Taiwan and northern Indochina to Iran, India, Sri Lanka and the Malay Archipelago; the Japanese article records it as a resident throughout Japan. The country list is a derivation from that prose."
-    },
-    "traits": {
-      "sources": [
-        "wikipedia",
-        "wikipedia-ja",
-        "eltontraits"
-      ],
-      "confidence": "High",
-      "derived": true,
-      "note": "Mass 513.14 g is the EltonTraits BirdFuncDat BodyMass-Value for Corvus macrorhynchos; the English article gives a wider 450-1000 g. Length 57 cm is the Japanese article's figure; the English article gives 46-59 cm. Locomotion Walk and Fly: crows walk. Diet follows EltonTraits (invertebrate 20, vertebrate-ectotherm 10, vertebrate-endotherm 10, carrion 30, fruit 20, seed 10), mapped to invertebrate 0.3, vertebrate 0.1, carrion 0.3, fruit 0.2, seed 0.1. Lifespan 10 years is the lower bound of the Japanese article's 'about 10 to 20 years in the wild'. Wingspan_m 1.15 is Wikidata P2050 for this item (115 cm), which agrees with the Italian Wikipedia's 'apertura alare di 100-130 cm'. Size class Small follows the schema's mass thresholds (< 1 kg) even though the bird is large for a passerine."
-    },
-    "habitat": {
-      "sources": [
-        "wikipedia",
-        "wikipedia-ja"
-      ],
-      "confidence": "High",
-      "note": "The English article calls the species very adaptable and able to live on a wide range of foods including refuse; the Japanese article says it is omnivorous, more carnivorous than the carrion crow, and resident in cities. Use ground 0.4 / arboreal 0.6, shelter on a perch, and resources follow the omnivorous diet and the stick-platform nest."
-    },
-    "seasonal": {
-      "sources": [
-        "wikipedia",
-        "wikipedia-ja"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "The Japanese article records it as a resident throughout Japan and the English article notes it nests in spring; the breeding window and juvenile duration are a judgement, as is the post-fledging dispersal phase."
-    },
-    "vocalizations": {
-      "sources": [
-        "wikipedia",
-        "wikipedia-ja"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "The Japanese article states the large-billed crow's voice is lower than the carrion crow's; the English article does not describe calls. The deep caw, the rattle and the alarm caw are a judgement mapping the crow's known repertoire onto the program's slots; crows have no true song, so the caw fills the song slot."
-    },
-    "look": {
-      "sources": [
-        "wikipedia",
-        "wikipedia-ja"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "The article describes a large-billed crow with a big bill (the Japanese article gives a 60 mm bill and a 57 cm body) and the Japanese article notes a purple gloss on the wing coverts. The modelled gloss box carries that sheen; the large beak_ratio reflects the bill. Proportions and palette are judgement."
-    },
-    "behavior": {
-      "sources": [
-        "wikipedia",
-        "wikipedia-ja"
-      ],
-      "confidence": "Low",
-      "derived": true,
-      "note": "Authored parameters for the shared perching-songbird program: food_tag invertebrate is the closest single tag for an omnivore that also scavenges, song and alarm bind the caw and the alarm caw, and nest months bracket the spring breeding season."
+      "confidence": "High"
     },
     "conservation": {
       "sources": [
-        "wikidata"
+        "wikipedia"
       ],
       "confidence": "High",
-      "note": "Wikidata P141 on this item is Q211005 (least concern)."
+      "note": "IUCN Least Concern."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Range from Wikipedia: widespread across Asia."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Mass 450-1000g from Wikipedia."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Length 46-59 cm from Wikipedia."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Diet: omnivorous - carrion, small vertebrates, invertebrates, fruit."
+    },
+    "vocalizations": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Harsh 'kaa' call typical of crows."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "All-black plumage with purple sheen; large bill; proportions authored."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared perching-songbird program."
+    },
+    "habitat.use": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored: ground and arboreal foraging."
+    },
+    "habitat.shelter_tag": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored: roosts in trees."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Weights are judgement based on diet description."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Common in urban and suburban areas."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Largely sedentary with some migration."
+    },
+    "seasonal.phases": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored: breeding and flocking phases."
+    },
+    "seasonal.life_stages": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored: egg, juvenile, adult."
+    },
+    "traits.activity_pattern": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: diurnal bird."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.defense": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: flees from threats."
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: walks, hops and flies."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Approximate range from description."
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Judgement: platform or cup nest."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.size_class": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "From mass_kg."
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Pairs or small flocks."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.wariness": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored judgement."
+    },
+    "traits.wingspan_m": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored estimate."
+    },
+    "traits.lifespan_y": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored estimate."
     }
   },
   "contributors": [
     {
-      "name": "speeeecies contributors",
-      "agent": "opencode"
+      "name": "speeeecies maintainers",
+      "agent": "claude-code"
     }
   ]
 }
