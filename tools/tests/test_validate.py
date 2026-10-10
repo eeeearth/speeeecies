@@ -148,12 +148,21 @@ def test_density_order(validate_module, fake_root, make_species):
     assert "DensityOrder" in codes(sr.findings)
 
 
-def test_fly_requires_wingspan_and_flight(validate_module, fake_root, make_species):
+def test_fly_can_use_winged_body_plan_span_default_but_requires_flight(validate_module, fake_root, make_species):
+    species = make_species()
+    species["traits"]["locomotion_modes"] = ["Walk", "Fly"]
+    species["look"]["body_plan"] = "biped_winged"
+    sr = run_one(validate_module, fake_root, species)
+    assert "wingspan_m" not in species["traits"]
+    assert "FlyNeedsWingspan" not in codes(sr.findings)
+    assert "FlyNeedsFlight" in codes(sr.findings)
+
+
+def test_fly_requires_wingspan_without_a_winged_body_plan_default(validate_module, fake_root, make_species):
     species = make_species()
     species["traits"]["locomotion_modes"] = ["Walk", "Fly"]
     sr = run_one(validate_module, fake_root, species)
     assert "FlyNeedsWingspan" in codes(sr.findings)
-    assert "FlyNeedsFlight" in codes(sr.findings)
 
 
 def test_speed_ms_needs_locomotion_mode(validate_module, fake_root, make_species):
