@@ -256,26 +256,151 @@
     },
     "extra_parts": [
       {
-        "name": "wing_left",
+        "name": "wing",
         "parent": "body",
         "offset": [
           0.0,
           0.1,
-          0.45
+          1.64
         ],
         "size": [
           0.7,
-          0.06,
-          0.5
+          0.04,
+          2.3
         ],
         "color": "markings",
         "mirror": true
       }
     ],
     "poses": {
-      "idle": {},
-      "fly": {},
-      "rest": {}
+      "idle": {
+        "keyframes": [
+          {
+            "t": 0.0,
+            "parts": {
+              "wing_right": {
+                "rot_deg": [
+                  0,
+                  75,
+                  0
+                ]
+              },
+              "wing_left": {
+                "rot_deg": [
+                  0,
+                  -75,
+                  0
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "fly": {
+        "cycle_s": 0.8,
+        "amplitude": 0.0,
+        "keyframes": [
+          {
+            "t": 0.0,
+            "parts": {
+              "wing_right": {
+                "rot_deg": [
+                  0,
+                  0,
+                  0
+                ]
+              },
+              "wing_left": {
+                "rot_deg": [
+                  0,
+                  0,
+                  0
+                ]
+              }
+            }
+          },
+          {
+            "t": 0.25,
+            "parts": {
+              "wing_right": {
+                "rot_deg": [
+                  55,
+                  0,
+                  0
+                ]
+              },
+              "wing_left": {
+                "rot_deg": [
+                  -55,
+                  0,
+                  0
+                ]
+              }
+            }
+          },
+          {
+            "t": 0.5,
+            "parts": {
+              "wing_right": {
+                "rot_deg": [
+                  0,
+                  0,
+                  0
+                ]
+              },
+              "wing_left": {
+                "rot_deg": [
+                  0,
+                  0,
+                  0
+                ]
+              }
+            }
+          },
+          {
+            "t": 0.75,
+            "parts": {
+              "wing_right": {
+                "rot_deg": [
+                  -55,
+                  0,
+                  0
+                ]
+              },
+              "wing_left": {
+                "rot_deg": [
+                  55,
+                  0,
+                  0
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "rest": {
+        "keyframes": [
+          {
+            "t": 0.0,
+            "parts": {
+              "wing_right": {
+                "rot_deg": [
+                  0,
+                  75,
+                  0
+                ]
+              },
+              "wing_left": {
+                "rot_deg": [
+                  0,
+                  -75,
+                  0
+                ]
+              }
+            }
+          }
+        ]
+      }
     }
   },
   "sources": [
@@ -399,7 +524,7 @@
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "Small glossy brown mouse-eared bat with paler belly from the Description section; exact hex values, proportions and the mirrored wing boxes on the quadruped plan are authored judgement."
+      "note": "Small brown bat with a paler belly, based on the cited species description. Exact colours, proportions, mirrored wing boxes, wing folding and the fly-cycle keyframes are authored judgement for the block model."
     }
   }
 }
