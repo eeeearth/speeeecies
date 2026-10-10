@@ -365,6 +365,48 @@
             "gbif"
           ]
         }
+      },
+      {
+        "region": "US-OR",
+        "monthly": [
+          0.86,
+          1.0,
+          0.92,
+          0.86,
+          0.67,
+          0.64,
+          0.78,
+          0.81,
+          0.73,
+          0.86,
+          0.86,
+          0.89
+        ],
+        "method": "gbif_share",
+        "observations": 489031,
+        "sources": [
+          "gbif-activity-us-or"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "skipped": "ISO 3166-2 region given without --inat-place-id; pass --inat-place-id <id> (look it up at https://www.inaturalist.org/places) to query iNaturalist for this subdivision"
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.38_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=8323485&gadmGid=USA.38_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.38_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 489031,
+            "usable": true
+          },
+          "used": [
+            "gbif"
+          ]
+        }
       }
     ]
   },
@@ -564,6 +606,15 @@
       "license": "CC-BY-4.0",
       "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
       "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-or",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=8323485&gadmGid=USA.38_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Haemorhous mexicanus in US-OR",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-10) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-10",
       "kind": "api"
     }
   ],
@@ -857,6 +908,13 @@
       ],
       "confidence": "High",
       "note": "Description section: 'Calls from flight include a soft cheet or wheat, with perched birds giving a more drawn-out version.' It fills the shared program's alarm slot because the source describes no separate alarm call; loudness and cooldown are judgement."
+    },
+    "activity.US-OR": {
+      "sources": [
+        "gbif-activity-us-or"
+      ],
+      "confidence": "Medium",
+      "note": "GBIF-only US-OR curve regenerated 2026-10-10. CC0 and CC BY records were used at tier A where at least 300 matched; jackrabbit and frog use tier C because tier-A samples do not meet the 300-record minimum."
     }
   },
   "contributors": [
