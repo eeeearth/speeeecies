@@ -3,6 +3,8 @@
 import json
 from pathlib import Path
 
+import jsonschema
+
 ROOT = Path(__file__).resolve().parents[2]
 
 NEW_SLUGS = {
@@ -103,7 +105,35 @@ def test_new_bird_programs_do_not_run_unsupported_month_gates_or_undeclared_gait
 
     egret = load(ROOT / "species/bubulcus-ibis/behavior.json")
     assert "gallop" not in json.dumps(egret)
-    assert "sun_elevation_between_deg" not in json.dumps(egret)
+
+
+def test_cattle_egret_uses_supported_flight_for_escape_and_rests_after_sunset():
+    record = load(ROOT / "species/bubulcus-ibis/species.json")
+    program = load(ROOT / "species/bubulcus-ibis/behavior.json")
+    modes = {mode.lower() for mode in record["traits"]["locomotion_modes"]}
+    params = dict(program["params"])
+    params.update(record["behavior"]["params"])
+
+    def resolve(value):
+        if isinstance(value, str) and value.startswith("${") and value.endswith("}"):
+            return params[value[2:-1]]
+        return value
+
+    flee = program["states"]["flee"]["action"]
+    assert flee["do"] == "flee"
+    assert resolve(flee["gait"]) == "fly"
+    assert resolve(flee["gait"]) in modes
+
+    night_transition = next(
+        transition for transition in program["transitions"]
+        if transition["from"] == "idle"
+        and transition["to"] == "rest"
+        and "sun_elevation_between_deg" in transition["when"]
+    )
+    low, high = night_transition["when"]["sun_elevation_between_deg"]
+    assert low <= -12 <= high  # nighttime sample transitions idle -> rest
+    assert not low <= 10 <= high  # daytime sample does not trigger night rest
+    assert program["states"]["rest"]["action"]["do"] == "rest"
 
 
 def test_corrected_eltontraits_diets_match_primary_rows_and_resources():
@@ -156,9 +186,9 @@ def test_gbif_taxon_authorship_is_current_for_new_records():
 
 def test_unknown_seasonality_can_remain_empty_instead_of_inventing_months():
     schema = load(ROOT / "schema/v0.1/species.schema.json")
-    assert "minItems" not in schema["$defs"]["Seasonal"]["properties"]["phases"]
     for slug in NEW_SLUGS:
         record = load(ROOT / "species" / slug / "species.json")
+        jsonschema.validate(record, schema)
         assert record["seasonal"]["phases"] == []
         assert record["provenance"]["seasonal.phases"]["derived"] is True
         assert "no locally supported" in record["provenance"]["seasonal.phases"]["note"].lower()

@@ -3,13 +3,13 @@
   "format": "speeeecies/behavior",
   "id": "fsm-bubulcus-ibis-local-v1",
   "kind": "fsm",
-  "description": "Species-local cattle egret program: walks while foraging, drinks, flees by walking, and rests when energy is low. No fixed sun-angle rest window is asserted.",
+  "description": "Species-local cattle egret program: walks while foraging, flies to escape threats, and rests at night or when energy is low. The night transition uses an authored sun-elevation threshold.",
   "params": {
     "flee_m": 20,
     "calm_m": 40,
     "food_tag": "invertebrate",
     "food_m": 40,
-    "flee_gait": "walk",
+    "flee_gait": "fly",
     "forage_gait": "walk"
   },
   "initial": "idle",
@@ -179,6 +179,14 @@
           }
         ]
       }
+    },
+    {
+      "from": "idle",
+      "to": "rest",
+      "when": {
+        "sun_elevation_between_deg": [-90, -6]
+      },
+      "priority": 80
     },
     {
       "from": "idle",
