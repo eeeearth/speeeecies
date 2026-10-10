@@ -31,8 +31,8 @@ REPO=$(git rev-parse --show-toplevel 2>/dev/null || true)
 GH_REPO=${GH_REPO:-$(gh repo view --json nameWithOwner -q .nameWithOwner 2>/dev/null || echo "")}
 [ -n "$GH_REPO" ] || { echo "cannot determine the GitHub repo; set GH_REPO=<owner/name>" >&2; exit 2; }
 
-# WORKTREE_ROOT is a shared parent for project worktrees. Keep this fleet in its
-# own namespace; by default use the workspace root under HOME.
+# WORKTREE_ROOT is this fleet's project namespace. By default it lives under the
+# workspace root in HOME; callers can override it with another namespace path.
 WORKTREE_ROOT=${WORKTREE_ROOT:-$HOME/worktrees/speeeecies}
 STATE_DIR=${FLEET_STATE_DIR:-$HOME/.local/state/speeeecies-fleet}
 AGENT_BIN=${AGENT_BIN:-opencode}
