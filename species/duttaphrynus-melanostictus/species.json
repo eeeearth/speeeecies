@@ -101,6 +101,24 @@
       "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
       "accessed": "2026-10-01",
       "kind": "api"
+    },
+    {
+      "id": "gbif-activity-lk",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2422538&country=LK&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Duttaphrynus melanostictus in LK",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-10) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-10",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-my",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2422538&country=MY&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Duttaphrynus melanostictus in MY",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-10) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-10",
+      "kind": "api"
     }
   ],
   "traits": {
@@ -533,6 +551,22 @@
       "confidence": "Low",
       "derived": true,
       "note": "Authored parameters for the shared nocturnal-anuran program, with monsoon call months."
+    },
+    "activity.LK": {
+      "sources": [
+        "gbif-activity-lk"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Normalized monthly GBIF occurrence counts (tier A; CC0 1.0 and CC BY 4.0 filters; n=486); ectotherm raw-count normalization. Counts describe recorded observations, not abundance or breeding dates."
+    },
+    "activity.MY": {
+      "sources": [
+        "gbif-activity-my"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Normalized monthly GBIF occurrence counts (tier A; CC0 1.0 and CC BY 4.0 filters; n=396); ectotherm raw-count normalization. Counts describe recorded observations, not abundance or breeding dates."
     }
   },
   "activity": {
@@ -582,6 +616,90 @@
           },
           "used": [
             "inat",
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "LK",
+        "monthly": [
+          0.5,
+          0.19,
+          0.26,
+          0.62,
+          1.0,
+          0.36,
+          0.27,
+          0.62,
+          0.11,
+          0.3,
+          0.19,
+          0.3
+        ],
+        "method": "gbif_raw",
+        "observations": 486,
+        "sources": [
+          "gbif-activity-lk"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "skipped": "Not queried: GBIF tier A provided at least 300 records under CC0/CC BY filters; avoids mixed-license iNaturalist data."
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "country",
+              "LK"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2422538&country=LK&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": null,
+            "total": 486,
+            "usable": true
+          },
+          "used": [
+            "gbif"
+          ]
+        }
+      },
+      {
+        "region": "MY",
+        "monthly": [
+          0.13,
+          0.21,
+          0.23,
+          0.35,
+          0.08,
+          1.0,
+          0.26,
+          0.33,
+          0.19,
+          0.33,
+          0.18,
+          0.31
+        ],
+        "method": "gbif_raw",
+        "observations": 396,
+        "sources": [
+          "gbif-activity-my"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "skipped": "Not queried: GBIF tier A provided at least 300 records under CC0/CC BY filters; avoids mixed-license iNaturalist data."
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "country",
+              "MY"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2422538&country=MY&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": null,
+            "total": 396,
+            "usable": true
+          },
+          "used": [
             "gbif"
           ]
         }
