@@ -79,8 +79,7 @@
     ],
     "length_m": 1.1,
     "shoulder_height_m": 0.42,
-    "lifespan_y": 20,
-    "home_range_ha": 176,
+    "lifespan_y": 11,
     "diet": {
       "fruit": 0.4,
       "invertebrate": 0.2,
@@ -152,9 +151,9 @@
     "phases": [
       {
         "name": "mating",
-        "start": "04-01",
-        "end": "08-31",
-        "note": "Conceptions derived from the September-February birth window minus the ~165-day gestation."
+        "start": "03-20",
+        "end": "09-16",
+        "note": "Approximate conception window derived by subtracting about 165 days of gestation from the September-February birth window; dates can vary by a day with leap years and are a calendar synthesis."
       },
       {
         "name": "young",
@@ -373,12 +372,12 @@
     ]
   },
   "behavior": {
-    "program": "fsm-vervet-troop-forager-v1",
+    "program": "fsm-vervet-forager-v1",
     "params": {
       "flee_m": 12,
       "calm_m": 30,
       "food_tag": "invertebrate",
-      "sentinel_interval_s": 300,
+      "alert_min_dwell_s": 300,
       "social_distance_m": 15
     }
   },
@@ -599,6 +598,26 @@
       "accessed": "2026-09-30",
       "attribution": "Wikipedia contributors, \"Vervet monkey\", English Wikipedia, CC BY-SA 4.0",
       "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "chlorocebus-wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Chlorocebus",
+      "title": "Wikipedia: Chlorocebus",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-10",
+      "attribution": "Wikipedia contributors, \"Chlorocebus\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "vervet-alarm-context",
+      "url": "https://doi.org/10.1007/s10071-023-01767-0",
+      "title": "Context-dependent alarm responses in wild vervet monkeys",
+      "license": "CC-BY-4.0",
+      "kind": "literature",
+      "accessed": "2026-10-10",
+      "attribution": "Deshpande, A., van de Waal, E. & Zuberbühler, K. (2023), Context-dependent alarm responses in wild vervet monkeys, Animal Cognition 26:1199-1208, CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
     },
     {
       "id": "frwiki",
@@ -868,35 +887,27 @@
       "derived": true,
       "note": "Nose to tail tip. Afrikaans Wikipedia gives average total length 115 cm (males) and 105 cm (females), mean 1.10 m; consistent with Wikipedia's head-body averages (49 cm male, 43 cm female) plus a tail longer than the body."
     },
+    "traits.lifespan_y": {
+      "sources": [
+        "chlorocebus-wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The Chlorocebus genus article gives a wild life-expectancy range of 10-12 years for green monkeys. The scalar is the range midpoint, (10 + 12) / 2 = 11 years; the species article's 'up to 20 years' is a maximum and is not used as typical lifespan."
+    },
     "traits.shoulder_height_m": {
       "sources": [],
       "confidence": "Low",
       "derived": true,
       "note": "Judgement: a semi-terrestrial quadruped of ~0.46 m head-body length stands about 0.42 m at the shoulder; no open source gives a shoulder height."
     },
-    "traits.lifespan_y": {
-      "sources": [
-        "afwiki"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Afrikaans Wikipedia ('Blouaap'): 'life expectancy can be up to 20 years'; used as the wild lifespan."
-    },
-    "traits.home_range_ha": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Low",
-      "derived": true,
-      "note": "Wikipedia: 'Annual home range size has been observed to be as high as 176 ha'; an upper bound (other sources give ~5-103 ha)."
-    },
     "traits.diet": {
       "sources": [
         "eltontraits"
       ],
-      "confidence": "High",
+      "confidence": "Low",
       "derived": true,
-      "note": "EltonTraits Diet-Fruit 40 to 'fruit'; Diet-Inv 20 to 'invertebrate'; Diet-PlantO 20 (leaves, flowers, browse) to 'browse'; Diet-Vunk 20 (unknown vertebrates) to 'vertebrate', matching Wikipedia's account of egg and chick predation."
+      "note": "The MamFuncDat row reports Diet-Fruit 40, Diet-Inv 20, Diet-PlantO 20 and Diet-Vunk 20. Its Diet-Certainty is D1: the source metadata says species-level diet data are missing and the listed proportions are typical for the genus. Fractions are retained and mapped to fruit, invertebrate, browse and vertebrate; the vertebrate fraction is the dataset's unknown-vertebrate category, not a sourced prey identity."
     },
     "traits.social": {
       "sources": [
@@ -982,7 +993,7 @@
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "Wikipedia: a single infant born between September and February after about 165 days' gestation, so conceptions fall roughly April-August; the mating window is derived from the birth window minus gestation."
+      "note": "Wikipedia reports births from September through February after about 165 days' gestation. Subtracting that approximate gestation yields a calendar-synthesis conception interval of about March 20 through September 16; dates vary slightly with leap years."
     },
     "seasonal.life_stages": {
       "sources": [
@@ -1011,10 +1022,12 @@
       "note": "Colours from Wikipedia (black face with a white brow band and cheek fringe, grizzled grey/olive body, white underside, black hands, feet and tail tip); proportions and the brow and tail-tip extra parts are authored to match a long-tailed semi-terrestrial monkey."
     },
     "behavior": {
-      "sources": [],
+      "sources": [
+        "vervet-alarm-context"
+      ],
       "confidence": "Low",
       "derived": true,
-      "note": "Authored FSM for a vervet troop: forages, posts a sentinel (alert) for sentinel_interval_s, grooms and rests within social_distance_m of troop-mates, and flees to the trees. The shared programs did not fit (see behavior.json)."
+      "note": "Authored species-local FSM: walks to eat the nearest invertebrate-tagged resource, enters an alert emote when hunger is below 0.3 for alert_min_dwell_s, may groom if a conspecific is within social_distance_m, rests at shelter, and uses a walking flee action under threat. The FSM has no sentinel role, alarm-call action, coordinated troop feeding, tree-directed escape, or proximity rule for resting. Deshpande et al. (2023) report male alarm barks during terrestrial-predator encounters and intergroup aggression, and context-dependent listener responses; this is why the visual alert emote is not described as an alarm call."
     }
   },
   "contributors": [
