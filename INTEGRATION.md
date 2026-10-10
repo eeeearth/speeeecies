@@ -49,10 +49,12 @@ Behavior and season limits: Anna's hummingbird feeds with the supported flight
 gait because schema v0.1 has no separate hover pose; its local behavior omits
 the generic ground-hop and nest-month branches. The Douglas's squirrel uses the
 shared ground-forager program as a limited walk/forage/rest/flee approximation;
-it does not simulate climbing or cone caching. The frog uses the shared
-nocturnal anuran FSM with calls limited to March through May. That is the local
-study's peak calling survey window, not a claim that calling cannot occur
-outside it. No frog hibernation threshold is asserted.
+it does not simulate climbing or cone caching. The frog uses a species-local
+copy of the nocturnal anuran FSM, with the call gate explicitly covering March,
+April, and May. The shared generic FSM remains
+unchanged. That interval is the local study's peak calling survey window, not
+a claim that calling cannot occur outside it. No frog hibernation threshold is
+asserted.
 
 Validation includes the Vancouver locale report, repository self-check, focused
 regression tests for the corrected diet and resolved frog month gate, and

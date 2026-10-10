@@ -32,10 +32,9 @@ def test_annas_hummingbird_uses_flight_feeding_without_nest_gate():
     assert not any("month_in" in n for n in nodes)
 
 
-def test_pacific_chorus_frog_call_gate_resolves_to_local_peak_survey_months():
+def test_pacific_chorus_frog_call_gate_includes_march_through_may_only():
     species = load_species("pseudacris-regilla")
-    params = species["behavior"]["params"]
-    program = json.loads((ROOT / "behaviors/fsm-anuran-nocturnal-v1.json").read_text())
+    program = json.loads((ROOT / "species/pseudacris-regilla/behavior.json").read_text())
     call_gate = next(
         condition["month_in"]
         for transition in program["transitions"]
@@ -43,8 +42,25 @@ def test_pacific_chorus_frog_call_gate_resolves_to_local_peak_survey_months():
         for condition in transition["when"]["all"]
         if "month_in" in condition
     )
-    resolved = [params[value[2:-1]] if isinstance(value, str) and value.startswith("${") else value for value in call_gate]
-    assert resolved == [3, 5]
+
+    assert call_gate == [3, 4, 5]
+    assert {month: month in call_gate for month in (2, 3, 4, 5, 6)} == {
+        2: False,
+        3: True,
+        4: True,
+        5: True,
+        6: False,
+    }
+    assert species["behavior"]["program"] == program["id"]
+    shared = json.loads((ROOT / "behaviors/fsm-anuran-nocturnal-v1.json").read_text())
+    shared_gate = next(
+        condition["month_in"]
+        for transition in shared["transitions"]
+        if transition["to"] == "call"
+        for condition in transition["when"]["all"]
+        if "month_in" in condition
+    )
+    assert shared_gate == ["${call_m1}", "${call_m2}"]
     assert not species["seasonal"].get("triggers")
     assert species["seasonal"]["strategy"] == "ActiveYearRound"
 
