@@ -270,9 +270,15 @@ def check_traits(species: dict, findings: list[Finding]) -> None:
             )
 
     if "Fly" in locomotion_modes:
-        if not is_number(traits.get("wingspan_m")):
+        winged_body_plan = species.get("look", {}).get("body_plan") in {"biped_winged", "hexapod_winged"}
+        if not is_number(traits.get("wingspan_m")) and not winged_body_plan:
             findings.append(
-                Finding("error", "FlyNeedsWingspan", "traits.wingspan_m", "Fly locomotion needs wingspan_m")
+                Finding(
+                    "error",
+                    "FlyNeedsWingspan",
+                    "traits.wingspan_m",
+                    "Fly locomotion needs wingspan_m unless the winged body plan supplies a drawing default",
+                )
             )
         if traits.get("flight") == "None":
             findings.append(

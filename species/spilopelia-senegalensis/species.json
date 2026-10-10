@@ -113,7 +113,6 @@
     "size_class": "Small",
     "mass_kg": 0.082,
     "length_m": 0.25,
-    "wingspan_m": 0.39,
     "lifespan_y": 3,
     "diet": {
       "seed": 0.8,
@@ -413,12 +412,11 @@
     ]
   },
   "behavior": {
-    "program": "bt-perching-songbird-v1",
+    "program": "bt-laughing-dove-v1",
     "params": {
       "flee_m": 6,
       "food_tag": "seed",
       "song": "coo",
-      "alarm": "coo",
       "nest_m1": 5,
       "nest_m2": 11
     }
@@ -444,11 +442,11 @@
       "torso_aspect": 1.9,
       "leg_length_ratio": 0.24,
       "head_scale": 0.64,
-      "neck_angle_deg": 8,
+      "neck_angle_deg": 30,
       "tail_ratio": 0.7,
       "wing_aspect": 2.8,
       "beak_ratio": 0.2,
-      "girth_ratio": 1.05
+      "girth_ratio": 0.7
     },
     "palette": {
       "body": "#a98267",
@@ -495,19 +493,36 @@
         "color": "accent"
       },
       {
-        "name": "neck_checker",
+        "name": "neck_checker_front",
         "parent": "head",
         "offset": [
-          -0.5,
-          0.15,
-          0
+          -0.35,
+          -0.1,
+          0.55
         ],
         "size": [
-          0.35,
-          0.3,
-          1.3
+          0.24,
+          0.24,
+          0.18
         ],
-        "color": "markings"
+        "color": "accent",
+        "mirror": true
+      },
+      {
+        "name": "neck_checker_rear",
+        "parent": "head",
+        "offset": [
+          -0.05,
+          0.1,
+          0.55
+        ],
+        "size": [
+          0.24,
+          0.24,
+          0.18
+        ],
+        "color": "accent",
+        "mirror": true
       }
     ],
     "poses": {
@@ -557,28 +572,6 @@
       "accessed": "2026-09-30",
       "attribution": "Wikipédiens, « Tourterelle maillée », Wikipédia français, CC BY-SA 4.0",
       "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
-    },
-    {
-      "id": "wikipedia-rock-dove",
-      "url": "https://en.wikipedia.org/wiki/Rock_dove",
-      "title": "Wikipedia: Rock dove",
-      "license": "CC-BY-SA-4.0",
-      "kind": "webpage",
-      "accessed": "2026-09-30",
-      "attribution": "Wikipedia contributors, \"Rock dove\", English Wikipedia, CC BY-SA 4.0",
-      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
-      "note": "Used only to calibrate the wingspan multiplier, not as a source of any datum about Spilopelia senegalensis."
-    },
-    {
-      "id": "wikipedia-stock-dove",
-      "url": "https://en.wikipedia.org/wiki/Stock_dove",
-      "title": "Wikipedia: Stock dove",
-      "license": "CC-BY-SA-4.0",
-      "kind": "webpage",
-      "accessed": "2026-09-30",
-      "attribution": "Wikipedia contributors, \"Stock dove\", English Wikipedia, CC BY-SA 4.0",
-      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
-      "note": "Used only to calibrate the wingspan multiplier, not as a source of any datum about Spilopelia senegalensis."
     },
     {
       "id": "itis",
@@ -778,7 +771,7 @@
       ],
       "confidence": "High",
       "derived": true,
-      "note": "AVONET (AVONET1_BirdLife sheet) gives Mass = 82.13 g for Spilopelia senegalensis, with Mass.Source = 'Dunning' (the CRC Handbook of Avian Body Masses) and Inference = 'NO', i.e. measured, not imputed; n = 9 individuals. Recorded as 0.082 kg. Non-open sources for this species give 70-92 g and 94-124 g, so this value sits inside both, but those pages carry no open licence and were not used as sources."
+      "note": "AVONET (AVONET1_BirdLife sheet) gives Mass = 82.13 g for Spilopelia senegalensis, with Mass.Source = 'Dunning' (the CRC Handbook of Avian Body Masses), Inference = 'NO' (measured, not imputed), and n = 9 individuals. Converted to 0.082 kg. The AVONET measurement is retained without claiming that it matches other reported mass ranges."
     },
     "traits.length_m": {
       "sources": [
@@ -788,16 +781,6 @@
       "confidence": "High",
       "derived": true,
       "note": "The English article gives 'typically 25 cm (9.8 in) in length'; the French article gives 'environ 27 centimètres' with a tail of 10.5-12 cm. The English figure is used because it is the one stated as typical."
-    },
-    "traits.wingspan_m": {
-      "sources": [
-        "avonet",
-        "wikipedia-rock-dove",
-        "wikipedia-stock-dove"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "No open-licensed source gives a wingspan for this species (Wikidata carries no P2050 for Q391198, and the pages that do give one are not openly licensed), so it is estimated from AVONET's wing measurements. AVONET gives Wing.Length (maximum chord) = 132.2 mm for Spilopelia senegalensis. Wingspan is not twice the chord, because a swept wing's straight-line chord is shorter than the arc it describes; the multiplier span / (2 x chord) was calibrated on two congeners for which AVONET also gives the chord and for which an openly licensed wingspan figure exists: Columba livia 650 mm (midpoint of the Rock dove article's 62-68 cm) against an AVONET chord of 219.6 mm gives 1.480, and Columba palumbus 740 mm (midpoint of the Stock dove article's 68-80 cm) against 246.4 mm gives 1.502. Taking their mean, 1.49, gives 132.2 x 1.49 x 2 = 394 mm, recorded as 0.39 m."
     },
     "traits.lifespan_y": {
       "sources": [],
@@ -920,7 +903,7 @@
         "wikipedia-laughing-dove"
       ],
       "confidence": "High",
-      "note": "'The chuckling call is a low rolling croo-doo-doo-doo-doo with a rising and falling amplitude', described as 'more musical ... than the call of most doves'. It is given year-round and chiefly by the male 'in courtship display ... follows the female with head bobbing displays while cooing'. Mapped to the schema's 'Song' context (the closest enum value to a year-round display and pair-bonding call) since the schema has no dedicated 'Coo' context. Used for the behaviour program's alarm slot as well, because the sources describe no separate alarm call and the chuckling call is the only call this record can document."
+      "note": "The chuckling call is a low rolling croo-doo-doo-doo-doo with rising and falling amplitude, described as more musical than the call of most doves. It is given year-round, chiefly by males following females in courtship displays and by pairs calling to one another. Mapped to Song, the closest available context for this display and pair-bonding call; no alarm context is inferred from it."
     },
     "look": {
       "sources": [
@@ -929,13 +912,13 @@
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "Plumage follows the nominate African form: 'pinkish brown on the underside with a lilac tinged head and neck', 'the head and underparts are pinkish, shading to buff on the lower abdomen', 'A chequered rufous and grey patch is found on the sides of the neck of adults', 'The upper parts are brownish with a bluish-grey band along the wing', 'The tail is graduated and the outer feathers are tipped in white', 'The legs are red'. Young birds lack the neck markings. Proportions are judgement, anchored on the description 'long-tailed, slim pigeon' and the French article's tail of 10.5-12 cm against a 25 cm total (so the tail is roughly 0.7x the torso, hence tail_ratio 0.7 against the biped_winged default of 0.5), on AVONET's small fine bill (culmen 17.8 mm, hence beak_ratio 0.2), and on AVONET's tarsus of 18.9 mm. The five-slot palette cannot carry a dark iris and red legs as separate colours, so the eye slot carries the red that the sources document for the legs and the iris takes the dark markings slot. Subspecies differ in the shade of the neck and wing and 'populations from more arid zones being paler', which this single model does not represent. The bluish-grey band is an extra plate laid on the upper surface of each folded wing, so it reads from above and from the side, and the chequered neck patch is placed at the nape rather than on the crown, because in this body plan the neck sits down inside the torso (the head's lower half is buried) so a patch on the sides of the neck would be hidden inside the body box."
+      "note": "Plumage follows the nominate African form: pinkish-brown underside with lilac-tinged head and neck, buff lower abdomen, brown upperparts, a bluish-grey wing band, white-tipped graduated tail, red legs, and an adult rufous-and-grey checker patch on each side of the neck; young birds lack the neck marks. Proportions are judgement, guided by the description 'long-tailed, slim pigeon', the French article's 10.5-12 cm tail against about 27 cm total length, AVONET's 17.8 mm culmen, and 18.9 mm tarsus. The narrow body and raised head are species-specific look judgements (girth_ratio 0.7 and neck_angle_deg 30) that expose the head/neck junction in the shared biped_winged plan, which has no separate neck part. Two accent tiles on each lateral side sit over the rufous head colour to suggest the grey-and-rufous checker patch; this places the mark on the sides, not the nape. The five-slot palette cannot represent a dark iris and red legs separately, so the eye slot carries the documented leg red and the iris uses the dark markings slot. Subspecies vary in shade, including paler arid-zone populations, which this one model does not represent."
     },
     "behavior": {
       "sources": [],
       "confidence": "Low",
       "derived": true,
-      "note": "Authored parameters for the shared perching-songbird program. food_tag = seed because the diet is seeds of grasses taken off the ground; flee_m = 6 is judgement for a tame-but-flushable ground dove; song = coo matches the only documented call, and is used for the alarm slot too because no separate alarm call is described; nest_m1/nest_m2 = 5-11 put the nest-building window on the southern African breeding window (May to November in Zimbabwe), which the program's month_in condition spans inclusively. The program's ground-foraging act is gaited 'hop', which is not how a dove feeds - this is a property of the shared program, not of this record."
+      "note": "A species-specific copy of the shared perching-songbird tree preserves perching, nesting, singing and flight responses while using walk for ground-feeding, consistent with this record's Walk locomotion mode. Its threat response flees without emitting the courtship coo as an alarm, since no separate alarm call is sourced. food_tag = seed follows the documented grass seeds; flee_m = 6 is judgement; nest_m1/nest_m2 = 5-11 map the Zimbabwe May-November breeding window to the tree's inclusive month test."
     }
   },
   "contributors": [
