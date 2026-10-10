@@ -1,0 +1,18 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "_comment": "Best-effort OpenCode command policy for a delegated fleet agent. No catch-all bash allow is configured. These deny patterns are not a security boundary when arbitrary bash, scripts, or external tools are available: the fleet must run with credentials scoped to its branch/repository and repository protections that block merging and protected-branch writes. NOTE: no config surface gates the `task` tool. permission.task=deny, tools.task=false and agent.task.tools.task=false were each probed with a live agent, and all three were accepted silently and then ignored: the agent launched an Explore subagent anyway. The no-fan-out rule therefore lives in the brief as an instruction.",
+  "permission": {
+    "bash": {
+      "gh pr merge*": "deny",
+      "gh pr merge": "deny",
+      "gh pr ready": "deny",
+      "gh api -X PUT /repos/*/pulls/*/merge": "deny",
+      "git push origin main*": "deny",
+      "git push -u origin main*": "deny",
+      "git push --force*": "deny",
+      "git push -f*": "deny",
+      "git commit --amend*": "deny",
+      "gh pr edit --add-reviewer jt55401*": "deny"
+    }
+  }
+}
