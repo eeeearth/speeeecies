@@ -49,15 +49,17 @@ This keeps validation offline while giving reviewers a reproducible source.
 
 ## Verification
 
-The source change was rebased onto public `main` at `e8a76ad` before the
-checks below. The final diff retains the same seven-file functional scope.
+The source change was rebased onto public `main` at `fdd777e` before the
+checks below. The `INTEGRATION.md` add/add conflict was resolved by retaining
+main's PR #93 note above and this Atlanta handoff. Main's unrelated winged
+body-plan validation change remains intact. The diff retains seven files.
 
 | Command | Result |
 |---|---|
-| `uv run --with pytest --with 'jsonschema>=4.18' pytest -q tools/tests` | 190 passed, including typo rejection and a valid declared tag |
+| `uv run --with pytest --with 'jsonschema>=4.18' pytest -q -p no:cacheprovider tools/tests/test_locale.py tools/tests/test_validate.py` | 106 passed, including typo rejection and a valid declared tag |
 | `uv run tools/validate.py --locale ga-atlanta --report` | Passed; 12 species, 12 flora taxa, 3 evergreens, no errors |
 | `uv run tools/validate.py --locale all --json` | Passed; 33 locales, no locale or flora errors |
-| `uv run tools/validate.py --self-check` | Passed; 553 files scanned, 0 findings |
+| `uv run tools/validate.py --self-check` | Passed; 586 files scanned, 0 findings |
 | `python3 tools/sync_resource_tags.py <seeeeds ids.rs> <pinned revision> --check` | Snapshot matches the clean upstream revision named in the JSON |
 | `git diff --check` | Passed |
 
