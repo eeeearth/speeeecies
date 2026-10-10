@@ -1,0 +1,681 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Rhinella ornata",
+  "slug": "rhinella-ornata",
+  "common_names": {
+    "en": "Ornate forest toad",
+    "pt": "sapo-mata-encabulado"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Amphibia",
+    "order": "Anura",
+    "family": "Bufonidae",
+    "genus": "Rhinella",
+    "authority": "(Spix, 1824)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 5216887,
+    "inat_taxon_id": 67135,
+    "wikidata": "Q27987794"
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "BR"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk",
+      "Hop"
+    ],
+    "thermoregulation": "Ectotherm",
+    "skin": "Moist",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "Complete",
+    "nest_type": "None",
+    "perching": false,
+    "size_class": "Tiny",
+    "mass_kg": 0.0121,
+    "length_m": 0.0843,
+    "diet": {
+      "invertebrate": 0.93,
+      "browse": 0.07
+    },
+    "social": {
+      "structure": "Solitary",
+      "group_size": [
+        1,
+        1
+      ]
+    },
+    "activity_pattern": "Cathemeral",
+    "defense": "Toxin",
+    "wariness": 0.5,
+    "lifespan_y": 10.0
+  },
+  "habitat": {
+    "use": {
+      "ground": 1.0
+    },
+    "shelter_tag": "leaf_litter",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.93
+      },
+      {
+        "tag": "browse",
+        "kind": "Herbivory",
+        "weight": 0.07
+      },
+      {
+        "tag": "pond",
+        "kind": "Nesting",
+        "weight": 1.0,
+        "months": [
+          8,
+          9,
+          10,
+          11
+        ]
+      },
+      {
+        "tag": "leaf_litter",
+        "kind": "Shelter",
+        "weight": 0.7
+      }
+    ],
+    "requires": [
+      {
+        "resource_within_m": 1500,
+        "tag": "pond"
+      }
+    ],
+    "suitability": {
+      "combine": "GeometricMean",
+      "curves": [
+        {
+          "covariate": "dist_water_m",
+          "curve": [
+            [
+              0,
+              1.0
+            ],
+            [
+              400,
+              0.4
+            ],
+            [
+              1500,
+              0.0
+            ]
+          ]
+        }
+      ]
+    },
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "road_mortality": "High",
+      "notes": "An Atlantic Forest species of moist lowland forest, rivers and intermittent freshwater lakes, so a planted courtyard with leaf litter and a water butt suits it; it is threatened by habitat loss."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "08-01",
+        "end": "11-30",
+        "region": "BR-SP",
+        "note": "At Juréia-Itatins in São Paulo, a primary field study found Rhinella ornata breeding associated approximately with August-November. A separate egg collection involving R. ornata and R. icterica from July 24-August 14 overlaps only the early part of this window; it does not establish the full window or its endpoints."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg",
+        "requires_tag": "pond",
+        "scale": 0.02
+      },
+      {
+        "stage": "Tadpole",
+        "requires_tag": "pond",
+        "scale": 0.1
+      },
+      {
+        "stage": "Juvenile",
+        "scale": 0.3
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-rhinella-ornata-v1",
+    "params": {
+      "flee_m": 1.5,
+      "freeze_m": 4,
+      "food_tag": "invertebrate",
+      "call": "croak",
+      "min_temp_c": 8,
+      "max_temp_c": 27
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "croak",
+      "context": "Croak",
+      "season_months": [
+        8,
+        9,
+        10,
+        11
+      ],
+      "time_windows": [
+        "Night",
+        "Dusk"
+      ],
+      "cooldown_s": 20,
+      "loudness": "Loud",
+      "description": "A short, low advertisement croak given by males calling from the edge of a breeding pool through the warm, wet season; the species also hybridises with Rhinella crucifer to form Rhinella pombali."
+    }
+  ],
+  "look": {
+    "body_plan": "anuran",
+    "proportions": {
+      "torso_aspect": 1.0,
+      "leg_length_ratio": 0.42,
+      "head_scale": 0.72,
+      "neck_angle_deg": 4,
+      "girth_ratio": 0.95
+    },
+    "palette": {
+      "body": "#6b5540",
+      "belly": "#cfc3a8",
+      "markings": "#8a4a3a",
+      "accent": "#3b2f24",
+      "eye": "#c07a2a"
+    },
+    "extra_parts": [
+      {
+        "name": "paratoid",
+        "parent": "head",
+        "offset": [
+          -0.28,
+          0.44,
+          0.3
+        ],
+        "size": [
+          0.36,
+          0.26,
+          0.26
+        ],
+        "color": "accent",
+        "mirror": true
+      },
+      {
+        "name": "ornament",
+        "parent": "body",
+        "offset": [
+          0.05,
+          0.46,
+          0.2
+        ],
+        "size": [
+          0.35,
+          0.12,
+          0.28
+        ],
+        "color": "markings",
+        "mirror": true
+      },
+      {
+        "name": "dorsal_stripe",
+        "parent": "body",
+        "offset": [
+          -0.1,
+          0.47,
+          0.0
+        ],
+        "size": [
+          0.5,
+          0.1,
+          0.22
+        ],
+        "color": "markings"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "hop": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/5216887",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "title": "GBIF Backbone Taxonomy: Rhinella ornata",
+      "accessed": "2026-10-01"
+    },
+    {
+      "id": "wikidata",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "url": "https://www.wikidata.org/wiki/Q27987794",
+      "title": "Wikidata: Rhinella ornata (Q27987794)",
+      "accessed": "2026-10-01"
+    },
+    {
+      "id": "wikipedia",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "attribution": "Wikipedia contributors, \"Rhinella ornata\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "url": "https://en.wikipedia.org/wiki/Rhinella_ornata",
+      "title": "Wikipedia: Rhinella ornata",
+      "accessed": "2026-10-01"
+    },
+    {
+      "id": "amphibio",
+      "url": "https://doi.org/10.6084/m9.figshare.4644424",
+      "title": "AmphiBIO v1: a global database for amphibian ecological traits",
+      "license": "CC-BY-4.0",
+      "kind": "dataset",
+      "attribution": "Oliveira, B. F. et al. (2017) AmphiBIO. Scientific Data 4:170123",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "accessed": "2026-10-01"
+    },
+    {
+      "id": "gbif-activity-br-sp",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5216887&gadmGid=BRA.25_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Rhinella ornata in BR-SP",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-10) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-10",
+      "kind": "api"
+    },
+    {
+      "id": "rhinella-juvenile-diet",
+      "url": "https://doi.org/10.1590/1519-6984.236597",
+      "title": "Diet and microhabitat use by juveniles Rhinella ornata (Anura, Bufonidae) in an insular Brazilian Atlantic Rainforest area",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "kind": "literature",
+      "attribution": "Flynn, C. N., Araújo, P. G. & Rocha, C. F. D. (2021). Diet and microhabitat use by juveniles Rhinella ornata. Brazilian Journal of Biology 81(4):1129-1131. https://doi.org/10.1590/1519-6984.236597.",
+      "accessed": "2026-10-10"
+    },
+    {
+      "id": "rhinella-reproduction-sp",
+      "url": "https://doi.org/10.1590/1676-0611-BN-2020-1095",
+      "title": "Attraction to conspecifics in Rhinella icterica and R. ornata tadpoles (Anura: Bufonidae)",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "kind": "literature",
+      "attribution": "Polettini Neto, A. & Bertoluci, J. (2021). Attraction to conspecifics in Rhinella icterica and R. ornata tadpoles. Biota Neotropica 21(1):e20201095. https://doi.org/10.1590/1676-0611-BN-2020-1095.",
+      "accessed": "2026-10-10"
+    },
+    {
+      "id": "rhinella-seasonality-sp",
+      "url": "https://doi.org/10.1590/S1676-06032009000200011",
+      "title": "Species composition, habitat use and breeding seasons of anurans of the restinga forest of the Estação Ecológica Juréia-Itatins, Southeastern Brazil",
+      "license": "CC-BY-NC-4.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+      "kind": "literature",
+      "attribution": "Narvaes, P., Bertoluci, J. & Rodrigues, M. T. (2009). Species composition, habitat use and breeding seasons of anurans of the restinga forest of the Estação Ecológica Juréia-Itatins, Southeastern Brazil. Biota Neotropica 9(2). https://doi.org/10.1590/S1676-06032009000200011.",
+      "accessed": "2026-10-10"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "GBIF Backbone Taxonomy gives Amphibia Anura Bufonidae and the authorship on the matched name."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "GBIF usage key 5216887 and iNaturalist taxon id 67135, as matched by the GBIF backbone and the iNaturalist taxa API and given in issue #47."
+    },
+    "common_names": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "English common name from the iNaturalist and Wikipedia articles; Portuguese 'sapo-mata-encabulado' from the article's interlanguage links."
+    },
+    "conservation": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "Wikidata P141 = least concern (Q211005), while the Wikipedia article notes the species is threatened by habitat loss."
+    },
+    "range": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Wikipedia: Atlantic Forest in the Brazilian states of Espirito Santo, Rio de Janeiro, Sao Paulo, Parana and north of Rio Grande do Sul, plus eastern Paraguay, with its occurrence in the Argentinian provinces of Misiones and Corrientes uncertain."
+    },
+    "traits.size_class": {
+      "sources": [
+        "amphibio"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "amphibio"
+      ],
+      "confidence": "High",
+      "note": "AmphiBIO Body_mass_g 12.1. AmphiBIO records a single literature value per species rather than a species mean, and 12.1 g sits low for an animal of this snout-vent length, so this is carried through as the only openly licensed mass available rather than adjusted to what a toad of this size 'should' weigh."
+    },
+    "traits.length_m": {
+      "sources": [
+        "amphibio"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "AmphiBIO Body_size_mm 84.29, the snout-vent length."
+    },
+    "traits.diet": {
+      "sources": [
+        "rhinella-juvenile-diet"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "For the measured juvenile sample (52 stomachs, 5 empty), the article reports invertebrate prey at 93.2% of prey volume and plant remains at 6.8%; these values are mapped to invertebrate 0.93 and browse 0.07. This is a sample-based model, not an asserted adult-wide diet. AmphiBIO Vert=1 is a prey-presence flag, not a proportion."
+    },
+    "traits.social": {
+      "sources": [],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "No open source gives a group size; bufonids forage and bask singly outside the breeding chorus, so Solitary [1, 1] is judgement."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "amphibio"
+      ],
+      "confidence": "High",
+      "note": "AmphiBIO flags both Diu 1 and Noc 1 for this species, so it is recorded as active day and night."
+    },
+    "traits.defense": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored: a bufonid secretes toxins from its parotoid glands and freezes rather than fleeing."
+    },
+    "traits.wariness": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored. Nocturnal and secretive in leaf litter, so set mid-range."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Quadrupedal frog; anuran mesh, as for the common toad record in this repository."
+    },
+    "traits.limb_count": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Four limbs."
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Walk and Hop chosen: a terrestrial bufonid that hops. It does not swim, despite breeding in water, and does not climb or fly."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Ectotherm."
+    },
+    "traits.skin": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Moist, warty and glandular, as for all bufonids."
+    },
+    "traits.flight": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Moist, warty and glandular, as for all bufonids."
+    },
+    "traits.respiration": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Moist, warty and glandular, as for all bufonids."
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Complete: AmphiBIO Lar 1 records a larval stage."
+    },
+    "traits.perching": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Ground-living; set to false."
+    },
+    "traits.nest_type": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: lays strings of eggs directly in water, so None is the honest value, as for the common toad record in this repository."
+    },
+    "habitat.use": {
+      "sources": [
+        "amphibio"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "AmphiBIO Ter 1 with Arb and Aqu unflagged, so the use is recorded as wholly terrestrial; a toad that breeds in water still feeds on land."
+    },
+    "habitat.shelter_tag": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored: shelters under leaf litter and in moist ground crevices, so leaf_litter is the closest tag."
+    },
+    "habitat.resources": {
+      "sources": [
+        "rhinella-seasonality-sp",
+        "rhinella-reproduction-sp",
+        "rhinella-juvenile-diet"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Invertebrate and browse weights map to measured juvenile stomach volume. Pond months follow the primary São Paulo August-November breeding window. Weights and spatial suitability curves are model settings."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Wikipedia: its natural habitats are subtropical or tropical moist lowland forests, rivers and intermittent freshwater lakes, and it is threatened by habitat loss. uses_gardens and road_mortality are authored."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Tropical species active year round; AmphiBIO records no dormancy flag."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "rhinella-seasonality-sp",
+        "rhinella-reproduction-sp"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "The approximate August-November range comes from the primary São Paulo field study at Juréia-Itatins. The separate mixed-species egg collection from July 24-August 14 overlaps only the early part of that interval and does not establish its full extent."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "rhinella-reproduction-sp",
+        "amphibio"
+      ],
+      "confidence": "Medium",
+      "note": "Egg, tadpole and juvenile stages are supported as indirect development; unsupported stage durations were omitted."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored params for the shared anuran program. min_temp_c raised to 8 C from the program default and max_temp_c 27 C is a modeling judgement for São Paulo. food_tag is invertebrate, matching the measured juvenile stomach sample."
+    },
+    "look": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Colours from the species' appearance and its name, which refers to complex colour patterning (warty brown dorsum with darker and reddish ornament, pale underside, coppery eyes); proportions authored on the common toad template, and the paratoid, ornament and dorsal-stripe extra parts render the glands and the ornate patterning."
+    },
+    "habitat.requires": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Hard placement rule on standing water, from Wikipedia's habitat statement (rivers and intermittent freshwater lakes). The 1500 m distance is authored: this species is a forest-floor toad that ranges away from water between the rains."
+    },
+    "habitat.suitability": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored suitability curve on distance to water, in the same shape as the common toad record in this repository but at a shorter range."
+    },
+    "vocalizations.croak": {
+      "sources": [
+        "rhinella-seasonality-sp",
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Seasonal months follow the observed São Paulo August-November breeding season; call description is species-level natural-history information."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "amphibio"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "A low-precision simulation value for a small bufonid, set below the 15-25 year maxima available for much larger Rhinella in AmphiBIO. No species-specific estimate was found; this is a model parameter, not a measured lifespan."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies maintainers",
+      "agent": "opencode"
+    }
+  ],
+  "activity": {
+    "regions": [
+      {
+        "region": "BR-SP",
+        "monthly": [
+          0.71,
+          0.85,
+          0.72,
+          0.28,
+          0.18,
+          0.11,
+          0.4,
+          0.32,
+          0.94,
+          0.72,
+          0.68,
+          1.0
+        ],
+        "method": "gbif_raw",
+        "observations": 503,
+        "sources": [
+          "gbif-activity-br-sp"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "skipped": "ISO 3166-2 region given without --inat-place-id; pass --inat-place-id <id> (look it up at https://www.inaturalist.org/places) to query iNaturalist for this subdivision"
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "BRA.25_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5216887&gadmGid=BRA.25_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": null,
+            "total": 503,
+            "usable": true
+          },
+          "used": [
+            "gbif"
+          ]
+        }
+      }
+    ]
+  }
+}

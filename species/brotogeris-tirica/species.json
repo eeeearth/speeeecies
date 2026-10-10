@@ -1,0 +1,658 @@
+{
+  "$schema": "https://jt55401.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Brotogeris tirica",
+  "slug": "brotogeris-tirica",
+  "common_names": {
+    "en": "Plain parakeet",
+    "pt": "caturrita"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Psittaciformes",
+    "family": "Psittacidae",
+    "genus": "Brotogeris",
+    "authority": "(Gmelin, JF, 1788)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2479562,
+    "inat_taxon_id": 19214,
+    "wikidata": "Q1086851"
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "BR"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Climb",
+      "Fly"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Cavity",
+    "perching": true,
+    "senses": {
+      "vision_color": true,
+      "hearing": "Med",
+      "olfaction": "Low"
+    },
+    "size_class": "Small",
+    "mass_kg": 0.063,
+    "length_m": 0.24,
+    "diet": {
+      "fruit": 0.3,
+      "seed": 0.3,
+      "browse": 0.3,
+      "invertebrate": 0.1
+    },
+    "social": {
+      "structure": "Flock",
+      "group_size": [
+        2,
+        20
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.25,
+    "lifespan_y": 12.0
+  },
+  "habitat": {
+    "use": {
+      "arboreal": 1.0
+    },
+    "shelter_tag": "cavity",
+    "resources": [
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.3
+      },
+      {
+        "tag": "seed",
+        "kind": "Herbivory",
+        "weight": 0.3
+      },
+      {
+        "tag": "browse",
+        "kind": "Herbivory",
+        "weight": 0.3
+      },
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.1
+      },
+      {
+        "tag": "cavity",
+        "kind": "Nesting",
+        "weight": 1.0
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.8
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Exploiter",
+      "uses_gardens": true,
+      "notes": "Observed in São Paulo feeding at trees and shrubs in the understory, including palm fruits; the species also uses urban plant resources."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "flocking",
+        "start": "01-01",
+        "end": "12-31",
+        "note": "The species is a year-round resident and is regularly observed in pairs or flocks; a seasonal breeding window is not asserted."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg"
+      },
+      {
+        "stage": "Juvenile"
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "behavior": {
+    "program": "bt-brotogeris-season-neutral-v1",
+    "params": {
+      "flee_m": 12,
+      "food_tag": "fruit",
+      "song": "song",
+      "alarm": "alarm"
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "song",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day",
+        "Dusk"
+      ],
+      "cooldown_s": 4,
+      "loudness": "Loud",
+      "description": "A harsh, strident, squawk repeated by the whole flock in flight, so that a passing group sounds continuous."
+    },
+    {
+      "call_id": "alarm",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 3,
+      "loudness": "Loud",
+      "description": "A sharp, excited screeching given when the flock is disturbed or mobbing a predator."
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.45,
+      "leg_length_ratio": 0.3,
+      "head_scale": 0.85,
+      "neck_angle_deg": 10,
+      "tail_ratio": 0.95,
+      "wing_aspect": 2.2,
+      "beak_ratio": 0.55,
+      "girth_ratio": 1.0
+    },
+    "palette": {
+      "body": "#77a64d",
+      "belly": "#b9cf78",
+      "markings": "#677a9c",
+      "accent": "#c8b98e",
+      "eye": "#1b1b16"
+    },
+    "part_colors": {
+      "beak": "accent",
+      "head": "body"
+    },
+    "extra_parts": [
+      {
+        "name": "wing_flash",
+        "parent": "wing_left",
+        "offset": [
+          -0.3,
+          0.0,
+          0.0
+        ],
+        "size": [
+          0.4,
+          0.2,
+          0.3
+        ],
+        "color": "markings",
+        "mirror": true
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "fly": {},
+      "glide": {},
+      "perched": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2479562",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "title": "GBIF Backbone Taxonomy: Brotogeris tirica",
+      "accessed": "2026-10-01"
+    },
+    {
+      "id": "wikidata",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "url": "https://www.wikidata.org/wiki/Q1086851",
+      "title": "Wikidata: Plain parakeet (Q1086851)",
+      "accessed": "2026-10-01"
+    },
+    {
+      "id": "wikipedia",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "attribution": "Wikipedia contributors, \"Plain parakeet\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "url": "https://en.wikipedia.org/wiki/Plain_parakeet",
+      "title": "Wikipedia: Plain parakeet",
+      "accessed": "2026-10-01"
+    },
+    {
+      "id": "avonet",
+      "url": "https://doi.org/10.6084/m9.figshare.16586228",
+      "title": "AVONET: morphological, ecological and geographical data for all birds",
+      "license": "CC-BY-4.0",
+      "kind": "dataset",
+      "attribution": "Tobias, J. A. et al. (2022) AVONET. Ecology Letters 25:581-597",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "accessed": "2026-10-01"
+    },
+    {
+      "id": "eltontraits",
+      "url": "https://doi.org/10.6084/m9.figshare.3559887.v1",
+      "title": "EltonTraits 1.0: species-level foraging attributes of the world's birds and mammals (BirdFuncDat)",
+      "license": "CC0-1.0",
+      "kind": "dataset",
+      "attribution": "Wilman, H. et al. (2014) EltonTraits 1.0. Ecology 95:2027",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "accessed": "2026-10-01"
+    },
+    {
+      "id": "gbif-activity-br-sp",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2479562&gadmGid=BRA.25_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Brotogeris tirica in BR-SP",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "urban-parrot-diet-sp",
+      "url": "https://doi.org/10.24278/rif.2025.37e969",
+      "title": "Dieta de psitacídeos em área urbana de São Paulo, sudeste do Brasil",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "kind": "literature",
+      "attribution": "Motta Junior, J. C. et al. (2025). Dieta de psitacídeos em área urbana de São Paulo, sudeste do Brasil. Revista do Instituto Florestal 37. https://doi.org/10.24278/rif.2025.37e969.",
+      "accessed": "2026-10-10"
+    },
+    {
+      "id": "sazima-parakeet-foraging",
+      "url": "https://doi.org/10.1590/S1676-06032008000100026",
+      "title": "The parakeet Brotogeris tirica feeds on and disperses the fruits of the palm Syagrus romanzoffiana in Southeastern Brazil",
+      "license": "CC-BY-NC-4.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+      "kind": "literature",
+      "attribution": "Sazima, I. (2008). The parakeet Brotogeris tirica feeds on and disperses the fruits of the palm Syagrus romanzoffiana in Southeastern Brazil. Biota Neotropica 8(1):231-234. https://doi.org/10.1590/S1676-06032008000100026.",
+      "accessed": "2026-10-10"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "GBIF Backbone Taxonomy gives Aves Psittaciformes Psittacidae and the authorship on the matched name; the Wikidata item confirms the English common name."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata",
+        "avonet"
+      ],
+      "confidence": "High",
+      "note": "GBIF usage key 2479562 and iNaturalist taxon id 19214 as matched by the GBIF backbone and the iNaturalist taxa API; Wikidata Q1086851 carries the same identifiers."
+    },
+    "common_names": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "English common name from Wikidata; Portuguese name from the article's interlanguage links."
+    },
+    "conservation": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "Wikidata P141 = least concern for Plain parakeet."
+    },
+    "range": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Wikipedia: endemic to Brazil, ranging from Bahia to Parana and as far inland as Goias. Native range listed as BR."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "A perching passerine or parrot; biped_winged mesh."
+    },
+    "traits.limb_count": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Two legs; wings are not counted as limbs."
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Authored params for the shared perching-songbird program. Climb is the declared non-flight locomotion and has no pose in schema/v0.1/body-plans.json, so no climb pose is declared; a long flee distance suits a flock that flushes together."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.skin": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Feathers."
+    },
+    "traits.flight": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "A strong flier."
+    },
+    "traits.respiration": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Lungs."
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "None; the young hatch as fledged nestlings."
+    },
+    "traits.perching": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Perches on branches and wires."
+    },
+    "traits.senses": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Colour vision in all birds; hearing and olfaction values are authored judgement, as no open source quantifies them here."
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "The broad Cavity category is retained from the existing species description as a model choice. No verified primary source reviewed here supports communal nesting or termite nests for this species, so those claims are removed."
+    },
+    "traits.size_class": {
+      "sources": [
+        "avonet"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "avonet",
+        "eltontraits",
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "AVONET Mass 63 g; Wikipedia gives about 63 g."
+    },
+    "traits.length_m": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia",
+        "avonet"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Wikipedia: 23-25 cm; midpoint 0.24 m used."
+    },
+    "traits.diet": {
+      "sources": [
+        "eltontraits",
+        "urban-parrot-diet-sp"
+      ],
+      "confidence": "Medium",
+      "note": "EltonTraits 1.0 gives a global species-level diet allocation (fruit 30%, seed 30%, plant-other 30%, invertebrate 10%; plant-other mapped to browse). A São Paulo campus study independently documents plant-heavy feeding on seeds, fruit and nectar. The global proportions remain dataset values, not local percentages."
+    },
+    "traits.social": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Portuguese Wikipedia: gregarious, flocks of 15-20 birds with larger flocks of up to 100 not unusual. group_size [2, 20] uses the typical flock as the upper bound."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "eltontraits",
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "EltonTraits Nocturnal 0 (diurnal); Plain parakeet describes daytime activity."
+    },
+    "traits.defense": {
+      "sources": [],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Authored: flies to cover when disturbed."
+    },
+    "traits.wariness": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored. Bold and noisy in city parks and streets, so set low."
+    },
+    "habitat.use": {
+      "sources": [
+        "sazima-parakeet-foraging"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The field study directly reports feeding at a palm tree and carrying fruit to understorey trees and shrubs in São Paulo. Arboreal use is modeled as 1.0; the paper does not estimate a population-level habitat-use percentage."
+    },
+    "habitat.shelter_tag": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored: roosts in dense vegetation or a cavity."
+    },
+    "habitat.resources": {
+      "sources": [
+        "eltontraits",
+        "urban-parrot-diet-sp",
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Food weights follow traits.diet. Cavity is a broad nesting category; no communal or termite-nest claim is made. Perch weight is a simulation judgement."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "urban-parrot-diet-sp",
+        "sazima-parakeet-foraging"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The São Paulo campus survey documents urban plant feeding; the species-specific field study documents feeding at trees and understory plants. The garden-tolerance label is an authored simulation classification."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "A year-round resident of subtropical Brazil with no migration or dormancy described."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "gbif-backbone",
+        "sazima-parakeet-foraging"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "No reliable primary source found for a São Paulo nesting calendar. Year-round residency and flock behavior are modeled without asserting breeding months or nest-site details."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Only life-stage names are retained; durations and clutch-size claims were removed because no primary species-level evidence was located."
+    },
+    "behavior": {
+      "sources": [
+        "sazima-parakeet-foraging",
+        "urban-parrot-diet-sp"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The species-local program replaces the shared songbird ground hop with climbing movement. The São Paulo field study records parakeets feeding on and moving around palm fruit-bearing branches. Climb is the authored movement choice for arboreal feeding."
+    },
+    "look": {
+      "sources": [
+        "wikipedia",
+        "urban-parrot-diet-sp"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The plain parakeet is predominantly green, with yellow-green underparts and blue-green/blue-violet flight feathers; there is no orange head or orange bill. General green plumage is also described in the São Paulo field study; palette is a simplified model."
+    },
+    "vocalizations.song": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Call description from the Plain parakeet article; months, time windows, cooldowns and loudness are authored judgement, as no open source quantifies them."
+    },
+    "vocalizations.alarm": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Call description from the Plain parakeet article; months, time windows, cooldowns and loudness are authored judgement, as no open source quantifies them."
+    },
+    "traits.lifespan_y": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "A low-precision simulation value for a small parakeet, informed by long-lived psittacids but without a species-specific wild estimate. This is a model parameter, not a field measurement."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies maintainers",
+      "agent": "opencode"
+    }
+  ],
+  "activity": {
+    "regions": [
+      {
+        "region": "BR-SP",
+        "monthly": [
+          0.83,
+          0.9,
+          0.81,
+          0.87,
+          0.76,
+          0.79,
+          1.0,
+          0.85,
+          0.6,
+          0.48,
+          0.47,
+          0.47
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 91107,
+        "sources": [
+          "gbif-activity-br-sp"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 13334,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=19214&place_id=13334&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=13334&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "total": 327,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "BRA.25_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2479562&gadmGid=BRA.25_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=BRA.25_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 90780,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  }
+}
