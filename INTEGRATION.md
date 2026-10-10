@@ -42,7 +42,9 @@ all other species fields and regional curves are covered by a regression test.
 
 The two new records use species-local programs. Lesser goldfinch nesting is
 explicitly gated April-September from broad species-level evidence; it is not
-New Mexico-specific. Cooper's hawk uses a conservative perch/flight/prey FSM;
+New Mexico-specific. AVONET supports the 8.8 g mean mass (8.77 g in its
+BirdLife summary); the recorded 6-11.5 g range follows ADW. Cooper's hawk uses
+a conservative perch/flight/prey FSM;
 the current actions cannot model aerial pursuit. ADW is retained as a last-resort
 CC BY-NC-SA source for some traits and behavior, which validator reports as a
 warning. A year-round phase placeholder remains because the schema requires a

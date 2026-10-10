@@ -62,6 +62,15 @@ def test_us_nm_curves_are_tier_a_and_old_records_are_otherwise_unchanged():
         assert current == base, slug
 
 
+def test_goldfinch_mass_range_and_habitat_sources_match_provenance():
+    species = read("species/spinus-psaltria/species.json")
+    assert species["traits"]["mass_kg"] == 0.0088
+    assert species["traits"]["mass_range_kg"] == [0.006, 0.0115]
+    assert species["provenance"]["traits"]["sources"] == ["avonet", "adw"]
+    assert "AVONET species-average mass is 8.77 g" in species["provenance"]["traits"]["note"]
+    assert species["provenance"]["habitat"]["sources"] == ["wikipedia", "adw"]
+
+
 def test_goldfinch_nesting_months_resolve_to_supported_window():
     species = read("species/spinus-psaltria/species.json")
     behavior = read("species/spinus-psaltria/behavior.json")
