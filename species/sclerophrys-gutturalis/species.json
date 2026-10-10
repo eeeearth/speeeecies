@@ -423,6 +423,53 @@
         }
       },
       {
+        "region": "TZ",
+        "monthly": [
+          0.46,
+          0.56,
+          0.21,
+          0.18,
+          0.03,
+          0.1,
+          0.03,
+          0.05,
+          0.1,
+          0.18,
+          0.18,
+          1.0
+        ],
+        "method": "gbif_raw",
+        "observations": 303,
+        "sources": [
+          "gbif-activity-tz"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 7144,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=517053&place_id=7144&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": null,
+            "total": 184,
+            "usable": false
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "country",
+              "TZ"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=9456514&country=TZ&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": null,
+            "total": 303,
+            "usable": true
+          },
+          "used": [
+            "gbif"
+          ]
+        }
+      },
+      {
         "region": "KE-30",
         "monthly": [
           0.1,
@@ -468,53 +515,6 @@
             "gbif"
           ],
           "fallback_note": "The best available Nairobi County observations did not reach min_obs=300 (GBIF n=71; iNaturalist n=25). This is a low-count fallback curve, not a validated seasonal estimate; use with caution."
-        }
-      },
-      {
-        "region": "TZ",
-        "monthly": [
-          0.46,
-          0.56,
-          0.21,
-          0.18,
-          0.03,
-          0.1,
-          0.03,
-          0.05,
-          0.1,
-          0.18,
-          0.18,
-          1.0
-        ],
-        "method": "gbif_raw",
-        "observations": 303,
-        "sources": [
-          "gbif-activity-tz"
-        ],
-        "query": {
-          "min_obs": 300,
-          "inat": {
-            "tier": "C",
-            "place_id": 7144,
-            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=517053&place_id=7144&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
-            "baseline_url": null,
-            "total": 184,
-            "usable": false
-          },
-          "gbif": {
-            "tier": "A",
-            "area": [
-              "country",
-              "TZ"
-            ],
-            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=9456514&country=TZ&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
-            "baseline_url": null,
-            "total": 303,
-            "usable": true
-          },
-          "used": [
-            "gbif"
-          ]
         }
       }
     ]

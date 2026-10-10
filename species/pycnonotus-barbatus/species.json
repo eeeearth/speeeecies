@@ -72,7 +72,6 @@
     "size_class": "Tiny",
     "mass_kg": 0.0321,
     "length_m": 0.19,
-    "wingspan_m": 0.26,
     "lifespan_y": 5,
     "diet": {
       "fruit": 0.5,
@@ -145,16 +144,10 @@
     "strategy": "ActiveYearRound",
     "phases": [
       {
-        "name": "breeding",
-        "start": "03-01",
-        "end": "06-30",
-        "note": "Nests through much of the year in the moist tropics, peaking with the onset of the rains; cup nest built by the female, clutch 2-5, incubation 12-15 days, fledging at 13-16 days."
-      },
-      {
-        "name": "breeding",
-        "start": "10-01",
+        "name": "territorial",
+        "start": "01-01",
         "end": "12-31",
-        "note": "Second breeding peak with the short rains; same cup nest and clutch as the long-rains season."
+        "note": "Year-round active placeholder required by the schema; no Nairobi breeding dates are asserted."
       }
     ],
     "life_stages": [
@@ -223,15 +216,13 @@
     ]
   },
   "behavior": {
-    "program": "bt-perching-songbird-v1",
+    "program": "bt-nairobi-pycnonotus-barbatus-v1",
     "params": {
       "flee_m": 5,
       "food_tag": "fruit",
       "song": "song",
       "alarm": "alarm",
-      "song_cooldown_s": 8,
-      "nest_m1": 3,
-      "nest_m2": 6
+      "song_cooldown_s": 8
     }
   },
   "vocalizations": [
@@ -472,19 +463,11 @@
       "derived": true,
       "note": "Midpoint of 18-20 cm."
     },
-    "traits.wingspan_m": {
-      "sources": [
-        "avonet"
-      ],
-      "confidence": "Low",
-      "derived": true,
-      "note": "Estimated as 2.8 times the AVONET mean flattened wing chord (93.6 mm), the mean ratio of published wingspan to AVONET wing chord across seven species in this kit with both figures (ratios 2.6-3.0)."
-    },
     "traits.lifespan_y": {
       "sources": [],
       "confidence": "Low",
       "derived": true,
-      "note": "Authored judgement: typical lifespan of a small tropical passerine."
+      "note": "5 years is an authored simulation placeholder for Common bulbul; no species-specific wild lifespan estimate was verified. It is not presented as a measured or typical lifespan."
     },
     "traits.diet": {
       "sources": [
@@ -562,12 +545,10 @@
       "note": "Common resident breeder."
     },
     "seasonal.phases": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
+      "sources": [],
+      "confidence": "Low",
       "derived": true,
-      "note": "Nests throughout the year in the moist tropics, peaking with the rains; Nairobi's long and short rains mapped to two breeding phases; clutch, incubation and fledging figures from Wikipedia."
+      "note": "Schema-required year-round territorial placeholder only. No primary source establishing Nairobi breeding months was verified; no nesting calendar is claimed."
     },
     "seasonal.life_stages": {
       "sources": [

@@ -66,7 +66,6 @@
     "size_class": "Tiny",
     "mass_kg": 0.027,
     "length_m": 0.2,
-    "wingspan_m": 0.26,
     "lifespan_y": 4,
     "diet": {
       "invertebrate": 0.6,
@@ -134,16 +133,10 @@
     "strategy": "ActiveYearRound",
     "phases": [
       {
-        "name": "breeding",
-        "start": "02-01",
-        "end": "07-31",
-        "note": "Monogamous; cup nest of grass and feathers near water, mean clutch 3.9 eggs, female incubates, both sexes feed the young. Starts breeding before the rains and continues into the rainy season (Malawi study)."
-      },
-      {
-        "name": "breeding",
-        "start": "09-01",
+        "name": "territorial",
+        "start": "01-01",
         "end": "12-31",
-        "note": "Second breeding peak (October in Malawi); same cup nest and clutch."
+        "note": "Year-round active placeholder required by the schema; no Nairobi breeding dates are asserted."
       }
     ],
     "life_stages": [
@@ -212,15 +205,13 @@
     ]
   },
   "behavior": {
-    "program": "bt-perching-songbird-v1",
+    "program": "bt-nairobi-motacilla-aguimp-v1",
     "params": {
       "flee_m": 5,
       "food_tag": "invertebrate",
       "song": "song",
       "alarm": "alarm",
-      "song_cooldown_s": 8,
-      "nest_m1": 2,
-      "nest_m2": 7
+      "song_cooldown_s": 8
     }
   },
   "vocalizations": [
@@ -479,19 +470,11 @@
       "confidence": "High",
       "note": "20 cm long."
     },
-    "traits.wingspan_m": {
-      "sources": [
-        "avonet"
-      ],
-      "confidence": "Low",
-      "derived": true,
-      "note": "Estimated as 2.8 times the AVONET mean flattened wing chord (91.3 mm); see pycnonotus-barbatus for the ratio calibration."
-    },
     "traits.lifespan_y": {
       "sources": [],
       "confidence": "Low",
       "derived": true,
-      "note": "Authored judgement: typical lifespan of a small tropical passerine."
+      "note": "4 years is an authored simulation placeholder for African pied wagtail; no species-specific wild lifespan estimate was verified. It is not presented as a measured or typical lifespan."
     },
     "traits.diet": {
       "sources": [
@@ -566,12 +549,10 @@
       "note": "Resident; breeds over six months peaking in March and October (Malawi)."
     },
     "seasonal.phases": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
+      "sources": [],
+      "confidence": "Low",
       "derived": true,
-      "note": "Breeding windows from the Malawi study; mapped onto Nairobi's two rainy seasons; clutch and parental care from Wikipedia."
+      "note": "Schema-required year-round territorial placeholder only. No primary source establishing Nairobi breeding months was verified; no nesting calendar is claimed."
     },
     "seasonal.life_stages": {
       "sources": [],

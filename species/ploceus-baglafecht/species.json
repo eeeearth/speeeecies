@@ -62,7 +62,6 @@
     "size_class": "Tiny",
     "mass_kg": 0.0316,
     "length_m": 0.15,
-    "wingspan_m": 0.22,
     "lifespan_y": 5,
     "diet": {
       "seed": 0.5,
@@ -123,16 +122,10 @@
     "strategy": "ActiveYearRound",
     "phases": [
       {
-        "name": "breeding",
-        "start": "03-01",
-        "end": "06-30",
-        "note": "Breeds singly rather than in colonies; loosely woven nest in tree or bush foliage. Nairobi timing mapped to the long rains; judgement."
-      },
-      {
-        "name": "breeding",
-        "start": "10-01",
+        "name": "territorial",
+        "start": "01-01",
         "end": "12-31",
-        "note": "Second breeding peak with the short rains; same solitary woven nest."
+        "note": "Year-round active placeholder required by the schema; no Nairobi breeding dates are asserted."
       }
     ],
     "life_stages": [
@@ -201,15 +194,13 @@
     ]
   },
   "behavior": {
-    "program": "bt-perching-songbird-v1",
+    "program": "bt-nairobi-ploceus-baglafecht-v1",
     "params": {
       "flee_m": 5,
       "food_tag": "seed",
       "song": "song",
       "alarm": "alarm",
-      "song_cooldown_s": 8,
-      "nest_m1": 3,
-      "nest_m2": 6
+      "song_cooldown_s": 8
     }
   },
   "vocalizations": [
@@ -449,19 +440,11 @@
       "confidence": "High",
       "note": "Total body length 15 cm."
     },
-    "traits.wingspan_m": {
-      "sources": [
-        "avonet"
-      ],
-      "confidence": "Low",
-      "derived": true,
-      "note": "Estimated as 2.8 times the AVONET mean flattened wing chord (79 mm); see pycnonotus-barbatus for the ratio calibration."
-    },
     "traits.lifespan_y": {
       "sources": [],
       "confidence": "Low",
       "derived": true,
-      "note": "Authored judgement: typical lifespan of a small tropical passerine."
+      "note": "5 years is an authored simulation placeholder for Baglafecht weaver; no species-specific wild lifespan estimate was verified. It is not presented as a measured or typical lifespan."
     },
     "traits.diet": {
       "sources": [
@@ -539,12 +522,10 @@
       "note": "Resident; breeding timed to the rains by judgement."
     },
     "seasonal.phases": {
-      "sources": [
-        "wikipedia"
-      ],
+      "sources": [],
       "confidence": "Low",
       "derived": true,
-      "note": "Solitary loosely-woven nest from Wikipedia; Nairobi timing mapped to the two rainy seasons is judgement."
+      "note": "Schema-required year-round territorial placeholder only. No primary source establishing Nairobi breeding months was verified; no nesting calendar is claimed."
     },
     "seasonal.life_stages": {
       "sources": [],

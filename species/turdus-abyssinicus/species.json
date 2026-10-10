@@ -61,7 +61,6 @@
     "size_class": "Small",
     "mass_kg": 0.067,
     "length_m": 0.22,
-    "wingspan_m": 0.31,
     "lifespan_y": 5,
     "diet": {
       "invertebrate": 0.6,
@@ -122,16 +121,10 @@
     "strategy": "ActiveYearRound",
     "phases": [
       {
-        "name": "breeding",
-        "start": "03-01",
-        "end": "06-30",
-        "note": "Resident highland thrush; breeding timed to the long rains by judgement; habits little-studied since the 2005 split from the olive thrush."
-      },
-      {
-        "name": "breeding",
-        "start": "10-01",
+        "name": "territorial",
+        "start": "01-01",
         "end": "12-31",
-        "note": "Second breeding peak with the short rains; judgement."
+        "note": "Year-round active placeholder required by the schema; no Nairobi breeding dates are asserted."
       }
     ],
     "life_stages": [
@@ -200,15 +193,13 @@
     ]
   },
   "behavior": {
-    "program": "bt-perching-songbird-v1",
+    "program": "bt-nairobi-turdus-abyssinicus-v1",
     "params": {
       "flee_m": 5,
       "food_tag": "invertebrate",
       "song": "song",
       "alarm": "alarm",
-      "song_cooldown_s": 8,
-      "nest_m1": 3,
-      "nest_m2": 6
+      "song_cooldown_s": 8
     }
   },
   "vocalizations": [
@@ -434,19 +425,11 @@
       "confidence": "High",
       "note": "22 cm long."
     },
-    "traits.wingspan_m": {
-      "sources": [
-        "avonet"
-      ],
-      "confidence": "Low",
-      "derived": true,
-      "note": "Estimated as 2.8 times the AVONET mean flattened wing chord for T. olivaceus (111.8 mm); see pycnonotus-barbatus for the ratio calibration."
-    },
     "traits.lifespan_y": {
       "sources": [],
       "confidence": "Low",
       "derived": true,
-      "note": "Authored judgement: typical lifespan of a medium tropical thrush."
+      "note": "5 years is an authored simulation placeholder for Abyssinian thrush; no species-specific wild lifespan estimate was verified. It is not presented as a measured or typical lifespan."
     },
     "traits.diet": {
       "sources": [
@@ -521,12 +504,10 @@
       "note": "Resident highland species by judgement."
     },
     "seasonal.phases": {
-      "sources": [
-        "wikipedia"
-      ],
+      "sources": [],
       "confidence": "Low",
       "derived": true,
-      "note": "Breeding timing mapped to Nairobi's two rainy seasons is judgement; habits little-studied since the split."
+      "note": "Schema-required year-round territorial placeholder only. No primary source establishing Nairobi breeding months was verified; no nesting calendar is claimed."
     },
     "seasonal.life_stages": {
       "sources": [],

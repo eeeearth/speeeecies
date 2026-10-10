@@ -1,0 +1,311 @@
+{
+  "schema_version": 1,
+  "format": "speeeecies/behavior",
+  "id": "fsm-black-kite-forager-v1",
+  "kind": "fsm",
+  "description": "Black kite: patrols and searches for carrion or small vertebrate prey by day, calls during the day, rests at night, drinks, and flies from threats. Species-local because the shared seabird program has no day-night cycle, call, or diet-specific prey tags.",
+  "params": {
+    "flee_m": 15,
+    "calm_m": 40,
+    "live_food_m": 80,
+    "carrion_m": 80,
+    "call": "call"
+  },
+  "initial": "idle",
+  "states": {
+    "idle": {
+      "action": {
+        "do": "idle"
+      },
+      "min_dwell_s": 2
+    },
+    "patrol": {
+      "action": {
+        "do": "wander",
+        "gait": "fly"
+      }
+    },
+    "hunt": {
+      "action": {
+        "do": "eat_nearest",
+        "tag": "small_vertebrate",
+        "gait": "walk"
+      }
+    },
+    "scavenge": {
+      "action": {
+        "do": "eat_nearest",
+        "tag": "carrion",
+        "gait": "walk"
+      }
+    },
+    "drink": {
+      "action": {
+        "do": "drink_nearest",
+        "gait": "walk"
+      }
+    },
+    "call": {
+      "action": {
+        "do": "sing",
+        "call": "${call}"
+      },
+      "min_dwell_s": 5
+    },
+    "flee": {
+      "action": {
+        "do": "flee",
+        "gait": "fly"
+      },
+      "min_dwell_s": 3
+    },
+    "rest": {
+      "action": {
+        "do": "rest",
+        "at": "shelter"
+      },
+      "min_dwell_s": 30
+    }
+  },
+  "transitions": [
+    {
+      "from": "*",
+      "to": "flee",
+      "when": {
+        "threat_within_m": "${flee_m}"
+      },
+      "priority": 100
+    },
+    {
+      "from": "*",
+      "to": "flee",
+      "when": {
+        "need": "fear",
+        "gt": 0.25
+      },
+      "priority": 90
+    },
+    {
+      "from": "*",
+      "to": "rest",
+      "when": {
+        "is_day": false
+      },
+      "priority": 80
+    },
+    {
+      "from": "flee",
+      "to": "idle",
+      "when": {
+        "all": [
+          {
+            "is_day": true
+          },
+          {
+            "not": {
+              "threat_within_m": "${calm_m}"
+            }
+          }
+        ]
+      },
+      "priority": 60
+    },
+    {
+      "from": "flee",
+      "to": "rest",
+      "when": {
+        "all": [
+          {
+            "is_day": false
+          },
+          {
+            "not": {
+              "threat_within_m": "${calm_m}"
+            }
+          }
+        ]
+      },
+      "priority": 60
+    },
+    {
+      "from": "idle",
+      "to": "hunt",
+      "when": {
+        "all": [
+          {
+            "is_day": true
+          },
+          {
+            "need": "hunger",
+            "gt": 0.45
+          },
+          {
+            "food_within_m": "${live_food_m}",
+            "tag": "small_vertebrate"
+          }
+        ]
+      }
+    },
+    {
+      "from": "idle",
+      "to": "scavenge",
+      "when": {
+        "all": [
+          {
+            "is_day": true
+          },
+          {
+            "need": "hunger",
+            "gt": 0.45
+          },
+          {
+            "food_within_m": "${carrion_m}",
+            "tag": "carrion"
+          }
+        ]
+      }
+    },
+    {
+      "from": "idle",
+      "to": "drink",
+      "when": {
+        "all": [
+          {
+            "is_day": true
+          },
+          {
+            "need": "thirst",
+            "gt": 0.6
+          },
+          {
+            "water_within_m": 60
+          }
+        ]
+      }
+    },
+    {
+      "from": "idle",
+      "to": "rest",
+      "when": {
+        "need": "energy",
+        "gt": 0.75
+      }
+    },
+    {
+      "from": "idle",
+      "to": "call",
+      "when": {
+        "all": [
+          {
+            "is_day": true
+          },
+          {
+            "chance": 0.08
+          }
+        ]
+      }
+    },
+    {
+      "from": "idle",
+      "to": "patrol",
+      "when": {
+        "all": [
+          {
+            "is_day": true
+          },
+          {
+            "chance": 0.2
+          }
+        ]
+      }
+    },
+    {
+      "from": "patrol",
+      "to": "idle",
+      "when": {
+        "any": [
+          {
+            "is_day": false
+          },
+          {
+            "chance": 0.15
+          }
+        ]
+      }
+    },
+    {
+      "from": "hunt",
+      "to": "idle",
+      "when": {
+        "any": [
+          {
+            "is_day": false
+          },
+          {
+            "need": "hunger",
+            "lt": 0.2
+          }
+        ]
+      }
+    },
+    {
+      "from": "scavenge",
+      "to": "idle",
+      "when": {
+        "any": [
+          {
+            "is_day": false
+          },
+          {
+            "need": "hunger",
+            "lt": 0.2
+          }
+        ]
+      }
+    },
+    {
+      "from": "call",
+      "to": "idle",
+      "when": {
+        "any": [
+          {
+            "is_day": false
+          },
+          {
+            "chance": 0.3
+          }
+        ]
+      }
+    },
+    {
+      "from": "drink",
+      "to": "idle",
+      "when": {
+        "any": [
+          {
+            "is_day": false
+          },
+          {
+            "need": "thirst",
+            "lt": 0.1
+          }
+        ]
+      }
+    },
+    {
+      "from": "rest",
+      "to": "idle",
+      "when": {
+        "all": [
+          {
+            "is_day": true
+          },
+          {
+            "need": "energy",
+            "lt": 0.2
+          }
+        ]
+      }
+    }
+  ]
+}

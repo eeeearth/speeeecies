@@ -154,12 +154,13 @@
     ]
   },
   "behavior": {
-    "program": "fsm-seabird-predator-v1",
+    "program": "fsm-black-kite-forager-v1",
     "params": {
       "flee_m": 15,
       "calm_m": 40,
       "live_food_m": 80,
-      "carrion_m": 80
+      "carrion_m": 80,
+      "call": "call"
     }
   },
   "vocalizations": [
@@ -319,21 +320,12 @@
       "kind": "api"
     },
     {
-      "id": "inat-activity-ke-30",
-      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=5268&place_id=10957&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
-      "title": "iNaturalist observations histogram for Milvus migrans in KE-30",
-      "license": "CC-BY-NC-4.0",
-      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
-      "accessed": "2026-10-01",
-      "kind": "api"
-    },
-    {
       "id": "gbif-activity-ke-30",
       "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5229167&gadmGid=KEN.30_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
       "title": "GBIF occurrence search for Milvus migrans in KE-30",
       "license": "CC-BY-4.0",
-      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
-      "accessed": "2026-10-01",
+      "attribution": "GBIF.org (2026-10-10) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-10",
       "kind": "api"
     }
   ],
@@ -582,12 +574,10 @@
       "note": "Dark brown plumage, paler head and neck, pale brown underparts, yellow cere and legs, forked tail; proportions authored."
     },
     "behavior": {
-      "sources": [
-        "wikipedia"
-      ],
+      "sources": [],
       "confidence": "Low",
       "derived": true,
-      "note": "The shared seabird-predator program (fly between sites, take live prey, scavenge carrion) is the closest fit for a soaring scavenging raptor; params authored."
+      "note": "Species-local program follows the record’s diurnal activity pattern, call, carrion and vertebrate diet, and declared fly/walk poses. Distances, thresholds, and chance values are authored simulation parameters. The record also reports fish in the diet, but the v0.1 habitat resource tags do not include fish, so this behavior does not simulate a fish target."
     }
   },
   "contributors": [
@@ -650,34 +640,28 @@
       {
         "region": "KE-30",
         "monthly": [
+          0.78,
+          0.84,
+          0.78,
           0.71,
-          0.88,
-          0.66,
-          0.64,
-          0.68,
-          0.96,
-          0.91,
+          0.82,
+          0.93,
           1.0,
+          0.89,
+          0.9,
           0.79,
-          0.68,
-          0.67,
-          0.89
+          0.73,
+          0.77
         ],
-        "method": "mean(inat_share, gbif_share)",
-        "observations": 11462,
+        "method": "gbif_share",
+        "observations": 11137,
         "sources": [
-          "inat-activity-ke-30",
           "gbif-activity-ke-30"
         ],
         "query": {
           "min_obs": 300,
           "inat": {
-            "tier": "C",
-            "place_id": 10957,
-            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=5268&place_id=10957&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
-            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=10957&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
-            "total": 370,
-            "usable": true
+            "skipped": "ISO 3166-2 region given without --inat-place-id; pass --inat-place-id <id> (look it up at https://www.inaturalist.org/places) to query iNaturalist for this subdivision"
           },
           "gbif": {
             "tier": "A",
@@ -687,11 +671,10 @@
             ],
             "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5229167&gadmGid=KEN.30_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
             "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=KEN.30_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
-            "total": 11092,
+            "total": 11137,
             "usable": true
           },
           "used": [
-            "inat",
             "gbif"
           ]
         }
