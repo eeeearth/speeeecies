@@ -55,9 +55,7 @@
     },
     "size_class": "Medium",
     "mass_kg": 1.106,
-    "length_m": 0.55,
     "shoulder_height_m": 0.13,
-    "lifespan_y": 4,
     "diet": {
       "vertebrate": 0.3,
       "carrion": 0.3,
@@ -73,7 +71,9 @@
     },
     "activity_pattern": "Nocturnal",
     "defense": "Freeze",
-    "wariness": 0.7
+    "wariness": 0.7,
+    "lifespan_y": 4.0,
+    "length_m": 0.55
   },
   "habitat": {
     "use": {
@@ -119,14 +119,9 @@
     "phases": [
       {
         "name": "young",
-        "start": "10-01",
-        "end": "05-31",
-        "note": "Litters average about six young; the young are weaned after roughly 100 days and females become sexually mature at about 193 days, so pouch young and newly independent animals appear across the warm and wet season."
-      },
-      {
-        "name": "territorial",
-        "start": "06-01",
-        "end": "09-30"
+        "start": "01-01",
+        "end": "12-31",
+        "note": "The available sources do not establish a breeding calendar for this population. The year-round young phase is a neutral schema-required placeholder, not a claim about seasonal birth months."
       }
     ],
     "life_stages": [
@@ -306,21 +301,12 @@
       "accessed": "2026-10-01"
     },
     {
-      "id": "inat-activity-br-sp",
-      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=42657&place_id=13334&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
-      "title": "iNaturalist observations histogram for Didelphis aurita in BR-SP",
-      "license": "CC-BY-NC-4.0",
-      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
-      "accessed": "2026-10-01",
-      "kind": "api"
-    },
-    {
       "id": "gbif-activity-br-sp",
       "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2439928&gadmGid=BRA.25_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
       "title": "GBIF occurrence search for Didelphis aurita in BR-SP",
       "license": "CC-BY-4.0",
-      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
-      "accessed": "2026-10-01",
+      "attribution": "GBIF.org (2026-10-10) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-10",
       "kind": "api"
     }
   ],
@@ -380,20 +366,6 @@
       ],
       "confidence": "High",
       "note": "PanTHERIA AdultBodyMass_g 1105.88 and EltonTraits MamFuncDat BodyMass-Value 1163.99 g, which agree to within 5%."
-    },
-    "traits.length_m": {
-      "sources": [
-        "pantheria"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "No openly licensed source gives a head-body or total length for this species. Derived by scaling the Virginia opossum record in this repository (0.69 m total at 2.25 kg) by the cube root of the mass ratio, 1.106/2.25: a 1.1 kg animal is about 0.55 m nose to tail tip. Authored, not a published measurement."
-    },
-    "traits.lifespan_y": {
-      "sources": [],
-      "confidence": "Low",
-      "derived": true,
-      "note": "No openly licensed source states a wild lifespan for this species. Authored as a low-precision value typical of a small marsupial, close to the Virginia opossum figure this repository uses (2 y); it is a judgement, not a measurement."
     },
     "traits.diet": {
       "sources": [
@@ -552,13 +524,10 @@
       "note": "Tropical and subtropical species active year round; no dormancy or migration described."
     },
     "seasonal.phases": {
-      "sources": [
-        "gbif-backbone",
-        "wikipedia"
-      ],
-      "confidence": "Medium",
+      "sources": [],
+      "confidence": "Low",
       "derived": true,
-      "note": "Litter size, weaning age and sexual maturity from PanTHERIA; the calendar windows are judgements placing pouch young across the warm, wet season."
+      "note": "The available sources do not establish a breeding calendar for this population. The year-round young phase is a neutral schema-required placeholder, not a claim about seasonal birth months."
     },
     "seasonal.life_stages": {
       "sources": [
@@ -618,6 +587,20 @@
       "confidence": "Low",
       "derived": true,
       "note": "Descriptions follow the opossum literature the Wikipedia article cites; months, time windows, cooldowns and loudness are authored judgement, as no open source quantifies them. No open source gives a frequency band, so freq_hz is omitted."
+    },
+    "traits.lifespan_y": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "A low-precision simulation value close to the repository value for the similarly sized Didelphis virginiana (2 years), increased to allow for species uncertainty. No species-specific wild estimate was found; this is a model parameter."
+    },
+    "traits.length_m": {
+      "sources": [
+        "pantheria"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "No openly licensed head-body or total length was found. This simulation estimate scales the repository Virginia opossum total length (0.69 m at 2.25 kg) by the cube root of the mass ratio (1.106/2.25), giving approximately 0.54 m, rounded to 0.55 m. It is a body-size proxy, not a measured length."
     }
   },
   "contributors": [
@@ -631,34 +614,28 @@
       {
         "region": "BR-SP",
         "monthly": [
-          0.57,
           0.41,
-          0.69,
+          0.26,
+          0.44,
           0.54,
-          0.38,
+          0.3,
+          0.14,
+          0.17,
           0.32,
-          0.43,
-          0.41,
           1.0,
-          0.63,
-          0.8,
-          0.55
+          0.31,
+          0.6,
+          0.37
         ],
-        "method": "mean(inat_share, gbif_share)",
-        "observations": 1181,
+        "method": "gbif_share",
+        "observations": 704,
         "sources": [
-          "inat-activity-br-sp",
           "gbif-activity-br-sp"
         ],
         "query": {
           "min_obs": 300,
           "inat": {
-            "tier": "C",
-            "place_id": 13334,
-            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=42657&place_id=13334&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
-            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=13334&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
-            "total": 477,
-            "usable": true
+            "skipped": "ISO 3166-2 region given without --inat-place-id; pass --inat-place-id <id> (look it up at https://www.inaturalist.org/places) to query iNaturalist for this subdivision"
           },
           "gbif": {
             "tier": "A",
@@ -672,7 +649,6 @@
             "usable": true
           },
           "used": [
-            "inat",
             "gbif"
           ]
         }

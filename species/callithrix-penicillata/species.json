@@ -52,9 +52,7 @@
     },
     "size_class": "Small",
     "mass_kg": 0.34,
-    "length_m": 0.45,
     "shoulder_height_m": 0.09,
-    "lifespan_y": 10,
     "home_range_ha": 1.0,
     "diet": {
       "nectar": 0.4,
@@ -71,7 +69,9 @@
     },
     "activity_pattern": "Diurnal",
     "defense": "Flee",
-    "wariness": 0.45
+    "wariness": 0.45,
+    "lifespan_y": 10.0,
+    "length_m": 0.45
   },
   "habitat": {
     "use": {
@@ -308,21 +308,12 @@
       "accessed": "2026-10-01"
     },
     {
-      "id": "inat-activity-br-sp",
-      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=43374&place_id=13334&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
-      "title": "iNaturalist observations histogram for Callithrix penicillata in BR-SP",
-      "license": "CC-BY-NC-4.0",
-      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
-      "accessed": "2026-10-01",
-      "kind": "api"
-    },
-    {
       "id": "gbif-activity-br-sp",
       "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5219541&gadmGid=BRA.25_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
       "title": "GBIF occurrence search for Callithrix penicillata in BR-SP",
       "license": "CC-BY-4.0",
-      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
-      "accessed": "2026-10-01",
+      "attribution": "GBIF.org (2026-10-10) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-10",
       "kind": "api"
     }
   ],
@@ -382,20 +373,6 @@
       ],
       "confidence": "High",
       "note": "PanTHERIA AdultBodyMass_g 339.98 and EltonTraits MamFuncDat BodyMass-Value 342 g, which agree."
-    },
-    "traits.length_m": {
-      "sources": [
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Wikipedia gives a body length of 19.0-22.1 cm (midpoint 0.205 m) but no tail measurement; a marmoset's non-prehensile tail is about as long again as the body, and this repository's own common marmoset record uses a tail ratio of 1.2, giving about 0.45 m nose to tail tip. Authored, not a published measurement."
-    },
-    "traits.lifespan_y": {
-      "sources": [],
-      "confidence": "Low",
-      "derived": true,
-      "note": "No openly licensed source states a wild lifespan for this species. Authored as a low-precision value below the common marmoset's documented figure, because no source supports more; it is a judgement, not a measurement."
     },
     "traits.diet": {
       "sources": [
@@ -637,6 +614,20 @@
       "confidence": "Low",
       "derived": true,
       "note": "Call descriptions follow the common marmoset record in this repository, which documents the marmoset call repertoire; months, time windows, cooldowns and loudness are authored judgement, as no open source quantifies them. No open source gives a frequency band, so freq_hz is omitted."
+    },
+    "traits.lifespan_y": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "A low-precision simulation value below the documented wild maximum used for Callithrix jacchus, its close congener. No species-specific wild estimate was found; this is a model parameter, not a measured lifespan."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "The cited species account gives head-body length 19.0-22.1 cm but no total length. This simulation estimate adds a tail approximately equal to body length, following the close congener Callithrix jacchus tail ratio of about 1; it is not a measured total length."
     }
   },
   "contributors": [
@@ -650,34 +641,28 @@
       {
         "region": "BR-SP",
         "monthly": [
-          0.47,
-          0.42,
+          0.13,
+          0.07,
           1.0,
-          0.61,
-          0.62,
-          0.59,
-          0.49,
-          0.84,
-          0.54,
-          0.47,
-          0.33,
-          0.55
+          0.27,
+          0.29,
+          0.13,
+          0.12,
+          0.83,
+          0.22,
+          0.13,
+          0.07,
+          0.37
         ],
-        "method": "mean(inat_share, gbif_share)",
-        "observations": 1638,
+        "method": "gbif_share",
+        "observations": 603,
         "sources": [
-          "inat-activity-br-sp",
           "gbif-activity-br-sp"
         ],
         "query": {
           "min_obs": 300,
           "inat": {
-            "tier": "C",
-            "place_id": 13334,
-            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=43374&place_id=13334&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
-            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=13334&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
-            "total": 1037,
-            "usable": true
+            "skipped": "ISO 3166-2 region given without --inat-place-id; pass --inat-place-id <id> (look it up at https://www.inaturalist.org/places) to query iNaturalist for this subdivision"
           },
           "gbif": {
             "tier": "A",
@@ -687,11 +672,10 @@
             ],
             "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5219541&gadmGid=BRA.25_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
             "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=BRA.25_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
-            "total": 601,
+            "total": 603,
             "usable": true
           },
           "used": [
-            "inat",
             "gbif"
           ]
         }

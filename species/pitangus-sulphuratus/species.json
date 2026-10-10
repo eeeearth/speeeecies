@@ -64,8 +64,6 @@
       0.0715
     ],
     "length_m": 0.265,
-    "wingspan_m": 0.313,
-    "lifespan_y": 5,
     "diet": {
       "invertebrate": 0.4,
       "fruit": 0.3,
@@ -82,7 +80,8 @@
     },
     "activity_pattern": "Diurnal",
     "defense": "Flee",
-    "wariness": 0.3
+    "wariness": 0.3,
+    "lifespan_y": 5.0
   },
   "habitat": {
     "use": {
@@ -132,15 +131,10 @@
     "strategy": "ActiveYearRound",
     "phases": [
       {
-        "name": "breeding",
-        "start": "10-01",
-        "end": "02-28",
-        "note": "Nests in the fork of a high branch, very often in a cavity in a street-light generator or a wall, sometimes 3-12 m above the ground."
-      },
-      {
         "name": "territorial",
-        "start": "03-01",
-        "end": "09-30"
+        "start": "01-01",
+        "end": "12-31",
+        "note": "The species is resident, but the available sources do not establish a breeding calendar for this population. The year-round territorial phase is a neutral schema-required placeholder, not a claim about breeding months."
       }
     ],
     "life_stages": [
@@ -149,7 +143,6 @@
       },
       {
         "stage": "Juvenile",
-        "duration_days": 180,
         "scale": 0.9
       },
       {
@@ -567,22 +560,18 @@
       "note": "A year-round resident of subtropical Brazil with no migration or dormancy described."
     },
     "seasonal.phases": {
-      "sources": [
-        "gbif-backbone",
-        "wikipedia"
-      ],
-      "confidence": "Medium",
+      "sources": [],
+      "confidence": "Low",
       "derived": true,
-      "note": "Nesting height and site from the Portuguese Wikipedia article (bem-te-vi); the breeding window is judgement."
+      "note": "The species is resident, but the available sources do not establish a breeding calendar for this population. The year-round territorial phase is a neutral schema-required placeholder, not a claim about breeding months."
     },
     "seasonal.life_stages": {
       "sources": [
-        "gbif-backbone",
         "wikipedia"
       ],
       "confidence": "Low",
       "derived": true,
-      "note": "Authored judgement; the article describes an open-cup clutch but not a chick period."
+      "note": "Only sourced life-stage structure and egg incubation are retained; unsupported juvenile timing is omitted."
     },
     "behavior": {
       "sources": [],
@@ -599,14 +588,6 @@
       "derived": true,
       "note": "Colours from the Wikipedia description (black head, strong white supercilium, concealed yellow crown stripe, brown upperparts with rufous fringes, yellow underparts, short thick black bill); proportions authored for a large flycatcher."
     },
-    "traits.wingspan_m": {
-      "sources": [
-        "avonet"
-      ],
-      "confidence": "Low",
-      "derived": true,
-      "note": "AVONET Wing.Length 111.9 mm is the wing chord; multiplied by 2.80, the passerine ratio this repository's own sourced thrush record (species/turdus-merula) gives. Authored conversion, not a measured wingspan."
-    },
     "traits.mass_range_kg": {
       "sources": [
         "gbif-backbone",
@@ -615,12 +596,6 @@
       "confidence": "Medium",
       "derived": true,
       "note": "AVONET Mass 62.85 g; Wikipedia gives 53-71.5 g."
-    },
-    "traits.lifespan_y": {
-      "sources": [],
-      "confidence": "Low",
-      "derived": true,
-      "note": "No openly licensed source states a wild lifespan for this species. Authored as a low-precision value typical of a tyrant flycatcher of this size; it is a judgement, not a measurement."
     },
     "vocalizations.song": {
       "sources": [
@@ -639,6 +614,12 @@
       "confidence": "Medium",
       "derived": true,
       "note": "Call description from the Great kiskadee article; months, time windows, cooldowns and loudness are authored judgement, as no open source quantifies them."
+    },
+    "traits.lifespan_y": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "A low-precision simulation value for a small, common passerine. No species-specific longevity record was found; this is not a measured lifespan."
     }
   },
   "contributors": [

@@ -53,8 +53,6 @@
     "size_class": "Small",
     "mass_kg": 0.063,
     "length_m": 0.24,
-    "wingspan_m": 0.318,
-    "lifespan_y": 12,
     "diet": {
       "fruit": 0.3,
       "seed": 0.3,
@@ -70,12 +68,12 @@
     },
     "activity_pattern": "Diurnal",
     "defense": "Flee",
-    "wariness": 0.25
+    "wariness": 0.25,
+    "lifespan_y": 12.0
   },
   "habitat": {
     "use": {
-      "arboreal": 0.8,
-      "ground": 0.2
+      "arboreal": 1.0
     },
     "shelter_tag": "cavity",
     "resources": [
@@ -113,23 +111,17 @@
     "human_tolerance": {
       "urban_affinity": "Exploiter",
       "uses_gardens": true,
-      "notes": "Gregarious in flocks of 15-20 birds, larger flocks of up to 100 not being unusual, and non-migratory; it visits fruiting trees in parks, streets and gardens across its range and builds communal nest cavities in termite nests."
+      "notes": "Observed in São Paulo feeding at trees and shrubs in the understory, including palm fruits; the species also uses urban plant resources."
     }
   },
   "seasonal": {
     "strategy": "ActiveYearRound",
     "phases": [
       {
-        "name": "breeding",
-        "start": "10-01",
-        "end": "03-31",
-        "note": "Clutches of about 11 eggs with about 7 young reaching adulthood; nests are built in communal cavities in termite nests."
-      },
-      {
         "name": "flocking",
-        "start": "04-01",
-        "end": "09-30",
-        "note": "Non-migratory; moves in flocks between fruiting trees."
+        "start": "01-01",
+        "end": "12-31",
+        "note": "The species is a year-round resident and is regularly observed in pairs or flocks; a seasonal breeding window is not asserted."
       }
     ],
     "life_stages": [
@@ -137,9 +129,7 @@
         "stage": "Egg"
       },
       {
-        "stage": "Juvenile",
-        "duration_days": 300,
-        "scale": 0.9
+        "stage": "Juvenile"
       },
       {
         "stage": "Adult"
@@ -147,7 +137,7 @@
     ]
   },
   "behavior": {
-    "program": "bt-perching-songbird-v1",
+    "program": "bt-brotogeris-arboreal-forager-v1",
     "params": {
       "flee_m": 12,
       "food_tag": "fruit",
@@ -196,32 +186,17 @@
       "girth_ratio": 1.0
     },
     "palette": {
-      "body": "#7ea34b",
-      "belly": "#c9d97a",
-      "markings": "#c05a1e",
-      "accent": "#e8e4d2",
+      "body": "#77a64d",
+      "belly": "#b9cf78",
+      "markings": "#677a9c",
+      "accent": "#c8b98e",
       "eye": "#1b1b16"
     },
     "part_colors": {
-      "beak": "markings",
-      "head": "markings"
+      "beak": "accent",
+      "head": "body"
     },
     "extra_parts": [
-      {
-        "name": "forehead_band",
-        "parent": "head",
-        "offset": [
-          0.28,
-          0.2,
-          0.0
-        ],
-        "size": [
-          0.44,
-          0.14,
-          0.9
-        ],
-        "color": "markings"
-      },
       {
         "name": "wing_flash",
         "parent": "wing_left",
@@ -298,15 +273,6 @@
       "accessed": "2026-10-01"
     },
     {
-      "id": "inat-activity-br-sp",
-      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=19214&place_id=13334&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
-      "title": "iNaturalist observations histogram for Brotogeris tirica in BR-SP",
-      "license": "CC-BY-4.0",
-      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
-      "accessed": "2026-10-01",
-      "kind": "api"
-    },
-    {
       "id": "gbif-activity-br-sp",
       "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2479562&gadmGid=BRA.25_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
       "title": "GBIF occurrence search for Brotogeris tirica in BR-SP",
@@ -314,6 +280,26 @@
       "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
       "accessed": "2026-10-01",
       "kind": "api"
+    },
+    {
+      "id": "urban-parrot-diet-sp",
+      "url": "https://doi.org/10.24278/rif.2025.37e969",
+      "title": "Dieta de psitacídeos em área urbana de São Paulo, sudeste do Brasil",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "kind": "literature",
+      "attribution": "Motta Junior, J. C. et al. (2025). Dieta de psitacídeos em área urbana de São Paulo, sudeste do Brasil. Revista do Instituto Florestal 37. https://doi.org/10.24278/rif.2025.37e969.",
+      "accessed": "2026-10-10"
+    },
+    {
+      "id": "sazima-parakeet-foraging",
+      "url": "https://doi.org/10.1590/S1676-06032008000100026",
+      "title": "The parakeet Brotogeris tirica feeds on and disperses the fruits of the palm Syagrus romanzoffiana in Southeastern Brazil",
+      "license": "CC-BY-NC-4.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+      "kind": "literature",
+      "attribution": "Sazima, I. (2008). The parakeet Brotogeris tirica feeds on and disperses the fruits of the palm Syagrus romanzoffiana in Southeastern Brazil. Biota Neotropica 8(1):231-234. https://doi.org/10.1590/S1676-06032008000100026.",
+      "accessed": "2026-10-10"
     }
   ],
   "provenance": {
@@ -440,12 +426,11 @@
     },
     "traits.nest_type": {
       "sources": [
-        "gbif-backbone",
         "wikipedia"
       ],
-      "confidence": "Medium",
+      "confidence": "Low",
       "derived": true,
-      "note": "Food weights follow traits.diet; the communal nest cavity in a termite nest from the Portuguese Wikipedia article; the perch weight is judgement."
+      "note": "The broad Cavity category is retained from the existing species description as a model choice. No verified primary source reviewed here supports communal nesting or termite nests for this species, so those claims are removed."
     },
     "traits.size_class": {
       "sources": [
@@ -478,11 +463,10 @@
     "traits.diet": {
       "sources": [
         "eltontraits",
-        "gbif-backbone",
-        "wikipedia"
+        "urban-parrot-diet-sp"
       ],
-      "confidence": "High",
-      "note": "EltonTraits Diet-Fruit 30, Diet-Seed 30, Diet-PlantO 30 (plant other mapped to browse), Diet-Inv 10."
+      "confidence": "Medium",
+      "note": "EltonTraits 1.0 gives a global species-level diet allocation (fruit 30%, seed 30%, plant-other 30%, invertebrate 10%; plant-other mapped to browse). A São Paulo campus study independently documents plant-heavy feeding on seeds, fruit and nectar. The global proportions remain dataset values, not local percentages."
     },
     "traits.social": {
       "sources": [
@@ -516,11 +500,11 @@
     },
     "habitat.use": {
       "sources": [
-        "eltontraits"
+        "sazima-parakeet-foraging"
       ],
-      "confidence": "High",
+      "confidence": "Medium",
       "derived": true,
-      "note": "EltonTraits ForStrat-canopy 60, ForStrat-midhigh 20, ForStrat-understory 20 (canopy, midhigh and understory mapped to arboreal); the ground share is judgement, for feeding on the ground below fruiting trees."
+      "note": "The field study directly reports feeding at a palm tree and carrying fruit to understorey trees and shrubs in São Paulo. Arboreal use is modeled as 1.0; the paper does not estimate a population-level habitat-use percentage."
     },
     "habitat.shelter_tag": {
       "sources": [],
@@ -531,20 +515,21 @@
     "habitat.resources": {
       "sources": [
         "eltontraits",
-        "gbif-backbone",
+        "urban-parrot-diet-sp",
         "wikipedia"
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "Food weights follow traits.diet; the communal nest cavity in a termite nest from the Portuguese Wikipedia article; the perch weight is judgement."
+      "note": "Food weights follow traits.diet. Cavity is a broad nesting category; no communal or termite-nest claim is made. Perch weight is a simulation judgement."
     },
     "habitat.human_tolerance": {
       "sources": [
-        "gbif-backbone",
-        "wikipedia"
+        "urban-parrot-diet-sp",
+        "sazima-parakeet-foraging"
       ],
-      "confidence": "High",
-      "note": "Portuguese Wikipedia describes it as one of the most invasive of all bird species because of its nest-building, and as a pest even within its native range; it is non-migratory and flocks visit fruiting trees."
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The São Paulo campus survey documents urban plant feeding; the species-specific field study documents feeding at trees and understory plants. The garden-tolerance label is an authored simulation classification."
     },
     "seasonal.strategy": {
       "sources": [
@@ -557,49 +542,37 @@
     "seasonal.phases": {
       "sources": [
         "gbif-backbone",
-        "wikipedia"
+        "sazima-parakeet-foraging"
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "Clutch size and nesting from the Portuguese Wikipedia article; the windows are judgements."
+      "note": "No reliable primary source found for a São Paulo nesting calendar. Year-round residency and flock behavior are modeled without asserting breeding months or nest-site details."
     },
     "seasonal.life_stages": {
       "sources": [
-        "gbif-backbone",
-        "wikipedia"
+        "gbif-backbone"
       ],
       "confidence": "Low",
       "derived": true,
-      "note": "Authored from the clutch figure."
+      "note": "Only life-stage names are retained; durations and clutch-size claims were removed because no primary species-level evidence was located."
     },
     "behavior": {
-      "sources": [],
-      "confidence": "Low",
-      "derived": true,
-      "note": "Authored params for the shared perching-songbird program. Climb is the declared non-flight locomotion and has no pose in schema/v0.1/body-plans.json, so no climb pose is declared; a long flee distance suits a flock that flushes together."
-    },
-    "look": {
       "sources": [
-        "gbif-backbone",
-        "wikipedia"
+        "sazima-parakeet-foraging",
+        "urban-parrot-diet-sp"
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "Colours from the Wikipedia description (green body and underparts, orange-tinged forehead and breast, pale horn bill); proportions authored for a small parakeet with a long pointed tail."
+      "note": "The species-local program replaces the shared songbird ground hop with climbing movement. The São Paulo field study records parakeets feeding on and moving around palm fruit-bearing branches. Climb is the authored movement choice for arboreal feeding."
     },
-    "traits.wingspan_m": {
+    "look": {
       "sources": [
-        "avonet"
+        "wikipedia",
+        "urban-parrot-diet-sp"
       ],
-      "confidence": "Low",
+      "confidence": "Medium",
       "derived": true,
-      "note": "AVONET Wing.Length 113.4 mm is the wing chord; multiplied by 2.80, the passerine ratio this repository's own sourced thrush record (species/turdus-merula) gives. A parrot's rounded wing gives a shorter span for the same chord, so this is the least certain of the six wingspans here and is an upper-ish estimate, not a measurement."
-    },
-    "traits.lifespan_y": {
-      "sources": [],
-      "confidence": "Low",
-      "derived": true,
-      "note": "No openly licensed source states a wild lifespan for this species. Authored as a low-precision value typical of a small parakeet, whose captive and wild longevity both run to many years; it is a judgement, not a measurement."
+      "note": "The plain parakeet is predominantly green, with yellow-green underparts and blue-green/blue-violet flight feathers; there is no orange head or orange bill. General green plumage is also described in the São Paulo field study; palette is a simplified model."
     },
     "vocalizations.song": {
       "sources": [
@@ -618,6 +591,12 @@
       "confidence": "Medium",
       "derived": true,
       "note": "Call description from the Plain parakeet article; months, time windows, cooldowns and loudness are authored judgement, as no open source quantifies them."
+    },
+    "traits.lifespan_y": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "A low-precision simulation value for a small parakeet, informed by long-lived psittacids but without a species-specific wild estimate. This is a model parameter, not a field measurement."
     }
   },
   "contributors": [
@@ -647,7 +626,6 @@
         "method": "mean(inat_share, gbif_share)",
         "observations": 91107,
         "sources": [
-          "inat-activity-br-sp",
           "gbif-activity-br-sp"
         ],
         "query": {

@@ -56,9 +56,6 @@
     },
     "size_class": "Tiny",
     "mass_kg": 0.0325,
-    "length_m": 0.175,
-    "wingspan_m": 0.253,
-    "lifespan_y": 6,
     "diet": {
       "fruit": 0.5,
       "seed": 0.4,
@@ -73,7 +70,9 @@
     },
     "activity_pattern": "Diurnal",
     "defense": "Flee",
-    "wariness": 0.3
+    "wariness": 0.3,
+    "lifespan_y": 6.0,
+    "length_m": 0.175
   },
   "habitat": {
     "use": {
@@ -118,14 +117,10 @@
     "strategy": "ActiveYearRound",
     "phases": [
       {
-        "name": "breeding",
-        "start": "10-01",
-        "end": "02-28"
-      },
-      {
         "name": "territorial",
-        "start": "03-01",
-        "end": "09-30"
+        "start": "01-01",
+        "end": "12-31",
+        "note": "The species is resident, but the available sources do not establish a breeding calendar for this population. The year-round territorial phase is a neutral schema-required placeholder, not a claim about breeding months."
       }
     ],
     "life_stages": [
@@ -134,7 +129,6 @@
       },
       {
         "stage": "Juvenile",
-        "duration_days": 180,
         "scale": 0.9
       },
       {
@@ -462,16 +456,6 @@
       "confidence": "High",
       "note": "AVONET Mass 32.49 g."
     },
-    "traits.length_m": {
-      "sources": [
-        "gbif-backbone",
-        "wikipedia",
-        "avonet"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "No openly licensed source states a total length for this species. Derived from AVONET's measurements of the parts: Wing.Length 90.3 mm, Tail.Length 66 mm and Beak.Length_Culmen for the same row give about 0.175 m nose-to-tail-tip for a tanager of this build. Authored, not a published measurement."
-    },
     "traits.diet": {
       "sources": [
         "eltontraits",
@@ -552,22 +536,18 @@
       "note": "A year-round resident of subtropical Brazil with no migration or dormancy described."
     },
     "seasonal.phases": {
-      "sources": [
-        "gbif-backbone",
-        "wikipedia"
-      ],
-      "confidence": "Medium",
+      "sources": [],
+      "confidence": "Low",
       "derived": true,
-      "note": "Authored windows; the article describes a year-round common resident with no stated breeding season."
+      "note": "The species is resident, but the available sources do not establish a breeding calendar for this population. The year-round territorial phase is a neutral schema-required placeholder, not a claim about breeding months."
     },
     "seasonal.life_stages": {
       "sources": [
-        "gbif-backbone",
         "wikipedia"
       ],
       "confidence": "Low",
       "derived": true,
-      "note": "Authored judgement."
+      "note": "Only sourced life-stage structure and egg incubation are retained; unsupported juvenile timing is omitted."
     },
     "behavior": {
       "sources": [],
@@ -583,20 +563,6 @@
       "confidence": "Medium",
       "derived": true,
       "note": "Colours from the species' appearance (slate-blue to greenish-blue upperparts, paler blue underparts, dark wings and tail, pale stout bill); proportions authored for a medium tanager."
-    },
-    "traits.wingspan_m": {
-      "sources": [
-        "avonet"
-      ],
-      "confidence": "Low",
-      "derived": true,
-      "note": "AVONET Wing.Length 90.3 mm is the wing chord; multiplied by 2.80, the passerine ratio this repository's own sourced thrush record (species/turdus-merula) gives. Authored conversion, not a measured wingspan."
-    },
-    "traits.lifespan_y": {
-      "sources": [],
-      "confidence": "Low",
-      "derived": true,
-      "note": "No openly licensed source states a wild lifespan for this species. Authored as a low-precision value typical of a tanager of this size; it is a judgement, not a measurement."
     },
     "vocalizations.song": {
       "sources": [
@@ -615,6 +581,20 @@
       "confidence": "Medium",
       "derived": true,
       "note": "Call description from the Sayaca tanager article; months, time windows, cooldowns and loudness are authored judgement, as no open source quantifies them."
+    },
+    "traits.lifespan_y": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "A low-precision simulation value for a small, resident tanager, chosen between short-lived small passerines and larger long-lived tanagers. No species-specific survival estimate was found; this is not a measured lifespan."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "A species account gives 16.5-18 cm; 17.5 cm is the midpoint. This is a rounded total length, not a value reconstructed from AVONET wing and tail measurements."
     }
   },
   "contributors": [

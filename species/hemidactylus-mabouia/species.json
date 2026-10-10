@@ -28,6 +28,21 @@
   },
   "range": {
     "native": [
+      "AO",
+      "CD",
+      "CG",
+      "CM",
+      "GA",
+      "GH",
+      "NG",
+      "ZA",
+      "ZM",
+      "ZW"
+    ],
+    "introduced": [
+      "BR"
+    ],
+    "invasive_in": [
       "BR"
     ]
   },
@@ -59,7 +74,6 @@
     ],
     "length_m": 0.1135,
     "shoulder_height_m": 0.02,
-    "lifespan_y": 5,
     "diet": {
       "invertebrate": 1.0
     },
@@ -72,7 +86,8 @@
     },
     "activity_pattern": "Nocturnal",
     "defense": "Flee",
-    "wariness": 0.55
+    "wariness": 0.55,
+    "lifespan_y": 5.0
   },
   "habitat": {
     "use": {
@@ -96,7 +111,7 @@
       "urban_affinity": "Exploiter",
       "uses_gardens": true,
       "light_max": 1.0,
-      "notes": "A synanthropic gecko that lives on and inside buildings, hunts household insect pests, and in some Caribbean cultures is considered good luck to have in the home; it hides in cracks and crevices by day."
+      "notes": "A commensal gecko established in Brazil that uses buildings and other disturbed habitats; its South American populations are introduced."
     }
   },
   "seasonal": {
@@ -104,26 +119,18 @@
     "phases": [
       {
         "name": "breeding",
-        "start": "10-01",
-        "end": "03-31",
-        "note": "Breeding through the warm, wet season; both sexes reach sexual maturity after 6 to 12 months, maturity judged on size rather than age."
-      },
-      {
-        "name": "territorial",
-        "start": "04-01",
-        "end": "09-30"
+        "start": "01-01",
+        "end": "12-31",
+        "note": "A field study of an introduced population in Valinhos, São Paulo, found reproduction throughout the year; females increased clutch frequency in the wet season."
       }
     ],
     "life_stages": [
       {
         "stage": "Egg",
-        "duration_days": 60,
-        "scale": 0.08
+        "duration_days": 45
       },
       {
-        "stage": "Juvenile",
-        "duration_days": 240,
-        "scale": 0.5
+        "stage": "Juvenile"
       },
       {
         "stage": "Adult"
@@ -288,22 +295,33 @@
       "accessed": "2026-10-01"
     },
     {
-      "id": "inat-activity-br-sp",
-      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=68492&place_id=13334&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
-      "title": "iNaturalist observations histogram for Hemidactylus mabouia in BR-SP",
-      "license": "CC-BY-NC-4.0",
-      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
-      "accessed": "2026-10-01",
-      "kind": "api"
-    },
-    {
       "id": "gbif-activity-br-sp",
       "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5959942&gadmGid=BRA.25_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
       "title": "GBIF occurrence search for Hemidactylus mabouia in BR-SP",
       "license": "CC-BY-4.0",
-      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
-      "accessed": "2026-10-01",
+      "attribution": "GBIF.org (2026-10-10) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-10",
       "kind": "api"
+    },
+    {
+      "id": "mabouia-biogeography",
+      "url": "https://doi.org/10.1098/rsos.210749",
+      "title": "How the African house gecko (Hemidactylus mabouia) conquered the world",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "kind": "literature",
+      "attribution": "Agarwal, I. et al. (2021). How the African house gecko (Hemidactylus mabouia) conquered the world. Royal Society Open Science 8:210749. https://doi.org/10.1098/rsos.210749.",
+      "accessed": "2026-10-10"
+    },
+    {
+      "id": "mabouia-reproduction-sp",
+      "url": "https://doi.org/10.1590/S0073-47212008000200010",
+      "title": "Reproductive ecology of the invader species gekkonid lizard Hemidactylus mabouia in an area of southeastern Brazil",
+      "license": "CC-BY-NC-4.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+      "kind": "literature",
+      "attribution": "Anjos, L. A. & Rocha, C. F. D. (2008). Reproductive ecology of the invader species gekkonid lizard Hemidactylus mabouia in an area of southeastern Brazil. Iheringia, Série Zoologia 98(2):205-212. https://doi.org/10.1590/S0073-47212008000200010.",
+      "accessed": "2026-10-10"
     }
   ],
   "provenance": {
@@ -339,12 +357,11 @@
     },
     "range": {
       "sources": [
-        "gbif-backbone",
-        "wikipedia"
+        "mabouia-biogeography"
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "Wikipedia: the species is native to tropical America and is also reported from Africa and probably from Asia, and is often treated as a species complex. Only BR is listed, because the format's region codes are ISO 3166-1 countries and an African or Asian range would need country-level records this record does not have; the understatement is deliberate rather than an omission."
+      "note": "The range-wide phylogeographic study places the origin in Africa and treats all Neotropical records as the invasive H. mabouia sensu stricto lineage; BR is therefore introduced and invasive. Native country list is conservative, representing documented African range localities in this format."
     },
     "traits.size_class": {
       "sources": [
@@ -368,12 +385,6 @@
       "confidence": "Medium",
       "derived": true,
       "note": "Wikipedia: average total length 10-12.7 cm including the tail; midpoint 0.1135 m used."
-    },
-    "traits.lifespan_y": {
-      "sources": [],
-      "confidence": "Low",
-      "derived": true,
-      "note": "No openly licensed source states a wild lifespan for this species. Authored as a low-precision value typical of a small house gecko; it is a judgement, not a measurement."
     },
     "traits.diet": {
       "sources": [
@@ -512,11 +523,10 @@
     },
     "habitat.human_tolerance": {
       "sources": [
-        "gbif-backbone",
-        "wikipedia"
+        "mabouia-biogeography"
       ],
       "confidence": "High",
-      "note": "Wikipedia: in some Caribbean cultures it is considered good luck to have a tropical house gecko residing in the home, and it eats household insect pests."
+      "note": "Range-wide study describes commensalism and introduced, established New World populations."
     },
     "seasonal.strategy": {
       "sources": [
@@ -528,21 +538,18 @@
     },
     "seasonal.phases": {
       "sources": [
-        "gbif-backbone",
-        "wikipedia"
+        "mabouia-reproduction-sp"
       ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Sexual maturity at 6 to 12 months, judged on size rather than age, from the Portuguese Wikipedia article; the windows are judgements."
+      "confidence": "High",
+      "note": "The Valinhos field population reproduced year-round; wet-season females increased clutch frequency. The record does not assign a seasonal-only breeding window."
     },
     "seasonal.life_stages": {
       "sources": [
-        "gbif-backbone",
-        "wikipedia"
+        "mabouia-reproduction-sp"
       ],
-      "confidence": "Low",
+      "confidence": "Medium",
       "derived": true,
-      "note": "Authored judgement; gecko egg incubation is roughly two months."
+      "note": "Egg duration is the midpoint (45 days) of the primary study incubation range, 22-68 days. Juvenile duration is omitted because the study reports maturity size rather than a fixed age."
     },
     "behavior": {
       "sources": [],
@@ -592,6 +599,12 @@
       "confidence": "Low",
       "derived": true,
       "note": "Description from the Wikipedia account of the species' vocalisations; months, time windows, cooldowns and loudness are authored judgement, as no open source quantifies them. No open source gives a frequency band, so freq_hz is omitted."
+    },
+    "traits.lifespan_y": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "A low-precision simulation value for a small house gecko. The primary São Paulo reproductive study states that accurate longevity data are unavailable; this is a model parameter, not a measured lifespan."
     }
   },
   "contributors": [
@@ -605,34 +618,28 @@
       {
         "region": "BR-SP",
         "monthly": [
-          0.45,
-          0.44,
+          0.11,
+          0.08,
           1.0,
-          0.48,
-          0.38,
-          0.26,
-          0.23,
-          0.32,
-          0.31,
-          0.43,
-          0.27,
-          0.43
+          0.07,
+          0.05,
+          0.08,
+          0.04,
+          0.09,
+          0.07,
+          0.39,
+          0.12,
+          0.16
         ],
-        "method": "mean(inat_raw, gbif_raw)",
-        "observations": 2186,
+        "method": "gbif_raw",
+        "observations": 1136,
         "sources": [
-          "inat-activity-br-sp",
           "gbif-activity-br-sp"
         ],
         "query": {
           "min_obs": 300,
           "inat": {
-            "tier": "C",
-            "place_id": 13334,
-            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=68492&place_id=13334&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
-            "baseline_url": null,
-            "total": 1050,
-            "usable": true
+            "skipped": "ISO 3166-2 region given without --inat-place-id; pass --inat-place-id <id> (look it up at https://www.inaturalist.org/places) to query iNaturalist for this subdivision"
           },
           "gbif": {
             "tier": "A",
@@ -646,7 +653,6 @@
             "usable": true
           },
           "used": [
-            "inat",
             "gbif"
           ]
         }

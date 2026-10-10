@@ -48,9 +48,9 @@
     "size_class": "Tiny",
     "mass_kg": 0.0121,
     "length_m": 0.0843,
-    "lifespan_y": 10,
     "diet": {
-      "vertebrate": 1.0
+      "invertebrate": 0.93,
+      "browse": 0.07
     },
     "social": {
       "structure": "Solitary",
@@ -61,7 +61,8 @@
     },
     "activity_pattern": "Cathemeral",
     "defense": "Toxin",
-    "wariness": 0.5
+    "wariness": 0.5,
+    "lifespan_y": 10.0
   },
   "habitat": {
     "use": {
@@ -72,23 +73,22 @@
       {
         "tag": "invertebrate",
         "kind": "Predation",
-        "weight": 0.7
+        "weight": 0.93
       },
       {
-        "tag": "small_vertebrate",
-        "kind": "Predation",
-        "weight": 0.3
+        "tag": "browse",
+        "kind": "Herbivory",
+        "weight": 0.07
       },
       {
         "tag": "pond",
         "kind": "Nesting",
         "weight": 1.0,
         "months": [
-          11,
-          12,
-          1,
-          2,
-          3
+          8,
+          9,
+          10,
+          11
         ]
       },
       {
@@ -137,32 +137,25 @@
     "phases": [
       {
         "name": "breeding",
-        "start": "10-01",
-        "end": "03-31",
-        "note": "One reproductive output a year, timed with the rains so the tadpoles develop in seasonal and intermittent pools."
-      },
-      {
-        "name": "territorial",
-        "start": "04-01",
-        "end": "09-30"
+        "start": "08-01",
+        "end": "11-30",
+        "region": "BR-SP",
+        "note": "At Juréia-Itatins in São Paulo, a primary field study found Rhinella ornata breeding associated approximately with August-November. The separate Boracéia collection of spawns July 24-August 14 falls within this period; these dates are observed regional evidence, not an exclusive range-wide season."
       }
     ],
     "life_stages": [
       {
         "stage": "Egg",
-        "duration_days": 10,
         "requires_tag": "pond",
         "scale": 0.02
       },
       {
         "stage": "Tadpole",
-        "duration_days": 60,
         "requires_tag": "pond",
         "scale": 0.1
       },
       {
         "stage": "Juvenile",
-        "duration_days": 900,
         "scale": 0.3
       },
       {
@@ -175,7 +168,7 @@
     "params": {
       "flee_m": 1.5,
       "freeze_m": 4,
-      "food_tag": "small_vertebrate",
+      "food_tag": "invertebrate",
       "call": "croak",
       "min_temp_c": 8,
       "max_temp_c": 27,
@@ -188,12 +181,10 @@
       "call_id": "croak",
       "context": "Croak",
       "season_months": [
+        8,
+        9,
         10,
-        11,
-        12,
-        1,
-        2,
-        3
+        11
       ],
       "time_windows": [
         "Night",
@@ -317,22 +308,43 @@
       "accessed": "2026-10-01"
     },
     {
-      "id": "inat-activity-br-sp",
-      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=67135&place_id=13334&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
-      "title": "iNaturalist observations histogram for Rhinella ornata in BR-SP",
-      "license": "CC-BY-NC-4.0",
-      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
-      "accessed": "2026-10-01",
-      "kind": "api"
-    },
-    {
       "id": "gbif-activity-br-sp",
       "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5216887&gadmGid=BRA.25_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
       "title": "GBIF occurrence search for Rhinella ornata in BR-SP",
       "license": "CC-BY-4.0",
-      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
-      "accessed": "2026-10-01",
+      "attribution": "GBIF.org (2026-10-10) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-10",
       "kind": "api"
+    },
+    {
+      "id": "rhinella-juvenile-diet",
+      "url": "https://doi.org/10.1590/1519-6984.236597",
+      "title": "Diet and microhabitat use by juveniles Rhinella ornata (Anura, Bufonidae) in an insular Brazilian Atlantic Rainforest area",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "kind": "literature",
+      "attribution": "Flynn, C. N., Araújo, P. G. & Rocha, C. F. D. (2021). Diet and microhabitat use by juveniles Rhinella ornata. Brazilian Journal of Biology 81(4):1129-1131. https://doi.org/10.1590/1519-6984.236597.",
+      "accessed": "2026-10-10"
+    },
+    {
+      "id": "rhinella-reproduction-sp",
+      "url": "https://doi.org/10.1590/1676-0611-BN-2020-1095",
+      "title": "Attraction to conspecifics in Rhinella icterica and R. ornata tadpoles (Anura: Bufonidae)",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "kind": "literature",
+      "attribution": "Polettini Neto, A. & Bertoluci, J. (2021). Attraction to conspecifics in Rhinella icterica and R. ornata tadpoles. Biota Neotropica 21(1):e20201095. https://doi.org/10.1590/1676-0611-BN-2020-1095.",
+      "accessed": "2026-10-10"
+    },
+    {
+      "id": "rhinella-seasonality-sp",
+      "url": "https://doi.org/10.1590/S1676-06032009000200011",
+      "title": "Species composition, habitat use and breeding seasons of anurans of the restinga forest of the Estação Ecológica Juréia-Itatins, Southeastern Brazil",
+      "license": "CC-BY-NC-4.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+      "kind": "literature",
+      "attribution": "Narvaes, P., Bertoluci, J. & Rodrigues, M. T. (2009). Species composition, habitat use and breeding seasons of anurans of the restinga forest of the Estação Ecológica Juréia-Itatins, Southeastern Brazil. Biota Neotropica 9(2). https://doi.org/10.1590/S1676-06032009000200011.",
+      "accessed": "2026-10-10"
     }
   ],
   "provenance": {
@@ -398,19 +410,13 @@
       "derived": true,
       "note": "AmphiBIO Body_size_mm 84.29, the snout-vent length."
     },
-    "traits.lifespan_y": {
-      "sources": [],
-      "confidence": "Low",
-      "derived": true,
-      "note": "AmphiBIO Longevity_max_y is NA for this species and no other openly licensed source gives one. Authored as a low-precision value below the 15-25 years AmphiBIO records for the large Rhinella species it does cover; it is a judgement, not a measurement."
-    },
     "traits.diet": {
       "sources": [
-        "amphibio"
+        "rhinella-juvenile-diet"
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "AmphiBIO Vert 1 is the only diet flag this species carries, so the diet is recorded as wholly vertebrate; AmphiBIO gives no invertebrate flag for it."
+      "note": "For the measured juvenile sample (52 stomachs, 5 empty), the article reports invertebrate prey at 93.2% of prey volume and plant remains at 6.8%; these values are mapped to invertebrate 0.93 and browse 0.07. This is a sample-based model, not an asserted adult-wide diet. AmphiBIO Vert=1 is a prey-presence flag, not a proportion."
     },
     "traits.social": {
       "sources": [],
@@ -533,13 +539,13 @@
     },
     "habitat.resources": {
       "sources": [
-        "amphibio",
-        "gbif-backbone",
-        "wikipedia"
+        "rhinella-seasonality-sp",
+        "rhinella-reproduction-sp",
+        "rhinella-juvenile-diet"
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "Predation weights follow traits.diet; the pond nesting requirement follows the species' use of rivers and intermittent freshwater lakes; the leaf-litter shelter weight is judgement."
+      "note": "Invertebrate and browse weights map to measured juvenile stomach volume. Pond months follow the primary São Paulo August-November breeding window. Weights and spatial suitability curves are model settings."
     },
     "habitat.human_tolerance": {
       "sources": [
@@ -559,27 +565,26 @@
     },
     "seasonal.phases": {
       "sources": [
-        "gbif-backbone",
-        "wikipedia"
+        "rhinella-seasonality-sp",
+        "rhinella-reproduction-sp"
       ],
-      "confidence": "Medium",
+      "confidence": "High",
       "derived": true,
-      "note": "AmphiBIO Reproductive_output_y 1 gives one reproductive output a year; the window is timed with the rains, which the intermittent freshwater lakes in Wikipedia's habitat statement imply. Authored."
+      "note": "Season months are the primary São Paulo study’s approximate August-November window; the separate 2017 Boracéia spawn collection provides corroborating dates within it."
     },
     "seasonal.life_stages": {
       "sources": [
-        "gbif-backbone",
-        "wikipedia"
+        "rhinella-reproduction-sp",
+        "amphibio"
       ],
-      "confidence": "Low",
-      "derived": true,
-      "note": "AmphiBIO Lar 1 (larvae present) and Dir 0 (not a direct developer) give an egg and a tadpole stage; durations and scales are authored judgement."
+      "confidence": "Medium",
+      "note": "Egg, tadpole and juvenile stages are supported as indirect development; unsupported stage durations were omitted."
     },
     "behavior": {
       "sources": [],
       "confidence": "Low",
       "derived": true,
-      "note": "Authored params for the shared anuran program. min_temp_c raised to 8 C from the program's 3 C default because Sao Paulo's frosts reach below freezing and the animal shelters in leaf litter rather than hibernating; max_temp_c 27 C matches the city's summer; food_tag uses small_vertebrate to match the AmphiBIO diet flag."
+      "note": "Authored params for the shared anuran program. min_temp_c raised to 8 C from the program default and max_temp_c 27 C is a modeling judgement for São Paulo. food_tag is invertebrate, matching the measured juvenile stomach sample."
     },
     "look": {
       "sources": [
@@ -607,12 +612,20 @@
     },
     "vocalizations.croak": {
       "sources": [
-        "gbif-backbone",
+        "rhinella-seasonality-sp",
         "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Seasonal months follow the observed São Paulo August-November breeding season; call description is species-level natural-history information."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "amphibio"
       ],
       "confidence": "Low",
       "derived": true,
-      "note": "Season months follow the breeding window; the description is authored for a bufonid advertisement call, as no openly licensed source describes this species' call specifically. No open source gives a frequency band, so freq_hz is omitted."
+      "note": "A low-precision simulation value for a small bufonid, set below the 15-25 year maxima available for much larger Rhinella in AmphiBIO. No species-specific estimate was found; this is a model parameter, not a measured lifespan."
     }
   },
   "contributors": [
@@ -626,34 +639,28 @@
       {
         "region": "BR-SP",
         "monthly": [
-          0.86,
-          0.88,
           0.71,
-          0.39,
-          0.26,
-          0.16,
-          0.34,
-          0.41,
-          0.75,
-          0.69,
-          0.66,
+          0.85,
+          0.72,
+          0.28,
+          0.18,
+          0.11,
+          0.4,
+          0.32,
+          0.94,
+          0.72,
+          0.68,
           1.0
         ],
-        "method": "mean(inat_raw, gbif_raw)",
-        "observations": 1270,
+        "method": "gbif_raw",
+        "observations": 503,
         "sources": [
-          "inat-activity-br-sp",
           "gbif-activity-br-sp"
         ],
         "query": {
           "min_obs": 300,
           "inat": {
-            "tier": "C",
-            "place_id": 13334,
-            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=67135&place_id=13334&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
-            "baseline_url": null,
-            "total": 769,
-            "usable": true
+            "skipped": "ISO 3166-2 region given without --inat-place-id; pass --inat-place-id <id> (look it up at https://www.inaturalist.org/places) to query iNaturalist for this subdivision"
           },
           "gbif": {
             "tier": "A",
@@ -663,11 +670,10 @@
             ],
             "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5216887&gadmGid=BRA.25_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
             "baseline_url": null,
-            "total": 501,
+            "total": 503,
             "usable": true
           },
           "used": [
-            "inat",
             "gbif"
           ]
         }

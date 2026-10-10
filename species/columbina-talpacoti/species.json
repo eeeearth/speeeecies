@@ -62,8 +62,6 @@
       0.056
     ],
     "length_m": 0.17,
-    "wingspan_m": 0.257,
-    "lifespan_y": 5,
     "diet": {
       "seed": 0.9,
       "invertebrate": 0.1
@@ -77,7 +75,8 @@
     },
     "activity_pattern": "Diurnal",
     "defense": "Flee",
-    "wariness": 0.45
+    "wariness": 0.45,
+    "lifespan_y": 5.0
   },
   "habitat": {
     "use": {
@@ -116,15 +115,10 @@
     "strategy": "ActiveYearRound",
     "phases": [
       {
-        "name": "breeding",
-        "start": "09-01",
-        "end": "03-31",
-        "note": "A solid but sparsely lined cup nest of sticks in a tree; two white eggs, 12-13 days incubation and a further 12-14 days to fledging, with a possible second or third brood."
-      },
-      {
         "name": "territorial",
-        "start": "04-01",
-        "end": "08-31"
+        "start": "01-01",
+        "end": "12-31",
+        "note": "The species is resident, but the available sources do not establish a breeding calendar for this population. The year-round territorial phase is a neutral schema-required placeholder, not a claim about breeding months."
       }
     ],
     "life_stages": [
@@ -135,7 +129,6 @@
       },
       {
         "stage": "Juvenile",
-        "duration_days": 180,
         "scale": 0.85
       },
       {
@@ -144,7 +137,7 @@
     ]
   },
   "behavior": {
-    "program": "bt-perching-songbird-v1",
+    "program": "bt-columbina-walking-forager-v1",
     "params": {
       "flee_m": 5,
       "food_tag": "seed",
@@ -296,22 +289,23 @@
       "accessed": "2026-10-01"
     },
     {
-      "id": "inat-activity-br-sp",
-      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3580&place_id=13334&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
-      "title": "iNaturalist observations histogram for Columbina talpacoti in BR-SP",
-      "license": "CC-BY-NC-4.0",
-      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
-      "accessed": "2026-10-01",
-      "kind": "api"
-    },
-    {
       "id": "gbif-activity-br-sp",
       "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2495858&gadmGid=BRA.25_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
       "title": "GBIF occurrence search for Columbina talpacoti in BR-SP",
       "license": "CC-BY-4.0",
-      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
-      "accessed": "2026-10-01",
+      "attribution": "GBIF.org (2026-10-10) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-10",
       "kind": "api"
+    },
+    {
+      "id": "dove-ground-foraging",
+      "url": "https://doi.org/10.1590/S1676-06032013000300005",
+      "title": "Ecological partitioning of three Columbidae species in Northern Paraná, Southern Brazil",
+      "license": "CC-BY-NC-4.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+      "kind": "literature",
+      "attribution": "Fontoura, P. M. & Orsi, M. L. (2013). Ecological partitioning of three Columbidae species in Northern Paraná, Southern Brazil. Biota Neotropica 13(3). https://doi.org/10.1590/S1676-06032013000300005.",
+      "accessed": "2026-10-10"
     }
   ],
   "provenance": {
@@ -553,28 +547,26 @@
       "note": "A year-round resident of subtropical Brazil with no migration or dormancy described."
     },
     "seasonal.phases": {
-      "sources": [
-        "gbif-backbone",
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Nest, clutch and timings from Wikipedia; the windows are judgements around them."
-    },
-    "seasonal.life_stages": {
-      "sources": [
-        "gbif-backbone",
-        "wikipedia"
-      ],
-      "confidence": "Low",
-      "derived": true,
-      "note": "Egg duration from the 12-13 day incubation in Wikipedia; Juvenile duration and scale are authored."
-    },
-    "behavior": {
       "sources": [],
       "confidence": "Low",
       "derived": true,
-      "note": "Authored params for the shared perching-songbird program; Walk is the declared ground locomotion, so the model walks rather than hops."
+      "note": "The species is resident, but the available sources do not establish a breeding calendar for this population. The year-round territorial phase is a neutral schema-required placeholder, not a claim about breeding months."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Only sourced life-stage structure and egg incubation are retained; unsupported juvenile timing is omitted."
+    },
+    "behavior": {
+      "sources": [
+        "dove-ground-foraging"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The primary field study observed Columbina talpacoti feeding on soil, grass and paving, with seeds the preferred food. This species-local program changes the shared songbird ground hop to walking; gait is a simulation choice, not a measured step-cycle."
     },
     "look": {
       "sources": [
@@ -585,14 +577,6 @@
       "derived": true,
       "note": "Colours from the Wikipedia description (rufous upperparts, paler brown underparts, cinnamon and black underwings, black-edged tail, red eye); proportions authored for a small short-tailed dove."
     },
-    "traits.wingspan_m": {
-      "sources": [
-        "avonet"
-      ],
-      "confidence": "Low",
-      "derived": true,
-      "note": "AVONET Wing.Length 86.8 mm is the wing chord; multiplied by 2.96, the pigeon ratio this repository's own sourced pigeon records give (species/columba-livia 0.65 m over 219.6 mm and species/zenaida-asiatica 0.48 m over 160.8 mm). Authored conversion, not a measured wingspan."
-    },
     "traits.mass_range_kg": {
       "sources": [
         "gbif-backbone",
@@ -601,12 +585,6 @@
       "confidence": "Medium",
       "derived": true,
       "note": "AVONET Mass 46.04 g; Wikipedia gives 35-56 g."
-    },
-    "traits.lifespan_y": {
-      "sources": [],
-      "confidence": "Low",
-      "derived": true,
-      "note": "No openly licensed source states a wild lifespan for this species. Authored as a low-precision value typical of a small columbid, close to the wild figure this repository uses for other columbids (species/columba-livia 4 y, species/zenaida-asiatica 5 y); it is a judgement, not a measurement."
     },
     "vocalizations.song": {
       "sources": [
@@ -625,6 +603,12 @@
       "confidence": "Medium",
       "derived": true,
       "note": "Call description from the Ruddy ground-dove article; months, time windows, cooldowns and loudness are authored judgement, as no open source quantifies them."
+    },
+    "traits.lifespan_y": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "A low-precision simulation value for a small dove, modeled near the 4-5 year wild values used for comparable columbids in this repository. No species-specific estimate was found; this is not a measured lifespan."
     }
   },
   "contributors": [
@@ -638,34 +622,28 @@
       {
         "region": "BR-SP",
         "monthly": [
-          0.82,
-          0.84,
-          0.9,
+          0.88,
           1.0,
-          0.81,
+          1.0,
+          0.98,
+          0.8,
+          0.8,
           0.72,
-          0.58,
-          0.72,
-          0.65,
-          0.56,
-          0.6,
-          0.78
+          0.74,
+          0.69,
+          0.63,
+          0.69,
+          0.82
         ],
-        "method": "mean(inat_share, gbif_share)",
-        "observations": 114078,
+        "method": "gbif_share",
+        "observations": 113082,
         "sources": [
-          "inat-activity-br-sp",
           "gbif-activity-br-sp"
         ],
         "query": {
           "min_obs": 300,
           "inat": {
-            "tier": "C",
-            "place_id": 13334,
-            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3580&place_id=13334&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
-            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=13334&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
-            "total": 1023,
-            "usable": true
+            "skipped": "ISO 3166-2 region given without --inat-place-id; pass --inat-place-id <id> (look it up at https://www.inaturalist.org/places) to query iNaturalist for this subdivision"
           },
           "gbif": {
             "tier": "A",
@@ -675,11 +653,10 @@
             ],
             "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2495858&gadmGid=BRA.25_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
             "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=BRA.25_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
-            "total": 113055,
+            "total": 113082,
             "usable": true
           },
           "used": [
-            "inat",
             "gbif"
           ]
         }
