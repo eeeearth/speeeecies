@@ -2929,29 +2929,40 @@ def test_the_no_pr_diagnosis_names_the_three_distinct_causes():
     fixes: never started, ran out of session before pushing, and finished-but-no-PR.
     Guessing between them is what falsified seven hypotheses in a row.
 
-    Only cases this test can set up deterministically are asserted. The pushed case
-    needs a branch that genuinely exists on the remote, which would make the test
-    rot the moment that branch is merged away."""
+    Every case uses a disposable clone and local bare origin, so the pushed state
+    stays deterministic after real repository branches are merged or deleted."""
     # 1. No branch at all.
     with tempfile.TemporaryDirectory() as scratch:
-      repo, _ = _scratch_repo(Path(scratch))
-      out = _no_pr_diagnosis("nope", "test/does-not-exist", "species", repo=repo)
+        repo, _ = _scratch_repo(Path(scratch))
+        out = _no_pr_diagnosis("nope", "test/does-not-exist", "species", repo=repo)
     assert "unknown locally" in out, (
         f"an absent branch was misdiagnosed instead of refused: {out!r}"
     )
 
     # 2. A real local branch carrying commits that was never pushed.
     with tempfile.TemporaryDirectory() as scratch:
-      repo, _ = _scratch_repo(Path(scratch))
-      br = "test/probe-diagnosis"
-      subprocess.run(["git", "-C", str(repo), "switch", "-qc", br], check=True)
-      (repo / "probe.txt").write_text("x\n", encoding="utf-8")
-      subprocess.run(["git", "-C", str(repo), "add", "-A"], check=True)
-      subprocess.run(["git", "-C", str(repo), "commit", "-qm", "probe"], check=True)
-      out = _no_pr_diagnosis("probe2", br, "species", log_body="ran gh pr create --title x", repo=repo)
-      assert "gh-pr-attempted=yes" in out, f"PR attempt not detected: {out!r}"
-      assert "branch NOT pushed" in out, f"unpushed work misdiagnosed: {out!r}"
-      assert "ran out of session before pushing" in out, f"wrong cause: {out!r}"
+        repo, _ = _scratch_repo(Path(scratch))
+        br = "test/probe-diagnosis"
+        subprocess.run(["git", "-C", str(repo), "switch", "-qc", br], check=True)
+        (repo / "probe.txt").write_text("x\n", encoding="utf-8")
+        subprocess.run(["git", "-C", str(repo), "add", "-A"], check=True)
+        subprocess.run(["git", "-C", str(repo), "commit", "-qm", "probe"], check=True)
+        out = _no_pr_diagnosis("probe2", br, "species",
+                               log_body="ran gh pr create --title x", repo=repo)
+        assert "gh-pr-attempted=yes" in out, f"PR attempt not detected: {out!r}"
+        assert "branch NOT pushed" in out, f"unpushed work misdiagnosed: {out!r}"
+        assert "ran out of session before pushing" in out, f"wrong cause: {out!r}"
+
+        # 3. A branch pushed to the disposable bare origin.
+        pushed = "test/pushed-diagnosis"
+        subprocess.run(["git", "-C", str(repo), "switch", "-qc", pushed, "origin/main"], check=True)
+        (repo / "pushed.txt").write_text("x\n", encoding="utf-8")
+        subprocess.run(["git", "-C", str(repo), "add", "pushed.txt"], check=True)
+        subprocess.run(["git", "-C", str(repo), "commit", "-qm", "pushed"], check=True)
+        subprocess.run(["git", "-C", str(repo), "push", "-q", "origin", pushed], check=True)
+        out = _no_pr_diagnosis("pushed", pushed, "species", repo=repo)
+        assert "branch PUSHED with 1 commit(s)" in out, out
+        assert "finished but never turned into a PR" in out, out
 
 
 def test_no_pr_diagnosis_survives_offline_remote_and_reports_unknown(tmp_path):
