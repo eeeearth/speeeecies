@@ -45,3 +45,12 @@ Species validation has zero errors and retains one warning for the unchanged
 IN-KA NC source. All-locale validation completed with no errors; self-check
 scanned 585 files with zero findings; all three focused regression tests passed.
 No behavior or mesh changed, so no new pose preview was needed.
+
+## PR #110 CI test fixture follow-up
+
+The preservation regression now compares the working record against a checked-in
+snapshot captured from the branch's actual current-main parent (`fdd777e`), so
+hosted tests do not need Git history objects or a path lookup. The test still
+compares the entire record after removing only the approved new national rows,
+sources, and ITIS additions, and separately checks the full `IN-KA` row exactly.
+Species data is unchanged in this follow-up.

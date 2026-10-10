@@ -1,11 +1,8 @@
 """Preservation and source-license regressions for PR #110's regional rows."""
-import copy
 import json
-import subprocess
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-BASE = "fdd777ed1ccb82dbc857210adf432e7d6da96dfc"
 REGIONS = {"IN", "TH", "MY", "SG"}
 
 
@@ -14,7 +11,9 @@ def read(path):
 
 
 def test_current_record_and_existing_in_ka_are_preserved():
-    base = json.loads(subprocess.check_output(["git", "show", f"{BASE}:species/copsychus-saularis/species.json"], cwd=ROOT))
+    snapshot = read("tools/tests/fixtures/pr110-current-main-record.json")
+    assert snapshot["source_commit"] == "fdd777ed1ccb82dbc857210adf432e7d6da96dfc"
+    base = snapshot["record"]
     current = read("species/copsychus-saularis/species.json")
     old_in_ka = next(r for r in base["activity"]["regions"] if r["region"] == "IN-KA")
     new_in_ka = next(r for r in current["activity"]["regions"] if r["region"] == "IN-KA")
