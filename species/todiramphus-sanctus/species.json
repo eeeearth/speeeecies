@@ -64,7 +64,6 @@
       0.061
     ],
     "length_m": 0.215,
-    "wingspan_m": 0.23,
     "lifespan_y": 6,
     "diet": {
       "invertebrate": 0.62,
@@ -203,13 +202,10 @@
     ]
   },
   "behavior": {
-    "program": "bt-perching-songbird-v1",
+    "program": "bt-sacred-kingfisher-v1",
     "params": {
       "flee_m": 12,
-      "food_tag": "invertebrate",
-      "song_cooldown_s": 40,
-      "nest_m1": 9,
-      "nest_m2": 1
+      "food_tag": "invertebrate"
     }
   },
   "vocalizations": [],
@@ -462,14 +458,6 @@
       "derived": true,
       "note": "Midpoint of 20-23 cm."
     },
-    "traits.wingspan_m": {
-      "sources": [
-        "avonet"
-      ],
-      "confidence": "Low",
-      "derived": true,
-      "note": "Honest gap. No openly licensed source consulted (English Wikipedia, Wikidata P2050, AVONET) gives a wingspan for the sacred kingfisher. Derived from AVONET's mean wing (chord) length of 91.3 mm at a factor of 2.5, giving 0.23 m; a spread wing's span runs roughly two to three times its chord, so treat this as a range estimate rather than a measurement. AVONET's Kipps distance of 27.7 mm on a 91.3 mm wing (ratio 0.30) indicates a longer, more pointed wing than the other passerines measured here, which fits the sallying, hovering flight the article describes."
-    },
     "traits.lifespan_y": {
       "sources": [
         "wikipedia"
@@ -583,10 +571,12 @@
       "note": "Description section for the plumage: mostly blue-green to turquoise above, white underparts and collar feathers, a black mask and buff lores; females are usually greener, duller and less buff beneath, and juveniles have buff or mottled brown edges on the collar, underparts and upper-wing coverts. The article does not describe the bill colour, so the bill is coloured with the black mask slot as an authored choice. Proportions are authored from AVONET's measurements for this species (culmen 43.4 mm, tarsus 12.9 mm, wing 91.3 mm, Kipps distance 27.7 mm, tail 60.5 mm) read against the biped_winged body plan: a very long dagger bill about as long as the head, very short legs, a large head on a compact body, and a moderately long, more pointed wing than the other passerines here. The breast part is coloured to carry the white underparts."
     },
     "behavior": {
-      "sources": [],
-      "confidence": "Low",
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
       "derived": true,
-      "note": "Authored parameters for the shared perching-songbird program. Honest limitations, stated rather than papered over: (1) the shared program has song and alarm actions and this record declares no vocalizations, because no openly licensed source consulted describes the sacred kingfisher's calls in words (the article links to recordings but does not transcribe them, Wikimedia Commons holds no audio for the species, and the Xeno-canto API this kit would use for openly licensed recordings has been retired). That leaves two UnknownCallId warnings, which is the honest gap rather than an invented call description. (2) food_tag is invertebrate because insects and spiders dominate the sourced diet; the program forages by hopping, which is a loose fit for a bird that sallies from a perch. (3) nest_m1/nest_m2 are 9 and 1 for the mostly-September-to-January breeding core, which the shared program wraps around its own hard-coded spring months. flee_m 12 and song_cooldown_s 40 are judgements for a bold, low-perching sit-and-wait predator."
+      "note": "Species-local program with explicit Auckland nesting months August-March. Call actions are removed because this record has no sourced vocalization entries. Prey feeding has no songbird ground-hop gait."
     }
   },
   "contributors": [

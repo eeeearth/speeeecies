@@ -164,34 +164,28 @@
       {
         "region": "NZ-AUK",
         "monthly": [
-          0.47,
-          0.53,
-          0.63,
-          0.72,
-          0.72,
-          0.79,
+          0.7,
+          0.76,
+          0.83,
+          0.99,
+          0.92,
           1.0,
+          0.91,
+          0.73,
+          0.64,
           0.55,
-          0.41,
-          0.42,
-          0.39,
-          0.39
+          0.49,
+          0.57
         ],
-        "method": "mean(inat_share, gbif_share)",
-        "observations": 33704,
+        "method": "gbif_share",
+        "observations": 32773,
         "sources": [
-          "inat-activity-nz-auk",
           "gbif-activity-nz-auk"
         ],
         "query": {
           "min_obs": 300,
           "inat": {
-            "tier": "C",
-            "place_id": 8345,
-            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=202505&place_id=8345&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
-            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=8345&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
-            "total": 960,
-            "usable": true
+            "skipped": "ISO 3166-2 region given without --inat-place-id; pass --inat-place-id <id> (look it up at https://www.inaturalist.org/places) to query iNaturalist for this subdivision"
           },
           "gbif": {
             "tier": "A",
@@ -201,11 +195,10 @@
             ],
             "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2489396&gadmGid=NZL.1_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
             "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=NZL.1_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
-            "total": 32744,
+            "total": 32773,
             "usable": true
           },
           "used": [
-            "inat",
             "gbif"
           ]
         }
@@ -213,13 +206,10 @@
     ]
   },
   "behavior": {
-    "program": "bt-perching-songbird-v1",
+    "program": "bt-silvereye-v1",
     "params": {
       "flee_m": 3,
-      "food_tag": "invertebrate",
-      "song_cooldown_s": 20,
-      "nest_m1": 9,
-      "nest_m2": 12
+      "food_tag": "invertebrate"
     }
   },
   "vocalizations": [],
@@ -333,21 +323,12 @@
       "note": "US federal government database; public domain in the United States."
     },
     {
-      "id": "inat-activity-nz-auk",
-      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=202505&place_id=8345&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
-      "title": "iNaturalist observations histogram for Zosterops lateralis in NZ-AUK",
-      "license": "CC-BY-NC-4.0",
-      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
-      "accessed": "2026-10-01",
-      "kind": "api"
-    },
-    {
       "id": "gbif-activity-nz-auk",
       "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2489396&gadmGid=NZL.1_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
       "title": "GBIF occurrence search for Zosterops lateralis in NZ-AUK",
       "license": "CC-BY-4.0",
-      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
-      "accessed": "2026-10-01",
+      "attribution": "GBIF.org (2026-10-10) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-10",
       "kind": "api"
     }
   ],
@@ -599,10 +580,12 @@
       "note": "Description section for the plumage: a conspicuous ring of white feathers around the eye, olive-green wings, a grey or olive-green back, a lighter throat that is yellow or grey, flanks from chestnut to pale buff, and an undertail that may be white or yellow, with plumage varying between the 17 subspecies. Proportions are authored from AVONET's measurements for this species (culmen 12.7 mm, tarsus 16.4 mm, wing 59.0 mm, Kipps distance 15.2 mm, tail 42.2 mm) read against the biped_winged body plan: a very small, compact, fine-billed bird with comparatively long legs and a short round wing. The eye ring is the species' field mark and is carried as a mirrored extra part in the markings slot."
     },
     "behavior": {
-      "sources": [],
-      "confidence": "Low",
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
       "derived": true,
-      "note": "Authored parameters for the shared perching-songbird program, which fits the posture and movement well: a small perching bird that flushes to a perch, forages by short flights through shrubbery, and builds a suspended cup nest. Honest limitations: (1) the shared program has song and alarm actions and this record declares no vocalizations, because no openly licensed source consulted transcribes the silvereye's call - English Wikipedia records only 'much calling' without rendering it, the French article gives no call description, and the Xeno-canto API this kit would use for openly licensed recordings has been retired. That leaves two UnknownCallId warnings, which is the honest gap rather than an invented call description. (2) food_tag is invertebrate because insects and spiders are the largest single share of the omnivorous diet. (3) nest_m1/nest_m2 are 9 and 12 for the sourced September-December window. flee_m 3 and song_cooldown_s 20 are judgements for a bold bird that feeds at bird tables."
+      "note": "Species-local program with explicit September-December nesting months. Call actions are removed because this record has no sourced vocalization entries."
     }
   },
   "contributors": [

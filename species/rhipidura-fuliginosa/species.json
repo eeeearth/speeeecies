@@ -53,7 +53,6 @@
     "size_class": "Tiny",
     "mass_kg": 0.00753,
     "length_m": 0.16,
-    "wingspan_m": 0.19,
     "lifespan_y": 3,
     "diet": {
       "invertebrate": 1.0
@@ -184,15 +183,13 @@
     ]
   },
   "behavior": {
-    "program": "bt-perching-songbird-v1",
+    "program": "bt-nz-fantail-v1",
     "params": {
       "flee_m": 2,
       "food_tag": "invertebrate",
       "song": "song",
       "alarm": "song",
-      "song_cooldown_s": 12,
-      "nest_m1": 8,
-      "nest_m2": 3
+      "song_cooldown_s": 12
     }
   },
   "vocalizations": [
@@ -466,14 +463,6 @@
       "confidence": "High",
       "note": "'It grows to 16 cm in length, of which half is the tail.'"
     },
-    "traits.wingspan_m": {
-      "sources": [
-        "avonet"
-      ],
-      "confidence": "Low",
-      "derived": true,
-      "note": "Honest gap. No openly licensed source consulted (English Wikipedia, Wikidata P2050, AVONET) gives a wingspan for the New Zealand fantail. Derived from AVONET's mean wing (chord) length of 74.7 mm at a factor of 2.5, giving 0.19 m; a spread wing's span runs roughly two to three times its chord, so treat this as a range estimate rather than a measurement. AVONET's Kipps distance of 14.9 mm on a 74.7 mm wing (ratio 0.20) indicates a short, broad wing, consistent with the near-constant flutter the article describes."
-    },
     "traits.lifespan_y": {
       "sources": [
         "wikipedia"
@@ -592,10 +581,12 @@
       "note": "Description section for the plumage: mid to dark grey or grey-brown above, yellowish/orange below, a dark band across the chest below a white throat, white markings over the eye, and white-edged or entirely white outer tail feathers, with a fan-shaped tail shown half the body length; juveniles browner with indistinct markings, and a dark 'black fantail' morph in a few percent of birds. Proportions are authored from AVONET's measurements for this species (culmen 11.8 mm, tarsus 19.4 mm, wing 74.7 mm, Kipps distance 14.9 mm, tail 93.9 mm) read against the biped_winged body plan: a compact, slender bird with a very long fanned tail, comparatively long legs, a short thin bill and a short broad wing. The breast part is coloured to the accent slot so the dark chest band reads, with the belly slot carrying the yellowish-orange underparts."
     },
     "behavior": {
-      "sources": [],
-      "confidence": "Low",
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
       "derived": true,
-      "note": "Authored parameters for the shared perching-songbird program, which fits well: a small perching bird that flushes to a perch, forages by short flights on invertebrates, sings from a perch and builds a cup nest. flee_m 2 reflects the sourced tendency to forage within a few metres of people. Both song and alarm point at the single sourced call, because the article describes no separate alarm call; alarm in this program means flushing to a perch, which is what the sourced behaviour describes. nest_m1/nest_m2 are 8 and 3 for the sourced North Island August-March window, and the shared program's own hard-coded spring months mean nest-building renders in March, April, May and August rather than continuously across that window. song_cooldown_s 12 is a judgement for a bird that calls in single notes or short chatters."
+      "note": "Species-local program with explicit North Island nesting months August-March. It retains the supported hop forage gait."
     }
   },
   "contributors": [

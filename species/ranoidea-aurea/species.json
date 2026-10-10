@@ -218,9 +218,7 @@
       "night_hi_deg": -6,
       "min_temp_c": 12,
       "max_temp_c": 30,
-      "call": "growl",
-      "call_m1": 10,
-      "call_m2": 3
+      "call": "growl"
     }
   },
   "vocalizations": [
@@ -607,7 +605,7 @@
       "sources": [],
       "confidence": "Low",
       "derived": true,
-      "note": "Authored bespoke program (fsm-bell-frog-v1) with authored parameters. A bespoke program is justified because none of the four shared programs fits: fsm-anuran-nocturnal-v1 is explicitly a nocturnal pond frog and inverts this species' day/night pattern (it gates its whole loop on is_day, hiding by day and emerging at night, whereas the article says this frog is often active during the day); fsm-ground-forager-v1 is written for a furred endothermic mammal with four-legged gaits and no basking or calling state; bt-perching-songbird-v1 assumes flight and perching; and fsm-seabird-predator-v1 assumes a marine colony. The parameters follow the sourced behaviour: call growl, call_m1/call_m2 = 10 and 3 for the October-March breeding season, food_tag invertebrate for the dominant prey, forage_gait walk and flee_gait hop for a hopping frog, night_lo_deg -90 and night_hi_deg -6 so it shelters only after dark, min_temp_c 12 and max_temp_c 30 for a frog active mainly when warm (the article gives narrower calling bands of 16-23 C in water and 14-25 C in air, which is the basis for gating calls on temperature), flee_m 3, calm_m 8 and freeze_m 6 as judgements for a large frog that freezes then hops away, and food_m 8 and water_m 25 for a terrestrial feeder that is never far from its breeding water."
+      "note": "Species-local frog program with an explicit October-March call gate, matching the record’s Auckland-relevant warm-season breeding window. The shared nocturnal anuran program was not used because its day/night pattern conflicts with the species account."
     }
   },
   "contributors": [

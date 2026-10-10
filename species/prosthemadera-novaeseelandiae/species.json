@@ -59,7 +59,6 @@
       0.15
     ],
     "length_m": 0.295,
-    "wingspan_m": 0.37,
     "lifespan_y": 8,
     "diet": {
       "nectar": 0.55,
@@ -137,7 +136,7 @@
         "name": "breeding",
         "start": "09-01",
         "end": "11-30",
-        "note": "Breeding is at its height in early spring; Wikipedia places the courtship display flight and the bulk of nesting in September and October. A large untidy cup of twigs, grasses and mosses is built (the female does most of the work), the clutch is usually 4 eggs, the female alone incubates for 14 days, and the chicks fledge after about 20 days."
+        "note": "Breeding is at its height in early spring; courtship display flights and the bulk of nesting occur in September and October, while egg-laying is recorded from September to January. The Auckland program gates nest building to the directly supported peak nesting months September-October. A large untidy cup of twigs, grasses and mosses is built (the female does most of the work), the clutch is usually 4 eggs, the female alone incubates for 14 days, and the chicks fledge after about 20 days."
       },
       {
         "name": "young",
@@ -219,15 +218,13 @@
     ]
   },
   "behavior": {
-    "program": "bt-perching-songbird-v1",
+    "program": "bt-tui-v1",
     "params": {
       "flee_m": 5,
       "food_tag": "nectar",
       "song": "song",
       "alarm": "alarm",
-      "song_cooldown_s": 20,
-      "nest_m1": 9,
-      "nest_m2": 11
+      "song_cooldown_s": 20
     }
   },
   "vocalizations": [
@@ -524,14 +521,6 @@
       "derived": true,
       "note": "Midpoint of 27-32 cm."
     },
-    "traits.wingspan_m": {
-      "sources": [
-        "avonet"
-      ],
-      "confidence": "Low",
-      "derived": true,
-      "note": "Honest gap. No openly licensed source consulted (English Wikipedia, Wikidata P2050, AVONET) gives a wingspan for the tūī. Derived from AVONET's mean wing (chord) length of 147.8 mm at a factor of 2.5, giving 0.37 m; a spread wing's span runs roughly two to three times its chord, so treat this as a range estimate rather than a measurement. AVONET's Kipps distance of 29.9 mm on a 147.8 mm wing (ratio 0.20) independently indicates a short, broad wing, which is consistent with a span near the low end of that range."
-    },
     "traits.lifespan_y": {
       "sources": [
         "wikipedia"
@@ -661,10 +650,12 @@
       "note": "Description section for the plumage: near-black head, underparts, wings and tail with a blue-green iridescent sheen, dark reddish-brown upper back and flanks with a bronze sheen, filamentous white feathers on the nape and sides of the neck, two curled white throat tufts (poi) and small white shoulder patches on the upperwing, dark eye and blackish bill and legs. Proportions are authored from AVONET's measurements for this species (culmen 31.3 mm, tarsus 36.5 mm, wing 147.8 mm, tail 118.8 mm, Kipps distance 29.9 mm) read against the biped_winged body plan: a long, slender, slightly decurved bill, a long tail and a short broad wing. wing_aspect is a judgement, since wingspan_m is itself an estimate."
     },
     "behavior": {
-      "sources": [],
-      "confidence": "Low",
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
       "derived": true,
-      "note": "Authored parameters for the shared perching-songbird program. food_tag is nectar because nectar is the normal diet; nest_m1/nest_m2 are 9 and 11 for the sourced September-October breeding peak, which the shared program wraps around its hard-coded spring months (so nest-building renders in September and October rather than the full September-January window). flee_m 5 and song_cooldown_s 20 are judgements for a bold, extremely noisy bird."
+      "note": "Species-local perching-bird program with explicit Auckland nesting months September-January. Nectar feeding has no ground gait, avoiding the shared hop action."
     }
   },
   "contributors": [

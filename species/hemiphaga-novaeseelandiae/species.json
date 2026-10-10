@@ -132,10 +132,10 @@
     "phases": [
       {
         "name": "breeding",
-        "start": "10-01",
-        "end": "02-28",
+        "start": "09-01",
+        "end": "04-30",
         "region": "NZ-AUK",
-        "note": "Breeding depends on the availability of ripe fruit, which varies seasonally, annually and by location. Further south it runs from October (early spring) to April (late summer/early autumn); in the warmer Northland region kererū can raise young year-round given enough fruit. The southern end of the sourced October-April window is trimmed here so this phase does not overlap the sourced March-May moult, which the source says suppresses breeding. The male performs steep display flights, ascending and appearing to stall at the top before a swooping descent."
+        "note": "Breeding depends on the availability of ripe fruit, which varies seasonally, annually and by location. A study at Wenderholm in the Auckland region recorded egg-laying from September through April; warmer Northland populations may raise young year-round when fruit is available. The Auckland phase and local behavior gate use the Wenderholm months. The male performs steep display flights, ascending and appearing to stall at the top before a swooping descent."
       },
       {
         "name": "moult",
@@ -218,15 +218,13 @@
     ]
   },
   "behavior": {
-    "program": "bt-perching-songbird-v1",
+    "program": "bt-kereru-v1",
     "params": {
       "flee_m": 18,
       "food_tag": "fruit",
       "song": "coo",
       "alarm": "coo",
-      "song_cooldown_s": 25,
-      "nest_m1": 10,
-      "nest_m2": 2
+      "song_cooldown_s": 25
     }
   },
   "vocalizations": [
@@ -359,6 +357,16 @@
       "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
       "accessed": "2026-10-01",
       "kind": "api"
+    },
+    {
+      "id": "doc-parea-report",
+      "url": "https://www.doc.govt.nz/documents/science-and-technical/SRIR134.pdf",
+      "title": "DOC Science & Research Internal Report No. 134, Ecology and breeding biology of parea, p. 26",
+      "license": "CC-BY-4.0",
+      "kind": "literature",
+      "accessed": "2026-10-10",
+      "attribution": "Department of Conservation, Science & Research Internal Report No. 134, CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
     }
   ],
   "provenance": {
@@ -595,11 +603,12 @@
     },
     "seasonal.phases": {
       "sources": [
-        "wikipedia"
+        "wikipedia",
+        "doc-parea-report"
       ],
-      "confidence": "High",
+      "confidence": "Medium",
       "derived": true,
-      "note": "Breeding section: fruit-dependent breeding, the October-April window in the south, year-round breeding possible in the warm north, the March-May moult that suppresses breeding, the male's steep display flight, and local movements of up to 25 km (and up to 100 km for some Southland birds) tracking fruit. The end of the territorial phase is an authored judgement, and the breeding phase is restricted to NZ-AUK so a South Island population reads differently."
+      "note": "The Auckland breeding phase uses the September-April Wenderholm egg-laying interval cited in DOC Science & Research Internal Report No. 134 (p. 26), alongside the broader fruit-dependent account and March-May moult note. The local behavior gate follows that Auckland interval; the phase is scoped to NZ-AUK."
     },
     "seasonal.life_stages": {
       "sources": [
@@ -626,10 +635,12 @@
       "note": "Description section for the plumage: dark green head, neck and upper breast with gold-bronze highlights; copper-sheened purple nape, upper back and secondary coverts; grey-green lower back, rump and rest of upper wing; dark brown tail with green highlights; sharply demarcated white breast; pale grey undertail and underwing coverts; red bill with an orange tip, dark red feet and red eyes with a pink orbital ring; juveniles paler with duller bill, eye and feet and a shorter tail. Proportions are authored from AVONET's measurements for this species (culmen 29.6 mm, tarsus 34.5 mm, wing 256.6 mm, Kipps distance 81.4 mm, tail 193.2 mm) read against the biped_winged body plan: a relatively small head on a long body, short legs, a long square tail, and a broad, moderately long wing. wing_aspect is anchored on the sourced 75 cm span over the 256.6 mm chord (half-span/chord about 1.46, rounded to 1.5)."
     },
     "behavior": {
-      "sources": [],
-      "confidence": "Low",
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
       "derived": true,
-      "note": "Authored parameters for the shared perching-songbird program, which is a rough fit for a large frugivorous pigeon and is the least-bad of the four shared programs: its ground-foraging, perching and alarm structure suits a canopy pigeon better than the mammal, anuran or seabird programs do. food_tag is fruit because fruit is the major part of the diet. Both song and alarm point at the single sourced call, coo, because the cited source describes no other vocalisation. nest_m1/nest_m2 are 10 and 2 for the sourced October-April breeding window; the shared program wraps that around its own hard-coded spring months, so nest-building renders in October-February rather than across the full October-April span. flee_m 18 and song_cooldown_s 25 are judgements for a large, flighty, soft-voiced bird."
+      "note": "Species-local perching-bird program with explicit Auckland nesting months September-April, supported by the Wenderholm study. Fruit feeding uses walk; the shared songbird hop is removed."
     }
   },
   "contributors": [

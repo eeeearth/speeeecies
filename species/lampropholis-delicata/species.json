@@ -58,7 +58,6 @@
     "perching": false,
     "size_class": "Tiny",
     "mass_kg": 0.00118,
-    "length_m": 0.05,
     "lifespan_y": 5,
     "diet": {
       "invertebrate": 1.0
@@ -72,7 +71,8 @@
     },
     "activity_pattern": "Diurnal",
     "defense": "Flee",
-    "wariness": 0.35
+    "wariness": 0.35,
+    "length_m": 0.096
   },
   "habitat": {
     "use": {
@@ -140,34 +140,28 @@
       {
         "region": "NZ-AUK",
         "monthly": [
-          0.74,
-          0.6,
-          0.94,
-          1.0,
-          0.85,
-          0.36,
-          0.42,
           0.55,
+          0.4,
           0.64,
-          0.94,
-          0.58,
-          0.64
+          0.55,
+          0.7,
+          0.21,
+          0.32,
+          0.23,
+          0.28,
+          1.0,
+          0.3,
+          0.38
         ],
-        "method": "mean(inat_raw, gbif_raw)",
-        "observations": 1551,
+        "method": "gbif_raw",
+        "observations": 332,
         "sources": [
-          "inat-activity-nz-auk",
           "gbif-activity-nz-auk"
         ],
         "query": {
           "min_obs": 300,
           "inat": {
-            "tier": "C",
-            "place_id": 8345,
-            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=38293&place_id=8345&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
-            "baseline_url": null,
-            "total": 1219,
-            "usable": true
+            "skipped": "ISO 3166-2 region given without --inat-place-id; pass --inat-place-id <id> (look it up at https://www.inaturalist.org/places) to query iNaturalist for this subdivision"
           },
           "gbif": {
             "tier": "A",
@@ -181,7 +175,6 @@
             "usable": true
           },
           "used": [
-            "inat",
             "gbif"
           ]
         }
@@ -305,22 +298,23 @@
       "note": "US federal government database; public domain in the United States."
     },
     {
-      "id": "inat-activity-nz-auk",
-      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=38293&place_id=8345&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
-      "title": "iNaturalist observations histogram for Lampropholis delicata in NZ-AUK",
-      "license": "CC-BY-NC-4.0",
-      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
-      "accessed": "2026-10-01",
-      "kind": "api"
-    },
-    {
       "id": "gbif-activity-nz-auk",
       "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5225256&gadmGid=NZL.1_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
       "title": "GBIF occurrence search for Lampropholis delicata in NZ-AUK",
       "license": "CC-BY-4.0",
-      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
-      "accessed": "2026-10-01",
+      "attribution": "GBIF.org (2026-10-10) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-10",
       "kind": "api"
+    },
+    {
+      "id": "cromie-chapple-2012",
+      "url": "https://doi.org/10.1371/journal.pone.0034732",
+      "title": "Cromie & Chapple (2012), Impact of Tail Loss on the Behaviour and Locomotor Performance of Two Sympatric Lampropholis Skink Species, PLOS ONE 7(4):e34732",
+      "license": "CC-BY-4.0",
+      "kind": "literature",
+      "accessed": "2026-10-10",
+      "attribution": "Cromie GL, Chapple DG (2012), PLOS ONE 7(4):e34732, CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
     }
   ],
   "provenance": {
@@ -446,15 +440,6 @@
       "confidence": "High",
       "note": "Amniote Database adult_body_mass_g = 1.18 g (female_body_mass_g = 1.18 g). The article gives no weight. mass_range_kg was left unset because the Amniote Database records a single value rather than a range."
     },
-    "traits.length_m": {
-      "sources": [
-        "amniote",
-        "wikipedia"
-      ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Honest gap in total length. The Amniote Database gives adult snout-vent length only (adult_svl_cm = 4.02 cm, no_sex_svl_cm = 5.1 cm); no openly licensed source consulted gives a head-to-tail length. The no-sex figure of 5.1 cm is used, and this is body length excluding the tail, which the article describes as 'a medium length, slender tail'. Total length is therefore longer than length_m and the field should be read that way."
-    },
     "traits.lifespan_y": {
       "sources": [],
       "confidence": "Low",
@@ -566,6 +551,14 @@
       "confidence": "Low",
       "derived": true,
       "note": "Authored parameters for the shared ground-forager program. The program is described as being for ground-dwelling mammals, so the fit is loose and is stated here rather than glossed: what carries over is the wander-forage-drink-flee-rest cycle of a small animal working a small home range. food_tag is invertebrate, the whole of the sourced diet. forage_gait walk and flee_gait trot match the sourced picture of an animal that moves with increased stride lengths and dashes when escaping. rest_sun_lo_deg -90 and rest_sun_hi_deg -6 make it shelter only after dark, which is what a diurnal ectotherm needs: the microhabitat section is explicit that it basks in open litter to manage its temperature. flee_m 2.5 and calm_m 6 are judgements for a wary but bold small lizard. This record declares no vocalizations because the shared program makes no calls and no openly licensed source consulted transcribes the species' sounds."
+    },
+    "traits.length_m": {
+      "sources": [
+        "cromie-chapple-2012"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The cited paper reports mean snout-vent length 40.57 mm and tail length 55.29 mm for intact control Lampropholis delicata. Added those observed component means (95.86 mm) and rounded to 96 mm; this represents the intact total length rather than labeling the SVL value as full length."
     }
   },
   "contributors": [
