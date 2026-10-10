@@ -1,0 +1,143 @@
+{
+  "schema_version": 1,
+  "format": "speeeecies/behavior",
+  "id": "fsm-terrestrial-salamander-v1",
+  "kind": "fsm",
+  "description": "Terrestrial woodland salamander (northern slimy salamander): hides under logs and leaf litter by day, forages for invertebrates on the forest floor at night when it is cool and damp, and walks away from threats.",
+  "params": {
+    "flee_m": 1.5,
+    "calm_m": 4,
+    "food_tag": "invertebrate",
+    "food_m": 5,
+    "min_temp_c": 5,
+    "max_temp_c": 26
+  },
+  "initial": "hide",
+  "states": {
+    "hide": {
+      "action": {
+        "do": "hide_nearest"
+      },
+      "min_dwell_s": 30
+    },
+    "rest": {
+      "action": {
+        "do": "rest"
+      },
+      "min_dwell_s": 10
+    },
+    "forage": {
+      "action": {
+        "do": "eat_nearest",
+        "tag": "${food_tag}",
+        "gait": "walk"
+      }
+    },
+    "wander": {
+      "action": {
+        "do": "wander",
+        "gait": "walk"
+      }
+    },
+    "flee": {
+      "action": {
+        "do": "flee",
+        "gait": "walk"
+      },
+      "min_dwell_s": 2
+    }
+  },
+  "transitions": [
+    {
+      "from": "*",
+      "to": "flee",
+      "when": {
+        "threat_within_m": "${flee_m}"
+      },
+      "priority": 100
+    },
+    {
+      "from": "flee",
+      "to": "hide",
+      "when": {
+        "not": {
+          "threat_within_m": "${calm_m}"
+        }
+      }
+    },
+    {
+      "from": "hide",
+      "to": "rest",
+      "when": {
+        "all": [
+          {
+            "is_day": false
+          },
+          {
+            "temperature_between_c": [
+              "${min_temp_c}",
+              "${max_temp_c}"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "from": "rest",
+      "to": "hide",
+      "when": {
+        "any": [
+          {
+            "is_day": true
+          },
+          {
+            "not": {
+              "temperature_between_c": [
+                "${min_temp_c}",
+                "${max_temp_c}"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "from": "rest",
+      "to": "forage",
+      "when": {
+        "all": [
+          {
+            "need": "hunger",
+            "gt": 0.4
+          },
+          {
+            "food_within_m": "${food_m}",
+            "tag": "${food_tag}"
+          }
+        ]
+      }
+    },
+    {
+      "from": "rest",
+      "to": "wander",
+      "when": {
+        "chance": 0.15
+      }
+    },
+    {
+      "from": "wander",
+      "to": "rest",
+      "when": {
+        "chance": 0.25
+      }
+    },
+    {
+      "from": "forage",
+      "to": "rest",
+      "when": {
+        "need": "hunger",
+        "lt": 0.15
+      }
+    }
+  ]
+}

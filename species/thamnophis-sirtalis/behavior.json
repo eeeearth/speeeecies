@@ -1,0 +1,276 @@
+{
+  "schema_version": 1,
+  "format": "speeeecies/behavior",
+  "id": "fsm-reptile-basker-v1",
+  "kind": "fsm",
+  "description": "Small diurnal ectotherm that lives by its body temperature (garter snake): lies up in cover while it is too cold to move, comes out to bask in the sun once it is warm, prowls and forages on amphibians and worms by day while it can still afford the effort, drinks at water, and answers a close threat by musking and posturing before it bolts - a warmer snake flees first, a cooler one holds its ground. No shared program fits: the ground forager is an endotherm that rests on a sun-elevation schedule and eats on the surface, the anuran hides and calls near breeding water rather than basking and prowling, the songbird and seabird assume flight, and this species has none. 'slither' carries the locomotion; body temperature gates everything.",
+  "params": {
+    "flee_m": 3,
+    "display_m": 12,
+    "food_tag": "invertebrate",
+    "food_m": 6,
+    "drink_m": 15,
+    "cool_temp_c": 12,
+    "bask_temp_c": 22,
+    "forage_gait": "slither"
+  },
+  "initial": "retreat",
+  "states": {
+    "retreat": {
+      "action": {
+        "do": "hide_nearest"
+      },
+      "min_dwell_s": 20
+    },
+    "bask": {
+      "action": {
+        "do": "idle"
+      },
+      "min_dwell_s": 30
+    },
+    "prowl": {
+      "action": {
+        "do": "wander",
+        "gait": "${forage_gait}"
+      }
+    },
+    "forage": {
+      "action": {
+        "do": "eat_nearest",
+        "tag": "${food_tag}",
+        "gait": "${forage_gait}"
+      },
+      "min_dwell_s": 15
+    },
+    "drink": {
+      "action": {
+        "do": "drink_nearest"
+      },
+      "min_dwell_s": 5
+    },
+    "musk": {
+      "action": {
+        "do": "emote",
+        "kind": "musk"
+      },
+      "min_dwell_s": 3
+    },
+    "flee": {
+      "action": {
+        "do": "flee",
+        "gait": "${forage_gait}"
+      },
+      "min_dwell_s": 2
+    },
+    "touched": {
+      "action": {
+        "do": "tolerate_touch"
+      }
+    }
+  },
+  "transitions": [
+    {
+      "from": "*",
+      "to": "flee",
+      "when": {
+        "threat_within_m": "${flee_m}"
+      },
+      "priority": 100
+    },
+    {
+      "from": "*",
+      "to": "touched",
+      "when": {
+        "all": [
+          {
+            "player_touch": true
+          },
+          {
+            "need": "fear",
+            "lt": 0.2
+          }
+        ]
+      },
+      "priority": 60
+    },
+    {
+      "from": "*",
+      "to": "musk",
+      "when": {
+        "all": [
+          {
+            "threat_within_m": "${display_m}"
+          },
+          {
+            "not": {
+              "threat_within_m": "${flee_m}"
+            }
+          }
+        ]
+      },
+      "priority": 55
+    },
+    {
+      "from": "touched",
+      "to": "retreat",
+      "when": {
+        "player_touch": false
+      }
+    },
+    {
+      "from": "musk",
+      "to": "retreat",
+      "when": {
+        "not": {
+          "threat_within_m": "${display_m}"
+        }
+      }
+    },
+    {
+      "from": "flee",
+      "to": "retreat",
+      "when": {
+        "not": {
+          "threat_within_m": "${display_m}"
+        }
+      }
+    },
+    {
+      "from": "retreat",
+      "to": "bask",
+      "when": {
+        "all": [
+          {
+            "is_day": true
+          },
+          {
+            "temperature_between_c": [
+              "${cool_temp_c}",
+              "${bask_temp_c}"
+            ]
+          }
+        ]
+      },
+      "priority": 20
+    },
+    {
+      "from": "*",
+      "to": "retreat",
+      "when": {
+        "not": {
+          "temperature_between_c": [
+            "${cool_temp_c}",
+            "${bask_temp_c}"
+          ]
+        }
+      },
+      "priority": 30
+    },
+    {
+      "from": "bask",
+      "to": "prowl",
+      "when": {
+        "all": [
+          {
+            "temperature_between_c": [
+              "${bask_temp_c}",
+              40
+            ]
+          },
+          {
+            "chance": 0.3
+          }
+        ]
+      },
+      "priority": 15
+    },
+    {
+      "from": "bask",
+      "to": "forage",
+      "when": {
+        "all": [
+          {
+            "need": "hunger",
+            "gt": 0.4
+          },
+          {
+            "food_within_m": "${food_m}",
+            "tag": "${food_tag}"
+          }
+        ]
+      },
+      "priority": 22
+    },
+    {
+      "from": "prowl",
+      "to": "forage",
+      "when": {
+        "all": [
+          {
+            "need": "hunger",
+            "gt": 0.35
+          },
+          {
+            "food_within_m": "${food_m}",
+            "tag": "${food_tag}"
+          }
+        ]
+      },
+      "priority": 20
+    },
+    {
+      "from": "prowl",
+      "to": "drink",
+      "when": {
+        "all": [
+          {
+            "need": "thirst",
+            "gt": 0.4
+          },
+          {
+            "water_within_m": "${drink_m}"
+          }
+        ]
+      },
+      "priority": 18
+    },
+    {
+      "from": "prowl",
+      "to": "bask",
+      "when": {
+        "chance": 0.2
+      }
+    },
+    {
+      "from": "forage",
+      "to": "prowl",
+      "when": {
+        "need": "hunger",
+        "lt": 0.25
+      }
+    },
+    {
+      "from": "forage",
+      "to": "bask",
+      "when": {
+        "need": "energy",
+        "gt": 0.7
+      }
+    },
+    {
+      "from": "drink",
+      "to": "bask",
+      "when": {
+        "need": "thirst",
+        "lt": 0.2
+      }
+    },
+    {
+      "from": "drink",
+      "to": "prowl",
+      "when": {
+        "chance": 0.4
+      }
+    }
+  ]
+}
