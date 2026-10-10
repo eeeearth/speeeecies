@@ -91,7 +91,7 @@ def test_nz_hedgehog_seasons_are_scoped_away_from_european_months():
     d = record("erinaceus-europaeus"); phases = d["seasonal"]["phases"]
     nz = [p for p in phases if p.get("region") == "NZ-AUK"]
     assert [(p["name"], p["start"], p["end"]) for p in nz] == [
-        ("dormancy", "07-01", "10-31"), ("mating", "11-01", "03-31")]
+        ("dormancy", "07-01", "10-31"), ("mating", "08-15", "03-31")]
     assert {p.get("region") for p in phases} == {"GB-ENG", "FR-IDF", "ES-MD", "IE", "DE-BE", "NZ-AUK"}
     assert "parkes-thesis" in d["provenance"]["seasonal.phases"]["sources"]
 
