@@ -5,7 +5,6 @@
   "kind": "fsm",
   "description": "Colonial diving seabird (Adelie penguin): cycles between colony (breeding/resting), commute to foraging grounds, dive foraging for fish/krill, and hauling out on ice/land. No flight; walks and swims only.",
   "params": {
-    "dive_depth_m": 20,
     "food_tag": "small_vertebrate",
     "krill_tag": "invertebrate",
     "colony_group_size": 1000,
@@ -28,10 +27,17 @@
         "gait": "${commute_gait}"
       }
     },
-    "dive_forage": {
+    "dive_forage_fish": {
       "action": {
         "do": "eat_nearest",
         "tag": "${food_tag}",
+        "gait": "${forage_gait}"
+      }
+    },
+    "dive_forage_krill": {
+      "action": {
+        "do": "eat_nearest",
+        "tag": "${krill_tag}",
         "gait": "${forage_gait}"
       }
     },
@@ -86,35 +92,23 @@
     },
     {
       "from": "commute",
-      "to": "dive_forage",
-      "when": {
-        "any": [
-          {
-            "food_within_m": 100,
-            "tag": "${food_tag}"
-          },
-          {
-            "food_within_m": 100,
-            "tag": "${krill_tag}"
-          }
-        ]
-      }
+      "to": "dive_forage_fish",
+      "when": {"food_within_m": 100, "tag": "${food_tag}"}
     },
     {
-      "from": "dive_forage",
+      "from": "commute",
+      "to": "dive_forage_krill",
+      "when": {"food_within_m": 100, "tag": "${krill_tag}"}
+    },
+    {
+      "from": "dive_forage_fish",
       "to": "haul_out",
-      "when": {
-        "all": [
-          {
-            "need": "hunger",
-            "lt": 0.2
-          },
-          {
-            "bb": "dive_depth_m",
-            "gt": "${dive_depth_m}"
-          }
-        ]
-      }
+      "when": {"need": "hunger", "lt": 0.2}
+    },
+    {
+      "from": "dive_forage_krill",
+      "to": "haul_out",
+      "when": {"need": "hunger", "lt": 0.2}
     },
     {
       "from": "haul_out",
@@ -126,25 +120,24 @@
     },
     {
       "from": "colony",
-      "to": "dive_forage",
+      "to": "dive_forage_fish",
       "when": {
         "all": [
           {
             "need": "hunger",
             "gt": 0.4
           },
-          {
-            "any": [
-              {
-                "food_within_m": 50,
-                "tag": "${food_tag}"
-              },
-              {
-                "food_within_m": 50,
-                "tag": "${krill_tag}"
-              }
-            ]
-          }
+          {"food_within_m": 50, "tag": "${food_tag}"}
+        ]
+      }
+    },
+    {
+      "from": "colony",
+      "to": "dive_forage_krill",
+      "when": {
+        "all": [
+          {"need": "hunger", "gt": 0.4},
+          {"food_within_m": 50, "tag": "${krill_tag}"}
         ]
       }
     }
