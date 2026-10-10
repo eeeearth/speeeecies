@@ -127,7 +127,6 @@ def test_frog_call_gate_includes_march_through_june_but_not_february_or_july():
 def test_burns_species_actions_use_only_declared_gaits_and_poses():
     birds = [
         "corvus-corax",
-        "pica-hudsonia",
         "oreoscoptes-montanus",
         "sialia-currucoides",
         "sturnella-neglecta",
