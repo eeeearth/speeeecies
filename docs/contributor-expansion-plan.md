@@ -5,8 +5,9 @@
 Prepare a substantially larger animal contribution queue while reducing
 avoidable review rounds. The first batch targets 300 distinct species with
 verified taxon pointers and a country-level activity-data starting point.
-Requests describe research still required; they do not certify a finished
-species record or promise that it will enter a live locale.
+The [published batch and audit manifest](species-backlog-2026-10.md) contain
+all 300 issue links. Requests describe research still required; they do not
+certify a finished species record or promise that it will enter a live locale.
 
 ## What the review found
 
