@@ -10,7 +10,8 @@ writes <out>/species/index.json (a summary of every species/<slug>/species.json)
 <out>/locales/index.json (a summary of every locales/<id>/locale.json)
 and <out>/ATTRIBUTION.md (a concatenation of every species/*/ATTRIBUTION.md,
 with a header). Also copies README.md, AGENTS.md, CONTRIBUTING.md, ROADMAP.md, PLAN.md and
-docs/locale-richness.md into <out>/docs/ when present. Stdlib only.
+docs/locale-richness.md and docs/data-quality.md into <out>/docs/ when present.
+Stdlib only.
 
 Usage: python3 tools/build_site.py [--out _site] [--repo-root DIR]
 """
@@ -259,9 +260,10 @@ def build_site(repo_root: Path, out_dir: Path) -> None:
         src = repo_root / name
         if src.is_file():
             shutil.copy2(src, docs_dir / name)
-    locale_richness_src = repo_root / "docs" / "locale-richness.md"
-    if locale_richness_src.is_file():
-        shutil.copy2(locale_richness_src, docs_dir / "locale-richness.md")
+    for name in ("locale-richness.md", "data-quality.md"):
+        src = repo_root / "docs" / name
+        if src.is_file():
+            shutil.copy2(src, docs_dir / name)
 
 
 def main(argv: list[str] | None = None) -> int:

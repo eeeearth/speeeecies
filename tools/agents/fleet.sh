@@ -585,7 +585,7 @@ cmd_list_issues() {
   # issue title carries in its final parentheses.
   # Not `|| true`: the caller must be able to tell a failed query from an empty
   # result, or a GitHub outage reads as "no work left".
-  gh issue list --repo "$GH_REPO" --state open --limit 200 --json number,title,labels,assignees \
+  gh issue list --repo "$GH_REPO" --state open --limit 1000 --json number,title,labels,assignees \
     | python3 -c '
 import json,sys
 iss=json.load(sys.stdin)

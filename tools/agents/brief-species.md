@@ -54,7 +54,8 @@ not in this repository and you do not need it.
 
 Read these, in this order, before writing anything:
 
-1. `AGENTS.md` — the authoritative flow. Read it fully. It is short.
+1. `AGENTS.md` and `docs/data-quality.md` — the authoritative flow and
+   evidence requirements. Read both before writing the record.
 2. `schema/v0.1/species.schema.json` — the field list. It is long; do not read it
    end to end. Use it to check the enums for the fields you set.
 3. `schema/v0.1/licenses.json` — the licence tiers. Tier 1 unencumbered
@@ -66,18 +67,20 @@ Read these, in this order, before writing anything:
 
 ## Your recipe for this issue
 
-A coordinator has already worked out which existing record fits
-*{{SCIENTIFIC}}*, and checked the schema's enums for it. Follow this recipe.
-It is the researched answer, not a guess. If the repository disagrees with it,
-trust the repository and say so in the PR.
+The coordinator may supply a historical recipe for *{{SCIENTIFIC}}*. Treat
+it as a starting hypothesis. Verify identifiers, biological values, calendar
+months and executable behaviour using current sources and the schema.
+`AGENTS.md` and `docs/data-quality.md` take precedence over a conflicting
+recipe. Describe any correction in the PR.
 
 {{RECIPE}}
 
 ## The general shape, if the recipe is missing or wrong
 
 A finished record is about 25 KB of JSON with roughly 36 provenance entries.
-Writing that from a blank file is the wrong approach and it will not validate on
-the first try. **Copy the closest existing record and adapt it field by field.**
+Use a nearby record for structure. **Copy the closest existing record and adapt
+it field by field.** The suggestions below require a fresh behaviour-fit check;
+they do not establish that a shared program fits the new species.
 
 | Your animal is | Copy | `look.body_plan` | Behaviour program |
 |---|---|---|---|
@@ -90,7 +93,7 @@ the first try. **Copy the closest existing record and adapt it field by field.**
 | a small ground mammal, hedgehog, squirrel, primate | `species/erinaceus-europaeus` or `species/sciurus-carolinensis` | `quadruped` | `fsm-ground-forager-v1` |
 | a **lizard** | `species/apodemus-sylvaticus` proportions; set `skin: Scales`, `thermoregulation: Ectotherm`, `perching: false` | `quadruped` | `fsm-ground-forager-v1` |
 | a **snake** | `species/erinaceus-europaeus` proportions; set `skin: Scales` | `serpentine` | bespoke `behavior.json` |
-| a **bat** | `species/erithacus-rubecula`; `flight: Powered`, `limb_count: 2`, `locomotion_modes: [Fly]` | `biped_winged` | bespoke `behavior.json` |
+| a **bat** | `species/erithacus-rubecula`; `flight: Powered`, verify limb-count semantics, `locomotion_modes: [Fly]` | `biped_winged` | bespoke `behavior.json` |
 | a **flightless bird** (penguin) | a small bird; `flight: None`, `locomotion_modes: [Walk, Swim]`, and **no `fly`/`glide` pose** | `biped_winged` | bespoke `behavior.json` |
 | a seal or other flippered marine mammal | `species/vulpes-vulpes` proportions with `leg_length_ratio` near 0.1; `locomotion_modes: [Walk, Swim]` | `quadruped` | bespoke `behavior.json` |
 
@@ -139,14 +142,15 @@ if you change one you must change the other.
   exactly these and fails the build.
 - **One species per PR.**
 
-## External identifiers — take them from the issue, do not guess
+## External identifiers: verify each provider
 
-Both `external.gbif_usage_key` and `external.inat_taxon_id` are required, and
-the issue body already states both under "Data pointers". Read them from
-there. They are curated; a lookup you did not need can only introduce a
-mistake.
+Both `external.gbif_usage_key` and `external.inat_taxon_id` are required.
+Issue pointers may be stale or wrong. Resolve each at its provider and check
+name, rank, accepted/synonym status and accepted-name links. Record the check
+date in the PR or source metadata. Verify optional identifiers in their own
+namespaces; omit them if verification fails.
 
-If you do need to verify one:
+Lookup endpoints:
 
 - GBIF: `curl -s "https://api.gbif.org/v1/species/match?name=Genus%20species"`
   — returns JSON with `usageKey`.
@@ -199,7 +203,12 @@ Work through these in order. Do not skip ahead to opening the PR.
    If a region cannot be resolved, the tool still succeeds using the other
    source. Say so in the PR body rather than silently dropping the region.
 
-4. **Validate, and keep going until there are no errors.**
+4. **Complete the evidence and behaviour checks, then validate.**
+
+   Follow `docs/data-quality.md`. Verify source locators and licence terms,
+   distinguish measurements from estimates, inspect real month sets and
+   day/night exits, and explain sparse activity fallbacks. Validate after
+   those checks; passing schema checks alone does not establish correctness.
 
    ```
    uv run tools/validate.py species/{{SLUG}} --write-attribution --report
@@ -221,13 +230,16 @@ Work through these in order. Do not skip ahead to opening the PR.
 
    ```
    uv run tools/validate.py --self-check
+   uv run tools/validate.py --report
+   uv run tools/validate.py --locale all --report
    uv run --with pytest --with jsonschema pytest tools/tests -q
    uv run tools/validate.py --write-attribution && git diff --exit-code -- species
    ```
 
    The last one must produce no diff: `ATTRIBUTION.md` has to be current.
 
-6. **Check the model in the previewer** unless `VISUAL_CHECK` is `{{VISUAL_CHECK}}`.
+6. **Check the model in the previewer.** The coordinator's visual setting is
+   `{{VISUAL_CHECK}}`; report explicitly if inspection was skipped.
 
    ```
    python3 tools/build_site.py
@@ -238,9 +250,10 @@ Work through these in order. Do not skip ahead to opening the PR.
    every pose the record declares: `idle`, each locomotion mode's pose, and
    `perched` if you set it. Use `?pose=<name>`, `?yaw=`, `?pitch=` to orbit.
    Look for parts clipping through each other, colour on the wrong part, and a
-   pose that does not read as that gait. This step is advisory — if you cannot
-   drive a browser, say so in the PR body and move on. Do not invent a preview
-   result you did not see.
+   pose that does not read as that gait. If you cannot drive a browser,
+   leave the preview checkbox unchecked and
+   request a visual pass. Identify the uninspected poses. Do not invent a
+   preview result you did not see.
 
 7. **Commit.** Conventional commits, one concern per commit, subject under 72
    characters, and reference the issue. Stage paths by name; never `git add -A`
@@ -250,8 +263,9 @@ Work through these in order. Do not skip ahead to opening the PR.
    `species: <common name> ({{SCIENTIFIC}})`. The body must contain the validate
    report from step 4 verbatim, a line `Closes #{{ISSUE}}`, and every tick of
    the species checklist in `.github/pull_request_template.md` that is genuinely
-   done. Justify any share-alike or non-commercial source in the
-   "Non-CC0/CC-BY sources" section.
+   done. Add the evidence, activity and behaviour summaries required by the PR
+   template. Explain source licence choices, with field-specific alternatives
+   for every NC source. Use a draft PR when required work is incomplete.
 
    Then confirm the PR really exists before you go any further. A branch pushed
    is not a PR: `gh pr create` can fail, and one of these delegates reported
@@ -289,9 +303,11 @@ Work through these in order. Do not skip ahead to opening the PR.
 
 Read the actual error. `validate.py` names the field and the rule. If an enum
 value you want does not exist, do not force the closest wrong value into the
-range to pass validation — pick the value the species actually is and mark it
-`derived` if the schema wants precision you do not have. If no shared behaviour
+range to pass validation. Pick the value the species actually is and document
+any defensible derivation. If no truthful enum value or
+required value can be represented, report the limitation as a blocker. A
+`derived` flag does not permit a false category. If no shared behaviour
 program fits, write `species/{{SLUG}}/behavior.json`, validate it against
-`schema/v0.1/behavior-program.schema.json`, and explain in the PR why the three
+`schema/v0.1/behavior-program.schema.json`, and explain in the PR why available
 shared programs did not fit. If the record is right but one source is
 unreachable, prefer dropping the optional field over inventing a value.

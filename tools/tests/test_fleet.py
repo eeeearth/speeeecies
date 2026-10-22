@@ -493,10 +493,13 @@ def test_species_and_locale_validation_commands_differ():
     """`validate.py --locale <id>` checks the locale; plain validate.py does not.
     Handing an agent the species command for a locale reports success on a record
     the locale check would reject."""
-    assert "--locale" in BRIEF_LOCALE.read_text(encoding="utf-8")
-    assert "--locale" not in BRIEF.read_text(encoding="utf-8"), (
-        "the species brief must not tell a species agent to run the locale check"
-    )
+    species = BRIEF.read_text(encoding="utf-8")
+    locale = BRIEF_LOCALE.read_text(encoding="utf-8")
+    assert "validate.py --locale {{SLUG}}" in locale
+    assert "validate.py species/{{SLUG}}" in species
+    assert "validate.py --locale {{SLUG}}" not in species
+    # Species edits can regress installed locales through shared records.
+    assert "validate.py --locale all" in species
 
 
 def test_brief_makes_the_agent_prove_the_pr_exists():

@@ -47,19 +47,12 @@ Write the species records yourself, one at a time, in this worktree. It is more
 tool calls and it takes longer, and that is the design: the fleet is built for
 steady and slow.
 
-**Open the pull request as soon as you have anything that validates, then keep
-adding to it.** Do not wait until every species is done. The locale record plus
-however many species you have is a shippable PR; open it, then continue adding
-species as further commits to that same branch and push them. A PR that exists
-with three species is worth far more than a finished local branch with eight
-and no PR, because the next session resumes the branch and pushes straight on
-top of it instead of starting over.
-
-So: `locale.json` valid plus one or two species with curves is enough to open
-the PR. Then keep working and keep pushing. If you run out of budget, say what
-is still missing in the PR body and end with `BLOCKED: <what is left>`. Never
-exit without a PR when you have anything valid -- an unopened PR throws away
-every species record you wrote.
+**Preserve partial work in a draft PR.** A locale below the eight-species
+minimum is incomplete and may fail validation. State its actual species count,
+missing records and validation failures. Continue on that branch until it meets
+the public criteria. Request review after the evidence and behaviour checks in
+`docs/data-quality.md`, all required records and public validation are complete.
+If a maintainer decision is needed earlier, ask a specific question in the draft.
 
 ## What this repository is
 
@@ -132,9 +125,14 @@ or reptile if the plot suits them. Check `species/` for anything added since the
 issue was written.
 
 **If a species you need does not exist, add it in this same PR** using the
-species flow in `AGENTS.md`. Search open `species-request` issues first and
-claim any you take. A locale PR carrying the species it needs is expected, not a
-scope violation.
+species flow in `AGENTS.md`. Search current records, open PRs and
+`species-request` issues by name,
+accepted taxon and identifier first, then claim any missing species you take.
+Preserve existing shared fields and regional curves. Compare the final diff
+with current main and explain each replacement; run the all-locale validator.
+Use `docs/data-quality.md` for every new or changed species, including
+hemisphere-specific calendars and activity-data checks. A locale PR may carry
+the new species it needs.
 
 Fetch an activity curve for each listed species that lacks one:
 
@@ -152,7 +150,7 @@ uv run tools/fetch_activity.py <slug> --region GB-ENG --inat-place-id 6858 --gbi
 ### 5. Write the flora catalog
 
 `locales/{{SLUG}}/flora-catalog.json` maps plant taxa the simulation can draw
-onto the animals they stand in for. You need:
+onto the local plants they stand in for. You need:
 
 - **at least 8 plant taxa**, and **at least 2 of them evergreen**;
 - one taxon per entry, with a positive `community_weight`;
@@ -184,10 +182,14 @@ licence each time; it changes.
 ```
 uv run tools/validate.py --locale {{SLUG}} --report
 uv run tools/validate.py --self-check
+uv run tools/validate.py --report
+uv run tools/validate.py --locale all --report
+uv run --with pytest --with jsonschema pytest tools/tests -q
 ```
 
-Both must pass. Fix errors and rerun until they do not. Warnings are allowed but
-justify them in the PR.
+All commands must pass before requesting review. Fix errors and rerun affected
+checks. Explain warnings in the PR. Regenerate attribution for each changed
+species after the final source edit and confirm it is current.
 
 The report goes in the pull request body, so let it print to stdout and paste
 what you see. Do not redirect it to a file: an earlier brief told you to write
@@ -204,10 +206,12 @@ python3 tools/build_site.py
 python3 -m http.server 18160 --bind 127.0.0.1 -d _site
 ```
 
-Open `http://127.0.0.1:18160/locales.html` and look at your locale's scene: is
-the garden actually planted, does the plot read as the right kind of place, are
-the animals plausible for the setting. Then open your locale's page and check the
-species entries.
+Use your tool's allocated port if your environment specifies one. Open
+`http://127.0.0.1:18160/locales.html` and check the locale entry, flora summary
+and species links. Inspect each added animal in `preview.html`. These public
+pages show the catalog and individual models; the maintainer checks the
+assembled scene during import and live acceptance. Report the views actually
+inspected and any missing visual checks.
 
 ### 9. Commit
 

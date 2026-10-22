@@ -7,6 +7,12 @@ is public. Read `schema/v0.1/species.schema.json` and
 `species/vulpes-vulpes`, `species/erithacus-rubecula`, or
 `species/bufo-bufo`.
 
+Read [`docs/data-quality.md`](docs/data-quality.md) before researching a
+record. Its evidence, activity and behaviour checks are required for both
+species and locale contributions. Issue pointers, fleet recipes, existing
+records and review comments can contain mistakes. Verify their claims against
+the cited source and the current schema before using them.
+
 Site (schema docs, behaviour guide, previewer, gallery):
 https://eeeearth.github.io/speeeecies/
 
@@ -16,7 +22,11 @@ https://eeeearth.github.io/speeeecies/
 
 Find an open issue labelled **species-request** and **animal**. Skip any
 issue that's already claimed (check for a "Claiming this" comment with a
-recent, unexpired ETA). Plant issues are labelled **phase-2** — do not
+recent, unexpired ETA). Search current `main`, open PR file lists and existing
+issues for the scientific name, synonyms and external taxon identifiers.
+If the record already exists, identify the missing regions or specific
+correction the issue requests. Preserve that record and extend it.
+Plant issues are labelled **phase-2** — do not
 work them. Plants need a data-driven plant preset format that hasn't
 landed yet (roadmap item SPEEEECIES-M8); those issues aren't open for
 work until it does.
@@ -29,8 +39,11 @@ Comment on the issue before you start writing:
 gh issue comment <n> --body "Claiming this: <agent/person>, ETA <date>"
 ```
 
-This avoids duplicate work. If your ETA passes and you haven't opened a
-PR, expect someone else to pick it up.
+Use an ETA with a timezone and update the claim when delayed. Before taking
+over an expired claim, inspect its linked PR and branch for usable work. Link
+your continuation so the previous effort remains discoverable. Claim one
+species at a time; a locale contributor must also check claims for each new
+species they intend to add.
 
 ### c. Create the species record
 
@@ -50,6 +63,13 @@ Both are required (`external.gbif_usage_key`, `external.inat_taxon_id`).
 `itis_tsn`, `wikidata`, and other external keys are optional but useful —
 add them if you find them.
 
+Resolve each identifier at its own provider. Check the returned canonical
+name, rank, accepted/synonym status and accepted-name link. Record the date
+checked. Resolve provider disagreements in the PR; never silently use a
+subspecies identifier for a species or put a GBIF key in `itis_tsn`.
+Copy the example's structure, then replace its biological claims and source
+coverage. Existing examples are scaffolds that also need checking.
+
 ### d. Choose a behaviour
 
 Look through `behaviors/*.json` for a program whose description fits the
@@ -58,6 +78,13 @@ exist by the time you read this). Set `behavior.program` and override
 `behavior.params` as needed — you cannot add params a program doesn't
 declare. Only write `species/<slug>/behavior.json` (a program used by this
 species alone) if nothing shared fits; explain why in the PR.
+
+Read the executed actions and substituted parameters. Check every gait and
+feeding action, day/night exits, and the actual months enabled for each target
+region. `month_in` is an explicit set: `[8, 12]` enables August and December.
+Inherited April/May entries remain enabled when endpoint parameters change.
+A provenance note cannot make an incompatible behaviour acceptable. Use a
+fitting program or document the unsupported capability as a blocker.
 
 ### e. Fetch activity curves
 
@@ -71,10 +98,17 @@ uv run tools/fetch_activity.py <slug> --region <ISO> --write
 This fills `activity.regions[]` and the matching `sources` entries. Run it
 once per region.
 
+Inspect its query URLs, licence filters, geographic scope, monthly counts and
+`usable` flags. Observation frequency is an imperfect activity proxy. A
+successful command can still return a low-count fallback. Disclose that case
+and use the fallback rules in `docs/data-quality.md`; never invent observations
+or change `usable` to make the result appear supported. Confirm native or
+introduced status from range evidence independently of occurrence counts.
+
 ### f. Validate
 
 ```
-uv run tools/validate.py species/<slug> --write-attribution --report > report.md
+uv run tools/validate.py species/<slug> --write-attribution --report
 ```
 
 Fix errors and rerun until there are none (warnings, e.g. an NC source,
@@ -82,18 +116,41 @@ are allowed but justify them in the PR). `--write-attribution` regenerates
 `species/<slug>/ATTRIBUTION.md` — always rerun it after any source change
 and commit the result.
 
+Before requesting review, run the public repository checks on the final
+commit, including all species and locales. A shared species can affect many
+locales:
+
+```
+uv run tools/validate.py --self-check
+uv run tools/validate.py --report
+uv run tools/validate.py --locale all --report
+uv run --with pytest --with jsonschema pytest tools/tests -q
+```
+
+Regenerate attribution for every changed record, commit it, then confirm
+`uv run tools/validate.py --write-attribution` leaves `git diff -- species`
+empty. Keep reports and session notes outside the tracked tree. Stage explicit
+paths after reviewing the diff. Do not change root `STATUS.md` or commit a
+research dump, private source text, or another contributor's scratch notes.
+
 ### g. Preview
 
 ```
 python3 tools/build_site.py
-python3 -m http.server 18160 --bind 127.0.0.1 -d _site
+python3 -m http.server 18060 --bind 127.0.0.1 -d _site
 ```
 
-Open `http://127.0.0.1:18160/preview.html?species=<slug>` and check every
+The example uses the Codex port block; use your tool's allocated port when
+one is specified by your environment. Open
+`http://127.0.0.1:18060/preview.html?species=<slug>` and check every
 pose the record declares (`idle`, plus each locomotion mode's pose, plus
 `perched` if applicable). Use `?pose=<name>` to switch, `?yaw=`/`?pitch=`
 to orbit. Look for parts clipping, colours on the wrong parts, and poses
 that don't read as the intended gait.
+
+Report the poses actually inspected and any limitations. If browser access is
+unavailable, leave the preview checklist unchecked and request a visual pass
+in the PR. A BioCLIP score does not replace inspecting the rendered animal.
 
 ### h. Visual check (optional, advisory)
 
@@ -113,6 +170,17 @@ name what you used in the PR.
 Title: `species: <common name> (<Scientific name>)`. Body: paste the
 validate report, write `Closes #<issue number>`, and follow the pull
 request template's checklist.
+
+Include the evidence and behaviour summaries from `docs/data-quality.md`,
+warnings with their resolutions, and the commit tested. For a partial fix,
+use `Refs #<issue number>` and list remaining work. An incomplete submission
+belongs in a draft PR. Check off only work you performed. Confirm the PR URL
+and CI result; pushing a branch alone does not create a PR.
+
+Address feedback against the current head and identify the commit resolving
+each finding. Check suggested replacement values and licences yourself. Ask
+for clarification if a review conflicts with the schema or licence policy.
+Contributors stop at a review-ready PR; maintainers own merging and deployment.
 
 ## Contribute a locale
 
@@ -171,13 +239,22 @@ read `docs/locale-richness.md` before you start.
 7. **Validate** the locale and the repository:
 
    ```
-   uv run tools/validate.py --locale <id> --report > report.md
+   uv run tools/validate.py --locale <id> --report
    uv run tools/validate.py --self-check
    ```
 
 8. **Open the PR** titled `locale: <place> (<id>)` with the report,
    `Closes #<issue number>`, and the locale rows of the PR template
    checked. Check the new page at `locales.html` in the previewed site.
+
+When extending an existing species, retain its unrelated traits, sources,
+regional curves and provenance from current `main`. Compare each changed
+record with its base and explain every removal or replacement. Check all
+locales that use it and run the all-locale validator. Do not resolve a merge
+conflict by replacing the entire shared record with your branch's version.
+Hemisphere-specific calendars and seasonal phases must be scoped to supported
+regions. A global behaviour parameter cannot encode separate regional seasons;
+report that limitation instead of claiming it does.
 
 ### What the locale check enforces
 
@@ -219,6 +296,16 @@ repository (except `tools/tests/fixtures/`, where the lint's deliberately
 bad test strings live). CI runs both on every PR.
 
 ### What "validated" means
+
+Public validation checks structure and consistency. The contributor must also
+check source accuracy and behaviour as described above. Passing CI does not
+prove that a source supports a value or that the animal behaves correctly.
+
+The contribution PR and the live release are separate stages. Contributors
+need only the public kit. A maintainer may hold publication while an affected
+live release is awaiting acceptance; the hold should identify its owner and
+clearance condition in the PR. Contributors should continue source review and
+CI work without accessing private imports or changing the live service.
 
 A locale is validated when all of these have happened, in this order:
 
@@ -297,7 +384,15 @@ especially ones no drawable taxon resembles.
 - [ ] `species/<slug>/ATTRIBUTION.md` regenerated with
       `--write-attribution` and committed
 - [ ] Activity curves fetched for every suggested region with
-      `fetch_activity.py`
+      `fetch_activity.py`; missing or provisional regions explicitly listed
+- [ ] Identifiers resolve to the stated taxon and rank; range country codes
+      and native/introduced status checked independently
+- [ ] High-risk claims have source locators and transformations recorded;
+      maximum/captive values and authored estimates are labelled accurately
+- [ ] Behaviour actions, actual month sets, regional seasons and day/night
+      transitions checked against the record and its evidence
+- [ ] Existing shared-record fields and regions preserved, or each change
+      explained; all species/locales validate on the submitted commit
 - [ ] Every pose checked in the previewer
 - [ ] Licences preferred CC0/CC BY where possible; any CC BY-SA or NC
       source justified in the PR body

@@ -9,7 +9,16 @@ body:
         Fill in what you know. You don't need to write the record yourself —
         this just gives whoever picks it up (often a coding agent) a
         starting point. See `AGENTS.md` and `CONTRIBUTING.md` for how
-        species get added.
+        species get added. Contributor evidence requirements are in
+        `docs/data-quality.md`. Data pointers are research leads and must
+        be checked before being used in a record.
+  - type: checkboxes
+    id: duplicate-check
+    attributes:
+      label: Existing work
+      options:
+        - label: I searched records, issues and open PRs for this species and known synonyms, or described the missing work below.
+          required: true
   - type: input
     id: scientific-name
     attributes:
@@ -59,7 +68,8 @@ body:
       label: Suggested regions
       description: >-
         ISO 3166-1 or 3166-2 codes to fetch activity data for, comma
-        separated.
+        separated. These are research targets; an occurrence alone does not
+        establish native range or suitability for a particular garden.
       placeholder: GB, US-CA, AU-NSW
     validations:
       required: false
@@ -78,5 +88,15 @@ body:
     attributes:
       label: Why this species
       description: Optional context on why it would be a good addition.
+    validations:
+      required: false
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope and known difficulties
+      description: >-
+        If the species already exists, name the missing regions or correction.
+        Mention known taxonomy disagreements, sparse data, or behaviour and
+        habitat needs that may require specialist work. Leave unknowns open.
     validations:
       required: false
