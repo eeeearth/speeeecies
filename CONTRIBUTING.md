@@ -3,7 +3,9 @@
 speeeecies takes contributions as pull requests: one species per PR, or
 one locale (a place and its species) per PR.
 Coding agents should read [`AGENTS.md`](AGENTS.md) instead of this file —
-it has the same flow with more detail. This page is for people.
+it has the same flow with more detail. This page is for people. Both workflows
+use the required [data-quality checks](docs/data-quality.md); read those before
+researching a species. Issue pointers and example records need verification.
 
 ## Request a species
 

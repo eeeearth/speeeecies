@@ -122,6 +122,8 @@ def test_docs_copied_when_present(tmp_path):
     (repo / "AGENTS.md").write_text("agent guide", encoding="utf-8")
     (repo / "ROADMAP.md").write_text("roadmap", encoding="utf-8")
     (repo / "README.md").write_text("readme", encoding="utf-8")
+    (repo / "docs").mkdir()
+    (repo / "docs" / "data-quality.md").write_text("evidence guide", encoding="utf-8")
     # CONTRIBUTING.md and PLAN.md intentionally absent.
 
     out = tmp_path / "_site"
@@ -130,6 +132,7 @@ def test_docs_copied_when_present(tmp_path):
     assert (out / "docs" / "AGENTS.md").read_text(encoding="utf-8") == "agent guide"
     assert (out / "docs" / "ROADMAP.md").read_text(encoding="utf-8") == "roadmap"
     assert (out / "docs" / "README.md").read_text(encoding="utf-8") == "readme"
+    assert (out / "docs" / "data-quality.md").read_text(encoding="utf-8") == "evidence guide"
     assert not (out / "docs" / "CONTRIBUTING.md").exists()
     assert not (out / "docs" / "PLAN.md").exists()
 

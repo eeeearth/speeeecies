@@ -2,9 +2,9 @@
 
 One block per open species-request issue. `fleet.sh` copies the block whose
 `<!-- recipe:N -->` marker matches the issue it is spawning into that agent's
-brief, under the "Your recipe" heading. The block is advice, not a contract:
-if the repository disagrees with it, trust the repository and say so in the
-PR.
+brief, under the "Your recipe" heading. These are historical research hints. Recheck them against current sources,
+current records and the schema. `AGENTS.md` and `docs/data-quality.md` take
+precedence. The issue may already be implemented or superseded.
 
 Every recipe names one existing record to copy. Copying an existing record
 and changing every field that belonged to the old animal is the reliable
@@ -12,9 +12,9 @@ path; a record written from a blank file will not validate first try.
 
 Common to all recipes:
 
-- External identifiers are pre-supplied in the issue body under "Data
-  pointers". Paste them into `external.gbif_usage_key` and
-  `external.inat_taxon_id` rather than re-deriving them.
+- Resolve issue identifiers at each provider and verify name, rank and
+  accepted/synonym status before using them. Check existing records and PRs
+  by accepted name, synonyms and identifiers.
 - `Climb` and `Burrow` are legal `locomotion_modes` but have no pose in
   `body-plans.json`. Declare the mode, skip the pose.
 - Poses are the minimum the host animates: `idle`, one per locomotion mode
@@ -24,10 +24,10 @@ Common to all recipes:
 - `provenance` is where reviewers look first. Every number traces to a
   source id. For pure judgement (`wariness`, `look`, behaviour `params`)
   set `derived: true` with `note: "judgement"`.
-- If you shoehorn a shared behaviour program onto a species it does not
-  quite fit, set `provenance["behavior"]` to `derived: true` with a note
-  saying which part is wrong. Reviewers would rather read an honest note
-  than spot the mismatch.
+- Use a program whose executed actions fit the animal. Check substituted
+  month sets, gaits, food actions and every active-state night exit. Replace
+  incompatible behaviour or report the unsupported capability as a blocker;
+  acknowledging a contradiction does not correct it.
 
 ### Two things the maintainer sends back on every record
 
@@ -38,8 +38,11 @@ either way. Passing CI is not the bar.
 - **`traits.lifespan_y` is the *typical* lifespan, not the record maximum.**
   The schema wants what an average member of the species lives. Most sources
   publish a maximum-longevity figure and call it a lifespan. If that is all you
-  can source, keep the ceiling in `traits` extension and provenance, and either
-  omit `lifespan_y` or set a defensible typical value with a `derived` note.
+  can source, record the maximum in the source/provenance note, and supply a defensible
+  typical estimate only if its derivation can be explained. `lifespan_y` is
+  required and `traits` rejects undeclared extension fields. If evidence is
+  inadequate, report a blocker instead of omitting the field or inventing an
+  estimate.
   Copying a sourced 25-year maximum straight into `lifespan_y` passed CI and
   still came back.
 - **A `derived` note has to describe what you actually did.** The possum diet
@@ -115,7 +118,8 @@ Copy: `species/erithacus-rubecula/` for a small flying bird's shape, then
 override heavily. Do **not** use a quadruped template: a bat's wings are
 forelimbs, so `look.body_plan` is `biped_winged`.
 
-- `traits.flight: Powered`, `traits.limb_count: 2`
+- `traits.flight: Powered`; check the schema's limb-count convention and
+  current bat records, independently of the renderer's body-plan name
 - `traits.locomotion_modes: [Fly]` (`Hover` is also legal if you want to
   argue for it)
 - `traits.thermoregulation: Endotherm`, `traits.skin: Fur`,
