@@ -265,7 +265,8 @@ Work through these in order. Do not skip ahead to opening the PR.
    the species checklist in `.github/pull_request_template.md` that is genuinely
    done. Add the evidence, activity and behaviour summaries required by the PR
    template. Explain source licence choices, with field-specific alternatives
-   for every NC source. Use a draft PR when required work is incomplete.
+   for every NC source. Use a draft PR and `Refs #{{ISSUE}}` in place of
+   `Closes #{{ISSUE}}` when required work is incomplete.
 
    Then confirm the PR really exists before you go any further. A branch pushed
    is not a PR: `gh pr create` can fail, and one of these delegates reported

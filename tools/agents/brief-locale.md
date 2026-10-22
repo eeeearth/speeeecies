@@ -238,7 +238,9 @@ file, or anything you cannot explain, unstage it.
 Title exactly `locale: <the place> (<id>)`. The body must contain the validate
 report from step 7 verbatim, a line `Closes #{{ISSUE}}`, the locale rows of the
 pull request template that are genuinely done, and a justification for any
-non-CC0/CC-BY source.
+non-CC0/CC-BY source. For partial work, keep the PR in draft and use
+`Refs #{{ISSUE}}` in place of `Closes #{{ISSUE}}`. Include the evidence,
+activity, behaviour and validation summaries required by the template.
 
 Then prove the PR exists before you go any further. A branch pushed is not a
 PR: `gh pr create` can fail, and a delegate once reported success with a
@@ -256,8 +258,8 @@ write `I'm done boss` on the strength of a push.
 **If a PR already exists for this branch, do not open a second one.** You are
 resuming: earlier sessions were salvaged onto this branch. `gh pr view --json
 number,url,state` will find it. Push your new commits to the same branch and the
-existing PR picks them up, then finish with `BLOCKED: <what is left>` naming what
-is still missing.
+existing PR picks them up. Continue the public checks and report the actual
+result. Use `BLOCKED: <what is left>` only when work remains blocked.
 
 ### 11. Get CI green, then stop
 
