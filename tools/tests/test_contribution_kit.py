@@ -14,24 +14,25 @@ class Page(HTMLParser):
     def __init__(self, text):
         super().__init__(convert_charrefs=True)
         self.links = []
-        self.prompt = ''
-        self.in_prompt = False
+        self.prompts = {}
+        self.in_prompt = None
         self.feed(text)
 
     def handle_starttag(self, tag, attrs):
         attrs = dict(attrs)
         if tag == 'a':
             self.links.append(attrs.get('href', ''))
-        if tag == 'textarea' and attrs.get('id') == 'agent-prompt':
-            self.in_prompt = True
+        if tag == 'textarea':
+            self.in_prompt = attrs['id']
+            self.prompts[self.in_prompt] = ''
 
     def handle_endtag(self, tag):
         if tag == 'textarea':
-            self.in_prompt = False
+            self.in_prompt = None
 
     def handle_data(self, data):
         if self.in_prompt:
-            self.prompt += data
+            self.prompts[self.in_prompt] += data
 
 
 def test_handoffs_preserve_the_whole_prompt_and_repository():
@@ -52,7 +53,7 @@ def test_handoffs_preserve_the_whole_prompt_and_repository():
 def test_page_has_prompt_and_launch_links_without_javascript():
     manifest = json.loads((KIT / 'qr-manifest.json').read_text())
     page = Page((ROOT / 'site' / 'contribute.html').read_text())
-    assert page.prompt == (KIT / 'prompt.txt').read_text().strip()
+    assert page.prompts['agent-prompt'] == (KIT / 'prompt.txt').read_text().strip()
     for variant in manifest['variants'][1:]:
         assert variant['payload'] in page.links
     assert 'contribute/speeeecies-contribution-qr.pdf' in page.links
@@ -66,3 +67,15 @@ def test_print_and_scan_assets_are_shipped_with_the_site(tmp_path):
     for slug in ('agent-prompt', 'claude-code', 'codex', 'contribute-page'):
         assert (kit / f'{slug}.png').read_bytes().startswith(b'\x89PNG')
         assert '<svg' in (kit / f'{slug}.svg').read_text()
+
+
+def test_addenda_match_downloads_and_ship_without_javascript(tmp_path):
+    import build_site
+    build_site.build_site(ROOT, tmp_path / 'site')
+    page = Page((tmp_path / 'site' / 'contribute.html').read_text())
+    for slug in ('repeat-10', 'repeat-continuous'):
+        path = f'contribute/{slug}.txt'
+        assert path in page.links
+        expected = (KIT / f'{slug}.txt').read_text()
+        assert (tmp_path / 'site' / path).read_text() == expected
+        assert page.prompts[slug] == expected.strip()

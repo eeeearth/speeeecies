@@ -36,16 +36,16 @@
       <a class="kit-button" href="#prompt">Get the prompt</a>
       <a class="kit-button secondary" href="contribute/speeeecies-contribution-qr.pdf" download>Download the QR PDF</a>
     </p>
-    <p><a href="https://github.com/eeeearth/speeeecies/issues?q=is%3Aissue+is%3Aopen+label%3Aspecies-request+label%3Aanimal">Browse animal requests</a> · <a href="https://github.com/eeeearth/speeeecies">GitHub repository</a></p>
+    <p><a href="https://github.com/eeeearth/speeeecies/issues?q=is%3Aissue+is%3Aopen+label%3Aspecies-request+label%3Aanimal">Browse animal requests</a> · <a href="#repeat">Do 10 or keep going</a> · <a href="https://github.com/eeeearth/speeeecies">GitHub repository</a></p>
   </div>
 
   <section id="prompt" aria-labelledby="prompt-heading">
     <h2 id="prompt-heading">The agent prompt</h2>
     <p>Paste this into a coding agent with repository and GitHub access. The same prompt is encoded in each version below.</p>
     <label class="sr-only" for="agent-prompt">Species contribution prompt, including repository URL</label>
-    <textarea id="agent-prompt" readonly rows="7" spellcheck="false">Contribute one animal species to https://github.com/eeeearth/speeeecies. Read AGENTS.md, docs/data-quality.md and the schemas on current main. Find an unclaimed open issue labelled species-request and animal; check records, PRs and claims for duplicates, then claim it with an ETA. Follow the issue and repo instructions: verify sources and licences, fetch regional activity, check behaviour and poses, and run the public checks. Open one PR with evidence, test results and the issue link. Keep incomplete work in draft. Leave merging and live deployment to maintainers.</textarea>
+    <textarea class="agent-prompt" id="agent-prompt" readonly rows="7" spellcheck="false">Contribute one animal species to https://github.com/eeeearth/speeeecies. Read AGENTS.md, docs/data-quality.md and the schemas on current main. Find an unclaimed open issue labelled species-request and animal; check records, PRs and claims for duplicates, then claim it with an ETA. Follow the issue and repo instructions: verify sources and licences, fetch regional activity, check behaviour and poses, and run the public checks. Open one PR with evidence, test results and the issue link. Keep incomplete work in draft. Leave merging and live deployment to maintainers.</textarea>
     <div class="actions">
-      <button class="kit-button" type="button" data-copy-prompt hidden>Copy prompt</button>
+      <button class="kit-button" type="button" data-copy-prompt="agent-prompt" data-copy-status="copy-status" hidden>Copy prompt</button>
       <a href="contribute/prompt.txt" download>Download as text</a>
       <span id="copy-status" role="status" aria-live="polite"></span>
     </div>
@@ -83,10 +83,33 @@
     </div>
   </section>
 
+  <section id="repeat" aria-labelledby="repeat-heading">
+    <h2 id="repeat-heading">Addendum: do 10, or keep going</h2>
+    <p>Paste one block below after the original prompt, before sending it. You can also send it in the same conversation after your first species. These instructions work with any of the agent versions above.</p>
+    <p>Each species still needs its own evidence and PR. The count is review-ready PRs; maintainers decide when to merge and accept them into the live scene.</p>
+    <h3 id="repeat-10-heading">Do 10 species</h3>
+    <label class="sr-only" for="repeat-10">Do 10 species prompt addendum</label>
+    <textarea class="agent-prompt" id="repeat-10" readonly rows="10" spellcheck="false">Extend the species contribution prompt for https://github.com/eeeearth/speeeecies: deliver 10 review-ready species PRs in this run, including any already completed in this run. Repeat until the total reaches 10 or I ask you to stop. Work sequentially, one species per PR. Before each task, refresh main and reread its instructions; check existing records, open PRs and unexpired claims. Claim only the issue you are starting, with an ETA, and use a separate branch from current main. Complete the research, provenance, behaviour, pose previews and public checks for each species. Count a PR only when its evidence is complete and required CI passes; drafts and skipped issues count as zero. Address feedback on your earlier PRs before starting another species. If an issue is blocked, record why, preserve partial work in a draft and update or release its claim before moving on. Pause for a shared blocker, needed human input, access or session limits, or no eligible issues. After each attempt and before pausing, save a local progress checkpoint with issue and PR URLs, branch, commit, check results, completed count and next step. On resume, reconcile it with GitHub and continue without duplicating work. Leave merging and live deployment to maintainers. Stop at 10 and report the PR links, drafts and blockers.</textarea>
+    <div class="actions">
+      <button class="kit-button" type="button" data-copy-prompt="repeat-10" data-copy-status="repeat-10-status" hidden>Copy addendum</button>
+      <a href="contribute/repeat-10.txt" download>Download as text</a>
+      <span id="repeat-10-status" role="status" aria-live="polite"></span>
+    </div>
+    <h3 id="repeat-continuous-heading">Continue until stopped</h3>
+    <label class="sr-only" for="repeat-continuous">Continue until stopped prompt addendum</label>
+    <textarea class="agent-prompt" id="repeat-continuous" readonly rows="10" spellcheck="false">Extend the species contribution prompt for https://github.com/eeeearth/speeeecies: repeat eligible animal requests continuously within this active session until I ask you to stop or a pause condition below applies. Work sequentially, one species per PR. Before each task, refresh main and reread its instructions; check existing records, open PRs and unexpired claims. Claim only the issue you are starting, with an ETA, and use a separate branch from current main. Complete the research, provenance, behaviour, pose previews and public checks for each species. Count a PR only when its evidence is complete and required CI passes; drafts and skipped issues count as zero. Address feedback on your earlier PRs before starting another species. If an issue is blocked, record why, preserve partial work in a draft and update or release its claim before moving on. Pause for a shared blocker, needed human input, access or session limits, or no eligible issues. After each attempt and before pausing, save a local progress checkpoint with issue and PR URLs, branch, commit, check results, completed count and next step. On resume, reconcile it with GitHub and continue without duplicating work. Leave merging and live deployment to maintainers. Report progress and the reason whenever you stop. Resume only when requested; do not create a scheduler or restart yourself.</textarea>
+    <div class="actions">
+      <button class="kit-button" type="button" data-copy-prompt="repeat-continuous" data-copy-status="repeat-continuous-status" hidden>Copy addendum</button>
+      <a href="contribute/repeat-continuous.txt" download>Download as text</a>
+      <span id="repeat-continuous-status" role="status" aria-live="polite"></span>
+    </div>
+    <p class="muted">Continuous work lasts while the agent session can run. Closing the session or reaching a tool limit may interrupt it. To resume, reopen the workspace and send the original prompt, your chosen addendum and the saved progress checkpoint. The agent checks GitHub before continuing. These prompts do not install a scheduler or automatically restart a session.</p>
+  </section>
+
   <section class="share-kit" aria-labelledby="share-heading">
     <div>
       <h2 id="share-heading">Put a prompt where people can find it.</h2>
-      <p>The <a href="contribute/speeeecies-contribution-qr.pdf">three-page PDF</a> has one printable page per version. Each page includes the full prompt, repository URL and a small QR code that opens this guide.</p>
+      <p>The <a href="contribute/speeeecies-contribution-qr.pdf">four-page PDF</a> has one printable page per version, plus the repeat-work addendum. The first three pages include the full prompt and repository URL. Every page has a small QR code that opens this guide.</p>
       <p>Print at actual size on US Letter or use Fit on A4. Keep the white border around each code.</p>
       <p>For a phone-friendly link to all versions, use the guide QR beside this text.</p>
       <p><a href="contribute/contribute-page.png" download>Guide QR: PNG</a> · <a href="contribute/contribute-page.svg" download>SVG</a></p>

@@ -36,16 +36,16 @@
       <a class="kit-button" href="#prompt">Get the prompt</a>
       <a class="kit-button secondary" href="contribute/speeeecies-contribution-qr.pdf" download>Download the QR PDF</a>
     </p>
-    <p><a href="https://github.com/eeeearth/speeeecies/issues?q=is%3Aissue+is%3Aopen+label%3Aspecies-request+label%3Aanimal">Browse animal requests</a> · <a href="@@REPO_URL@@">GitHub repository</a></p>
+    <p><a href="https://github.com/eeeearth/speeeecies/issues?q=is%3Aissue+is%3Aopen+label%3Aspecies-request+label%3Aanimal">Browse animal requests</a> · <a href="#repeat">Do 10 or keep going</a> · <a href="@@REPO_URL@@">GitHub repository</a></p>
   </div>
 
   <section id="prompt" aria-labelledby="prompt-heading">
     <h2 id="prompt-heading">The agent prompt</h2>
     <p>Paste this into a coding agent with repository and GitHub access. The same prompt is encoded in each version below.</p>
     <label class="sr-only" for="agent-prompt">Species contribution prompt, including repository URL</label>
-    <textarea id="agent-prompt" readonly rows="7" spellcheck="false">@@PROMPT@@</textarea>
+    <textarea class="agent-prompt" id="agent-prompt" readonly rows="7" spellcheck="false">@@PROMPT@@</textarea>
     <div class="actions">
-      <button class="kit-button" type="button" data-copy-prompt hidden>Copy prompt</button>
+      <button class="kit-button" type="button" data-copy-prompt="agent-prompt" data-copy-status="copy-status" hidden>Copy prompt</button>
       <a href="contribute/prompt.txt" download>Download as text</a>
       <span id="copy-status" role="status" aria-live="polite"></span>
     </div>
@@ -83,10 +83,33 @@
     </div>
   </section>
 
+  <section id="repeat" aria-labelledby="repeat-heading">
+    <h2 id="repeat-heading">Addendum: do 10, or keep going</h2>
+    <p>Paste one block below after the original prompt, before sending it. You can also send it in the same conversation after your first species. These instructions work with any of the agent versions above.</p>
+    <p>Each species still needs its own evidence and PR. The count is review-ready PRs; maintainers decide when to merge and accept them into the live scene.</p>
+    <h3 id="repeat-10-heading">Do 10 species</h3>
+    <label class="sr-only" for="repeat-10">Do 10 species prompt addendum</label>
+    <textarea class="agent-prompt" id="repeat-10" readonly rows="10" spellcheck="false">@@REPEAT_10@@</textarea>
+    <div class="actions">
+      <button class="kit-button" type="button" data-copy-prompt="repeat-10" data-copy-status="repeat-10-status" hidden>Copy addendum</button>
+      <a href="contribute/repeat-10.txt" download>Download as text</a>
+      <span id="repeat-10-status" role="status" aria-live="polite"></span>
+    </div>
+    <h3 id="repeat-continuous-heading">Continue until stopped</h3>
+    <label class="sr-only" for="repeat-continuous">Continue until stopped prompt addendum</label>
+    <textarea class="agent-prompt" id="repeat-continuous" readonly rows="10" spellcheck="false">@@REPEAT_CONTINUOUS@@</textarea>
+    <div class="actions">
+      <button class="kit-button" type="button" data-copy-prompt="repeat-continuous" data-copy-status="repeat-continuous-status" hidden>Copy addendum</button>
+      <a href="contribute/repeat-continuous.txt" download>Download as text</a>
+      <span id="repeat-continuous-status" role="status" aria-live="polite"></span>
+    </div>
+    <p class="muted">Continuous work lasts while the agent session can run. Closing the session or reaching a tool limit may interrupt it. To resume, reopen the workspace and send the original prompt, your chosen addendum and the saved progress checkpoint. The agent checks GitHub before continuing. These prompts do not install a scheduler or automatically restart a session.</p>
+  </section>
+
   <section class="share-kit" aria-labelledby="share-heading">
     <div>
       <h2 id="share-heading">Put a prompt where people can find it.</h2>
-      <p>The <a href="contribute/speeeecies-contribution-qr.pdf">three-page PDF</a> has one printable page per version. Each page includes the full prompt, repository URL and a small QR code that opens this guide.</p>
+      <p>The <a href="contribute/speeeecies-contribution-qr.pdf">four-page PDF</a> has one printable page per version, plus the repeat-work addendum. The first three pages include the full prompt and repository URL. Every page has a small QR code that opens this guide.</p>
       <p>Print at actual size on US Letter or use Fit on A4. Keep the white border around each code.</p>
       <p>For a phone-friendly link to all versions, use the guide QR beside this text.</p>
       <p><a href="contribute/contribute-page.png" download>Guide QR: PNG</a> · <a href="contribute/contribute-page.svg" download>SVG</a></p>
