@@ -3,7 +3,7 @@
 # requires-python = ">=3.11"
 # dependencies = ["qrcode[pil]==8.2", "reportlab==4.4.5"]
 # ///
-"""Build the contribution page, QR images and four-page PDF from shared text.
+"""Build the contribution page, QR images and five-page PDF from shared text.
 
 Run: uv run tools/build_contribution_kit.py [--check]
 The ordinary site build copies the committed outputs without extra dependencies.
@@ -64,7 +64,7 @@ def draw_qr(canvas, qr, x, y, size):
     canvas.drawPath(path, stroke=0, fill=1)
 
 
-def make_pdf(prompt, entries, qrs, addenda):
+def make_pdf(prompt, entries, qrs, addenda, preference, examples, artwork):
     from reportlab.lib.colors import HexColor
     from reportlab.lib.styles import ParagraphStyle
     from reportlab.pdfgen.canvas import Canvas
@@ -133,7 +133,7 @@ def make_pdf(prompt, entries, qrs, addenda):
         canvas.setFillColor(muted)
         canvas.setFont('Helvetica', 8)
         canvas.drawString(44, 28, 'US Letter. Print at actual size, or Fit on A4. Keep the white QR borders.')
-        canvas.drawRightString(568, 28, f'{number} / {len(entries) + 1}')
+        canvas.drawRightString(568, 28, f'{number} / {len(entries) + 2}')
         canvas.showPage()
     canvas.setFillColor(green)
     canvas.rect(0, 778, 612, 14, stroke=0, fill=1)
@@ -162,7 +162,46 @@ def make_pdf(prompt, entries, qrs, addenda):
     canvas.setFillColor(muted)
     canvas.setFont('Helvetica', 8)
     canvas.drawString(44, 28, 'US Letter. Print at actual size, or Fit on A4. Keep the white QR borders.')
-    canvas.drawRightString(568, 28, f'{len(entries) + 1} / {len(entries) + 1}')
+    canvas.drawRightString(568, 28, f'{len(entries) + 1} / {len(entries) + 2}')
+    canvas.showPage()
+    canvas.setFillColor(green)
+    canvas.rect(0, 778, 612, 14, stroke=0, fill=1)
+    canvas.setFont('Helvetica-Bold', 10)
+    canvas.drawString(44, 744, 'SPEEEECIES  /  FAVORITE-ANIMALS ADDENDUM')
+    canvas.setFillColor(ink)
+    canvas.setFont('Helvetica-Bold', 28)
+    canvas.drawString(44, 706, 'Getting tricky')
+    canvas.drawImage(str(artwork), 44, 514, width=160, height=160, preserveAspectRatio=True, mask='auto')
+    paragraph('Put your favorite animals first.', 226, 671, 342, 16, 20, green)
+    paragraph('Add the template or one example after the original contribution prompt. Combine it with do 10 or continuous mode. Replace the animal group or place with your own.', 226, 616, 342, 11, 15)
+    paragraph('Use "only" for a strict filter, or name a fallback group. The current issue queue determines what is available; a filter can match fewer than 10 tasks.', 226, 546, 342, 10, 14, muted)
+    canvas.setFillColor(green)
+    canvas.setFont('Helvetica-Bold', 13)
+    canvas.drawString(44, 478, 'Make it yours: replace [MY FAVORITE ANIMALS]')
+    top = paragraph(preference, 44, 460, 524, 10.3, 13.5) - 24
+    for row in range(0, len(examples), 2):
+        bottoms = []
+        for col, example in enumerate(examples[row:row + 2]):
+            x = 44 + col * 270
+            canvas.setFillColor(green)
+            canvas.setFont('Helvetica-Bold', 11)
+            canvas.drawString(x, top, example['title'])
+            bottoms.append(paragraph(example['prompt'], x, top - 12, 254, 10.3, 13.5))
+        top = min(bottoms) - 18
+    if top < 140:
+        raise ValueError('Favorite-animal addendum exceeds its PDF page; shorten or reflow it.')
+    draw_qr(canvas, qrs['contribute-page'], 44, 51, 78)
+    canvas.linkURL(PAGE_URL, (44, 51, 122, 129), relative=0)
+    paragraph('Copy these prompts in the browser guide:', 138, 124, 428, 10, 13, ink)
+    paragraph(PAGE_URL + '#getting-tricky', 138, 105, 428, 9, 12, green)
+    canvas.linkURL(PAGE_URL + '#getting-tricky', (138, 90, 568, 106), relative=0)
+    paragraph(REPO_URL, 138, 82, 428, 9, 12, green)
+    canvas.linkURL(REPO_URL, (138, 67, 568, 83), relative=0)
+    paragraph('Combine: original prompt + loop instructions + favorite-animal filter.', 138, 59, 428, 9, 12, muted)
+    canvas.setFillColor(muted)
+    canvas.setFont('Helvetica', 8)
+    canvas.drawString(44, 28, 'US Letter. Print at actual size, or Fit on A4. Keep the white QR borders.')
+    canvas.drawRightString(568, 28, f'{len(entries) + 2} / {len(entries) + 2}')
     canvas.showPage()
     canvas.save()
     return buf.getvalue()
@@ -177,6 +216,8 @@ def generate(root: Path) -> dict[str, bytes]:
         raise ValueError('The contribution prompt must contain the public repository URL.')
     addenda = [(title, (root / f'site/contribute/{slug}.txt').read_text(encoding='utf-8').strip())
                for title, slug in [('Do 10 species', 'repeat-10'), ('Continue until stopped', 'repeat-continuous')]]
+    preference = (root / 'site/contribute/getting-tricky.txt').read_text(encoding='utf-8').strip()
+    examples = json.loads((root / 'site/contribute/animal-preferences.json').read_text(encoding='utf-8'))
     entries = variants(prompt)
     qrs = {}
     outputs = {}
@@ -197,10 +238,23 @@ def generate(root: Path) -> dict[str, bytes]:
         'fallback': {'id': 'contribute-page', 'payload': PAGE_URL},
     }
     outputs['site/contribute/qr-manifest.json'] = (json.dumps(manifest, indent=2) + '\n').encode()
-    outputs['site/contribute/speeeecies-contribution-qr.pdf'] = make_pdf(prompt, entries, qrs, addenda)
+    outputs['site/contribute/speeeecies-contribution-qr.pdf'] = make_pdf(prompt, entries, qrs, addenda, preference, examples, root / 'site/contribute/tricky-beaver.png')
     template = (root / 'tools/templates/contribute.html').read_text(encoding='utf-8')
-    for key, value in {'PAGE_URL': PAGE_URL, 'REPO_URL': REPO_URL, 'PROMPT': prompt, 'REPEAT_10': addenda[0][1], 'REPEAT_CONTINUOUS': addenda[1][1], 'CLAUDE_URL': entries[1]['payload'], 'CODEX_URL': entries[2]['payload']}.items():
+    for key, value in {'PAGE_URL': PAGE_URL, 'REPO_URL': REPO_URL, 'PROMPT': prompt, 'ANIMAL_PREFERENCE': preference, 'REPEAT_10': addenda[0][1], 'REPEAT_CONTINUOUS': addenda[1][1], 'CLAUDE_URL': entries[1]['payload'], 'CODEX_URL': entries[2]['payload']}.items():
         template = template.replace(f'@@{key}@@', escape(value, quote=True))
+    cards = []
+    for example in examples:
+        slug, title, text = (escape(example[key], quote=True) for key in ('id', 'title', 'prompt'))
+        cards.append(f'''      <article class="qr-card">
+        <h4>{title}</h4>
+        <label class="sr-only" for="{slug}">{title} prompt addendum</label>
+        <textarea class="agent-prompt" id="{slug}" readonly rows="6" spellcheck="false">{text}</textarea>
+        <div class="actions">
+          <button class="kit-button" type="button" data-copy-prompt="{slug}" data-copy-status="{slug}-status" hidden>Copy example</button>
+          <span id="{slug}-status" role="status" aria-live="polite"></span>
+        </div>
+      </article>''')
+    template = template.replace('@@PREFERENCE_EXAMPLES@@', '\n'.join(cards))
     if '@@' in template:
         raise ValueError('Unresolved contribution-page template token')
     outputs['site/contribute.html'] = template.encode()

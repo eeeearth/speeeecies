@@ -21,3 +21,10 @@ textarea:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
 .link-notes { margin-top: 2rem; }
 @media (max-width: 780px) { .qr-grid { grid-template-columns: 1fr; } .qr-card .qr-code { max-width: 280px; } .share-kit { grid-template-columns: 1fr; gap: 1rem; } .guide-qr { max-width: 180px; } }
 @media print { .site-header, .actions, .link-notes { display: none; } .qr-grid { display: block; } .qr-card { break-inside: avoid; margin-bottom: 1rem; } .qr-code { max-width: 230px; } }
+
+.tricky-intro { display: grid; grid-template-columns: 200px 1fr; gap: 1.5rem; align-items: center; margin-top: 2.5rem; }
+.tricky-intro img { width: 100%; height: auto; border-radius: .7rem; }
+.tricky-intro h2 { margin-top: 0; }
+.preference-examples { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.1rem; }
+.preference-examples .agent-prompt { min-height: 10rem; font-size: .875rem; }
+@media (max-width: 780px) { .tricky-intro, .preference-examples { grid-template-columns: 1fr; } .tricky-intro img { max-width: 200px; } }
