@@ -3,7 +3,7 @@
 # requires-python = ">=3.11"
 # dependencies = ["qrcode[pil]==8.2", "reportlab==4.4.5"]
 # ///
-"""Build the contribution page, QR images and three-page PDF from one prompt.
+"""Build the contribution page, QR images and four-page PDF from shared text.
 
 Run: uv run tools/build_contribution_kit.py [--check]
 The ordinary site build copies the committed outputs without extra dependencies.
@@ -64,7 +64,7 @@ def draw_qr(canvas, qr, x, y, size):
     canvas.drawPath(path, stroke=0, fill=1)
 
 
-def make_pdf(prompt, entries, qrs):
+def make_pdf(prompt, entries, qrs, addenda):
     from reportlab.lib.colors import HexColor
     from reportlab.lib.styles import ParagraphStyle
     from reportlab.pdfgen.canvas import Canvas
@@ -133,8 +133,37 @@ def make_pdf(prompt, entries, qrs):
         canvas.setFillColor(muted)
         canvas.setFont('Helvetica', 8)
         canvas.drawString(44, 28, 'US Letter. Print at actual size, or Fit on A4. Keep the white QR borders.')
-        canvas.drawRightString(568, 28, f'{number} / {len(entries)}')
+        canvas.drawRightString(568, 28, f'{number} / {len(entries) + 1}')
         canvas.showPage()
+    canvas.setFillColor(green)
+    canvas.rect(0, 778, 612, 14, stroke=0, fill=1)
+    canvas.setFont('Helvetica-Bold', 10)
+    canvas.drawString(44, 744, 'SPEEEECIES  /  REPEAT-WORK ADDENDUM')
+    canvas.setFillColor(ink)
+    canvas.setFont('Helvetica-Bold', 28)
+    canvas.drawString(44, 706, 'Do 10, or keep going.')
+    paragraph('Paste one block after the original prompt, or send it in the same conversation. Each species still needs its own evidence and PR.', 44, 683, 524, 11, 15)
+    top = 633
+    for title, text in addenda:
+        canvas.setFillColor(green)
+        canvas.setFont('Helvetica-Bold', 15)
+        canvas.drawString(44, top, title)
+        top = paragraph(text, 44, top - 14, 524, 10.3, 13.5) - 25
+    if top < 154:
+        raise ValueError('Repeat-work addendum exceeds its PDF page; shorten or reflow it.')
+    draw_qr(canvas, qrs['contribute-page'], 44, 57, 78)
+    canvas.linkURL(PAGE_URL, (44, 57, 122, 135), relative=0)
+    paragraph('Copy the addenda and resume instructions in the browser guide:', 138, 137, 428, 9, 12, muted)
+    paragraph(PAGE_URL + '#repeat', 138, 111, 428, 9, 12, green)
+    canvas.linkURL(PAGE_URL + '#repeat', (138, 96, 568, 112), relative=0)
+    paragraph(REPO_URL, 138, 88, 428, 9, 12, green)
+    canvas.linkURL(REPO_URL, (138, 73, 568, 89), relative=0)
+    paragraph('Runs within an active agent session. Resume from the saved checkpoint; this does not install a scheduler or restart the session.', 138, 65, 428, 9, 12, muted)
+    canvas.setFillColor(muted)
+    canvas.setFont('Helvetica', 8)
+    canvas.drawString(44, 28, 'US Letter. Print at actual size, or Fit on A4. Keep the white QR borders.')
+    canvas.drawRightString(568, 28, f'{len(entries) + 1} / {len(entries) + 1}')
+    canvas.showPage()
     canvas.save()
     return buf.getvalue()
 
@@ -146,6 +175,8 @@ def generate(root: Path) -> dict[str, bytes]:
     prompt = (root / 'site/contribute/prompt.txt').read_text(encoding='utf-8').strip()
     if not prompt or REPO_URL not in prompt:
         raise ValueError('The contribution prompt must contain the public repository URL.')
+    addenda = [(title, (root / f'site/contribute/{slug}.txt').read_text(encoding='utf-8').strip())
+               for title, slug in [('Do 10 species', 'repeat-10'), ('Continue until stopped', 'repeat-continuous')]]
     entries = variants(prompt)
     qrs = {}
     outputs = {}
@@ -166,9 +197,9 @@ def generate(root: Path) -> dict[str, bytes]:
         'fallback': {'id': 'contribute-page', 'payload': PAGE_URL},
     }
     outputs['site/contribute/qr-manifest.json'] = (json.dumps(manifest, indent=2) + '\n').encode()
-    outputs['site/contribute/speeeecies-contribution-qr.pdf'] = make_pdf(prompt, entries, qrs)
+    outputs['site/contribute/speeeecies-contribution-qr.pdf'] = make_pdf(prompt, entries, qrs, addenda)
     template = (root / 'tools/templates/contribute.html').read_text(encoding='utf-8')
-    for key, value in {'PAGE_URL': PAGE_URL, 'REPO_URL': REPO_URL, 'PROMPT': prompt, 'CLAUDE_URL': entries[1]['payload'], 'CODEX_URL': entries[2]['payload']}.items():
+    for key, value in {'PAGE_URL': PAGE_URL, 'REPO_URL': REPO_URL, 'PROMPT': prompt, 'REPEAT_10': addenda[0][1], 'REPEAT_CONTINUOUS': addenda[1][1], 'CLAUDE_URL': entries[1]['payload'], 'CODEX_URL': entries[2]['payload']}.items():
         template = template.replace(f'@@{key}@@', escape(value, quote=True))
     if '@@' in template:
         raise ValueError('Unresolved contribution-page template token')
