@@ -1,0 +1,23 @@
+.contribute-intro { max-width: 48rem; padding: 1rem 0 1.5rem; }
+.eyebrow { color: var(--accent); font-size: .78rem; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; }
+.contribute-intro h1 { font-size: clamp(2rem, 5vw, 3rem); }
+.lead { font-size: 1.15rem; }
+.actions { display: flex; flex-wrap: wrap; align-items: center; gap: .8rem; margin: 1rem 0; }
+.kit-button { display: inline-block; border: 1px solid var(--accent); border-radius: .4rem; padding: .65rem .95rem; background: var(--accent); color: var(--accent-fg); font: inherit; font-weight: 600; text-decoration: none; cursor: pointer; }
+.kit-button:visited { color: var(--accent-fg); }
+.kit-button.secondary { background: transparent; color: var(--fg); border-color: var(--border); }
+[hidden] { display: none !important; }
+#agent-prompt { display: block; width: 100%; min-height: 12rem; padding: 1rem; font: .95rem/1.6 "SFMono-Regular", Consolas, monospace; color: var(--fg); background: var(--code-bg); border: 1px solid var(--border); border-radius: .5rem; resize: vertical; }
+textarea:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.qr-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.1rem; }
+.qr-card { min-width: 0; padding: 1.2rem; border: 1px solid var(--border); border-radius: .7rem; background: var(--card-bg); }
+.qr-card h3 { font-size: 1.35rem; margin: .4rem 0 1rem; }
+.qr-code { display: block; width: 100%; height: auto; background: #fff; border-radius: 0; }
+.qr-card .muted, .downloads { font-size: .875rem; }
+.share-kit { display: grid; grid-template-columns: 1fr 180px; gap: 2rem; align-items: center; margin-top: 2rem; padding: 1.5rem; border-radius: .7rem; background: var(--bg-alt); }
+.share-kit h2 { margin-top: 0; border: 0; }
+.share-url { overflow-wrap: anywhere; }
+.link-notes { margin-top: 2rem; }
+@media (max-width: 780px) { .qr-grid { grid-template-columns: 1fr; } .qr-card .qr-code { max-width: 280px; } .share-kit { grid-template-columns: 1fr; gap: 1rem; } .guide-qr { max-width: 180px; } }
+@media print { .site-header, .actions, .link-notes { display: none; } .qr-grid { display: block; } .qr-card { break-inside: avoid; margin-bottom: 1rem; } .qr-code { max-width: 230px; } }
