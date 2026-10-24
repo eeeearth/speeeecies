@@ -5,7 +5,8 @@ It offers a plain-text prompt QR, a prefilled Claude Code link and a prefilled
 Codex desktop app link. A smaller HTTPS guide QR provides a browser fallback.
 The PDF has one US Letter page per version, with vector QR modules, the complete
 prompt and clickable links. A fourth page adds instructions for 10 species or
-continuous work. It also prints on A4 with Fit selected.
+continuous work. A fifth page, Getting tricky, shows how to select favorite
+animal groups or a region. It also prints on A4 with Fit selected.
 
 ## Repeat work
 
@@ -21,6 +22,21 @@ Continuous mode runs within the active session. It pauses for human input, share
 blockers, access/session limits or an exhausted queue. It does not create a
 scheduler or restart itself. To resume, supply the original prompt, chosen
 addendum and saved checkpoint in the workspace; reconcile with GitHub first.
+
+## Getting tricky
+
+The [favorite-animal addendum](https://eeeearth.github.io/speeeecies/contribute.html#getting-tricky)
+works after the base prompt and either loop mode. Copy the template and replace
+`[MY FAVORITE ANIMALS]`, or copy an example. Strict filters pause when matching
+requests run out; the beaver example explicitly allows other wetland mammals as
+a fallback. Geographic filters require range evidence and preserve the issue's
+required activity regions. Every option retains the existing contribution checks.
+
+`site/contribute/getting-tricky.txt` supplies the template and
+`site/contribute/animal-preferences.json` supplies the examples for both the page
+and PDF. `site/contribute/tricky-beaver.png` is the maintainer's supplied artwork,
+used unchanged as a decorative illustration. It is not a reference for species
+anatomy or provenance. Keep private source paths out of the published kit.
 
 ## Update the kit
 

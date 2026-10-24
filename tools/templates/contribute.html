@@ -36,7 +36,7 @@
       <a class="kit-button" href="#prompt">Get the prompt</a>
       <a class="kit-button secondary" href="contribute/speeeecies-contribution-qr.pdf" download>Download the QR PDF</a>
     </p>
-    <p><a href="https://github.com/eeeearth/speeeecies/issues?q=is%3Aissue+is%3Aopen+label%3Aspecies-request+label%3Aanimal">Browse animal requests</a> · <a href="#repeat">Do 10 or keep going</a> · <a href="@@REPO_URL@@">GitHub repository</a></p>
+    <p><a href="https://github.com/eeeearth/speeeecies/issues?q=is%3Aissue+is%3Aopen+label%3Aspecies-request+label%3Aanimal">Browse animal requests</a> · <a href="#repeat">Do 10 or keep going</a> · <a href="#getting-tricky">Pick your favorites</a> · <a href="@@REPO_URL@@">GitHub repository</a></p>
   </div>
 
   <section id="prompt" aria-labelledby="prompt-heading">
@@ -106,10 +106,37 @@
     <p class="muted">Continuous work lasts while the agent session can run. Closing the session or reaching a tool limit may interrupt it. To resume, reopen the workspace and send the original prompt, your chosen addendum and the saved progress checkpoint. The agent checks GitHub before continuing. These prompts do not install a scheduler or automatically restart a session.</p>
   </section>
 
+  <section id="getting-tricky" aria-labelledby="tricky-heading">
+    <div class="tricky-intro">
+      <img src="contribute/tricky-beaver.png" width="1024" height="1024" loading="lazy" alt="A smiling cartoon beaver with leafy antlers on a golden background" />
+      <div>
+        <p class="eyebrow">Another prompt addendum</p>
+        <h2 id="tricky-heading">Getting tricky</h2>
+        <p>Put your favorite animals first. Add the template or one of the examples below after the original contribution prompt. You can combine it with <a href="#repeat">do 10 or continuous mode</a>.</p>
+        <p>Replace the animal group or place with your own. Use “only” for a strict filter, or name a fallback group when you want the agent to keep looking.</p>
+      </div>
+    </div>
+    <h3>Make it yours</h3>
+    <p>Replace <code>[MY FAVORITE ANIMALS]</code> before sending. The agent still checks claims and evidence for every task. A filter may match fewer than 10 available requests.</p>
+    <label class="sr-only" for="animal-preference">Favorite animals prompt template</label>
+    <textarea class="agent-prompt" id="animal-preference" readonly rows="7" spellcheck="false">@@ANIMAL_PREFERENCE@@</textarea>
+    <div class="actions">
+      <button class="kit-button" type="button" data-copy-prompt="animal-preference" data-copy-status="animal-preference-status" hidden>Copy template</button>
+      <a href="contribute/getting-tricky.txt" download>Download as text</a>
+      <span id="animal-preference-status" role="status" aria-live="polite"></span>
+    </div>
+    <h3>Try a preference</h3>
+    <p>Copy one example as your selection addendum. Each works with the original prompt and either loop mode. These are example filters; the current issue queue determines what is available.</p>
+    <div class="preference-examples">
+@@PREFERENCE_EXAMPLES@@
+    </div>
+    <p class="muted">Combine: original prompt + loop instructions + favorite-animal filter.</p>
+  </section>
+
   <section class="share-kit" aria-labelledby="share-heading">
     <div>
       <h2 id="share-heading">Put a prompt where people can find it.</h2>
-      <p>The <a href="contribute/speeeecies-contribution-qr.pdf">four-page PDF</a> has one printable page per version, plus the repeat-work addendum. The first three pages include the full prompt and repository URL. Every page has a small QR code that opens this guide.</p>
+      <p>The <a href="contribute/speeeecies-contribution-qr.pdf">five-page PDF</a> has one printable page per version, plus the repeat-work and Getting tricky addenda. The first three pages include the full prompt and repository URL. Every page has a small QR code that opens this guide.</p>
       <p>Print at actual size on US Letter or use Fit on A4. Keep the white border around each code.</p>
       <p>For a phone-friendly link to all versions, use the guide QR beside this text.</p>
       <p><a href="contribute/contribute-page.png" download>Guide QR: PNG</a> · <a href="contribute/contribute-page.svg" download>SVG</a></p>

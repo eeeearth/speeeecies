@@ -79,3 +79,15 @@ def test_addenda_match_downloads_and_ship_without_javascript(tmp_path):
         expected = (KIT / f'{slug}.txt').read_text()
         assert (tmp_path / 'site' / path).read_text() == expected
         assert page.prompts[slug] == expected.strip()
+
+
+def test_favorite_filters_and_artwork_ship_with_the_site(tmp_path):
+    import build_site
+    build_site.build_site(ROOT, tmp_path / 'site')
+    page = Page((tmp_path / 'site' / 'contribute.html').read_text())
+    assert page.prompts['animal-preference'] == (KIT / 'getting-tricky.txt').read_text().strip()
+    assert 'contribute/getting-tricky.txt' in page.links
+    for example in json.loads((KIT / 'animal-preferences.json').read_text()):
+        assert page.prompts[example['id']] == example['prompt']
+    for name in ('getting-tricky.txt', 'animal-preferences.json', 'tricky-beaver.png'):
+        assert (tmp_path / 'site' / 'contribute' / name).read_bytes() == (KIT / name).read_bytes()
