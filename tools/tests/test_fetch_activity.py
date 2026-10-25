@@ -245,11 +245,32 @@ def test_neither_usable_and_no_data_returns_none():
 
 
 @pytest.mark.parametrize(
-    "tier,expected",
-    [("A", "CC-BY-4.0"), ("B", "CC-BY-SA-4.0"), ("C", "CC-BY-NC-4.0")],
+    "mapping,tier,expected",
+    [
+        (fa.INAT_TIER_SPDX, "A", "CC-BY-4.0"),
+        (fa.INAT_TIER_SPDX, "B", "CC-BY-SA-4.0"),
+        (fa.INAT_TIER_SPDX, "C", "CC-BY-NC-SA-4.0"),
+        (fa.GBIF_TIER_SPDX, "A", "CC-BY-4.0"),
+        (fa.GBIF_TIER_SPDX, "C", "CC-BY-NC-4.0"),
+    ],
 )
-def test_tier_spdx_mapping(tier, expected):
-    assert fa.TIER_SPDX[tier] == expected
+def test_provider_tier_spdx_mapping(mapping, tier, expected):
+    assert mapping[tier] == expected
+
+
+def test_inat_tier_c_source_license_is_conservative_for_query():
+    url = fa.build_inat_url(123, 456, "C")
+    assert "cc-by-nc-sa" in url
+    record = fa.build_source_record("inat-activity-us-xx", url, "iNat", fa.INAT_TIER_SPDX["C"], "credit", "2026-10-10")
+    assert record["license"] == "CC-BY-NC-SA-4.0"
+
+
+def test_gbif_tier_c_query_does_not_include_share_alike():
+    url = fa.build_gbif_url(123, ("country", "US"), "C")
+    assert "CC_BY_NC_4_0" in url
+    assert "NC_SA" not in url
+    record = fa.build_source_record("gbif-activity-us", url, "GBIF", fa.GBIF_TIER_SPDX["C"], "credit", "2026-10-10")
+    assert record["license"] == "CC-BY-NC-4.0"
 
 
 def test_inat_attribution_widens_with_tier():
@@ -323,7 +344,7 @@ def test_merge_adds_and_updates_sources_preserving_other_entries():
     data = _sample_species()
     rec = fa.build_source_record(
         "gbif-activity-gb", "https://api.gbif.org/v1/occurrence/search?x", "GBIF for GB",
-        "A", fa.gbif_attribution("A", "2026-09-25"), "2026-09-25",
+        fa.GBIF_TIER_SPDX["A"], fa.gbif_attribution("A", "2026-09-25"), "2026-09-25",
     )
     fa.merge_into_species(data, "GB", {"region": "GB", "monthly": [0.0] * 12, "method": "gbif_share",
                                         "observations": 1, "sources": ["gbif-activity-gb"]}, [rec])
