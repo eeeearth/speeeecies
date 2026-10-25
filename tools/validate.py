@@ -113,6 +113,7 @@ class Schemas:
         self.locale_schema = json.loads((schema_dir / "locale.schema.json").read_text())
         self.flora_catalog_schema = json.loads((schema_dir / "flora-catalog.schema.json").read_text())
         self.flora_taxa = json.loads((schema_dir / "flora-taxa.json").read_text())
+        self.resource_tags = json.loads((schema_dir / "resource-tags.json").read_text())
         self._validators: dict[int, jsonschema.protocols.Validator] = {}
 
     def validator_for(self, schema: dict) -> jsonschema.protocols.Validator:
@@ -1799,7 +1800,8 @@ def check_locale_flora(locale_id: str, locale_dir: Path, schemas: Schemas, findi
     """Checks `locales/<id>/flora-catalog.json`, the plants the simulation
     shows in place of its generic biome catalog: every taxon drawable and
     placeable, sizes matching the drawn model, a weight for this locale,
-    licensed sources, and enough taxa and evergreens not to look bare."""
+    licensed sources, known or declared resource tags, and enough taxa and
+    evergreens not to look bare."""
     rel = f"locales/{locale_id}/{FLORA_CATALOG}"
     path = locale_dir / FLORA_CATALOG
     if not path.is_file():
@@ -1819,6 +1821,9 @@ def check_locale_flora(locale_id: str, locale_dir: Path, schemas: Schemas, findi
     findings.extend(schema_findings(catalog, schemas.flora_catalog_schema, schemas, "flora"))
     drawable = {t["taxon"]: t for t in schemas.flora_taxa.get("taxa", [])}
     placeable = set(schemas.flora_taxa.get("placeable_archetypes", []))
+    known_tags = set(schemas.resource_tags["known"])
+    raw_declared_tags = catalog.get("declared_tags")
+    declared_tags = {tag for tag in raw_declared_tags if isinstance(tag, str)} if isinstance(raw_declared_tags, list) else set()
     entries = catalog.get("entries")
     entries = [e for e in entries if isinstance(e, dict)] if isinstance(entries, list) else []
     summary = FloraSummary()
@@ -1828,6 +1833,11 @@ def check_locale_flora(locale_id: str, locale_dir: Path, schemas: Schemas, findi
     sources = []
     for i, entry in enumerate(entries):
         at = f"flora.entries[{i}]"
+        resource_tags = entry.get("resource_tags")
+        if isinstance(resource_tags, list):
+            for j, tag in enumerate(resource_tags):
+                if isinstance(tag, str) and tag not in known_tags and tag not in declared_tags and not re.fullmatch(r"host:[a-z0-9-]+", tag):
+                    findings.append(Finding("error", "FloraUnknownResourceTag", f"{at}.resource_tags[{j}]", f"resource tag '{tag}' is neither known nor declared"))
         taxon = entry.get("taxon")
         model = drawable.get(taxon)
         if model is None:

@@ -308,8 +308,10 @@ def flora_entry(taxon: str, locale_id: str = "test-town", **overrides) -> dict:
     return entry
 
 
-def write_flora(root: Path, entries: list[dict], locale_id: str = "test-town") -> None:
+def write_flora(root: Path, entries: list[dict], locale_id: str = "test-town", declared_tags: list[str] | None = None) -> None:
     catalog = {"schema_version": 1, "source": {"repo": "speeeecies", "rev": f"locales/{locale_id}"}, "entries": entries}
+    if declared_tags is not None:
+        catalog["declared_tags"] = declared_tags
     (root / "locales" / locale_id / "flora-catalog.json").write_text(json.dumps(catalog, indent=2), encoding="utf-8")
 
 
@@ -338,6 +340,28 @@ def test_rich_flora_catalog_is_clean(validate_module, fake_root):
     assert flora_findings == [], [f.line() for f in flora_findings]
     assert (lr.flora.taxa, lr.flora.evergreen) == (8, 2)
     assert "flora catalog of 8 taxa (2 evergreen)" in validate_module.render_markdown(result)
+
+
+def test_flora_unknown_resource_tag_rejects_atlanta_typo(validate_module, fake_root):
+    setup_locale(fake_root, minimal_locale([]))
+    entries = rich_flora()
+    entries[0]["resource_tags"] = ["shrub_thickel", "shrub_thicket"]
+    write_flora(fake_root, entries)
+    _, lr = run_locale(validate_module, fake_root)
+    hits = [f for f in lr.findings if f.code == "FloraUnknownResourceTag"]
+    assert len(hits) == 1
+    assert hits[0].path == "flora.entries[0].resource_tags[0]"
+    assert "shrub_thickel" in hits[0].message
+
+
+def test_flora_declared_resource_tag_passes(validate_module, fake_root):
+    setup_locale(fake_root, minimal_locale([]))
+    entries = rich_flora()
+    entries[0]["resource_tags"] = ["custom_blossom", "host:goldenrod"]
+    write_flora(fake_root, entries, declared_tags=["custom_blossom"])
+    result, lr = run_locale(validate_module, fake_root)
+    assert "FloraUnknownResourceTag" not in codes(lr)
+    assert not result.has_errors(strict=False)
 
 
 def test_sparse_flora_warns(validate_module, fake_root):
