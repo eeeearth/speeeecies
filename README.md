@@ -22,6 +22,22 @@ PR. To add a whole place (a locale: a public city or district and at least
 Humans: read [`CONTRIBUTING.md`](CONTRIBUTING.md) instead — same flow,
 shorter.
 
+## Species requests
+
+The [open animal requests](https://github.com/eeeearth/speeeecies/issues?q=is%3Aissue+is%3Aopen+label%3Aspecies-request+label%3Aanimal)
+are the tasks contributors can claim after checking for an active ETA. We aim
+to keep 1,000 open requests at the start of the 10,000-species effort. The
+[queue and replenishment rule](docs/species-queue-10000.md) explains when
+later batches are released. The [reserve](docs/species-reserve-2026-10.md)
+holds 9,000 unpublished discovery leads; each lead still needs screening
+before it becomes an issue.
+
+To browse by animal group, search the issue bodies for
+[birds](https://github.com/eeeearth/speeeecies/issues?q=is%3Aissue+is%3Aopen+label%3Aspecies-request+label%3Aanimal+in%3Abody+Aves),
+[mammals](https://github.com/eeeearth/speeeecies/issues?q=is%3Aissue+is%3Aopen+label%3Aspecies-request+label%3Aanimal+in%3Abody+Mammalia),
+[reptiles](https://github.com/eeeearth/speeeecies/issues?q=is%3Aissue+is%3Aopen+label%3Aspecies-request+label%3Aanimal+in%3Abody+Reptilia)
+or [amphibians](https://github.com/eeeearth/speeeecies/issues?q=is%3Aissue+is%3Aopen+label%3Aspecies-request+label%3Aanimal+in%3Abody+Amphibia).
+
 ## Locales
 
 The [live simulation](https://www.youtube.com/@jt55401/live) rotates
