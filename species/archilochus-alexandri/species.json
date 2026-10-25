@@ -6,7 +6,7 @@
   "slug": "archilochus-alexandri",
   "common_names": {
     "en": "black-chinned hummingbird",
-    "es": "colibr\u00ed barbinegro"
+    "es": "colibrí barbinegro"
   },
   "taxonomy": {
     "kingdom": "Animalia",
@@ -160,32 +160,26 @@
         "monthly": [
           0.0,
           0.0,
-          0.02,
-          0.62,
+          0.01,
+          0.52,
+          0.84,
           0.92,
-          0.97,
           1.0,
           0.96,
-          0.59,
-          0.07,
+          0.66,
+          0.11,
           0.0,
           0.0
         ],
-        "method": "mean(inat_share, gbif_share)",
-        "observations": 146575,
+        "method": "gbif_share",
+        "observations": 146318,
         "sources": [
-          "inat-activity-us-nm",
           "gbif-activity-us-nm"
         ],
         "query": {
           "min_obs": 300,
           "inat": {
-            "tier": "B",
-            "place_id": 9,
-            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=6433&place_id=9&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa",
-            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=9&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa",
-            "total": 302,
-            "usable": true
+            "skipped": "ISO 3166-2 region given without --inat-place-id; pass --inat-place-id <id> (look it up at https://www.inaturalist.org/places) to query iNaturalist for this subdivision"
           },
           "gbif": {
             "tier": "A",
@@ -195,11 +189,10 @@
             ],
             "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5228513&gadmGid=USA.32_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
             "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.32_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
-            "total": 146273,
+            "total": 146318,
             "usable": true
           },
           "used": [
-            "inat",
             "gbif"
           ]
         }
@@ -332,21 +325,12 @@
       "note": "US federal government database; public domain in the United States."
     },
     {
-      "id": "inat-activity-us-nm",
-      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=6433&place_id=9&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa",
-      "title": "iNaturalist observations histogram for Archilochus alexandri in US-NM",
-      "license": "CC-BY-SA-4.0",
-      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA, via the iNaturalist API",
-      "accessed": "2026-10-01",
-      "kind": "api"
-    },
-    {
       "id": "gbif-activity-us-nm",
       "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5228513&gadmGid=USA.32_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
       "title": "GBIF occurrence search for Archilochus alexandri in US-NM",
       "license": "CC-BY-4.0",
-      "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
-      "accessed": "2026-10-01",
+      "attribution": "GBIF.org (2026-10-10) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-10",
       "kind": "api"
     }
   ],
