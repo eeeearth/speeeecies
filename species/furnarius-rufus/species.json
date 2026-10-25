@@ -47,7 +47,6 @@
     "limb_count": 2,
     "locomotion_modes": [
       "Walk",
-      "Hop",
       "Fly"
     ],
     "thermoregulation": "Endotherm",
@@ -64,7 +63,6 @@
       0.058
     ],
     "length_m": 0.19,
-    "wingspan_m": 0.26,
     "lifespan_y": 3.0,
     "diet": {
       "invertebrate": 0.8,
@@ -353,19 +351,59 @@
             "gbif"
           ]
         }
+      },
+      {
+        "region": "BR-SP",
+        "monthly": [
+          1.0,
+          0.99,
+          0.93,
+          0.9,
+          0.8,
+          0.8,
+          0.74,
+          0.76,
+          0.75,
+          0.67,
+          0.76,
+          0.88
+        ],
+        "method": "gbif_share",
+        "observations": 89583,
+        "sources": [
+          "gbif-activity-br-sp"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "skipped": "ISO 3166-2 region given without --inat-place-id; pass --inat-place-id <id> (look it up at https://www.inaturalist.org/places) to query iNaturalist for this subdivision"
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "BRA.25_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2485821&gadmGid=BRA.25_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=BRA.25_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 89583,
+            "usable": true
+          },
+          "used": [
+            "gbif"
+          ]
+        }
       }
     ]
   },
   "behavior": {
-    "program": "bt-perching-songbird-v1",
+    "program": "bt-furnarius-ground-forager-v1",
     "params": {
       "flee_m": 6,
       "food_tag": "invertebrate",
       "song": "song",
       "alarm": "alarm",
-      "song_cooldown_s": 4,
-      "nest_m1": 8,
-      "nest_m2": 11
+      "song_cooldown_s": 4
     }
   },
   "vocalizations": [
@@ -444,7 +482,6 @@
     "poses": {
       "idle": {},
       "walk": {},
-      "hop": {},
       "fly": {},
       "perched": {},
       "rest": {}
@@ -591,6 +628,25 @@
       "attribution": "GBIF.org (2026-09-30) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
       "accessed": "2026-09-30",
       "kind": "api"
+    },
+    {
+      "id": "gbif-activity-br-sp",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2485821&gadmGid=BRA.25_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Furnarius rufus in BR-SP",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-10) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-10",
+      "kind": "api"
+    },
+    {
+      "id": "hornero-territory-study",
+      "url": "https://doi.org/10.1002/ece3.5821",
+      "title": "Partners coordinate territorial defense against simulated intruders in a duetting ovenbird",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "kind": "literature",
+      "attribution": "Diniz, P., Rech, G. S., Ribeiro, P. H. L., Webster, M. S. & Macedo, R. H. (2020). Partners coordinate territorial defense against simulated intruders in a duetting ovenbird. Ecology and Evolution 10(1):81-92. https://doi.org/10.1002/ece3.5821.",
+      "accessed": "2026-10-10"
     }
   ],
   "provenance": {
@@ -653,9 +709,8 @@
       "sources": [
         "wikipedia"
       ],
-      "confidence": "Medium",
-      "derived": true,
-      "note": "Walk is sourced: the species obtains its food 'by foraging on the ground while walking'. Hop is authored rather than sourced; it is kept because the shared perching-songbird program feeds on the ground with the hop gait, and a small passerine that walks over open ground also hops."
+      "confidence": "High",
+      "note": "The species obtains food by ground foraging while walking; Hop is removed from its declared gait."
     },
     "traits.thermoregulation": {
       "sources": [
@@ -731,12 +786,6 @@
       "confidence": "High",
       "derived": true,
       "note": "Midpoint of '18 to 20 centimetres', citing Ridgely & Tudor (1994, 2009) and Dunning (2008)."
-    },
-    "traits.wingspan_m": {
-      "sources": [],
-      "confidence": "Low",
-      "derived": true,
-      "note": "Judgement, and a scale estimate rather than a measurement. No open-licensed source gives a wingspan for F. rufus: English and Spanish Wikipedia, Wikidata and the GBIF backbone carry none, and the only figures found were in field guides and a longevity/measurements database that are not openly licensed. The value is derived from length_m by the span-to-length ratio of a comparable open-source record of the same build and family order, the European blackbird (0.36 m span over 0.2625 m length = 1.371), applied to 0.19 m and rounded to 0.26 m. For reference the same ratio across the repo's other open-source passerines runs from 1.27 (magpie) to 1.74 (great tit, short round wings), so 1.37 is mid-range. Correct this if a measured value turns up."
     },
     "traits.lifespan_y": {
       "sources": [],
@@ -861,10 +910,19 @@
       "note": "Plumage from the article: 'rufous-brown back and pale buffy brown underparts', a 'dull brown crown', a 'whitish throat', 'blackish' flight feathers with 'cinnamon wingbars', a horn-coloured bill 2.5 cm long, and a short square tail 7.1 cm long on an 18-20 cm bird. Proportions are authored: long body and long legs for a ground-walking ovenbird, small head, short tail, and a long slender slightly decurved bill. Only one extra part is used (a pale throat) to keep the mesh free of parts that clip each other."
     },
     "behavior": {
-      "sources": [],
-      "confidence": "Low",
+      "sources": [
+        "hornero-territory-study"
+      ],
+      "confidence": "Medium",
       "derived": true,
-      "note": "Authored parameters for the shared perching-songbird program. flee_m and food_tag are authored; food_tag follows the 0.8 invertebrate share of the diet. nest_m1/nest_m2 (8-11) follow the August-December laying window, which the program uses to gate nest building. song_cooldown_s is set below the program default of 8 s because the hornero is among the most persistently vocal birds in its range and sings its duet year-round. No bespoke behavior.json is needed."
+      "note": "A primary study identifies the hornero as a ground-foraging species; the selected shared ground-probing bird program uses walking for foraging. This is a program fit, not a measured gait cycle."
+    },
+    "look.poses": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Declared poses include idle, walk, fly, perched and rest. The hop pose is removed because ground foraging is described as walking."
     }
   },
   "contributors": [
