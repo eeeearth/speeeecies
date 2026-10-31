@@ -1,0 +1,582 @@
+{
+  "$schema": "https://eeeearth.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Phacochoerus africanus",
+  "slug": "phacochoerus-africanus",
+  "common_names": {
+    "en": "common warthog",
+    "fr": "phacochère commun",
+    "de": "Warzenschwein"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Mammalia",
+    "order": "Artiodactyla",
+    "family": "Suidae",
+    "genus": "Phacochoerus",
+    "authority": "(Gmelin, 1788)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2441212,
+    "inat_taxon_id": 42122,
+    "itis_tsn": 625008,
+    "wikidata": "Q183255",
+    "ncbi_taxon_id": 41426
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "AO",
+      "BF",
+      "BI",
+      "BJ",
+      "BW",
+      "CD",
+      "CF",
+      "CI",
+      "CM",
+      "DJ",
+      "ER",
+      "ET",
+      "GH",
+      "GM",
+      "GW",
+      "KE",
+      "MR",
+      "MW",
+      "MZ",
+      "NA",
+      "NG",
+      "RW",
+      "SD",
+      "SN",
+      "SO",
+      "SS",
+      "SZ",
+      "TD",
+      "TG",
+      "TZ",
+      "UG",
+      "ZA",
+      "ZM",
+      "ZW"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk",
+      "Gallop"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Fur",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "perching": false,
+    "size_class": "Large",
+    "mass_kg": 82.5,
+    "mass_range_kg": [
+      45,
+      150
+    ],
+    "length_m": 1.2,
+    "shoulder_height_m": 0.74,
+    "lifespan_y": 9,
+    "diet": {
+      "graze": 0.75,
+      "fruit": 0.1,
+      "browse": 0.05,
+      "invertebrate": 0.05,
+      "carrion": 0.05
+    },
+    "social": {
+      "structure": "Group",
+      "group_size": [
+        2,
+        18
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.5
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.9,
+      "fossorial": 0.1
+    },
+    "shelter_tag": "burrow",
+    "resources": [
+      {
+        "tag": "graze",
+        "kind": "Herbivory",
+        "weight": 0.75
+      },
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.1
+      },
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.05
+      },
+      {
+        "tag": "carrion",
+        "kind": "Scavenging",
+        "weight": 0.05
+      },
+      {
+        "tag": "burrow",
+        "kind": "Shelter",
+        "weight": 1.0
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Avoider",
+      "uses_gardens": false,
+      "notes": "Judgement: grassland, savanna and woodland specialist (Wikipedia). No source checked reports suburban or garden use."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "10-01",
+        "end": "12-31",
+        "region": "ZA",
+        "note": "Scoped to South Africa. Evidence is one Zululand (KwaZulu-Natal) population: Mason 1984 (Koedoe 27: 79-119) p. 85 says farrowing in Zululand is virtually confined to October, November and December (citing Mason 1982), and p. 88 Fig. 1 gives a mean farrowing date of 1 November. Samples were 1973-75 cropping in Hluhluwe-Corridor-Umfolozi. The paper calls the animal Phacochoerus aethiopicus; the 2016 Red List treats all southern African forms as P. africanus. Unresolved: the 2016 SA Red List account reports farrowing peaks in October and April in regions with a marked dry and wet season, such as South Africa, and Animal Diversity Web (NC) reports dry-season births. Those are not modelled here. No other region has a dated phase, so none is claimed."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Juvenile"
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "ZA",
+        "monthly": [
+          0.63,
+          0.58,
+          0.71,
+          0.76,
+          0.6,
+          0.77,
+          0.94,
+          0.81,
+          1.0,
+          0.96,
+          0.93,
+          0.74
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 1547,
+        "sources": [
+          "inat-activity-za",
+          "gbif-activity-za"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 6986,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=42122&place_id=6986&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=6986&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "total": 709,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "country",
+              "ZA"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2441212&country=ZA&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&country=ZA&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 838,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-ground-forager-v1",
+    "params": {
+      "food_tag": "graze",
+      "forage_gait": "walk",
+      "flee_gait": "gallop",
+      "rest_sun_lo_deg": -90,
+      "rest_sun_hi_deg": -6
+    }
+  },
+  "vocalizations": [],
+  "look": {
+    "body_plan": "quadruped",
+    "proportions": {
+      "torso_aspect": 2.0,
+      "leg_length_ratio": 0.45,
+      "head_scale": 0.85,
+      "neck_angle_deg": 20,
+      "tail_ratio": 0.3,
+      "ear_ratio": 0.35,
+      "beak_ratio": 0.6,
+      "girth_ratio": 0.9
+    },
+    "palette": {
+      "body": "#4a4038",
+      "belly": "#7a6d5f",
+      "markings": "#2b2420",
+      "accent": "#efe6d2",
+      "eye": "#1d1a17"
+    },
+    "part_colors": {
+      "leg_*": "markings",
+      "ear_*": "markings",
+      "snout": "belly"
+    },
+    "extra_parts": [],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "gallop": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2441212",
+      "title": "GBIF Backbone Taxonomy: Phacochoerus africanus (key 2441212)",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-31",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=625008",
+      "title": "ITIS: Phacochoerus africanus, TSN 625008",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-10-31",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q183255",
+      "title": "Wikidata: common warthog (Q183255)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-31",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Common_warthog",
+      "title": "Wikipedia: Common warthog",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-31",
+      "attribution": "Wikipedia contributors, \"Common warthog\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "note": "Secondary source. Its lifespan sentence and several others restate older literature (Boshe 1984 via ADW; Estes 1991), which was not accessed."
+    },
+    {
+      "id": "adw-phacochoerus",
+      "url": "https://animaldiversity.org/accounts/Phacochoerus_africanus/",
+      "title": "Animal Diversity Web: Phacochoerus africanus (common warthog), by Eileen Creel",
+      "license": "CC-BY-NC-SA-3.0",
+      "kind": "literature",
+      "accessed": "2026-10-31",
+      "attribution": "Creel, E. Phacochoerus africanus (common warthog), Animal Diversity Web, University of Michigan Museum of Zoology, CC BY-NC-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/3.0/",
+      "note": "Non-commercial last resort. Used only for the diel pattern (primarily diurnal, night refuge in burrows) and group size (up to 18). No permissive source checked states these; see PR evidence."
+    },
+    {
+      "id": "inat-activity-za",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=42122&place_id=6986&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Phacochoerus africanus in ZA",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-10-31",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-za",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2441212&country=ZA&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Phacochoerus africanus in ZA",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-31) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-31",
+      "kind": "api"
+    },
+    {
+      "id": "koedoe-mason-1984",
+      "url": "https://koedoe.co.za/index.php/koedoe/article/view/553",
+      "title": "Mason, D.R. 1984. Dentition and age determination of the warthog Phacochoerus aethiopicus in Zululand, South Africa. Koedoe 27: 79-119",
+      "license": "CC-BY-4.0",
+      "kind": "literature",
+      "accessed": "2026-10-31",
+      "attribution": "Mason, D.R. (1984). Dentition and age determination of the warthog Phacochoerus aethiopicus in Zululand, South Africa. Koedoe 27: 79-119. CC BY 4.0.",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "note": "Licence is the journal-wide CC BY 4.0 statement on the Koedoe article page (https://koedoe.co.za/index.php/koedoe/article/view/553). The article-level licence was not confirmed; the PDF is a scan with no licence text found on the pages read. Verify before review. Breeding window read from scanned pages 85 and 88."
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "itis"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "GBIF 2441212 is the accepted species key. iNaturalist 42122 (P3151), NCBI 41426 (P685) via Wikidata; iNaturalist API checked 2026-10-31 (active, species rank)."
+    },
+    "common_names": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "Wikidata P141 = least concern (Q211005)."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Union of the four subspecies' distributions in the Wikipedia Subspecies table (Nolan/northern, Eritrean, Eastern/Central, Southern). Native only; no introduced range appeared in the checked text. Not checked against a range map."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Wikipedia: flees by sprinting, up to 48 km/h with tail raised. No trot evidence was checked, so Trot is not declared."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Warm-blooded mammal; mud wallowing for temperature regulation per Wikipedia."
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Sparse coat with bristles; mapped to the Fur enum."
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.size_class": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg 82.5 (Large is 50 kg or more)."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Unweighted mean of two range midpoints. Females 45-75 kg (midpoint 60); males 60-150 kg (midpoint 105); (60+105)/2 = 82.5. Assumes equal sex weighting, which the source does not give."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Union of female 45-75 kg and male 60-150 kg."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Midpoint of head-and-body length 0.9-1.5 m (Wikipedia). The schema field is nose to tail tip; the tail was not sourced, so this understates total length."
+    },
+    "traits.shoulder_height_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of 63.5-85 cm (0.7425), rounded to 0.74."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Midpoint of Wikipedia's 'average of 7 to 11 years in the wild' (the Selous Game Reserve figure, Boshe 1984 as cited by ADW). Not the 18-year maximum or the captive average (about 21 years). ADW gives the same typical wild range, but it is not used here to avoid widening NC coverage."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored shares. Wikipedia lists grasses, roots, bulbs and rhizomes, berries and fruits, bark, fungi, dung, insects, eggs and carrion, but no proportions. Roots and bulbs are folded into graze."
+    },
+    "traits.social": {
+      "sources": [
+        "adw-phacochoerus"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Structure Group from Wikipedia (sounders). Upper size 18 from ADW (NC). Lower bound 2 is derived."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "adw-phacochoerus"
+      ],
+      "confidence": "Medium",
+      "note": "ADW: primarily diurnal, takes refuge at night in burrows. NC last resort: no permissive source checked states the diel pattern. Wikipedia is silent on it."
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Primary defence is flight by sprinting."
+    },
+    "traits.wariness": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "judgement"
+    },
+    "habitat.use": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored. Sparse; ground use dominates, with burrow use for refuge. No time-budget source."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "graze, fruit, invertebrate and carrion from Wikipedia. Burrow shelter from Wikipedia (reverses into burrows; occupies aardvark burrows). Weights are authored."
+    },
+    "habitat.human_tolerance": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "judgement"
+    },
+    "seasonal": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Strategy ActiveYearRound and life stages only. Wikipedia: seasonal breeders, general statement, no regional calendar. The breeding phase is covered by seasonal.phases."
+    },
+    "behavior": {
+      "sources": [
+        "adw-phacochoerus",
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Shared fsm-ground-forager-v1 with food_tag graze (grazing), forage_gait walk, flee_gait gallop (sprint), and rest_sun_lo_deg -90 / rest_sun_hi_deg -6 so that rest falls at night for a diurnal animal. Known limit: the program has no rooting or wallowing action, and burrow rest is modelled as a generic shelter rest."
+    },
+    "look": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "judgement: colours and proportions are authored for the previewer, with no image-based measurement."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Wikipedia: reverses into burrows; often occupies abandoned aardvark burrows."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "koedoe-mason-1984"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Mason 1984 p. 85: farrowing in Zululand virtually confined to October, November and December; p. 88 mean farrowing date 1 November. Month names converted to MM-DD 10-01 to 12-31. Zululand evidence applied to ZA; conflicting 2016 SA Red List April peak not modelled (see phase note)."
+    }
+  }
+}
