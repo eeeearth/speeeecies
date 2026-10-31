@@ -1,0 +1,531 @@
+{
+  "$schema": "https://eeeearth.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Spinus pinus",
+  "slug": "spinus-pinus",
+  "common_names": {
+    "en": "Pine Siskin"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Passeriformes",
+    "family": "Fringillidae",
+    "genus": "Spinus",
+    "authority": "(A. Wilson, 1810)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 5231635,
+    "inat_taxon_id": 145304
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "US",
+      "CA",
+      "MX",
+      "GT"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Hop",
+      "Fly"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Cup",
+    "perching": true,
+    "size_class": "Tiny",
+    "mass_kg": 0.015,
+    "mass_range_kg": [
+      0.012,
+      0.018
+    ],
+    "length_m": 0.125,
+    "wingspan_m": 0.2,
+    "lifespan_y": 1.6,
+    "diet": {
+      "seed": 0.75,
+      "browse": 0.15,
+      "invertebrate": 0.1
+    },
+    "social": {
+      "structure": "Flock",
+      "group_size": [
+        2,
+        30
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.3
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.35,
+      "arboreal": 0.55,
+      "aerial": 0.1
+    },
+    "shelter_tag": "perch",
+    "resources": [
+      {
+        "tag": "seed",
+        "kind": "Herbivory",
+        "weight": 0.8
+      },
+      {
+        "tag": "browse",
+        "kind": "Herbivory",
+        "weight": 0.2
+      },
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.2
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.8
+      },
+      {
+        "tag": "nest_cup",
+        "kind": "Nesting",
+        "weight": 0.8
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "notes": "Uses backyard feeders and weedy gardens; flocks move widely in response to changing seed crops."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "04-01",
+        "end": "07-31",
+        "region": "US-CA",
+        "note": "Breeding from early April to early July, with peak from late April to late June (USFS account B185, p. 277)."
+      },
+      {
+        "name": "dispersal",
+        "start": "08-01",
+        "end": "03-31",
+        "note": "The USFS account describes a widespread, fairly common permanent resident whose numbers fluctuate with nomadic movements related to food and climate; this phase is a month-resolution summary.",
+        "region": "US-CA"
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg"
+      },
+      {
+        "stage": "Juvenile",
+        "scale": 0.82
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US",
+        "monthly": [
+          0.84,
+          0.95,
+          0.94,
+          0.69,
+          0.53,
+          0.52,
+          0.62,
+          0.43,
+          0.33,
+          0.77,
+          1.0,
+          0.77
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 2463175,
+        "sources": [
+          "inat-activity-us",
+          "gbif-activity-us"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 1,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=145304&place_id=1&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=1&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "total": 4348,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "country",
+              "US"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5231635&country=US&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&country=US&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 2458827,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "bt-spinus-pinus-v1",
+    "params": {
+      "flee_m": 6,
+      "food_tag": "seed"
+    }
+  },
+  "vocalizations": [],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.45,
+      "leg_length_ratio": 0.3,
+      "head_scale": 0.78,
+      "neck_angle_deg": 10,
+      "tail_ratio": 0.65,
+      "wing_aspect": 2.7,
+      "beak_ratio": 0.34,
+      "girth_ratio": 1.0
+    },
+    "palette": {
+      "body": "#806b51",
+      "belly": "#d6cbb8",
+      "markings": "#4b3d31",
+      "accent": "#d4bd45",
+      "eye": "#171512"
+    },
+    "part_colors": {
+      "wing_*": "markings",
+      "tail": "markings",
+      "beak": "eye"
+    },
+    "poses": {
+      "idle": {},
+      "hop": {},
+      "fly": {},
+      "perched": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/5231635",
+      "title": "GBIF Backbone Taxonomy: Spinus pinus",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-31",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "inat-taxon",
+      "url": "https://api.inaturalist.org/v1/taxa/145304",
+      "title": "iNaturalist taxon catalogue: Spinus pinus",
+      "license": "CC-BY-4.0",
+      "kind": "api",
+      "accessed": "2026-10-31",
+      "attribution": "iNaturalist taxon catalogue, accessed via iNaturalist API",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Pine_siskin",
+      "title": "Wikipedia: Pine siskin",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-31",
+      "attribution": "Wikipedia contributors, \"Pine siskin\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "survival-2020",
+      "url": "https://doi.org/10.5061/dryad.qv9s4mwbs",
+      "title": "Scholer, Strimas-Mackey and Jankowski (2020), avian survival dataset",
+      "license": "CC0-1.0",
+      "kind": "dataset",
+      "accessed": "2026-10-31",
+      "attribution": "Scholer, M., Strimas-Mackey, M. & Jankowski, J. (2020), Data from: A meta-analysis of global avian survival across species and latitude, Dryad, https://doi.org/10.5061/dryad.qv9s4mwbs",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "usfs-range-guide",
+      "url": "https://www.fs.usda.gov/psw/publications/documents/psw_gtr037/psw_gtr037.pdf",
+      "title": "California Wildlife Habitat Relationships: Pine Siskin account (B185)",
+      "license": "public-domain",
+      "kind": "dataset",
+      "accessed": "2026-10-31",
+      "attribution": "California Department of Fish and Game and U.S. Forest Service, California Wildlife Habitat Relationships Program, account B185, pp. 276-277."
+    },
+    {
+      "id": "inat-activity-us",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=145304&place_id=1&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Spinus pinus in US",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-10-31",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5231635&country=US&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Spinus pinus in US",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-31) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-31",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High",
+      "note": "GBIF returned canonical name Spinus pinus, rank SPECIES, status ACCEPTED, exact match, usage key 5231635."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "inat-taxon"
+      ],
+      "confidence": "High",
+      "note": "Both providers independently resolved Spinus pinus at species rank; iNaturalist taxon 145304 is active. Checked 2026-10-31."
+    },
+    "common_names": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Article infobox lists Least Concern; underlying IUCN page is not used as a source."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Article sections Distribution and habitat (lines 193-197) describe breeding across Canada and the United States, and subspecies ranges in Mexico and Guatemala; country set is limited to these stated range countries."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Hop and powered flight represent the listed finch locomotion; hopping is an authored modelling judgement."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "A well-hidden nest on a horizontal branch, often a conifer; described as a nest in the article's Distribution and habitat section."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.size_class": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "11-14 cm and 12-18 g (Description, lines 180-181) support Tiny."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Representative value is midpoint of cited 12-18 g range (15 g), converted to 0.015 kg; mass_range_kg preserves the source limits."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "12-18 g converted to 0.012-0.018 kg (Description, lines 180-181)."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of article's 11-14 cm range (12.5 cm), converted to 0.125 m."
+    },
+    "traits.wingspan_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of article's 18-22 cm range (20 cm), converted to 0.20 m."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "survival-2020"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Not a measured lifespan. Dataset ELEscholer2020_data.csv row 307 (CSV data row X=298; ref Desante et al. 2015) reports adult annual survival S=0.391 for a US MAPS mark-recapture study lasting 15 years. Under a constant annual adult survival probability, geometric expected remaining adult years = 1/(1-S) = 1.64, rounded to 1.6. This is an adult remaining-life estimate for that study population, not life expectancy from hatching and not a species-wide observed lifespan."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Authored shares encode qualitative descriptions that seeds dominate, buds/sap are also taken, and insects are opportunistic food; no percentage diet estimate was found. Resource categories are modelling judgements."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Flock structure and group-size range are modelling judgements from the article's flocking description (lines 194-197)."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Diurnal activity is an authored model judgement, based on this being a day-active finch; no daily activity study used."
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Flee response is an authored simulation judgement."
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored modelling judgement."
+    },
+    "habitat": {
+      "sources": [
+        "wikipedia",
+        "usfs-range-guide"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The article names conifer forest canopy, shrubs, weeds, gardens/feeders, and tree-branch nests (lines 193-208). USFS account B185 (p. 277) specifies conifer foliage and bark plus ground feeding, usually in flocks. Habitat proportions and resource weights are authored."
+    },
+    "seasonal": {
+      "sources": [
+        "wikipedia",
+        "usfs-range-guide"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "USFS California account B185 (p. 277) reports early April to early July breeding, peaking late April to late June, and variable nomadic movements responding to food and climate. The breeding phase is scoped to California; the model cannot represent regional nesting calendars. The overall strategy is ActiveYearRound because the account describes a permanent resident with nomadic food-driven movement; no population fraction is asserted."
+    },
+    "behavior": {
+      "sources": [
+        "wikipedia",
+        "usfs-range-guide"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Species-local variant of bt-perching-songbird: silent escape flight, perch use, night roosting, nest building exactly in months {4,5,6,7}, and seed eating by hops. USFS account B185 (p. 277) says it takes food from foliage, bark and ground; the available eat_nearest action only supports ground-hop feeding, so this is a simplified route. The nesting calendar reflects California evidence and is not regionally configurable. The 6 m flee distance is an authored judgement."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Authored block-model judgement based on Description, lines 180-182: brown streaked body, pale underside, slender conical bill and yellow wing/tail patches."
+    }
+  }
+}
