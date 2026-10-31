@@ -1,0 +1,628 @@
+{
+  "$schema": "https://eeeearth.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Pheucticus ludovicianus",
+  "slug": "pheucticus-ludovicianus",
+  "common_names": {
+    "en": "Rose-breasted grosbeak"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Passeriformes",
+    "family": "Cardinalidae",
+    "genus": "Pheucticus",
+    "authority": "(Linnaeus, 1766)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2490494,
+    "inat_taxon_id": 10271
+  },
+  "range": {
+    "native": [
+      "CA",
+      "US",
+      "MX",
+      "GT",
+      "BZ",
+      "HN",
+      "SV",
+      "NI",
+      "CR",
+      "PA",
+      "CO",
+      "VE",
+      "PE"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Hop",
+      "Fly"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Cup",
+    "perching": true,
+    "size_class": "Tiny",
+    "mass_kg": 0.042,
+    "mass_range_kg": [
+      0.035,
+      0.065
+    ],
+    "length_m": 0.2,
+    "wingspan_m": 0.31,
+    "lifespan_y": 2.2,
+    "diet": {
+      "invertebrate": 0.5,
+      "fruit": 0.2,
+      "seed": 0.2,
+      "browse": 0.1
+    },
+    "social": {
+      "structure": "Flock",
+      "group_size": [
+        1,
+        12
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.5
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.2,
+      "arboreal": 0.8
+    },
+    "shelter_tag": "shrub_thicket",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.5,
+        "months": [
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.25,
+        "months": [
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "tag": "seed",
+        "kind": "Herbivory",
+        "weight": 0.2
+      },
+      {
+        "tag": "browse",
+        "kind": "Herbivory",
+        "weight": 0.1
+      },
+      {
+        "tag": "nest_cup",
+        "kind": "Nesting",
+        "weight": 1.0,
+        "months": [
+          5,
+          6,
+          7
+        ]
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.6
+      },
+      {
+        "tag": "shrub_thicket",
+        "kind": "Shelter",
+        "weight": 0.8
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "notes": "Judgement: breeds in open deciduous woods near openings, so not an urban species; Wikipedia says that in winter quarters it visits parks, gardens and feeders. Feeder use in the US is not sourced here."
+    }
+  },
+  "seasonal": {
+    "strategy": "Migration",
+    "phases": [
+      {
+        "name": "nesting",
+        "start": "05-01",
+        "end": "07-31",
+        "region": "US",
+        "note": "Nest building from early May (Tennessee) to early June (Saskatchewan); egg laying to mid-July (Wikipedia, Breeding). Applies to the US range only."
+      },
+      {
+        "name": "absent",
+        "start": "10-01",
+        "end": "04-20",
+        "region": "US",
+        "note": "Migrants leave in late September or October and return in late April or early May (Wikipedia, Migration). The 04-20 end is an approximate cut-off; the migrant status is from the Dryad row (migration = migrant)."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg"
+      },
+      {
+        "stage": "Juvenile",
+        "duration_days": 21,
+        "scale": 0.8
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US",
+        "monthly": [
+          0.0,
+          0.0,
+          0.0,
+          0.31,
+          1.0,
+          0.44,
+          0.31,
+          0.2,
+          0.39,
+          0.18,
+          0.02,
+          0.0
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 2079557,
+        "sources": [
+          "inat-activity-us",
+          "gbif-activity-us"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 1,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=10271&place_id=1&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=1&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "total": 3839,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "country",
+              "US"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2490494&country=US&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&country=US&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 2075718,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "bt-pheucticus-ludovicianus-v1",
+    "params": {
+      "flee_m": 4
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "song",
+      "context": "Song",
+      "season_months": [
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "time_windows": [
+        "DawnChorus",
+        "Day"
+      ],
+      "cooldown_s": 15,
+      "loudness": "Moderate",
+      "description": "Subdued, mellow warbling, a more refined and sweeter version of the American robin's song; males start singing early, sometimes in winter quarters."
+    },
+    {
+      "call_id": "alarm",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day",
+        "Dusk"
+      ],
+      "cooldown_s": 5,
+      "loudness": "Moderate",
+      "description": "Sharp 'pink' or 'pick' call. Wikipedia describes the call without an alarm function; using it as the alarm call is authored."
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.5,
+      "leg_length_ratio": 0.35,
+      "head_scale": 0.85,
+      "neck_angle_deg": 15,
+      "tail_ratio": 0.55,
+      "wing_aspect": 2.6,
+      "beak_ratio": 0.5,
+      "girth_ratio": 1.1
+    },
+    "palette": {
+      "body": "#1b1b1b",
+      "belly": "#f2efe6",
+      "markings": "#d0304f",
+      "accent": "#e9e4d8",
+      "eye": "#111111"
+    },
+    "part_colors": {
+      "breast": "markings",
+      "beak": "eye"
+    },
+    "poses": {
+      "idle": {},
+      "hop": {},
+      "fly": {},
+      "perched": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2490494",
+      "title": "GBIF Backbone Taxonomy: Pheucticus ludovicianus (usageKey 2490494)",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "kind": "database",
+      "accessed": "2026-10-31",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "note": "Accepted, species rank, canonical name Pheucticus ludovicianus (Linnaeus, 1766); checked 2026-10-31. iNaturalist taxon 10271 also checked on 2026-10-31 (active, species rank, same name)."
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Rose-breasted_grosbeak",
+      "title": "Wikipedia: Rose-breasted grosbeak",
+      "license": "CC-BY-SA-4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "kind": "webpage",
+      "accessed": "2026-10-31",
+      "attribution": "Wikipedia contributors, \"Rose-breasted grosbeak\", English Wikipedia, CC BY-SA 4.0",
+      "note": "Revision 1380703280 (2026-10-17). Sections used: Description, Distribution and habitat, Migration, Breeding, Longevity and mortality, Diet. Share-alike licence: text is cited and paraphrased, not copied."
+    },
+    {
+      "id": "eltontraits",
+      "url": "https://doi.org/10.6084/m9.figshare.3559887.v1",
+      "title": "EltonTraits 1.0: BirdFuncDat.txt, row SpecID 13275 (Pheucticus ludovicianus)",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "kind": "dataset",
+      "accessed": "2026-10-31",
+      "attribution": "Wilman, H. et al. (2014) EltonTraits 1.0: species-level foraging attributes of the world's birds and mammals. Ecology 95:2027",
+      "note": "Fields used: Diet-Inv 50, Diet-Fruit 20, Diet-Seed 20, Diet-PlantO 10 (Diet-Source Ref_22, certainty A); ForStrat ground 20, understory 20, midhigh 30, canopy 30 (Ref_33); BodyMass-Value 42 g (Dunning08); Nocturnal 0."
+    },
+    {
+      "id": "scholer-dryad",
+      "url": "https://doi.org/10.5061/dryad.qv9s4mwbs",
+      "title": "Data from: A meta-analysis of global avian survival across species and latitude (Dryad; mirror Zenodo 3986104), file ELEscholer2020_data.csv",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "kind": "dataset",
+      "accessed": "2026-10-31",
+      "attribution": "Scholer, M.N., Strimas-Mackey, M., Jankowski, J.E. (2020). Data from: A meta-analysis of global avian survival across species and latitude. Dryad, https://doi.org/10.5061/dryad.qv9s4mwbs",
+      "note": "Row 274 of ELEscholer2020_data.csv (dataset X=310): ref 'Desante et al. (2015)', species Pheucticus ludovicianus, survival 0.553, se 0.049, study_type mark-recapture, country United States, sitename MAPS, duration 15, migration 'migrant'. The dataset does not say whether survival is true or apparent survival."
+    },
+    {
+      "id": "inat-activity-us",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=10271&place_id=1&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Pheucticus ludovicianus in US",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-10-31",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2490494&country=US&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Pheucticus ludovicianus in US",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-31) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-31",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High",
+      "note": "GBIF usageKey 2490494 (accepted, species). iNaturalist taxon 10271 (active, species rank). No Wikidata or ITIS key added; both are optional and were not checked."
+    },
+    "common_names": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Country-level from Wikipedia distribution text: breeds across Canada and the northeastern US, winters from central-southern Mexico through Central America and the Caribbean to Peru and Venezuela. Not exhaustive; the Caribbean and Colombia are described only loosely."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High",
+      "note": "Passerine bird; taxonomy from GBIF."
+    },
+    "traits.limb_count": {
+      "sources": [],
+      "confidence": "High",
+      "derived": true,
+      "note": "Birds have 2 walking limbs (legs), per the schema convention."
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Fly from the flight description. Hop is for limb movement among branches and the rare ground use Wikipedia mentions; the species-local program uses hop only for feeding in foliage."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Passerine bird: endotherm (class Aves)."
+    },
+    "traits.skin": {
+      "sources": [],
+      "confidence": "High",
+      "derived": true,
+      "note": "Feathers for a bird."
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Migrates and flies between breeding and wintering ranges."
+    },
+    "traits.respiration": {
+      "sources": [],
+      "confidence": "High",
+      "derived": true,
+      "note": "Lungs, as for all birds."
+    },
+    "traits.metamorphosis": {
+      "sources": [],
+      "confidence": "High",
+      "derived": true,
+      "note": "No metamorphosis in birds."
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Nest is on a tree branch or over vines or elevated woody vegetation, an open cup. Nest type 'Cup'."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Forages in shrubs and trees and usually keeps to the treetops."
+    },
+    "traits.size_class": {
+      "sources": [
+        "eltontraits"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Derived from mass_kg 0.042 (<0.05 kg, Tiny)."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "eltontraits"
+      ],
+      "confidence": "Medium",
+      "note": "EltonTraits BodyMass-Value 42 g (Dunning08). Wikipedia gives 35-65 g with about 43 g in West Indies migrants and about 45 g in Pennsylvania banding; 42 g is the EltonTraits value."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Wikipedia Description: weigh 35-65 g."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of 18-22 cm (Wikipedia, Description)."
+    },
+    "traits.wingspan_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of 29-33 cm span across the wings (Wikipedia, Description)."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "scholer-dryad"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "DERIVED PROXY, low confidence. Inputs: adult annual survival S = 0.553 (SE 0.049), Dryad row 274, mark-recapture, US (MAPS). Calculation: mean adult lifespan = 1/(1 - S) = 2.24 y, rounded to 2.2. Assumes constant annual adult survival, geometric lifetimes, and counting the year of death. Excludes first-year mortality, which pushes birth-to-death lifespan down, and treats apparent survival as true survival, which pushes it down too. Not the Wikipedia 'average maximum' 7.3 y or 'maximum recorded' 12 y 11 mo: those are maxima, not typical lifespans."
+    },
+    "traits.diet": {
+      "sources": [
+        "eltontraits",
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "EltonTraits Diet-Inv 50, Diet-Fruit 20, Diet-Seed 20, Diet-PlantO 10 (Ref_22, certainty A). PlantO is mapped to browse (buds and flowers, per Wikipedia). Wikipedia north-central US stomach contents: invertebrates 52%, wild fruit 19.3%, weed seed 15.7%, cultivated fruit 6.5%, other plant 6.5%, agree in broad terms."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Wikipedia: fairly territorial in breeding; in winter small groups, sometimes flocks of a dozen or more."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "eltontraits"
+      ],
+      "confidence": "Medium",
+      "note": "EltonTraits Nocturnal = 0 (not nocturnal); daytime song per Wikipedia."
+    },
+    "traits.defense": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: flees to cover, as with the perching songbird program."
+    },
+    "traits.wariness": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement, not a measured value: 0.5, between the robin (0.2) and wary species. Wikipedia's 'shy' is the etymology of the genus, not behavioural evidence."
+    },
+    "habitat.use": {
+      "sources": [
+        "eltontraits"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "EltonTraits ForStrat: ground 20 (ground 0.2); understory+midhigh+canopy 80 (arboreal 0.8). Conflicts with Wikipedia 'only rarely can be seen on the ground'; the EltonTraits value is used because it is quantitative and CC0. Treat the ground share as uncertain."
+    },
+    "habitat.shelter_tag": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: roosts in dense woody cover. No roost-site source was checked."
+    },
+    "habitat.resources": {
+      "sources": [
+        "eltontraits",
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Weights from the diet split. Nest_cup (open cup in trees or shrubs, 0.8-16.7 m, average 6 m) from Wikipedia Breeding. Shelter tags are judgement. Months: insects in breeding months, fruit in late summer, nest_cup in May-July."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement from Wikipedia: breeds in open deciduous woods, visits parks and gardens in winter quarters. Urban affinity is not measured."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "scholer-dryad",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Dryad row classes the species as a migrant; Wikipedia describes a migration to tropical America in winter."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Dates from Wikipedia Breeding and Migration; US-specific cut-offs are approximate."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Juvenile duration 21 days from 'independent of their parents after approximately 3 weeks'. Scale 0.8 is judgement."
+    },
+    "vocalizations.song": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Wikipedia Description: subdued mellow warbling; males start singing early. Season and time windows are authored."
+    },
+    "vocalizations.alarm": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Wikipedia describes the sharp pink or pick call but not its alarm function. Authored as the alarm call; not verified."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement, from the Wikipedia plumage description: male black head, back and wings; rose-red breast; white underparts. A single palette cannot show both sexes."
+    },
+    "behavior": {
+      "sources": [
+        "wikipedia",
+        "eltontraits"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Species-local program bt-pheucticus-ludovicianus-v1 (behavior.json). A copy of bt-perching-songbird-v1 with nesting moved to May-July (shared program hard-codes April and May), insect food only in May-August, fruit otherwise, and hop feeding kept as a limitation."
+    }
+  }
+}
