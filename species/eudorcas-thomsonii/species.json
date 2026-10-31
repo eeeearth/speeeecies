@@ -1,0 +1,472 @@
+{
+  "$schema": "https://eeeearth.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Eudorcas thomsonii",
+  "slug": "eudorcas-thomsonii",
+  "common_names": {
+    "en": "Thomson's gazelle"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Mammalia",
+    "order": "Artiodactyla",
+    "family": "Bovidae",
+    "genus": "Eudorcas",
+    "authority": "(Günther, 1884)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 7261427,
+    "inat_taxon_id": 74321
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "KE",
+      "TZ"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk",
+      "Trot",
+      "Gallop"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Fur",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "None",
+    "perching": false,
+    "size_class": "Medium",
+    "mass_kg": 25.0,
+    "mass_range_kg": [
+      15.0,
+      35.0
+    ],
+    "length_m": 1.0,
+    "shoulder_height_m": 0.65,
+    "lifespan_y": 10.5,
+    "diet": {
+      "graze": 0.7,
+      "browse": 0.3
+    },
+    "social": {
+      "structure": "Group",
+      "group_size": [
+        5,
+        60
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.7
+  },
+  "habitat": {
+    "use": {
+      "ground": 1.0
+    },
+    "shelter_tag": "shrub_thicket",
+    "resources": [
+      {
+        "tag": "graze",
+        "kind": "Herbivory",
+        "weight": 0.7
+      },
+      {
+        "tag": "browse",
+        "kind": "Herbivory",
+        "weight": 0.3,
+        "months": []
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Avoider",
+      "notes": "Judgement. No openly licensed source found that quantifies tolerance of human settlement; the species is recorded in open savanna and grassland, away from settlement."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [],
+    "life_stages": [
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "KE",
+        "monthly": [
+          0.53,
+          0.85,
+          0.65,
+          0.81,
+          0.61,
+          0.64,
+          0.73,
+          0.82,
+          0.57,
+          0.63,
+          1.0,
+          0.67
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 2136,
+        "sources": [
+          "inat-activity-ke",
+          "gbif-activity-ke"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 7042,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=74321&place_id=7042&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=7042&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 1201,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "country",
+              "KE"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=7261427&country=KE&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&country=KE&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 935,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-ground-forager-v1",
+    "params": {
+      "food_tag": "graze",
+      "flee_m": 25,
+      "calm_m": 50,
+      "food_m": 60,
+      "forage_gait": "walk",
+      "flee_gait": "gallop",
+      "rest_sun_lo_deg": -90,
+      "rest_sun_hi_deg": -6
+    }
+  },
+  "vocalizations": [],
+  "look": {
+    "body_plan": "quadruped",
+    "proportions": {
+      "torso_aspect": 2.6,
+      "leg_length_ratio": 0.9,
+      "head_scale": 0.6,
+      "neck_angle_deg": 20,
+      "tail_ratio": 0.5,
+      "ear_ratio": 0.5,
+      "beak_ratio": 0.5,
+      "girth_ratio": 0.6
+    },
+    "palette": {
+      "body": "#b08a5a",
+      "belly": "#f4f1ea",
+      "markings": "#2b2118",
+      "accent": "#ffffff",
+      "eye": "#1c1510"
+    },
+    "part_colors": {
+      "leg_*": "markings",
+      "ear_*": "markings",
+      "snout": "belly"
+    },
+    "extra_parts": [],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "trot": {},
+      "gallop": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/7261427",
+      "title": "GBIF Backbone Taxonomy: Eudorcas thomsonii (Günther, 1884)",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "kind": "database",
+      "accessed": "2026-10-31",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Thomson%27s_gazelle",
+      "title": "Thomson's gazelle, Wikipedia",
+      "license": "CC-BY-SA-4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "kind": "webpage",
+      "accessed": "2026-10-31",
+      "attribution": "Wikipedia contributors, 'Thomson's gazelle', Wikipedia, CC BY-SA 4.0"
+    },
+    {
+      "id": "adw-thomsonii",
+      "url": "https://animaldiversity.org/accounts/Eudorcas_thomsonii/",
+      "title": "Animal Diversity Web: Eudorcas thomsonii (Thomson's gazelle)",
+      "license": "CC-BY-NC-SA-3.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/3.0/",
+      "kind": "database",
+      "accessed": "2026-10-31",
+      "note": "Non-commercial (tier 4) last-resort source. Used for lifespan, group size, activity pattern and body length, for which no permissive source with the same wording was found. Account says it was last updated 2009; the author-suggested citation is Auman, A.; R. Fye and T. Dewey (2009). Verify the site's current licence terms before release.",
+      "attribution": "Auman, A.; R. Fye and T. Dewey (2009), 'Eudorcas thomsonii', Animal Diversity Web, https://animaldiversity.org/accounts/Eudorcas_thomsonii/. Licensed CC BY-NC-SA 3.0 via ADW use conditions."
+    },
+    {
+      "id": "inat-activity-ke",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=74321&place_id=7042&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Eudorcas thomsonii in KE",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-31",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-ke",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=7261427&country=KE&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Eudorcas thomsonii in KE",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-31) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-31",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High",
+      "note": "gbif_usage_key 7261427 is the accepted species-rank match (checked 2026-10-31). inat_taxon_id 74321 is iNaturalist's active species record, checked by API 2026-10-31; no Wikidata entry verified yet."
+    },
+    "common_names": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Wikipedia reports Least Concern, citing the IUCN SSC Antelope Specialist Group 2018 assessment (errata 2020). Not yet confirmed at Wikidata P141."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Wikipedia: savannas and grasslands of Kenya and Tanzania."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "adw-thomsonii",
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Cursorial locomotion (ADW); fast runner (ADW)."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "note": "Birth site is not a nest; encoded as None."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.size_class": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Medium, matched to the mass figure derived below."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Midpoint of the combined sex range 15-35 kg from Wikipedia (males 20-35 kg, females 15-25 kg). Input range is not a typical-range midpoint; kept derived."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Combined range: lowest female 15 kg, highest male 35 kg."
+    },
+    "traits.length_m": {
+      "sources": [
+        "adw-thomsonii"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Midpoint of ADW head-and-body length 80-120 cm. Tail not included."
+    },
+    "traits.shoulder_height_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Midpoint of Wikipedia 60-70 cm shoulder height."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "adw-thomsonii"
+      ],
+      "confidence": "Medium",
+      "note": "ADW: 'typically have a lifespan of 10.5 years in the wild'. Permissive alternatives searched 2026-10-31 (Wikipedia gives an uncited 10-15 years; AnAge not reachable). Non-commercial source used as last resort."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia",
+        "adw-thomsonii"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement split. Wikipedia: mainly fresh grasses in the wet season and browse in the dry season, so graze 0.7 and browse 0.3 are an authored estimate, not a measured fraction."
+    },
+    "traits.social": {
+      "sources": [
+        "adw-thomsonii"
+      ],
+      "confidence": "Medium",
+      "note": "ADW: fluid associations of 5-60 individuals."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "adw-thomsonii"
+      ],
+      "confidence": "Medium",
+      "note": "ADW lists the species as diurnal; no nocturnal activity is described."
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia",
+        "adw-thomsonii"
+      ],
+      "confidence": "Low",
+      "note": "Judgement. Flight is the main defence."
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia",
+        "adw-thomsonii"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement, not sourced."
+    },
+    "habitat": {
+      "sources": [
+        "wikipedia",
+        "adw-thomsonii"
+      ],
+      "confidence": "Medium",
+      "note": "Habitat and resources from source text; shelter_tag shrub_thicket is a proxy: the species beds down in open grassland, not in burrows or thickets."
+    },
+    "seasonal": {
+      "sources": [
+        "wikipedia",
+        "adw-thomsonii"
+      ],
+      "confidence": "Low",
+      "note": "BLOCKER: no openly licensed source gives a sourced month window for territorial or breeding phases, and sources conflict (ADW: males hold breeding territories in the wet season, births follow the rains; Wikipedia-mirror claims of year-round breeding; Wikidata/AWF peaks not month-specific). phases is left empty so the validator fails until a sourced window is found. Strategy left ActiveYearRound: the migration enum requires an 'absent' phase that the evidence does not support."
+    },
+    "behavior": {
+      "sources": [
+        "wikipedia",
+        "adw-thomsonii"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Program fsm-ground-forager-v1 with graze/walk/gallop and diurnal rest window. Representation limit: the program rests at shelter_tag, and the species rests in open grassland. Params are judgement."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: block mesh palette and proportions for a slender grazing bovid. Not a measured source."
+    }
+  }
+}
