@@ -151,9 +151,10 @@
     "phases": [
       {
         "name": "breeding",
-        "start": "01-01",
+        "start": "10-01",
         "end": "12-31",
-        "note": "Placeholder year-round phase. Wikipedia (citing Estes 1991): seasonal breeders, rut at the end of the rains or start of the dry season, births near the start of the next rains. Timing varies by region and no region-scoped dated calendar was sourced, so this phase is not a calendar claim."
+        "region": "ZA",
+        "note": "Scoped to South Africa. Evidence is one Zululand (KwaZulu-Natal) population: Mason 1984 (Koedoe 27: 79-119) p. 85 says farrowing in Zululand is virtually confined to October, November and December (citing Mason 1982), and p. 88 Fig. 1 gives a mean farrowing date of 1 November. Samples were 1973-75 cropping in Hluhluwe-Corridor-Umfolozi. The paper calls the animal Phacochoerus aethiopicus; the 2016 Red List treats all southern African forms as P. africanus. Unresolved: the 2016 SA Red List account reports farrowing peaks in October and April in regions with a marked dry and wet season, such as South Africa, and Animal Diversity Web (NC) reports dry-season births. Those are not modelled here. No other region has a dated phase, so none is claimed."
       }
     ],
     "life_stages": [
@@ -329,6 +330,17 @@
       "attribution": "GBIF.org (2026-10-31) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
       "accessed": "2026-10-31",
       "kind": "api"
+    },
+    {
+      "id": "koedoe-mason-1984",
+      "url": "https://koedoe.co.za/index.php/koedoe/article/view/553",
+      "title": "Mason, D.R. 1984. Dentition and age determination of the warthog Phacochoerus aethiopicus in Zululand, South Africa. Koedoe 27: 79-119",
+      "license": "CC-BY-4.0",
+      "kind": "literature",
+      "accessed": "2026-10-31",
+      "attribution": "Mason, D.R. (1984). Dentition and age determination of the warthog Phacochoerus aethiopicus in Zululand, South Africa. Koedoe 27: 79-119. CC BY 4.0.",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "note": "Licence is the journal-wide CC BY 4.0 statement on the Koedoe article page (https://koedoe.co.za/index.php/koedoe/article/view/553). The article-level licence was not confirmed; the PDF is a scan with no licence text found on the pages read. Verify before review. Breeding window read from scanned pages 85 and 88."
     }
   ],
   "provenance": {
@@ -534,7 +546,7 @@
       ],
       "confidence": "Low",
       "derived": true,
-      "note": "Placeholder year-round phase, see the phase note. Not a regional calendar."
+      "note": "Strategy ActiveYearRound and life stages only. Wikipedia: seasonal breeders, general statement, no regional calendar. The breeding phase is covered by seasonal.phases."
     },
     "behavior": {
       "sources": [
@@ -557,6 +569,14 @@
       ],
       "confidence": "Medium",
       "note": "Wikipedia: reverses into burrows; often occupies abandoned aardvark burrows."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "koedoe-mason-1984"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Mason 1984 p. 85: farrowing in Zululand virtually confined to October, November and December; p. 88 mean farrowing date 1 November. Month names converted to MM-DD 10-01 to 12-31. Zululand evidence applied to ZA; conflicting 2016 SA Red List April peak not modelled (see phase note)."
     }
   }
 }
