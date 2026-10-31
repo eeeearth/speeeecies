@@ -1,0 +1,567 @@
+{
+  "$schema": "https://eeeearth.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Ptyonoprogne concolor",
+  "slug": "ptyonoprogne-concolor",
+  "common_names": {
+    "en": "Dusky crag martin"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Passeriformes",
+    "family": "Hirundinidae",
+    "genus": "Ptyonoprogne",
+    "authority": "(Sykes, 1832)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 7340278,
+    "inat_taxon_id": 144790,
+    "itis_tsn": 916670,
+    "wikidata": "Q2672660",
+    "ncbi_taxon_id": 317152,
+    "ebird_code": "duscrm1"
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "IN",
+      "MM",
+      "TH",
+      "LA",
+      "VN",
+      "CN"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Fly"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Cup",
+    "perching": true,
+    "size_class": "Tiny",
+    "mass_kg": 0.01296,
+    "length_m": 0.13,
+    "diet": {
+      "invertebrate": 1.0
+    },
+    "social": {
+      "structure": "Flock",
+      "group_size": [
+        2,
+        10
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.3
+  },
+  "habitat": {
+    "use": {
+      "aerial": 1.0
+    },
+    "shelter_tag": "shelter",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 1.0
+      },
+      {
+        "tag": "nest_cup",
+        "kind": "Nesting",
+        "weight": 1.0
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.6
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "notes": "Nests on buildings and other man-made structures, sometimes about 30 m above ground (Wikipedia)."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "02-01",
+        "end": "03-31",
+        "region": "IN",
+        "note": "Breeding reported in every month but mainly February and March (Wikipedia)."
+      },
+      {
+        "name": "breeding",
+        "start": "07-01",
+        "end": "08-31",
+        "region": "IN",
+        "note": "Breeds again after the rains start in July and August (Wikipedia)."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg"
+      },
+      {
+        "stage": "Juvenile"
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "IN",
+        "monthly": [
+          0.33,
+          0.34,
+          0.35,
+          0.33,
+          0.4,
+          0.67,
+          0.82,
+          1.0,
+          0.65,
+          0.44,
+          0.36,
+          0.29
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 112655,
+        "sources": [
+          "inat-activity-in",
+          "gbif-activity-in"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 6681,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=144790&place_id=6681&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=6681&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "total": 327,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "country",
+              "IN"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=7340278&country=IN&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&country=IN&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 112328,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "bt-perching-songbird-v1",
+    "params": {
+      "flee_m": 6,
+      "food_tag": "invertebrate",
+      "song": "song",
+      "alarm": "contact",
+      "nest_m1": 2,
+      "nest_m2": 3
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "song",
+      "context": "Song",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day",
+        "Dusk"
+      ],
+      "cooldown_s": 8,
+      "description": "Twittering song, given by the species (Wikipedia: 'a twittering song'); calls are similar to those of the Eurasian crag martin."
+    },
+    {
+      "call_id": "contact",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [],
+      "cooldown_s": 5,
+      "description": "Soft chi contact call (Wikipedia: 'a soft chi, chi contact call'); used here as the alarm call because no separate alarm call is described."
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.6,
+      "leg_length_ratio": 0.25,
+      "head_scale": 0.7,
+      "neck_angle_deg": 10,
+      "tail_ratio": 0.45,
+      "wing_aspect": 3.5,
+      "beak_ratio": 0.2,
+      "girth_ratio": 0.95
+    },
+    "palette": {
+      "body": "#4a4138",
+      "belly": "#8f8476",
+      "markings": "#e8e2d6",
+      "accent": "#3a322b",
+      "eye": "#111111"
+    },
+    "poses": {
+      "idle": {},
+      "fly": {},
+      "perched": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/7340278",
+      "title": "GBIF Backbone Taxonomy: Ptyonoprogne concolor (Sykes, 1832), usage key 7340278",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-31",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q2672660",
+      "title": "Wikidata: Dusky Crag Martin (Q2672660)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-31",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Dusky_crag_martin",
+      "title": "Wikipedia: Dusky crag martin",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-31",
+      "attribution": "Wikipedia contributors, \"Dusky crag martin\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "note": "Page last edited 17 October 2026 as shown on the page at access time."
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=916670",
+      "title": "ITIS: Ptyonoprogne concolor, TSN 916670",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-10-31",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "eltontraits",
+      "url": "https://doi.org/10.6084/m9.figshare.3559887.v1",
+      "title": "EltonTraits 1.0: species-level foraging attributes of the world's birds and mammals (BirdFuncDat.txt, row SpecID 10072)",
+      "license": "CC0-1.0",
+      "kind": "dataset",
+      "accessed": "2026-10-31",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "note": "Listed under the synonym 'Hirundo concolor' (Dusky Crag-martin). Diet-Inv = 100; BodyMass-Value = 12.96 g, BodyMass-Source Dunning08, BodyMass-SpecLevel 1."
+    },
+    {
+      "id": "gbif-occurrence-range",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=7340278&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0&facet=country&facetLimit=60&limit=0",
+      "title": "GBIF occurrence search: Ptyonoprogne concolor, present, country facet (CC0 and CC BY 4.0 records)",
+      "license": "CC-BY-4.0",
+      "kind": "api",
+      "accessed": "2026-10-31",
+      "attribution": "Occurrence data from GBIF.org, accessed 2026-10-31. Records are CC0 or CC BY 4.0 per the query filter; check each record's licence before redistribution of record-level data.",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "inat-activity-in",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=144790&place_id=6681&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Ptyonoprogne concolor in IN",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-10-31",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-in",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=7340278&country=IN&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Ptyonoprogne concolor in IN",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-31) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-31",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "itis",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "GBIF species match and species endpoint on 2026-10-31: usageKey 7340278, rank SPECIES, status ACCEPTED, Hirundinidae/Passeriformes. ITIS TSN 916670 with authority (Sykes, 1832). Synonym 'Hirundo concolor Sykes, 1832' (GBIF key 5230769) is not used as the record name."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "GBIF key checked against the species endpoint. iNaturalist 144790 (active species, Ptyonoprogne concolor), NCBI 317152, eBird duscrm1, ITIS 916670 and Wikidata Q2672660 via Wikidata claims P3151, P685, P3444 and P815."
+    },
+    "common_names": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "Wikidata English label 'Dusky Crag Martin'; spelled as in the Wikipedia title."
+    },
+    "conservation": {
+      "sources": [
+        "wikidata",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Wikipedia: 'Least Concern' (IUCN 3.1), 'Its large range and presumed high numbers mean that the dusky crag martin is not considered to be threatened.' Wikidata P141 = Q211005."
+    },
+    "range": {
+      "sources": [
+        "wikipedia",
+        "gbif-occurrence-range"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Wikipedia: 'found in southwestern China, and the northern parts of Thailand, Vietnam and Laos' and 'breeds across much of the Indian subcontinent'; Burma is named in its taxonomy section as part of the range. Native list is IN, MM, TH, LA, VN, CN. GBIF country counts (CC0/CC BY filter, present records): IN 112888, TH 458, LA 128, MY 106, CN 50, VN 34, MM 19, PK 10, KH 8, EC 2, LK 1. Malaysia (Wikipedia: 'has also bred in Malaysia'), Pakistan, Cambodia, Sri Lanka and Borneo are excluded because the sources do not establish native status there (vagrancy or sparse, unverified records). Introduced status: none found."
+    },
+    "traits.body_plan": {
+      "sources": [],
+      "confidence": "High",
+      "derived": true,
+      "note": "Bird (Aves): vertebrate body plan. Authored from class."
+    },
+    "traits.limb_count": {
+      "sources": [],
+      "confidence": "High",
+      "derived": true,
+      "note": "Two legs; wings are not counted as limbs in this schema (see the schema description)."
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Wikipedia: 'The dusky crag martin feeds mainly on insects caught in flight.' No source checked describes walking or hopping as a normal gait for this species, so only Fly is listed. See the behaviour note: the chosen program makes it hop to eat."
+    },
+    "traits.thermoregulation": {
+      "sources": [],
+      "confidence": "High",
+      "derived": true,
+      "note": "Authored from class Aves (endothermic birds)."
+    },
+    "traits.skin": {
+      "sources": [],
+      "confidence": "High",
+      "derived": true,
+      "note": "Authored from class Aves (feathers)."
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Wikipedia: 'feeds mainly on insects caught in flight' (powered flight with aerial feeding)."
+    },
+    "traits.respiration": {
+      "sources": [],
+      "confidence": "High",
+      "derived": true,
+      "note": "Authored from class Aves (lungs)."
+    },
+    "traits.metamorphosis": {
+      "sources": [],
+      "confidence": "High",
+      "derived": true,
+      "note": "Authored: birds have no metamorphosis."
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Wikipedia: 'an open half-cup made of mud and lined with soft material', built 'under an overhang or in a crevice on a cliff or man-made structure'. Mapped to the schema value Cup."
+    },
+    "traits.perching": {
+      "sources": [],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Authored from passerine order. Wikipedia does not describe perching; the value is a judgement."
+    },
+    "traits.size_class": {
+      "sources": [
+        "eltontraits"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg 0.01296 (Tiny is below 0.05 kg)."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "eltontraits"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "EltonTraits BodyMass-Value 12.96 g for the synonym 'Hirundo concolor' (row SpecID 10072, BodyMass-Source Dunning08), converted to kg. The source gives a single value, so no mass range is recorded. The EltonTraits species row is the source's own name, not a separate taxon."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Wikipedia: 'about 13 cm (5 in) long'. Converted to 0.13 m. This is total length, not a wing chord."
+    },
+    "traits.diet": {
+      "sources": [
+        "eltontraits",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "EltonTraits Diet-Inv = 100 (invertebrates only; the EltonTraits diet columns are category shares, so this maps to invertebrate 1.0). Wikipedia: 'feeds mainly on insects caught in flight'."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Wikipedia: 'does not form large breeding colonies, but it is more gregarious outside the breeding season' and 'may form small flocks where food is abundant'. Structure is Flock. The group_size range 2 to 10 is an authored estimate, not a sourced figure."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Authored: aerial insectivore that feeds on the wing, assumed diurnal. Monthly activity comes from the activity curves, not from this field."
+    },
+    "traits.defense": {
+      "sources": [],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Authored judgement: the species flies from a threat. Matches the flee action in the chosen program."
+    },
+    "traits.wariness": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: nests on buildings (Wikipedia), so tolerant of people. Not measured."
+    },
+    "habitat.use": {
+      "sources": [],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Authored: all feeding is aerial (Wikipedia: 'insects caught in flight'), so the aerial stratum is set to 1.0. This is not a measured time budget."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Invertebrate prey: Wikipedia. Nest cup: Wikipedia (open half-cup on cliffs or structures). Perch: authored, for the program's perching actions. Weights are judgement."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Wikipedia: nests on man-made structures, sometimes about 30 m above ground. urban_affinity set to Adapter, the schema's word for suburbs and buildings; not a measured tolerance."
+    },
+    "seasonal": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Wikipedia: 'largely resident apart from local movements after breeding'. Strategy ActiveYearRound. Life stages are generic; no duration is sourced."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Wikipedia: 'Breeding has been reported in every month, but mainly in February and March' and 'breeding again after the rains start in July and August'. Both breeding phases are for the Indian population (region IN). Phases are not validated against regional breeding records."
+    },
+    "activity": {
+      "sources": [
+        "gbif-occurrence-range"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Monthly curve from tools/fetch_activity.py for region IN (see the activity sources and counts)."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Program choice is authored. bt-perching-songbird-v1 covers perching, alarm and flight to a perch, dawn and dusk song from a perch, and nest building. Its feeding action (eat_nearest with gait hop, tag invertebrate) makes the bird hop to food on the ground. That does not match aerial insect capture, and gait is fixed in the shared program, so it cannot be overridden. This is a documented limitation. The hard-coded months 4 and 5 in the program's nest condition also cannot be removed (see the PR)."
+    },
+    "vocalizations": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Wikipedia: 'a soft chi, chi contact call and a twittering song'. Time windows and cooldown_s values are authored. The contact call is used as the alarm call because no separate alarm call is described."
+    },
+    "look": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement, not measured from a source image: dark grey-brown plumage (the species epithet is concolor, 'of one colour') with a paler belly. The block mesh is stylised. Any colour detail beyond body and belly is not sourced."
+    },
+    "habitat.shelter_tag": {
+      "sources": [],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Authored: the program's shelter actions (roosting, night perch) need a shelter tag. 'shelter' is generic; the species' roost sites are not sourced."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies contributor",
+      "agent": "claude-code"
+    }
+  ]
+}
