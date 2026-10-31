@@ -1,0 +1,590 @@
+{
+  "$schema": "../../schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Ovis canadensis",
+  "slug": "ovis-canadensis",
+  "common_names": {
+    "en": "Bighorn sheep"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Mammalia",
+    "order": "Artiodactyla",
+    "family": "Bovidae",
+    "genus": "Ovis",
+    "authority": "Shaw, 1804",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2441119,
+    "inat_taxon_id": 42391
+  },
+  "range": {
+    "native": [
+      "US",
+      "CA",
+      "MX"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk",
+      "Trot",
+      "Gallop",
+      "Climb"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Fur",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Ground",
+    "perching": false,
+    "size_class": "Large",
+    "mass_kg": 81.5,
+    "mass_range_kg": [
+      34,
+      143
+    ],
+    "length_m": 1.58,
+    "shoulder_height_m": 0.9,
+    "lifespan_y": 12,
+    "diet": {
+      "graze": 0.7,
+      "browse": 0.3
+    },
+    "social": {
+      "structure": "Group",
+      "group_size": [
+        2,
+        100
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.85
+  },
+  "habitat": {
+    "use": {
+      "ground": 1.0
+    },
+    "shelter_tag": "shelter",
+    "resources": [
+      {
+        "tag": "graze",
+        "kind": "Herbivory",
+        "weight": 0.7
+      },
+      {
+        "tag": "browse",
+        "kind": "Herbivory",
+        "weight": 0.3
+      },
+      {
+        "tag": "water",
+        "kind": "Water",
+        "weight": 0.7
+      },
+      {
+        "tag": "shelter",
+        "kind": "Shelter",
+        "weight": 1.0
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Avoider",
+      "uses_gardens": false,
+      "notes": "Uses remote mountain and desert terrain; human activity can displace sheep from prime habitat."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "mating",
+        "start": "11-01",
+        "end": "12-31",
+        "region": "US",
+        "note": "Northern and temperate U.S. populations usually rut in November and December; desert populations can peak earlier, so this calendar is regional and simplified."
+      },
+      {
+        "name": "young",
+        "start": "04-15",
+        "end": "06-30",
+        "region": "US",
+        "note": "Lambing: northern U.S. populations generally give birth late April through late June; desert populations differ."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Juvenile",
+        "duration_days": 365,
+        "scale": 0.55,
+        "requires_tag": "shelter"
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US",
+        "monthly": [
+          0.84,
+          0.52,
+          0.56,
+          0.48,
+          0.41,
+          0.34,
+          0.32,
+          0.37,
+          0.37,
+          0.47,
+          0.79,
+          1.0
+        ],
+        "method": "gbif_share",
+        "observations": 4139,
+        "sources": [
+          "gbif-activity-us"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 10316,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=42391&place_id=10316&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=10316&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 0,
+            "usable": false
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "country",
+              "US"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2441119&country=US&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&country=US&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 4139,
+            "usable": true
+          },
+          "used": [
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-ground-forager-v1",
+    "params": {
+      "flee_m": 45,
+      "calm_m": 60,
+      "food_tag": "graze",
+      "food_m": 80,
+      "flee_gait": "gallop",
+      "forage_gait": "walk",
+      "rest_sun_lo_deg": -90,
+      "rest_sun_hi_deg": -6
+    }
+  },
+  "vocalizations": [],
+  "look": {
+    "body_plan": "quadruped",
+    "proportions": {
+      "torso_aspect": 2.1,
+      "leg_length_ratio": 0.62,
+      "head_scale": 0.65,
+      "neck_angle_deg": 20,
+      "tail_ratio": 0.2,
+      "ear_ratio": 0.45,
+      "beak_ratio": 0.1,
+      "girth_ratio": 0.8
+    },
+    "palette": {
+      "body": "#8c6545",
+      "belly": "#e8e1d5",
+      "markings": "#38291e",
+      "accent": "#f2eee5",
+      "eye": "#140d06"
+    },
+    "part_colors": {
+      "snout": "markings",
+      "leg_*": "body",
+      "ear_*": "body"
+    },
+    "extra_parts": [
+      {
+        "name": "horn",
+        "parent": "head",
+        "offset": [
+          0.08,
+          0.45,
+          0.33
+        ],
+        "size": [
+          0.46,
+          0.62,
+          0.42
+        ],
+        "color": "accent",
+        "mirror": true
+      },
+      {
+        "name": "rump_patch",
+        "parent": "body",
+        "offset": [
+          -0.48,
+          0.18,
+          0
+        ],
+        "size": [
+          0.18,
+          0.5,
+          0.74
+        ],
+        "color": "belly"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "trot": {},
+      "gallop": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2441119",
+      "title": "GBIF Backbone Taxonomy: Ovis canadensis",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, accessed via GBIF.org",
+      "accessed": "2026-10-31",
+      "kind": "database"
+    },
+    {
+      "id": "inat-taxonomy",
+      "url": "https://api.inaturalist.org/v1/taxa/42391",
+      "title": "iNaturalist taxon: Ovis canadensis (42391)",
+      "license": "CC-BY-NC-SA-4.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "attribution": "iNaturalist, taxon record 42391, accessed 2026-10-31",
+      "accessed": "2026-10-31",
+      "kind": "api",
+      "note": "Used only to verify the required iNaturalist taxon identifier; the record's biological claims use separately licensed sources."
+    },
+    {
+      "id": "usfs-feis",
+      "url": "https://research.fs.usda.gov/feis/species-reviews/ovca",
+      "title": "USDA Forest Service FEIS: Ovis canadensis, bighorn sheep",
+      "license": "US-Gov-PD",
+      "accessed": "2026-10-31",
+      "kind": "webpage",
+      "note": "U.S. federal agency species synthesis; biological and habitat sections cite sources within the account."
+    },
+    {
+      "id": "wikipedia-bighorn",
+      "url": "https://en.wikipedia.org/wiki/Bighorn_sheep",
+      "title": "Wikipedia: Bighorn sheep",
+      "license": "CC-BY-SA-4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "attribution": "Wikipedia contributors, Bighorn sheep, English Wikipedia, CC BY-SA 4.0",
+      "accessed": "2026-10-31",
+      "kind": "webpage"
+    },
+    {
+      "id": "gbif-activity-us",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2441119&country=US&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Ovis canadensis in US",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-31) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-31",
+      "kind": "api"
+    },
+    {
+      "id": "usfs-rocky-mountain",
+      "url": "https://www.fs.usda.gov/Internet/FSE_DOCUMENTS/stelprdb5181936.pdf",
+      "title": "USDA Forest Service: Rocky Mountain Bighorn Sheep",
+      "license": "US-Gov-PD",
+      "accessed": "2026-10-31",
+      "kind": "literature",
+      "note": "U.S. federal agency synthesis; its claims cite research sources in the document."
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High",
+      "note": "GBIF match is exact, accepted, species rank, canonical name Ovis canadensis; authority Shaw, 1804."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "inat-taxonomy"
+      ],
+      "confidence": "High",
+      "note": "Checked GBIF usageKey 2441119 and iNaturalist active taxon 42391 independently; both resolve to Ovis canadensis at species rank."
+    },
+    "common_names": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High"
+    },
+    "range": {
+      "sources": [
+        "usfs-feis",
+        "wikipedia-bighorn"
+      ],
+      "confidence": "Medium",
+      "note": "North American native range summarized as United States, Canada and Mexico; GBIF occurrence results for US are used only for activity support."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia-bighorn"
+      ],
+      "confidence": "High",
+      "note": "Four-limbed mammal; body-plan classification is the record's normalized mapping."
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia-bighorn"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia-bighorn"
+      ],
+      "confidence": "High",
+      "note": "Walking is observed while foraging; source also describes steep-terrain climbing. Trot and gallop are modeled hoofed-mammal gaits."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia-bighorn"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Endotherm inferred from mammalian classification."
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia-bighorn"
+      ],
+      "confidence": "High",
+      "note": "Brown coat described in Description."
+    },
+    "traits.flight": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "No flight; normalized mammal classification."
+    },
+    "traits.respiration": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Lungs, standard mammalian respiration."
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "No metamorphosis, standard mammalian development."
+    },
+    "traits.nest_type": {
+      "sources": [
+        "usfs-feis"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Ground, because lambs are born on steep lambing terrain and there is no nest structure."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia-bighorn"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Terrestrial ungulate; perching is inapplicable."
+    },
+    "traits.size_class": {
+      "sources": [
+        "wikipedia-bighorn"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Large classification from adult mass ranges."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia-bighorn"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Equal-sex average of the midpoints of the reported typical male range (58-143 kg) and female range (34-91 kg): ((58+143)/2 + (34+91)/2)/2 = 81.5 kg. This is a transparent display estimate, not a population-weighted mean."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia-bighorn"
+      ],
+      "confidence": "High",
+      "note": "Envelope of reported typical adult female (34-91 kg) and male (58-143 kg) ranges."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia-bighorn"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Equal-sex average of sex-specific range midpoints: male (1.6-1.85 m), female (1.28-1.58 m), yielding 1.58 m; display estimate, not population-weighted."
+    },
+    "traits.shoulder_height_m": {
+      "sources": [
+        "wikipedia-bighorn"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Equal-sex average of midpoints of male 0.90-1.05 m and female 0.75-0.90 m ranges = 0.90 m."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "usfs-rocky-mountain",
+        "usfs-feis"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "12 years is the midpoint of the Forest Service species account typical wild lifespan of 10-14 years; FEIS further reports 10-12 as common among sheep surviving past age 8-9. This is a wild-life estimate, not captive longevity."
+    },
+    "traits.diet": {
+      "sources": [
+        "usfs-feis"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored allocation for the required model field: 0.7 graze and 0.3 browse. FEIS says grasses and forbs are primary, while browse varies by availability and is dominant for desert populations; the proportions are a coarse simulation judgement, not measured diet fractions."
+    },
+    "traits.social": {
+      "sources": [
+        "usfs-rocky-mountain"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Group structure and broad 1-100 interval reflect solitary/bachelor rams and ewe nursery groups of 25-100; group composition varies by sex, season, and population."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "usfs-rocky-mountain"
+      ],
+      "confidence": "Medium",
+      "note": "The account describes mountain sheep as generally diurnal, with alternating feeding and resting bouts; it notes populations may feed after sunset."
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia-bighorn"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Flee is a generalized threat response; rugged escape terrain is the species' key defense strategy."
+    },
+    "traits.wariness": {
+      "sources": [
+        "usfs-feis"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored judgement: remote, wary wild ungulate; account describes displacement by human activity."
+    },
+    "habitat.use": {
+      "sources": [
+        "usfs-feis"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Ground use from terrestrial mountain and desert habitat."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "usfs-feis"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Generic shelter stands for cliffs and rock outcrops, which the schema cannot express directly."
+    },
+    "habitat.resources": {
+      "sources": [
+        "usfs-feis"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Food weights follow the authored diet allocation; water and shelter presence are categorical habitat needs rather than intake shares."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "usfs-feis"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Avoider and gardens false reflect use of remote mountain/desert areas and documented displacement by human recreation and development."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "usfs-feis"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "ActiveYearRound; sources describe seasonal range movements but no hibernation."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "usfs-feis"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "US- scoped temperate/northern rut and lambing windows from FEIS. Desert populations differ; a single calendar cannot represent them."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "usfs-feis"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Juvenile duration to approximately the first year is a simulation simplification; lambs are precocious and develop rapidly."
+    },
+    "behavior": {
+      "sources": [
+        "usfs-feis",
+        "wikipedia-bighorn"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared ground-forager: graze resource, walk forage, gallop flee, and nighttime rest match a mostly diurnal feeding and bedding cycle. The flee/calm/food radii (45/60/80 m) are explicit simulation judgements because no source quantifies those interaction distances. The shared program has no climb action, so it cannot enact the species\u2019 steep-cliff climbing; that capability remains an explicit behavior blocker for review."
+    },
+    "look": {
+      "sources": [
+        "wikipedia-bighorn"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Brown body coat and white rump patch follow the description; paired curled horns represent a ram. Block proportions and colors are authored visual approximations."
+    }
+  }
+}
