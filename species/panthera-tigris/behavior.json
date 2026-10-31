@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "format": "speeeecies/behavior",
+  "id": "fsm-tiger-stalker-v1",
+  "kind": "fsm",
+  "description": "A deliberately limited representation of a solitary, mainly nocturnal terrestrial predator. It rests by day, walks and feeds at night, and flees nearby threats; the action vocabulary cannot model stalking, killing large prey, swimming or territorial marking.",
+  "params": {
+    "food_tag": "small_vertebrate",
+    "flee_m": 20,
+    "calm_m": 40
+  },
+  "initial": "idle",
+  "states": {
+    "idle": {"action": {"do": "idle"}, "min_dwell_s": 2},
+    "wander": {"action": {"do": "wander", "gait": "walk"}},
+    "forage": {"action": {"do": "eat_nearest", "tag": "${food_tag}", "gait": "walk"}},
+    "rest": {"action": {"do": "rest", "at": "shelter"}, "min_dwell_s": 30},
+    "flee": {"action": {"do": "flee", "gait": "gallop"}, "min_dwell_s": 3}
+  },
+  "transitions": [
+    {"from": "*", "to": "flee", "when": {"threat_within_m": "${flee_m}"}, "priority": 100},
+    {"from": "flee", "to": "idle", "when": {"not": {"threat_within_m": "${calm_m}"}}},
+    {"from": "idle", "to": "rest", "when": {"is_day": true}},
+    {"from": "wander", "to": "rest", "when": {"is_day": true}},
+    {"from": "forage", "to": "rest", "when": {"is_day": true}},
+    {"from": "rest", "to": "idle", "when": {"is_day": false}},
+    {"from": "idle", "to": "forage", "when": {"all": [{"is_day": false}, {"need": "hunger", "gt": 0.5}, {"food_within_m": 40, "tag": "${food_tag}"}]}},
+    {"from": "idle", "to": "wander", "when": {"all": [{"is_day": false}, {"chance": 0.25}]}},
+    {"from": "wander", "to": "idle", "when": {"chance": 0.15}},
+    {"from": "forage", "to": "idle", "when": {"need": "hunger", "lt": 0.2}}
+  ]
+}
