@@ -193,6 +193,48 @@
             "gbif"
           ]
         }
+      },
+      {
+        "region": "US-NM",
+        "monthly": [
+          0.09,
+          0.18,
+          0.05,
+          0.14,
+          0.17,
+          1.0,
+          0.67,
+          0.39,
+          0.59,
+          0.34,
+          0.06,
+          0.12
+        ],
+        "method": "gbif_share",
+        "observations": 1448,
+        "sources": [
+          "gbif-activity-us-nm"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "skipped": "ISO 3166-2 region given without --inat-place-id; pass --inat-place-id <id> (look it up at https://www.inaturalist.org/places) to query iNaturalist for this subdivision"
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.32_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2433011&gadmGid=USA.32_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&gadmGid=USA.32_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 1448,
+            "usable": true
+          },
+          "used": [
+            "gbif"
+          ]
+        }
       }
     ]
   },
@@ -323,6 +365,15 @@
       "license": "CC-BY-NC-4.0",
       "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0, CC BY 4.0 and CC BY-NC 4.0",
       "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-nm",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2433011&gadmGid=USA.32_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Tadarida brasiliensis in US-NM",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-10) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-10",
       "kind": "api"
     }
   ],
