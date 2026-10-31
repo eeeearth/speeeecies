@@ -1,0 +1,523 @@
+{
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Zootoca vivipara",
+  "slug": "zootoca-vivipara",
+  "common_names": {
+    "en": "Viviparous lizard"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Reptilia",
+    "order": "Squamata",
+    "family": "Lacertidae",
+    "genus": "Zootoca",
+    "authority": "(Lichtenstein, 1823)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 9702100,
+    "inat_taxon_id": 35453,
+    "wikidata": "Q204061",
+    "itis_tsn": 1155342
+  },
+  "range": {
+    "native": [
+      "GB"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk"
+    ],
+    "thermoregulation": "Ectotherm",
+    "skin": "Scales",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "None",
+    "perching": false,
+    "size_class": "Tiny",
+    "mass_kg": 0.00364,
+    "mass_range_kg": [
+      0.0012,
+      0.0076
+    ],
+    "length_m": 0.13,
+    "lifespan_y": 5.5,
+    "diet": {
+      "invertebrate": 1.0
+    },
+    "social": {
+      "structure": "Solitary",
+      "group_size": [
+        1,
+        1
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.8
+  },
+  "habitat": {
+    "use": {
+      "ground": 1.0
+    },
+    "shelter_tag": "leaf_litter",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 1.0
+      },
+      {
+        "tag": "leaf_litter",
+        "kind": "Shelter",
+        "weight": 1.0
+      },
+      {
+        "tag": "shrub_thicket",
+        "kind": "Shelter",
+        "weight": 0.5
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "notes": "Uses gardens and other suitable built-area habitats where basking sites, dense cover and prey are present."
+    }
+  },
+  "seasonal": {
+    "strategy": "Brumation",
+    "phases": [
+      {
+        "name": "dormancy",
+        "start": "10-15",
+        "end": "03-15",
+        "note": "Approximate temperate British brumation interval: ADW reports mid-October to mid-March."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Juvenile"
+      },
+      {
+        "stage": "Adult"
+      }
+    ],
+    "triggers": {
+      "enter": {
+        "temperature_below_c": 10,
+        "days": 7
+      },
+      "exit": {
+        "temperature_above_c": 10,
+        "days": 7
+      }
+    }
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "GB",
+        "monthly": [
+          0.01,
+          0.06,
+          0.39,
+          0.99,
+          0.87,
+          0.79,
+          0.85,
+          1.0,
+          0.65,
+          0.14,
+          0.02,
+          0.01
+        ],
+        "method": "mean(inat_raw, gbif_raw)",
+        "observations": 30780,
+        "sources": [
+          "inat-activity-gb",
+          "gbif-activity-gb"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 6857,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=35453&place_id=6857&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": null,
+            "total": 1630,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "country",
+              "GB"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=9702100&country=GB&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": null,
+            "total": 29150,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-zootoca-vivipara-v1",
+    "params": {
+      "warm_min_c": 10,
+      "warm_max_c": 38,
+      "flee_m": 3,
+      "calm_m": 8
+    }
+  },
+  "vocalizations": [],
+  "look": {
+    "body_plan": "quadruped",
+    "proportions": {
+      "torso_aspect": 1.45,
+      "leg_length_ratio": 0.25,
+      "head_scale": 0.65,
+      "neck_angle_deg": 10,
+      "tail_ratio": 1.2,
+      "ear_ratio": 0,
+      "beak_ratio": 0,
+      "girth_ratio": 0.35
+    },
+    "palette": {
+      "body": "#80664e",
+      "belly": "#d6b78d",
+      "markings": "#453a32",
+      "accent": "#d5a64a",
+      "eye": "#17120e"
+    },
+    "part_colors": {
+      "leg_*": "body",
+      "tail": "body",
+      "snout": "body"
+    },
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/9702100",
+      "title": "GBIF Backbone Taxonomy: Zootoca vivipara",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-31",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q204061",
+      "title": "Wikidata: Viviparous lizard (Q204061)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-31",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Viviparous_lizard",
+      "title": "Wikipedia: Viviparous lizard",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-31",
+      "attribution": "Wikipedia contributors, \u2018Viviparous lizard\u2019, English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "jurczyk-borczyk-2022",
+      "url": "https://doi.org/10.3409/fb_70-3.12",
+      "title": "Body Size Structure and Sex Ratio in a Population of the Common Lizard Zootoca vivipara from SW Poland",
+      "license": "CC-BY-4.0",
+      "kind": "literature",
+      "accessed": "2026-10-31",
+      "attribution": "Jurczyk, K. & Borczyk, B. (2022). Folia Biologica (Krak\u00f3w) 70(3):107-112. CC BY 4.0.",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "inat-activity-gb",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=35453&place_id=6857&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Zootoca vivipara in GB",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-10-31",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-gb",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=9702100&country=GB&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Zootoca vivipara in GB",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-31) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-31",
+      "kind": "api"
+    },
+    {
+      "id": "adw",
+      "url": "https://animaldiversity.org/accounts/Zootoca_vivipara/",
+      "title": "Animal Diversity Web: Zootoca vivipara, Lifespan/Longevity section",
+      "license": "CC-BY-NC-SA-3.0",
+      "kind": "webpage",
+      "accessed": "2026-10-31",
+      "attribution": "Animal Diversity Web, Zootoca vivipara account, CC BY-NC-SA 3.0",
+      "license_url": "https://animaldiversity.org/about/use_conditions/"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=1155342",
+      "title": "ITIS: Zootoca vivipara, TSN 1155342",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-10-31",
+      "note": "U.S. federal government database; public domain in the United States."
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "itis"
+      ],
+      "confidence": "High",
+      "note": "GBIF resolves accepted species rank and canonical name; its API places Squamata in the class field and omits an order. ITIS independently resolves accepted species TSN 1155342 with standard hierarchy Reptilia (class), Squamata (order), Lacertidae, Zootoca; that hierarchy is used here."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata",
+        "itis"
+      ],
+      "confidence": "High",
+      "note": "GBIF usage key 9702100 resolves accepted species; Wikidata P3151 and iNaturalist API independently give taxon ID 35453 at species rank; ITIS TSN 1155342 resolves accepted species."
+    },
+    "common_names": {
+      "sources": [
+        "wikidata",
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Record is scoped to issue region GB; species is native in the British Isles. The wider distribution is omitted."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Four-limbed lizard; species schema counts walking limbs."
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Ground-dwelling lizard; Walk represents ordinary ground locomotion. The kit has no run gait."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Ectothermic; relies on solar basking."
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Live-bearing species; no nest structure represented."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.size_class": {
+      "sources": [
+        "jurczyk-borczyk-2022"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Tiny from adult male/female mean mass, 3.64 g, below the schema 50 g boundary."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "jurczyk-borczyk-2022"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Average of study population adult male mean 3.43 g and female mean 3.85 g = 3.64 g. Population was southwestern Poland; this is the best measured adult proxy found, not a range-wide estimate."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "jurczyk-borczyk-2022"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Combines reported adult male BW range 1.2-6.0 g (N=73) and adult female range 1.2-7.6 g (N=61), converted to kg; excludes juveniles and lizards with autotomized/regrown tails."
+    },
+    "traits.length_m": {
+      "sources": [
+        "jurczyk-borczyk-2022"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Total length derived from adult means in Table 1: male SVL 48.1 mm + TL 80.2 mm = 128.3 mm; female SVL 53.9 mm + TL 77.9 mm = 131.8 mm; midpoint of the two sex means = 130.05 mm, rounded to 0.13 m. Data are one southwestern Poland population; autotomy/regrown-tail animals were excluded from tail samples."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "adw"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "ADW Lifespan/Longevity says average wild lifespan 5 to 6 years; value is midpoint (5+6)/2 = 5.5 years. The same section separately reports wild high 8 years and captive typical 4 to 6 years; neither is substituted. Wikipedia repeats 5-6 years without stating wild/captive scope, so it does not replace this explicit wild statistic; All Angles Creatures summarizes a 2.8-year average without resolving population scope, so it is not treated as a range-wide typical estimate."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Invertebrates are the stated diet; 100% is an authored single-category allocation because the schema requires diet shares to sum to one."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Solitary is the conservative simulation representation; ADW describes both solitary and small-group populations. Group size represents a single individual."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Diurnal."
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Rapid escape to cover is the documented response."
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored judgement based on described timid, quick escape behavior."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Ground use assigned 1.0 because the animal is terricolous; categorical allocation."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium"
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Invertebrate prey and dense-cover/leaf-litter refuge represented; weights are authored relative importance."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Gardens are reported habitat; tolerance category is a simulation judgement."
+    },
+    "seasonal": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Date window reflects ADW-reported mid-October to mid-March brumation. Trigger thresholds are an authored simulation judgement because this source gives dates rather than a temperature trigger."
+    },
+    "behavior": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Species-local FSM uses Walk for ordinary and escape movement; it temperature- and day-gates activity, enters shelter when conditions turn cold or dark, and limits active-month behavior to March-October. The kit has no bask action, so basking is approximated by rest during warm daylight. Thresholds and flee distances are authored simulation judgements."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Color and long-tailed proportions are generalized from variable brown/green body, darker dorsal pattern, pale/yellow-orange underside; block proportions are rendering judgement."
+    }
+  }
+}

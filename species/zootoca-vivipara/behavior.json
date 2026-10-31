@@ -1,0 +1,261 @@
+{
+  "schema_version": 1,
+  "format": "speeeecies/behavior",
+  "id": "fsm-zootoca-vivipara-v1",
+  "kind": "fsm",
+  "description": "Day-active viviparous lizard: shelters at night, in cold weather, or during winter brumation; in warm daylight during months March through October it rests in a basking state, forages for invertebrates, and moves on the ground. The kit has no distinct bask action, so basking is approximated by resting in shelter during suitable conditions.",
+  "params": {
+    "warm_min_c": 10,
+    "warm_max_c": 38,
+    "food_tag": "invertebrate",
+    "flee_m": 3,
+    "calm_m": 8
+  },
+  "initial": "hide",
+  "states": {
+    "hide": {
+      "action": {
+        "do": "hide_nearest"
+      },
+      "min_dwell_s": 10
+    },
+    "bask": {
+      "action": {
+        "do": "rest",
+        "at": "shelter"
+      },
+      "min_dwell_s": 10
+    },
+    "forage": {
+      "action": {
+        "do": "eat_nearest",
+        "tag": "${food_tag}",
+        "gait": "walk"
+      }
+    },
+    "wander": {
+      "action": {
+        "do": "wander",
+        "gait": "walk"
+      }
+    },
+    "flee": {
+      "action": {
+        "do": "flee",
+        "gait": "walk"
+      },
+      "min_dwell_s": 2
+    }
+  },
+  "transitions": [
+    {
+      "from": "*",
+      "to": "flee",
+      "when": {
+        "threat_within_m": "${flee_m}"
+      },
+      "priority": 100
+    },
+    {
+      "from": "*",
+      "to": "hide",
+      "when": {
+        "any": [
+          {
+            "is_day": false
+          },
+          {
+            "not": {
+              "temperature_between_c": [
+                "${warm_min_c}",
+                "${warm_max_c}"
+              ]
+            }
+          },
+          {
+            "not": {
+              "month_in": [
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10
+              ]
+            }
+          }
+        ]
+      },
+      "priority": 90
+    },
+    {
+      "from": "flee",
+      "to": "hide",
+      "when": {
+        "not": {
+          "threat_within_m": "${calm_m}"
+        }
+      }
+    },
+    {
+      "from": "hide",
+      "to": "bask",
+      "when": {
+        "all": [
+          {
+            "is_day": true
+          },
+          {
+            "temperature_between_c": [
+              "${warm_min_c}",
+              "${warm_max_c}"
+            ]
+          },
+          {
+            "month_in": [
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "from": "bask",
+      "to": "hide",
+      "when": {
+        "any": [
+          {
+            "is_day": false
+          },
+          {
+            "not": {
+              "temperature_between_c": [
+                "${warm_min_c}",
+                "${warm_max_c}"
+              ]
+            }
+          },
+          {
+            "not": {
+              "month_in": [
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "from": "bask",
+      "to": "forage",
+      "when": {
+        "all": [
+          {
+            "need": "hunger",
+            "gt": 0.5
+          },
+          {
+            "food_within_m": 5,
+            "tag": "${food_tag}"
+          }
+        ]
+      }
+    },
+    {
+      "from": "forage",
+      "to": "bask",
+      "when": {
+        "any": [
+          {
+            "need": "hunger",
+            "lt": 0.2
+          },
+          {
+            "is_day": false
+          },
+          {
+            "not": {
+              "temperature_between_c": [
+                "${warm_min_c}",
+                "${warm_max_c}"
+              ]
+            }
+          },
+          {
+            "not": {
+              "month_in": [
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "from": "bask",
+      "to": "wander",
+      "when": {
+        "chance": 0.1
+      }
+    },
+    {
+      "from": "wander",
+      "to": "bask",
+      "when": {
+        "any": [
+          {
+            "chance": 0.3
+          },
+          {
+            "is_day": false
+          },
+          {
+            "not": {
+              "temperature_between_c": [
+                "${warm_min_c}",
+                "${warm_max_c}"
+              ]
+            }
+          },
+          {
+            "not": {
+              "month_in": [
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
