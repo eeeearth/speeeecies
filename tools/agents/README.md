@@ -221,9 +221,9 @@ have been verified on the issue.
 The fleet does not apply the label automatically. Its no-PR exit also covers
 model failures and interrupted sessions, while a GitHub outage can make PR
 state unknown. Those outcomes do not prove a research blocker. The worker or
-coordinator must review the issue,
-sources, log and any draft before leaving the blocker comment and adding the
-label. A generic no-PR exit remains eligible for the normal retry policy.
+coordinator must review the issue, sources, log and any draft before leaving
+the blocker comment and adding the label. A generic no-PR exit remains
+eligible for the normal retry policy.
 
 Two failures it must not confuse. An unreachable GitHub is reported as
 `GH_UNREACHABLE` and left alone until the next poll, never as "no work left"
