@@ -1,0 +1,408 @@
+{
+  "schema_version": 1,
+  "format": "speeeecies/behavior",
+  "id": "fsm-lapwing-ground-forager-v1",
+  "kind": "fsm",
+  "description": "Northern lapwing: walk-forages on ground invertebrates, seeds and small vertebrates, flees by flight, roosts on open ground at night, and nests during the sourced British breeding season.",
+  "params": {
+    "flee_m": 12,
+    "calm_m": 25,
+    "food_m": 30,
+    "nest_m1": 4,
+    "nest_m2": 5,
+    "nest_m3": 6,
+    "nest_m4": 7,
+    "food_invertebrate": "invertebrate",
+    "food_seed": "seed",
+    "food_small_vertebrate": "small_vertebrate"
+  },
+  "initial": "idle",
+  "states": {
+    "idle": {
+      "action": {
+        "do": "idle"
+      },
+      "min_dwell_s": 2
+    },
+    "wander": {
+      "action": {
+        "do": "wander",
+        "gait": "walk"
+      }
+    },
+    "drink": {
+      "action": {
+        "do": "drink_nearest",
+        "gait": "walk"
+      }
+    },
+    "flee": {
+      "action": {
+        "do": "flee",
+        "gait": "fly"
+      },
+      "min_dwell_s": 3
+    },
+    "rest": {
+      "action": {
+        "do": "rest",
+        "at": "shelter"
+      },
+      "min_dwell_s": 30
+    },
+    "nest": {
+      "action": {
+        "do": "build_nest"
+      }
+    },
+    "touched": {
+      "action": {
+        "do": "tolerate_touch"
+      }
+    },
+    "accept": {
+      "action": {
+        "do": "accept_offer"
+      }
+    },
+    "forage_invertebrate": {
+      "action": {
+        "do": "eat_nearest",
+        "tag": "${food_invertebrate}",
+        "gait": "walk"
+      }
+    },
+    "forage_seed": {
+      "action": {
+        "do": "eat_nearest",
+        "tag": "${food_seed}",
+        "gait": "walk"
+      }
+    },
+    "forage_small_vertebrate": {
+      "action": {
+        "do": "eat_nearest",
+        "tag": "${food_small_vertebrate}",
+        "gait": "walk"
+      }
+    }
+  },
+  "transitions": [
+    {
+      "from": "*",
+      "to": "flee",
+      "when": {
+        "threat_within_m": "${flee_m}"
+      },
+      "priority": 100
+    },
+    {
+      "from": "*",
+      "to": "flee",
+      "when": {
+        "need": "fear",
+        "gt": 0.2
+      },
+      "priority": 90
+    },
+    {
+      "from": "*",
+      "to": "touched",
+      "when": {
+        "all": [
+          {
+            "player_touch": true
+          },
+          {
+            "need": "fear",
+            "lt": 0.2
+          },
+          {
+            "not": {
+              "threat_within_m": "${flee_m}"
+            }
+          }
+        ]
+      },
+      "priority": 60
+    },
+    {
+      "from": "*",
+      "to": "accept",
+      "when": {
+        "all": [
+          {
+            "player_offer": "food"
+          },
+          {
+            "need": "fear",
+            "lt": 0.2
+          },
+          {
+            "not": {
+              "threat_within_m": "${flee_m}"
+            }
+          }
+        ]
+      },
+      "priority": 40
+    },
+    {
+      "from": "touched",
+      "to": "idle",
+      "when": {
+        "player_touch": false
+      }
+    },
+    {
+      "from": "accept",
+      "to": "idle",
+      "when": {
+        "not": {
+          "player_offer": "food"
+        }
+      }
+    },
+    {
+      "from": "flee",
+      "to": "idle",
+      "when": {
+        "not": {
+          "threat_within_m": "${calm_m}"
+        }
+      }
+    },
+    {
+      "from": "idle",
+      "to": "forage_invertebrate",
+      "when": {
+        "all": [
+          {
+            "need": "hunger",
+            "gt": 0.5
+          },
+          {
+            "food_within_m": "${food_m}",
+            "tag": "${food_invertebrate}"
+          },
+          {
+            "sun_elevation_between_deg": [
+              -6,
+              90
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "from": "idle",
+      "to": "forage_seed",
+      "when": {
+        "all": [
+          {
+            "need": "hunger",
+            "gt": 0.5
+          },
+          {
+            "food_within_m": "${food_m}",
+            "tag": "${food_seed}"
+          },
+          {
+            "sun_elevation_between_deg": [
+              -6,
+              90
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "from": "idle",
+      "to": "forage_small_vertebrate",
+      "when": {
+        "all": [
+          {
+            "need": "hunger",
+            "gt": 0.5
+          },
+          {
+            "food_within_m": "${food_m}",
+            "tag": "${food_small_vertebrate}"
+          },
+          {
+            "sun_elevation_between_deg": [
+              -6,
+              90
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "from": "idle",
+      "to": "drink",
+      "when": {
+        "all": [
+          {
+            "need": "thirst",
+            "gt": 0.6
+          },
+          {
+            "water_within_m": 60
+          },
+          {
+            "sun_elevation_between_deg": [
+              -6,
+              90
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "from": "idle",
+      "to": "rest",
+      "when": {
+        "any": [
+          {
+            "need": "energy",
+            "gt": 0.7
+          },
+          {
+            "sun_elevation_between_deg": [
+              -90,
+              -6
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "from": "idle",
+      "to": "nest",
+      "when": {
+        "all": [
+          {
+            "need": "nest",
+            "gt": 0.5
+          },
+          {
+            "month_in": [
+              "${nest_m1}",
+              "${nest_m2}",
+              "${nest_m3}",
+              "${nest_m4}"
+            ]
+          },
+          {
+            "nest_site_within_m": 40
+          },
+          {
+            "sun_elevation_between_deg": [
+              -6,
+              90
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "from": "idle",
+      "to": "wander",
+      "when": {
+        "all": [
+          {
+            "chance": 0.25
+          },
+          {
+            "sun_elevation_between_deg": [
+              -6,
+              90
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "from": "wander",
+      "to": "idle",
+      "when": {
+        "chance": 0.15
+      }
+    },
+    {
+      "from": "forage_invertebrate",
+      "to": "idle",
+      "when": {
+        "need": "hunger",
+        "lt": 0.2
+      }
+    },
+    {
+      "from": "forage_seed",
+      "to": "idle",
+      "when": {
+        "need": "hunger",
+        "lt": 0.2
+      }
+    },
+    {
+      "from": "forage_small_vertebrate",
+      "to": "idle",
+      "when": {
+        "need": "hunger",
+        "lt": 0.2
+      }
+    },
+    {
+      "from": "drink",
+      "to": "idle",
+      "when": {
+        "need": "thirst",
+        "lt": 0.1
+      }
+    },
+    {
+      "from": "rest",
+      "to": "idle",
+      "when": {
+        "all": [
+          {
+            "need": "energy",
+            "lt": 0.2
+          },
+          {
+            "not": {
+              "sun_elevation_between_deg": [
+                -90,
+                -6
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "from": "nest",
+      "to": "idle",
+      "when": {
+        "any": [
+          {
+            "need": "nest",
+            "lt": 0.2
+          },
+          {
+            "not": {
+              "month_in": [
+                "${nest_m1}",
+                "${nest_m2}",
+                "${nest_m3}",
+                "${nest_m4}"
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
