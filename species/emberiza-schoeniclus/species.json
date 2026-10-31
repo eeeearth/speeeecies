@@ -1,0 +1,621 @@
+{
+  "$schema": "https://eeeearth.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Emberiza schoeniclus",
+  "slug": "emberiza-schoeniclus",
+  "common_names": {
+    "en": "Reed Bunting"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Passeriformes",
+    "family": "Emberizidae",
+    "genus": "Emberiza",
+    "authority": "(Linnaeus, 1758)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2491557,
+    "inat_taxon_id": 1720562
+  },
+  "range": {
+    "native": [
+      "GB"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Hop",
+      "Fly"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Ground",
+    "perching": true,
+    "size_class": "Tiny",
+    "mass_kg": 0.019,
+    "mass_range_kg": [
+      0.01,
+      0.028
+    ],
+    "length_m": 0.145,
+    "lifespan_y": 2.4,
+    "diet": {
+      "seed": 0.5,
+      "invertebrate": 0.5
+    },
+    "social": {
+      "structure": "Pair",
+      "group_size": [
+        2,
+        2
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.6
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.8,
+      "arboreal": 0.2
+    },
+    "shelter_tag": "shrub_thicket",
+    "resources": [
+      {
+        "tag": "seed",
+        "kind": "Herbivory",
+        "weight": 1.0,
+        "months": [
+          1,
+          2,
+          3,
+          9,
+          10,
+          11,
+          12
+        ]
+      },
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 1.0,
+        "months": [
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "tag": "nest_ground",
+        "kind": "Nesting",
+        "weight": 1.0,
+        "months": [
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 1.0
+      },
+      {
+        "tag": "shrub_thicket",
+        "kind": "Shelter",
+        "weight": 1.0
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Avoider",
+      "notes": "Model judgement: this GB population is represented in wetland, reedbed and open-field habitat."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "04-01",
+        "end": "08-31",
+        "region": "GB",
+        "note": "Approximate month bounds from the reported early-April to late-August breeding season."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "GB",
+        "monthly": [
+          0.64,
+          0.69,
+          0.9,
+          0.84,
+          0.95,
+          1.0,
+          0.68,
+          0.36,
+          0.41,
+          0.6,
+          0.6,
+          0.62
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 405965,
+        "sources": [
+          "inat-activity-gb",
+          "gbif-activity-gb"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 6857,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=1720562&place_id=6857&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=6857&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "total": 2937,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "country",
+              "GB"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2491557&country=GB&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&country=GB&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 403028,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "bt-emberiza-schoeniclus-v1",
+    "params": {}
+  },
+  "vocalizations": [
+    {
+      "call_id": "song",
+      "context": "Song",
+      "season_months": [
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "time_windows": [],
+      "cooldown_s": 12,
+      "loudness": "Moderate",
+      "description": "A simple, repeated short song, rendered here as the reported 'srip'."
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.5,
+      "leg_length_ratio": 0.35,
+      "head_scale": 0.65,
+      "neck_angle_deg": 20,
+      "tail_ratio": 0.75,
+      "wing_aspect": 2.5,
+      "beak_ratio": 0.35,
+      "girth_ratio": 0.8
+    },
+    "palette": {
+      "body": "#765642",
+      "belly": "#e8dfcf",
+      "markings": "#282625",
+      "accent": "#f4f0e6",
+      "eye": "#141414"
+    },
+    "part_colors": {
+      "head": "markings",
+      "beak": "markings",
+      "wing_left": "markings",
+      "wing_right": "markings",
+      "leg_left": "markings",
+      "leg_right": "markings"
+    },
+    "extra_parts": [
+      {
+        "name": "black_bib",
+        "parent": "breast",
+        "offset": [
+          0.3,
+          -0.1,
+          0.0
+        ],
+        "size": [
+          0.5,
+          0.55,
+          0.65
+        ],
+        "color": "markings"
+      },
+      {
+        "name": "white_collar",
+        "parent": "head",
+        "offset": [
+          0.0,
+          -0.2,
+          0.0
+        ],
+        "size": [
+          0.8,
+          0.15,
+          0.9
+        ],
+        "color": "accent"
+      },
+      {
+        "name": "white_moustache",
+        "parent": "head",
+        "offset": [
+          0.05,
+          -0.1,
+          0.48
+        ],
+        "size": [
+          0.55,
+          0.1,
+          0.12
+        ],
+        "color": "accent",
+        "mirror": true
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "hop": {},
+      "fly": {},
+      "perched": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Common_reed_bunting",
+      "title": "Common reed bunting",
+      "license": "CC-BY-SA-4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "attribution": "Wikipedia contributors, Common reed bunting, English Wikipedia, CC BY-SA 4.0",
+      "accessed": "2026-10-31",
+      "kind": "webpage"
+    },
+    {
+      "id": "dryad-survival",
+      "url": "https://doi.org/10.5061/dryad.qv9s4mwbs",
+      "title": "Data from: A meta-analysis of global avian survival across species and latitude",
+      "license": "CC0-1.0",
+      "attribution": "Scholer, M.; Strimas-Mackey, M.; Jankowski, J. (2020), Dryad dataset, https://doi.org/10.5061/dryad.qv9s4mwbs",
+      "accessed": "2026-10-31",
+      "kind": "dataset"
+    },
+    {
+      "id": "gbif-taxonomy",
+      "url": "https://api.gbif.org/v1/species/match?name=Emberiza%20schoeniclus",
+      "title": "GBIF Backbone Taxonomy match for Emberiza schoeniclus",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed 2026-10-31",
+      "accessed": "2026-10-31",
+      "kind": "api"
+    },
+    {
+      "id": "inat-taxonomy",
+      "url": "https://api.inaturalist.org/v1/taxa?q=Emberiza%20schoeniclus",
+      "title": "iNaturalist taxon search for Emberiza schoeniclus",
+      "license": "CC-BY-NC-4.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+      "attribution": "iNaturalist contributors, Reed Bunting taxon data via iNaturalist API, accessed 2026-10-31",
+      "accessed": "2026-10-31",
+      "kind": "api",
+      "note": "Used only for the required current iNaturalist identifier and status. The previously listed taxon 9201 is inactive and points to accepted taxon 1720562. No non-NC provider crosswalk to the current iNaturalist ID was available."
+    },
+    {
+      "id": "inat-activity-gb",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=1720562&place_id=6857&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Emberiza schoeniclus in GB",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-10-31",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-gb",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2491557&country=GB&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Emberiza schoeniclus in GB",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-31) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-31",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-taxonomy"
+      ],
+      "confidence": "High",
+      "note": "GBIF match accepted Emberiza schoeniclus at species rank; its backbone supplies the family and genus used by the schema."
+    },
+    "external": {
+      "sources": [
+        "gbif-taxonomy",
+        "inat-taxonomy"
+      ],
+      "confidence": "High",
+      "note": "GBIF usage key 2491557 resolves to accepted Emberiza schoeniclus. Current iNaturalist species taxon 1720562 is accepted as Schoeniclus schoeniclus; the genus differs, and iNaturalist taxon 9201 is inactive with 1720562 as its current synonym."
+    },
+    "common_names": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "The article says the species breeds throughout Europe; GB is supported as a native breeding region."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Bird legs only; wings are excluded from this count by the schema."
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Flight is stated in the article. Hop is an authored movement mapping for the described ground-feeding bird; the source establishes foraging near the ground, not a measured gait."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Endothermy is the standard avian trait mapping."
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Standard avian anatomy mapping."
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Standard avian life-cycle mapping."
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Nest described in a bush or reed tussock; represented as a ground nest."
+    },
+    "traits.perching": {
+      "sources": [],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Judgement: a perch pose is an authored action for this passerine; the cited species article supports male song but does not specify the song posture."
+    },
+    "traits.size_class": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Tiny follows the schema's less-than-0.05 kg threshold."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Midpoint of the stated 10-28 g adult range, converted to 0.019 kg; not a population mean."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The article states 10-28 g, converted to 0.010-0.028 kg."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Midpoint of the stated 13.5-15.5 cm range, converted to 0.145 m."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "dryad-survival"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Low-confidence expected-age proxy, not a directly measured lifespan. CSV ELEscholer2020_data.csv line 110 (dataset row X=124) reports annual adult survival 0.48 (SE 0.02), UK, mark-recapture, Clark et al. 2011. Assuming a constant adult mortality hazard and first breeding at age 1 y, 1 + (-1 / ln(0.48)) = 2.36 y, stored as 2.4 y. This conditions on reaching breeding age and excludes juvenile mortality."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "The article says adults take insects when feeding young and seeds otherwise. The equal split is an authored simulation allocation, not a measured diet proportion."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Monogamy supports a representative pair; group size is the pair unit, not a flock estimate."
+    },
+    "traits.activity_pattern": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: diurnal is an authored bird activity mapping; no species-specific night survey was located."
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The article describes flight and nesting in cover; the flee response is an authored simulation choice."
+    },
+    "traits.wariness": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The sources describe ground feeding and low nests plus perches in reeds; 0.8 ground / 0.2 arboreal is an authored allocation."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Reed tussocks and bushes are represented with the available shrub_thicket shelter tag."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The tags follow seed/insect foods and nests in bushes or reed tussocks. Weights are authored; seasonal food availability follows the reported diet switch during chick feeding."
+    },
+    "habitat.human_tolerance": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: Avoider for the wetland and open-field habitat represented here."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The article describes migration overall and resident populations in the milder south and west. This GB-only model uses ActiveYearRound for individuals present across the year; migrant fractions and upland departures are not represented."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "GB breeding period approximate bounds from early April through late August."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Adult-only lifecycle entry; juvenile development is not modeled in this record."
+    },
+    "activity.regions": {
+      "sources": [
+        "inat-activity-gb",
+        "gbif-activity-gb"
+      ],
+      "confidence": "Medium",
+      "note": "GB, tier A (CC0/CC BY) on both providers, combined normalized monthly shares. iNaturalist total 2,937 with per-month counts 220, 231, 370, 495, 429, 382, 208, 94, 89, 147, 120, 152; GBIF total 403,028 with every monthly bin above 17,000. Low iNaturalist August-October bins are outweighed by the robust GBIF series. Occurrence frequency is a detectability proxy, not direct activity measurement."
+    },
+    "behavior": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Species-local program keeps ground feeding, the reported seed/invertebrate diet switch, nesting in months 4-8, and male song in that breeding window. Elevated reed perching and hop gait are authored movement choices, not directly measured actions. Song and feeding are day-only; at night the tree rests in shrub cover after threat/fear branches."
+    },
+    "vocalizations.song": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Article describes the male's repetitive 'srip' song. The April-August season follows the breeding window and is an authored restriction."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Adult male black head/throat with white collar, barred brown back and pale underside; block proportions, patch sizes and simplified male-only plumage are judgement."
+    }
+  }
+}
