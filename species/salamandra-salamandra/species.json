@@ -1,0 +1,511 @@
+{
+  "$schema": "https://eeeearth.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Salamandra salamandra",
+  "slug": "salamandra-salamandra",
+  "common_names": {
+    "en": "fire salamander",
+    "fr": "salamandre tachetée"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Amphibia",
+    "order": "Caudata",
+    "family": "Salamandridae",
+    "genus": "Salamandra",
+    "authority": "(Linnaeus, 1758)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2431776,
+    "inat_taxon_id": 27726,
+    "wikidata": "Q26395"
+  },
+  "range": {
+    "native": [
+      "FR"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk"
+    ],
+    "thermoregulation": "Ectotherm",
+    "skin": "Moist",
+    "flight": "None",
+    "size_class": "Tiny",
+    "mass_kg": 0.04,
+    "length_m": 0.2,
+    "lifespan_y": 12,
+    "diet": {
+      "invertebrate": 0.95,
+      "vertebrate": 0.05
+    },
+    "social": {
+      "structure": "Solitary",
+      "group_size": [
+        1,
+        1
+      ]
+    },
+    "activity_pattern": "Nocturnal",
+    "defense": "Toxin",
+    "wariness": 0.5
+  },
+  "habitat": {
+    "use": {
+      "ground": 1.0
+    },
+    "shelter_tag": "leaf_litter",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 1.0
+      },
+      {
+        "tag": "leaf_litter",
+        "kind": "Shelter",
+        "weight": 0.6
+      },
+      {
+        "tag": "log_pile",
+        "kind": "Shelter",
+        "weight": 0.4
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": false,
+      "notes": "Adults forage in terrestrial habitat; the cited urban study describes occupied catchments near settlements, roads and agriculture. This class does not imply regular use of gardens."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "mating",
+        "start": "04-01",
+        "end": "09-30",
+        "region": "FR",
+        "note": "The French-language species account gives an April to September mating period, peaking in July."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Larva",
+        "duration_days": 135,
+        "requires_tag": "pond",
+        "scale": 0.3
+      },
+      {
+        "stage": "Juvenile",
+        "scale": 0.6
+      },
+      {
+        "stage": "Adult",
+        "scale": 1.0
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "FR",
+        "monthly": [
+          0.18,
+          0.39,
+          0.8,
+          0.74,
+          0.65,
+          0.31,
+          0.17,
+          0.1,
+          0.2,
+          1.0,
+          0.51,
+          0.15
+        ],
+        "method": "mean(inat_raw, gbif_raw)",
+        "observations": 79557,
+        "sources": [
+          "inat-activity-fr",
+          "gbif-activity-fr"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 6753,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=27726&place_id=6753&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": null,
+            "total": 2248,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "country",
+              "FR"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2431776&country=FR&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": null,
+            "total": 77309,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-salamander-terrestrial-v1"
+  },
+  "vocalizations": [],
+  "look": {
+    "body_plan": "quadruped",
+    "proportions": {
+      "torso_aspect": 2.4,
+      "leg_length_ratio": 0.18,
+      "head_scale": 0.52,
+      "neck_angle_deg": 0,
+      "tail_ratio": 0.75,
+      "girth_ratio": 0.72
+    },
+    "palette": {
+      "body": "#171a19",
+      "belly": "#282a27",
+      "markings": "#e8cf3d",
+      "accent": "#e8cf3d",
+      "eye": "#111111"
+    },
+    "extra_parts": [
+      {
+        "name": "dorsal_marking",
+        "parent": "body",
+        "offset": [
+          0.0,
+          0.48,
+          0.3
+        ],
+        "size": [
+          0.7,
+          0.1,
+          0.08
+        ],
+        "color": "markings",
+        "mirror": true
+      },
+      {
+        "name": "head_marking",
+        "parent": "head",
+        "offset": [
+          0.05,
+          0.48,
+          0.25
+        ],
+        "size": [
+          0.28,
+          0.08,
+          0.06
+        ],
+        "color": "markings",
+        "mirror": true
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2431776",
+      "title": "GBIF Backbone Taxonomy: Salamandra salamandra",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "kind": "database",
+      "accessed": "2026-10-31",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q26395",
+      "title": "Wikidata: fire salamander (Q26395)",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "kind": "database",
+      "accessed": "2026-10-31"
+    },
+    {
+      "id": "wikipedia-en",
+      "url": "https://en.wikipedia.org/wiki/Fire_salamander",
+      "title": "Wikipedia: Fire salamander",
+      "license": "CC-BY-SA-4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "kind": "webpage",
+      "accessed": "2026-10-31",
+      "attribution": "Wikipedia contributors, \"Fire salamander\", English Wikipedia, CC BY-SA 4.0"
+    },
+    {
+      "id": "wikipedia-fr",
+      "url": "https://fr.wikipedia.org/wiki/Salamandra_salamandra",
+      "title": "Wikipédia: Salamandra salamandra",
+      "license": "CC-BY-SA-4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "kind": "webpage",
+      "accessed": "2026-10-31",
+      "attribution": "Contributeurs de Wikipédia, \"Salamandra salamandra\", Wikipédia en français, CC BY-SA 4.0"
+    },
+    {
+      "id": "sinsch-2024",
+      "url": "https://doi.org/10.3390/ani14192869",
+      "title": "Environmental Drivers of Local Demography and Size Plasticity in Fire Salamanders",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "kind": "literature",
+      "accessed": "2026-10-31",
+      "attribution": "Sinsch, U. (2024). Animals 14(19):2869. https://doi.org/10.3390/ani14192869"
+    },
+    {
+      "id": "inat-activity-fr",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=27726&place_id=6753&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Salamandra salamandra in FR",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-10-31",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-fr",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2431776&country=FR&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Salamandra salamandra in FR",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-31) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-31",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High",
+      "note": "GBIF returns the accepted species name Salamandra salamandra (Linnaeus, 1758), rank SPECIES, usage key 2431776."
+    },
+    "external": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "GBIF key confirmed at https://api.gbif.org/v1/species/match?name=Salamandra%20salamandra and https://api.gbif.org/v1/species/2431776; iNaturalist taxon 27726 confirmed active, species rank at https://api.inaturalist.org/v1/taxa/27726 and Wikidata property P3151. Both provider names match the accepted species."
+    },
+    "common_names": {
+      "sources": [
+        "wikidata",
+        "wikipedia-en",
+        "wikipedia-fr"
+      ],
+      "confidence": "High"
+    },
+    "range": {
+      "sources": [
+        "wikipedia-fr"
+      ],
+      "confidence": "Medium",
+      "note": "France is within the native European range; the French-language article identifies S. s. terrestris as the form most widespread in France. GBIF distribution assertions include contradictory introduced status for France, so they were not used to determine native status."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia-en"
+      ],
+      "confidence": "High",
+      "note": "Quadrupedal vertebrate amphibian."
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia-en"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia-en"
+      ],
+      "confidence": "Medium",
+      "note": "Adult model only: terrestrial walking. The species also has an aquatic larval stage that swims, which the adult block-mesh and behavior format do not represent."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia-en"
+      ],
+      "confidence": "High"
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia-en"
+      ],
+      "confidence": "High",
+      "note": "Moist is the schema's amphibian skin category; adults have smooth, glandular skin."
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia-en"
+      ],
+      "confidence": "High"
+    },
+    "traits.size_class": {
+      "sources": [
+        "wikipedia-en"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Classed Small from the reported approximate adult mass of 40 g."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia-fr"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The source reports approximately 40 grams for Central European adults; converted to 0.04 kg. The value is approximate and not a population mean."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia-en"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Midpoint of the source's 15–25 cm total-length range, converted to metres. Adult size varies among populations."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "sinsch-2024"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Midpoint of the article's cited 9–17 year longevity range across sampled populations; this represents an approximate typical wild lifespan, not a maximum."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia-en"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Adult prey is chiefly invertebrates, with occasional newts and young frogs; the diet fractions are authored estimates."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia-en"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Solitary structure and group size are format estimates for an animal described as inconspicuous and usually hidden; no numerical group-size study was used."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia-en"
+      ],
+      "confidence": "High",
+      "note": "Active in evening and night, with occasional daytime activity on rainy days."
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia-en",
+        "sinsch-2024"
+      ],
+      "confidence": "High",
+      "note": "Skin glands produce defensive toxins; contrasting coloration signals toxicity."
+    },
+    "traits.wariness": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored judgement for the model; no sourced flight-distance estimate is available."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia-en",
+        "sinsch-2024"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Adult use is represented as ground-only; the aquatic larval stage is documented separately and is not a second adult habitat share."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia-en",
+        "sinsch-2024"
+      ],
+      "confidence": "High",
+      "note": "Adults hide under fallen leaves, wood and other cover."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia-en",
+        "sinsch-2024"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Adult prey and hiding places are sourced; relative resource weights are authored."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "sinsch-2024"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Adapter reflects populations studied in catchments near urban settlement, roads and agriculture; garden use is explicitly false because the study does not establish it."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia-en"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "ActiveYearRound is a coarse schema choice: the species can be surface-active under suitable mild and wet conditions, while the FR activity curve shows lower winter observations. No unsupported dormancy trigger is encoded."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia-fr"
+      ],
+      "confidence": "Medium",
+      "note": "The French-language species account reports mating from April to September, with a July peak; this phase is not used as the full surface-activity period."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia-en",
+        "sinsch-2024"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Adult females release aquatic larvae; larval duration is represented by the midpoint of the published 3–6 month range (approximately 135 days). Juvenile and adult scales are authored visual estimates."
+    },
+    "behavior": {
+      "sources": [
+        "wikipedia-en",
+        "sinsch-2024"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Species-local terrestrial FSM authored for a nocturnal, ground-foraging adult that hides by day. It uses walking for forage and threat response; it does not claim larval swimming, hopping or calling."
+    },
+    "look": {
+      "sources": [
+        "wikipedia-en"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Black body with yellow markings and proportions are stylized authored choices; natural pattern varies among individuals and subspecies."
+    }
+  }
+}
