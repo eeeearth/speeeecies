@@ -1,0 +1,502 @@
+{
+  "$schema": "https://eeeearth.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Pelobates cultripes",
+  "slug": "pelobates-cultripes",
+  "common_names": {
+    "en": "western spadefoot",
+    "fr": "pélobate cultripède"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Amphibia",
+    "order": "Anura",
+    "family": "Pelobatidae",
+    "genus": "Pelobates",
+    "authority": "(Cuvier, 1829)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2430565,
+    "inat_taxon_id": 25311,
+    "itis_tsn": 664729,
+    "wikidata": "Q1084912",
+    "ncbi_taxon_id": 61616,
+    "amphibiaweb_id": 5269
+  },
+  "range": {
+    "native": [
+      "PT",
+      "ES",
+      "FR"
+    ],
+    "introduced": [],
+    "elevation_m": [
+      0,
+      1800
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk",
+      "Hop",
+      "Swim"
+    ],
+    "thermoregulation": "Ectotherm",
+    "skin": "Moist",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "Complete",
+    "nest_type": "None",
+    "perching": false,
+    "size_class": "Tiny",
+    "mass_kg": 0.04,
+    "length_m": 0.11,
+    "diet": {
+      "invertebrate": 1.0
+    },
+    "social": {
+      "structure": "Solitary",
+      "group_size": [
+        1,
+        1
+      ]
+    },
+    "activity_pattern": "Nocturnal",
+    "defense": "Hide",
+    "wariness": 0.3
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.6,
+      "fossorial": 0.3,
+      "aquatic": 0.1
+    },
+    "shelter_tag": "burrow",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 1.0
+      },
+      {
+        "tag": "pond",
+        "kind": "Nesting",
+        "weight": 1.0
+      },
+      {
+        "tag": "burrow",
+        "kind": "Shelter",
+        "weight": 1.0
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Avoider",
+      "notes": "Wikipedia: occurs in open areas, usually with soft or sandy soils."
+    }
+  },
+  "seasonal": {
+    "phases": [],
+    "life_stages": [
+      {
+        "stage": "Egg",
+        "duration_days": 14,
+        "requires_tag": "pond",
+        "scale": 0.02
+      },
+      {
+        "stage": "Tadpole",
+        "duration_days": 150,
+        "requires_tag": "pond",
+        "scale": 0.1
+      },
+      {
+        "stage": "Juvenile",
+        "duration_days": 1095,
+        "scale": 0.25
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "FR",
+        "monthly": [
+          0.08,
+          0.32,
+          1.0,
+          0.55,
+          0.37,
+          0.18,
+          0.2,
+          0.07,
+          0.32,
+          0.85,
+          0.34,
+          0.05
+        ],
+        "method": "mean(inat_raw, gbif_raw)",
+        "observations": 12825,
+        "sources": [
+          "inat-activity-fr",
+          "gbif-activity-fr"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 6753,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=25311&place_id=6753&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": null,
+            "total": 567,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "country",
+              "FR"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2430565&country=FR&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": null,
+            "total": 12258,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-anuran-nocturnal-v1"
+  },
+  "vocalizations": [],
+  "look": {
+    "body_plan": "anuran",
+    "proportions": {
+      "torso_aspect": 1.1,
+      "leg_length_ratio": 0.45,
+      "head_scale": 0.7,
+      "neck_angle_deg": 5,
+      "girth_ratio": 1.2
+    },
+    "palette": {
+      "body": "#8a8160",
+      "belly": "#e0dcc8",
+      "markings": "#4b4330",
+      "accent": "#7b8a55",
+      "eye": "#c9b25a"
+    },
+    "part_colors": {
+      "leg_rear_*_lower": "markings"
+    },
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "hop": {},
+      "swim": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2430565",
+      "title": "GBIF Backbone Taxonomy: Pelobates cultripes (speciesKey 2430565)",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-31",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q1084912",
+      "title": "Wikidata: Pelobates cultripes (Q1084912)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-31",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Pelobates_cultripes",
+      "title": "Wikipedia: Pelobates cultripes",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-31",
+      "attribution": "Wikipedia contributors, \"Pelobates cultripes\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "amphibio",
+      "url": "https://doi.org/10.6084/m9.figshare.4644424",
+      "title": "AmphiBIO v1: a global database for amphibian ecological traits",
+      "license": "CC-BY-4.0",
+      "kind": "dataset",
+      "accessed": "2026-10-31",
+      "attribution": "Oliveira, B. F. et al. (2017) AmphiBIO. Scientific Data 4:170123",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "inat-activity-fr",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=25311&place_id=6753&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Pelobates cultripes in FR",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-31",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-fr",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2430565&country=FR&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Pelobates cultripes in FR",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-31) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-31",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "GBIF usageKey 2430565 (accepted species; checked 2026-10-31 via api.gbif.org/v1/species/2430565). iNaturalist 25311, ITIS TSN 664729, NCBI 61616 and AmphibiaWeb 5269 are from Wikidata (P3151, P815, P685, P5036); not independently re-resolved at each provider."
+    },
+    "common_names": {
+      "sources": [
+        "wikidata",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "English name from Wikipedia; French label from Wikidata."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Wikipedia: 'found mostly in Portugal, Spain and parts of France' and 'most of the Iberian Peninsula with isolated populations southern and western France'. Country list is derived from that text; France's Atlantic and southern populations are fragmented. Elevation up to 1,800 m from the Distribution section. Subdivision coverage not established."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "UNVERIFIED: no source fetched states that adults hop. Walk and Swim follow from the aquatic breeding ('males appear first ... females arrive later', 'breeds ... in temporary water') and terrestrial habits. Hop is declared only because the shared anuran program's flee action uses the hop gait; see PR blockers."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Ectotherm is the format's class for amphibians; Wikipedia does not use the word."
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Wikipedia: 'a big smooth-skinned toad'. 'Moist' is the format's amphibian skin class."
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Anuran; no flight."
+    },
+    "traits.respiration": {
+      "sources": [
+        "amphibio"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "AmphiBIO lists Fos, Ter and Aqu habitat use; lung breathing is the amphibian default and is not stated in the consulted sources."
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Eggs hatch into tadpoles that metamorphose into toads ('Young toads ... after metamorphosis')."
+    },
+    "traits.nest_type": {
+      "sources": [
+        "amphibio"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Eggs are laid in water among vegetation or on the pond bottom; no nest is built (AmphiBIO Dir 0, Lar 1)."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Anuran; does not perch."
+    },
+    "traits.size_class": {
+      "sources": [
+        "amphibio"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg (Tiny: under 0.05 kg)."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "amphibio"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "AmphiBIO Body_mass_g 40 converted to kg. AmphiBIO does not state whether this is a mean, typical or maximum adult value."
+    },
+    "traits.length_m": {
+      "sources": [
+        "amphibio",
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "AmphiBIO Body_size_mm 110 converted to m; Wikipedia: 'It grows up to 11 cm'. Wikipedia's figure may not be snout-vent length; the schema requires SVL for toads."
+    },
+    "traits.diet": {
+      "sources": [
+        "amphibio"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "AmphiBIO Arthro 1, Vert not recorded: invertebrate prey only. No quantitative diet proportions were found, so invertebrate is set to 1.0 as an authored simplification."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored: adults gather at breeding water and are otherwise solitary, mirroring the anuran example. Not directly stated in the consulted sources."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia",
+        "amphibio"
+      ],
+      "confidence": "High",
+      "note": "Wikipedia: 'This toad is mostly nocturnal'; AmphiBIO Noc 1. Wikipedia also says it may be partly diurnal during brief breeding periods."
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Wikipedia: 'hides in burrows up to 20 cm deep and can dig itself into earth quite fast'; threatened toads inflate and 'mew'. Hide is the closest enum value; no toxin is documented."
+    },
+    "traits.wariness": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored judgement."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored: fossorial share from the burrowing text, ground for surface foraging, aquatic for breeding time. No time-budget source was found."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Hides in burrows up to 20 cm deep."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia",
+        "amphibio"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Invertebrate prey (AmphiBIO Arthro 1), temporary ponds for breeding and eggs (Wikipedia), and burrows for shelter (Wikipedia). Weights are the format defaults; months were not set (no sourced calendar)."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Wikipedia: 'occurs in open areas usually with soft or sandy soils'; read as Avoider. No source on roads or gardens was found."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Eggs hatch after two weeks; tadpoles take about 4 to 6 months (midpoint 150 days, derived); young toads 2 to 3.5 cm after metamorphosis, about 3 years to maturity (Wikipedia). Scales are authored (juvenile 0.25 is the midpoint of 2-3.5 cm over 11 cm, derived). AmphiBIO age at maturity 2-3 y was not used for the juvenile duration."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored: shared nocturnal anuran program with default parameters. Hop escape and a single reachable invertebrate food tag are not verified for this species. See PR blockers."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Wikipedia: 'The upperside is greyish-yellowish with dark brown or greenish blotches and spots'; 'silvery gold or greenish eye'. Proportions, belly and hind-foot shading are authored. The spade on the hind foot is not represented in the anuran plan."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies maintainers",
+      "agent": "claude-code"
+    }
+  ]
+}
