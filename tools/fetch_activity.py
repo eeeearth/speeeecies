@@ -55,8 +55,11 @@ GBIF_TIER_LICENSES = {
 }
 GBIF_TIERS_ORDER = ["A", "C"]
 
-# SPDX id to record on the generated Source, keyed by the widest tier used.
-TIER_SPDX = {"A": "CC-BY-4.0", "B": "CC-BY-SA-4.0", "C": "CC-BY-NC-4.0"}
+# SPDX ids to record on generated Sources. iNaturalist tier C includes both
+# CC BY-NC and CC BY-NC-SA observations, so use the more restrictive SPDX id.
+# GBIF tier C includes CC BY-NC 4.0 and does not query NC-SA.
+INAT_TIER_SPDX = {"A": "CC-BY-4.0", "B": "CC-BY-SA-4.0", "C": "CC-BY-NC-SA-4.0"}
+GBIF_TIER_SPDX = {"A": "CC-BY-4.0", "C": "CC-BY-NC-4.0"}
 
 # Human-readable licence lists for attribution strings.
 INAT_TIER_HUMAN = {
@@ -567,7 +570,7 @@ def build_source_record(
     source_id: str,
     url: str,
     title: str,
-    tier: str,
+    license_id: str,
     attribution: str,
     accessed: str,
 ) -> dict:
@@ -575,7 +578,7 @@ def build_source_record(
         "id": source_id,
         "url": url,
         "title": title,
-        "license": TIER_SPDX[tier],
+        "license": license_id,
         "attribution": attribution,
         "accessed": accessed,
         "kind": "api",
@@ -810,7 +813,7 @@ def main(argv: Optional[list] = None) -> int:
                     f"inat-activity-{region.lower()}",
                     inat_outcome.url,
                     f"iNaturalist observations histogram for {species_name} in {region}",
-                    inat_outcome.tier,
+                    INAT_TIER_SPDX[inat_outcome.tier],
                     inat_attribution(inat_outcome.tier),
                     accessed,
                 )
@@ -821,7 +824,7 @@ def main(argv: Optional[list] = None) -> int:
                     f"gbif-activity-{region.lower()}",
                     gbif_outcome.url,
                     f"GBIF occurrence search for {species_name} in {region}",
-                    gbif_outcome.tier,
+                    GBIF_TIER_SPDX[gbif_outcome.tier],
                     gbif_attribution(gbif_outcome.tier, accessed),
                     accessed,
                 )

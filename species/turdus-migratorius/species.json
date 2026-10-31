@@ -996,6 +996,55 @@
             "gbif"
           ]
         }
+      },
+      {
+        "region": "US-WY",
+        "monthly": [
+          0.33,
+          0.39,
+          0.85,
+          0.92,
+          0.86,
+          1.0,
+          0.95,
+          0.69,
+          0.76,
+          0.61,
+          0.23,
+          0.25
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 119784,
+        "sources": [
+          "inat-activity-us-wy",
+          "gbif-activity-us-wy"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 15,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=12727&place_id=15&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=15&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 1182,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "gadmGid",
+              "USA.51_1"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=9510564&gadmGid=USA.51_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&gadmGid=USA.51_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 118602,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
       }
     ]
   },
@@ -1322,7 +1371,7 @@
       "id": "inat-activity-us-ar",
       "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=12727&place_id=36&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
       "title": "iNaturalist observations histogram for Turdus migratorius in US-AR",
-      "license": "CC-BY-NC-4.0",
+      "license": "CC-BY-NC-SA-4.0",
       "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
       "accessed": "2026-09-30",
       "kind": "api"
@@ -1358,7 +1407,7 @@
       "id": "inat-activity-us-de",
       "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=12727&place_id=4&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
       "title": "iNaturalist observations histogram for Turdus migratorius in US-DE",
-      "license": "CC-BY-NC-4.0",
+      "license": "CC-BY-NC-SA-4.0",
       "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
       "accessed": "2026-10-01",
       "kind": "api"
@@ -1386,7 +1435,7 @@
       "id": "inat-activity-us-mo",
       "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=12727&place_id=28&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
       "title": "iNaturalist observations histogram for Turdus migratorius in US-MO",
-      "license": "CC-BY-NC-4.0",
+      "license": "CC-BY-NC-SA-4.0",
       "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
       "accessed": "2026-10-01",
       "kind": "api"
@@ -1458,7 +1507,7 @@
       "id": "inat-activity-us-wv",
       "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=12727&place_id=33&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
       "title": "iNaturalist observations histogram for Turdus migratorius in US-WV",
-      "license": "CC-BY-NC-4.0",
+      "license": "CC-BY-NC-SA-4.0",
       "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
       "accessed": "2026-10-01",
       "kind": "api"
@@ -1497,6 +1546,24 @@
       "license": "CC-BY-4.0",
       "attribution": "GBIF.org (2026-10-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
       "accessed": "2026-10-01",
+      "kind": "api"
+    },
+    {
+      "id": "inat-activity-us-wy",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=12727&place_id=15&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Turdus migratorius in US-WY",
+      "license": "CC-BY-NC-SA-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-02",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us-wy",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=9510564&gadmGid=USA.51_1&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Turdus migratorius in US-WY",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-02) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-02",
       "kind": "api"
     }
   ],
