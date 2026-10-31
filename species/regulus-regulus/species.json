@@ -1,0 +1,626 @@
+{
+  "$schema": "https://eeeearth.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Regulus regulus",
+  "slug": "regulus-regulus",
+  "common_names": {
+    "en": "Goldcrest"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Passeriformes",
+    "family": "Regulidae",
+    "genus": "Regulus",
+    "authority": "(Linnaeus, 1758)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2484596,
+    "inat_taxon_id": 793469,
+    "wikidata": "Q26657"
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "GB"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Hop",
+      "Fly"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Cup",
+    "perching": true,
+    "size_class": "Tiny",
+    "mass_kg": 0.00575,
+    "mass_range_kg": [
+      0.0045,
+      0.007
+    ],
+    "length_m": 0.09,
+    "wingspan_m": 0.145,
+    "lifespan_y": 1.5,
+    "diet": {
+      "invertebrate": 1.0
+    },
+    "social": {
+      "structure": "Flock",
+      "group_size": [
+        1,
+        12
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.35
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.05,
+      "arboreal": 0.95
+    },
+    "shelter_tag": "shelter",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 1.0
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.8
+      },
+      {
+        "tag": "shelter",
+        "kind": "Shelter",
+        "weight": 1.0
+      },
+      {
+        "tag": "nest_cup",
+        "kind": "Nesting",
+        "weight": 0.8
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Avoider",
+      "uses_gardens": true,
+      "light_max": 0.5,
+      "notes": "Uses parks and gardens where they contain suitable conifers."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "04-25",
+        "end": "08-31",
+        "region": "GB",
+        "note": "British laying starts in late April or early May and second broods are common; this GB-focused window extends through August as an authored seasonal summary."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg"
+      },
+      {
+        "stage": "Juvenile",
+        "scale": 0.9
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "GB",
+        "monthly": [
+          0.8,
+          0.84,
+          0.66,
+          0.48,
+          0.37,
+          0.37,
+          0.29,
+          0.34,
+          0.58,
+          1.0,
+          0.99,
+          0.93
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 408752,
+        "sources": [
+          "inat-activity-gb",
+          "gbif-activity-gb"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 6857,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=793469&place_id=6857&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=6857&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "total": 1902,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "country",
+              "GB"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2484596&country=GB&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&country=GB&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 406850,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "bt-regulus-canopy-forager-v1",
+    "params": {
+      "flee_m": 5,
+      "food_tag": "invertebrate",
+      "song": "song",
+      "alarm": "alarm",
+      "song_cooldown_s": 12
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "song",
+      "context": "Song",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day",
+        "Dusk"
+      ],
+      "cooldown_s": 12,
+      "loudness": "Quiet",
+      "description": "High, thin repeated notes, often given while the male forages; heard in most months of the year."
+    },
+    {
+      "call_id": "alarm",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Day",
+        "Dusk"
+      ],
+      "cooldown_s": 8,
+      "loudness": "Quiet",
+      "description": "Thin, high-pitched contact and alarm notes."
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.3,
+      "leg_length_ratio": 0.27,
+      "head_scale": 0.72,
+      "neck_angle_deg": 8,
+      "tail_ratio": 0.58,
+      "wing_aspect": 2.5,
+      "beak_ratio": 0.22,
+      "girth_ratio": 0.72
+    },
+    "palette": {
+      "body": "#78805b",
+      "belly": "#d8d2bd",
+      "markings": "#e5c43b",
+      "accent": "#e48a2a",
+      "eye": "#101010"
+    },
+    "part_colors": {
+      "beak": "eye",
+      "wing_*": "body",
+      "wing_*_outer": "body"
+    },
+    "extra_parts": [
+      {
+        "name": "crown",
+        "parent": "head",
+        "offset": [
+          0,
+          0.5,
+          0
+        ],
+        "size": [
+          0.65,
+          0.22,
+          0.72
+        ],
+        "color": "markings"
+      },
+      {
+        "name": "male_crown_center",
+        "parent": "head",
+        "offset": [
+          0,
+          0.58,
+          0
+        ],
+        "size": [
+          0.4,
+          0.16,
+          0.22
+        ],
+        "color": "accent"
+      },
+      {
+        "name": "wing_bar",
+        "parent": "wing_left",
+        "offset": [
+          0,
+          0,
+          0.3
+        ],
+        "size": [
+          0.9,
+          0.2,
+          0.15
+        ],
+        "color": "belly",
+        "mirror": true
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "hop": {},
+      "fly": {},
+      "perched": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2484596",
+      "title": "GBIF Backbone Taxonomy: Regulus regulus",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "kind": "database",
+      "accessed": "2026-10-31",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, accessed via GBIF.org"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q26657",
+      "title": "Wikidata: Goldcrest (Q26657)",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "kind": "database",
+      "accessed": "2026-10-31"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Goldcrest",
+      "title": "Wikipedia: Goldcrest",
+      "license": "CC-BY-SA-4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "kind": "webpage",
+      "accessed": "2026-10-31",
+      "attribution": "Wikipedia contributors, \"Goldcrest\", English Wikipedia, CC BY-SA 4.0"
+    },
+    {
+      "id": "adw-regulus-regulus",
+      "url": "https://animaldiversity.org/accounts/Regulus_regulus/",
+      "title": "Animal Diversity Web: Regulus regulus, Lifespan/Longevity",
+      "license": "CC-BY-NC-SA-3.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/3.0/",
+      "kind": "webpage",
+      "accessed": "2026-10-31",
+      "attribution": "Animal Diversity Web, Regulus regulus account, University of Michigan Museum of Zoology, CC BY-NC-SA 3.0"
+    },
+    {
+      "id": "inat-activity-gb",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=793469&place_id=6857&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Regulus regulus in GB",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-10-31",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-gb",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2484596&country=GB&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Regulus regulus in GB",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-31) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-31",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High",
+      "note": "Provider match returned accepted species Regulus regulus (Linnaeus, 1758); synonym list checked separately."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "GBIF usage key and iNaturalist species taxon ID were checked at their respective providers; Wikidata Q26657 also lists iNaturalist taxon ID 793469."
+    },
+    "common_names": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Wikipedia summary reports Least Concern; no separate conservation assessment field is used to infer population trend."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "This contribution records only the issue's GB target. The article describes the species as widespread in Europe and partly migratory; native status for the British population is inferred from its European breeding range."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Birds have two legs; schema convention does not count wings."
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Flight and branch hopping/creeping are described; gait choices are simplified for the renderer."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Suspended cup nest on a tree branch."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.size_class": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Derived from the 4.5-7.0 g adult mass range; the schema classifies below 0.05 kg as Tiny."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Midpoint of the published 4.5-7.0 g adult mass range: (4.5 + 7.0) / 2 = 5.75 g, converted to 0.00575 kg."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Published adult mass range 4.5-7.0 g converted to kg."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Midpoint of 8.5-9.5 cm, converted to 0.09 m."
+    },
+    "traits.wingspan_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Midpoint of 13.5-15.5 cm, converted to 0.145 m."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "adw-regulus-regulus"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "ADW Lifespan/Longevity says the average wild lifespan is about one to two years, distinct from the separate seven-year wild record. Midpoint (1 + 2) / 2 = 1.5 years. Low confidence because this typical range is available only from a CC BY-NC-SA 3.0 source; AnAge and other permissive sources located reported maxima, while the Wikipedia eight-month figure is adult life expectancy derived from annual adult mortality rather than the same whole-life average."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The account says the species is almost exclusively insectivorous and occasionally takes pollen/sap; the model assigns the diet to invertebrates only because no proportion for rare plant foods is given."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Groups form outside breeding season; range 1-12 is a simulation cap covering solitary birds and small winter flocks."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Flee response authored from the described short, erratic flights."
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement; authored for a small wild woodland bird."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Arboreal-dominant allocation reflects tree and branch foraging; small ground share preserves the rare leaf-litter feeding observation."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Dense conifer foliage is used for roosting; resource tag is a model mapping."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Invertebrate prey and conifer/branch nesting and shelter are mapped to simulation resource tags; weights are authored."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Garden use is conditional on suitable conifers; urban affinity and light threshold are judgement."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "The record targets the British population; northernmost populations migrate, while the GB calendar is treated as active year-round. Migrant influx is not parameterised."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "British egg laying starts late April to early May; end of breeding phase extended through August because second broods are common; dates are an authored window."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Egg, juvenile, adult; fledging 17-22 days plus post-fledging period to independence is simplified to 40 days."
+    },
+    "behavior": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Species-local BT avoids the shared songbird program's ground-feeding action. It feeds by hopping among branches, shelters on a perch at night, and flies to a perch when disturbed; parameter choices are authored."
+    },
+    "vocalizations": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium"
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Plumage pattern and colours follow the description; proportions and stylised block-model geometry are judgement."
+    }
+  },
+  "contributors": [
+    {
+      "name": "Jason Grey",
+      "agent": "codex"
+    }
+  ]
+}
