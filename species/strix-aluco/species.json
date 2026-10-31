@@ -1,0 +1,666 @@
+{
+  "$schema": "https://eeeearth.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Strix aluco",
+  "slug": "strix-aluco",
+  "common_names": {
+    "en": "Tawny Owl",
+    "fr": "Chouette hulotte",
+    "de": "Waldkauz",
+    "nl": "Bosuil"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Strigiformes",
+    "family": "Strigidae",
+    "genus": "Strix",
+    "authority": "Linnaeus, 1758",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 9282206,
+    "inat_taxon_id": 19898,
+    "itis_tsn": 555428,
+    "wikidata": "Q25756"
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "GB",
+      "IE",
+      "FR",
+      "ES",
+      "PT",
+      "BE",
+      "NL",
+      "DE",
+      "DK",
+      "NO",
+      "SE",
+      "FI",
+      "EE",
+      "PL",
+      "CZ",
+      "SK",
+      "AT",
+      "CH",
+      "IT",
+      "AL",
+      "UA",
+      "RU",
+      "TR"
+    ],
+    "koppen": [
+      "Cfb",
+      "Cfa",
+      "Csa",
+      "Csb",
+      "Dfb",
+      "Dfc"
+    ],
+    "elevation_m": [
+      0,
+      2350
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Fly",
+      "Glide"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Cavity",
+    "perching": true,
+    "senses": {
+      "night_vision": true,
+      "hearing": "High"
+    },
+    "size_class": "Small",
+    "mass_kg": 0.59,
+    "mass_range_kg": [
+      0.385,
+      0.8
+    ],
+    "length_m": 0.415,
+    "wingspan_m": 0.93,
+    "lifespan_y": 5,
+    "diet": {
+      "vertebrate": 0.85,
+      "invertebrate": 0.15
+    },
+    "social": {
+      "structure": "Pair",
+      "group_size": [
+        1,
+        2
+      ]
+    },
+    "activity_pattern": "Nocturnal",
+    "defense": "Mob",
+    "wariness": 0.4
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.05,
+      "arboreal": 0.85,
+      "aerial": 0.1
+    },
+    "shelter_tag": "shelter",
+    "resources": [
+      {
+        "tag": "small_vertebrate",
+        "kind": "Predation",
+        "weight": 0.8
+      },
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.2
+      },
+      {
+        "tag": "cavity",
+        "kind": "Nesting",
+        "weight": 0.8
+      },
+      {
+        "tag": "nest_platform",
+        "kind": "Nesting",
+        "weight": 0.2
+      },
+      {
+        "tag": "shelter",
+        "kind": "Shelter",
+        "weight": 1.0
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "notes": "Cemeteries, gardens and parks have let it spread into urban areas, including central London. It is less likely to occur at sites with high night-time noise. It nests in holes in trees and buildings, readily takes nest boxes, and in urban areas displaces barn owls from their nesting sites in buildings."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "nesting",
+        "start": "02-01",
+        "end": "04-30",
+        "note": "Nests from February onwards in the south of its range, but rarely before mid-March in Scandinavia. The 30-day incubation starts after laying; the end date is derived, not sourced."
+      },
+      {
+        "name": "young",
+        "start": "04-01",
+        "end": "08-31",
+        "note": "Chicks fledge 35 to 39 days after hatching, and parents care for them for two or three months after fledging. The window is derived from those durations and is approximate; it varies with latitude."
+      },
+      {
+        "name": "dispersal",
+        "start": "08-01",
+        "end": "11-30",
+        "note": "From August to November the juveniles disperse to find a territory of their own; those that fail to find one usually starve."
+      },
+      {
+        "name": "moult",
+        "start": "06-01",
+        "end": "12-31",
+        "note": "Feathers are moulted gradually between June and December."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "FR",
+        "monthly": [
+          0.44,
+          0.62,
+          0.61,
+          0.48,
+          0.53,
+          0.57,
+          0.71,
+          1.0,
+          0.86,
+          0.63,
+          0.49,
+          0.56
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 145520,
+        "sources": [
+          "inat-activity-fr",
+          "gbif-activity-fr"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 6753,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=19898&place_id=6753&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=6753&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 1715,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "country",
+              "FR"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=9282206&country=FR&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&country=FR&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 143805,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-tawny-owl-v1"
+  },
+  "vocalizations": [
+    {
+      "call_id": "hoot",
+      "context": "Hoot",
+      "season_months": [],
+      "time_windows": [
+        "Dusk",
+        "Night"
+      ],
+      "cooldown_s": 15,
+      "loudness": "Loud",
+      "description": "The male's quavering advertising song: a long hoo...ho, ho, hoo-hoo-hoo-hoo, given from a perch to hold the territory, mostly at night. Males call more than females year-round, with peak vocal activity during incubation and after breeding."
+    },
+    {
+      "call_id": "contact",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [
+        "Night"
+      ],
+      "cooldown_s": 10,
+      "loudness": "Moderate",
+      "description": "The female's shrill, contact call kew-wick. In the classic tu-whit tu-whoo the female gives kew-wick and the male answers with hooo, so the sound is a duet."
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.3,
+      "leg_length_ratio": 0.2,
+      "head_scale": 1.0,
+      "neck_angle_deg": 20,
+      "tail_ratio": 0.45,
+      "ear_ratio": 0,
+      "wing_aspect": 1.6,
+      "beak_ratio": 0.25,
+      "girth_ratio": 1.15
+    },
+    "palette": {
+      "body": "#6e5a45",
+      "belly": "#d8cdb6",
+      "markings": "#2f2620",
+      "accent": "#b9a46a",
+      "eye": "#2b1d12"
+    },
+    "part_colors": {
+      "breast": "belly",
+      "wing_left_outer": "markings",
+      "wing_right_outer": "markings",
+      "tail": "markings"
+    },
+    "poses": {
+      "idle": {},
+      "fly": {},
+      "glide": {},
+      "perched": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Tawny_owl",
+      "title": "Wikipedia: Tawny owl",
+      "license": "CC-BY-SA-4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "attribution": "Wikipedia contributors, \"Tawny owl\", English Wikipedia, CC BY-SA 4.0",
+      "accessed": "2026-10-31",
+      "kind": "webpage",
+      "note": "Read in the sections Description, Geographical variation, Taxonomy, Distribution and habitat, Behaviour (Breeding, Feeding) and Calls. Share-alike tier: a permissive source for mass, length, lifespan and diet was not found in the time available."
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q25756",
+      "title": "Wikidata: tawny owl (Q25756)",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "accessed": "2026-10-31",
+      "kind": "database",
+      "note": "Labels (en, fr, de, nl), taxon rank, IUCN status (P141 = Q211005, least concern), and external identifiers (P846 GBIF, P3151 iNaturalist, P815 ITIS)."
+    },
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/9282206",
+      "title": "GBIF Backbone Taxonomy: Strix aluco",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "accessed": "2026-10-31",
+      "kind": "database",
+      "note": "species/match?name=Strix aluco returned usageKey 9282206, canonical name Strix aluco, rank SPECIES, status ACCEPTED, with Strigiformes/Strigidae. The per-country occurrence facet was also read for the range."
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=555428",
+      "title": "ITIS: Strix aluco, TSN 555428",
+      "license": "public-domain",
+      "accessed": "2026-10-31",
+      "kind": "database",
+      "note": "US federal government database; public domain in the United States. The TSN was confirmed through the ITIS JSON service searchByScientificName, which returns combined name Strix aluco, author Linnaeus, 1758."
+    },
+    {
+      "id": "inat-activity-fr",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=19898&place_id=6753&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Strix aluco in FR",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-31",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-fr",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=9282206&country=FR&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Strix aluco in FR",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-31) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-31",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "common_names": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "Wikidata Q25756 labels: en 'Tawny Owl', fr 'Chouette hulotte' (its French Wikipedia sitelink), de 'Waldkauz', nl 'Bosuil'."
+    },
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "itis",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "GBIF species match is an exact accepted SPECIES match for Strix aluco (Linnaeus, 1758) in Strigiformes/Strigidae; ITIS TSN 555428 is the same combined name; Wikidata P225 and P105 agree."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "itis",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "GBIF 9282206 (match API, accepted); iNaturalist 19898 (taxa API, active, species rank, preferred common name Tawny Owl; also Wikidata P3151); ITIS 555428; Wikidata Q25756."
+    },
+    "conservation": {
+      "sources": [
+        "wikidata",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Wikidata P141 is least concern (Q211005). Wikipedia: 'evaluated as being of least concern' and a population of an estimated 970,000 to 2,000,000 individuals in Europe alone."
+    },
+    "range": {
+      "sources": [
+        "wikipedia",
+        "gbif-backbone"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Judgement list read off the Distribution and habitat section: 'temperate Europe, from Great Britain and the Iberian Peninsula eastwards to western Siberia', absent from Ireland, rare vagrant to the Balearic and Canary Islands. Countries named in the text (GB, ES, PT, IT, FI, EE, BE, NL, NO, DK, UA, AL, TR, RU) plus countries the Alps and Scandinavian passages cover (FR, DE, AT, CH, SE, PL, CZ, SK) are included. The GBIF per-country facet has records for each of these except that Ireland has one record, so IE is excluded here. The list is partial and omits the Maghreb (S. a. mauritanica, which the article describes as possibly a separate species) and other eastern European countries; it is not exhaustive. No introduced populations are recorded in the sources read."
+    },
+    "range.koppen": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement mapping of the habitat text onto Köppen classes: 'mainly a lowland bird in the colder parts of its range', temperate deciduous woodland in Europe, and Mediterranean southern Europe. The list is a mapping, not a sourced climate table."
+    },
+    "range.elevation_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Wikipedia: breeds to 550 m in Scotland, 1,600 m in the Alps, and 2,350 m in Turkey, which bounds the range at 0 to 2,350 m."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "A bird ('The tawny owl is a robust bird')."
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "A bird, so two legs; the schema does not count wings as limbs."
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "'The tawny owl flies with long glides on rounded wings' supports Fly and Glide. Walk is omitted because the article gives no ground movement, and the hunting strike is modelled as glide."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Bird; endotherm, the standard for birds in the schema."
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Feathered bird."
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'The flight of the tawny owl is rather heavy and slow ... its flight is silent'; it is a powered flier that glides."
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Bird; lungs."
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Altricial bird; no metamorphosis."
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'The tawny owl typically nests in a hole in a tree', and also uses old magpie nests, squirrel dreys, holes in buildings and nest boxes."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'It usually hunts by dropping suddenly from a perch and seizing its prey.' The pair sit in cover on a branch during the day."
+    },
+    "traits.senses": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Night vision adaptations and 'hearing is ten times better than a human's' from the Description section; the article says the retina is not more sensitive than a human's, so vision_color is omitted."
+    },
+    "traits.size_class": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Derived from mass_kg (0.59 kg). The validator's bands are Small below 1 kg, Medium below 50 kg and Large otherwise."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Midpoint of the 385 to 800 g range the Description section gives for adult weight (0.5925 kg, rounded to 0.59). The range covers both sexes and all populations, and the female is 'more than 25% heavier' than the male. This is a derived midpoint, not a sourced typical adult mass."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'Weight can range from 385 to 800 g (0.849 to 1.764 lb)'."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Midpoint of the stated '37–46 cm (15–18 in)' length range (0.415 m). The range is not a sourced typical value."
+    },
+    "traits.wingspan_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Midpoint of the stated '81–105 cm (32–41 in)' wingspan range (0.93 m). The wingspan is not the chord; the article gives no typical mean."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Breeding and mortality section: 'The typical lifespan is five years, but an age of over 18 years has been recorded for a wild tawny owl, and of over 27 years for a captive bird.' The typical wild value is 5; the 18-year wild and 27-year captive figures are records and are not used. The article gives no source for the typical figure."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "The Feeding section says: 'takes a wide range of prey, mainly woodland rodents, but also other mammals up to the size of a young rabbit, and birds, earthworms and beetles.' It gives no percentages. The 85/15 vertebrate/invertebrate split is an authored estimate that puts rodents and other mammals and birds in vertebrate and earthworms and beetles in invertebrate, with vertebrate the larger share. Urban birds are a larger share of the diet, which is not modelled."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'Tawny owls pair off from the age of one year, and stay together in a usually monogamous relationship for life.' Group size of 1 to 2 is the pair; this is derived from it."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'The tawny owl hunts almost entirely at night', with rare daylight hunting when it has young to feed."
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Derived from 'fearless in defence of its nest and young ... strikes for the intruder's head with its sharp talons', which describes attack in defence rather than flight. This is the main response to a threat and is a judgement."
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: 'Roosting owls may be discovered and mobbed by small birds during the day, but they normally ignore the disturbance', which suggests tolerance of disturbance at roosts. The value is 0.4, a middle-low figure chosen for a bird that hunts near people in gardens and parks; it is not measured."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored split: it sits on branches close to a trunk by day and hunts from a perch, so arboreal dominates, with a smaller aerial share for its glides and strikes, and little ground use. The article gives no time budget; this is a judgement."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'The pair sit in cover on a branch close to a tree trunk during the day', in deciduous and mixed forests and mature conifer plantations."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Tags from the Feeding section (small_vertebrate for 'woodland rodents', invertebrate for 'earthworms and beetles') and the nesting section (cavity for tree holes and building holes and nest boxes; nest_platform for old magpie nests and squirrel dreys). Weights within each kind are judgement."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Distribution and habitat: 'Cemeteries, gardens and parks have allowed it to spread into urban areas, including central London', and 'less likely to occur at sites with high noise levels at night.' The Adapter category is the derived judgement from this; no numeric curves are given."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'The tawny owl is non-migratory', and pairs defend their territory throughout the year."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "nesting (February onwards in the south, mid-March in Scandinavia), young (derived from the 30-day incubation, 35 to 39 days to fledge, and two to three months of parental care), dispersal (August to November, from the article) and moult (June to December, from the Description section). Every window is an approximation of the sourced text and varies with latitude; the article does not give region-specific dates and the schema has no latitude scoping for them."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Only the adult stage is recorded. The article gives no juvenile duration that is needed here."
+    },
+    "vocalizations.hoot": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Calls section: 'the male has a quavering advertising song hoo...ho, ho, hoo-hoo-hoo-hoo' and 'the vocal activity of tawny owls depends on sex, annual cycle stage and weather, with males being more vocal than females year-round.' The cooldown_s of 15 is judgement."
+    },
+    "vocalizations.contact": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Calls section: 'the commonly heard female contact call is a shrill, kew-wick' and the duet in which the male responds 'hooo'. The cooldown_s of 10 is judgement."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Judgement from the Description section: upperparts brown or grey, underparts 'whitish and streaked with brown', large rounded head with no ear tufts, 'facial disc ... usually rather plain', dark brown eyes, and broad rounded wings with a 'squat' profile. Proportions and palette are the derived mesh values, not measurements."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Species-local program fsm-tawny-owl-v1 in behavior.json. No shared program fits: the perching songbird forages by hops from the ground and sings at dawn and dusk, the ground forager is a mammal that walks to its prey, the anuran hides by day and calls near water, and the seabird predator has no day and night rhythm. The program follows the great horned owl pattern (species/bubo-virginianus/behavior.json) with a glide strike from a perch."
+    }
+  }
+}
