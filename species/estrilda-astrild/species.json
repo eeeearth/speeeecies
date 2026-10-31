@@ -1,0 +1,571 @@
+{
+  "$schema": "https://eeeearth.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Estrilda astrild",
+  "slug": "estrilda-astrild",
+  "common_names": {
+    "en": "Common Waxbill"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Passeriformes",
+    "family": "Estrildidae",
+    "genus": "Estrilda",
+    "authority": "(Linnaeus, 1758)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2493660,
+    "inat_taxon_id": 13770
+  },
+  "range": {
+    "native": [
+      "ZA"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Hop",
+      "Fly"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Ground",
+    "perching": true,
+    "size_class": "Tiny",
+    "mass_kg": 0.00829,
+    "lifespan_y": 4,
+    "diet": {
+      "seed": 0.9,
+      "invertebrate": 0.1
+    },
+    "social": {
+      "structure": "Flock",
+      "group_size": [
+        2,
+        1000
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.3,
+    "length_m": 0.1125
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.7,
+      "arboreal": 0.3
+    },
+    "shelter_tag": "shelter",
+    "resources": [
+      {
+        "tag": "seed",
+        "kind": "Herbivory",
+        "weight": 1.0
+      },
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.2
+      },
+      {
+        "tag": "nest_ground",
+        "kind": "Nesting",
+        "weight": 0.8
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.6
+      },
+      {
+        "tag": "shelter",
+        "kind": "Shelter",
+        "weight": 0.5
+      },
+      {
+        "tag": "water",
+        "kind": "Water",
+        "weight": 0.5
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "light_max": 0.6,
+      "notes": "Uses rank grass, reeds, parks and farmland, often near water."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "09-01",
+        "end": "01-31",
+        "region": "ZA",
+        "note": "ADW describes September through January breeding in winter-rainfall areas such as southern Africa; South Africa also contains summer-rainfall regions, so this national calendar is an approximation."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg"
+      },
+      {
+        "stage": "Juvenile",
+        "duration_days": 19,
+        "scale": 0.9
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "behavior": {
+    "program": "bt-estrilda-astrild-v1",
+    "params": {
+      "flee_m": 8,
+      "food_tag": "seed",
+      "song": "song",
+      "alarm": "alarm",
+      "song_cooldown_s": 12
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "song",
+      "context": "Song",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day",
+        "Dusk"
+      ],
+      "cooldown_s": 12,
+      "loudness": "Quiet",
+      "description": "Simple, harsh nasal song that descends on the final note."
+    },
+    {
+      "call_id": "alarm",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 8,
+      "loudness": "Quiet",
+      "description": "Short contact and alarm calls; simplified simulation cue."
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.3,
+      "leg_length_ratio": 0.3,
+      "head_scale": 0.85,
+      "neck_angle_deg": 10,
+      "tail_ratio": 1.2,
+      "wing_aspect": 2.0,
+      "beak_ratio": 0.4,
+      "girth_ratio": 0.9
+    },
+    "palette": {
+      "body": "#76695d",
+      "belly": "#c9c1b8",
+      "markings": "#b03b36",
+      "accent": "#a72e2d",
+      "eye": "#1b1512"
+    },
+    "part_colors": {
+      "beak": "markings",
+      "tail": "body"
+    },
+    "extra_parts": [],
+    "poses": {
+      "idle": {},
+      "hop": {},
+      "fly": {},
+      "perched": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2493660",
+      "title": "GBIF Backbone Taxonomy: Estrilda astrild",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-31",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Common_waxbill",
+      "title": "Wikipedia: Common waxbill",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-31",
+      "attribution": "Wikipedia contributors, \"Common waxbill\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "avonet",
+      "url": "https://doi.org/10.6084/m9.figshare.16586228",
+      "title": "AVONET: morphological, ecological and geographical data for all birds, Supplementary dataset 1",
+      "license": "CC-BY-4.0",
+      "kind": "dataset",
+      "accessed": "2026-10-31",
+      "attribution": "Tobias, J. A. et al. (2022), AVONET, Ecology Letters 25:581-597, dataset 1",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "note": "Last resort for the explicitly stated wild lifespan average and the winter-rainfall breeding period; no verified permissively licensed source with these field-specific claims was found."
+    },
+    {
+      "id": "adw",
+      "url": "https://animaldiversity.org/accounts/Estrilda_astrild/",
+      "title": "Animal Diversity Web: Estrilda astrild",
+      "license": "CC-BY-NC-SA-3.0",
+      "kind": "webpage",
+      "accessed": "2026-10-31",
+      "attribution": "Tarr, L. (Animal Diversity Web), \"Estrilda astrild\", University of Michigan, CC BY-NC-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/3.0/",
+      "note": "Last resort for the explicitly stated average wild lifespan and species-specific biological details; no verified permissively licensed alternative for the typical wild statistic was found."
+    },
+    {
+      "id": "inat-activity-za",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=13770&place_id=6986&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa",
+      "title": "iNaturalist observations histogram for Estrilda astrild in ZA",
+      "license": "CC-BY-SA-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA, via the iNaturalist API",
+      "accessed": "2026-10-31",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-za",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2493660&country=ZA&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Estrilda astrild in ZA",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-31) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-31",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High",
+      "note": "GBIF resolves accepted species Estrilda astrild (Linnaeus, 1758), rank SPECIES; iNaturalist taxon 13770 independently returns active species Estrilda astrild."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High",
+      "note": "GBIF key and iNaturalist taxon checked at their own providers on 2026-10-31; iNaturalist API response confirms active species rank."
+    },
+    "common_names": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Native range abstracted as sub-Saharan Africa; ZA is within the native range. Do not use introduced extra-African records as native range."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Article describes feeding by clinging to stems and searching for fallen seeds on the ground; Hop and Fly are simulation locomotion mappings."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Judgement; authored simulation mapping."
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Article describes a woven grass ball built low among dense vegetation; Ground is the closest schema nest-type mapping."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Judgement; authored simulation mapping."
+    },
+    "traits.size_class": {
+      "sources": [],
+      "confidence": "High",
+      "derived": true,
+      "note": "Tiny based on 8.9 g reported mass."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "avonet"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "AVONET Supplementary dataset 1, worksheet AVONET1_BirdLife, Estrilda astrild (Sequence 9790), Mass column 8.29 g, sample size 13; converted to 0.00829 kg."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "adw"
+      ],
+      "confidence": "Medium",
+      "note": "Lifespan/Longevity section explicitly states average 4 years in the wild; used as typical wild lifespan, not a maximum or captive age. The verified permissive alternatives checked (Wikipedia and the atlas article) did not report this statistic."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Mainly grass/millet seeds with occasional insects; 0.9 seed and 0.1 invertebrate are authored allocations because the source has no percentages."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Article states foraging flocks may contain hundreds or even thousands; the broad interval models that flocking scale and is not a measured distribution."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "adw"
+      ],
+      "confidence": "High",
+      "note": "ADW Behavior section says the flock forages during the day and identifies the species as diurnal."
+    },
+    "traits.defense": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: flight is the escape response represented."
+    },
+    "traits.wariness": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement for a small flocking bird."
+    },
+    "habitat.use": {
+      "sources": [
+        "avonet",
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "AVONET classifies habitat as grassland and primary lifestyle as generalist; Wikipedia describes seed feeding while clinging to grass stems and ground-foraging. Ground/arboreal proportions are authored."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Dense grasses/reeds and low nest sites mapped to shelter."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Seeds and occasional insects are foods; woven grass nests, perches and regular drinking are source-described. Resource weights are authored."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "ADW reports use of parks, farmland and urban/suburban habitats; tolerance values are authored."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "inat-activity-za",
+        "gbif-activity-za"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The filtered ZA curves have records in all 12 months, supporting year-round activity/presence but not proving that the same birds remain year-round."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "adw"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "ADW describes September–January breeding in winter-rainfall areas such as southern Africa. South Africa includes other rainfall zones with different breeding timing, so this national profile is an approximation and cannot encode the regional calendar differences."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Juvenile duration 19 days is midpoint of ADW fledging age 17–21 days; scale authored."
+    },
+    "behavior": {
+      "sources": [
+        "adw",
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Local perching-songbird program uses the article-supported seed food tag, hop feeding, day activity, night resting and flight escape. Its nest action is enabled in months 9,10,11,12,1 from ADW winter-rainfall guidance; this is an approximation at whole-country ZA scope."
+    },
+    "vocalizations.song": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Wikipedia Description section describes a simple harsh nasal song that descends on the last note."
+    },
+    "vocalizations.alarm": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Call is a simplified authored cue; no acoustic transcription encoded."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Stylized grey-brown body, red conical bill/face patch and red belly; geometry and palette mapping are authored."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Midpoint of the stated adult length range 9.5–13 cm, converted to 0.1125 m and used as a representative simulation value; not a measured mean."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies maintainers",
+      "agent": "codex"
+    }
+  ],
+  "activity": {
+    "regions": [
+      {
+        "region": "ZA",
+        "monthly": [
+          0.93,
+          1.0,
+          0.92,
+          0.83,
+          0.74,
+          0.66,
+          0.64,
+          0.89,
+          0.8,
+          0.7,
+          0.86,
+          0.97
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 195177,
+        "sources": [
+          "inat-activity-za",
+          "gbif-activity-za"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "B",
+            "place_id": 6986,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=13770&place_id=6986&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=6986&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa",
+            "total": 310,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "country",
+              "ZA"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2493660&country=ZA&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&country=ZA&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 194867,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  }
+}
