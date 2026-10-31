@@ -1,0 +1,264 @@
+{
+  "schema_version": 1,
+  "format": "speeeecies/behavior",
+  "id": "bt-hermit-thrush-v1",
+  "kind": "bt",
+  "description": "Hermit Thrush: a skulking woodland thrush that hops and pauses on the forest floor, eats invertebrates first and berries when no invertebrate is in reach, flushes to a perch when a threat is close, roosts in cover at night, sings from a perch at dawn and dusk, and builds cup nests in low trees or shrubs in May to July. Species-local because the shared perching-songbird program hard-codes April and May nest months and has no berry feeding action; the Hermit Thrush diet is 20% fruit (EltonTraits).",
+  "params": {
+    "flee_m": 6,
+    "food_tag": "invertebrate",
+    "berry_tag": "berry",
+    "song": "song",
+    "alarm": "call",
+    "song_cooldown_s": 8,
+    "nest_m1": 5,
+    "nest_m2": 7
+  },
+  "root": {
+    "selector": [
+      {
+        "sequence": [
+          {
+            "cond": {
+              "threat_within_m": "${flee_m}"
+            }
+          },
+          {
+            "act": {
+              "do": "alarm",
+              "call": "${alarm}"
+            }
+          },
+          {
+            "act": {
+              "do": "take_off"
+            }
+          },
+          {
+            "act": {
+              "do": "fly_to_nearest",
+              "tag": "perch"
+            }
+          },
+          {
+            "act": {
+              "do": "perch_nearest"
+            }
+          }
+        ]
+      },
+      {
+        "sequence": [
+          {
+            "cond": {
+              "player_touch": true
+            }
+          },
+          {
+            "act": {
+              "do": "tolerate_touch"
+            }
+          }
+        ]
+      },
+      {
+        "sequence": [
+          {
+            "cond": {
+              "need": "fear",
+              "gt": 0.2
+            }
+          },
+          {
+            "act": {
+              "do": "take_off"
+            }
+          },
+          {
+            "act": {
+              "do": "flee",
+              "gait": "fly"
+            }
+          }
+        ]
+      },
+      {
+        "sequence": [
+          {
+            "cond": {
+              "player_offer": "food"
+            }
+          },
+          {
+            "cond": {
+              "need": "fear",
+              "lt": 0.2
+            }
+          },
+          {
+            "act": {
+              "do": "land"
+            }
+          },
+          {
+            "act": {
+              "do": "accept_offer"
+            }
+          }
+        ]
+      },
+      {
+        "sequence": [
+          {
+            "cond": {
+              "is_day": false
+            }
+          },
+          {
+            "act": {
+              "do": "perch_nearest",
+              "tag": "shelter"
+            }
+          },
+          {
+            "act": {
+              "do": "rest"
+            }
+          }
+        ]
+      },
+      {
+        "sequence": [
+          {
+            "cond": {
+              "sun_elevation_between_deg": [
+                -6,
+                12
+              ]
+            }
+          },
+          {
+            "cond": {
+              "perch_within_m": 30
+            }
+          },
+          {
+            "act": {
+              "do": "perch_nearest"
+            }
+          },
+          {
+            "cooldown_s": "${song_cooldown_s}",
+            "child": {
+              "act": {
+                "do": "sing",
+                "call": "${song}"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "sequence": [
+          {
+            "cond": {
+              "need": "nest",
+              "gt": 0.5
+            }
+          },
+          {
+            "cond": {
+              "month_in": [
+                "${nest_m1}",
+                6,
+                "${nest_m2}"
+              ]
+            }
+          },
+          {
+            "cond": {
+              "nest_site_within_m": 40
+            }
+          },
+          {
+            "act": {
+              "do": "build_nest"
+            }
+          }
+        ]
+      },
+      {
+        "sequence": [
+          {
+            "cond": {
+              "need": "hunger",
+              "gt": 0.4
+            }
+          },
+          {
+            "act": {
+              "do": "land"
+            }
+          },
+          {
+            "act": {
+              "do": "eat_nearest",
+              "tag": "${food_tag}",
+              "gait": "hop"
+            }
+          }
+        ]
+      },
+      {
+        "sequence": [
+          {
+            "cond": {
+              "need": "hunger",
+              "gt": 0.4
+            }
+          },
+          {
+            "act": {
+              "do": "land"
+            }
+          },
+          {
+            "act": {
+              "do": "eat_nearest",
+              "tag": "${berry_tag}",
+              "gait": "hop"
+            }
+          }
+        ]
+      },
+      {
+        "cooldown_s": 6,
+        "child": {
+          "sequence": [
+            {
+              "act": {
+                "do": "take_off"
+              }
+            },
+            {
+              "act": {
+                "do": "fly_to_nearest",
+                "tag": "perch"
+              }
+            },
+            {
+              "act": {
+                "do": "perch_nearest"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "act": {
+          "do": "idle"
+        }
+      }
+    ]
+  }
+}
