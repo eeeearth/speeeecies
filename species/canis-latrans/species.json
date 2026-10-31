@@ -38,8 +38,7 @@
     "locomotion_modes": [
       "Walk",
       "Trot",
-      "Gallop",
-      "Swim"
+      "Gallop"
     ],
     "thermoregulation": "Endotherm",
     "skin": "Fur",
@@ -242,8 +241,57 @@
       "walk": {},
       "trot": {},
       "gallop": {},
-      "swim": {},
-      "rest": {}
+      "rest": {
+        "keyframes": [
+          {
+            "t": 0,
+            "parts": {
+              "leg_front_left": {
+                "rot_deg": [
+                  0,
+                  0,
+                  80
+                ]
+              },
+              "leg_front_right": {
+                "rot_deg": [
+                  0,
+                  0,
+                  80
+                ]
+              },
+              "leg_rear_left": {
+                "rot_deg": [
+                  0,
+                  0,
+                  -80
+                ]
+              },
+              "leg_rear_right": {
+                "rot_deg": [
+                  0,
+                  0,
+                  -80
+                ]
+              },
+              "neck": {
+                "rot_deg": [
+                  -12,
+                  0,
+                  0
+                ]
+              },
+              "head": {
+                "rot_deg": [
+                  8,
+                  0,
+                  0
+                ]
+              }
+            }
+          }
+        ]
+      }
     }
   },
   "sources": [
@@ -306,13 +354,22 @@
       "note": "US National Park Service page. Used for total-length lower bound, body form, call and habitat descriptions."
     },
     {
-      "id": "nps-alcatraz-coyote",
-      "url": "https://www.ucdavis.edu/climate/news/alcatraz-coyote-wasnt-a-city-boy-after-all",
-      "title": "Alcatraz Coyote Wasn't a City Boy After All",
+      "id": "nps-yellowstone-coyote",
+      "url": "https://www.nps.gov/yell/learn/nature/coyote.htm",
+      "title": "Coyote, Yellowstone National Park",
       "license": "US-Gov-PD",
       "kind": "webpage",
       "accessed": "2026-10-31",
-      "note": "Story credited to the National Park Service. Used only for the documented individual coyote swimming from Angel Island to Alcatraz."
+      "note": "NPS reports an average life span of 6 years and a maximum of 13 years for coyotes in Yellowstone. Used as a species-specific wild-population average for lifespan; geographic context is local to Yellowstone."
+    },
+    {
+      "id": "usda-coyote-ecology",
+      "url": "https://www.govinfo.gov/content/pkg/GOVPUB-A101-PURL-gpo151217/pdf/GOVPUB-A101-PURL-gpo151217.pdf",
+      "title": "Coyote Ecology and Damage Management",
+      "license": "US-Gov-PD",
+      "kind": "literature",
+      "accessed": "2026-10-31",
+      "note": "USDA technical series states that coyotes are excellent swimmers and can cross bodies of water or rivers. Used to document the biological capability that the selected simulation behavior cannot represent."
     }
   ],
   "provenance": {
@@ -360,11 +417,10 @@
     },
     "traits.locomotion_modes": {
       "sources": [
-        "usfs-feis-coyote",
-        "nps-alcatraz-coyote"
+        "usfs-feis-coyote"
       ],
       "confidence": "Medium",
-      "note": "Walk, trot, and gallop are represented as terrestrial modes. NPS documented an individual coyote swimming from Angel Island to Alcatraz. The shared behavior does not execute swim, and the preview swim pose does not depict it convincingly."
+      "note": "Walk, trot, and gallop are the supported terrestrial modes in this record. Coyotes can swim, but the assigned ground-forager behavior has no swim action and the built-in swim rendering resembles a ground gait, so swimming is omitted from the simulated locomotion modes."
     },
     "traits.thermoregulation": {
       "sources": [
@@ -428,11 +484,10 @@
     },
     "traits.lifespan_y": {
       "sources": [
-        "usfs-feis-coyote"
+        "nps-yellowstone-coyote"
       ],
-      "confidence": "Low",
-      "derived": true,
-      "note": "The required field asks for typical wild lifespan. FEIS says few wild coyotes live more than 6 to 8 years but does not report a typical mean. Six years is an explicitly conservative authored proxy at the lower end of that interval, not a measured mean."
+      "confidence": "Medium",
+      "note": "NPS reports an average life span of 6 years for coyotes in Yellowstone, with a maximum of 13 years. The required species value uses that measured wild-population average; it is a local Yellowstone estimate rather than a national average."
     },
     "traits.diet": {
       "sources": [
@@ -516,10 +571,11 @@
     "behavior": {
       "sources": [
         "usfs-feis-coyote",
-        "eltontraits"
+        "eltontraits",
+        "usda-coyote-ecology"
       ],
       "confidence": "Medium",
-      "note": "Shared ground-forager program uses walk to forage, gallop to flee, and rests when energy is high. The sun-rest interval is narrowed to 90-90 degrees so the animal can remain active both day and night, matching the cathemeral source summary. Only small vertebrate prey is a reachable feeding action; fish, carrion, and plant foods remain unmodeled. The FSM has no swim action; the preview swim pose is not a convincing swimming posture, and the built-in rest pose remains standing."
+      "note": "Shared ground-forager program uses walk to forage, gallop to flee, and rests when energy is high. The sun-rest interval is narrowed to 90-90 degrees so the animal can remain active both day and night, matching the cathemeral source summary. Only small vertebrate prey is a reachable feeding action; fish, carrion, and plant foods remain unmodeled. Swimming is excluded from simulated locomotion because the FSM has no swim action. The custom rest keyframes lower the head and extend the legs fore and aft in a belly-down resting posture. The block model has single-segment legs, so this is a simplified stylized pose."
     },
     "look": {
       "sources": [
@@ -527,7 +583,7 @@
       ],
       "confidence": "Low",
       "derived": true,
-      "note": "Judgement: proportions and fur colors are stylized model choices informed by the NPS description of the coyote form, coat color, black-tipped fur, and tail. They are not measured rendering specifications."
+      "note": "Judgement: proportions and fur colors are stylized model choices informed by the NPS description of the coyote form, coat color, black-tipped fur, and tail. The belly-down resting pose is an authored animation choice, not a measured posture."
     },
     "traits.length_m": {
       "sources": [
@@ -535,7 +591,7 @@
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "NPS states nose-to-tail length may be 4 feet or more. Converted the 4-foot lower bound to 1.22 m (4 \u00d7 0.3048); this is not a mean."
+      "note": "NPS states nose-to-tail length may be 4 feet or more. Converted the 4-foot lower bound to 1.22 m (4 × 0.3048); this is not a mean."
     },
     "traits.shoulder_height_m": {
       "sources": [
