@@ -1,0 +1,283 @@
+{
+  "schema_version": 1,
+  "format": "speeeecies/behavior",
+  "id": "bt-indigo-bunting-v1",
+  "kind": "bt",
+  "description": "Indigo Bunting, a small Neotropical-migrant passerine (Cardinalidae). Written for this species because the shared bt-perching-songbird-v1 hard-codes April and May into its nest-building months, which do not fit a May-August nester, and it feeds only on a single food tag. Differences from the shared program: nest building in May-August only; song restricted to May-August; insect feeding in May-August and seed feeding in the other months, with the seed branch as the fallback; flight from threats to a perch in shrub or tree cover. Ground foraging is by hopping. Migration away from the US in November-March is handled by the activity curve and the seasonal phases, not by this program.",
+  "params": {
+    "flee_m": 6,
+    "song_cooldown_s": 8,
+    "song": "song",
+    "alarm": "alarm",
+    "insect_tag": "invertebrate",
+    "seed_tag": "seed"
+  },
+  "root": {
+    "selector": [
+      {
+        "sequence": [
+          {
+            "cond": {
+              "threat_within_m": "${flee_m}"
+            }
+          },
+          {
+            "act": {
+              "do": "alarm",
+              "call": "${alarm}"
+            }
+          },
+          {
+            "act": {
+              "do": "take_off"
+            }
+          },
+          {
+            "act": {
+              "do": "fly_to_nearest",
+              "tag": "perch"
+            }
+          },
+          {
+            "act": {
+              "do": "perch_nearest"
+            }
+          }
+        ]
+      },
+      {
+        "sequence": [
+          {
+            "cond": {
+              "player_touch": true
+            }
+          },
+          {
+            "act": {
+              "do": "tolerate_touch"
+            }
+          }
+        ]
+      },
+      {
+        "sequence": [
+          {
+            "cond": {
+              "need": "fear",
+              "gt": 0.2
+            }
+          },
+          {
+            "act": {
+              "do": "take_off"
+            }
+          },
+          {
+            "act": {
+              "do": "flee",
+              "gait": "fly"
+            }
+          }
+        ]
+      },
+      {
+        "sequence": [
+          {
+            "cond": {
+              "player_offer": "food"
+            }
+          },
+          {
+            "cond": {
+              "need": "fear",
+              "lt": 0.2
+            }
+          },
+          {
+            "act": {
+              "do": "land"
+            }
+          },
+          {
+            "act": {
+              "do": "accept_offer"
+            }
+          }
+        ]
+      },
+      {
+        "sequence": [
+          {
+            "cond": {
+              "is_day": false
+            }
+          },
+          {
+            "act": {
+              "do": "perch_nearest",
+              "tag": "shelter"
+            }
+          },
+          {
+            "act": {
+              "do": "rest"
+            }
+          }
+        ]
+      },
+      {
+        "sequence": [
+          {
+            "cond": {
+              "month_in": [
+                5,
+                6,
+                7,
+                8
+              ]
+            }
+          },
+          {
+            "cond": {
+              "sun_elevation_between_deg": [
+                -6,
+                12
+              ]
+            }
+          },
+          {
+            "cond": {
+              "perch_within_m": 30
+            }
+          },
+          {
+            "act": {
+              "do": "perch_nearest"
+            }
+          },
+          {
+            "cooldown_s": "${song_cooldown_s}",
+            "child": {
+              "act": {
+                "do": "sing",
+                "call": "${song}"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "sequence": [
+          {
+            "cond": {
+              "need": "nest",
+              "gt": 0.5
+            }
+          },
+          {
+            "cond": {
+              "month_in": [
+                5,
+                6,
+                7,
+                8
+              ]
+            }
+          },
+          {
+            "cond": {
+              "nest_site_within_m": 40
+            }
+          },
+          {
+            "act": {
+              "do": "build_nest"
+            }
+          }
+        ]
+      },
+      {
+        "sequence": [
+          {
+            "cond": {
+              "need": "hunger",
+              "gt": 0.4
+            }
+          },
+          {
+            "cond": {
+              "month_in": [
+                5,
+                6,
+                7,
+                8
+              ]
+            }
+          },
+          {
+            "act": {
+              "do": "land"
+            }
+          },
+          {
+            "act": {
+              "do": "eat_nearest",
+              "tag": "${insect_tag}",
+              "gait": "hop"
+            }
+          }
+        ]
+      },
+      {
+        "sequence": [
+          {
+            "cond": {
+              "need": "hunger",
+              "gt": 0.4
+            }
+          },
+          {
+            "act": {
+              "do": "land"
+            }
+          },
+          {
+            "act": {
+              "do": "eat_nearest",
+              "tag": "${seed_tag}",
+              "gait": "hop"
+            }
+          }
+        ]
+      },
+      {
+        "cooldown_s": 6,
+        "child": {
+          "sequence": [
+            {
+              "act": {
+                "do": "take_off"
+              }
+            },
+            {
+              "act": {
+                "do": "fly_to_nearest",
+                "tag": "perch"
+              }
+            },
+            {
+              "act": {
+                "do": "perch_nearest"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "act": {
+          "do": "idle"
+        }
+      }
+    ]
+  }
+}
