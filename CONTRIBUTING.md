@@ -16,9 +16,9 @@ often a coding agent — will pick it up.
 
 An issue labelled `needs-deeper-research` is held after a bounded attempt
 could not support a required value with licensed evidence or find a fitting
-behaviour. Its issue comment names the gap and sources checked. A human or a
-a Codex Sol or Claude Sonnet pass capped at two hours can revisit it; the label is cleared
-after the missing evidence is verified.
+behaviour. Its issue comment names the gap and sources checked. A human or
+one Codex Sol or Claude Sonnet pass capped at two hours can revisit it. The
+label is cleared after the missing evidence is verified.
 
 ## Add a species yourself
 

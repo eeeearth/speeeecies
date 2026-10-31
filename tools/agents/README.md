@@ -215,8 +215,15 @@ automatic list and a direct `spawn`, regardless of claim expiry. The label is
 for a failed bounded research attempt with no viable record or PR, not for every
 draft. Follow `AGENTS.md` for the issue evidence comment, claim release, draft
 disposition, and a single research pass capped at two hours with Codex Sol or
-Claude Sonnet. Clear the label
-only after the missing evidence and behaviour have been verified on the issue.
+Claude Sonnet. Clear the label only after the missing evidence and behaviour
+have been verified on the issue.
+
+The fleet does not apply the label automatically. Its no-PR exit also covers
+model failures and interrupted sessions, while a GitHub outage can make PR
+state unknown. Those outcomes do not prove a research blocker. The worker or
+coordinator must review the issue,
+sources, log and any draft before leaving the blocker comment and adding the
+label. A generic no-PR exit remains eligible for the normal retry policy.
 
 Two failures it must not confuse. An unreachable GitHub is reported as
 `GH_UNREACHABLE` and left alone until the next poll, never as "no work left"
