@@ -1,0 +1,622 @@
+{
+  "$schema": "https://eeeearth.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Phoenicurus ochruros",
+  "slug": "phoenicurus-ochruros",
+  "common_names": {
+    "en": "Black redstart",
+    "fr": "Rougequeue noir",
+    "de": "Hausrotschwanz",
+    "nl": "Zwarte roodstaart"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Passeriformes",
+    "family": "Muscicapidae",
+    "genus": "Phoenicurus",
+    "authority": "(Gmelin, 1774)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 5739315,
+    "inat_taxon_id": 13000,
+    "itis_tsn": 562036,
+    "wikidata": "Q26755"
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "GB",
+      "IE",
+      "PT",
+      "ES",
+      "FR",
+      "BE",
+      "NL",
+      "DE",
+      "CH",
+      "AT",
+      "IT",
+      "GR",
+      "MA"
+    ],
+    "koppen": [
+      "Csa",
+      "Csb",
+      "Cfb",
+      "Cfa",
+      "Dfb"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Hop",
+      "Fly"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Cavity",
+    "perching": true,
+    "size_class": "Tiny",
+    "mass_kg": 0.0165,
+    "mass_range_kg": [
+      0.012,
+      0.02
+    ],
+    "length_m": 0.1375,
+    "lifespan_y": 1.1,
+    "diet": {
+      "invertebrate": 0.6,
+      "fruit": 0.3,
+      "seed": 0.1
+    },
+    "social": {
+      "structure": "Solitary",
+      "group_size": [
+        1,
+        2
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.3
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.6,
+      "arboreal": 0.4
+    },
+    "shelter_tag": "shelter",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.6
+      },
+      {
+        "tag": "cavity",
+        "kind": "Nesting",
+        "weight": 1.0
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.6
+      },
+      {
+        "tag": "shelter",
+        "kind": "Shelter",
+        "weight": 0.8
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "notes": "Since about 1900 has expanded from cliffs into urban habitats, bombed areas and large industrial complexes with bare, cliff-like buildings; nests in such areas and will catch passing insects in flight."
+    }
+  },
+  "seasonal": {
+    "strategy": "PartialMigration",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "04-15",
+        "end": "07-31",
+        "note": "Breeding starts in mid-April (Wikipedia). The end of July is an authored judgement from the 13-17 day incubation and 12-19 day fledging periods, not a sourced date."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg"
+      },
+      {
+        "stage": "Juvenile"
+      },
+      {
+        "stage": "Adult"
+      }
+    ],
+    "winter_fraction": 0.8
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "FR",
+        "monthly": [
+          0.39,
+          0.33,
+          0.69,
+          0.79,
+          0.84,
+          0.93,
+          1.0,
+          0.75,
+          0.77,
+          0.74,
+          0.66,
+          0.38
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 565660,
+        "sources": [
+          "inat-activity-fr",
+          "gbif-activity-fr"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 6753,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=13000&place_id=6753&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=6753&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "total": 961,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "country",
+              "FR"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5739315&country=FR&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&country=FR&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 564699,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "bt-perching-songbird-v1",
+    "params": {
+      "song": "song",
+      "alarm": "tick",
+      "nest_m1": 4,
+      "nest_m2": 6
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "song",
+      "context": "Song",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day",
+        "Dusk"
+      ],
+      "cooldown_s": 30,
+      "loudness": "Moderate",
+      "description": "Rattling song given from a song perch, often from a roof or wall, with a short tick call as a companion sound."
+    },
+    {
+      "call_id": "tick",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day",
+        "Dusk"
+      ],
+      "cooldown_s": 5,
+      "loudness": "Moderate",
+      "description": "Short tick call. Wikipedia describes this call without giving its function; using it as the alarm call is an authored mapping."
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.5,
+      "leg_length_ratio": 0.35,
+      "head_scale": 0.8,
+      "neck_angle_deg": 15,
+      "tail_ratio": 0.6,
+      "wing_aspect": 2.6,
+      "beak_ratio": 0.35,
+      "girth_ratio": 1.0
+    },
+    "palette": {
+      "body": "#2b2d31",
+      "belly": "#1d1f22",
+      "markings": "#c4602b",
+      "accent": "#8f8f92",
+      "eye": "#111111"
+    },
+    "part_colors": {
+      "breast": "belly",
+      "beak": "eye"
+    },
+    "poses": {
+      "idle": {},
+      "hop": {},
+      "fly": {},
+      "perched": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/5739315",
+      "title": "GBIF Backbone Taxonomy: Phoenicurus ochruros",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-31",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q26755",
+      "title": "Wikidata: Black Redstart (Q26755)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-31",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Black_redstart",
+      "title": "Wikipedia: Black redstart",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-31",
+      "attribution": "Wikipedia contributors, \"Black redstart\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=562036",
+      "title": "ITIS: Phoenicurus ochruros, TSN 562036",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-10-31",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "eltontraits",
+      "url": "https://doi.org/10.6084/m9.figshare.3559887.v1",
+      "title": "EltonTraits 1.0: species-level foraging attributes of the world's birds and mammals (BirdFuncDat)",
+      "license": "CC0-1.0",
+      "kind": "dataset",
+      "accessed": "2026-10-31",
+      "attribution": "Wilman, H. et al. (2014) EltonTraits 1.0. Ecology 95:2027",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia-robin",
+      "url": "https://en.wikipedia.org/wiki/European_robin",
+      "title": "Wikipedia: European robin (lifespan proxy only)",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-31",
+      "attribution": "Wikipedia contributors, \"European robin\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "inat-activity-fr",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=13000&place_id=6753&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Phoenicurus ochruros in FR",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-10-31",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-fr",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5739315&country=FR&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Phoenicurus ochruros in FR",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-31) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-31",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "itis"
+      ],
+      "confidence": "High",
+      "note": "GBIF usageKey 5739315 is the accepted species (checked 2026-10-31). ITIS TSN 562036 is 'valid' for Phoenicurus ochruros (Gmelin, 1774). Wikidata P685 lists TSN 358815, which I could not resolve to this taxon; not used."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "iNaturalist taxon 13000 (species rank, active) via Wikidata P3151 and the iNaturalist API. Wikidata P846 matches GBIF 5739315."
+    },
+    "common_names": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "Wikidata P141 = least concern (Q211005)."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Country list derived from Wikipedia prose: breeds from Great Britain and Ireland south to Morocco, widespread in south and central Europe. Not checked against occurrence status; Asian and eastern countries omitted."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Two legs; wings not counted, per schema convention."
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Flight from Wikipedia; hop from the chosen behaviour program's ground-feeding gait, not a source."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Wikipedia says it nests in crevices, holes and on ledges; perching is inferred from the passerine family and the cited perched behaviour."
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Nests in crevices or holes in rock or buildings (Cavity)."
+    },
+    "traits.size_class": {
+      "sources": [
+        "eltontraits"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "eltontraits"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "EltonTraits BodyMass-Value 16.5 g (Dunning 2008 reference), converted to kg."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Wikipedia gives 12-20 g; converted to kg."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of 13-14.5 cm (Wikipedia), converted to metres."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "wikipedia-robin"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "PROXY, not a black redstart value. No openly licensed typical wild lifespan was found for this species (searched 2026-10-31). Uses the European robin's 1.1 years (Wikipedia: average life expectancy, driven by first-year mortality) as a close passerine relative. Replace with a black redstart value when a source is available."
+    },
+    "traits.diet": {
+      "sources": [
+        "eltontraits"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "EltonTraits Diet-Inv 60, Diet-Fruit 30, Diet-Seed 10 (percent of diet), divided by 100. Diet-Vend, Vect, Vfish, Vunk, Scav, Nect and PlantO are 0."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Wikipedia: usually monogamous. Solitary with group_size 1-2 is an authored mapping of a territorial pair."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Forages and sings by day (Wikipedia mentions foraging in flight and by day); classed as Diurnal."
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "note": "judgement: flees to a perch when disturbed (Wikipedia: quick ducks of head and body, tail flicked)."
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "note": "judgement, not a measured value. Urban adapter with close approach to people."
+    },
+    "habitat.use": {
+      "sources": [
+        "eltontraits"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "EltonTraits ForStrat-ground 60 and ForStrat-understory 40, divided by 100. Understory is mapped to arboreal; that mapping is an assumption."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia",
+        "eltontraits"
+      ],
+      "confidence": "Medium",
+      "note": "Invertebrate weight 0.6 from EltonTraits Diet-Inv. Cavity and cliff/perch tags from Wikipedia nesting and habitat text. Weights are authored."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Wikipedia: expanded since about 1900 into urban and industrial habitats."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Resident in the milder parts of its range; north-eastern birds migrate. No winter fraction is sourced, so winter_fraction is omitted."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Breeding start mid-April from Wikipedia. The end date is an authored judgement."
+    },
+    "activity": {
+      "sources": [
+        "inat-activity-fr",
+        "gbif-activity-fr"
+      ],
+      "confidence": "High",
+      "note": "Activity curves fetched by tools/fetch_activity.py for FR."
+    },
+    "behavior": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "bt-perching-songbird-v1 with alarm call overridden to 'tick' and nesting months 4-6. Limitations: song is not restricted to months; the program triggers song on sun elevation only."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "note": "judgement: palette and proportions are authored from the Wikipedia plumage description (male dark grey to black upperparts, black breast, orange-red rump and tail; grey wing panel in western forms)."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Generic shelter tag. Wikipedia places the species on cliffs, rock faces and buildings; no specific tag exists for these."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Egg, juvenile and adult stages. Wikipedia gives incubation (13-17 days) and fledging (12-19 days) periods; no durations are recorded."
+    },
+    "seasonal.winter_fraction": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "note": "judgement, not a sourced value. Wikipedia says northern and eastern birds migrate and milder-range birds are resident; 0.8 assumes most western European birds stay for winter. Replace with a sourced share when available."
+    },
+    "vocalizations.song": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Rattling song from Wikipedia. Cooldown, time windows and loudness are authored judgement; season_months is empty (year-round), which overstates winter song."
+    },
+    "vocalizations.tick": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "note": "Tick call from Wikipedia without a stated function. Its use as the alarm call is an authored mapping (judgement)."
+    }
+  }
+}
