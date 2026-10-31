@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "format": "speeeecies/behavior",
+  "id": "fsm-salamander-terrestrial-v1",
+  "kind": "fsm",
+  "description": "Adult fire salamander: hides under cover by day and walks to forage for invertebrates at night. Threatened adults walk away; the program has no month gate, call, hop or swimming action and does not represent larval movement.",
+  "initial": "hide",
+  "states": {
+    "hide": {
+      "action": {
+        "do": "hide_nearest"
+      },
+      "min_dwell_s": 20
+    },
+    "rest": {
+      "action": {
+        "do": "rest"
+      },
+      "min_dwell_s": 10
+    },
+    "forage": {
+      "action": {
+        "do": "eat_nearest",
+        "tag": "invertebrate",
+        "gait": "walk"
+      }
+    },
+    "wander": {
+      "action": {
+        "do": "wander",
+        "gait": "walk"
+      }
+    },
+    "flee": {
+      "action": {
+        "do": "flee",
+        "gait": "walk"
+      },
+      "min_dwell_s": 2
+    }
+  },
+  "transitions": [
+    {
+      "from": "*",
+      "to": "flee",
+      "when": {
+        "threat_within_m": 3
+      },
+      "priority": 100
+    },
+    {
+      "from": "flee",
+      "to": "hide",
+      "when": {
+        "not": {
+          "threat_within_m": 5
+        }
+      }
+    },
+    {
+      "from": "hide",
+      "to": "rest",
+      "when": {
+        "is_day": false
+      }
+    },
+    {
+      "from": "rest",
+      "to": "hide",
+      "when": {
+        "is_day": true
+      }
+    },
+    {
+      "from": "rest",
+      "to": "forage",
+      "when": {
+        "all": [
+          {
+            "need": "hunger",
+            "gt": 0.4
+          },
+          {
+            "food_within_m": 8,
+            "tag": "invertebrate"
+          }
+        ]
+      }
+    },
+    {
+      "from": "rest",
+      "to": "wander",
+      "when": {
+        "chance": 0.1
+      }
+    },
+    {
+      "from": "wander",
+      "to": "rest",
+      "when": {
+        "chance": 0.2
+      }
+    },
+    {
+      "from": "forage",
+      "to": "rest",
+      "when": {
+        "need": "hunger",
+        "lt": 0.15
+      }
+    }
+  ]
+}
