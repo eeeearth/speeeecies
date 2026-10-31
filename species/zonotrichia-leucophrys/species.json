@@ -1,0 +1,642 @@
+{
+  "$schema": "https://eeeearth.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Zonotrichia leucophrys",
+  "slug": "zonotrichia-leucophrys",
+  "common_names": {
+    "en": "White-crowned sparrow"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Passeriformes",
+    "family": "Passerellidae",
+    "genus": "Zonotrichia",
+    "authority": "(J.R.Forster, 1772)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 5231132,
+    "inat_taxon_id": 9176,
+    "itis_tsn": 179455,
+    "wikidata": "Q686673",
+    "ncbi_taxon_id": 44393,
+    "ebird_code": "whcspa"
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "US",
+      "CA",
+      "MX"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Hop",
+      "Fly"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Cup",
+    "perching": true,
+    "size_class": "Tiny",
+    "mass_kg": 0.028,
+    "mass_range_kg": [
+      0.025,
+      0.028
+    ],
+    "length_m": 0.155,
+    "wingspan_m": 0.225,
+    "lifespan_y": 1.77,
+    "diet": {
+      "seed": 0.7,
+      "fruit": 0.1,
+      "browse": 0.1,
+      "invertebrate": 0.1
+    },
+    "social": {
+      "structure": "Flock",
+      "group_size": [
+        2,
+        30
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.3
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.8,
+      "arboreal": 0.2
+    },
+    "shelter_tag": "shrub_thicket",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 1.0
+      },
+      {
+        "tag": "seed",
+        "kind": "Herbivory",
+        "weight": 0.7
+      },
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.1
+      },
+      {
+        "tag": "browse",
+        "kind": "Herbivory",
+        "weight": 0.1
+      },
+      {
+        "tag": "nest_cup",
+        "kind": "Nesting",
+        "weight": 0.5
+      },
+      {
+        "tag": "nest_ground",
+        "kind": "Nesting",
+        "weight": 0.5
+      },
+      {
+        "tag": "shrub_thicket",
+        "kind": "Shelter",
+        "weight": 0.8
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.6
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "light_max": 0.6,
+      "notes": "Authored. Wikipedia says song changes with human activity and noise; nesting in gardens and urban shrubs is not sourced here."
+    }
+  },
+  "seasonal": {
+    "strategy": "PartialMigration",
+    "phases": [
+      {
+        "name": "nesting",
+        "start": "04-01",
+        "end": "07-31",
+        "note": "Authored window for the whole US range; coastal and southern populations start earlier and high-elevation or northern ones later. Not sourced to a permissive dataset."
+      },
+      {
+        "name": "flocking",
+        "start": "11-01",
+        "end": "02-28",
+        "note": "Wikipedia: in winter they often forage in flocks."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg"
+      },
+      {
+        "stage": "Juvenile"
+      },
+      {
+        "stage": "Adult"
+      }
+    ],
+    "winter_fraction": 0.5
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US",
+        "monthly": [
+          0.79,
+          0.71,
+          0.61,
+          0.45,
+          0.35,
+          0.23,
+          0.24,
+          0.15,
+          0.39,
+          1.0,
+          0.89,
+          0.86
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 5342434,
+        "sources": [
+          "inat-activity-us",
+          "gbif-activity-us"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 1,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=9176&place_id=1&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=1&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "total": 19159,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "country",
+              "US"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5231132&country=US&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&country=US&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 5323275,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "bt-zonotrichia-leucophrys-v1"
+  },
+  "vocalizations": [
+    {
+      "call_id": "song",
+      "context": "Song",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day",
+        "Dusk"
+      ],
+      "cooldown_s": 30,
+      "loudness": "Moderate",
+      "description": "Clear whistled song of a few phrases, sung from an exposed perch, given in every season and more often in spring."
+    },
+    {
+      "call_id": "alarm",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day",
+        "Dusk"
+      ],
+      "cooldown_s": 5,
+      "loudness": "Moderate",
+      "description": "Short sharp call given when alarmed from a low perch in shrub cover."
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.5,
+      "leg_length_ratio": 0.35,
+      "head_scale": 0.8,
+      "neck_angle_deg": 15,
+      "tail_ratio": 0.55,
+      "wing_aspect": 2.6,
+      "beak_ratio": 0.3,
+      "girth_ratio": 1.0
+    },
+    "palette": {
+      "body": "#8a7460",
+      "belly": "#c9c6bd",
+      "markings": "#1b1b1b",
+      "accent": "#8c8f94",
+      "eye": "#111111"
+    },
+    "part_colors": {
+      "breast": "accent",
+      "beak": "eye"
+    },
+    "extra_parts": [
+      {
+        "name": "crown_stripe",
+        "parent": "head",
+        "offset": [
+          0.0,
+          0.35,
+          0
+        ],
+        "size": [
+          0.6,
+          0.12,
+          0.8
+        ],
+        "color": "markings"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "hop": {},
+      "fly": {},
+      "perched": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/5231132",
+      "title": "GBIF Backbone Taxonomy: Zonotrichia leucophrys (usageKey 5231132)",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-31",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q686673",
+      "title": "Wikidata: White-crowned sparrow (Q686673)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-31",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=179455",
+      "title": "ITIS: Zonotrichia leucophrys, TSN 179455",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-10-31",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/White-crowned_sparrow",
+      "title": "Wikipedia: White-crowned sparrow",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-31",
+      "attribution": "Wikipedia contributors, \"White-crowned sparrow\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "eltontraits",
+      "url": "https://doi.org/10.6084/m9.figshare.3559887.v1",
+      "title": "EltonTraits 1.0: species-level foraging attributes of the world's birds and mammals (BirdFuncDat)",
+      "license": "CC0-1.0",
+      "kind": "dataset",
+      "accessed": "2026-10-31",
+      "attribution": "Wilman, H. et al. (2014) EltonTraits 1.0. Ecology 95:2027",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "scholer2020",
+      "url": "https://zenodo.org/records/3986104",
+      "title": "Scholer, Strimas-Mackey & Jankowski (2020) Data from: A meta-analysis of global avian survival across species and latitude (Dryad doi:10.5061/dryad.qv9s4mwbs), file ELEscholer2020_data.csv",
+      "license": "CC0-1.0",
+      "kind": "dataset",
+      "accessed": "2026-10-31",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "note": "Rows for Zonotrichia leucophrys: Desante et al. (2015) survival 0.492 (file line 324; labelled United States but coordinates 52.7 N, -108.6 are in Saskatchewan); Phillips et al. (2018) San Francisco 0.618 and Point Reyes 0.578 (file lines 689, 690)."
+    },
+    {
+      "id": "inat-activity-us",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=9176&place_id=1&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Zonotrichia leucophrys in US",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-10-31",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5231132&country=US&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Zonotrichia leucophrys in US",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-31) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-31",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "itis"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "iNaturalist 9176, NCBI 44393, eBird whcspa, ITIS 179455 via Wikidata (P3151, P685, P3444, P815); GBIF usageKey 5231132 matches Wikidata P846."
+    },
+    "common_names": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "Wikidata P141 = least concern (Q211005)."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Breeds across northern Canada and the western US; northern birds winter south to central Mexico. Country list derived from that prose."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Passerine bird."
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Passerine bird; two legs."
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Fly from short flights to catch insects. Hop is authored (ground foraging, see behavior)."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Powered flight; short flights in foraging."
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Wikipedia: nests low in bushes or on the ground under shrubs. Cup form is an authored classification."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Passerine; forages and perches in low vegetation. Classification is authored."
+    },
+    "traits.size_class": {
+      "sources": [
+        "eltontraits"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg (< 0.05 kg)."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "eltontraits"
+      ],
+      "confidence": "High",
+      "note": "EltonTraits BodyMass-Value 28 g (Dunning 2008 via EltonTraits)."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Wikipedia 'Weight 0.9-1.0 oz (25-28 g)'."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of 15-16 cm."
+    },
+    "traits.wingspan_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of 21-24 cm."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "scholer2020"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Derived from annual adult survival, not measured lifespan. For each of three Dryad rows, mean adult lifetime -1/ln(s): s=0.492 (Desante 2015, labelled US, coordinates in Saskatchewan) -> 1.41 y; s=0.618 (Phillips 2018, San Francisco) -> 2.08 y; s=0.578 (Phillips 2018, Point Reyes) -> 1.82 y; mean 1.77 y. Assumes constant adult survival and exponential mortality. First-year mortality is excluded, so this is adult-stage expected lifetime, not life expectancy at birth; the robin's 1.1 y is a different statistic. Low confidence."
+    },
+    "traits.diet": {
+      "sources": [
+        "eltontraits",
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "EltonTraits BirdFuncDat row for Zonotrichia leucophrys: Diet-Seed 70, Diet-Fruit 10, Diet-Inv 10, Diet-PlantO 10. Diet-PlantO mapped to browse because the schema has no plant-other key. Wikipedia: 'mainly eat seeds, other plant parts and insects'."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Structure Flock from 'in winter, they often forage in flocks'. group_size [2, 30] is judgement."
+    },
+    "traits.activity_pattern": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored judgement: diurnal songbird. Not stated in a checked source."
+    },
+    "traits.defense": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored judgement: flees to shrub cover."
+    },
+    "traits.wariness": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored judgement."
+    },
+    "habitat.use": {
+      "sources": [
+        "eltontraits"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "EltonTraits ForStrat-ground 80; understory 10 and midhigh 10 mapped to arboreal 0.2."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Wikipedia: forage on ground or low vegetation; nest low in bushes or on the ground under shrubs. Weights are authored."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Adapter is judgement. Wikipedia: song is affected by human noise and activity."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "PartialMigration: southerly Rocky Mountain and coastal populations largely resident; northern breeders migrate."
+    },
+    "seasonal.phases": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored nesting window 04-01 to 07-31 for the whole US range. No permissive source gave nesting months. Wikipedia gives only general timing. Flocking window from 'in winter'."
+    },
+    "seasonal.life_stages": {
+      "sources": [],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Egg, juvenile and adult, following the robin record."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Species-local bt-zonotrichia-leucophrys-v1, copied from bt-perching-songbird-v1 with these changes: (1) nest month_in hardcoded to [4,5,6,7] because the shared program's nest params are two-value sets and cannot express a window; (2) a seed-eating branch added because diet is 70% seed and the shared program only eats invertebrates; (3) the shared cooldown re-perch and idle fallbacks replaced by wander at hop gait, since a ground forager should not fly to a perch every 6 s when not hungry. Hop gait for foraging and wandering is authored. Song only in the sun -6..12 degree window (shared condition), so midday song is not modelled."
+    },
+    "look": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: blocky model with a crown stripe and grey breast. Not measured from a specimen."
+    },
+    "seasonal.winter_fraction": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored judgement, not sourced. No checked source gives the winter share. Southern Rocky Mountain and coastal birds are largely resident; northern breeders migrate. The Dryad rows label the WCS sites 'migrant' but give no share."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Shrub cover from Wikipedia: nests low in bushes or under shrubs. Shelter tag choice is authored."
+    },
+    "vocalizations.song": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored description. No recording checked; song is affected by human noise per Wikipedia."
+    },
+    "vocalizations.alarm": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored description. No recording checked."
+    }
+  }
+}
