@@ -1,0 +1,612 @@
+{
+  "$schema": "https://eeeearth.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Hylocichla mustelina",
+  "slug": "hylocichla-mustelina",
+  "common_names": {
+    "en": "Wood Thrush"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Passeriformes",
+    "family": "Turdidae",
+    "genus": "Hylocichla",
+    "authority": "(Gmelin, 1789)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2490872,
+    "inat_taxon_id": 13270
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "CA",
+      "US",
+      "MX",
+      "BZ",
+      "GT",
+      "SV",
+      "HN",
+      "NI",
+      "CR",
+      "PA"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Hop",
+      "Fly"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Cup",
+    "perching": true,
+    "size_class": "Small",
+    "mass_kg": 0.06,
+    "mass_range_kg": [
+      0.04,
+      0.072
+    ],
+    "length_m": 0.198,
+    "wingspan_m": 0.32,
+    "lifespan_y": 2.8,
+    "diet": {
+      "invertebrate": 0.7,
+      "fruit": 0.3
+    },
+    "social": {
+      "structure": "Solitary",
+      "group_size": [
+        1,
+        2
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.65
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.7,
+      "arboreal": 0.3
+    },
+    "shelter_tag": "perch",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.7
+      },
+      {
+        "tag": "berry",
+        "kind": "Herbivory",
+        "weight": 0.3,
+        "months": [
+          8,
+          9,
+          10,
+          11,
+          12,
+          1,
+          2
+        ]
+      },
+      {
+        "tag": "nest_cup",
+        "kind": "Nesting",
+        "weight": 1.0,
+        "months": [
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.8
+      },
+      {
+        "tag": "leaf_litter",
+        "kind": "Shelter",
+        "weight": 0.5
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Avoider",
+      "uses_gardens": false,
+      "notes": "Forest-interior bird; uses mature deciduous or mixed forest with a shaded understory and leaf litter."
+    }
+  },
+  "seasonal": {
+    "strategy": "Migration",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "04-15",
+        "end": "08-15",
+        "region": "US",
+        "note": "Breeds in eastern North America; dates are broad authored seasonal bounds."
+      },
+      {
+        "name": "absent",
+        "start": "09-01",
+        "end": "03-31",
+        "region": "US",
+        "note": "Migrates from the US to wintering grounds in Mexico and Central America; broad authored bounds."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg"
+      },
+      {
+        "stage": "Juvenile",
+        "duration_days": 30,
+        "scale": 0.8
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US",
+        "monthly": [
+          0.01,
+          0.0,
+          0.01,
+          0.4,
+          1.0,
+          0.83,
+          0.59,
+          0.16,
+          0.21,
+          0.19,
+          0.02,
+          0.0
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 1932705,
+        "sources": [
+          "inat-activity-us",
+          "gbif-activity-us"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 1,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=13270&place_id=1&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=1&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "total": 2038,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "country",
+              "US"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2490872&country=US&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&country=US&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 1930667,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "bt-wood-thrush-v1",
+    "params": {
+      "flee_m": 15,
+      "food_tag": "invertebrate",
+      "song": "song",
+      "alarm": "alarm",
+      "song_cooldown_s": 12
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "song",
+      "context": "Song",
+      "season_months": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "time_windows": [
+        "DawnChorus",
+        "Dusk"
+      ],
+      "cooldown_s": 12,
+      "loudness": "Loud",
+      "description": "Male gives a clear, flute-like territorial song from a perch during the breeding season."
+    },
+    {
+      "call_id": "alarm",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Day",
+        "Dusk"
+      ],
+      "cooldown_s": 8,
+      "loudness": "Moderate",
+      "description": "Sharp alarm notes are given when disturbed."
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.5,
+      "leg_length_ratio": 0.34,
+      "head_scale": 0.8,
+      "neck_angle_deg": 12,
+      "tail_ratio": 0.3,
+      "wing_aspect": 2.4,
+      "beak_ratio": 0.8,
+      "girth_ratio": 1.0
+    },
+    "palette": {
+      "body": "#9a563c",
+      "belly": "#eee8dc",
+      "markings": "#4b3028",
+      "accent": "#30241f",
+      "eye": "#191613"
+    },
+    "part_colors": {
+      "head": "body",
+      "breast": "belly",
+      "beak": "accent",
+      "wing_*_outer": "body"
+    },
+    "poses": {
+      "idle": {},
+      "hop": {},
+      "fly": {},
+      "perched": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Wood_thrush",
+      "title": "Wood thrush",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-31",
+      "attribution": "Wikipedia contributors, \"Wood thrush\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2490872",
+      "title": "GBIF Backbone Taxonomy: Hylocichla mustelina",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-31",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "inat-taxon",
+      "url": "https://api.inaturalist.org/v1/taxa/13270",
+      "title": "iNaturalist taxon: Hylocichla mustelina",
+      "license": "CC-BY-4.0",
+      "kind": "api",
+      "accessed": "2026-10-31",
+      "attribution": "iNaturalist contributors, taxon record via iNaturalist API",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "scholer2020",
+      "url": "https://zenodo.org/records/3986104",
+      "title": "Data from: A meta-analysis of global avian survival across species and latitude",
+      "license": "CC0-1.0",
+      "kind": "dataset",
+      "accessed": "2026-10-31",
+      "note": "CSV row 239 (spreadsheet row 240), X=340; Hylocichla mustelina, survival=0.447, se=0.011, MAPS, United States, mark-recapture, Desante et al. (2015). The estimate is apparent annual adult survival, not lifespan."
+    },
+    {
+      "id": "inat-activity-us",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=13270&place_id=1&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Hylocichla mustelina in US",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-10-31",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2490872&country=US&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Hylocichla mustelina in US",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-31) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-31",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "id": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High"
+    },
+    "slug": {
+      "sources": [],
+      "confidence": "High",
+      "derived": true,
+      "note": "Lowercase scientific name with a hyphen."
+    },
+    "common_names": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "inat-taxon"
+      ],
+      "confidence": "High",
+      "note": "GBIF usage key 2490872 is accepted species Hylocichla mustelina; iNaturalist taxon 13270 is the accepted species taxon."
+    },
+    "conservation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Wikipedia reports Least Concern."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Breeding range in southern Canada and the United States; winter range in southern Mexico through Panama."
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Diet section states hopping on leaf litter; powered flight is described in migration and behavior sections."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "scholer2020"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "The CSV's survival=0.447 is annual apparent adult survival for a US MAPS mark-recapture sample (row 239, citing Desante et al. 2015), not a lifespan. 2.8 y is an approximate stationary geometric-survival proxy: 1 year to first reproduction plus 1/(1-0.447)=1.81 expected adult years. It assumes constant annual apparent survival and ignores age-specific and juvenile mortality; it should not be read as a measured typical lifespan."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Primarily solitary, with pair bonds during breeding; group-size range is a judgement."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Foraging and song are daytime/twilight behaviors; migration at night does not make ordinary activity nocturnal."
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Flee is a simplified simulation response based on reported alarm and nest-defense behavior."
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement; described as reclusive and a forest-interior bird."
+    },
+    "habitat": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Forest habitat, leaf-litter foraging and understory behavior from Habitat and Diet sections; proportions and resource weights are authored estimates."
+    },
+    "seasonal": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Distribution and habitat section describes migration to Mexico/Central America; phase dates are authored broad bounds."
+    },
+    "activity": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High",
+      "note": "US activity observations are fetched below."
+    },
+    "behavior": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Species-local tree behavior fits ground leaf-litter hopping and eating invertebrates, adds berry feeding in August through February, gates song to dawn/dusk during April through July, builds cup nests April through July, and roosts on a perch at night. Parameters and simplified responses are authored."
+    },
+    "vocalizations": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Sections Vocalization and Behavior describe male song and alarm calls."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Palette follows the Description section's cinnamon-brown upperparts, white underparts and dark spotting; proportions are authored for the stylized mesh."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "From Description and Diet sections; typical measurements use interval midpoints, diet shares are authored since only food categories are stated."
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "From Description and Diet sections; typical measurements use interval midpoints, diet shares are authored since only food categories are stated."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "From Description and Diet sections; typical measurements use interval midpoints, diet shares are authored since only food categories are stated."
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "From Description and Diet sections; typical measurements use interval midpoints, diet shares are authored since only food categories are stated."
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "From Description and Diet sections; typical measurements use interval midpoints, diet shares are authored since only food categories are stated."
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "From Description and Diet sections; typical measurements use interval midpoints, diet shares are authored since only food categories are stated."
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "From Description and Diet sections; typical measurements use interval midpoints, diet shares are authored since only food categories are stated."
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "From Description and Diet sections; typical measurements use interval midpoints, diet shares are authored since only food categories are stated."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "From Description and Diet sections; typical measurements use interval midpoints, diet shares are authored since only food categories are stated."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "From Description and Diet sections; typical measurements use interval midpoints, diet shares are authored since only food categories are stated."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "From Description and Diet sections; typical measurements use interval midpoints, diet shares are authored since only food categories are stated."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "From Description and Diet sections; typical measurements use interval midpoints, diet shares are authored since only food categories are stated."
+    },
+    "traits.wingspan_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "From Description and Diet sections; typical measurements use interval midpoints, diet shares are authored since only food categories are stated."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "From Description and Diet sections; typical measurements use interval midpoints, diet shares are authored since only food categories are stated."
+    },
+    "traits.size_class": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Schema class derived from typical mass 0.060 kg."
+    }
+  }
+}
