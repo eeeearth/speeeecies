@@ -1,0 +1,612 @@
+{
+  "$schema": "https://eeeearth.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Canis latrans",
+  "slug": "canis-latrans",
+  "common_names": {
+    "en": "coyote"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Mammalia",
+    "order": "Carnivora",
+    "family": "Canidae",
+    "genus": "Canis",
+    "authority": "Say, 1823",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 5219153,
+    "inat_taxon_id": 42051,
+    "wikidata": "Q44299"
+  },
+  "range": {
+    "native": [
+      "US"
+    ],
+    "introduced": [
+      "US-FL",
+      "US-GA"
+    ],
+    "invasive_in": []
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk",
+      "Trot",
+      "Gallop"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Fur",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Burrow",
+    "perching": false,
+    "size_class": "Medium",
+    "mass_kg": 13.4,
+    "lifespan_y": 6,
+    "diet": {
+      "vertebrate": 0.6,
+      "fish": 0.1,
+      "carrion": 0.3
+    },
+    "social": {
+      "structure": "Group",
+      "group_size": [
+        1,
+        6
+      ]
+    },
+    "activity_pattern": "Cathemeral",
+    "defense": "Flee",
+    "wariness": 0.6,
+    "length_m": 1.22,
+    "shoulder_height_m": 0.52
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.9,
+      "fossorial": 0.1
+    },
+    "shelter_tag": "burrow",
+    "resources": [
+      {
+        "tag": "small_vertebrate",
+        "kind": "Predation",
+        "weight": 0.7
+      },
+      {
+        "tag": "carrion",
+        "kind": "Scavenging",
+        "weight": 0.3
+      },
+      {
+        "tag": "burrow",
+        "kind": "Shelter",
+        "weight": 1.0
+      },
+      {
+        "tag": "shrub_thicket",
+        "kind": "Shelter",
+        "weight": 0.5
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "notes": "Judgement based on reports of coyotes foraging in residential areas beside forest cover; availability and human pressure affect use."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "01-01",
+        "end": "05-31",
+        "note": "Reported US breeding timing varies: generally January to March, with February to May reported in the Sierra Nevada. This is a broad evidence envelope, not a uniform local season."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US",
+        "monthly": [
+          1.0,
+          0.71,
+          0.5,
+          0.43,
+          0.32,
+          0.2,
+          0.19,
+          0.18,
+          0.27,
+          0.39,
+          0.71,
+          0.87
+        ],
+        "method": "gbif_share",
+        "observations": 26859,
+        "sources": [
+          "gbif-activity-us"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 10316,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=42051&place_id=10316&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=10316&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 0,
+            "usable": false
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "country",
+              "US"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5219153&country=US&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&country=US&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 26859,
+            "usable": true
+          },
+          "used": [
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-ground-forager-v1",
+    "params": {
+      "food_tag": "small_vertebrate",
+      "flee_m": 25,
+      "calm_m": 50,
+      "food_m": 60,
+      "flee_gait": "gallop",
+      "forage_gait": "walk",
+      "rest_sun_lo_deg": 90,
+      "rest_sun_hi_deg": 90
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "howl_yip",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Dusk"
+      ],
+      "cooldown_s": 0,
+      "description": "Howls and yips are heard in the morning and evening; the exact calling context and rate vary by group and place."
+    }
+  ],
+  "look": {
+    "body_plan": "quadruped",
+    "proportions": {
+      "torso_aspect": 2.3,
+      "leg_length_ratio": 0.55,
+      "head_scale": 0.72,
+      "neck_angle_deg": 20,
+      "tail_ratio": 0.85,
+      "ear_ratio": 0.5,
+      "beak_ratio": 0.75,
+      "girth_ratio": 0.7
+    },
+    "palette": {
+      "body": "#8c6a4f",
+      "belly": "#d8c8b0",
+      "markings": "#493b32",
+      "accent": "#b18a67",
+      "eye": "#2c2018"
+    },
+    "part_colors": {
+      "leg_*": "markings",
+      "ear_*": "markings",
+      "snout": "belly"
+    },
+    "extra_parts": [
+      {
+        "name": "tail_tip",
+        "parent": "tail",
+        "offset": [
+          -0.7,
+          0,
+          0
+        ],
+        "size": [
+          0.4,
+          0.95,
+          0.95
+        ],
+        "color": "markings"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "trot": {},
+      "gallop": {},
+      "rest": {
+        "keyframes": [
+          {
+            "t": 0,
+            "parts": {
+              "leg_front_left": {
+                "rot_deg": [
+                  0,
+                  0,
+                  80
+                ]
+              },
+              "leg_front_right": {
+                "rot_deg": [
+                  0,
+                  0,
+                  80
+                ]
+              },
+              "leg_rear_left": {
+                "rot_deg": [
+                  0,
+                  0,
+                  -80
+                ]
+              },
+              "leg_rear_right": {
+                "rot_deg": [
+                  0,
+                  0,
+                  -80
+                ]
+              },
+              "neck": {
+                "rot_deg": [
+                  -12,
+                  0,
+                  0
+                ]
+              },
+              "head": {
+                "rot_deg": [
+                  8,
+                  0,
+                  0
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/5219153",
+      "title": "GBIF Backbone Taxonomy: Canis latrans",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-31",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q44299",
+      "title": "Wikidata: coyote (Q44299)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-31",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "eltontraits",
+      "url": "https://doi.org/10.6084/m9.figshare.3559887.v1",
+      "title": "EltonTraits 1.0: species-level foraging attributes of the world's birds and mammals (MamFuncDat)",
+      "license": "CC0-1.0",
+      "kind": "dataset",
+      "accessed": "2026-10-31",
+      "attribution": "Wilman, H. et al. (2014) EltonTraits 1.0. Ecology 95:2027",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "note": "Canis latrans row: MSW3_ID 4926; diet columns and body-mass value inspected in MamFuncDat. The row cites Ref_1 for diet and Ref_117 for mass."
+    },
+    {
+      "id": "usfs-feis-coyote",
+      "url": "https://research.fs.usda.gov/feis/species-reviews/cala",
+      "title": "Canis latrans, coyote: Fire Effects Information System species review",
+      "license": "US-Gov-PD",
+      "kind": "literature",
+      "accessed": "2026-10-31",
+      "attribution": "Tesky, Julie L. 1995. Canis latrans, coyote. USDA Forest Service, Fire Effects Information System. DOI: 10.2737/feis-species-review-cala.",
+      "note": "Used for United States distribution and nativity, daytime and nighttime activity, lifespan context, den use, social variation, and habitat use. Photo rights are excluded."
+    },
+    {
+      "id": "gbif-activity-us",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5219153&country=US&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Canis latrans in US",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-31) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-31",
+      "kind": "api"
+    },
+    {
+      "id": "nps-jewel-cave-coyote",
+      "url": "https://www.nps.gov/jeca/learn/nature/coyote-canis-latrans.htm",
+      "title": "Coyote (Canis latrans), Jewel Cave National Monument",
+      "license": "US-Gov-PD",
+      "kind": "webpage",
+      "accessed": "2026-10-31",
+      "note": "US National Park Service page. Used for total-length lower bound, body form, call and habitat descriptions."
+    },
+    {
+      "id": "nps-yellowstone-coyote",
+      "url": "https://www.nps.gov/yell/learn/nature/coyote.htm",
+      "title": "Coyote, Yellowstone National Park",
+      "license": "US-Gov-PD",
+      "kind": "webpage",
+      "accessed": "2026-10-31",
+      "note": "NPS reports an average life span of 6 years and a maximum of 13 years for coyotes in Yellowstone. Used as a species-specific wild-population average for lifespan; geographic context is local to Yellowstone."
+    },
+    {
+      "id": "usda-coyote-ecology",
+      "url": "https://www.govinfo.gov/content/pkg/GOVPUB-A101-PURL-gpo151217/pdf/GOVPUB-A101-PURL-gpo151217.pdf",
+      "title": "Coyote Ecology and Damage Management",
+      "license": "US-Gov-PD",
+      "kind": "literature",
+      "accessed": "2026-10-31",
+      "note": "USDA technical series states that coyotes are excellent swimmers and can cross bodies of water or rivers. Used to document the biological capability that the selected simulation behavior cannot represent."
+    }
+  ],
+  "provenance": {
+    "common_names": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High",
+      "note": "GBIF match returned canonical name Canis latrans, rank SPECIES, status ACCEPTED, authority Say, 1823."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "GBIF usage key 5219153 was checked at its API record; Wikidata Q44299 contains iNaturalist taxon id 42051 and GBIF key 5219153 (properties P3151 and P846). The iNaturalist API independently returned active species rank for id 42051."
+    },
+    "range": {
+      "sources": [
+        "usfs-feis-coyote"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "FEIS lists coyotes coast-to-coast and in every US state, and says Florida and Georgia populations were introduced. US is recorded as the country-level native range for this national activity record; US-FL and US-GA retain the documented introduced pockets."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "usfs-feis-coyote"
+      ],
+      "confidence": "High",
+      "note": "Quadrupedal mammal."
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "usfs-feis-coyote"
+      ],
+      "confidence": "Medium",
+      "note": "Walk, trot, and gallop are the supported terrestrial modes in this record. Coyotes can swim, but the assigned ground-forager behavior has no swim action and the built-in swim rendering resembles a ground gait, so swimming is omitted from the simulated locomotion modes."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High",
+      "note": "Endotherm is the standard mammalian classification."
+    },
+    "traits.skin": {
+      "sources": [
+        "usfs-feis-coyote"
+      ],
+      "confidence": "High",
+      "note": "Furred mammal."
+    },
+    "traits.flight": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "usfs-feis-coyote"
+      ],
+      "confidence": "High",
+      "note": "Uses dens, including burrows made by other animals."
+    },
+    "traits.perching": {
+      "sources": [
+        "usfs-feis-coyote"
+      ],
+      "confidence": "High"
+    },
+    "traits.size_class": {
+      "sources": [
+        "eltontraits"
+      ],
+      "confidence": "Medium",
+      "note": "Medium is a simulation size category judgment for the dataset body-mass value."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "eltontraits"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "MamFuncDat row 4926 reports 13,406.33 g, sourced there to Smith et al. (2003), Ref_117. Converted to kg by dividing by 1,000 and rounded to 13.4 kg. This cross-species mammal compilation value is used as a representative adult estimate; it is not a US population-specific mean."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "nps-yellowstone-coyote"
+      ],
+      "confidence": "Medium",
+      "note": "NPS reports an average life span of 6 years for coyotes in Yellowstone, with a maximum of 13 years. The required species value uses that measured wild-population average; it is a local Yellowstone estimate rather than a national average."
+    },
+    "traits.diet": {
+      "sources": [
+        "eltontraits"
+      ],
+      "confidence": "Medium",
+      "note": "MamFuncDat row 4926 reports 60% vertebrate endotherms, 10% vertebrate fish, and 30% scavenged vertebrate food. Mapped to the schema's vertebrate, fish, and carrion shares; this is a broad compiled diet model, not a local stomach-content estimate."
+    },
+    "traits.social": {
+      "sources": [
+        "usfs-feis-coyote"
+      ],
+      "confidence": "Medium",
+      "note": "Group with size range 1-6 represents the observed variation from solitary individuals to groups; social organization depends on prey and season."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "usfs-feis-coyote"
+      ],
+      "confidence": "High",
+      "note": "Cathemeral: active in daytime and nighttime, with activity peaks around sunrise and sunset and generally more nocturnal foraging."
+    },
+    "traits.defense": {
+      "sources": [
+        "usfs-feis-coyote"
+      ],
+      "confidence": "Medium",
+      "note": "Flee is a simulation response choice for a mobile mammal."
+    },
+    "traits.wariness": {
+      "sources": [
+        "usfs-feis-coyote"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: 0.6 represents an adaptable animal that generally avoids people while using some residential areas."
+    },
+    "habitat.use": {
+      "sources": [
+        "usfs-feis-coyote"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: ground 0.9 and fossorial 0.1 represent terrestrial foraging and den use; they are not measured time budgets."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "usfs-feis-coyote"
+      ],
+      "confidence": "High"
+    },
+    "habitat.resources": {
+      "sources": [
+        "eltontraits",
+        "usfs-feis-coyote"
+      ],
+      "confidence": "Medium",
+      "note": "Resource weights mirror the normalized EltonTraits categories: 60% vertebrate endotherms and 10% fish are combined as 70% small_vertebrate prey, with 30% scavenged vertebrate food. Burrow and shrub_thicket represent reported den and cover use."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "usfs-feis-coyote"
+      ],
+      "confidence": "Medium",
+      "note": "Adapter and garden use are authored classifications based on reported foraging in residential areas adjacent to forest cover."
+    },
+    "seasonal": {
+      "sources": [
+        "usfs-feis-coyote"
+      ],
+      "confidence": "Medium",
+      "note": "Coyotes remain active year-round. The breeding window records the reported US timing envelope (generally January-March, February-May in the Sierra Nevada), not one universal local season."
+    },
+    "activity": {
+      "sources": [
+        "gbif-activity-us"
+      ],
+      "confidence": "High",
+      "note": "The fetched US curve uses GBIF tier A only. The iNaturalist tier C query returned zero records and was not used."
+    },
+    "behavior": {
+      "sources": [
+        "usfs-feis-coyote",
+        "eltontraits",
+        "usda-coyote-ecology"
+      ],
+      "confidence": "Medium",
+      "note": "Shared ground-forager program uses walk to forage, gallop to flee, and rests when energy is high. The sun-rest interval is narrowed to 90-90 degrees so the animal can remain active both day and night, matching the cathemeral source summary. Only small vertebrate prey is a reachable feeding action; fish, carrion, and plant foods remain unmodeled. Swimming is excluded from simulated locomotion because the FSM has no swim action. The custom rest keyframes lower the head and extend the legs fore and aft in a belly-down resting posture. The block model has single-segment legs, so this is a simplified stylized pose."
+    },
+    "look": {
+      "sources": [
+        "nps-jewel-cave-coyote"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: proportions and fur colors are stylized model choices informed by the NPS description of the coyote form, coat color, black-tipped fur, and tail. The belly-down resting pose is an authored animation choice, not a measured posture."
+    },
+    "traits.length_m": {
+      "sources": [
+        "nps-jewel-cave-coyote"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "NPS states nose-to-tail length may be 4 feet or more. Converted the 4-foot lower bound to 1.22 m (4 × 0.3048); this is not a mean."
+    },
+    "traits.shoulder_height_m": {
+      "sources": [
+        "nps-jewel-cave-coyote"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Judgement: 0.52 m is the midpoint conversion of the NPS reported 18-23 inch shoulder-height range (0.457-0.584 m)."
+    },
+    "vocalizations": {
+      "sources": [
+        "nps-jewel-cave-coyote"
+      ],
+      "confidence": "Medium",
+      "note": "NPS reports coyotes howling and yipping in morning and evening. Zero cooldown and contact classification are simulation representation choices."
+    }
+  }
+}
