@@ -1,0 +1,585 @@
+{
+  "$schema": "https://eeeearth.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Sitta carolinensis",
+  "slug": "sitta-carolinensis",
+  "common_names": {
+    "en": "White-breasted nuthatch"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Passeriformes",
+    "family": "Sittidae",
+    "genus": "Sitta",
+    "authority": "(Latham, 1790)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2484892,
+    "inat_taxon_id": 14801
+  },
+  "range": {
+    "native": [
+      "US",
+      "CA",
+      "MX"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Hop",
+      "Climb",
+      "Fly"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Cavity",
+    "perching": true,
+    "size_class": "Tiny",
+    "mass_kg": 0.024,
+    "mass_range_kg": [
+      0.018,
+      0.03
+    ],
+    "length_m": 0.135,
+    "lifespan_y": 2,
+    "diet": {
+      "invertebrate": 0.6,
+      "seed": 0.4
+    },
+    "social": {
+      "structure": "Pair",
+      "group_size": [
+        2,
+        2
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.35
+  },
+  "habitat": {
+    "use": {
+      "arboreal": 0.8,
+      "ground": 0.2
+    },
+    "shelter_tag": "cavity",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.6,
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ]
+      },
+      {
+        "tag": "seed",
+        "kind": "Herbivory",
+        "weight": 0.4,
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ]
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.8
+      },
+      {
+        "tag": "cavity",
+        "kind": "Nesting",
+        "weight": 1.0
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "notes": "Occurs in parks and wooded suburbs with mature trees; cavity nesting and tree-trunk foraging depend on tree cover."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "05-01",
+        "end": "06-30",
+        "region": "US",
+        "note": "Most breeding reported from early May to early June; the source notes geographic variation."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg"
+      },
+      {
+        "stage": "Juvenile",
+        "scale": 0.9
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US",
+        "monthly": [
+          0.88,
+          1.0,
+          0.75,
+          0.62,
+          0.53,
+          0.54,
+          0.65,
+          0.76,
+          0.91,
+          0.89,
+          0.9,
+          0.94
+        ],
+        "method": "gbif_share",
+        "observations": 12363538,
+        "sources": [
+          "gbif-activity-us"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 10316,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=14801&place_id=10316&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=10316&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 0,
+            "usable": false
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "country",
+              "US"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2484892&country=US&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&country=US&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 12363538,
+            "usable": true
+          },
+          "used": [
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-sitta-bark-forager-v1",
+    "params": {
+      "flee_m": 12,
+      "food_tag": "invertebrate",
+      "cache_tag": "seed",
+      "food_m": 4,
+      "cover_m": 30
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "song",
+      "context": "Song",
+      "season_months": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "time_windows": [
+        "DawnChorus",
+        "Day"
+      ],
+      "cooldown_s": 15,
+      "loudness": "Moderate",
+      "description": "Rapid nasal qui notes, associated with courtship and territory."
+    },
+    {
+      "call_id": "alarm",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 5,
+      "loudness": "Moderate",
+      "description": "Repeated shrill kri notes increase with anxiety or excitement."
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.35,
+      "leg_length_ratio": 0.3,
+      "head_scale": 0.9,
+      "neck_angle_deg": 10,
+      "tail_ratio": 0.7,
+      "wing_aspect": 2.0,
+      "beak_ratio": 0.35,
+      "girth_ratio": 0.9
+    },
+    "palette": {
+      "body": "#7b8990",
+      "belly": "#f1f0e8",
+      "markings": "#17191b",
+      "accent": "#d4dce0",
+      "eye": "#101010"
+    },
+    "part_colors": {
+      "breast": "belly",
+      "beak": "markings",
+      "tail": "body"
+    },
+    "poses": {
+      "idle": {},
+      "hop": {},
+      "fly": {},
+      "perched": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2484892",
+      "title": "GBIF Backbone Taxonomy: Sitta carolinensis",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "kind": "database",
+      "accessed": "2026-10-31",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org"
+    },
+    {
+      "id": "inat-taxonomy",
+      "url": "https://api.inaturalist.org/v1/taxa/14801",
+      "title": "iNaturalist taxon: Sitta carolinensis, taxon 14801",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "kind": "database",
+      "accessed": "2026-10-31",
+      "attribution": "iNaturalist contributors, via the iNaturalist API"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/White-breasted_nuthatch",
+      "title": "White-breasted nuthatch",
+      "license": "CC-BY-SA-4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "kind": "webpage",
+      "accessed": "2026-10-31",
+      "attribution": "Wikipedia contributors, \u201cWhite-breasted nuthatch,\u201d CC BY-SA 4.0"
+    },
+    {
+      "id": "gbif-activity-us",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2484892&country=US&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Sitta carolinensis in US",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "kind": "api",
+      "accessed": "2026-10-31",
+      "attribution": "GBIF.org (2026-10-31), occurrence records licensed CC0 1.0 and CC BY 4.0"
+    },
+    {
+      "id": "adw",
+      "url": "https://animaldiversity.org/accounts/Sitta_carolinensis/",
+      "title": "Sitta carolinensis (white-breasted nuthatch), Animal Diversity Web",
+      "license": "CC-BY-NC-SA-3.0",
+      "license_url": "https://animaldiversity.org/about/use_conditions/",
+      "kind": "webpage",
+      "accessed": "2026-10-31",
+      "attribution": "Tanya Dewey and Jennifer Roof, Animal Diversity Web, text CC BY-NC-SA 3.0"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High",
+      "note": "GBIF exact accepted species match; iNaturalist independently resolves the active species at species rank."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "inat-taxonomy"
+      ],
+      "confidence": "High"
+    },
+    "common_names": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "North American breeding range described as southern Canada through the United States to Mexico; country codes indicate native range, excluding vagrants."
+    },
+    "habitat": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Trunk and branch foraging, mature woodland, tree cavity nesting and occasional ground feeding; habitat fractions and resource weights are authored approximations."
+    },
+    "behavior": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored local bark-foraging FSM. Nuthatches move by jerky hops along trunks and branches, descend head-first, and occasionally feed on the ground. Climb has no dedicated rendered pose, so its pose is a stylized limitation."
+    },
+    "vocalizations": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Nasal song and contact/alarm calls summarized from the species article; timing and cooldowns are authored."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Palette follows the pale blue-gray upperparts, white underparts and dark crown described for males. Proportions and pose details are authored stylization."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Species article description; categorical mapping or simulation judgement where applicable."
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Species article description; categorical mapping or simulation judgement where applicable."
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Species article description; categorical mapping or simulation judgement where applicable."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Species article description; categorical mapping or simulation judgement where applicable."
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Species article description; categorical mapping or simulation judgement where applicable."
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Species article description; categorical mapping or simulation judgement where applicable."
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Species article description; categorical mapping or simulation judgement where applicable."
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Species article description; categorical mapping or simulation judgement where applicable."
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Species article description; categorical mapping or simulation judgement where applicable."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Species article description; categorical mapping or simulation judgement where applicable."
+    },
+    "traits.size_class": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Species article description; categorical mapping or simulation judgement where applicable."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": false,
+      "note": "Species article description; categorical mapping or simulation judgement where applicable."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Species article description; categorical mapping or simulation judgement where applicable."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Species article description; categorical mapping or simulation judgement where applicable."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Species article description; categorical mapping or simulation judgement where applicable."
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Species article description; categorical mapping or simulation judgement where applicable."
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Species article description; categorical mapping or simulation judgement where applicable."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Midpoint of the article range 18-30 g: (18+30)/2=24 g, converted to 0.024 kg. This is a simple range midpoint, not a measured species mean."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Midpoint of the article range 13-14 cm: (13+14)/2=13.5 cm, converted to 0.135 m."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "The article states an estimated average lifespan of two years and distinguishes it from the 12-year-9-month banding record. ADW Lifespan/Longevity section was checked and says the same two-year wild estimate, but was not used because its text licence is CC BY-NC-SA 3.0; the permissively licensed article provides the estimate and cites its source."
+    },
+    "activity.US": {
+      "sources": [
+        "gbif-activity-us"
+      ],
+      "confidence": "Medium",
+      "note": "GBIF tier A, country-level US query; 12,363,538 observations; all twelve monthly bins usable. iNaturalist tier C returned zero and was not used. Activity is observation frequency, not direct abundance."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "The species article describes it as non-migratory, with adults normally remaining in territory year-round."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "adw"
+      ],
+      "confidence": "Medium",
+      "note": "Geographic Range section: most breeding early May to early June, with some regional variation; phase represents that broad typical US window."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "note": "Stages are listed without duration because the published fledging range varies."
+    }
+  },
+  "contributors": [
+    {
+      "name": "Codex (Orca worker)",
+      "agent": "codex"
+    }
+  ]
+}
