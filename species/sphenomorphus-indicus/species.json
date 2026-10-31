@@ -1,0 +1,467 @@
+{
+  "$schema": "https://eeeearth.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Sphenomorphus indicus",
+  "slug": "sphenomorphus-indicus",
+  "common_names": {
+    "en": "Indian forest skink"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Reptilia",
+    "order": "Squamata",
+    "family": "Scincidae",
+    "genus": "Sphenomorphus",
+    "authority": "(Gray, 1853)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2464291,
+    "inat_taxon_id": 37541,
+    "itis_tsn": 1182774,
+    "wikidata": "Q610725"
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "BT",
+      "CN",
+      "IN",
+      "MY",
+      "TH",
+      "TW",
+      "VN"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk"
+    ],
+    "thermoregulation": "Ectotherm",
+    "skin": "Scales",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "None",
+    "perching": false,
+    "diet": {
+      "invertebrate": 1.0
+    },
+    "social": {
+      "structure": "Solitary",
+      "group_size": [
+        1,
+        1
+      ]
+    },
+    "activity_pattern": "Cathemeral",
+    "defense": "Flee",
+    "wariness": 0.5
+  },
+  "habitat": {
+    "use": {
+      "ground": 1.0
+    },
+    "shelter_tag": "leaf_litter",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 1.0
+      },
+      {
+        "tag": "leaf_litter",
+        "kind": "Shelter",
+        "weight": 1.0
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Avoider",
+      "notes": "Recorded in evergreen, semi-deciduous and disturbed forest, and in hilly habitat near settlements."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "life_stages": [
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "TW",
+        "monthly": [
+          0.07,
+          0.2,
+          0.92,
+          1.0,
+          0.31,
+          0.72,
+          0.88,
+          0.5,
+          0.59,
+          0.51,
+          0.27,
+          0.13
+        ],
+        "method": "gbif_raw",
+        "observations": 1201,
+        "sources": [
+          "gbif-activity-tw"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "skipped": "could not resolve iNaturalist place id for TW: no admin_level 0 iNaturalist place found for 'Chinese Taipei'"
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "country",
+              "TW"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2464291&country=TW&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": null,
+            "total": 1201,
+            "usable": true
+          },
+          "used": [
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-ground-forager-v1",
+    "params": {
+      "food_tag": "invertebrate",
+      "flee_m": 5,
+      "calm_m": 15,
+      "food_m": 20,
+      "flee_gait": "walk",
+      "forage_gait": "walk",
+      "rest_sun_lo_deg": -90,
+      "rest_sun_hi_deg": -6
+    }
+  },
+  "vocalizations": [],
+  "look": {
+    "body_plan": "quadruped",
+    "proportions": {
+      "torso_aspect": 2.5,
+      "leg_length_ratio": 0.3,
+      "head_scale": 0.4,
+      "neck_angle_deg": 5,
+      "tail_ratio": 2.0,
+      "ear_ratio": 0.1,
+      "girth_ratio": 0.8
+    },
+    "palette": {
+      "body": "#6b5a3e",
+      "belly": "#d9d3bf",
+      "markings": "#3b2f22",
+      "accent": "#8a7a5a",
+      "eye": "#111111"
+    },
+    "part_colors": {
+      "head": "body",
+      "tail": "body"
+    },
+    "poses": {
+      "idle": {},
+      "walk": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2464291",
+      "title": "GBIF Backbone Taxonomy: Sphenomorphus indicus (usageKey 2464291)",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "kind": "database",
+      "accessed": "2026-10-31",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=1182774",
+      "title": "ITIS: Sphenomorphus indicus (TSN 1182774)",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-10-31"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q610725",
+      "title": "Wikidata: Sphenomorphus indicus (Q610725)",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "kind": "database",
+      "accessed": "2026-10-31"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Sphenomorphus_indicus",
+      "title": "Wikipedia: Sphenomorphus indicus",
+      "license": "CC-BY-SA-4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "kind": "webpage",
+      "accessed": "2026-10-31",
+      "attribution": "Wikipedia contributors, \"Sphenomorphus indicus\", English Wikipedia, CC BY-SA 4.0",
+      "note": "English article text is an old, short description; it gives distribution, colour and tail proportion. It gives no mass, lifespan, diet or seasonal data."
+    },
+    {
+      "id": "vn-sphenomorphus-review",
+      "url": "https://stdj.scienceandtechnology.com.vn/index.php/stdj/article/download/1733/2215",
+      "title": "A review of the genus Sphenomorphus Fitzinger, 1843 (Squamata: Scincidae) in southern Vietnam, with additional data on S. sheai and S. tridigitus",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "kind": "literature",
+      "accessed": "2026-10-31",
+      "attribution": "Le, M.V. et al., \"A review of the genus Sphenomorphus Fitzinger, 1843 (Squamata: Scincidae) in southern Vietnam\", Science & Technology Development Journal 23(1):470-478, CC BY 4.0",
+      "note": "Specimen-based account of S. indicus (n = 10 examined): SVL diagnosis, scalation, distribution and natural history in southern Vietnam."
+    },
+    {
+      "id": "gbif-activity-tw",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2464291&country=TW&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Sphenomorphus indicus in TW",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-31) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-31",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "itis"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "itis",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "GBIF usageKey 2464291 and iNaturalist taxon 37541 matched species rank on 2026-10-31. ITIS TSN 1182774 is the valid record for this name; Wikidata P685 gives TSN 96757, a different ITIS record, so it is not used."
+    },
+    "common_names": {
+      "sources": [
+        "vn-sphenomorphus-review",
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "Medium",
+      "note": "Wikidata P141 = least concern (Q211005). Not checked against the IUCN Red List directly."
+    },
+    "range": {
+      "sources": [
+        "wikipedia",
+        "vn-sphenomorphus-review"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Country list from the Wikipedia distribution line (S China, Bhutan, Taiwan, Thailand, Vietnam, India, W Malaysia) plus Vietnam from the review. Bangladesh and the Nepal, Myanmar, Cambodia and Laos records found in other sources are NOT included: none is backed by a licensed source checked here. Native status is not checked against introduced-range evidence."
+    },
+    "traits.body_plan": {
+      "sources": [],
+      "confidence": "High",
+      "derived": true,
+      "note": "Reptile (Vertebrate); no sentence in the sources restates it."
+    },
+    "traits.limb_count": {
+      "sources": [
+        "vn-sphenomorphus-review"
+      ],
+      "confidence": "High",
+      "note": "Limbs well developed, pentadactyl."
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "vn-sphenomorphus-review"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Walking follows from the well-developed pentadactyl limbs; no gait observation is in the sources."
+    },
+    "traits.thermoregulation": {
+      "sources": [],
+      "confidence": "High",
+      "derived": true,
+      "note": "Authored from reptile class; no source line checked."
+    },
+    "traits.skin": {
+      "sources": [
+        "vn-sphenomorphus-review"
+      ],
+      "confidence": "High",
+      "note": "Mid-body scale rows all smooth."
+    },
+    "traits.flight": {
+      "sources": [],
+      "confidence": "High",
+      "derived": true,
+      "note": "Authored: non-flying lizard."
+    },
+    "traits.respiration": {
+      "sources": [],
+      "confidence": "High",
+      "derived": true,
+      "note": "Authored: lung-breathing lizard."
+    },
+    "traits.metamorphosis": {
+      "sources": [],
+      "confidence": "High",
+      "derived": true,
+      "note": "Authored: no larval stage in a lizard."
+    },
+    "traits.nest_type": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored as None. Live-bearing reproduction (not cited here: licence of the 1996 Zoological Studies source not verified) would mean no nest; confirm before merge."
+    },
+    "traits.perching": {
+      "sources": [
+        "vn-sphenomorphus-review"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Specimens taken under leaf litter and among rocks; perching is not reported."
+    },
+    "traits.diet": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored allocation: invertebrate-only. No open source checked gives a diet composition for this species; a non-licensed diet note was found and not used. Needs a licensed diet source."
+    },
+    "traits.social": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored as solitary, the usual skink pattern. No source checked states it."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "vn-sphenomorphus-review"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Specimens collected 'at night and in daytime'. Cathemeral is the closest enum value; the shared program can express only diurnal or nocturnal rest."
+    },
+    "traits.defense": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored judgement: flight to cover. No source describes the threat response."
+    },
+    "traits.wariness": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement, 0.5 (mid-scale)."
+    },
+    "habitat.use": {
+      "sources": [
+        "vn-sphenomorphus-review"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "All records are under leaf litter or among rocks on the ground."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "vn-sphenomorphus-review"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Rotting leaf layer."
+    },
+    "habitat.resources": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Invertebrate predation follows the authored diet; leaf-litter shelter follows the record note above."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "vn-sphenomorphus-review"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored Avoider: records are from forest, including disturbed forest and hills near a settlement, so the Adapter label is also possible."
+    },
+    "seasonal.strategy": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored as active year-round. No open source checked gives a seasonal pattern for this species."
+    },
+    "seasonal.life_stages": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Adult only; no stage durations given."
+    },
+    "vocalizations": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "No vocalisation is described in the sources checked. Empty means silent by default, not confirmed silent."
+    },
+    "look": {
+      "sources": [
+        "wikipedia",
+        "vn-sphenomorphus-review"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Colour from the Wikipedia description (brown or olive above, dark brown sides, whitish below). Proportions are authored; the palette values are approximations of that text."
+    },
+    "look.proportions.tail_ratio": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Wikipedia: tail almost twice as long as head and body."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the shared ground-forager program. Flee and calm distances are judgement. The rest window is the diurnal setting because the species is cathemeral: it is active both day and night, and the program cannot express that."
+    },
+    "activity.TW": {
+      "sources": [
+        "gbif-activity-tw"
+      ],
+      "confidence": "Medium",
+      "note": "GBIF-only curve (CC0 and CC BY records, country TW, month-bearing, no geospatial issue). The iNaturalist TW histogram under CC0/CC BY gives 221 records, below the 300 threshold, so it was not used. Widening to iNaturalist NC licences would have raised the total to 2421; that NC source was rejected and is not in the record. Taiwan has no iNaturalist admin_level-0 place for the fetcher's name, so the iNaturalist step was skipped automatically."
+    }
+  },
+  "contributors": [
+    {
+      "name": "Jason Grey",
+      "agent": "claude-code"
+    }
+  ]
+}
