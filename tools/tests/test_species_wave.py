@@ -69,12 +69,8 @@ def test_published_batches_and_unpublished_reserve_are_disjoint():
     assert len(groups[3]) == overflow['count']
     assert reserve['screened_key_count_excluded'] == second['screened_key_count']
     assert any(item['group'] == 'Reptilia' for item in second['records'])
-    existing_record_keys = {
-        json.loads(path.read_text())['external']['gbif_usage_key']
-        for path in (ROOT / 'species').glob('*/species.json')
-    }
-    assert not groups[1] & existing_record_keys
-    assert not groups[3] & existing_record_keys
+    # A published request or screened lead can later become a species record.
+    # Keep the batch inventories distinct without rejecting completed work.
     assert all(not groups[i] & groups[j] for i in range(4) for j in range(i + 1, 4))
     first_inat = {item['inat_taxon_id'] for item in first['records']}
     second_inat = {item['inat_taxon_id'] for item in second['records']}
