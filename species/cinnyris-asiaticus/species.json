@@ -1,0 +1,567 @@
+{
+  "$schema": "https://eeeearth.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Cinnyris asiaticus",
+  "slug": "cinnyris-asiaticus",
+  "common_names": {
+    "en": "Purple sunbird"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Passeriformes",
+    "family": "Nectariniidae",
+    "genus": "Cinnyris",
+    "authority": "(Latham, 1790)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 7340608,
+    "inat_taxon_id": 145193,
+    "wikidata": "Q1797393"
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "IN",
+      "LK",
+      "PK",
+      "BD",
+      "MM",
+      "IR",
+      "AF"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Fly"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Cup",
+    "perching": true,
+    "size_class": "Tiny",
+    "mass_kg": 0.0081,
+    "length_m": 0.1,
+    "diet": {
+      "nectar": 0.6,
+      "invertebrate": 0.3,
+      "fruit": 0.1
+    },
+    "social": {
+      "structure": "Group",
+      "group_size": [
+        1,
+        50
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.3
+  },
+  "habitat": {
+    "use": {
+      "arboreal": 0.9,
+      "aerial": 0.1
+    },
+    "shelter_tag": "shrub_thicket",
+    "resources": [
+      {
+        "tag": "nectar",
+        "kind": "Nectarivory",
+        "weight": 0.6
+      },
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.3
+      },
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.1
+      },
+      {
+        "tag": "nest_cup",
+        "kind": "Nesting",
+        "weight": 1.0
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.8
+      },
+      {
+        "tag": "shrub_thicket",
+        "kind": "Shelter",
+        "weight": 0.6
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "light_max": 0.8,
+      "notes": "Gardens with suitable flowers can hold aggregations; nests sometimes sit close to human habitations, on wires or other man-made objects, and indoors in an unused toilet."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "04-01",
+        "end": "06-30",
+        "region": "IN",
+        "note": "Primary breeding season is April to June in northern India. Sri Lanka's January to June season is outside the IN scope of this record."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg",
+        "requires_tag": "nest_cup"
+      },
+      {
+        "stage": "Juvenile"
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "IN",
+        "monthly": [
+          0.63,
+          0.78,
+          0.81,
+          1.0,
+          0.97,
+          0.86,
+          0.69,
+          0.62,
+          0.67,
+          0.63,
+          0.71,
+          0.64
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 619625,
+        "sources": [
+          "inat-activity-in",
+          "gbif-activity-in"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 6681,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=145193&place_id=6681&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=6681&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "total": 1010,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "country",
+              "IN"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=7340608&country=IN&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&country=IN&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 618615,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "bt-perching-songbird-v1",
+    "params": {
+      "flee_m": 5,
+      "food_tag": "nectar",
+      "song": "song",
+      "alarm": "alarm",
+      "nest_m1": 4,
+      "nest_m2": 6
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "song",
+      "context": "Song",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day"
+      ],
+      "cooldown_s": 10,
+      "loudness": "Moderate",
+      "description": "A rapid rattle followed by ringing, metallic notes, given from a perch and often during the male's display."
+    },
+    {
+      "call_id": "alarm",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 5,
+      "loudness": "Moderate",
+      "description": "Short 'chwit' or 'chwing' call notes, given while mobbing owls and other predators."
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.4,
+      "leg_length_ratio": 0.3,
+      "head_scale": 0.75,
+      "neck_angle_deg": 8,
+      "tail_ratio": 0.55,
+      "wing_aspect": 2.2,
+      "beak_ratio": 0.85,
+      "girth_ratio": 0.95
+    },
+    "palette": {
+      "body": "#3a2d4a",
+      "belly": "#e8c81e",
+      "markings": "#2a2438",
+      "accent": "#3d6fc4",
+      "eye": "#141410"
+    },
+    "part_colors": {
+      "beak": "eye",
+      "breast": "belly"
+    },
+    "poses": {
+      "idle": {},
+      "fly": {},
+      "perched": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/7340608",
+      "title": "GBIF Backbone Taxonomy: Cinnyris asiaticus",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-31",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q1797393",
+      "title": "Wikidata: Purple Sunbird (Q1797393)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-31",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Purple_sunbird",
+      "title": "Wikipedia: Purple sunbird",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-31",
+      "attribution": "Wikipedia contributors, \"Purple sunbird\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "avonet",
+      "url": "https://doi.org/10.6084/m9.figshare.16586228",
+      "title": "AVONET: morphological, ecological and geographical data for all birds",
+      "license": "CC-BY-4.0",
+      "kind": "dataset",
+      "accessed": "2026-10-31",
+      "attribution": "Tobias, J. A. et al. (2022) AVONET. Ecology Letters 25:581-597",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "inat-activity-in",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=145193&place_id=6681&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Cinnyris asiaticus in IN",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-10-31",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-in",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=7340608&country=IN&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Cinnyris asiaticus in IN",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-31) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-31",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "GBIF usageKey 7340608 (species/match: EXACT, SPECIES, ACCEPTED) and iNaturalist taxon 145193 (species rank, active) both checked 2026-10-31. Wikidata Q1797393 carries P846 = 7340608 and P3151 = 145193."
+    },
+    "conservation": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "Wikidata P141 (IUCN conservation status) = Q211005, Least Concern."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Only countries the article names are listed: 'West Asia through the Indian subcontinent'; Iran, Afghanistan and Pakistan in the dry zone; India; Sri Lanka; Bangladesh and Myanmar. Arabian Peninsula and Indochina are described without country names, so they are omitted. Nepal and Bhutan are not mentioned and are not listed."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Bird; limb_count 2 per the schema's bird convention."
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "'Has a fast and direct flight'. The article also says it 'can take nectar by hovering' but 'rarely hovers at flowers and usually perches'. Hover has no pose in the schema, so only Fly is declared."
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The article describes a pouch made of cobwebs and plant strips with a side entrance, suspended from a branch. 'Cup' is the nearest schema value; the closest enum is not an exact match."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'Often perches at the base of flowers' and 'usually perch to forage for nectar'."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "avonet"
+      ],
+      "confidence": "Medium",
+      "note": "AVONET Mass = 8.1 g for Cinnyris asiaticus (Species1 row Sequence 9574), Mass.Source = Dunning, from 13 complete measures of 15 individuals. The Dunning mean is taken as the adult mass value."
+    },
+    "traits.size_class": {
+      "sources": [
+        "avonet"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Derived from mass_kg = 0.0081."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "The article says 'Less than 10 cm (3.9 in) long'. That is an upper bound, and 0.10 m is used as the value. Non-open regional sites give 9-11.5 cm, which are not used. Replace with a sourced typical length if one is found."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "'Feeds mainly on nectar and insects, especially when feeding young', 'also take fruits'. The ordering nectar > insects > fruit is from the article. The 0.6/0.3/0.1 proportions are authored from that ordering; the article gives no percentages."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "'Seen in pairs or small groups'; 'groups of as many as 40 to 50 individuals have sometimes been noted'. The upper bound of 50 is taken from that statement."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Recorded as diurnal: the article describes a daytime bird with no nocturnal behaviour."
+    },
+    "traits.defense": {
+      "sources": [],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Authored: small passerine that flees to cover."
+    },
+    "traits.wariness": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: a bird that is common in gardens and tolerates people."
+    },
+    "habitat.use": {
+      "sources": [
+        "avonet",
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "AVONET habitat = Shrubland, Primary.Lifestyle = Insessorial. The article describes a perching bird that 'usually perches to forage'. The 0.9/0.1 split is authored from that description."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Nectar, invertebrate and fruit resources follow the diet ordering. Weights are authored. Nest_cup and perch are described tags, and shrub_thicket is authored from 'thin forest and garden land'."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Authored from 'thin forest and garden land' and the shrub/thicket habitat. Shelter is the shrub_thicket resource."
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Bird; wings are not counted, legs are, per the schema's convention (2)."
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'It has a fast and direct flight'."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Bird (endotherm); the article does not restate it, so this follows the class."
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Plumage described throughout the article."
+    },
+    "traits.respiration": {
+      "sources": [],
+      "confidence": "High",
+      "derived": true,
+      "note": "Lungs, as for all birds; not restated in the article."
+    },
+    "traits.metamorphosis": {
+      "sources": [],
+      "confidence": "High",
+      "derived": true,
+      "note": "None; altricial birds do not metamorphose."
+    },
+    "vocalizations.song": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Article: 'The song is rapid rattle followed by ringing, metallic notes'."
+    },
+    "vocalizations.alarm": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Article: 'Other call notes include a chwit or chwing' and 'will join to mob owls or other predators'."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Breeding phase from the article's northern India breeding season (April to June)."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Egg, Juvenile and Adult stages. The article gives 15-17 days incubation but no juvenile duration, so none is recorded."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Article: 'aggregations may be found in gardens with suitable flowers' and nesting 'close to human habitations' and indoors. light_max 0.8 is authored."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia",
+        "avonet"
+      ],
+      "confidence": "Medium",
+      "note": "Article: 'resident birds in most parts of their range'; local movements noted in drier northwestern India. AVONET Migration = 1 (sedentary)."
+    },
+    "seasonal.breeding": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Article: 'The primary breeding season is before the Monsoons, April to June in northern India and January to June in Sri Lanka.' The IN phase uses April to June only. January to March is not stated for northern India."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Authored program choice: bt-perching-songbird-v1 is a perching-songbird program. Limitation: its food action 'eat_nearest' uses the hop gait, and the sunbird's feeding is largely perched and hovering. Hop is not declared, so no hop pose is needed. Nest months are {4,5,6} from the northern India breeding season. Feeding with a hop gait does not match the species and is disclosed in the PR as an unresolved behaviour limitation."
+    },
+    "look": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement colours from the article: breeding male purplish-black with a blue shoulder patch and yellow pectoral tufts; female olive above and yellow below. Proportions are the perching-songbird set used by the existing sunbird record."
+    }
+  }
+}
