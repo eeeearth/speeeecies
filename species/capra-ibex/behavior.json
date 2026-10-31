@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "format": "speeeecies/behavior",
+  "id": "fsm-ibex-v1",
+  "kind": "fsm",
+  "description": "Alpine ibex graze on foot, travel and flee with a climbing gait, and alternate feeding with rest across day and night.",
+  "params": {
+    "climb_chance": 0.22,
+    "graze_chance": 0.3,
+    "browse_chance": 0.12
+  },
+  "initial": "idle",
+  "states": {
+    "idle": {"action": {"do": "idle"}, "min_dwell_s": 3},
+    "climb": {"action": {"do": "wander", "gait": "climb"}},
+    "graze": {"action": {"do": "eat_nearest", "tag": "graze", "gait": "walk"}},
+    "browse": {"action": {"do": "eat_nearest", "tag": "browse", "gait": "walk"}},
+    "flee": {"action": {"do": "flee", "gait": "climb"}, "min_dwell_s": 3},
+    "rest": {"action": {"do": "rest", "at": "shelter"}, "min_dwell_s": 30}
+  },
+  "transitions": [
+    {"from": "*", "to": "flee", "when": {"threat_within_m": 20}, "priority": 100},
+    {"from": "*", "to": "rest", "when": {"all": [{"is_day": true}, {"chance": 0.15}]}, "priority": 30},
+    {"from": "rest", "to": "graze", "when": {"is_day": false}, "priority": 20},
+    {"from": "idle", "to": "graze", "when": {"all": [{"need": "hunger", "gt": 0.45}, {"food_within_m": 35, "tag": "graze"}] }},
+    {"from": "idle", "to": "browse", "when": {"all": [{"need": "hunger", "gt": 0.45}, {"food_within_m": 35, "tag": "browse"}] }},
+    {"from": "idle", "to": "climb", "when": {"chance": "${climb_chance}"}},
+    {"from": "idle", "to": "graze", "when": {"chance": "${graze_chance}"}},
+    {"from": "idle", "to": "browse", "when": {"chance": "${browse_chance}"}},
+    {"from": "climb", "to": "idle", "when": {"chance": 0.2}},
+    {"from": "graze", "to": "idle", "when": {"need": "hunger", "lt": 0.2}},
+    {"from": "browse", "to": "idle", "when": {"need": "hunger", "lt": 0.2}},
+    {"from": "flee", "to": "idle", "when": {"not": {"threat_within_m": 40}}}
+  ]
+}
