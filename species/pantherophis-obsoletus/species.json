@@ -1,0 +1,526 @@
+{
+  "$schema": "https://eeeearth.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Pantherophis obsoletus",
+  "slug": "pantherophis-obsoletus",
+  "common_names": {
+    "en": "western ratsnake"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Reptilia",
+    "order": "Squamata",
+    "family": "Colubridae",
+    "genus": "Pantherophis",
+    "authority": "(Say, 1823)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2455676,
+    "inat_taxon_id": 73888,
+    "itis_tsn": 1081826,
+    "wikidata": "Q998324"
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "US"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 0,
+    "locomotion_modes": [
+      "Slither",
+      "Swim",
+      "Climb"
+    ],
+    "thermoregulation": "Ectotherm",
+    "skin": "Scales",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "size_class": "Medium",
+    "length_m": 1.45,
+    "diet": {
+      "vertebrate": 1.0
+    },
+    "social": {
+      "structure": "Solitary",
+      "group_size": [
+        1,
+        1
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.5
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.5,
+      "arboreal": 0.4,
+      "aquatic": 0.1
+    },
+    "shelter_tag": "log_pile",
+    "resources": [
+      {
+        "tag": "small_vertebrate",
+        "kind": "Predation",
+        "weight": 1.0
+      },
+      {
+        "tag": "cavity",
+        "kind": "Shelter",
+        "weight": 0.4
+      },
+      {
+        "tag": "log_pile",
+        "kind": "Shelter",
+        "weight": 0.6
+      },
+      {
+        "tag": "water",
+        "kind": "Water",
+        "weight": 0.3
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "notes": "Wikipedia notes that when found in homes they are often in groups, and captive-bred individuals are more docile than wild ones. Adapter is an authored judgement from that and is not a measured tolerance."
+    }
+  },
+  "seasonal": {
+    "strategy": "Hibernation",
+    "triggers": {
+      "enter": {
+        "temperature_below_c": 10,
+        "days": 7
+      },
+      "exit": {
+        "temperature_above_c": 12,
+        "days": 3
+      }
+    },
+    "phases": [
+      {
+        "name": "mating",
+        "start": "05-20",
+        "end": "06-10",
+        "note": "Mating takes place in late May and early June (Wikipedia, Reproduction)."
+      },
+      {
+        "name": "nesting",
+        "start": "07-01",
+        "end": "07-15",
+        "note": "Five weeks after mating the female lays about 12 to 20 eggs (Wikipedia). The window is derived from that interval and is approximate."
+      },
+      {
+        "name": "young",
+        "start": "08-20",
+        "end": "10-10",
+        "note": "Eggs hatch about 65 to 70 days after laying, in late August to early October (Wikipedia)."
+      },
+      {
+        "name": "dormancy",
+        "start": "11-01",
+        "end": "03-15",
+        "note": "Hibernates in shared dens during winter (Wikipedia). Calendar dates are authored and not sourced for any region."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg",
+        "duration_days": 68
+      },
+      {
+        "stage": "Juvenile",
+        "scale": 0.3
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-ground-forager-v1",
+    "params": {
+      "flee_m": 10,
+      "calm_m": 25,
+      "food_tag": "small_vertebrate",
+      "food_m": 40,
+      "flee_gait": "slither",
+      "forage_gait": "slither",
+      "rest_sun_lo_deg": -90,
+      "rest_sun_hi_deg": -6
+    }
+  },
+  "vocalizations": [],
+  "look": {
+    "body_plan": "serpentine",
+    "proportions": {
+      "torso_aspect": 6.0,
+      "head_scale": 1.15,
+      "girth_ratio": 1.0
+    },
+    "palette": {
+      "body": "#1e1e1e",
+      "belly": "#2b2b2b",
+      "accent": "#f2f2f2",
+      "eye": "#8a7a2a"
+    },
+    "part_colors": {
+      "head": "body",
+      "segment0": "accent"
+    },
+    "poses": {
+      "idle": {},
+      "slither": {},
+      "swim": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2455676",
+      "title": "GBIF Backbone Taxonomy: Pantherophis obsoletus (usageKey 2455676)",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-31",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q998324",
+      "title": "Wikidata: Pantherophis obsoletus (Q998324)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-31",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Pantherophis_obsoletus",
+      "title": "Wikipedia: Pantherophis obsoletus",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-31",
+      "attribution": "Wikipedia contributors, \"Pantherophis obsoletus\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "wikipedia-snake",
+      "url": "https://en.wikipedia.org/wiki/Snake",
+      "title": "Wikipedia: Snake",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-31",
+      "attribution": "Wikipedia contributors, \"Snake\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "us-itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=1081826",
+      "title": "ITIS: Pantherophis obsoletus, TSN 1081826",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-10-31",
+      "note": "US federal government database; public domain in the United States. The ITIS author string is '(Say in James, 1823)', which differs from GBIF's '(Say, 1823)'; the record uses GBIF's form."
+    },
+    {
+      "id": "gbif-activity-us",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2455676&country=US&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Pantherophis obsoletus in US",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-31) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-31",
+      "kind": "api"
+    },
+    {
+      "id": "inat-activity-us",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=73888&place_id=1&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Pantherophis obsoletus in US",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-10-31",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "us-itis"
+      ],
+      "confidence": "High",
+      "note": "GBIF lists the accepted species name, rank SPECIES, status ACCEPTED, family Colubridae. Its species response puts the order name Squamata in the class field and leaves order empty, so class Reptilia and order Squamata are taken from Wikipedia Snake (Serpentes within Squamata; snakes as reptiles). ITIS gives the same name under TSN 1081826 with genus Pantherophis."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata",
+        "us-itis"
+      ],
+      "confidence": "High",
+      "note": "GBIF usageKey 2455676 checked on 2026-10-31 against the species endpoint. iNaturalist taxon 73888 is taken from Wikidata P3151 and matches the iNaturalist name at species rank. ITIS TSN 1081826 is taken from Wikidata P815 and confirmed by ITIS."
+    },
+    "conservation": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "Medium",
+      "note": "IUCN category from Wikidata P141, which points at the Least Concern item (Q211005). The IUCN assessment itself is not openly licensed and was not checked directly."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Wikipedia: 'The species is native to central North America west of the Mississippi River', with range given from eastern and southern Iowa south to Louisiana and Texas and north to southeastern Nebraska. Only the United States is named, so range.native is ['US']. Eastern populations belong to Pantherophis alleghaniensis, not to this species."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Snake (Serpentes) form, with no limbs, mapped to the serpentine mesh plan; limb_count 0 follows the schema convention for legless animals."
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia-snake"
+      ],
+      "confidence": "High",
+      "note": "Wikipedia Snake: 'Snakes are limbless reptiles of the squamate suborder Serpentes.' Limb count 0 follows the schema convention for a legless animal."
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Slither is the default gait of a snake. Swim is stated: 'The black rat snake is also a competent swimmer.' Climb is stated: 'These rat snakes are excellent climbers and spend a significant amount of their time in trees.' Climb has no pose in the previewer (see PR)."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Ectotherm, as for all snakes, is not stated for this species in the article; the value follows from its basking, brumation and hibernation behaviour, which the article does describe."
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Scales, as for all snakes."
+    },
+    "traits.size_class": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Medium is provisional. The validator checks size_class against mass_kg, which is absent, so this value cannot yet be checked. See the mass blocker in the PR."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of the typical total length range 106.7 to 183 cm given by Wikipedia (1.447 m, rounded to 1.45 m). The record maximum of 218.4 cm is excluded because it is not a typical adult."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Wikipedia lists only vertebrate prey: mice, voles, rats, other snakes, frogs, lizards, moles, chipmunks, squirrels, rabbits, opossums, songbirds and bird eggs. An invertebrate share is not stated, so the diet is recorded as all vertebrate. This is an authored simplification."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Wikipedia: 'Rat snakes of the genus Pantherophis are primarily diurnally active', with facultative nocturnal behaviour noted. The record uses the primary pattern. The genus statement applies to Pantherophis rather than this species alone."
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Wikipedia: when startled the snake may freeze, flee quickly or vibrate its tail; when cornered it may stand its ground and produce a foul musk. Flee is the first response described."
+    },
+    "traits.wariness": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored judgement, not a measured value. It sits between the flee-first and stand-ground responses in Wikipedia."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored split. Wikipedia describes 'excellent climbers' that 'spend a significant amount of their time in trees' and a competent swimmer, and a preference for wooded areas. It gives no percentages, so the shares are judgement."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Wikipedia says the snake winters in shared dens and in homes, without naming a den type. log_pile stands in for a den; an authored choice."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "small_vertebrate follows the feeding section. cavity and log_pile follow the nesting-bird and den statements. water follows the swimming statement. Weights are judgement."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Wikipedia says that when found in homes they are often in groups. The Adapter level is an authored judgement. It is not a measured tolerance."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Wikipedia, Habitat: 'During winter, they hibernate in shared dens'."
+    },
+    "seasonal.triggers": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored placeholder thresholds. The source gives no temperatures or durations."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Mating late May and early June, eggs laid about five weeks later, hatching 65 to 70 days after that in late August to early October are all from Wikipedia, Reproduction. Dormancy dates and the nesting window are derived or authored, and no regional window is sourced."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "The egg duration is the midpoint of the 65 to 70 day hatching interval. The juvenile scale and the adult scale are authored."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Authored parameters for fsm-ground-forager-v1. rest_sun_lo_deg -90 and rest_sun_hi_deg -6 make the snake rest at night, because the source describes a primarily diurnal genus. The gait parameters are slither because this is a snake. Distances are judgement."
+    },
+    "look": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored, from Wikipedia's description: adults are glossy black above with white lips, chin and throat. The belly and eye colours are judgement."
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia-snake"
+      ],
+      "confidence": "High",
+      "note": "Snakes do not fly: the Snake article describes them as limbless reptiles, and flight is recorded as None."
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia-snake"
+      ],
+      "confidence": "High",
+      "note": "Wikipedia Snake: snakes are 'air-breathing vertebrates'; the lung mapping is the schema's Lungs value."
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "No larval stage is described: 'hatchlings are 28-41 cm and they look like miniature fox snakes', so the value is None."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Solitary is an authored judgement for the active season: the article says the snakes 'hibernate in shared dens' in winter and are 'often in groups' when found in homes, which the schema does not model as a social structure."
+    }
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US",
+        "monthly": [
+          0.03,
+          0.04,
+          0.17,
+          0.62,
+          1.0,
+          0.58,
+          0.37,
+          0.24,
+          0.32,
+          0.31,
+          0.12,
+          0.06
+        ],
+        "method": "mean(inat_raw, gbif_raw)",
+        "observations": 12897,
+        "sources": [
+          "inat-activity-us",
+          "gbif-activity-us"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 1,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=73888&place_id=1&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": null,
+            "total": 1561,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "country",
+              "US"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2455676&country=US&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": null,
+            "total": 11336,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  }
+}
