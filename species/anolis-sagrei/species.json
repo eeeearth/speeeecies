@@ -1,0 +1,580 @@
+{
+  "$schema": "https://eeeearth.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Anolis sagrei",
+  "slug": "anolis-sagrei",
+  "common_names": {
+    "en": "brown anole"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Reptilia",
+    "order": "Squamata",
+    "family": "Dactyloidae",
+    "genus": "Anolis",
+    "authority": "Dum\u00e9ril & Bibron, 1837",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 4287413,
+    "inat_taxon_id": 116461,
+    "wikidata": "Q790586"
+  },
+  "range": {
+    "native": [
+      "BS",
+      "CU",
+      "KY"
+    ],
+    "introduced": [
+      "US"
+    ],
+    "invasive_in": [
+      "US"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk",
+      "Climb"
+    ],
+    "thermoregulation": "Ectotherm",
+    "skin": "Scales",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "perching": true,
+    "size_class": "Tiny",
+    "mass_kg": 0.003512,
+    "length_m": 0.1418,
+    "lifespan_y": 1,
+    "diet": {
+      "invertebrate": 1.0
+    },
+    "social": {
+      "structure": "Solitary",
+      "group_size": [
+        1,
+        1
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.5
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.2,
+      "arboreal": 0.8
+    },
+    "shelter_tag": "perch",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 1.0
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 1.0
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "notes": "The 2025 South Florida study sampled this urban-tolerant lizard from natural forest to urban-core sites. The ground/arboreal split is an authored simulation estimate for a semi-arboreal trunk-ground lizard."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "03-20",
+        "end": "09-30",
+        "region": "US-FL",
+        "note": "Florida only. Females lay one egg every 5-10 days from late March to September; day numbers are an authored reading of 'late March' and 'September', and the source cites a southern-Florida study. No dormancy phase is encoded because winter quiescence is unsourced. Other US states have no sourced phase."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Juvenile"
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US",
+        "monthly": [
+          0.48,
+          0.62,
+          0.99,
+          1.0,
+          0.84,
+          0.85,
+          0.73,
+          0.66,
+          0.9,
+          0.71,
+          0.5,
+          0.63
+        ],
+        "method": "gbif_raw",
+        "observations": 12512,
+        "sources": [
+          "gbif-activity-us"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 10316,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=116461&place_id=10316&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": null,
+            "total": 0,
+            "usable": false
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "country",
+              "US"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=4287413&country=US&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": null,
+            "total": 12512,
+            "usable": true
+          },
+          "used": [
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-anolis-sagrei-v1"
+  },
+  "vocalizations": [],
+  "look": {
+    "body_plan": "quadruped",
+    "proportions": {
+      "torso_aspect": 2.2,
+      "leg_length_ratio": 0.42,
+      "head_scale": 0.62,
+      "neck_angle_deg": 12,
+      "tail_ratio": 1.35,
+      "ear_ratio": 0.03,
+      "girth_ratio": 0.52
+    },
+    "palette": {
+      "body": "#806447",
+      "belly": "#c2a987",
+      "markings": "#45372e",
+      "accent": "#d85d32",
+      "eye": "#201812"
+    },
+    "part_colors": {
+      "leg_*": "body",
+      "ear_*": "body",
+      "snout": "belly"
+    },
+    "extra_parts": [
+      {
+        "name": "dewlap",
+        "parent": "neck",
+        "offset": [
+          0.1,
+          -0.42,
+          0
+        ],
+        "size": [
+          0.45,
+          0.35,
+          0.8
+        ],
+        "color": "accent"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "rest": {},
+      "perched": {
+        "cycle_s": 2.0,
+        "keyframes": [
+          {
+            "t": 0,
+            "parts": {
+              "leg_front_left": {
+                "rot_deg": [
+                  0,
+                  0,
+                  12
+                ]
+              },
+              "leg_front_right": {
+                "rot_deg": [
+                  0,
+                  0,
+                  -12
+                ]
+              },
+              "leg_rear_left": {
+                "rot_deg": [
+                  0,
+                  0,
+                  -12
+                ]
+              },
+              "leg_rear_right": {
+                "rot_deg": [
+                  0,
+                  0,
+                  12
+                ]
+              }
+            }
+          },
+          {
+            "t": 0.5,
+            "parts": {
+              "leg_front_left": {
+                "rot_deg": [
+                  0,
+                  0,
+                  -12
+                ]
+              },
+              "leg_front_right": {
+                "rot_deg": [
+                  0,
+                  0,
+                  12
+                ]
+              },
+              "leg_rear_left": {
+                "rot_deg": [
+                  0,
+                  0,
+                  12
+                ]
+              },
+              "leg_rear_right": {
+                "rot_deg": [
+                  0,
+                  0,
+                  -12
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/4287413",
+      "title": "GBIF Backbone Taxonomy: Anolis sagrei",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, accessed via GBIF.org",
+      "kind": "database",
+      "accessed": "2026-10-31",
+      "note": "GBIF match returned canonical name Anolis sagrei, rank SPECIES, status ACCEPTED, exact match. Its parent chain labels Squamata as class and provides no order, which conflicts with the rank usage in this record; the record uses the standard Reptilia class and Squamata order."
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q790586",
+      "title": "Wikidata: Anolis sagrei (Q790586)",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "kind": "database",
+      "accessed": "2026-10-31",
+      "note": "Wikidata item P3151 gives iNaturalist taxon 116461 and P846 gives GBIF usage key 4287413; both identifiers were also resolved independently at their providers."
+    },
+    {
+      "id": "range-review",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7960690/",
+      "title": "A review of the introduced herpetofauna of Mexico and Central America, with comments on the effects of invasive species and biosecurity methodology",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "attribution": "Gonz\u00e1lez-S\u00e1nchez et al., 2021",
+      "kind": "literature",
+      "accessed": "2026-10-31",
+      "note": "Species account states native to Cuba, the Bahamas and Cayman Islands; it notes that native versus introduced status of some Jamaican populations is unresolved. Jamaica is therefore omitted from the native list."
+    },
+    {
+      "id": "urban-profile",
+      "url": "https://link.springer.com/article/10.1007/s11252-025-01722-6",
+      "title": "Evidence for urban food limitation in a widespread invasive lizard",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "attribution": "Giery, S.T., Chejanovski, Z.A., Assis, B.A. et al. (2025), Urban Ecosystems 28, 110",
+      "kind": "literature",
+      "accessed": "2026-10-31",
+      "note": "Article identifies the brown anole as invasive in Florida, small, semi-arboreal, diurnal, urban-tolerant, and a generalist predator of arthropods; it describes characteristic perching and brief ground trips to capture prey."
+    },
+    {
+      "id": "breeding-season-florida",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12873869/",
+      "title": "Pre-oviposition development of the brown anole (Anolis sagrei)",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "attribution": "Weberling A., Shylo N.A., Kircher B.K. et al. (2025), Developmental Dynamics, doi:10.1002/dvdy.70027",
+      "kind": "literature",
+      "accessed": "2026-10-31",
+      "note": "Introduction: brown and green anoles lay one egg every 5-10 days throughout the breeding season, from late March to September (citing Sanger et al. 2008 and Lee et al. 1989, The reproductive cycle of Anolis sagrei in southern Florida). The authors dissected 130 females collected in May 2023 in southern Florida. Secondary statement, not a primary monthly dataset."
+    },
+    {
+      "id": "annual-survival",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5513217/",
+      "title": "Field estimates of parentage reveal sexually antagonistic selection on body size in a population of Anolis lizards",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "attribution": "Calsbeek et al. (2017), Ecology and Evolution 7, 3408\u20133415",
+      "kind": "literature",
+      "accessed": "2026-10-31",
+      "note": "The introduction states that wild mortality is high and most individuals tend to survive one year or less. lifespan_y=1 is an approximate, low-confidence simulation proxy for that statement, not a measured mean lifespan."
+    },
+    {
+      "id": "morphology-dryad",
+      "url": "https://datadryad.org/dataset/doi:10.5061/dryad.bg79cnpf6",
+      "title": "Blowing in the wind: Experimental assessment of clinging performance and behavior in Anolis lizards during hurricane-force winds [dataset]",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "attribution": "Kolbe and DiPaolo (2023), Dryad dataset, doi:10.5061/dryad.bg79cnpf6",
+      "kind": "dataset",
+      "accessed": "2026-10-31",
+      "note": "Dryad metadata describes measured morphology including body mass, snout-vent length, and tail length; published table reports A. sagrei male means of 4.4 g, 54.2 mm SVL, and 87.6 mm tail length (n=18). length_m is their sum."
+    },
+    {
+      "id": "diet-mass-profile",
+      "url": "https://www.frontiersin.org/journals/amphibian-and-reptile-science/articles/10.3389/famrs.2024.1410763/full",
+      "title": "Variability in oil droplet numbers and proportions in the retinas of anole lizards",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "attribution": "Campbell and Loew (2024), Frontiers in Amphibian and Reptile Science 2, 1410763",
+      "kind": "literature",
+      "accessed": "2026-10-31",
+      "note": "Article calls A. sagrei diurnal and reports sampled wild Florida adults averaging 4.770 g (10 males) and 2.254 g (3 females). mass_kg is their equal-sex arithmetic mean (3.512 g); this is a small sample-derived model value, not a population-weighted mean."
+    },
+    {
+      "id": "gbif-activity-us",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=4287413&country=US&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Anolis sagrei in US",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-31) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-31",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "range-review"
+      ],
+      "confidence": "High",
+      "note": "GBIF exact accepted species result confirms canonical name, species rank and family Dactyloidae; standard higher ranks are recorded as Reptilia and Squamata despite GBIF's unusual rank placement for Squamata."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "GBIF usage key 4287413 and iNaturalist taxon 116461 were resolved independently and checked against Wikidata P846 and P3151. Both resolve to accepted species Anolis sagrei, not a subspecies."
+    },
+    "range": {
+      "sources": [
+        "range-review",
+        "urban-profile"
+      ],
+      "confidence": "High",
+      "note": "Native list follows the source's named native range. US is marked introduced/invasive because the urban study identifies its Florida population as invasive; the country-level code is intentionally coarser than that state-level evidence."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "range-review"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "range-review"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "urban-profile"
+      ],
+      "confidence": "Medium",
+      "note": "Walk and climb reflect the observed trunk-ground locomotion. The v0.1 quadruped mesh has no built-in climb pose."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "urban-profile"
+      ],
+      "confidence": "High"
+    },
+    "traits.skin": {
+      "sources": [
+        "urban-profile"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "range-review"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "range-review"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "range-review"
+      ],
+      "confidence": "High"
+    },
+    "traits.perching": {
+      "sources": [
+        "urban-profile"
+      ],
+      "confidence": "High"
+    },
+    "traits.size_class": {
+      "sources": [
+        "diet-mass-profile"
+      ],
+      "confidence": "High"
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "diet-mass-profile"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Equal-sex arithmetic mean of the study's sampled adult male (4.770 g) and female (2.254 g) means: (4.770 + 2.254) / 2 = 3.512 g. The male/female sample sizes differ (10 and 3), so this is a model average rather than a population mean."
+    },
+    "traits.length_m": {
+      "sources": [
+        "morphology-dryad"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Adult male total length is the study means summed: snout-vent length 54.2 mm + tail length 87.6 mm = 141.8 mm. Tail measurements included partially regenerated tails."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "annual-survival"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Approximate one-year proxy from a published wild-population statement that most individuals survive one year or less; this is not a direct mean life-expectancy estimate."
+    },
+    "traits.diet": {
+      "sources": [
+        "urban-profile"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Authored simulation allocation: all modeled diet share is assigned to invertebrates because the Florida study describes arthropods as typical prey and calls the species a generalist predator; prey percentages were not reported."
+    },
+    "traits.social": {
+      "sources": [
+        "annual-survival"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Solitary, one-animal group is a simulation simplification; the source describes multiple paternity and overlapping breeding, not stable social groups."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "diet-mass-profile"
+      ],
+      "confidence": "High"
+    },
+    "traits.defense": {
+      "sources": [
+        "urban-profile"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Flee response is an authored simulation estimate; this source set does not quantify escape distance or response probability."
+    },
+    "traits.wariness": {
+      "sources": [
+        "urban-profile"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "0.5 is an authored midpoint because the open sources do not provide a person-approach distance."
+    },
+    "habitat": {
+      "sources": [
+        "urban-profile"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Urban tolerance and use of perches/ground for prey are sourced. Ground 0.2 and arboreal 0.8 are authored proportions for its semi-arboreal trunk-ground habit."
+    },
+    "seasonal": {
+      "sources": [
+        "annual-survival",
+        "breeding-season-florida"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "The breeding phase is scoped to US-FL only, from an introduction statement in a 2025 developmental paper whose 130 females came from southern Florida; it cites Lee et al. 1989 (Copeia) for southern Florida, which was not read directly. 'Late March' is encoded as 03-20 and September as 09-30 (authored day numbers). Breeding months for other US states and any winter dormancy are unsourced and omitted. ActiveYearRound denotes a non-migratory resident strategy, not constant winter surface activity."
+    },
+    "behavior.program": {
+      "sources": [
+        "urban-profile"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Species-local simulation judgment covers daytime foraging, perching, shelter at night, and fleeing. Climbing itself has no built-in animation in body-plan v0.1."
+    },
+    "vocalizations": {
+      "sources": [
+        "urban-profile"
+      ],
+      "confidence": "Low",
+      "note": "No vocalization is modeled; sources reviewed here describe visual/perching and feeding behavior but do not establish that the species is silent."
+    },
+    "look": {
+      "sources": [
+        "diet-mass-profile",
+        "urban-profile"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Block-mesh dimensions, brown palette, tiny ear marks, dewlap and pose keyframes are authored stylizations. The quadruped plan approximates a lizard; it cannot render toe pads, a fully detailed foot, or a climb cycle."
+    },
+    "behavior": {
+      "sources": [
+        "urban-profile"
+      ],
+      "confidence": "Medium",
+      "note": "Authored species-specific FSM uses day-active rest, arthropod feeding, perching, shelter after dark and flee response. The source describes these natural-history traits; transition probabilities and thresholds are simulation choices."
+    }
+  }
+}
