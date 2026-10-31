@@ -1,0 +1,522 @@
+{
+  "$schema": "https://eeeearth.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Nanger granti",
+  "slug": "nanger-granti",
+  "common_names": {
+    "en": "Grant's gazelle"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Mammalia",
+    "order": "Artiodactyla",
+    "family": "Bovidae",
+    "genus": "Nanger",
+    "authority": "(Brooke, 1872)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 7261447,
+    "inat_taxon_id": 74724
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "ET",
+      "KE",
+      "SS",
+      "TZ"
+    ],
+    "introduced": [],
+    "invasive_in": []
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk",
+      "Trot",
+      "Gallop"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Fur",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "None",
+    "perching": false,
+    "size_class": "Large",
+    "mass_kg": 53.8,
+    "mass_range_kg": [
+      35,
+      80
+    ],
+    "length_m": 1.53,
+    "shoulder_height_m": 0.85,
+    "lifespan_y": 12,
+    "diet": {
+      "browse": 0.7,
+      "graze": 0.3
+    },
+    "social": {
+      "structure": "Group",
+      "group_size": [
+        1,
+        30
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.7
+  },
+  "habitat": {
+    "use": {
+      "ground": 1.0
+    },
+    "shelter_tag": "shelter",
+    "resources": [
+      {
+        "tag": "browse",
+        "kind": "Herbivory",
+        "weight": 0.7
+      },
+      {
+        "tag": "graze",
+        "kind": "Herbivory",
+        "weight": 0.3
+      },
+      {
+        "tag": "shelter",
+        "kind": "Shelter",
+        "weight": 1.0
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Avoider",
+      "uses_gardens": false,
+      "notes": "Open-plain and semi-desert species. No sourced urban-tolerance data; the Avoider class is an authored judgement."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "mating",
+        "start": "01-01",
+        "end": "12-31",
+        "note": "Breeds throughout the year; local climate affects timing (ADW). Not a Kenya-specific calendar."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "KE",
+        "monthly": [
+          0.56,
+          0.61,
+          0.52,
+          0.41,
+          0.45,
+          0.55,
+          0.5,
+          0.56,
+          0.58,
+          0.48,
+          1.0,
+          0.59
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 3566,
+        "sources": [
+          "inat-activity-ke",
+          "gbif-activity-ke"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 7042,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=74724&place_id=7042&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=7042&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 1370,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "country",
+              "KE"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=7261447&country=KE&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&country=KE&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 2196,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-nanger-granti-diurnal-grazer-v1",
+    "params": {
+      "flee_m": 45,
+      "calm_m": 60,
+      "food_tag": "browse",
+      "food_m": 80,
+      "flee_gait": "gallop",
+      "forage_gait": "walk",
+      "rest_sun_lo_deg": -90,
+      "rest_sun_hi_deg": -6
+    }
+  },
+  "vocalizations": [],
+  "look": {
+    "body_plan": "quadruped",
+    "proportions": {
+      "torso_aspect": 2.3,
+      "leg_length_ratio": 0.75,
+      "head_scale": 0.55,
+      "neck_angle_deg": 25,
+      "tail_ratio": 0.3,
+      "ear_ratio": 0.45,
+      "beak_ratio": 0.2,
+      "girth_ratio": 0.62
+    },
+    "palette": {
+      "body": "#b89266",
+      "belly": "#f4efe6",
+      "markings": "#3a2a1a",
+      "accent": "#f7f2e8",
+      "eye": "#1c140c"
+    },
+    "part_colors": {
+      "snout": "markings",
+      "tail": "accent",
+      "ear_*": "body",
+      "leg_*": "body"
+    },
+    "extra_parts": [
+      {
+        "name": "horn",
+        "parent": "head",
+        "offset": [
+          0.1,
+          0.5,
+          0.2
+        ],
+        "size": [
+          0.08,
+          0.7,
+          0.08
+        ],
+        "color": "markings",
+        "mirror": true
+      },
+      {
+        "name": "rump",
+        "parent": "body",
+        "offset": [
+          -0.42,
+          0.2,
+          0
+        ],
+        "size": [
+          0.18,
+          0.4,
+          0.75
+        ],
+        "color": "belly"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "trot": {},
+      "gallop": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/7261447",
+      "title": "GBIF Backbone Taxonomy: Nanger granti (Brooke, 1872)",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-31",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Grant%27s_gazelle",
+      "title": "Wikipedia: Grant's gazelle",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-31",
+      "attribution": "Wikipedia contributors, \"Grant's gazelle\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "note": "Used for body mass by sex, shoulder height, range, mixed-feeder diet and IUCN LC status (infobox)."
+    },
+    {
+      "id": "adw",
+      "url": "https://animaldiversity.org/accounts/Nanger_granti/",
+      "title": "Animal Diversity Web: Nanger granti (Grant's gazelle)",
+      "license": "CC-BY-NC-SA-3.0",
+      "kind": "webpage",
+      "accessed": "2026-10-31",
+      "attribution": "Animal Diversity Web, Nanger granti, University of Michigan Museum of Zoology, https://animaldiversity.org/accounts/Nanger_granti/, CC BY-NC-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/3.0/",
+      "note": "NON-COMMERCIAL last resort. Used for the wild average lifespan (about 12 years, Lifespan/Longevity section), diurnal activity pattern, body length range (140-166 cm), the browser/grazer statement, and the breeding phase. No permissive source giving a wild average lifespan was found (Wikipedia has none; EOL repeats the ADW figure and is not independent). Affected fields: seasonal.phases, traits.lifespan_y, traits.length_m, traits.activity_pattern, and the browse-dominant part of traits.diet, seasonal.phases."
+    },
+    {
+      "id": "inat-activity-ke",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=74724&place_id=7042&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Nanger granti in KE",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-31",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-ke",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=7261447&country=KE&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Nanger granti in KE",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-31) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-31",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High",
+      "note": "GBIF usageKey 7261447 resolved at SPECIES rank, ACCEPTED, family Bovidae, checked 2026-10-31. Synonym Gazella granti (GBIF key 5220144) noted but not used for the record."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High",
+      "note": "iNaturalist taxon 74724 (Nanger granti, species rank, active, not extinct) resolved via the iNaturalist taxa API on 2026-10-31. ITIS, Wikidata and MDD identifiers omitted: not verified in this pass."
+    },
+    "common_names": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High",
+      "note": "Preferred English name \"Grant's gazelle\" matches the Wikipedia title and the GBIF vernacular name."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Wikipedia lead: distributed from northern Tanzania to South Sudan and Ethiopia, and from the Kenyan coast to Lake Victoria. Country codes ET, KE, SS and TZ read from that statement. Uganda is not listed because the article does not name it. Native status applies to the whole listed range; the record has no introduced populations."
+    },
+    "traits.body_plan": {
+      "sources": [],
+      "confidence": "High",
+      "derived": true,
+      "note": "Mammal body plan from class Mammalia (GBIF backbone)."
+    },
+    "traits.limb_count": {
+      "sources": [],
+      "confidence": "High",
+      "derived": true,
+      "note": "Four walking limbs, authored from the mammal body plan."
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "adw"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "ADW describes the species as cursorial. Walk, Trot and Gallop modes are authored; the gallop flee gait follows the fsm-ground-forager program default. Speed was not sourced, so speed_ms is omitted."
+    },
+    "traits.thermoregulation": {
+      "sources": [],
+      "confidence": "High",
+      "derived": true,
+      "note": "Endotherm, authored from mammal class."
+    },
+    "traits.skin": {
+      "sources": [],
+      "confidence": "High",
+      "derived": true,
+      "note": "Fur, authored from mammal class."
+    },
+    "traits.flight": {
+      "sources": [],
+      "confidence": "High",
+      "derived": true,
+      "note": "No flight, authored from mammal body plan."
+    },
+    "traits.respiration": {
+      "sources": [],
+      "confidence": "High",
+      "derived": true,
+      "note": "Lungs, authored from mammal class."
+    },
+    "traits.metamorphosis": {
+      "sources": [],
+      "confidence": "High",
+      "derived": true,
+      "note": "None, authored from mammal class."
+    },
+    "traits.nest_type": {
+      "sources": [],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Ungulate; no nest. Authored."
+    },
+    "traits.perching": {
+      "sources": [],
+      "confidence": "High",
+      "derived": true,
+      "note": "Ungulate; does not perch. Authored."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Wikipedia Description: females 35 to 50 kg, males 50 to 80 kg. Range spans both sexes: 35 to 80 kg."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Mean of the female and male midpoints from Wikipedia: (42.5 + 65.0) / 2 = 53.75, rounded to 53.8. Equal weighting of the sexes is an assumption; the population sex ratio was not sourced."
+    },
+    "traits.size_class": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Large, since mass_kg is 50 kg or more."
+    },
+    "traits.shoulder_height_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Wikipedia: 75 to 95 cm at the shoulder. Midpoint 0.85 m."
+    },
+    "traits.length_m": {
+      "sources": [
+        "adw"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "ADW Physical Description: body length 140 to 166 cm. Midpoint 1.53 m. ADW does not state whether the figure includes the tail; the schema defines length as nose to tail tip, so this value is approximate. Source is NC; see the adw source note."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "adw"
+      ],
+      "confidence": "Medium",
+      "note": "ADW Lifespan/Longevity: \"Grant's gazelles have an average lifespan of around 12 years\", status wild. Used as the typical wild lifespan. The maximum or captive values in other sources were not used. NC source; no permissive alternative was found."
+    },
+    "traits.social": {
+      "sources": [
+        "adw"
+      ],
+      "confidence": "Medium",
+      "note": "ADW Behavior: herds may segregate into groups of bachelor males and females with dominant males. Structure \"Group\" and group size range [1, 30] are authored from this; the upper bound is a judgement, not a sourced figure."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "adw"
+      ],
+      "confidence": "Medium",
+      "note": "ADW lists the species as diurnal (active during the day). Wikipedia does not address activity. NC source."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia",
+        "adw"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Wikipedia: mixed feeders that both browse and graze. ADW: primarily browsers, with leaves and stems making up a large part of the diet. Split 0.7 browse / 0.3 graze is authored from those two statements, not a measured diet proportion."
+    },
+    "traits.defense": {
+      "sources": [
+        "adw"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "ADW describes alert posture, alarm snorts and stamping as predator signals, and gives no flight distance. Flee is the program default for an open-plain ungulate; authored."
+    },
+    "traits.wariness": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "judgement: an open-plain, alert ungulate, set above the middle of the scale. Not sourced."
+    },
+    "habitat": {
+      "sources": [
+        "adw"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "ADW habitat: semi-desert, open savanna and treeless plains. Use, shelter tag and resource weights are authored from that statement; no sourced resource ranking exists. The generic shelter tag is a judgement."
+    },
+    "habitat.human_tolerance": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "judgement: no sourced urban data. Avoider is authored from the open-plain habitat."
+    },
+    "seasonal": {
+      "sources": [
+        "adw"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "ADW Reproduction: \"Gran't gazelles can breed throughout the year but local climate affects the timing of reproduction.\" A single full-year mating phase is recorded. The ADW Serengeti mating-month statement (all months except June, July, October and November) is a Tanzanian population and is not used as a Kenyan calendar. Maturity ages (males about 3 years, females about 1.5 years) are in ADW but are not recorded because the schema has no field for them."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "judgement. Species-local program fsm-nanger-granti-diurnal-grazer-v1 (species/nanger-granti/behavior.json), a copy of the shared fsm-ground-forager-v1 with daylight gating (sun elevation above -6 deg) added to idle-to-forage, idle-to-drink and idle-to-wander. Reason: the shared program has no daylight gate, so a hungry animal could forage or wander at night, contradicting the diurnal record. Gait: walk to forage, gallop to flee. Rest: rest_sun_lo_deg -90 and rest_sun_hi_deg -6 (night). Distances are authored; no sourced values."
+    },
+    "look": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "judgement: block-mesh look. Colours and proportions are authored; the ringed horns and dark lateral stripe are not measured."
+    },
+    "conservation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Wikipedia infobox: Least Concern (IUCN 3.1)."
+    }
+  }
+}
