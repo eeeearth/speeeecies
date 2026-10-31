@@ -22,7 +22,7 @@ Nothing here changes the species format or the validator. It is only a driver.
 ## Use
 
 ```bash
-# What is open, unassigned, and not already covered by an open PR.
+# What is open, unassigned, unblocked, and not already covered by an open PR.
 tools/agents/fleet.sh list-issues
 
 # Confirm every model in the pool still answers before you trust the rotation.
@@ -209,6 +209,14 @@ one manifest plus 8 to 12 species records and a flora catalog; the budget follow
 the work, not the other way round.
 
 It does not merge anything.
+
+Species issues labelled `needs-deeper-research` are excluded from both the
+automatic list and a direct `spawn`, regardless of claim expiry. The label is
+for a failed bounded research attempt with no viable record or PR, not for every
+draft. Follow `AGENTS.md` for the issue evidence comment, claim release, draft
+disposition, and a single research pass capped at two hours with Codex Sol or
+Claude Sonnet. Clear the label
+only after the missing evidence and behaviour have been verified on the issue.
 
 Two failures it must not confuse. An unreachable GitHub is reported as
 `GH_UNREACHABLE` and left alone until the next poll, never as "no work left"

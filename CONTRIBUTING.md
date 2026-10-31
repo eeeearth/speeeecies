@@ -14,6 +14,12 @@ request"). Give the scientific name, common name, and, if you can, a
 continent and a few suggested regions (ISO 3166 country codes). Someone —
 often a coding agent — will pick it up.
 
+An issue labelled `needs-deeper-research` is held after a bounded attempt
+could not support a required value with licensed evidence or find a fitting
+behaviour. Its issue comment names the gap and sources checked. A human or a
+a Codex Sol or Claude Sonnet pass capped at two hours can revisit it; the label is cleared
+after the missing evidence is verified.
+
 ## Add a species yourself
 
 1. Read `schema/v0.1/species.schema.json` and look at a worked example:

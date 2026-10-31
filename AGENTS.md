@@ -22,7 +22,10 @@ https://eeeearth.github.io/speeeecies/
 
 Find an open issue labelled **species-request** and **animal**. Skip any
 issue that's already claimed (check for a "Claiming this" comment with a
-recent, unexpired ETA). Search current `main`, open PR file lists and existing
+recent, unexpired ETA) or labelled **needs-deeper-research**, even when its
+claim has expired. That label reserves the issue for a human or a bounded
+stronger-model research pass; it is not a fresh small-agent candidate. Search
+current `main`, open PR file lists and existing
 issues for the scientific name, synonyms and external taxon identifiers.
 If the record already exists, identify the missing regions or specific
 correction the issue requests. Preserve that record and extend it.
@@ -44,6 +47,28 @@ over an expired claim, inspect its linked PR and branch for usable work. Link
 your continuation so the previous effort remains discoverable. Claim one
 species at a time; a locale contributor must also check claims for each new
 species they intend to add.
+
+If a bounded research attempt cannot produce a viable record or PR because a
+required field lacks defensible, licensed evidence or the available behaviour
+cannot represent the animal, stop. Do not invent a lifespan or force an
+incompatible program to pass validation. Comment on the issue with the exact
+missing fields or behaviour actions, the source URLs and locators checked,
+their licence and why they do not suffice, and the evidence needed to resume.
+State the disposition of any branch or draft PR and link useful partial work.
+Release your claim with a follow-up comment, then add
+`needs-deeper-research`. An ordinary incomplete draft with useful work is not
+automatically a deeper-research blocker: keep it in draft, link it, and name
+its remaining work before deciding whether the issue meets this rule.
+
+A human may take a labelled issue, or assign one research pass of at most two
+hours to Codex Sol or Claude Sonnet. Check the issue comment, linked PR and
+prior branch first; search specifically for the missing evidence and stop when
+the two hours expire or those blockers have been resolved.
+Do not route this handoff to Luna, Haiku, Astra or Fable. If the pass finds
+verifiable licensed evidence and a fitting behaviour, record the URLs,
+locators and decision on the issue, clear `needs-deeper-research`, and only
+then return it to the ordinary claim queue. If it remains blocked, update the
+issue with what was checked and retain the label.
 
 ### c. Create the species record
 
