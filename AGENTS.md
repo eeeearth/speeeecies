@@ -48,17 +48,28 @@ your continuation so the previous effort remains discoverable. Claim one
 species at a time; a locale contributor must also check claims for each new
 species they intend to add.
 
-If a bounded research attempt cannot produce a viable record or PR because a
-required field lacks defensible, licensed evidence or the available behaviour
-cannot represent the animal, stop. Do not invent a lifespan or force an
-incompatible program to pass validation. Comment on the issue with the exact
-missing fields or behaviour actions, the source URLs and locators checked,
-their licence and why they do not suffice, and the evidence needed to resume.
-State the disposition of any branch or draft PR and link useful partial work.
-Release your claim with a follow-up comment, then add
-`needs-deeper-research`. An ordinary incomplete draft with useful work is not
-automatically a deeper-research blocker: keep it in draft, link it, and name
-its remaining work before deciding whether the issue meets this rule.
+If a bounded research attempt cannot support a required field with defensible,
+licensed evidence or the available behaviour cannot represent the animal, stop.
+Do not invent a lifespan or force an incompatible program to pass validation.
+Comment on the issue with the exact missing fields or behaviour actions, the
+source URLs and locators checked, their licence and why they do not suffice,
+and the evidence needed to resume. State the disposition of any branch or
+draft PR and link useful partial work. Release your claim with a follow-up
+comment, then add `needs-deeper-research`, including when a near-complete draft
+PR remains open. A labelled issue stays out of small-agent batches while a
+human or stronger research pass resolves the blocker.
+
+Open a draft species PR only when the record and attribution are committed,
+taxonomy, activity, behaviour, source review and every preview pose are done,
+and **at most two specific factual values** still lack defensible, licensed
+evidence. Name each missing value and the failed source search in the PR and
+issue. A missing behaviour, uninspected poses, unresolved taxonomy, broad
+provenance gaps, or unfinished activity coverage means the record is not close
+enough for a draft PR. Preserve useful partial work on its branch or worktree
+and link it from the issue. Add `needs-deeper-research` only when a required
+evidence or behaviour gap has been verified. Do not put a
+placeholder or a maximum/captive lifespan into a required field to make CI
+green. Use `Refs #<issue>` for a draft, so it cannot close the issue.
 
 A human may take a labelled issue, or assign one research pass of at most two
 hours to Codex Sol or Claude Sonnet. Check the issue comment, linked PR and
@@ -197,10 +208,11 @@ validate report, write `Closes #<issue number>`, and follow the pull
 request template's checklist.
 
 Include the evidence and behaviour summaries from `docs/data-quality.md`,
-warnings with their resolutions, and the commit tested. For a partial fix,
-use `Refs #<issue number>` and list remaining work. An incomplete submission
-belongs in a draft PR. Check off only work you performed. Confirm the PR URL
-and CI result; pushing a branch alone does not create a PR.
+warnings with their resolutions, and the commit tested. For a near-complete
+species record meeting the draft rule above, use `Refs #<issue number>` and
+list the one or two missing values. Other incomplete work belongs on a
+preserved branch linked from the issue. Check off only work you performed.
+Confirm the PR URL and CI result; pushing a branch alone does not create a PR.
 
 Address feedback against the current head and identify the commit resolving
 each finding. Check suggested replacement values and licences yourself. Ask
@@ -384,6 +396,12 @@ especially ones no drawable taxon resembles.
 - **Never strip attribution.** Every non-CC0/public-domain source needs an
   `attribution` string; it flows into `ATTRIBUTION.md` and must never be
   removed, even by later edits.
+- **Respect source collections.** Check the terms for the actual dataset before
+  automated or bulk extraction. An individual fact can be uncopyrightable while
+  a compiled database has separate rights or access terms. Do not copy a
+  restricted table into this public repo or describe its source as openly
+  licensed without checking. Search for independently licensed primary evidence
+  when the collection cannot be reused under this project's licence policy.
 
 ### Good sources (verify the licence every time — it can change)
 
