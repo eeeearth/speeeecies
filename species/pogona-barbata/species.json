@@ -1,0 +1,574 @@
+{
+  "$schema": "https://eeeearth.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Pogona barbata",
+  "slug": "pogona-barbata",
+  "common_names": {
+    "en": "Eastern bearded dragon"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Reptilia",
+    "order": "Squamata",
+    "family": "Agamidae",
+    "genus": "Pogona",
+    "authority": "(Cuvier, 1829)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2465633,
+    "inat_taxon_id": 31419
+  },
+  "range": {
+    "native": [
+      "AU"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk",
+      "Climb",
+      "Gallop"
+    ],
+    "thermoregulation": "Ectotherm",
+    "skin": "Scales",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Burrow",
+    "perching": true,
+    "size_class": "Small",
+    "mass_kg": 0.4,
+    "mass_range_kg": [
+      0.3,
+      0.5
+    ],
+    "length_m": 0.45,
+    "lifespan_y": 10,
+    "diet": {
+      "browse": 0.5,
+      "fruit": 0.1,
+      "invertebrate": 0.4
+    },
+    "social": {
+      "structure": "Solitary",
+      "group_size": [
+        1,
+        1
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.5
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.65,
+      "arboreal": 0.35
+    },
+    "shelter_tag": "burrow",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.8
+      },
+      {
+        "tag": "browse",
+        "kind": "Herbivory",
+        "weight": 0.7
+      },
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.3
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.8
+      },
+      {
+        "tag": "burrow",
+        "kind": "Shelter",
+        "weight": 0.8
+      },
+      {
+        "tag": "water",
+        "kind": "Water",
+        "weight": 0.2
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Avoider",
+      "uses_gardens": false,
+      "notes": "Uses treed woodland and forest habitat; suburban records can include escaped pets."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "08-01",
+        "end": "12-31",
+        "region": "AU",
+        "note": "Spring and summer timing in southeastern Australia; a single national window simplifies regional variation."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg"
+      },
+      {
+        "stage": "Juvenile"
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "AU",
+        "monthly": [
+          0.45,
+          0.36,
+          0.35,
+          0.24,
+          0.11,
+          0.08,
+          0.1,
+          0.37,
+          0.77,
+          1.0,
+          0.65,
+          0.45
+        ],
+        "method": "mean(inat_raw, gbif_raw)",
+        "observations": 12057,
+        "sources": [
+          "inat-activity-au",
+          "gbif-activity-au"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 6744,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=31419&place_id=6744&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": null,
+            "total": 614,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "country",
+              "AU"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2465633&country=AU&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": null,
+            "total": 11443,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-ground-forager-v1",
+    "params": {
+      "food_tag": "invertebrate",
+      "forage_gait": "walk",
+      "flee_gait": "gallop",
+      "rest_sun_lo_deg": -90,
+      "rest_sun_hi_deg": -6
+    }
+  },
+  "vocalizations": [],
+  "look": {
+    "body_plan": "quadruped",
+    "proportions": {
+      "torso_aspect": 1.6,
+      "leg_length_ratio": 0.35,
+      "head_scale": 0.8,
+      "neck_angle_deg": 8,
+      "tail_ratio": 1.5,
+      "girth_ratio": 0.9
+    },
+    "palette": {
+      "body": "#88785d",
+      "belly": "#c9c0a9",
+      "markings": "#554b3c",
+      "accent": "#a59069",
+      "eye": "#806640"
+    },
+    "extra_parts": [
+      {
+        "name": "beard",
+        "parent": "head",
+        "offset": [
+          -0.15,
+          -0.1,
+          0
+        ],
+        "size": [
+          0.34,
+          0.24,
+          0.52
+        ],
+        "color": "markings",
+        "mirror": false
+      },
+      {
+        "name": "side_spines",
+        "parent": "body",
+        "offset": [
+          0,
+          0.5,
+          0.3
+        ],
+        "size": [
+          0.7,
+          0.1,
+          0.12
+        ],
+        "color": "accent",
+        "mirror": true
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "gallop": {},
+      "rest": {},
+      "perched": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2465633",
+      "title": "GBIF Backbone Taxonomy: Pogona barbata",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-31",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "inat-taxon",
+      "url": "https://api.inaturalist.org/v1/taxa/31419",
+      "title": "iNaturalist taxon: Pogona barbata",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-31",
+      "attribution": "iNaturalist, Pogona barbata taxon record",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "victoria-assessment",
+      "url": "https://bio-prd-naturekit-public-data.s3.ap-southeast-2.amazonaws.com/species_assessments/Pogona_barbata_12177.pdf",
+      "title": "Threatened Species Assessment: Pogona barbata",
+      "license": "CC-BY-4.0",
+      "kind": "literature",
+      "accessed": "2026-10-31",
+      "attribution": "State of Victoria (Department of Environment, Land, Water and Planning), Threatened Species Assessment: Pogona barbata (2021), Taxon ID 12177",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "vic-rehab-guidelines",
+      "url": "https://www.wildlife.vic.gov.au/__data/assets/pdf_file/0026/671264/Part-B-Reptiles-Amphibians-Chapter1.pdf",
+      "title": "Wildlife Rehabilitation Guidelines: Reptiles and Amphibians, Chapter 1",
+      "license": "CC-BY-4.0",
+      "kind": "literature",
+      "accessed": "2026-10-31",
+      "attribution": "State of Victoria, Wildlife Rehabilitation Guidelines, Part B: Reptiles and Amphibians, Chapter 1",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikipedia-pogona-barbata",
+      "url": "https://en.wikipedia.org/wiki/Eastern_bearded_dragon",
+      "title": "Wikipedia: Eastern bearded dragon",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-31",
+      "attribution": "Wikipedia contributors, \"Eastern bearded dragon\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "inat-activity-au",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=31419&place_id=6744&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Pogona barbata in AU",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-10-31",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-au",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2465633&country=AU&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Pogona barbata in AU",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-31) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-31",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High",
+      "note": "GBIF name match returned exact accepted species Pogona barbata (Cuvier, 1829), usage key 2465633; class/order populated from the source's Reptilia/Squamata classification because GBIF's class field returned Squamata and no order."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "inat-taxon"
+      ],
+      "confidence": "High",
+      "note": "Rechecked at GBIF and iNaturalist on 2026-10-31; both return Pogona barbata at accepted/active species rank."
+    },
+    "common_names": {
+      "sources": [
+        "victoria-assessment"
+      ],
+      "confidence": "High"
+    },
+    "range": {
+      "sources": [
+        "victoria-assessment"
+      ],
+      "confidence": "High",
+      "note": "Assessment reports occurrence along Australia's east coast from northeast Queensland to Eyre Peninsula; national range coded AU. Native status supported by species assessment, while the report notes that some isolated Melbourne records may be pet releases or escapees."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "victoria-assessment"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "victoria-assessment"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "victoria-assessment"
+      ],
+      "confidence": "Medium",
+      "note": "Ground-dwelling and arboreal, with arboreal activity described mostly as thermoregulation; gallop is a simulation gait judgement."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "victoria-assessment"
+      ],
+      "confidence": "High",
+      "note": "Ectothermic temperature regulation by posture, position, colour and panting."
+    },
+    "traits.skin": {
+      "sources": [
+        "victoria-assessment"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "victoria-assessment"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "victoria-assessment"
+      ],
+      "confidence": "Medium",
+      "note": "Authored mapping from reptile anatomy."
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "victoria-assessment"
+      ],
+      "confidence": "High"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "victoria-assessment"
+      ],
+      "confidence": "Medium",
+      "note": "Egg laying is reported; underground nesting is represented as burrow."
+    },
+    "traits.perching": {
+      "sources": [
+        "victoria-assessment"
+      ],
+      "confidence": "Medium",
+      "note": "Arboreal thermoregulation; binary perching flag is a format mapping."
+    },
+    "traits.size_class": {
+      "sources": [
+        "vic-rehab-guidelines"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Derived from adult body mass 300-500 g; midpoint 400 g remains below the schema's 1 kg Small threshold."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "vic-rehab-guidelines"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Midpoint of reported adult body-weight range 300-500 g; not presented as a directly measured population mean."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "vic-rehab-guidelines"
+      ],
+      "confidence": "Medium",
+      "note": "Adult morphometrics table reports body weight 300-500 g."
+    },
+    "traits.length_m": {
+      "sources": [
+        "vic-rehab-guidelines"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Midpoint of adult total-length range 35-55 cm, converted to metres; this is total length, not snout-vent length."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "victoria-assessment"
+      ],
+      "confidence": "Medium",
+      "note": "Assessment's species information says average lifespan is approximately 10 years; it does not explicitly distinguish wild from captive animals. It is treated here as an estimate for the wild population under assessment; statistic context remains uncertain."
+    },
+    "traits.diet": {
+      "sources": [
+        "victoria-assessment"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Source says wild diet contains varied plant and animal food but gives no shares; browse/fruit/invertebrate allocations are authored model weights, not a measured composition."
+    },
+    "traits.social": {
+      "sources": [
+        "vic-rehab-guidelines"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Solitary is inferred from the guideline's solitary social description; group-size bounds encode that classification."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "victoria-assessment"
+      ],
+      "confidence": "High",
+      "note": "Assessment says exclusively diurnal."
+    },
+    "traits.defense": {
+      "sources": [
+        "victoria-assessment"
+      ],
+      "confidence": "Medium",
+      "note": "Flees to nearby shelter when disturbed and spreads spines when threatened."
+    },
+    "traits.wariness": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored simulation judgement."
+    },
+    "habitat.use": {
+      "sources": [
+        "victoria-assessment"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Ground and arboreal use represented by authored relative weights; source says both and ties arboreal activity mostly to thermoregulation."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia-pogona-barbata"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Burrow used as the model shelter category."
+    },
+    "habitat.resources": {
+      "sources": [
+        "victoria-assessment"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Food categories directly supported as plants and animals; tags and weights are authored simulation mappings. Perches reflect tree use; burrows are supported by the Museums Victoria species account, not included here pending licence verification."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "victoria-assessment"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Avoider and no-garden-use are cautious authored choices; assessment warns isolated Melbourne records may be escapes/releases."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "victoria-assessment"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "ActiveYearRound is a conservative format classification because the consulted source does not describe dormancy/brumation."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "vic-rehab-guidelines"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Spring breeding interval generalized to August-December for Australia; this is a hemispheric simulation window, not population-specific proof."
+    },
+    "activity.AU": {
+      "sources": [
+        "inat-activity-au",
+        "gbif-activity-au"
+      ],
+      "confidence": "High",
+      "note": "Fetched 2026-10-31 from country-wide AU queries; licensed observation counts and monthly bins are retained in query metadata. Occurrence frequency is used as an activity proxy."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Shared ground-forager is used with daytime rest disabled to model diurnality; one food tag selects invertebrates, omitting plant feeding, and climb/bask actions are not represented. Parameters are authored."
+    },
+    "look": {
+      "sources": [
+        "victoria-assessment"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Grey to yellowish-brown upper colour, pale underside, dark markings, prominent beard and lateral spines. Proportions and pose geometry are authored; mesh preview required."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "victoria-assessment"
+      ],
+      "confidence": "Medium",
+      "note": "Assessment describes egg laying and references age-related life-history characteristics; stage sequence Egg, Juvenile, Adult is a format-level summary."
+    }
+  }
+}
