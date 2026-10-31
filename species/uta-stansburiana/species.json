@@ -1,0 +1,406 @@
+{
+  "$schema": "https://eeeearth.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Uta stansburiana",
+  "slug": "uta-stansburiana",
+  "common_names": {
+    "en": "common side-blotched lizard"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Reptilia",
+    "order": "Squamata",
+    "family": "Phrynosomatidae",
+    "genus": "Uta",
+    "authority": "Baird & Girard, 1852",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2451029,
+    "inat_taxon_id": 36094
+  },
+  "range": {
+    "native": [
+      "US",
+      "MX"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk"
+    ],
+    "thermoregulation": "Ectotherm",
+    "skin": "Scales",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Ground",
+    "perching": false,
+    "size_class": "Tiny",
+    "mass_kg": 0.0099,
+    "mass_range_kg": [
+      0.0056,
+      0.0142
+    ],
+    "length_m": 0.0635,
+    "lifespan_y": 1,
+    "diet": {
+      "invertebrate": 0.95,
+      "vertebrate": 0.05
+    },
+    "social": {
+      "structure": "Solitary",
+      "group_size": [
+        1,
+        1
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.7
+  },
+  "habitat": {
+    "use": {
+      "ground": 1.0
+    },
+    "shelter_tag": "shrub_thicket",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.95
+      },
+      {
+        "tag": "small_vertebrate",
+        "kind": "Predation",
+        "weight": 0.05
+      },
+      {
+        "tag": "shrub_thicket",
+        "kind": "Shelter",
+        "weight": 0.7
+      },
+      {
+        "tag": "shelter",
+        "kind": "Shelter",
+        "weight": 0.3
+      },
+      {
+        "tag": "nest_ground",
+        "kind": "Nesting",
+        "weight": 1.0
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Avoider",
+      "uses_gardens": false,
+      "notes": "Terrestrial lizard of arid and semi-arid shrub-scrub with bare ground and low cover."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "04-01",
+        "end": "08-31",
+        "region": "MX",
+        "note": "Spring to summer breeding; seasonal dates vary by population."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg"
+      },
+      {
+        "stage": "Juvenile",
+        "scale": 0.5
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "MX",
+        "monthly": [
+          0.22,
+          0.34,
+          0.76,
+          1.0,
+          0.63,
+          0.65,
+          0.83,
+          0.74,
+          0.42,
+          0.43,
+          0.35,
+          0.27
+        ],
+        "method": "mean(inat_raw, gbif_raw)",
+        "observations": 19380,
+        "sources": [
+          "inat-activity-mx",
+          "gbif-activity-mx"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 6793,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=36094&place_id=6793&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": null,
+            "total": 344,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "country",
+              "MX"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2451029&country=MX&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": null,
+            "total": 19036,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-uta-stansburiana-v1"
+  },
+  "vocalizations": [],
+  "look": {
+    "body_plan": "quadruped",
+    "proportions": {
+      "torso_aspect": 1.8,
+      "leg_length_ratio": 0.28,
+      "head_scale": 0.62,
+      "neck_angle_deg": 0,
+      "tail_ratio": 1.7,
+      "ear_ratio": 0,
+      "beak_ratio": 0,
+      "girth_ratio": 0.4
+    },
+    "palette": {
+      "body": "#81765d",
+      "belly": "#d5cdbb",
+      "markings": "#403d35",
+      "accent": "#b76535",
+      "eye": "#211d18"
+    },
+    "part_colors": {
+      "snout": "markings",
+      "tail": "accent"
+    },
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2451029",
+      "title": "GBIF Backbone Taxonomy: Uta stansburiana",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, accessed via GBIF.org",
+      "kind": "database",
+      "accessed": "2026-10-31",
+      "note": "Accepted species; exact name match, rank SPECIES."
+    },
+    {
+      "id": "inat-taxon",
+      "url": "https://api.inaturalist.org/v1/taxa/36094",
+      "title": "iNaturalist taxon 36094: Uta stansburiana",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "attribution": "iNaturalist contributors and iNaturalist, via the iNaturalist API",
+      "kind": "api",
+      "accessed": "2026-10-31",
+      "note": "Active, non-extinct species; independently resolves to rank species."
+    },
+    {
+      "id": "adw",
+      "url": "https://animaldiversity.org/accounts/Uta_stansburiana/",
+      "title": "Animal Diversity Web: Uta stansburiana",
+      "license": "CC-BY-NC-SA-3.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/3.0/",
+      "attribution": "George Copeland and Karen Powers, Animal Diversity Web, University of Michigan Museum of Zoology, Uta stansburiana, CC BY-NC-SA 3.0",
+      "kind": "webpage",
+      "accessed": "2026-10-31",
+      "note": "Last resort for precise mass, morphology, range, and behaviour descriptions. The lifespan datum instead uses the CC BY 4.0 open-access comparative paper listed below; ADW's text is NC-SA."
+    },
+    {
+      "id": "pace-of-life",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12154890/",
+      "title": "Chromosome-length genome assembly of Uta stansburiana and gene expression data reveal fast pace-of-life comes with environmental stability",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "attribution": "Authors of the article, CC BY 4.0",
+      "kind": "literature",
+      "accessed": "2026-10-31",
+      "note": "Introduction reports southern US and northern Mexico populations as up to two years, usually one year or less, citing Smith et al. 2019. The MX typical lifespan value is conservatively represented as 1 year; this is a region-specific summary, not a maximum."
+    },
+    {
+      "id": "inat-activity-mx",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=36094&place_id=6793&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Uta stansburiana in MX",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-10-31",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-mx",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2451029&country=MX&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Uta stansburiana in MX",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-31) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-31",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "inat-taxon"
+      ],
+      "confidence": "High",
+      "note": "Both providers independently resolve the accepted species name at species rank."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "inat-taxon"
+      ],
+      "confidence": "High"
+    },
+    "common_names": {
+      "sources": [
+        "adw"
+      ],
+      "confidence": "High"
+    },
+    "range": {
+      "sources": [
+        "adw"
+      ],
+      "confidence": "Medium",
+      "note": "Account identifies a native Nearctic range extending through the western United States and central Mexico; country codes US and MX."
+    },
+    "traits": {
+      "sources": [
+        "adw"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "ADW Physical Description gives typical mass 5.6-14.2 g and typical total length 38-89 mm, with adults rarely over 60 mm. Mass and length are midpoints of those typical ranges, converted to kg and m. 130 mm is a separate maximum and is not used."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "pace-of-life"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "For southern US and northern Mexico, the CC BY paper says lifespan is up to two years but usually one or less. Use 1 year as the rounded typical value for MX, retaining the published range and qualifier."
+    },
+    "traits.diet": {
+      "sources": [
+        "adw"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Generalist carnivore eats arthropods and occasionally small lizards; 95/5 allocation is an authored estimate."
+    },
+    "traits.social": {
+      "sources": [
+        "adw"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Usually solitary except during mating; group size is one as a simplified simulation representation."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "adw"
+      ],
+      "confidence": "High",
+      "note": "Behavior section describes diurnal and crepuscular activity, most active in morning or late afternoon; mapped to Diurnal."
+    },
+    "traits.defense": {
+      "sources": [
+        "adw"
+      ],
+      "confidence": "Medium",
+      "note": "Seeks cover under rocks and shrubs when not basking, foraging or mating; tail autotomy is also described."
+    },
+    "traits.wariness": {
+      "sources": [
+        "adw"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored judgement for a small prey lizard that shelters from predators."
+    },
+    "habitat": {
+      "sources": [
+        "adw"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Terrestrial arid/semi-arid shrub scrub; proportions, resource weights and human tolerance are simulation estimates from the habitat and diet descriptions."
+    },
+    "seasonal": {
+      "sources": [
+        "adw"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Breeding begins April or May; the MX phase is an approximate spring-summer summary. Other populations differ and this does not set behaviour months."
+    },
+    "activity": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Generated from licensed observation histogram sources."
+    },
+    "behavior": {
+      "sources": [
+        "adw"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Species-local program models reported daytime/crepuscular foraging, warm-weather inactivity, and shelter under rocks or shrubs. Thresholds are authored simulation parameters."
+    },
+    "vocalizations": {
+      "sources": [],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "No species call is included because the checked account does not document one."
+    },
+    "look": {
+      "sources": [
+        "adw"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Ground lizard proportions and neutral female/juvenile palette are authored; ADW describes grey/brown stripes, male blue/orange patches and colored throats. A single palette cannot represent sexual and geographic color variation."
+    }
+  }
+}
