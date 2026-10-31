@@ -1,0 +1,209 @@
+{
+  "schema_version": 1,
+  "format": "speeeecies/behavior",
+  "id": "fsm-arboreal-forager-v1",
+  "kind": "fsm",
+  "description": "Arboreal primate (black-tufted marmoset): forages in the canopy when hungry, grooms and socializes with nearby group members, keeps sentinel watch, and rests in dense vegetation while the sun is between rest_sun_lo_deg and rest_sun_hi_deg (default: daytime, for nocturnal and crepuscular species; set -90 and -6 for a diurnal one). Same state machine as the common marmoset's species/callithrix-jacchus/behavior.json, duplicated because a species record can only resolve a program in behaviors/ or in its own directory.",
+  "params": {
+    "flee_m": 15,
+    "calm_m": 30,
+    "food_tag": "fruit",
+    "food_m": 30,
+    "flee_gait": "walk",
+    "social_m": 10,
+    "rest_sun_lo_deg": 10,
+    "rest_sun_hi_deg": 90
+  },
+  "initial": "idle",
+  "states": {
+    "idle": {
+      "action": {
+        "do": "idle"
+      },
+      "min_dwell_s": 2
+    },
+    "wander": {
+      "action": {
+        "do": "wander",
+        "gait": "walk"
+      }
+    },
+    "forage": {
+      "action": {
+        "do": "eat_nearest",
+        "tag": "${food_tag}",
+        "gait": "walk"
+      },
+      "min_dwell_s": 5
+    },
+    "social_groom": {
+      "action": {
+        "do": "emote",
+        "kind": "groom"
+      },
+      "min_dwell_s": 5
+    },
+    "sentinel": {
+      "action": {
+        "do": "idle"
+      },
+      "min_dwell_s": 5
+    },
+    "rest": {
+      "action": {
+        "do": "rest",
+        "at": "shelter"
+      },
+      "min_dwell_s": 30
+    },
+    "flee": {
+      "action": {
+        "do": "flee",
+        "gait": "${flee_gait}"
+      },
+      "min_dwell_s": 3
+    }
+  },
+  "transitions": [
+    {
+      "from": "*",
+      "to": "flee",
+      "when": {
+        "threat_within_m": "${flee_m}"
+      },
+      "priority": 100
+    },
+    {
+      "from": "*",
+      "to": "flee",
+      "when": {
+        "need": "fear",
+        "gt": 0.2
+      },
+      "priority": 90
+    },
+    {
+      "from": "idle",
+      "to": "forage",
+      "when": {
+        "all": [
+          {
+            "need": "hunger",
+            "gt": 0.5
+          },
+          {
+            "food_within_m": "${food_m}",
+            "tag": "${food_tag}"
+          }
+        ]
+      }
+    },
+    {
+      "from": "idle",
+      "to": "social_groom",
+      "when": {
+        "all": [
+          {
+            "need": "social",
+            "gt": 0.5
+          },
+          {
+            "conspecifics_within_m": "${social_m}",
+            "gte": 2
+          }
+        ]
+      }
+    },
+    {
+      "from": "idle",
+      "to": "sentinel",
+      "when": {
+        "chance": 0.15
+      }
+    },
+    {
+      "from": "idle",
+      "to": "rest",
+      "when": {
+        "any": [
+          {
+            "need": "energy",
+            "gt": 0.7
+          },
+          {
+            "sun_elevation_between_deg": [
+              "${rest_sun_lo_deg}",
+              "${rest_sun_hi_deg}"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "from": "idle",
+      "to": "wander",
+      "when": {
+        "chance": 0.25
+      }
+    },
+    {
+      "from": "wander",
+      "to": "idle",
+      "when": {
+        "chance": 0.15
+      }
+    },
+    {
+      "from": "forage",
+      "to": "idle",
+      "when": {
+        "need": "hunger",
+        "lt": 0.2
+      }
+    },
+    {
+      "from": "social_groom",
+      "to": "idle",
+      "when": {
+        "need": "social",
+        "lt": 0.2
+      }
+    },
+    {
+      "from": "sentinel",
+      "to": "idle",
+      "when": {
+        "chance": 0.3
+      }
+    },
+    {
+      "from": "rest",
+      "to": "idle",
+      "when": {
+        "all": [
+          {
+            "need": "energy",
+            "lt": 0.2
+          },
+          {
+            "not": {
+              "sun_elevation_between_deg": [
+                "${rest_sun_lo_deg}",
+                "${rest_sun_hi_deg}"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "from": "flee",
+      "to": "idle",
+      "when": {
+        "not": {
+          "threat_within_m": "${calm_m}"
+        }
+      }
+    }
+  ]
+}
