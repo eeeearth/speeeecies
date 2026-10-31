@@ -1,0 +1,327 @@
+{
+  "schema_version": 1,
+  "format": "speeeecies/behavior",
+  "id": "fsm-wood-frog-diurnal-v1",
+  "kind": "fsm",
+  "description": "Diurnal ranid frog (wood frog): rests and hides in leaf litter at night, forages on the forest floor by day when warm enough, and gives a breeding chorus at pools in the spring months, including at dusk and night. Flees and freezes from threats. Authored for the wood frog; the day and night rules are inverted from the shared nocturnal anuran program.",
+  "params": {
+    "flee_m": 2,
+    "freeze_m": 4,
+    "calm_m": 4,
+    "food_tag": "invertebrate",
+    "food_m": 8,
+    "water_m": 5,
+    "call": "chorus",
+    "min_temp_c": 4,
+    "max_temp_c": 25,
+    "call_m1": 3,
+    "call_m2": 4,
+    "call_m3": 5
+  },
+  "initial": "hide",
+  "states": {
+    "hide": {
+      "action": {
+        "do": "hide_nearest"
+      },
+      "min_dwell_s": 20
+    },
+    "rest": {
+      "action": {
+        "do": "rest"
+      },
+      "min_dwell_s": 10
+    },
+    "forage": {
+      "action": {
+        "do": "eat_nearest",
+        "tag": "${food_tag}",
+        "gait": "walk"
+      }
+    },
+    "wander": {
+      "action": {
+        "do": "wander",
+        "gait": "walk"
+      }
+    },
+    "call": {
+      "action": {
+        "do": "sing",
+        "call": "${call}"
+      },
+      "min_dwell_s": 2
+    },
+    "freeze": {
+      "action": {
+        "do": "emote",
+        "kind": "freeze"
+      },
+      "min_dwell_s": 2
+    },
+    "flee": {
+      "action": {
+        "do": "flee",
+        "gait": "hop"
+      },
+      "min_dwell_s": 2
+    },
+    "touched": {
+      "action": {
+        "do": "tolerate_touch"
+      }
+    }
+  },
+  "transitions": [
+    {
+      "from": "*",
+      "to": "flee",
+      "when": {
+        "threat_within_m": "${flee_m}"
+      },
+      "priority": 100
+    },
+    {
+      "from": "*",
+      "to": "freeze",
+      "when": {
+        "all": [
+          {
+            "threat_within_m": "${freeze_m}"
+          },
+          {
+            "not": {
+              "threat_within_m": "${flee_m}"
+            }
+          }
+        ]
+      },
+      "priority": 50
+    },
+    {
+      "from": "*",
+      "to": "touched",
+      "when": {
+        "all": [
+          {
+            "player_touch": true
+          },
+          {
+            "need": "fear",
+            "lt": 0.2
+          }
+        ]
+      },
+      "priority": 45
+    },
+    {
+      "from": "touched",
+      "to": "rest",
+      "when": {
+        "player_touch": false
+      }
+    },
+    {
+      "from": "freeze",
+      "to": "rest",
+      "when": {
+        "not": {
+          "threat_within_m": "${freeze_m}"
+        }
+      }
+    },
+    {
+      "from": "flee",
+      "to": "hide",
+      "when": {
+        "not": {
+          "threat_within_m": "${calm_m}"
+        }
+      }
+    },
+    {
+      "from": "forage",
+      "to": "hide",
+      "when": {
+        "any": [
+          {
+            "is_day": false
+          },
+          {
+            "not": {
+              "temperature_between_c": [
+                "${min_temp_c}",
+                "${max_temp_c}"
+              ]
+            }
+          }
+        ]
+      },
+      "priority": 60
+    },
+    {
+      "from": "wander",
+      "to": "hide",
+      "when": {
+        "any": [
+          {
+            "is_day": false
+          },
+          {
+            "not": {
+              "temperature_between_c": [
+                "${min_temp_c}",
+                "${max_temp_c}"
+              ]
+            }
+          }
+        ]
+      },
+      "priority": 60
+    },
+    {
+      "from": "call",
+      "to": "hide",
+      "when": {
+        "not": {
+          "temperature_between_c": [
+            "${min_temp_c}",
+            "${max_temp_c}"
+          ]
+        }
+      },
+      "priority": 60
+    },
+    {
+      "from": "rest",
+      "to": "hide",
+      "when": {
+        "any": [
+          {
+            "is_day": false
+          },
+          {
+            "not": {
+              "temperature_between_c": [
+                "${min_temp_c}",
+                "${max_temp_c}"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "from": "hide",
+      "to": "rest",
+      "when": {
+        "all": [
+          {
+            "is_day": true
+          },
+          {
+            "temperature_between_c": [
+              "${min_temp_c}",
+              "${max_temp_c}"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "from": "rest",
+      "to": "call",
+      "when": {
+        "all": [
+          {
+            "month_in": [
+              "${call_m1}",
+              "${call_m2}",
+              "${call_m3}"
+            ]
+          },
+          {
+            "water_within_m": "${water_m}"
+          },
+          {
+            "chance": 0.1
+          },
+          {
+            "temperature_between_c": [
+              "${min_temp_c}",
+              "${max_temp_c}"
+            ]
+          }
+        ]
+      },
+      "priority": 50
+    },
+    {
+      "from": "call",
+      "to": "rest",
+      "when": {
+        "chance": 0.3
+      }
+    },
+    {
+      "from": "rest",
+      "to": "forage",
+      "when": {
+        "all": [
+          {
+            "need": "hunger",
+            "gt": 0.4
+          },
+          {
+            "food_within_m": "${food_m}",
+            "tag": "${food_tag}"
+          },
+          {
+            "is_day": true
+          },
+          {
+            "temperature_between_c": [
+              "${min_temp_c}",
+              "${max_temp_c}"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "from": "rest",
+      "to": "wander",
+      "when": {
+        "all": [
+          {
+            "chance": 0.1
+          },
+          {
+            "is_day": true
+          },
+          {
+            "temperature_between_c": [
+              "${min_temp_c}",
+              "${max_temp_c}"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "from": "wander",
+      "to": "rest",
+      "when": {
+        "chance": 0.2
+      }
+    },
+    {
+      "from": "forage",
+      "to": "rest",
+      "when": {
+        "need": "hunger",
+        "lt": 0.15
+      }
+    }
+  ]
+}

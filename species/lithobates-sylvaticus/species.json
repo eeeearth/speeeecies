@@ -259,16 +259,7 @@
     ]
   },
   "behavior": {
-    "program": "fsm-ground-forager-v1",
-    "params": {
-      "flee_m": 2,
-      "calm_m": 5,
-      "food_tag": "invertebrate",
-      "flee_gait": "hop",
-      "forage_gait": "walk",
-      "rest_sun_lo_deg": -90,
-      "rest_sun_hi_deg": -6
-    }
+    "program": "fsm-wood-frog-diurnal-v1"
   },
   "vocalizations": [
     {
@@ -550,10 +541,13 @@
       "note": "judgement: palette and proportions authored for the preview."
     },
     "behavior": {
-      "sources": [],
+      "sources": [
+        "wikipedia",
+        "adw-lithobates-sylvaticus"
+      ],
       "confidence": "Low",
       "derived": true,
-      "note": "judgement: fsm-ground-forager-v1 with diurnal rest settings (rest_sun between -90 and -6 degrees, i.e. at night) and hop flight. The shared anuran program was rejected because it hides by day and forages at night."
+      "note": "Species-local program (behavior.json). Diurnal timing from Wikipedia (mostly diurnal, rarely seen at night except in breeding choruses) and ADW (diurnal; breeding March to May; the ADW source is NC and is used only for the month set). Chorus at dusk and night is an authored reading of \"except maybe in breeding choruses\". Temperature range 4 to 25 C, flee and freeze distances, hunger thresholds and dwell times are authored judgement. Gaits: walk for forage and wander, hop for flight."
     }
   }
 }
