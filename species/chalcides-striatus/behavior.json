@@ -1,0 +1,185 @@
+{
+  "schema_version": 1,
+  "format": "speeeecies/behavior",
+  "id": "fsm-chalcides-grass-skink-v1",
+  "kind": "fsm",
+  "description": "Small day-active grassland skink: waits in cover when cool or threatened, basks when warm, searches and eats invertebrates by a serpentine slither, then returns to cover. No shared program fits: the closest reptile program models a snake and includes unsupported water drinking and musk defense.",
+  "params": {
+    "flee_m": 3,
+    "food_tag": "invertebrate",
+    "food_m": 4,
+    "cool_temp_c": 12,
+    "bask_temp_c": 24,
+    "forage_gait": "slither"
+  },
+  "initial": "retreat",
+  "states": {
+    "retreat": {
+      "action": {
+        "do": "hide_nearest"
+      },
+      "min_dwell_s": 15
+    },
+    "bask": {
+      "action": {
+        "do": "idle"
+      },
+      "min_dwell_s": 20
+    },
+    "prowl": {
+      "action": {
+        "do": "wander",
+        "gait": "${forage_gait}"
+      }
+    },
+    "forage": {
+      "action": {
+        "do": "eat_nearest",
+        "tag": "${food_tag}",
+        "gait": "${forage_gait}"
+      },
+      "min_dwell_s": 10
+    },
+    "flee": {
+      "action": {
+        "do": "flee",
+        "gait": "${forage_gait}"
+      },
+      "min_dwell_s": 2
+    }
+  },
+  "transitions": [
+    {
+      "from": "*",
+      "to": "flee",
+      "when": {
+        "threat_within_m": "${flee_m}"
+      },
+      "priority": 100
+    },
+    {
+      "from": "flee",
+      "to": "retreat",
+      "when": {
+        "not": {
+          "threat_within_m": "${flee_m}"
+        }
+      },
+      "priority": 50
+    },
+    {
+      "from": "*",
+      "to": "retreat",
+      "when": {
+        "is_day": false
+      },
+      "priority": 40
+    },
+    {
+      "from": "*",
+      "to": "retreat",
+      "when": {
+        "not": {
+          "temperature_between_c": [
+            "${cool_temp_c}",
+            40
+          ]
+        }
+      },
+      "priority": 30
+    },
+    {
+      "from": "retreat",
+      "to": "bask",
+      "when": {
+        "all": [
+          {
+            "is_day": true
+          },
+          {
+            "temperature_between_c": [
+              "${cool_temp_c}",
+              40
+            ]
+          }
+        ]
+      },
+      "priority": 20
+    },
+    {
+      "from": "bask",
+      "to": "prowl",
+      "when": {
+        "all": [
+          {
+            "temperature_between_c": [
+              "${bask_temp_c}",
+              40
+            ]
+          },
+          {
+            "chance": 0.3
+          }
+        ]
+      },
+      "priority": 15
+    },
+    {
+      "from": "bask",
+      "to": "forage",
+      "when": {
+        "all": [
+          {
+            "need": "hunger",
+            "gt": 0.4
+          },
+          {
+            "food_within_m": "${food_m}",
+            "tag": "${food_tag}"
+          }
+        ]
+      },
+      "priority": 22
+    },
+    {
+      "from": "prowl",
+      "to": "forage",
+      "when": {
+        "all": [
+          {
+            "need": "hunger",
+            "gt": 0.35
+          },
+          {
+            "food_within_m": "${food_m}",
+            "tag": "${food_tag}"
+          }
+        ]
+      },
+      "priority": 20
+    },
+    {
+      "from": "forage",
+      "to": "prowl",
+      "when": {
+        "need": "hunger",
+        "lt": 0.25
+      }
+    },
+    {
+      "from": "forage",
+      "to": "bask",
+      "when": {
+        "need": "energy",
+        "gt": 0.7
+      }
+    },
+    {
+      "from": "prowl",
+      "to": "bask",
+      "when": {
+        "chance": 0.2
+      }
+    }
+  ]
+}

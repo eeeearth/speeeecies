@@ -1,0 +1,590 @@
+{
+  "$schema": "https://eeeearth.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Chalcides striatus",
+  "slug": "chalcides-striatus",
+  "common_names": {
+    "en": "Western Three-toed Skink",
+    "fr": "Seps strié"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Reptilia",
+    "order": "Squamata",
+    "family": "Scincidae",
+    "genus": "Chalcides",
+    "authority": "(Cuvier, 1829)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 5225191,
+    "inat_taxon_id": 37213,
+    "itis_tsn": 1181907,
+    "wikidata": "Q2121134"
+  },
+  "range": {
+    "native": [
+      "FR",
+      "ES",
+      "PT",
+      "IT"
+    ],
+    "introduced": [],
+    "invasive_in": []
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Slither"
+    ],
+    "thermoregulation": "Ectotherm",
+    "skin": "Scales",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "None",
+    "perching": false,
+    "size_class": "Tiny",
+    "mass_kg": 0.0133,
+    "length_m": 0.315,
+    "diet": {
+      "invertebrate": 1.0
+    },
+    "social": {
+      "structure": "Solitary",
+      "group_size": [
+        1,
+        1
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.7
+  },
+  "habitat": {
+    "use": {
+      "ground": 1.0
+    },
+    "shelter_tag": "shrub_thicket",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 1.0
+      },
+      {
+        "tag": "shrub_thicket",
+        "kind": "Shelter",
+        "weight": 0.8
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Avoider",
+      "uses_gardens": false,
+      "light_max": 0.2,
+      "notes": "Specialized in dense grassland, wet meadow, and fallow fields; authored low tolerance and light values."
+    }
+  },
+  "seasonal": {
+    "strategy": "Brumation",
+    "winter_fraction": 1.0,
+    "triggers": {
+      "enter": {
+        "temperature_below_c": 10,
+        "days": 5
+      },
+      "exit": {
+        "temperature_above_c": 10,
+        "days": 5
+      }
+    },
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "03-01",
+        "end": "06-30",
+        "note": "French records and reproductive activity indicate spring activity; these are authored broad dates for the French support region."
+      },
+      {
+        "name": "dormancy",
+        "start": "11-01",
+        "end": "03-31",
+        "note": "French regional source describes overwintering from about October or November through March or April; this interval is an authored approximation."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Juvenile"
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "FR",
+        "monthly": [
+          0.04,
+          0.02,
+          0.12,
+          0.58,
+          1.0,
+          0.89,
+          0.29,
+          0.15,
+          0.07,
+          0.02,
+          0.01,
+          0.01
+        ],
+        "method": "gbif_raw",
+        "observations": 4744,
+        "sources": [
+          "gbif-activity-fr"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 6753,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=37213&place_id=6753&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": null,
+            "total": 225,
+            "usable": false
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "country",
+              "FR"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5225191&country=FR&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": null,
+            "total": 4744,
+            "usable": true
+          },
+          "used": [
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-chalcides-grass-skink-v1",
+    "params": {
+      "flee_m": 3,
+      "food_tag": "invertebrate",
+      "food_m": 4,
+      "cool_temp_c": 12,
+      "bask_temp_c": 24,
+      "forage_gait": "slither"
+    }
+  },
+  "vocalizations": [],
+  "look": {
+    "body_plan": "quadruped",
+    "proportions": {
+      "torso_aspect": 3.4,
+      "leg_length_ratio": 0.08,
+      "head_scale": 0.36,
+      "neck_angle_deg": 0,
+      "tail_ratio": 0.7,
+      "girth_ratio": 0.32
+    },
+    "palette": {
+      "body": "#9b8060",
+      "belly": "#d6c8ae",
+      "markings": "#463d32",
+      "accent": "#a58a68",
+      "eye": "#17130f"
+    },
+    "extra_parts": [
+      {
+        "name": "dorsal_stripe",
+        "parent": "body",
+        "offset": [
+          0,
+          0.42,
+          0
+        ],
+        "size": [
+          0.88,
+          0.05,
+          0.05
+        ],
+        "color": "markings"
+      },
+      {
+        "name": "side_stripe_left",
+        "parent": "body",
+        "offset": [
+          0,
+          0.2,
+          -0.4
+        ],
+        "size": [
+          0.88,
+          0.05,
+          0.035
+        ],
+        "color": "markings"
+      },
+      {
+        "name": "side_stripe_right",
+        "parent": "body",
+        "offset": [
+          0,
+          0.2,
+          0.4
+        ],
+        "size": [
+          0.88,
+          0.05,
+          0.035
+        ],
+        "color": "markings"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "slither": {
+        "cycle_s": 1.2,
+        "keyframes": [
+          {
+            "t": 0,
+            "parts": {
+              "body": {
+                "rot_deg": [
+                  0,
+                  0,
+                  4
+                ]
+              },
+              "tail": {
+                "rot_deg": [
+                  0,
+                  0,
+                  -3
+                ]
+              }
+            }
+          },
+          {
+            "t": 0.5,
+            "parts": {
+              "body": {
+                "rot_deg": [
+                  0,
+                  0,
+                  -4
+                ]
+              },
+              "tail": {
+                "rot_deg": [
+                  0,
+                  0,
+                  3
+                ]
+              }
+            }
+          },
+          {
+            "t": 1,
+            "parts": {
+              "body": {
+                "rot_deg": [
+                  0,
+                  0,
+                  4
+                ]
+              },
+              "tail": {
+                "rot_deg": [
+                  0,
+                  0,
+                  -3
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/5225191",
+      "title": "GBIF Backbone Taxonomy: Chalcides striatus",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-31",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=1181907",
+      "title": "ITIS: Chalcides striatus, TSN 1181907",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-10-31",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q2121134",
+      "title": "Wikidata: Western Three-toed Skink (Q2121134)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-31",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "peerj-habitat",
+      "url": "https://doi.org/10.7717/peerj.4274",
+      "title": "Habitat use in south-west European skinks (genus Chalcides)",
+      "license": "CC-BY-4.0",
+      "kind": "literature",
+      "accessed": "2026-10-31",
+      "attribution": "Escoriza et al. (2018), PeerJ 6:e4274, https://doi.org/10.7717/peerj.4274",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "scientific-reports-mass",
+      "url": "https://doi.org/10.1038/s41598-020-64504-4",
+      "title": "Foraging strategy of a carnivorous-insectivorous raptor species based on prey size, capturability and nutritional components",
+      "license": "CC-BY-4.0",
+      "kind": "literature",
+      "accessed": "2026-10-31",
+      "attribution": "Barnagaud et al. (2020), Scientific Reports 10, 9626, https://doi.org/10.1038/s41598-020-64504-4",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Chalcides_striatus",
+      "title": "Wikipedia: Chalcides striatus",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-31",
+      "attribution": "Wikipedia contributors, \"Chalcides striatus\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "gbif-activity-fr",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5225191&country=FR&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Chalcides striatus in FR",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-31) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-31",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "itis"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "The iNaturalist taxon API was independently rechecked as active species taxon 37213; the record identifier is also listed on Wikidata."
+    },
+    "common_names": {
+      "sources": [
+        "wikidata",
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "range": {
+      "sources": [
+        "peerj-habitat",
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Southern France, Spain, and Portugal are reported in PeerJ habitat records; Italy follows the native range summary. Occurrences are not treated as evidence of introduced status."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Two pairs of reduced legs, each with three toes."
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Fast serpentine movement through grass represented as slithering."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "peerj-habitat"
+      ],
+      "confidence": "High",
+      "note": "The study describes heliothermy and thigmothermy."
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Live-bearing; None represents no external nest."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Does not perch."
+    },
+    "traits.size_class": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Tiny follows the cited body mass of 13.3 g, below the 0.05 kg size-class boundary."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "scientific-reports-mass"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Converted the paper table value of 13.3 g to 0.0133 kg. The method describes prey-body masses as means from collected animals or literature, but does not identify the source statistic for this skink or report its sample size; this is a low-confidence adult-mass proxy."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Converted the midpoint of the reported total-length interval 0.20-0.43 m to 0.315 m. This is an interval midpoint, not a measured population mean."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Modelled as all invertebrate prey from the species account's insect and other invertebrate diet; no quantitative proportions are implied."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Solitary is a judgement; group size [1,1] follows the format convention for solitary animals."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Flees into grass cover when detected."
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement based on its described flight into dense grass cover."
+    },
+    "habitat": {
+      "sources": [
+        "peerj-habitat",
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The source describes open grassy habitats and shelter in vegetation; resource weights and available shelter tag are authored mappings."
+    },
+    "seasonal": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "French regional source reports live births and overwintering; broad calendar intervals and temperature triggers are authored approximations for FR. The record includes juvenile/adult stages without durations because no defensible duration was found."
+    },
+    "behavior": {
+      "sources": [
+        "peerj-habitat",
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored FSM for daytime heat seeking, invertebrate foraging, cover-seeking escape, and slither gait; temperature thresholds are unmeasured simulation values."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored stylized skink with reduced limbs and longitudinal dark stripes, approximating the published body form and dorsal markings."
+    },
+    "activity.FR": {
+      "sources": [
+        "gbif-activity-fr"
+      ],
+      "confidence": "Medium",
+      "note": "Country-level FR GBIF monthly bins; 4,744 filtered occurrence records. The iNaturalist tier-C query had 225 records, below the 300-record threshold, so the fetcher did not use it. Observation frequency is a proxy for activity and the country-wide query is broader than known local concentrations."
+    }
+  }
+}
