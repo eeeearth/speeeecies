@@ -592,6 +592,7 @@ iss=json.load(sys.stdin)
 for i in iss:
     labs={l["name"] for l in i["labels"]}
     if i["assignees"]: continue
+    if {"species-request", "animal", "needs-deeper-research"} <= labs: continue
     t=i["title"]
     kind=None
     if "species-request" in labs and "animal" in labs and "phase-2" not in labs:
@@ -694,13 +695,31 @@ cmd_spawn() {
   slug_ok "$slug" || die "slug must normalise to lowercase letters, digits and dashes: $slug"
 
   local state
-  state=$(gh issue view "$issue" --repo "$GH_REPO" --json state,assignees \
-          -q '.state + "|" + ([.assignees[].login] | join(","))' 2>/dev/null || echo "ERR|")
+  state=$(gh issue view "$issue" --repo "$GH_REPO" --json state,assignees,labels \
+          -q '.state + "|" + ([.assignees[].login] | join(",")) + "|" + ([.labels[].name] | join(","))' 2>/dev/null || echo "ERR||")
+  local issue_assignees issue_labels
+  IFS='|' read -r _ issue_assignees issue_labels <<< "$state"
   case "$state" in
-    OPEN\|) : ;;
-    OPEN\|*) die "issue $issue is already assigned to ${state#OPEN|}; leave it to them";;
+    OPEN\|\|*) : ;;
+    OPEN\|*) die "issue $issue is already assigned to $issue_assignees; leave it to them";;
     *) die "issue $issue is not an open species-request animal issue (got '$state')";;
   esac
+  if [ "$kind" = species ]; then
+    case ",$issue_labels," in
+      *,needs-deeper-research,*) die "issue $issue needs deeper research; leave it for a human or stronger-model handoff";;
+    esac
+    case ",$issue_labels," in
+      *,species-request,*) :;;
+      *) die "issue $issue is not an open species-request animal issue (got '$state')";;
+    esac
+    case ",$issue_labels," in
+      *,animal,*) :;;
+      *) die "issue $issue is not an open species-request animal issue (got '$state')";;
+    esac
+    case ",$issue_labels," in
+      *,phase-2,*) die "issue $issue is phase-2 plant work; do not spawn a species agent";;
+    esac
+  fi
   pr_st=0; pr_for_slug "$slug" "$kind" || pr_st=$?
   case "$pr_st" in
     2) die "cannot verify whether $kind/$slug/ already has a PR (GitHub unreachable); refusing to risk a duplicate" ;;

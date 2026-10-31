@@ -302,6 +302,13 @@ Work through these in order. Do not skip ahead to opening the PR.
 
 ## When you get stuck
 
+When a bounded search finds no defensible, licensed value for a required
+field or no behaviour that can represent the animal, follow the
+`needs-deeper-research` handoff in `AGENTS.md`. Leave a precise issue blocker
+comment with fields, sources, licences, and the draft or branch disposition;
+release the claim and add the label. A useful incomplete draft needs an
+explicit review or continuation decision first; do not label every draft.
+
 Read the actual error. `validate.py` names the field and the rule. If an enum
 value you want does not exist, do not force the closest wrong value into the
 range to pass validation. Pick the value the species actually is and document

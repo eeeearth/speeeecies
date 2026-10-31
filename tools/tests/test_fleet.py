@@ -4,6 +4,7 @@ uv run --with pytest pytest tools/tests -q
 from __future__ import annotations
 
 import os
+import json
 import re
 import subprocess
 import tempfile
@@ -87,6 +88,59 @@ def test_recipe_markers_do_not_prefix_match(tmp_path):
 def test_unknown_issue_gets_explicit_no_recipe_note(tmp_path):
     brief = render(tmp_path, "9999", "unknown-thing", "Unknown thing", "GB")
     assert "No researched recipe for issue #9999" in brief
+
+
+def _issue_selection_env(tmp_path: Path, issues: list[dict]) -> dict[str, str]:
+    """Exercise the shipped list and spawn commands with deterministic gh output."""
+    fake_bin = tmp_path / "bin"
+    fake_bin.mkdir()
+    gh = fake_bin / "gh"
+    gh.write_text(
+        "#!/usr/bin/env python3\n"
+        "import os, sys\n"
+        "args = sys.argv[1:]\n"
+        "if args[:2] == ['issue', 'list']:\n"
+        "    print(os.environ['FAKE_ISSUES'])\n"
+        "elif args[:2] == ['issue', 'view']:\n"
+        "    print(os.environ['FAKE_ISSUE_STATE'])\n"
+        "elif args[:2] == ['pr', 'list']:\n"
+        "    print('0')\n"
+        "else:\n"
+        "    raise SystemExit(f'unexpected gh call: {args}')\n"
+    )
+    gh.chmod(0o755)
+    return dict(os.environ, PATH=f"{fake_bin}:{os.environ['PATH']}",
+                GH_REPO="eeeearth/speeeecies", BRANCH_PREFIX="test",
+                WORKTREE_ROOT=str(tmp_path / "worktrees"),
+                FLEET_STATE_DIR=str(tmp_path / "state"),
+                FAKE_ISSUES=json.dumps(issues), FAKE_ISSUE_STATE="OPEN||species-request,animal")
+
+
+def test_deeper_research_species_is_excluded_from_fleet_candidates(tmp_path):
+    labels = lambda *names: [{"name": name} for name in names]
+    issues = [
+        {"number": 90001, "title": "Clear (Testus clearus)", "labels": labels("species-request", "animal"), "assignees": []},
+        {"number": 90002, "title": "Held (Testus heldus)", "labels": labels("species-request", "animal", "needs-deeper-research"), "assignees": []},
+        {"number": 90003, "title": "Plant (Testus plantus)", "labels": labels("species-request", "animal", "phase-2"), "assignees": []},
+    ]
+    result = subprocess.run(["bash", str(FLEET), "list-issues"], cwd=REPO,
+                            env=_issue_selection_env(tmp_path, issues),
+                            capture_output=True, text=True)
+    assert result.returncode == 0, result.stderr
+    assert "90001\ttestus-clearus\tspecies" in result.stdout
+    assert "90002" not in result.stdout
+    assert "90003" not in result.stdout
+
+
+def test_direct_spawn_refuses_deeper_research_before_worktree_creation(tmp_path):
+    env = _issue_selection_env(tmp_path, [])
+    env["FAKE_ISSUE_STATE"] = "OPEN||species-request,animal,needs-deeper-research"
+    result = subprocess.run(["bash", str(FLEET), "spawn", "--issue", "90002",
+                             "--slug", "testus-heldus", "--scientific", "Testus heldus"],
+                            cwd=REPO, env=env, capture_output=True, text=True)
+    assert result.returncode != 0
+    assert "needs deeper research" in result.stderr
+    assert not (tmp_path / "worktrees" / "species-testus-heldus").exists()
 
 
 def test_recipes_file_covers_every_queued_issue():
@@ -946,7 +1000,7 @@ def test_spawn_actually_completes_on_a_clean_state_dir(tmp_path):
         "#!/usr/bin/env bash\n"
         'case "$*" in\n'
         '  *"issue view"*)\n'
-        '    if [[ "$*" == *"--json state,assignees"* ]]; then printf \'OPEN|\\n\'; else\n'
+        '    if [[ "$*" == *"--json state,assignees,labels"* ]]; then printf \'OPEN||species-request,animal\\n\'; else\n'
         '      printf \'{"body":"Suggested regions\\\\n`US-CO`\\\\n"}\\n\'; fi ;;\n'
         '  *"issue list"*) printf \'[]\\n\' ;;\n'
         '  *"pr list"*) printf \'0\\n\' ;;\n'
