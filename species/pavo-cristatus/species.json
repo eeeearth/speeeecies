@@ -128,13 +128,6 @@
     "strategy": "ActiveYearRound",
     "phases": [
       {
-        "name": "breeding",
-        "start": "06-01",
-        "end": "09-30",
-        "region": "IN",
-        "note": "Authored approximation: Wikipedia ties the breeding season to the onset of the monsoon rains but gives no month range."
-      },
-      {
         "name": "moult",
         "start": "08-01",
         "end": "03-31",
@@ -207,16 +200,25 @@
     ]
   },
   "behavior": {
-    "program": "fsm-ground-forager-v1",
+    "program": "bt-ground-probing-bird-v1",
     "params": {
       "food_tag": "seed",
-      "forage_gait": "walk",
-      "flee_gait": "walk",
-      "rest_sun_lo_deg": -90,
-      "rest_sun_hi_deg": -6
+      "song": "call",
+      "alarm": "alarm"
     }
   },
   "vocalizations": [
+    {
+      "call_id": "call",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [
+        "Dusk"
+      ],
+      "cooldown_s": 12,
+      "description": "Loud calls, with about seven known call variants, given frequently at dusk as birds arrive at roost sites.",
+      "loudness": "Loud"
+    },
     {
       "call_id": "alarm",
       "context": "Alarm",
@@ -540,7 +542,7 @@
       ],
       "confidence": "Low",
       "derived": true,
-      "note": "Moult, Aug to Mar: Wikipedia Description (moult starts at end of monsoon in Aug or Sep, fully developed by Feb to Mar). Breeding, Jun to Sep in India: authored approximation of the monsoon-linked breeding season, which Wikipedia gives without a month range."
+      "note": "Moult, Aug to Mar: Wikipedia Description (moult starts at end of monsoon in Aug or Sep, fully developed by Feb to Mar). No breeding phase is recorded: Wikipedia ties breeding to the monsoon without a month range, and local Indian studies disagree (Kanha courtship late Jan to June; Viralimalai Oct to early Dec), so no defensible Indian breeding window was found."
     },
     "seasonal.life_stages": {
       "sources": [
@@ -553,14 +555,14 @@
       "sources": [],
       "confidence": "Medium",
       "derived": true,
-      "note": "Authored program choice. fsm-ground-forager-v1 is used with overrides: diurnal rest window (-90 to -6 degrees of sun, night roost), walk escape gait (the model has no trot animation for this body plan, so the on-foot escape is shown at walking pace), seed as the single food tag, walk foraging. Limitations: the program cannot express the midday shelter rest under cover, ground nesting or flock muster behaviour, and it allows one food tag."
+      "note": "Authored program choice. bt-ground-probing-bird-v1 is used: it probes the ground on foot for food, takes off and flies to a tree perch when threatened, roosts on a perch at night, and calls from a perch in the sun-elevation window it declares. Overrides: food_tag seed (one tag only), song call, alarm alarm. The nest-building window is left at the program default of months 10 to 12 and is UNRESOLVED: it matches the Viralimalai courtship record (Oct to early Dec, southern India) but not the Kanha record (courtship late Jan to June); the program has no way to disable nest-building except a valid month window, and no defensible Indian nesting window was found. This is a merge blocker. Limitations: the program makes every threat response a flight to a perch, whereas Wikipedia says the bird mostly escapes on foot and rarely flies; the midday shelter rest under cover, ground nesting and flock muster are not expressed; and the calling window follows the program's dawn-to-dusk sun condition, not the dusk and night calling Wikipedia describes."
     },
     "vocalizations": {
       "sources": [
         "wikipedia-indian-peafowl"
       ],
       "confidence": "Medium",
-      "note": "Wikipedia: makes loud calls used to indicate a predator; calls frequently at dusk when arriving at roost; may call at night when alarmed; about six alarm variants. Only the alarm call is modelled here."
+      "note": "Wikipedia: makes loud calls used to indicate a predator; calls frequently at dusk when arriving at roost; may call at night when alarmed; about six alarm variants. The call entry is the dusk call at roosts; the alarm entry is the predator alarm. Context is mapped to the program's call IDs; the call's loudness and cooldown are authored."
     },
     "look": {
       "sources": [],
