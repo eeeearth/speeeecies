@@ -1,0 +1,535 @@
+{
+  "$schema": "https://eeeearth.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Sylvia borin",
+  "slug": "sylvia-borin",
+  "common_names": {
+    "en": "Garden warbler",
+    "fr": "Fauvette des jardins"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Passeriformes",
+    "family": "Sylviidae",
+    "genus": "Sylvia",
+    "authority": "(Boddaert, 1783)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2492942,
+    "inat_taxon_id": 15302
+  },
+  "range": {
+    "native": [
+      "FR"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Walk",
+      "Hop",
+      "Fly"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Cup",
+    "perching": true,
+    "size_class": "Tiny",
+    "mass_kg": 0.019,
+    "mass_range_kg": [
+      0.016,
+      0.022
+    ],
+    "length_m": 0.14,
+    "lifespan_y": 2,
+    "diet": {
+      "invertebrate": 0.6,
+      "fruit": 0.4
+    },
+    "social": {
+      "structure": "Solitary",
+      "group_size": [
+        1,
+        2
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.65
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.2,
+      "arboreal": 0.8
+    },
+    "shelter_tag": "shrub_thicket",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.6
+      },
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.4,
+        "months": [
+          7,
+          8,
+          9
+        ]
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.6
+      },
+      {
+        "tag": "shrub_thicket",
+        "kind": "Shelter",
+        "weight": 0.8
+      },
+      {
+        "tag": "nest_cup",
+        "kind": "Nesting",
+        "weight": 1.0
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Avoider",
+      "uses_gardens": false,
+      "light_max": 0.2,
+      "notes": "Breeds in open woodland and dense scrub; gardens are rarely occupied."
+    }
+  },
+  "seasonal": {
+    "strategy": "Migration",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "04-20",
+        "end": "07-31",
+        "region": "FR",
+        "note": "Nesting begins in late April in southern/central Europe, early May in northwest Europe, and may continue into July; broad calendar window for FR."
+      },
+      {
+        "name": "dispersal",
+        "start": "07-15",
+        "end": "09-30",
+        "region": "FR",
+        "note": "Southward departure begins in mid-July; most adults leave by mid-September and juveniles can linger into October."
+      },
+      {
+        "name": "absent",
+        "start": "10-01",
+        "end": "04-30",
+        "note": "All populations winter in sub-Saharan Africa; this broad phase marks absence from France."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg"
+      },
+      {
+        "stage": "Juvenile"
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "FR",
+        "monthly": [
+          0.0,
+          0.0,
+          0.01,
+          0.29,
+          1.0,
+          0.72,
+          0.31,
+          0.47,
+          0.3,
+          0.04,
+          0.0,
+          0.01
+        ],
+        "method": "gbif_share",
+        "observations": 143941,
+        "sources": [
+          "gbif-activity-fr"
+        ],
+        "query": {
+          "min_obs": 300,
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "country",
+              "FR"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2492942&country=FR&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&country=FR&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 143941,
+            "usable": true,
+            "monthly_counts": [
+              110,
+              48,
+              216,
+              10580,
+              36582,
+              26161,
+              11425,
+              17365,
+              11136,
+              1436,
+              37,
+              195
+            ]
+          },
+          "used": [
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "bt-sylvia-borin-forager-v1",
+    "params": {
+      "flee_m": 8,
+      "song": "song",
+      "alarm": "alarm"
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "song",
+      "context": "Song",
+      "season_months": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "time_windows": [
+        "DawnChorus",
+        "Day",
+        "Dusk"
+      ],
+      "cooldown_s": 30,
+      "loudness": "Moderate",
+      "description": "Rich, melodic warbling song delivered in short bursts, often from dense cover."
+    },
+    {
+      "call_id": "alarm",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day",
+        "Dusk"
+      ],
+      "cooldown_s": 5,
+      "loudness": "Moderate",
+      "description": "Sharp kek-kek notes repeated rapidly when alarmed."
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.4,
+      "leg_length_ratio": 0.34,
+      "head_scale": 0.82,
+      "neck_angle_deg": 10,
+      "tail_ratio": 0.62,
+      "wing_aspect": 2.5,
+      "beak_ratio": 0.34,
+      "girth_ratio": 0.95
+    },
+    "palette": {
+      "body": "#786b52",
+      "belly": "#e7e1d5",
+      "markings": "#a4977f",
+      "accent": "#6b624e",
+      "eye": "#111111"
+    },
+    "part_colors": {
+      "breast": "belly",
+      "beak": "accent"
+    },
+    "poses": {
+      "idle": {},
+      "hop": {},
+      "fly": {},
+      "perched": {},
+      "rest": {},
+      "walk": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2492942",
+      "title": "GBIF Backbone Taxonomy: Sylvia borin",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-31",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "inat-taxon",
+      "url": "https://api.inaturalist.org/v1/taxa/15302",
+      "title": "iNaturalist taxon: Sylvia borin",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-31",
+      "attribution": "iNaturalist contributors, taxon record accessed via the iNaturalist API",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Garden_warbler",
+      "title": "Wikipedia: Garden warbler",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-31",
+      "attribution": "Wikipedia contributors, Garden warbler, English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "gbif-activity-fr",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2492942&country=FR&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Sylvia borin in FR",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-31) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-31",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High",
+      "note": "GBIF returns the accepted species Sylvia borin, rank SPECIES; iNaturalist independently returns active species Sylvia borin (taxon 15302)."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "inat-taxon"
+      ],
+      "confidence": "High"
+    },
+    "common_names": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium"
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "France is within the species' European breeding range; vagrant occurrences elsewhere are excluded."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Two legs; wings are not counted as limbs by this schema."
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Powered flight is documented; walking and hopping are the authored ground movement modes for a small passerine."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "A concealed cup nest near the ground."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.size_class": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Typical mass is 16-22 g, so below the schema's 0.05 kg threshold."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Midpoint of the stated typical 16-22 g range, converted to kg."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "14 cm converted to metres."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "BTO BirdFacts defines this as the typical life expectancy of a bird reaching breeding age and reports 2 years, with breeding typically at 1 year. Wikipedia reference 32 cites this BTO source; Wikipedia text is the openly licensed source used here. The ten-year wild age is a longevity record, not the typical value."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Authored seasonal allocation across the two documented food classes: insects dominate breeding, while fruit predominates during pre-migration fattening. Equal annual shares are a simplified simulation allocation, not measured proportions."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Pairs defend breeding territories; solitary with pair-sized range is an authored non-breeding simplification."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "The species migrates nocturnally; routine breeding and feeding activity is modelled as diurnal."
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Authored flee response for a small passerine under threat."
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement for a shy bird of dense cover that is rarely seen."
+    },
+    "habitat": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Open woodland and dense scrub support an authored shrub-dominant habitat allocation and resource tags."
+    },
+    "seasonal": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Breeding, departure and wintering windows summarize text for the European population: eggs from late April in southern Europe and early May in northwest Europe, nesting into July, then autumn departure. Broad dates are simulation windows."
+    },
+    "behavior": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Species-local copy of bt-perching-songbird-v1 gates dawn/dusk song to April-July, limits nesting to April-July, changes ground feeding to walking, and selects fruit in July-September and invertebrates otherwise. The coarse action simulates feeding near shrubs; it cannot express foliage gleaning, hovering, or long-distance migration directly."
+    },
+    "vocalizations": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Plain olive-brown upperparts, dull white underparts, pale eye ring; proportions are authored."
+    },
+    "activity.FR": {
+      "sources": [
+        "gbif-activity-fr"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "GBIF CC0/CC BY monthly counts normalized by the highest month; iNaturalist CC0/CC BY-only returned 56 records, below the 300 threshold. Broadening iNaturalist licences reached 399 but included CC BY-NC, so it was excluded."
+    }
+  }
+}
