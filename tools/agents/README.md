@@ -212,11 +212,14 @@ It does not merge anything.
 
 Species issues labelled `needs-deeper-research` are excluded from both the
 automatic list and a direct `spawn`, regardless of claim expiry. The label is
-for a failed bounded research attempt with no viable record or PR, not for every
-draft. Follow `AGENTS.md` for the issue evidence comment, claim release, draft
-disposition, and a single research pass capped at two hours with Codex Sol or
-Claude Sonnet. Clear the label only after the missing evidence and behaviour
-have been verified on the issue.
+for a verified research blocker, including one or two missing factual values
+on an otherwise complete draft. It is not a generic label for every draft.
+Follow `AGENTS.md` for the issue evidence comment, claim release and draft or
+branch disposition. A draft is allowed only within that document's narrow
+two-value rule; broader partial work stays on a preserved branch or worktree.
+Give a single research pass capped at two hours to Codex Sol or Claude Sonnet.
+Clear the label only after the missing evidence and behaviour have been
+verified on the issue.
 
 The fleet does not apply the label automatically. Its no-PR exit also covers
 model failures and interrupted sessions, while a GitHub outage can make PR

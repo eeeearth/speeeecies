@@ -265,8 +265,14 @@ Work through these in order. Do not skip ahead to opening the PR.
    the species checklist in `.github/pull_request_template.md` that is genuinely
    done. Add the evidence, activity and behaviour summaries required by the PR
    template. Explain source licence choices, with field-specific alternatives
-   for every NC source. Use a draft PR and `Refs #{{ISSUE}}` in place of
-   `Closes #{{ISSUE}}` when required work is incomplete.
+   for every NC source. A draft PR is permitted only when the record and
+   attribution are committed, taxonomy, activity, behaviour, source review
+   and every preview pose are complete, and no more than two precisely named
+   factual values still need licensed evidence. List those values and the
+   sources checked; use `Refs #{{ISSUE}}` in place of `Closes #{{ISSUE}}`.
+   If more remains, preserve the branch or worktree, link it from the issue,
+   release the claim and add `needs-deeper-research` for a verified research
+   blocker. Never open a draft to park broad unfinished work.
 
    Then confirm the PR really exists before you go any further. A branch pushed
    is not a PR: `gh pr create` can fail, and one of these delegates reported
@@ -306,8 +312,9 @@ When a bounded search finds no defensible, licensed value for a required
 field or no behaviour that can represent the animal, follow the
 `needs-deeper-research` handoff in `AGENTS.md`. Leave a precise issue blocker
 comment with fields, sources, licences, and the draft or branch disposition;
-release the claim and add the label. A useful incomplete draft needs an
-explicit review or continuation decision first; do not label every draft.
+release the claim and add the label even if a qualifying near-complete draft
+remains open. Do not label an ordinary incomplete draft without a verified
+research blocker.
 
 Read the actual error. `validate.py` names the field and the rule. If an enum
 value you want does not exist, do not force the closest wrong value into the

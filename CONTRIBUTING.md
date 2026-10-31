@@ -18,7 +18,11 @@ An issue labelled `needs-deeper-research` is held after a bounded attempt
 could not support a required value with licensed evidence or find a fitting
 behaviour. Its issue comment names the gap and sources checked. A human or
 one Codex Sol or Claude Sonnet pass capped at two hours can revisit it. The
-label is cleared after the missing evidence is verified.
+label is cleared after the missing evidence is verified. It also applies when
+a near-complete draft PR remains open, so smaller agents do not duplicate the
+research. A draft species PR is for a record missing no more than two specific
+factual values after taxonomy, activity, behaviour, source review and preview
+are complete. Broader partial work stays on a branch linked from the issue.
 
 ## Add a species yourself
 
@@ -45,7 +49,7 @@ label is cleared after the missing evidence is verified.
 
 ### Data rules
 
-- Every value needs a source with an open licence. Prefer CC0 or public
+- Every value needs a source with an allowed licence. Prefer CC0 or public
   domain, then CC BY, then CC BY-SA. Non-commercial (NC) sources are a
   last resort — mark them and justify them in the PR body. ND and unknown
   licences are rejected outright.
@@ -53,6 +57,9 @@ label is cleared after the missing evidence is verified.
   (SPDX-style, case-sensitive: `CC-BY-4.0`, not `cc-by-4.0`).
 - Never strip attribution, even from sources that don't legally require
   it.
+- Before bulk extraction, check the source collection's terms. Individual
+  facts and compiled databases can have different reuse rules; do not copy a
+  restricted table into the public project or assign it an open licence.
 - Never invent a number. If you can't source a value, leave it out (if
   optional) or mark it `derived: true` with a note on how you derived it.
   Authored judgement calls (like `wariness` or behaviour parameters) are

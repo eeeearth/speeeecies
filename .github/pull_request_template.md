@@ -5,7 +5,9 @@
 
 Closes #
 
-<!-- Use Refs # for a partial contribution. Keep incomplete work in draft.
+<!-- Use Refs # for a near-complete draft species contribution: at most two
+     named missing factual values, with all other gates complete. Broader
+     partial work belongs on a preserved branch linked from its issue.
      Only check work you actually performed. -->
 
 ## Evidence and scope
@@ -33,8 +35,9 @@ and, for a locale:
 uv run tools/validate.py --locale <id> --report
 uv run tools/validate.py --self-check
 Also run all-species and all-locale validation when requesting review.
-Give the tested commit, command results and warning resolutions. A draft may
-carry incomplete work, but must state its failures. Do not paste a shell
+Give the tested commit, command results and warning resolutions. A qualifying
+draft must name its one or two missing values and state any validation failure
+they cause. Do not paste a shell
 expression such as $(cat report.md) in place of the actual report. -->
 
 ## Preview evidence
