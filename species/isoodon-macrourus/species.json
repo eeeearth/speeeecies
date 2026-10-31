@@ -1,0 +1,526 @@
+{
+  "$schema": "https://eeeearth.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Isoodon macrourus",
+  "slug": "isoodon-macrourus",
+  "common_names": {
+    "en": "Northern brown bandicoot"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Mammalia",
+    "order": "Peramelemorphia",
+    "family": "Peramelidae",
+    "genus": "Isoodon",
+    "authority": "(Gould, 1842)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2435304,
+    "inat_taxon_id": 43301,
+    "wikidata": "Q194272"
+  },
+  "range": {
+    "native": [
+      "AU",
+      "PG"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk",
+      "Gallop"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Fur",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Ground",
+    "perching": false,
+    "size_class": "Medium",
+    "mass_kg": 1.2,
+    "mass_range_kg": [
+      0.5,
+      3.1
+    ],
+    "length_m": 0.55,
+    "lifespan_y": 2.5,
+    "diet": {
+      "invertebrate": 0.7,
+      "browse": 0.2,
+      "vertebrate": 0.1
+    },
+    "social": {
+      "structure": "Solitary",
+      "group_size": [
+        1,
+        1
+      ]
+    },
+    "activity_pattern": "Nocturnal",
+    "defense": "Flee",
+    "wariness": 0.8
+  },
+  "habitat": {
+    "use": {
+      "ground": 1.0
+    },
+    "shelter_tag": "nest_ground",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.7
+      },
+      {
+        "tag": "browse",
+        "kind": "Herbivory",
+        "weight": 0.2
+      },
+      {
+        "tag": "small_vertebrate",
+        "kind": "Predation",
+        "weight": 0.1
+      },
+      {
+        "tag": "nest_ground",
+        "kind": "Nesting",
+        "weight": 1.0
+      },
+      {
+        "tag": "leaf_litter",
+        "kind": "Shelter",
+        "weight": 0.8
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "01-01",
+        "end": "12-31",
+        "note": "Year-round breeding is reported, though onset varies by region and rainfall; this global phase cannot encode local seasonal differences."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Juvenile",
+        "duration_days": 60
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "AU",
+        "monthly": [
+          0.14,
+          0.19,
+          0.14,
+          0.09,
+          0.25,
+          0.64,
+          0.76,
+          1.0,
+          0.55,
+          0.3,
+          0.21,
+          0.08
+        ],
+        "method": "gbif_share",
+        "observations": 59748,
+        "sources": [
+          "gbif-activity-au"
+        ],
+        "query": {
+          "min_obs": 2000,
+          "inat": {
+            "tier": "C",
+            "place_id": 6744,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=43301&place_id=6744&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=6744&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 1776,
+            "usable": false
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "country",
+              "AU"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2435304&country=AU&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&country=AU&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 59748,
+            "usable": true
+          },
+          "used": [
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-ground-forager-v1",
+    "params": {
+      "flee_m": 15,
+      "calm_m": 35,
+      "food_tag": "invertebrate",
+      "food_m": 8,
+      "flee_gait": "gallop",
+      "forage_gait": "walk"
+    }
+  },
+  "vocalizations": [],
+  "look": {
+    "body_plan": "quadruped",
+    "proportions": {
+      "torso_aspect": 1.7,
+      "leg_length_ratio": 0.2,
+      "head_scale": 0.8,
+      "neck_angle_deg": 0,
+      "tail_ratio": 0.45,
+      "ear_ratio": 0.45,
+      "girth_ratio": 1.25
+    },
+    "palette": {
+      "body": "#59483b",
+      "belly": "#e9e1d3",
+      "markings": "#302a26",
+      "accent": "#9b8067",
+      "eye": "#15110e"
+    },
+    "part_colors": {
+      "leg_*": "markings",
+      "ear_*": "markings",
+      "snout": "accent"
+    },
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "gallop": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2435304",
+      "title": "GBIF Backbone Taxonomy: Isoodon macrourus",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-31",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q194272",
+      "title": "Wikidata: Northern brown bandicoot (Q194272)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-31",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "adw",
+      "url": "https://animaldiversity.org/accounts/Isoodon_macrourus/",
+      "title": "Isoodon macrourus, Animal Diversity Web",
+      "license": "CC-BY-NC-SA-3.0",
+      "kind": "webpage",
+      "accessed": "2026-10-31",
+      "attribution": "Szaura, T. (author), Waterman, J. and Dewey, T. (editors), Animal Diversity Web, University of Michigan",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/3.0/",
+      "note": "Used as a last resort for the species-specific wild typical lifespan; ADW Conditions of Use licenses text CC BY-NC-SA 3.0. Permissively licensed alternatives checked included Australian government species information and museum accounts, but none located stated this species' typical wild lifespan as precisely."
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Northern_brown_bandicoot",
+      "title": "Northern brown bandicoot",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-31",
+      "attribution": "Wikipedia contributors, Northern brown bandicoot, English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "gbif-activity-au",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2435304&country=AU&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Isoodon macrourus in AU",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-31) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-31",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High",
+      "note": "GBIF match and usage record both identify the accepted species Isoodon macrourus, rank SPECIES, usage key 2435304."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "GBIF usage key 2435304 and iNaturalist taxon 43301 were independently checked against their provider endpoints at species rank; iNaturalist taxon is active. Wikidata Q194272 independently lists iNaturalist identifier 43301."
+    },
+    "common_names": {
+      "sources": [
+        "wikidata",
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Native Australian and New Guinean range; AU is the activity region. The species occupies northern/eastern Australia, not all of the country."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Authored from cursorial and very mobile behavior; walking and galloping are represented, while digging for food is not a locomotion mode."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true
+    },
+    "traits.size_class": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Medium follows the schema mass thresholds and the derived typical adult mass."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Average mass reported as 1,200 g."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Combined male/female mass range is 500-3,100 g."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Combined typical body and tail lengths, 40 cm + 15 cm = 55 cm."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "adw"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of ADW Lifespan/Longevity reported wild typical range 2-3 years: (2 + 3) / 2; captivity value excluded."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Approximate shares are author judgement for the required fractional schema: soil and terrestrial invertebrates are primary; plant material and vertebrates are secondary. Percentages are not reported by the sources."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Usually solitary; individuals spend most time alone.",
+      "derived": true
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Explicitly described as nocturnal.",
+      "derived": true
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Flee is an authored nearest fit to the account's extreme vigilance and high mobility while active."
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Judgement from described extreme vigilance; scale value authored."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Ground nesting and terrestrial foraging."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Ground nests made of gathered vegetation."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "The source gives primary and secondary food groups but no proportions; resource weights are approximate authored priorities. Ground nests and leaf litter are taken from the nest description."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Garden use is documented; Adapter is an authored category assignment, without claiming urban abundance."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Breeding occurs year-round in some regions and seasonally in others; no dormancy or migration claim is made."
+    },
+    "activity.AU": {
+      "sources": [
+        "gbif-activity-au"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "GBIF-only observation-frequency curve. 59,748 country-level records under CC0/CC BY filters; not a direct measure of animal activity. iNaturalist tier C had 1,776 observations and was excluded because its query includes NC licences."
+    },
+    "behavior": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Shared ground-forager FSM matches night foraging, daytime rest, walking, and fleeing. Its actions do not animate digging, other diet classes, or month-specific behavior; sun elevation triggers daytime rest, with no explicit month gates."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Palette follows the brown-black speckled dorsal fur and white underside; quadruped proportions are authored from the short rostrum, small rounded ears, and long body. Needs visual review."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Juvenile duration of 60 days follows the reported weaning age; Adult is the following stage."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Year-long phase reflects reported year-round breeding; the source also reports geographic and rainfall variation that the single global phase cannot represent."
+    }
+  }
+}
