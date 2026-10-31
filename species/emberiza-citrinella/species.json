@@ -1,0 +1,620 @@
+{
+  "$schema": "https://eeeearth.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Emberiza citrinella",
+  "slug": "emberiza-citrinella",
+  "common_names": {
+    "en": "Yellowhammer"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Passeriformes",
+    "family": "Emberizidae",
+    "genus": "Emberiza",
+    "authority": "Linnaeus, 1758",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2491534,
+    "inat_taxon_id": 9195,
+    "wikidata": "Q26205"
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "FI",
+      "SE",
+      "NO",
+      "DK",
+      "EE",
+      "LV",
+      "LT",
+      "PL",
+      "DE",
+      "NL",
+      "BE",
+      "FR",
+      "GB",
+      "IE",
+      "ES",
+      "PT",
+      "IT",
+      "AT",
+      "CH",
+      "CZ",
+      "SK",
+      "HU",
+      "RO",
+      "BG",
+      "GR",
+      "UA",
+      "BY",
+      "RU",
+      "TR"
+    ],
+    "introduced": [
+      "NZ",
+      "AU"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Walk",
+      "Fly"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Cup",
+    "perching": true,
+    "size_class": "Tiny",
+    "mass_kg": 0.0297,
+    "mass_range_kg": [
+      0.02,
+      0.0365
+    ],
+    "length_m": 0.1625,
+    "wingspan_m": 0.2625,
+    "lifespan_y": 1.2,
+    "diet": {
+      "seed": 0.7,
+      "invertebrate": 0.3
+    },
+    "social": {
+      "structure": "Flock",
+      "group_size": [
+        2,
+        100
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.5
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.8,
+      "arboreal": 0.2
+    },
+    "shelter_tag": "shrub_thicket",
+    "resources": [
+      {
+        "tag": "seed",
+        "kind": "Herbivory",
+        "weight": 0.7,
+        "months": [
+          9,
+          10,
+          11,
+          12,
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.5,
+        "months": [
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "tag": "nest_ground",
+        "kind": "Nesting",
+        "weight": 1.0,
+        "months": [
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      {
+        "tag": "shrub_thicket",
+        "kind": "Shelter",
+        "weight": 0.8
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.5
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Avoider",
+      "uses_gardens": true,
+      "light_max": 0.4,
+      "notes": "Common in farmland with hedges and field margins; winter flocks feed at farm stubble and bird tables. Not a city bird: light and built-up habitat are not in the sources checked."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "04-01",
+        "end": "07-31",
+        "region": "FI",
+        "note": "Finnish Wikipedia: females lay in April and May and may raise a second clutch. The end of July is an authored limit for second broods."
+      },
+      {
+        "name": "flocking",
+        "start": "10-01",
+        "end": "03-31",
+        "region": "FI",
+        "note": "Winter flocks feeding on seed at farm stores, barns and bird tables (Finnish Wikipedia; Wikipedia EN 'forms small flocks in winter')."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg"
+      },
+      {
+        "stage": "Juvenile"
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "FI",
+        "monthly": [
+          1.0,
+          0.91,
+          0.71,
+          0.37,
+          0.22,
+          0.27,
+          0.16,
+          0.08,
+          0.1,
+          0.25,
+          0.5,
+          0.86
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 301088,
+        "sources": [
+          "inat-activity-fi",
+          "gbif-activity-fi"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 7020,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=9195&place_id=7020&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=7020&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 817,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "country",
+              "FI"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2491534&country=FI&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&country=FI&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 300271,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "bt-ground-seed-bunting-v1",
+    "params": {
+      "flee_m": 10
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "song",
+      "context": "Song",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day",
+        "Dusk"
+      ],
+      "cooldown_s": 12,
+      "loudness": "Moderate",
+      "description": "Rhythmic song of short notes, likened to 'a little bit of bread and no cheese'; sung from an exposed perch."
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.5,
+      "leg_length_ratio": 0.35,
+      "head_scale": 0.8,
+      "neck_angle_deg": 15,
+      "tail_ratio": 0.6,
+      "wing_aspect": 2.6,
+      "beak_ratio": 0.3,
+      "girth_ratio": 1.0
+    },
+    "palette": {
+      "body": "#8a6a3a",
+      "belly": "#f2d43d",
+      "markings": "#f5c518",
+      "accent": "#a0522d",
+      "eye": "#111111"
+    },
+    "part_colors": {
+      "breast": "markings",
+      "beak": "eye"
+    },
+    "extra_parts": [],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "fly": {},
+      "perched": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "scholer-2020",
+      "url": "https://zenodo.org/records/3986104",
+      "title": "Scholer, Strimas-Mackey & Jankowski (2020) Data from: A meta-analysis of global avian survival across species and latitude, ELEscholer2020_data.csv (Dryad 10.5061/dryad.qv9s4mwbs)",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "kind": "dataset",
+      "accessed": "2026-10-31",
+      "note": "Row 799: species Emberiza citrinella, United Kingdom, wild adult survival 0.474 (se 0.117), dead-recovery study, original reference Siriwardena et al. (1998); body mass 29.7 g."
+    },
+    {
+      "id": "elton-traits",
+      "url": "https://doi.org/10.6084/m9.figshare.3559887.v1",
+      "title": "EltonTraits 1.0: species-level foraging attributes of the world's birds and mammals (BirdFuncDat.txt)",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "kind": "dataset",
+      "accessed": "2026-10-31",
+      "note": "Emberiza citrinella row: Diet-Seed 60, Diet-Inv 30, Diet-PlantO 10 (Diet-Certainty D1); ForStrat-ground 100; Nocturnal 0; BodyMass-Value 29.7 (Dunning08)."
+    },
+    {
+      "id": "wikipedia-en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1382050624",
+      "title": "Wikipedia: Yellowhammer (revision 1382050624, 2026-10-26)",
+      "license": "CC-BY-SA-4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "kind": "webpage",
+      "accessed": "2026-10-31",
+      "attribution": "Wikipedia contributors, \"Yellowhammer\", English Wikipedia (revision 1382050624), CC BY-SA 4.0"
+    },
+    {
+      "id": "wikipedia-fi",
+      "url": "https://fi.wikipedia.org/w/index.php?oldid=23720284",
+      "title": "Wikipedia (suomi): Keltasirkku (revision 23720284, 2025-12-10)",
+      "license": "CC-BY-SA-4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "kind": "webpage",
+      "accessed": "2026-10-31",
+      "attribution": "Wikipedia-avustajat, \"Keltasirkku\", suomenkielinen Wikipedia (revision 23720284), CC BY-SA 4.0"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q26205",
+      "title": "Wikidata: Yellowhammer (Q26205)",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "kind": "database",
+      "accessed": "2026-10-31",
+      "note": "P225 Emberiza citrinella; P141 Q211005 (least concern); P3151 9195 (iNaturalist)."
+    },
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2491534",
+      "title": "GBIF Backbone Taxonomy: Emberiza citrinella (2491534)",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "kind": "database",
+      "accessed": "2026-10-31",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org"
+    },
+    {
+      "id": "inat-activity-fi",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=9195&place_id=7020&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Emberiza citrinella in FI",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-10-31",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-fi",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2491534&country=FI&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Emberiza citrinella in FI",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-31) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-31",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High",
+      "note": "GBIF match 2491534: exact species match, status ACCEPTED, Passeriformes/Emberizidae."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "iNaturalist 9195 also confirmed as the Wikidata P3151 value; the taxon name matches the iNaturalist record."
+    },
+    "common_names": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikidata",
+        "wikipedia-en"
+      ],
+      "confidence": "High"
+    },
+    "range": {
+      "sources": [
+        "wikipedia-en",
+        "wikipedia-fi"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Country list authored from the Palearctic range: 'native to Eurasia' and 'most European birds remain in the breeding range year-round' (Wikipedia EN); 'breeds in almost the whole of Finland' (Wikipedia FI). Introduced in New Zealand and Australia (Wikipedia EN). Not a checked country-level distribution map; needs review before any country-level claim."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia-en"
+      ],
+      "confidence": "High",
+      "note": "Passerine bird."
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia-en"
+      ],
+      "confidence": "High",
+      "note": "Two legs, bird convention (wings not counted)."
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia-en",
+        "elton-traits"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Flight from class and wing shape. Wikipedia EN says 'Yellowhammers feed on the ground' but states no gait; Walk is authored from ground foraging (EltonTraits ForStrat-ground 100). Hopping is not sourced."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia-en"
+      ],
+      "confidence": "High",
+      "note": "Bird class; endotherm."
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia-en"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia-en"
+      ],
+      "confidence": "High",
+      "note": "Flying passerine."
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia-en"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia-en"
+      ],
+      "confidence": "High"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia-en"
+      ],
+      "confidence": "High",
+      "note": "'Lined cup nest in a concealed location on or near the ground.'"
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia-en"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Sings and perches on shrubs and trees (Wikipedia EN: 'common in open areas with some shrubs or trees')."
+    },
+    "traits.size_class": {
+      "sources": [
+        "elton-traits"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg (Tiny below 0.05 kg)."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "elton-traits",
+        "scholer-2020"
+      ],
+      "confidence": "High",
+      "note": "29.7 g in EltonTraits BodyMass-Value (Dunning08) and in the Scholer dataset mass column; both are species-level values."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia-en"
+      ],
+      "confidence": "High",
+      "note": "'it weighs 20–36.5 g' (Wikipedia EN). The Finnish article gives 24–37 g."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia-en",
+        "wikipedia-fi"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of '16–16.5 cm' (EN) and of '15,5–17 cm' (FI); both give 16.25 cm."
+    },
+    "traits.wingspan_m": {
+      "sources": [
+        "wikipedia-en"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of the 23–29.5 cm wingspan given by Wikipedia EN."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "scholer-2020",
+        "wikipedia-en"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Derived mean age at death, not a stated lifespan. Inputs: adult annual survival 0.474 (Scholer row 799, UK dead-recovery, Siriwardena et al. 1998); first-year survival 0.53 (Wikipedia EN, 'juveniles in their first year is 53%'). Assumes constant survival and that first-year deaths occur on average at 0.5 years: E = (1 - s1) x 0.5 + s1 x (1 + s / (1 - s)) = 0.235 + 0.530 x 1.901 = 1.24 years, rounded to 1.2. Wikipedia EN also states 'the typical lifespan is three years', which is not consistent with its own survival figures; the source for that line was not located. Treat as low-confidence."
+    },
+    "traits.diet": {
+      "sources": [
+        "elton-traits",
+        "wikipedia-en",
+        "wikipedia-fi"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "EltonTraits Diet-Seed 60 + Diet-PlantO 10 are mapped to seed (weed seeds of docks, knotgrass, chickweed, fat hen; Wikipedia EN); Diet-Inv 30 is invertebrate. Diet-Certainty is D1. Seasonal shift to invertebrates in summer and seeds in autumn and winter is from Wikipedia FI ('Kesäaikaan ... ötököistä ja lieroista', 'Syksyllä ja talvella ... siemeniä ja jyviä')."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia-en"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Forms small flocks in winter, occasionally hundreds (Wikipedia EN); group_size is authored."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "elton-traits",
+        "wikipedia-en"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "EltonTraits Nocturnal 0; forages on the ground in daylight. Diurnality is inferred, not stated."
+    },
+    "traits.defense": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: flees from threats by flight to a perch; no source checked."
+    },
+    "traits.wariness": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement, not measured."
+    },
+    "habitat": {
+      "sources": [
+        "elton-traits",
+        "wikipedia-en",
+        "wikipedia-fi"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Habitat use is authored from EltonTraits ForStrat-ground 100 and the article descriptions (farmland, hedges, field margins; winter feeding at farms and bird tables, Wikipedia FI). Resource months are from the calendars in the seasonal and behaviour provenance."
+    },
+    "seasonal": {
+      "sources": [
+        "wikipedia-fi",
+        "wikipedia-en"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Simplification: Finnish Wikipedia says 'some' Finnish birds move to Sweden and the southern Baltic in October and return in March and April, but gives no share, and PartialMigration requires winter_fraction, which no checked source supplies. The record therefore models the FI population as ActiveYearRound and does not model the autumn departure. Breeding dates are from Finnish Wikipedia (laying April and May); the July end and the flock months are authored."
+    },
+    "vocalizations.song": {
+      "sources": [
+        "wikipedia-en"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Rhythm 'a little bit of bread and no cheese' (Wikipedia EN). Timing windows and cooldown are authored."
+    },
+    "look": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: palette from the male's bright yellow head and underparts and chestnut rump described in Wikipedia EN; a stylised block model."
+    },
+    "behavior": {
+      "sources": [
+        "wikipedia-en",
+        "wikipedia-fi",
+        "elton-traits"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Species-local program bt-ground-seed-bunting-v1 in behavior.json. Walk gait, seed feeding, invertebrate feeding in May to August, nesting April to July and diurnal roosting are checked against the cited sources; flee distance is authored."
+    }
+  }
+}

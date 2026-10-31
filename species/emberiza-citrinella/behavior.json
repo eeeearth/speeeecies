@@ -1,0 +1,251 @@
+{
+  "schema_version": 1,
+  "format": "speeeecies/behavior",
+  "id": "bt-ground-seed-bunting-v1",
+  "kind": "bt",
+  "description": "Ground-feeding seed-eating bunting (Yellowhammer): walks on the ground, eats seed in autumn and winter and invertebrates from May to August, nests on the ground from April to July, sings from a shrub perch in daylight and roosts in shrubs at night, and flushes to a perch when a threat comes close. Species-local because no shared program lets feeding switch between seed and invertebrates by month, and the shared songbird program's nest months are a fixed set of two plus two hard-coded months, so it cannot express April to July.",
+  "params": {
+    "flee_m": 10,
+    "song": "song",
+    "song_cooldown_s": 12
+  },
+  "root": {
+    "selector": [
+      {
+        "sequence": [
+          {
+            "cond": {
+              "threat_within_m": "${flee_m}"
+            }
+          },
+          {
+            "act": {
+              "do": "take_off"
+            }
+          },
+          {
+            "act": {
+              "do": "fly_to_nearest",
+              "tag": "perch"
+            }
+          },
+          {
+            "act": {
+              "do": "perch_nearest"
+            }
+          }
+        ]
+      },
+      {
+        "sequence": [
+          {
+            "cond": {
+              "player_touch": true
+            }
+          },
+          {
+            "act": {
+              "do": "tolerate_touch"
+            }
+          }
+        ]
+      },
+      {
+        "sequence": [
+          {
+            "cond": {
+              "need": "fear",
+              "gt": 0.2
+            }
+          },
+          {
+            "act": {
+              "do": "take_off"
+            }
+          },
+          {
+            "act": {
+              "do": "flee",
+              "gait": "fly"
+            }
+          }
+        ]
+      },
+      {
+        "sequence": [
+          {
+            "cond": {
+              "player_offer": "food"
+            }
+          },
+          {
+            "cond": {
+              "need": "fear",
+              "lt": 0.2
+            }
+          },
+          {
+            "act": {
+              "do": "land"
+            }
+          },
+          {
+            "act": {
+              "do": "accept_offer"
+            }
+          }
+        ]
+      },
+      {
+        "sequence": [
+          {
+            "cond": {
+              "is_day": false
+            }
+          },
+          {
+            "act": {
+              "do": "perch_nearest",
+              "tag": "shelter"
+            }
+          },
+          {
+            "act": {
+              "do": "rest"
+            }
+          }
+        ]
+      },
+      {
+        "sequence": [
+          {
+            "cond": {
+              "sun_elevation_between_deg": [-6, 90]
+            }
+          },
+          {
+            "cond": {
+              "perch_within_m": 30
+            }
+          },
+          {
+            "act": {
+              "do": "perch_nearest"
+            }
+          },
+          {
+            "cooldown_s": "${song_cooldown_s}",
+            "child": {
+              "act": {
+                "do": "sing",
+                "call": "${song}"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "sequence": [
+          {
+            "cond": {
+              "need": "nest",
+              "gt": 0.5
+            }
+          },
+          {
+            "cond": {
+              "month_in": [4, 5, 6, 7]
+            }
+          },
+          {
+            "cond": {
+              "nest_site_within_m": 40
+            }
+          },
+          {
+            "act": {
+              "do": "build_nest"
+            }
+          }
+        ]
+      },
+      {
+        "sequence": [
+          {
+            "cond": {
+              "need": "hunger",
+              "gt": 0.4
+            }
+          },
+          {
+            "cond": {
+              "month_in": [5, 6, 7, 8]
+            }
+          },
+          {
+            "act": {
+              "do": "land"
+            }
+          },
+          {
+            "act": {
+              "do": "eat_nearest",
+              "tag": "invertebrate",
+              "gait": "walk"
+            }
+          }
+        ]
+      },
+      {
+        "sequence": [
+          {
+            "cond": {
+              "need": "hunger",
+              "gt": 0.4
+            }
+          },
+          {
+            "act": {
+              "do": "land"
+            }
+          },
+          {
+            "act": {
+              "do": "eat_nearest",
+              "tag": "seed",
+              "gait": "walk"
+            }
+          }
+        ]
+      },
+      {
+        "cooldown_s": 6,
+        "child": {
+          "sequence": [
+            {
+              "act": {
+                "do": "take_off"
+              }
+            },
+            {
+              "act": {
+                "do": "fly_to_nearest",
+                "tag": "perch"
+              }
+            },
+            {
+              "act": {
+                "do": "perch_nearest"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "act": {
+          "do": "idle"
+        }
+      }
+    ]
+  }
+}
