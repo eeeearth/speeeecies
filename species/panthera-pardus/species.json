@@ -1,0 +1,494 @@
+{
+  "$schema": "https://eeeearth.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Panthera pardus",
+  "slug": "panthera-pardus",
+  "common_names": {
+    "en": "leopard"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Mammalia",
+    "order": "Carnivora",
+    "family": "Felidae",
+    "genus": "Panthera",
+    "authority": "(Linnaeus, 1758)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 5219436,
+    "inat_taxon_id": 41963
+  },
+  "range": {
+    "native": [
+      "IN"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk",
+      "Gallop",
+      "Climb"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Fur",
+    "flight": "None",
+    "mass_kg": 41.6,
+    "mass_range_kg": [
+      20.5,
+      72
+    ],
+    "length_m": 1.875,
+    "lifespan_y": 11,
+    "diet": {
+      "vertebrate": 1.0
+    },
+    "social": {
+      "structure": "Solitary",
+      "group_size": [
+        1,
+        1
+      ]
+    },
+    "activity_pattern": "Nocturnal",
+    "defense": "Flee",
+    "wariness": 0.9
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.7,
+      "arboreal": 0.3
+    },
+    "shelter_tag": "shelter",
+    "resources": [
+      {
+        "tag": "small_vertebrate",
+        "kind": "Predation",
+        "weight": 1.0
+      },
+      {
+        "tag": "shelter",
+        "kind": "Shelter",
+        "weight": 0.7
+      },
+      {
+        "tag": "water",
+        "kind": "Water",
+        "weight": 0.4
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Avoider",
+      "uses_gardens": false,
+      "light_max": 0.3,
+      "road_mortality": "High",
+      "notes": "Simulation judgment: wary, mostly solitary predator; use this low-visibility representation only in appropriate habitat scenes."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "01-01",
+        "end": "12-31",
+        "note": "Broad global summary only: Animal Diversity Web reports year-round breeding with regional peaks, including a May rainy-season peak; this record has no India-specific phase calendar."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "IN",
+        "monthly": [
+          0.73,
+          0.35,
+          0.54,
+          0.51,
+          0.66,
+          0.32,
+          0.38,
+          0.39,
+          0.53,
+          0.31,
+          0.62,
+          1.0
+        ],
+        "method": "gbif_share",
+        "observations": 663,
+        "sources": [
+          "gbif-activity-in"
+        ],
+        "query": {
+          "min_obs": 300,
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "country",
+              "IN"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5219436&country=IN&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&country=IN&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 663,
+            "monthly_species": [
+              70,
+              42,
+              46,
+              38,
+              49,
+              20,
+              18,
+              21,
+              37,
+              25,
+              48,
+              95
+            ],
+            "monthly_mammalia_baseline": [
+              4725,
+              5866,
+              4261,
+              3727,
+              3701,
+              3094,
+              2371,
+              2680,
+              3438,
+              4003,
+              3853,
+              4709
+            ],
+            "monthly_species_records": 509,
+            "usable": true
+          },
+          "used": [
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-panthera-pardus-v1",
+    "params": {
+      "food_tag": "small_vertebrate",
+      "flee_m": 20,
+      "calm_m": 40,
+      "food_m": 40,
+      "flee_gait": "gallop",
+      "forage_gait": "walk",
+      "rest_sun_lo_deg": 10,
+      "rest_sun_hi_deg": 90
+    }
+  },
+  "vocalizations": [],
+  "look": {
+    "body_plan": "quadruped",
+    "proportions": {
+      "torso_aspect": 1.8,
+      "leg_length_ratio": 0.46,
+      "head_scale": 0.48,
+      "neck_angle_deg": 8,
+      "tail_ratio": 0.9,
+      "ear_ratio": 0.2,
+      "girth_ratio": 0.9
+    },
+    "palette": {
+      "body": "#c69b55",
+      "belly": "#e8d9b6",
+      "markings": "#35271e",
+      "accent": "#c69b55",
+      "eye": "#8a5a18"
+    },
+    "part_colors": {
+      "snout": "belly",
+      "leg_*": "body",
+      "tail": "markings"
+    },
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "gallop": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/5219436",
+      "title": "GBIF Backbone Taxonomy: Panthera pardus",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, accessed via GBIF.org",
+      "accessed": "2026-10-31",
+      "kind": "database"
+    },
+    {
+      "id": "inat-taxon",
+      "url": "https://api.inaturalist.org/v1/taxa/41963",
+      "title": "iNaturalist taxon: Panthera pardus",
+      "license": "CC-BY-NC-4.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+      "attribution": "iNaturalist taxon record, accessed via the iNaturalist API",
+      "accessed": "2026-10-31",
+      "kind": "api",
+      "note": "Used only to resolve the required taxon identifier."
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Leopard",
+      "title": "Wikipedia: Leopard",
+      "license": "CC-BY-SA-4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "attribution": "Wikipedia contributors, \"Leopard\", English Wikipedia, CC BY-SA 4.0",
+      "accessed": "2026-10-31",
+      "kind": "webpage",
+      "note": "Broad biology reference: Characteristics (body size and pelage), Distribution and habitat, Behaviour and ecology (activity, social behaviour and climbing)."
+    },
+    {
+      "id": "animal-diversity-web",
+      "url": "https://animaldiversity.org/accounts/Panthera_pardus/",
+      "title": "Animal Diversity Web: Panthera pardus",
+      "license": "CC-BY-NC-SA-4.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "attribution": "Ashley Hunt, Animal Diversity Web, University of Michigan Museum of Zoology, accessed 2026-10-31",
+      "accessed": "2026-10-31",
+      "kind": "webpage",
+      "note": "Non-commercial last resort for the source explicit typical wild lifespan range (10\u201312 years) and the directly reported total length range; permissively licensed sources checked did not provide the same typical wild lifespan statistic or a comparable total-length measure."
+    },
+    {
+      "id": "gbif-activity-in",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5219436&country=IN&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Panthera pardus in IN",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-31) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-31",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "inat-taxon"
+      ],
+      "confidence": "High"
+    },
+    "common_names": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High"
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Indian leopard subspecies is assigned to the Indian subcontinent; this record carries India only because it is the requested activity country."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Four walking limbs."
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Climbing-muscle anatomy is noted; the schema has no climb pose."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Simulation proxy: average of the male and female reported range midpoints, (30.9\u201372 kg and 20.5\u201343 kg); not a population mean."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Combined reported adult ranges: females 20.5\u201343 kg, males 30.9\u201372 kg."
+    },
+    "traits.length_m": {
+      "sources": [
+        "animal-diversity-web"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Midpoint of reported female (1.7\u20131.9 m) and male (1.6\u20132.3 m) length-range midpoints: (1.8 + 1.95) / 2 = 1.875 m; simulation proxy."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "animal-diversity-web"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Midpoint of the source's typical wild lifespan range, 10\u201312 years; this is not its separately reported wild maximum of 17 years."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Diet is described as carnivorous; the 100% vertebrate allocation is a simulation category mapping, not a measured diet percentage."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Source describes solitary behavior; group-size interval encodes the typical solitary adult."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Judgment: flee response for this simulation representation."
+    },
+    "traits.wariness": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgment: high wariness for a solitary nocturnal predator."
+    },
+    "activity": {
+      "sources": [
+        "gbif-activity-in"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "GBIF CC0/CC BY tier A only. Each month is species records divided by Mammalia baseline records, then normalized to the peak month; 509 monthly records are binned from 663 total records."
+    },
+    "behavior": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Species-local ground-predator FSM removes touch and food-offer acceptance from the generic forager; it uses small-vertebrate feeding and daylight shelter. It does not implement stalking or climbing, and the mesh lacks a climb pose."
+    },
+    "vocalizations": {
+      "sources": [
+        "animal-diversity-web"
+      ],
+      "confidence": "High",
+      "note": "No vocalization encoded because the record does not model calls."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Authored stylized block-mesh approximation of a tawny spotted quadruped with a pale underside and ringed dark tail; proportions and color choices are judgment."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "animal-diversity-web"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Schema requires a phase; global source says breeding occurs year-round with regional variation, so no India-specific season is inferred."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Adult representation only; juveniles remain with the mother 18\u201324 months."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Forest, savanna, woodland and riparian habitat are sourced; the ground/arboreal fractions are authored simulation weights."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Resting sites include thickets, rocks and tree branches."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Prey context is sourced; small_vertebrate category mapping and resource weights are authored simulation values."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Source says leopards are shy and rarely linger in developed areas; urban affinity, light threshold and road risk are simulation judgments."
+    },
+    "seasonal.strategy": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Neutral active-year-round simulation setting; no India-specific activity calendar is asserted."
+    }
+  }
+}
