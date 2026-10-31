@@ -36,8 +36,6 @@
       "PT",
       "ES",
       "FR",
-      "BE",
-      "NL",
       "DE",
       "CH",
       "AT",
@@ -74,7 +72,7 @@
       0.02
     ],
     "length_m": 0.1375,
-    "lifespan_y": 1.1,
+    "lifespan_y": 1.3,
     "diet": {
       "invertebrate": 0.6,
       "fruit": 0.3,
@@ -253,19 +251,67 @@
       "body": "#2b2d31",
       "belly": "#1d1f22",
       "markings": "#c4602b",
-      "accent": "#8f8f92",
+      "accent": "#eeeeea",
       "eye": "#111111"
     },
     "part_colors": {
       "breast": "belly",
-      "beak": "eye"
+      "beak": "eye",
+      "tail": "markings"
     },
     "poses": {
       "idle": {},
       "hop": {},
       "fly": {},
       "perched": {}
-    }
+    },
+    "extra_parts": [
+      {
+        "name": "rump",
+        "parent": "body",
+        "offset": [
+          -0.5,
+          -0.25,
+          0
+        ],
+        "size": [
+          0.2,
+          0.3,
+          0.7
+        ],
+        "color": "markings"
+      },
+      {
+        "name": "wing_panel_right",
+        "parent": "wing_right",
+        "offset": [
+          -0.2,
+          0.6,
+          0
+        ],
+        "size": [
+          0.5,
+          0.2,
+          0.8
+        ],
+        "color": "accent"
+      },
+      {
+        "name": "wing_panel_left",
+        "parent": "wing_left",
+        "offset": [
+          -0.2,
+          0.6,
+          0
+        ],
+        "size": [
+          0.5,
+          0.2,
+          0.8
+        ],
+        "color": "accent"
+      }
+    ]
   },
   "sources": [
     {
@@ -317,16 +363,6 @@
       "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
     },
     {
-      "id": "wikipedia-robin",
-      "url": "https://en.wikipedia.org/wiki/European_robin",
-      "title": "Wikipedia: European robin (lifespan proxy only)",
-      "license": "CC-BY-SA-4.0",
-      "kind": "webpage",
-      "accessed": "2026-10-31",
-      "attribution": "Wikipedia contributors, \"European robin\", English Wikipedia, CC BY-SA 4.0",
-      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
-    },
-    {
       "id": "inat-activity-fr",
       "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=13000&place_id=6753&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
       "title": "iNaturalist observations histogram for Phoenicurus ochruros in FR",
@@ -343,6 +379,17 @@
       "attribution": "GBIF.org (2026-10-31) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
       "accessed": "2026-10-31",
       "kind": "api"
+    },
+    {
+      "id": "oldekop-2023",
+      "url": "https://doi.org/10.1371/journal.pone.0279899",
+      "title": "Oldekop W, Oldekop G, Vahldiek K, Klawonn F, Rinas U (2023) Counting young birds: A simple tool for the determination of avian population parameters. PLoS ONE 18(2): e0279899",
+      "license": "CC-BY-4.0",
+      "kind": "literature",
+      "accessed": "2026-10-31",
+      "attribution": "Oldekop W, Oldekop G, Vahldiek K, Klawonn F, Rinas U (2023) Counting young birds: A simple tool for the determination of avian population parameters. PLoS ONE 18(2): e0279899. https://doi.org/10.1371/journal.pone.0279899",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "note": "Licence checked as CC BY via Europe PMC (licence field 'cc by'); PLoS ONE publishes under CC BY 4.0."
     }
   ],
   "provenance": {
@@ -381,7 +428,7 @@
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "Country list derived from Wikipedia prose: breeds from Great Britain and Ireland south to Morocco, widespread in south and central Europe. Not checked against occurrence status; Asian and eastern countries omitted."
+      "note": "Country list derived from Wikipedia prose: breeds from Great Britain and Ireland (where local) south to Morocco and is widespread in south and central Europe. BE and NL were removed in review because the text does not place them in the breeding range. Not checked against occurrence status; Asian and eastern countries omitted."
     },
     "traits.body_plan": {
       "sources": [
@@ -438,7 +485,7 @@
         "wikipedia"
       ],
       "confidence": "Medium",
-      "note": "Wikipedia says it nests in crevices, holes and on ledges; perching is inferred from the passerine family and the cited perched behaviour."
+      "note": "Perching is inferred from the passerine family and the cited perched behaviour; the paper notes territorial singing from elevated perches."
     },
     "traits.nest_type": {
       "sources": [
@@ -481,11 +528,11 @@
     },
     "traits.lifespan_y": {
       "sources": [
-        "wikipedia-robin"
+        "oldekop-2023"
       ],
-      "confidence": "Low",
+      "confidence": "Medium",
       "derived": true,
-      "note": "PROXY, not a black redstart value. No openly licensed typical wild lifespan was found for this species (searched 2026-10-31). Uses the European robin's 1.1 years (Wikipedia: average life expectancy, driven by first-year mortality) as a close passerine relative. Replace with a black redstart value when a source is available."
+      "note": "L_f = 1/g_f = 1.3 years: the average total life expectancy of a fledgling, from the Black Redstart worked example (Halberstadt, Saxony-Anhalt, Germany, counts 1982-2015; fledgling portion g_f = 0.76 from 6.5 fledglings per pair). This is a model estimate of average lifespan, not a maximum. The paper's maximum (10 years 2 months from ringing) is NOT used. The 1.3 years depends on a Germany-only population and the cited breeding success, so treat it as a regional average."
     },
     "traits.diet": {
       "sources": [
@@ -578,10 +625,11 @@
     },
     "look": {
       "sources": [
-        "wikipedia"
+        "wikipedia",
+        "oldekop-2023"
       ],
-      "confidence": "Low",
-      "note": "judgement: palette and proportions are authored from the Wikipedia plumage description (male dark grey to black upperparts, black breast, orange-red rump and tail; grey wing panel in western forms)."
+      "confidence": "Medium",
+      "note": "Adult male: dark grey to black upperparts with black breast, orange-red rump and tail (Wikipedia). White wing panel on adult males (Oldekop et al. 2023, Fig 1D). Palette colours are authored approximations; proportions are judgement."
     },
     "habitat.shelter_tag": {
       "sources": [
