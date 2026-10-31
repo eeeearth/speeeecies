@@ -19,7 +19,8 @@
   },
   "external": {
     "gbif_usage_key": 2465633,
-    "inat_taxon_id": 31419
+    "inat_taxon_id": 31419,
+    "itis_tsn": 1056848
   },
   "range": {
     "native": [
@@ -277,6 +278,15 @@
       "license_url": "https://creativecommons.org/licenses/by/4.0/"
     },
     {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=1056848",
+      "title": "ITIS: Pogona barbata, TSN 1056848",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-10-31",
+      "note": "U.S. federal government database; public domain in the United States."
+    },
+    {
       "id": "victoria-assessment",
       "url": "https://bio-prd-naturekit-public-data.s3.ap-southeast-2.amazonaws.com/species_assessments/Pogona_barbata_12177.pdf",
       "title": "Threatened Species Assessment: Pogona barbata",
@@ -328,18 +338,20 @@
   "provenance": {
     "taxonomy": {
       "sources": [
-        "gbif-backbone"
+        "gbif-backbone",
+        "itis"
       ],
       "confidence": "High",
-      "note": "GBIF name match returned exact accepted species Pogona barbata (Cuvier, 1829), usage key 2465633; class/order populated from the source's Reptilia/Squamata classification because GBIF's class field returned Squamata and no order."
+      "note": "GBIF returned exact accepted species Pogona barbata (Cuvier, 1829), usage key 2465633; ITIS independently returned TSN 1056848 with the matching name and Reptilia/Squamata classification."
     },
     "external": {
       "sources": [
         "gbif-backbone",
-        "inat-taxon"
+        "inat-taxon",
+        "itis"
       ],
       "confidence": "High",
-      "note": "Rechecked at GBIF and iNaturalist on 2026-10-31; both return Pogona barbata at accepted/active species rank."
+      "note": "Rechecked at GBIF and iNaturalist on 2026-10-31; both return Pogona barbata at accepted/active species rank. ITIS also resolves the same name to TSN 1056848."
     },
     "common_names": {
       "sources": [
