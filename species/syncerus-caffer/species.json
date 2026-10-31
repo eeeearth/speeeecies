@@ -26,16 +26,38 @@
   },
   "range": {
     "native": [
+      "BJ",
+      "KE",
       "ZA",
-      "AO",
-      "ET",
-      "SO",
-      "SN",
-      "CM",
-      "TD",
+      "TZ",
+      "ZM",
+      "UG",
+      "BW",
+      "ZW",
       "CD",
+      "CI",
+      "NA",
+      "CM",
+      "NG",
+      "GA",
       "CF",
-      "TZ"
+      "AO",
+      "MZ",
+      "MW",
+      "NE",
+      "TD",
+      "ET",
+      "CG",
+      "RW",
+      "LR",
+      "SS",
+      "SN",
+      "GN",
+      "GH",
+      "GM",
+      "SL",
+      "GQ",
+      "BI"
     ]
   },
   "traits": {
@@ -108,7 +130,7 @@
         "name": "breeding",
         "start": "01-01",
         "end": "12-31",
-        "note": "Placeholder: no calving calendar applicable across the range was transcribed. The Wikipedia article mentions a birthing peak in the Serengeti (Tanzania) in the wet season, which is not converted to dates here."
+        "note": "BLOCKER, not evidence: no permissively licensed source with a dated breeding or calving season for ZA was found. The 01-01 to 12-31 window is a full-year placeholder that asserts nothing about timing. A Kruger tourism page gives a Jan-Apr birth window, but it is not openly licensed and was not used."
       }
     ],
     "life_stages": [
@@ -278,6 +300,17 @@
       "attribution": "GBIF.org (2026-10-31) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
       "accessed": "2026-10-31",
       "kind": "api"
+    },
+    {
+      "id": "gbif-occurrence-country",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2441034&occurrenceStatus=PRESENT&hasGeospatialIssue=false&facet=country&facetLimit=200&limit=0&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF.org occurrence search: Syncerus caffer (taxonKey 2441034), PRESENT, country facet",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-31",
+      "attribution": "GBIF.org (31 October 2026) GBIF Occurrence Search, Syncerus caffer, CC BY 4.0 and CC0 records; https://www.gbif.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "note": "Country facet with 6,248 records; presence only, not establishment means. Countries with presence records in sub-Saharan Africa are used; non-African countries (DE, CZ, DK, NL, MY), Réunion (RE), unknown (ZZ) and Sudan (SD) are excluded."
     }
   ],
   "provenance": {
@@ -305,11 +338,12 @@
     },
     "range.native": {
       "sources": [
-        "wikipedia"
+        "wikipedia",
+        "gbif-occurrence-country"
       ],
-      "confidence": "Medium",
+      "confidence": "Low",
       "derived": true,
-      "note": "Country list is incomplete. Derived from countries named in the Wikipedia Habitat section: Cape buffalo from southern Ethiopia and Somalia to South Africa and west to Angola; West African buffalo to Senegal and Cameroon; Central African buffalo north to Chad, south to DRC, east to Ethiopia; Central African Republic for forest buffalo; Tanzania for Serengeti and Manyara populations. Other sub-Saharan countries are not enumerated, and the regional native status was not checked against distribution maps."
+      "note": "Derived in two steps. (1) Wikipedia: the species 'ranged throughout most of sub-Saharan Africa' historically. (2) GBIF PRESENT occurrence records (CC0 and CC BY) with a country facet list 32 sub-Saharan countries with records. Presence is not native status: no IUCN or other range-map source with native status was accessible under an open licence. Introduced or captive populations (e.g. DE, CZ, DK, NL) are excluded by hand. Sudan (SD, 29 records) is excluded as ambiguous. Treat this as a provisional list, not a verified native range."
     },
     "traits.body_plan": {
       "sources": [
@@ -498,7 +532,7 @@
       ],
       "confidence": "Low",
       "derived": true,
-      "note": "Full-year placeholder; see seasonal.phases note."
+      "note": "Placeholder only: a full-year breeding window that is NOT a sourced calving calendar. Gestation about 340 days (Wikipedia) is the only sourced timing input. Do not read this window as seasonal evidence."
     },
     "behavior": {
       "sources": [
@@ -516,9 +550,10 @@
     },
     "range": {
       "sources": [
-        "wikipedia"
+        "wikipedia",
+        "gbif-occurrence-country"
       ],
-      "confidence": "Medium",
+      "confidence": "Low",
       "derived": true,
       "note": "Country-level native list; see range.native."
     },
