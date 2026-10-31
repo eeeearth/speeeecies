@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "format": "speeeecies/behavior",
+  "id": "fsm-anolis-sagrei-v1",
+  "kind": "fsm",
+  "description": "Day-active brown anole that feeds on nearby arthropods, uses a perch, shelters after dark, and flees close threats. Vertical climbing is not animated by the v0.1 quadruped body plan.",
+  "initial": "shelter",
+  "states": {
+    "shelter": {
+      "action": {"do": "hide_nearest"},
+      "min_dwell_s": 5
+    },
+    "rest": {
+      "action": {"do": "rest"}
+    },
+    "forage": {
+      "action": {"do": "eat_nearest", "tag": "invertebrate", "gait": "walk"}
+    },
+    "wander": {
+      "action": {"do": "wander", "gait": "walk"}
+    },
+    "perch": {
+      "action": {"do": "perch_nearest", "tag": "perch"},
+      "min_dwell_s": 3
+    },
+    "flee": {
+      "action": {"do": "flee", "gait": "walk"},
+      "min_dwell_s": 2
+    }
+  },
+  "transitions": [
+    {
+      "from": "*",
+      "to": "flee",
+      "when": {"threat_within_m": 1.5},
+      "priority": 100
+    },
+    {
+      "from": "*",
+      "to": "shelter",
+      "when": {"is_day": false},
+      "priority": 90
+    },
+    {
+      "from": "flee",
+      "to": "rest",
+      "when": {"not": {"threat_within_m": 1.5}}
+    },
+    {
+      "from": "shelter",
+      "to": "rest",
+      "when": {"is_day": true}
+    },
+    {
+      "from": "rest",
+      "to": "forage",
+      "when": {
+        "all": [
+          {"need": "hunger", "gt": 0.35},
+          {"food_within_m": 6, "tag": "invertebrate"}
+        ]
+      }
+    },
+    {
+      "from": "rest",
+      "to": "perch",
+      "when": {
+        "all": [
+          {"perch_within_m": 2},
+          {"chance": 0.15}
+        ]
+      }
+    },
+    {
+      "from": "rest",
+      "to": "wander",
+      "when": {"chance": 0.1}
+    },
+    {
+      "from": "forage",
+      "to": "rest",
+      "when": {"need": "hunger", "lt": 0.15}
+    },
+    {
+      "from": "perch",
+      "to": "forage",
+      "when": {
+        "all": [
+          {"need": "hunger", "gt": 0.35},
+          {"food_within_m": 6, "tag": "invertebrate"}
+        ]
+      }
+    },
+    {
+      "from": "perch",
+      "to": "rest",
+      "when": {"chance": 0.2}
+    },
+    {
+      "from": "wander",
+      "to": "rest",
+      "when": {"chance": 0.2}
+    }
+  ]
+}
