@@ -1,0 +1,544 @@
+{
+  "$schema": "https://eeeearth.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Charadrius vociferus",
+  "slug": "charadrius-vociferus",
+  "common_names": {
+    "en": "Killdeer"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Charadriiformes",
+    "family": "Charadriidae",
+    "genus": "Charadrius",
+    "authority": "Linnaeus, 1758",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2480320,
+    "inat_taxon_id": 4793
+  },
+  "range": {
+    "native": [
+      "US",
+      "CA",
+      "MX",
+      "BZ",
+      "GT",
+      "HN",
+      "SV",
+      "NI",
+      "CR",
+      "PA",
+      "BS",
+      "CU",
+      "JM",
+      "HT",
+      "DO",
+      "PR",
+      "VG",
+      "VI",
+      "CO",
+      "VE",
+      "EC",
+      "PE",
+      "CL"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Walk",
+      "Fly"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Ground",
+    "perching": false,
+    "size_class": "Small",
+    "mass_kg": 0.0966,
+    "mass_range_kg": [
+      0.0877,
+      0.121
+    ],
+    "length_m": 0.24003,
+    "wingspan_m": 0.4699,
+    "diet": {
+      "invertebrate": 1.0
+    },
+    "social": {
+      "structure": "Pair",
+      "group_size": [
+        1,
+        2
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.5
+  },
+  "habitat": {
+    "use": {
+      "ground": 1.0
+    },
+    "shelter_tag": "nest_ground",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 1.0
+      },
+      {
+        "tag": "nest_ground",
+        "kind": "Nesting",
+        "weight": 1.0,
+        "months": [
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "notes": "Uses open ground including fields, lawns, gravel, and developed sites; adults give broken-wing displays near nests."
+    }
+  },
+  "seasonal": {
+    "strategy": "PartialMigration",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "03-15",
+        "end": "08-31",
+        "region": "US",
+        "note": "Broad US breeding window assembled from regional source windows; timing varies with latitude and Caribbean populations can breed year-round."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg"
+      },
+      {
+        "stage": "Juvenile"
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US",
+        "monthly": [
+          0.48,
+          0.52,
+          0.92,
+          0.81,
+          0.7,
+          0.74,
+          0.85,
+          1.0,
+          0.89,
+          0.75,
+          0.61,
+          0.48
+        ],
+        "method": "gbif_share",
+        "observations": 7920525,
+        "sources": [
+          "gbif-activity-us"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 10316,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=4793&place_id=10316&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=10316&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 0,
+            "usable": false
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "country",
+              "US"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2480320&country=US&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&country=US&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 7920525,
+            "usable": true
+          },
+          "used": [
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "bt-killdeer-ground-forager-v1"
+  },
+  "vocalizations": [
+    {
+      "call_id": "call",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Day",
+        "Dusk",
+        "Night"
+      ],
+      "cooldown_s": 10,
+      "loudness": "Loud",
+      "description": "Loud, repeated kill-deer call, used in alarm and territorial contexts."
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "palette": {
+      "body": "#9b8266",
+      "belly": "#f3eadb",
+      "markings": "#302b27",
+      "accent": "#d6a357",
+      "eye": "#171513"
+    },
+    "proportions": {
+      "torso_aspect": 2.0,
+      "head_scale": 0.62,
+      "leg_length_ratio": 0.55,
+      "wing_aspect": 3.4,
+      "beak_ratio": 0.4,
+      "tail_ratio": 0.55,
+      "girth_ratio": 0.9
+    },
+    "part_colors": {
+      "wing_*": "body",
+      "beak": "markings",
+      "leg_*": "accent"
+    },
+    "extra_parts": [
+      {
+        "name": "breast_band_upper",
+        "parent": "breast",
+        "offset": [0, 0.18, 0.53],
+        "size": [0.98, 0.14, 0.18],
+        "color": "markings",
+        "mirror": true
+      },
+      {
+        "name": "breast_band_lower",
+        "parent": "breast",
+        "offset": [0, -0.08, 0.53],
+        "size": [0.98, 0.14, 0.18],
+        "color": "markings",
+        "mirror": true
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "fly": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-taxonomy",
+      "url": "https://api.gbif.org/v1/species/match?name=Charadrius%20vociferus",
+      "title": "GBIF Species Match: Charadrius vociferus",
+      "license": "CC-BY-4.0",
+      "kind": "api",
+      "accessed": "2026-10-31",
+      "attribution": "GBIF.org (2026-10-31), GBIF Species Match"
+    },
+    {
+      "id": "inat-taxonomy",
+      "url": "https://api.inaturalist.org/v1/taxa?q=Charadrius%20vociferus",
+      "title": "iNaturalist Taxa API: Charadrius vociferus",
+      "license": "CC-BY-4.0",
+      "kind": "api",
+      "accessed": "2026-10-31",
+      "attribution": "iNaturalist contributors and staff, via the iNaturalist API"
+    },
+    {
+      "id": "nps-killdeer",
+      "url": "https://www.nps.gov/articles/killdeer.htm",
+      "title": "National Park Service: Killdeer",
+      "license": "US-Gov-PD",
+      "kind": "webpage",
+      "accessed": "2026-10-31",
+      "note": "US federal agency source; article last updated 2019-12-11."
+    },
+    {
+      "id": "epa-avian-data",
+      "url": "https://19january2021snapshot.epa.gov/sites/static/files/2015-06/documents/timv3_0_appendix_d_avian_species.pdf",
+      "title": "EPA Appendix D: Avian Data to Support Generic and Custom Species",
+      "license": "US-Gov-PD",
+      "kind": "dataset",
+      "accessed": "2026-10-31",
+      "note": "Appendix D row for Charadrius vociferus: mean weight 96.6 g; range 87.7-121 g."
+    },
+    {
+      "id": "wikipedia-killdeer",
+      "url": "https://en.wikipedia.org/wiki/Killdeer",
+      "title": "Wikipedia: Killdeer",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-31",
+      "attribution": "Wikipedia contributors, Killdeer, CC BY-SA 4.0"
+    },
+    {
+      "id": "gbif-activity-us",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2480320&country=US&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Charadrius vociferus in US",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-31) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-31",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-taxonomy",
+        "inat-taxonomy"
+      ],
+      "confidence": "High",
+      "note": "GBIF exact accepted species match (usage key 2480320); iNaturalist result 4793 is an active species taxon. Both providers agree on Charadrius vociferus."
+    },
+    "common_names": {
+      "sources": [
+        "nps-killdeer"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-taxonomy",
+        "inat-taxonomy",
+        "wikipedia-killdeer"
+      ],
+      "confidence": "High",
+      "note": "GBIF and iNaturalist identifiers checked directly at their respective providers on 2026-10-31."
+    },
+    "range": {
+      "sources": [
+        "wikipedia-killdeer",
+        "nps-killdeer"
+      ],
+      "confidence": "Medium",
+      "note": "Country list follows the listed native distribution; NPS independently confirms range from Canada through the United States into Central America and parts of South America."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "nps-killdeer"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "nps-killdeer"
+      ],
+      "confidence": "High",
+      "note": "Schema convention counts a bird's legs and excludes wings."
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "nps-killdeer"
+      ],
+      "confidence": "High",
+      "note": "Walk is used as the supported ground gait; the model has no separate run action. Flight is powered."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "nps-killdeer"
+      ],
+      "confidence": "High"
+    },
+    "traits.skin": {
+      "sources": [
+        "nps-killdeer"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "nps-killdeer"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "nps-killdeer"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "nps-killdeer"
+      ],
+      "confidence": "High"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "nps-killdeer"
+      ],
+      "confidence": "High",
+      "note": "Nest is a shallow scrape on open ground."
+    },
+    "traits.perching": {
+      "sources": [
+        "nps-killdeer"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Judgement: modeled as a ground bird without perching behavior; the behavior program uses walking and flight only."
+    },
+    "traits.size_class": {
+      "sources": [
+        "epa-avian-data"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Small follows the schema mass threshold (<1 kg)."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "epa-avian-data"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Appendix D mean body weight 96.6 g converted to kilograms."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "epa-avian-data"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Appendix D range 87.7-121 g converted to kilograms."
+    },
+    "traits.length_m": {
+      "sources": [
+        "nps-killdeer"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of NPS adult length range 7.9-11.0 in, converted at 0.0254 m per inch."
+    },
+    "traits.wingspan_m": {
+      "sources": [
+        "nps-killdeer"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of NPS wingspan range 18.1-18.9 in, converted at 0.0254 m per inch."
+    },
+    "traits.diet": {
+      "sources": [
+        "nps-killdeer"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "NPS lists insects and invertebrate prey; the 1.0 share is an authored categorical simulation allocation, not a measured diet percentage."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia-killdeer"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Pairs as the representative breeding unit; the record does not model post-breeding flocks."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia-killdeer"
+      ],
+      "confidence": "Medium",
+      "note": "Primarily forages by day; some nonbreeding night foraging is reported."
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia-killdeer"
+      ],
+      "confidence": "High"
+    },
+    "traits.wariness": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: open-ground nesting and conspicuous distraction displays are represented with a middle-range wariness value."
+    },
+    "habitat": {
+      "sources": [
+        "nps-killdeer"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Ground use and resource weights are simulation allocations. NPS documents open fields, lawns, river banks, shores, and developed sites."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia-killdeer"
+      ],
+      "confidence": "Medium",
+      "note": "Northern populations migrate; populations in the southern United States and Pacific coast are resident."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia-killdeer"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Southern egg laying runs mid-March to early June; northern egg laying mid-April to mid-July; breeding may continue to August. One US window cannot encode this latitudinal shift or year-round Caribbean breeding."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia-killdeer"
+      ],
+      "confidence": "Medium",
+      "note": "Egg, juvenile, and adult stages are documented; the record omits stage durations because no duration is needed for these stage labels."
+    },
+    "activity.US": {
+      "sources": ["gbif-activity-us"],
+      "confidence": "High",
+      "note": "GBIF tier A national query, filtered to CC0 and CC BY records, used because the iNaturalist US query returned zero observations at tier C."
+    },
+    "behavior": {
+      "sources": [
+        "nps-killdeer"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Species-local program models daytime ground foraging with walking, flight escape, night shelter, and ground nesting. It does not model the documented moonlit nonbreeding foraging, running-stopping, or broken-wing display because the available predicates and actions cannot express those behaviors."
+    },
+    "vocalizations": {
+      "sources": [
+        "wikipedia-killdeer"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Call description is from the cited account; season and cooldown are authored simulation settings."
+    },
+    "look": {
+      "sources": [
+        "wikipedia-killdeer"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Color and proportions are authored from the species description, including the double breast band."
+    }
+  }
+}
