@@ -1,0 +1,596 @@
+{
+  "$schema": "https://eeeearth.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Chalinolobus morio",
+  "slug": "chalinolobus-morio",
+  "common_names": {
+    "en": "Chocolate Wattled Bat"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Mammalia",
+    "order": "Chiroptera",
+    "family": "Vespertilionidae",
+    "genus": "Chalinolobus",
+    "authority": "(Gray, 1841)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2432295,
+    "inat_taxon_id": 40543,
+    "wikidata": "Q305052"
+  },
+  "range": {
+    "native": [
+      "AU"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Fly",
+      "Walk"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Fur",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Cavity",
+    "perching": false,
+    "size_class": "Tiny",
+    "mass_kg": 0.008,
+    "mass_range_kg": [
+      0.008,
+      0.011
+    ],
+    "length_m": 0.06,
+    "lifespan_y": 2.0,
+    "diet": {
+      "invertebrate": 1.0
+    },
+    "social": {
+      "structure": "Colony",
+      "group_size": [
+        10,
+        20
+      ]
+    },
+    "activity_pattern": "Nocturnal",
+    "defense": "Flee",
+    "wariness": 0.6
+  },
+  "habitat": {
+    "use": {
+      "aerial": 0.8,
+      "arboreal": 0.2
+    },
+    "shelter_tag": "cavity",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 1.0
+      },
+      {
+        "tag": "cavity",
+        "kind": "Shelter",
+        "weight": 1.0
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": false,
+      "light_max": 0.3,
+      "notes": "Roosts in tree hollows and buildings, and forages at night. The block behavior treats daylight as roost time."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "10-01",
+        "end": "11-30",
+        "region": "AU",
+        "note": "October-November births are reported for the species. Winter hibernation is documented for cooler southern Australian populations, but this record-wide phase cannot encode that regional distinction."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "AU",
+        "monthly": [
+          0.6,
+          1.0,
+          0.51,
+          0.2,
+          0.09,
+          0.06,
+          0.04,
+          0.07,
+          0.13,
+          0.31,
+          0.48,
+          0.54
+        ],
+        "method": "gbif_share",
+        "observations": 24778,
+        "sources": [
+          "gbif-activity-au"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 6744,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40543&place_id=6744&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=6744&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 79,
+            "usable": false
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "country",
+              "AU"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2432295&country=AU&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&country=AU&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 24778,
+            "usable": true
+          },
+          "used": [
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-chalinolobus-morio-v1"
+  },
+  "vocalizations": [
+    {
+      "call_id": "echolocation",
+      "context": "Chirp",
+      "season_months": [],
+      "time_windows": [
+        "Night"
+      ],
+      "cooldown_s": 0.5,
+      "loudness": "Quiet",
+      "description": "Ultrasonic echolocation pulses used to locate prey and avoid obstacles."
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.1,
+      "leg_length_ratio": 0.2,
+      "head_scale": 0.85,
+      "neck_angle_deg": 5,
+      "tail_ratio": 0.45,
+      "wing_aspect": 2.8,
+      "beak_ratio": 0.0,
+      "girth_ratio": 0.75
+    },
+    "palette": {
+      "body": "#4b352b",
+      "belly": "#59473d",
+      "markings": "#30231f",
+      "accent": "#563c30",
+      "eye": "#111111"
+    },
+    "part_colors": {
+      "breast": "body",
+      "beak": "markings",
+      "ear_left": "markings",
+      "ear_right": "markings"
+    },
+    "extra_parts": [
+      {
+        "name": "ear_left",
+        "parent": "head",
+        "offset": [
+          0,
+          0.27,
+          0.28
+        ],
+        "size": [
+          0.32,
+          0.42,
+          0.22
+        ],
+        "color": "markings"
+      },
+      {
+        "name": "ear_right",
+        "parent": "head",
+        "offset": [
+          0,
+          0.27,
+          -0.28
+        ],
+        "size": [
+          0.32,
+          0.42,
+          0.22
+        ],
+        "color": "markings"
+      },
+      {
+        "name": "wattle_left",
+        "parent": "head",
+        "offset": [
+          -0.16,
+          -0.12,
+          0.16
+        ],
+        "size": [
+          0.14,
+          0.1,
+          0.1
+        ],
+        "color": "accent"
+      },
+      {
+        "name": "wattle_right",
+        "parent": "head",
+        "offset": [
+          -0.16,
+          -0.12,
+          -0.16
+        ],
+        "size": [
+          0.14,
+          0.1,
+          0.1
+        ],
+        "color": "accent"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "fly": {},
+      "walk": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2432295",
+      "title": "GBIF Backbone Taxonomy: Chalinolobus morio",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-31",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "inat-taxonomy",
+      "url": "https://api.inaturalist.org/v1/taxa/40543",
+      "title": "iNaturalist taxonomy: Chalinolobus morio, taxon 40543",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-10-31",
+      "attribution": "iNaturalist contributors, taxon 40543, accessed via the iNaturalist API",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q305052",
+      "title": "Wikidata: Chalinolobus morio (Q305052)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-10-31",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "victoria-wildlife-factsheet",
+      "url": "https://www.wildlife.vic.gov.au/__data/assets/pdf_file/0023/92435/Chocolate-Wattled-Bat.pdf",
+      "title": "Our Wildlife Factsheet: Chocolate Wattled Bat",
+      "license": "CC-BY-4.0",
+      "kind": "literature",
+      "accessed": "2026-10-31",
+      "attribution": "State of Victoria, Department of Environment, Land, Water and Planning, Our Wildlife Factsheet: Chocolate Wattled Bat",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "note": "The Department's original text is used; the credited photograph is not reused. The Victorian Government copyright policy licenses department website material CC BY 4.0, except third-party material."
+    },
+    {
+      "id": "law-2018-bat-survival",
+      "url": "https://doi.org/10.1371/journal.pone.0191471",
+      "title": "Forest bat population dynamics over 14 years at a climate refuge: Effects of timber harvesting and weather extremes",
+      "license": "CC-BY-4.0",
+      "kind": "literature",
+      "accessed": "2026-10-31",
+      "attribution": "Law, B.S., Chidel, M. and Law, P.R. (2018), PLOS ONE 13(2): e0191471",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "note": "The article reports an estimated 2.0-year mean life expectancy after banding for resident C. morio at one New South Wales forest study site, and cautions that apparent survival underestimates life expectancy."
+    },
+    {
+      "id": "wikipedia-chocolate-wattled-bat",
+      "url": "https://en.wikipedia.org/wiki/Chocolate_wattled_bat",
+      "title": "Wikipedia: Chocolate wattled bat",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-10-31",
+      "attribution": "Wikipedia contributors, Chocolate wattled bat, English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "gbif-activity-au",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2432295&country=AU&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Chalinolobus morio in AU",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-10-31) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-31",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High",
+      "note": "GBIF API response checked 2026-10-31: accepted Chalinolobus morio at species rank; canonical name and family/order/class match the record."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "inat-taxonomy"
+      ],
+      "confidence": "High",
+      "note": "GBIF usage key 2432295 resolves to accepted species Chalinolobus morio. iNaturalist taxon 40543 is active and also resolves to this species."
+    },
+    "common_names": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "range": {
+      "sources": [
+        "victoria-wildlife-factsheet",
+        "wikipedia-chocolate-wattled-bat"
+      ],
+      "confidence": "Medium",
+      "note": "The State of Victoria factsheet describes the species as widespread across eastern and southern Australia and records it in the Northern Territory; the licensed Wikipedia article says it is found only in Australia. The country-level native range is AU. Its elevation record is described as reaching at least 1,570 m, so no upper elevation bound is stored."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia-chocolate-wattled-bat"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia-chocolate-wattled-bat"
+      ],
+      "confidence": "High",
+      "note": "Bat has two forelimbs modified as wings and two hindlimbs; schema limb count counts all four limbs."
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "victoria-wildlife-factsheet"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Powered flight is described directly. Walking is an authored secondary mode for short ground movement; the selected program uses flight for travel and feeding."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "victoria-wildlife-factsheet"
+      ],
+      "confidence": "High"
+    },
+    "traits.skin": {
+      "sources": [
+        "victoria-wildlife-factsheet",
+        "wikipedia-chocolate-wattled-bat"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "victoria-wildlife-factsheet"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia-chocolate-wattled-bat"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia-chocolate-wattled-bat"
+      ],
+      "confidence": "High"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "victoria-wildlife-factsheet"
+      ],
+      "confidence": "Medium",
+      "note": "Uses tree hollows and buildings as day roosts; mapped to the closest supported cavity option."
+    },
+    "traits.perching": {
+      "sources": [
+        "victoria-wildlife-factsheet"
+      ],
+      "confidence": "High"
+    },
+    "traits.size_class": {
+      "sources": [
+        "law-2018-bat-survival"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Classified Tiny from the reported 8 g adult mass."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "law-2018-bat-survival"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Converted the paper's species-level 8 g mass to 0.008 kg."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "victoria-wildlife-factsheet"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Converted the factsheet's non-pregnant adult range of 8-11 g to kg."
+    },
+    "traits.length_m": {
+      "sources": [
+        "victoria-wildlife-factsheet"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Converted the factsheet's 60 mm body length to 0.06 m; that source does not specify whether this is a mean or a maximum."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "law-2018-bat-survival"
+      ],
+      "confidence": "Medium",
+      "note": "Uses the paper's 2.0-year mean life expectancy after banding for resident C. morio at one northeastern NSW forest site. This is an empirical typical-wild-lifespan proxy, not a maximum; apparent-survival estimates can underestimate true life expectancy and the study is site-specific."
+    },
+    "traits.diet": {
+      "sources": [
+        "victoria-wildlife-factsheet",
+        "wikipedia-chocolate-wattled-bat"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "The factsheet says insects; the Wikipedia article says prey consists almost entirely of moths. The schema has no moth category, so the insectivorous diet is represented as 100% invertebrate."
+    },
+    "traits.social": {
+      "sources": [
+        "victoria-wildlife-factsheet"
+      ],
+      "confidence": "Medium",
+      "note": "The factsheet reports daytime roost colonies of about 10 to 20; the schema range represents that typical roost group, not exceptional larger caves or solitary males."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "victoria-wildlife-factsheet"
+      ],
+      "confidence": "High",
+      "note": "The factsheet says the bats roost and sleep during the day and emerge at night to feed."
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia-chocolate-wattled-bat"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Flee response is an authored simulation judgment; the species sources do not describe a defense response."
+    },
+    "traits.wariness": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored simulation judgment; no source provides a wariness measure."
+    },
+    "habitat.use": {
+      "sources": [
+        "victoria-wildlife-factsheet"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Aerial 0.8 and arboreal 0.2 are authored habitat-use shares, based on aerial foraging and tree/building roosting. No source measures proportional time by stratum."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "victoria-wildlife-factsheet"
+      ],
+      "confidence": "High",
+      "note": "Tree hollows and buildings map to cavity shelter."
+    },
+    "habitat.resources": {
+      "sources": [
+        "victoria-wildlife-factsheet"
+      ],
+      "confidence": "High"
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "victoria-wildlife-factsheet"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Use of buildings and records from Melbourne suburbs support the Adapter classification; light_max is an authored conservative simulation setting."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "victoria-wildlife-factsheet"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Set ActiveYearRound for the country-level record because winter hibernation is only documented for cooler southern Australian populations and the schema cannot apply that population-specific strategy to part of the national range. The activity curve remains observation-derived and shows reduced winter detections; this record does not simulate the southern hibernation period."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "victoria-wildlife-factsheet"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "October-November birth timing converted to a broad AU breeding interval; the factsheet also reports winter hibernation in cooler southern populations, which is a known but unrepresented regional difference."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "law-2018-bat-survival"
+      ],
+      "confidence": "Medium",
+      "note": "Adult only; juvenile duration is not supplied by the cited open sources."
+    },
+    "activity.AU": {
+      "sources": [
+        "gbif-activity-au"
+      ],
+      "confidence": "Medium",
+      "note": "Fetched from observation histograms; counts and usability flags are retained in the query metadata. Observation frequency is an imperfect proxy for activity."
+    },
+    "behavior": {
+      "sources": [
+        "victoria-wildlife-factsheet"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Species-local program flies and feeds after dusk, roosts at daylight, and flees by flight. It represents night/day timing and aerial insect feeding; it does not model winter hibernation."
+    },
+    "vocalizations": {
+      "sources": [
+        "victoria-wildlife-factsheet"
+      ],
+      "confidence": "Medium",
+      "note": "The factsheet describes echolocation pulses at approximately 50 kHz; represented as an ultrasonic call with no emitted audible frequency data."
+    },
+    "look": {
+      "sources": [
+        "victoria-wildlife-factsheet",
+        "wikipedia-chocolate-wattled-bat"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Brown fur, domed head, and small facial lobes are source-described. Stylized proportions, part placement, and sRGB values are authored visual judgments."
+    }
+  }
+}
