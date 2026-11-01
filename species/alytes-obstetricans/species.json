@@ -1,0 +1,721 @@
+{
+  "$schema": "https://eeeearth.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Alytes obstetricans",
+  "slug": "alytes-obstetricans",
+  "common_names": {
+    "en": "common midwife toad",
+    "fr": "alyte accoucheur",
+    "de": "Gemeine Geburtshelferkröte",
+    "nl": "Vroedmeesterpad"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Amphibia",
+    "order": "Anura",
+    "family": "Alytidae",
+    "genus": "Alytes",
+    "authority": "(Laurenti, 1768)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2426612,
+    "inat_taxon_id": 24473,
+    "itis_tsn": 662327,
+    "wikidata": "Q837990",
+    "ncbi_taxon_id": 8443,
+    "amphibiaweb_id": 1522
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "BE",
+      "FR",
+      "DE",
+      "LU",
+      "NL",
+      "CH",
+      "PT",
+      "ES"
+    ],
+    "introduced": [
+      "GB"
+    ],
+    "elevation_m": [
+      0,
+      2400
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk",
+      "Hop"
+    ],
+    "thermoregulation": "Ectotherm",
+    "skin": "Moist",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "Complete",
+    "nest_type": "None",
+    "perching": false,
+    "size_class": "Tiny",
+    "mass_kg": 0.0134,
+    "length_m": 0.0375,
+    "lifespan_y": 5,
+    "diet": {
+      "invertebrate": 0.95,
+      "carrion": 0.05
+    },
+    "social": {
+      "structure": "Solitary",
+      "group_size": [
+        1,
+        1
+      ]
+    },
+    "activity_pattern": "Nocturnal",
+    "defense": "Toxin",
+    "wariness": 0.3
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.8,
+      "fossorial": 0.15,
+      "aquatic": 0.05
+    },
+    "shelter_tag": "burrow",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 1.0
+      },
+      {
+        "tag": "pond",
+        "kind": "Nesting",
+        "weight": 1.0,
+        "months": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "tag": "burrow",
+        "kind": "Shelter",
+        "weight": 0.6
+      },
+      {
+        "tag": "leaf_litter",
+        "kind": "Shelter",
+        "weight": 0.5
+      },
+      {
+        "tag": "log_pile",
+        "kind": "Shelter",
+        "weight": 0.5
+      }
+    ],
+    "requires": [
+      {
+        "resource_within_m": 1000,
+        "tag": "pond"
+      }
+    ],
+    "suitability": {
+      "combine": "GeometricMean",
+      "curves": [
+        {
+          "covariate": "dist_water_m",
+          "curve": [
+            [
+              0,
+              1.0
+            ],
+            [
+              500,
+              0.1
+            ],
+            [
+              1000,
+              0.0
+            ]
+          ]
+        }
+      ]
+    },
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "notes": "Wikipedia lists parks, gardens, quarries, gravel pits and urban areas among its habitats; ADW reports it lives in urban and agricultural habitat and wanders up to about 500 m from water."
+    }
+  },
+  "seasonal": {
+    "strategy": "Hibernation",
+    "triggers": {
+      "enter": {
+        "temperature_below_c": 5,
+        "days": 5
+      },
+      "exit": {
+        "temperature_above_c": 6,
+        "days": 3
+      }
+    },
+    "phases": [
+      {
+        "name": "dormancy",
+        "start": "11-01",
+        "end": "02-28",
+        "note": "Hibernates on land under frost-protected ground during winter (ADW)."
+      },
+      {
+        "name": "breeding",
+        "start": "03-01",
+        "end": "08-31",
+        "note": "Breeding occurs March to August (ADW); mating seasons vary across the range. Males carry eggs on land until they hatch."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg",
+        "duration_days": 35,
+        "scale": 0.02
+      },
+      {
+        "stage": "Tadpole",
+        "duration_days": 365,
+        "requires_tag": "pond",
+        "scale": 0.1
+      },
+      {
+        "stage": "Juvenile",
+        "duration_days": 548,
+        "scale": 0.3
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "FR",
+        "monthly": [
+          0.07,
+          0.13,
+          0.39,
+          0.67,
+          0.91,
+          0.98,
+          1.0,
+          0.66,
+          0.1,
+          0.13,
+          0.13,
+          0.02
+        ],
+        "method": "mean(inat_raw, gbif_raw)",
+        "observations": 52595,
+        "sources": [
+          "inat-activity-fr",
+          "gbif-activity-fr"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 6753,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=24473&place_id=6753&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": null,
+            "total": 611,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "country",
+              "FR"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2426612&country=FR&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": null,
+            "total": 51984,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-anuran-midwife-toad-v1"
+  },
+  "vocalizations": [
+    {
+      "call_id": "song",
+      "context": "Song",
+      "season_months": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "time_windows": [
+        "Dusk",
+        "Night"
+      ],
+      "cooldown_s": 2,
+      "loudness": "Quiet",
+      "description": "Males give a short, high-pitched 'poo...poo' note about every one to three seconds, calling for several hours on most nights of the breeding season."
+    }
+  ],
+  "look": {
+    "body_plan": "anuran",
+    "proportions": {
+      "torso_aspect": 1.0,
+      "leg_length_ratio": 0.5,
+      "head_scale": 0.75,
+      "neck_angle_deg": 5,
+      "girth_ratio": 1.05
+    },
+    "palette": {
+      "body": "#8a7a5c",
+      "belly": "#d9d3c2",
+      "markings": "#4f4636",
+      "accent": "#b0643a",
+      "eye": "#c9a24a"
+    },
+    "extra_parts": [
+      {
+        "name": "paratoid",
+        "parent": "head",
+        "offset": [
+          -0.3,
+          0.45,
+          0.3
+        ],
+        "size": [
+          0.25,
+          0.18,
+          0.2
+        ],
+        "color": "accent",
+        "mirror": true
+      },
+      {
+        "name": "blotch",
+        "parent": "body",
+        "offset": [
+          0.1,
+          0.46,
+          0.22
+        ],
+        "size": [
+          0.3,
+          0.12,
+          0.25
+        ],
+        "color": "markings",
+        "mirror": true
+      },
+      {
+        "name": "rump_blotch",
+        "parent": "body",
+        "offset": [
+          -0.3,
+          0.46,
+          0
+        ],
+        "size": [
+          0.25,
+          0.12,
+          0.35
+        ],
+        "color": "markings"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "hop": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2426612",
+      "title": "GBIF Backbone Taxonomy: Alytes obstetricans",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-11-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q837990",
+      "title": "Wikidata: Alytes obstetricans (Q837990)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-11-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Common_midwife_toad",
+      "title": "Wikipedia: Common midwife toad",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-11-01",
+      "attribution": "Wikipedia contributors, \"Common midwife toad\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=662327",
+      "title": "ITIS: Alytes obstetricans, TSN 662327",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-11-01",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "amphibio",
+      "url": "https://doi.org/10.6084/m9.figshare.4644424",
+      "title": "AmphiBIO v1: a global database for amphibian ecological traits",
+      "license": "CC-BY-4.0",
+      "kind": "dataset",
+      "accessed": "2026-11-01",
+      "attribution": "Oliveira, B. F. et al. (2017) AmphiBIO. Scientific Data 4:170123",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "adw-alytes",
+      "url": "https://animaldiversity.org/accounts/Alytes_obstetricans/",
+      "title": "Animal Diversity Web: Alytes obstetricans",
+      "license": "CC-BY-NC-SA-3.0",
+      "kind": "webpage",
+      "accessed": "2026-11-01",
+      "attribution": "Animal Diversity Web, University of Michigan Museum of Zoology, Alytes obstetricans account, CC BY-NC-SA 3.0, accessed 2026-11-01",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/3.0/",
+      "note": "Non-commercial (tier 4) last-resort source. Used only for the wild average lifespan (5 years, which the page labels 'Average lifespan Status: wild'), plus body length range, nocturnal dusk foraging, hibernation and breeding months. Its licence line was not found in the fetched HTML; the CC BY-NC-SA 3.0 designation is taken from the ADW site policy and should be rechecked."
+    },
+    {
+      "id": "inat-activity-fr",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=24473&place_id=6753&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Alytes obstetricans in FR",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-11-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-fr",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2426612&country=FR&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Alytes obstetricans in FR",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-11-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-11-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "itis"
+      ],
+      "confidence": "High",
+      "note": "GBIF usage 2426612 and ITIS TSN 662327 both resolve to the accepted species-rank name Alytes obstetricans (Laurenti, 1768). GBIF lists Alytes obstetricans almogavarii and boscai as synonyms; iNaturalist 1629047 (Alytes almogavarii) and Wikipedia treat A. almogavarii as a separate species. This record covers the nominal species in France."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata",
+        "itis"
+      ],
+      "confidence": "High",
+      "note": "iNaturalist 24473 is the active species-rank taxon (checked 2026-11-01). NCBI 8443 and AmphibiaWeb 1522 via Wikidata (P685, P5036)."
+    },
+    "common_names": {
+      "sources": [
+        "wikidata",
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "Wikidata P141 = least concern (Q211005)."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Native countries from Wikipedia: found in Belgium, France, Germany, Luxembourg, the Netherlands, Portugal, Spain and Switzerland. GB is listed as an introduction there, not a native range. Elevation 0 to 2400 m from ADW and the Pyrenees altitude in Wikipedia."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia",
+        "adw-alytes"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Walks and makes short hops on land (ADW: highly terrestrial; Wikipedia: rears up on all four limbs). Swim is omitted because the behaviour program has no swim action and adults stay on land except when releasing tadpoles; Burrow is not declared because the program has no burrow action."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "adw-alytes"
+      ],
+      "confidence": "High",
+      "note": "ADW lists ectothermic."
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Mostly smooth with warts and granules; 'Moist' is the format's amphibian skin class."
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Authored: anuran lungs; no source in the checked pages states respiration."
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Tadpoles develop limbs, lose tails and metamorphose into juveniles."
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "The male carries the eggs on his back and thighs; no nest is built. Egg carrying is not represented in the behaviour program (see behavior note)."
+    },
+    "traits.perching": {
+      "sources": [
+        "adw-alytes"
+      ],
+      "confidence": "High",
+      "note": "Highly terrestrial; no perching."
+    },
+    "traits.size_class": {
+      "sources": [
+        "amphibio"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg (0.0134 kg, below the Tiny threshold of 0.05 kg)."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "amphibio"
+      ],
+      "confidence": "Medium",
+      "note": "AmphiBIO Body_mass_g 13.4 for Alytes obstetricans (a dataset-level value, not an individual measurement)."
+    },
+    "traits.length_m": {
+      "sources": [
+        "adw-alytes"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Midpoint of ADW range length 25 to 50 mm (snout-vent length). No permissive source gives an adult length range, so the NC source backs this field. AmphiBIO Body_size_mm 55 is a maximum and is not used."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "adw-alytes"
+      ],
+      "confidence": "Low",
+      "note": "ADW 'Average lifespan Status: wild 5 years'. Only a non-commercial (CC BY-NC-SA 3.0) source was found for this statistic; a permissive source for typical wild lifespan was not found. ADW's wild range maximum of 8 years and AmphiBIO Longevity_max_y 7 are maxima and are not used."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Wikipedia: feeds mostly on insects and other arthropods, as well as carrion. The 0.05 carrion share is authored judgement."
+    },
+    "traits.social": {
+      "sources": [],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Authored: solitary on land outside the breeding season; no open source gives a social structure."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "amphibio",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "AmphiBIO Noc 1 and Crepu 1; Wikipedia: active at dusk and through the night."
+    },
+    "traits.defense": {
+      "sources": [
+        "adw-alytes"
+      ],
+      "confidence": "High",
+      "note": "ADW: excretes a potent smelling toxin from the warts."
+    },
+    "traits.wariness": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored judgement."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored from Wikipedia: spends the day hidden in undergrowth, crevices or under logs, and forages on land. The fossorial and aquatic shares are judgement."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Spends the day hidden in undergrowth, crevices or under logs or stones (Wikipedia); digs a burrow with its forelimbs (Wikipedia)."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia",
+        "adw-alytes"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Prey from Wikipedia; breeding and tadpole water from March to August (ADW, NC-only window). Weights are authored."
+    },
+    "habitat.requires": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Wikipedia: usually found not far from water, but sometimes wanders 500 m away. The 1000 m placement bound is authored (about twice that distance) because tadpoles need water."
+    },
+    "habitat.suitability": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored from the 500 m observation in Wikipedia: suitability 0.1 at 500 m and zero at 1000 m."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Wikipedia lists parks, gardens, quarries, gravel pits, woods and urban areas among habitats. No open road-mortality figure was found, so road_mortality is omitted."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Wikipedia: spends the winter hibernating on land."
+    },
+    "seasonal.triggers": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored temperatures; no open source gives thresholds."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "adw-alytes"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Breeding March to August from ADW; this month window has no permissive source, so the NC source backs this field. ADW notes that breeding varies across the range, so no region is set. The November to February dormancy window is derived from the winter hibernation statement, and the exact dates are authored."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia",
+        "adw-alytes",
+        "amphibio"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Egg: 3 to 8 weeks to hatching (Wikipedia) and 3 to 6 weeks (ADW); 35 days is an authored value inside both. The eggs are carried on the male's body on land, so the Egg stage has no requires_tag. Tadpole: about a year to metamorphosis (ADW). Juvenile: sexual maturity at 2 to 3 years (ADW; AmphiBIO age at maturity 2 to 3) minus the tadpole year, giving 548 days. Scales are authored."
+    },
+    "vocalizations.song": {
+      "sources": [
+        "adw-alytes"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Calls every one to three seconds, mainly at night in the breeding season (ADW). Months follow the breeding window; frequencies and cooldown are authored."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Grey, olive or brown body, sometimes speckled with green or brown spots, reddish or yellow warts, and a pale underside (Wikipedia). Proportions, paratoid size and eye colour are authored."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Species-local program (behavior.json) adapted from the shared nocturnal anuran program. The shared program has only two call-month parameters and cannot express March to August. Egg carrying and swimming are not modelled."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies maintainers",
+      "agent": "claude-code"
+    }
+  ]
+}
