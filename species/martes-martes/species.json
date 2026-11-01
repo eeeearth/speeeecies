@@ -1,0 +1,371 @@
+{
+  "$schema": "https://eeeearth.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Martes martes",
+  "slug": "martes-martes",
+  "common_names": {
+    "en": "Eurasian pine marten",
+    "fr": "martre des pins"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Mammalia",
+    "order": "Carnivora",
+    "family": "Mustelidae",
+    "genus": "Martes",
+    "authority": "(Linnaeus, 1758)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 5218878,
+    "inat_taxon_id": 41796
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "FR"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk",
+      "Trot",
+      "Gallop",
+      "Climb"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Fur",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Cavity",
+    "perching": false,
+    "size_class": "Medium",
+    "mass_kg": 1.6,
+    "length_m": 0.53,
+    "lifespan_y": 3.5,
+    "social": {
+      "structure": "Solitary"
+    },
+    "activity_pattern": "Nocturnal",
+    "defense": "Flee",
+    "wariness": 0.7
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.5,
+      "arboreal": 0.5
+    },
+    "shelter_tag": "tree_cavity",
+    "resources": [
+      {
+        "tag": "small_vertebrate",
+        "kind": "Predation",
+        "weight": 0.6
+      },
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.2
+      },
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.2
+      },
+      {
+        "tag": "tree_cavity",
+        "kind": "Shelter",
+        "weight": 1.0
+      }
+    ]
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "mating",
+        "start": "07-01",
+        "end": "08-31",
+        "note": "Mating occurs in July and August (Wikipedia, Lifespan section)."
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "FR",
+        "monthly": [
+          1.0,
+          0.63,
+          0.81,
+          0.58,
+          0.5,
+          0.63,
+          0.51,
+          0.43,
+          0.56,
+          0.51,
+          0.75,
+          0.81
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 54162,
+        "sources": [
+          "inat-activity-fr",
+          "gbif-activity-fr"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 6753,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=41796&place_id=6753&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=6753&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 607,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "country",
+              "FR"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5218878&country=FR&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&country=FR&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 53555,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-ground-forager-v1",
+    "params": {
+      "food_tag": "small_vertebrate",
+      "flee_m": 25,
+      "calm_m": 50,
+      "food_m": 60,
+      "flee_gait": "gallop",
+      "forage_gait": "walk"
+    }
+  },
+  "vocalizations": [],
+  "look": {
+    "body_plan": "quadruped",
+    "proportions": {
+      "torso_aspect": 2.2,
+      "leg_length_ratio": 0.5,
+      "head_scale": 0.7,
+      "neck_angle_deg": 30,
+      "tail_ratio": 0.9,
+      "ear_ratio": 0.4,
+      "beak_ratio": 0.7,
+      "girth_ratio": 0.7
+    },
+    "palette": {
+      "body": "#6b4a2f",
+      "belly": "#e9d9b5",
+      "markings": "#2b2118",
+      "accent": "#e8c97a",
+      "eye": "#1d140c"
+    },
+    "part_colors": {
+      "leg_*": "markings",
+      "ear_*": "markings",
+      "snout": "belly"
+    },
+    "extra_parts": [
+      {
+        "name": "bib",
+        "parent": "neck",
+        "offset": [
+          0.15,
+          -0.2,
+          0
+        ],
+        "size": [
+          0.8,
+          0.7,
+          1.05
+        ],
+        "color": "accent"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "trot": {},
+      "gallop": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/5218878",
+      "title": "GBIF Backbone Taxonomy: Martes martes",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-11-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "inat-taxon",
+      "url": "https://api.inaturalist.org/v1/taxa/41796",
+      "title": "iNaturalist taxon 41796: Martes martes",
+      "license": "CC-BY-4.0",
+      "kind": "api",
+      "accessed": "2026-11-01",
+      "attribution": "iNaturalist taxon record 41796, via the iNaturalist API"
+    },
+    {
+      "id": "wikipedia-pine-marten",
+      "url": "https://en.wikipedia.org/wiki/European_pine_marten",
+      "title": "Wikipedia: European pine marten",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-11-01",
+      "attribution": "Wikipedia contributors, \"European pine marten\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "inat-activity-fr",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=41796&place_id=6753&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Martes martes in FR",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-11-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-fr",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5218878&country=FR&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Martes martes in FR",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-11-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-11-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High",
+      "note": "GBIF usage key 5218878 is accepted at species rank; iNaturalist 41796 is active and species rank; both checked 2026-11-01."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "inat-taxon"
+      ],
+      "confidence": "High"
+    },
+    "range": {
+      "sources": [
+        "wikipedia-pine-marten"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Only FR is recorded, the issue's requested activity country. Native status for France is not yet checked against a distribution source; the Wikipedia article gives a Europe-wide native range (\"native to and widespread in most of Europe\")."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia-pine-marten"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Midpoint of 'around 1.5-1.7 kg' (Wikipedia, Description)."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia-pine-marten"
+      ],
+      "confidence": "Medium",
+      "note": "'Its body is up to 53 cm long' (Wikipedia, Description); head-body length only, tail excluded."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "wikipedia-pine-marten"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Midpoint of '3-4 years being more typical' (Wikipedia, Lifespan). Wild maximum 11 years and captive 18 years are maxima and are not used. Not verified against a primary wild-population study."
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia-pine-marten"
+      ],
+      "confidence": "Medium",
+      "note": "Wikipedia: 'relatively quick runners on the ground' and arboreal climbing on branches. Climb has no built-in pose; see behaviour note."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia-pine-marten"
+      ],
+      "confidence": "Medium",
+      "note": "'mainly active at night and dusk' mapped to Nocturnal; crepuscular activity is not separated."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia-pine-marten"
+      ],
+      "confidence": "Low",
+      "note": "Judgement: Solitary; no source statement checked."
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia-pine-marten"
+      ],
+      "confidence": "Low",
+      "note": "Judgement."
+    },
+    "traits.wariness": {
+      "confidence": "Low",
+      "note": "judgement"
+    },
+    "habitat": {
+      "sources": [
+        "wikipedia-pine-marten"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored estimate of arboreal and ground use and resource weights; no quantitative source checked. Labelled judgement."
+    },
+    "seasonal": {
+      "sources": [
+        "wikipedia-pine-marten"
+      ],
+      "confidence": "Low",
+      "note": "Mating July-August only; birth and dispersal phases not yet sourced."
+    },
+    "look": {
+      "confidence": "Low",
+      "note": "judgement: rendering proportions and colours are authored, not measured."
+    },
+    "behavior": {
+      "confidence": "Low",
+      "note": "fsm-ground-forager-v1: closest shared program. It does not express tree climbing or tree-hole sheltering; declared gaits are walk and gallop as in its params."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies maintainers",
+      "agent": "claude-code"
+    }
+  ]
+}
