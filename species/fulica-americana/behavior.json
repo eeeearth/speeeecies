@@ -1,0 +1,241 @@
+{
+  "schema_version": 1,
+  "format": "speeeecies/behavior",
+  "id": "fsm-fulica-wetland-v1",
+  "kind": "fsm",
+  "description": "American coot: walks along the shore, swims while foraging on aquatic foods during daylight, flies from threats, and rests at night. Underwater diving is abstracted as swim-gait feeding because the behavior format has no dive action.",
+  "params": {
+    "food_graze": "graze",
+    "food_invertebrate": "invertebrate",
+    "food_fish": "small_vertebrate",
+    "flee_m": 15,
+    "calm_m": 40
+  },
+  "initial": "idle",
+  "states": {
+    "idle": {
+      "action": {
+        "do": "idle"
+      },
+      "min_dwell_s": 2
+    },
+    "shore_walk": {
+      "action": {
+        "do": "wander",
+        "gait": "walk"
+      }
+    },
+    "feed_plants": {
+      "action": {
+        "do": "eat_nearest",
+        "tag": "${food_graze}",
+        "gait": "swim"
+      }
+    },
+    "feed_invertebrates": {
+      "action": {
+        "do": "eat_nearest",
+        "tag": "${food_invertebrate}",
+        "gait": "swim"
+      }
+    },
+    "feed_fish": {
+      "action": {
+        "do": "eat_nearest",
+        "tag": "${food_fish}",
+        "gait": "swim"
+      }
+    },
+    "rest": {
+      "action": {
+        "do": "rest",
+        "at": "shelter"
+      },
+      "min_dwell_s": 30
+    },
+    "flee": {
+      "action": {
+        "do": "flee",
+        "gait": "fly"
+      },
+      "min_dwell_s": 3
+    }
+  },
+  "transitions": [
+    {
+      "from": "*",
+      "to": "flee",
+      "when": {
+        "threat_within_m": "${flee_m}"
+      },
+      "priority": 100
+    },
+    {
+      "from": "*",
+      "to": "flee",
+      "when": {
+        "need": "fear",
+        "gt": 0.2
+      },
+      "priority": 90
+    },
+    {
+      "from": "flee",
+      "to": "idle",
+      "when": {
+        "not": {
+          "threat_within_m": "${calm_m}"
+        }
+      }
+    },
+    {
+      "from": "idle",
+      "to": "rest",
+      "when": {
+        "is_day": false
+      },
+      "priority": 70
+    },
+    {
+      "from": "shore_walk",
+      "to": "rest",
+      "when": {
+        "is_day": false
+      },
+      "priority": 70
+    },
+    {
+      "from": "feed_plants",
+      "to": "rest",
+      "when": {
+        "is_day": false
+      },
+      "priority": 70
+    },
+    {
+      "from": "feed_invertebrates",
+      "to": "rest",
+      "when": {
+        "is_day": false
+      },
+      "priority": 70
+    },
+    {
+      "from": "feed_fish",
+      "to": "rest",
+      "when": {
+        "is_day": false
+      },
+      "priority": 70
+    },
+    {
+      "from": "rest",
+      "to": "idle",
+      "when": {
+        "is_day": true
+      }
+    },
+    {
+      "from": "idle",
+      "to": "feed_plants",
+      "when": {
+        "all": [
+          {
+            "is_day": true
+          },
+          {
+            "need": "hunger",
+            "gt": 0.4
+          },
+          {
+            "food_within_m": 50,
+            "tag": "${food_graze}"
+          }
+        ]
+      }
+    },
+    {
+      "from": "idle",
+      "to": "feed_invertebrates",
+      "when": {
+        "all": [
+          {
+            "is_day": true
+          },
+          {
+            "need": "hunger",
+            "gt": 0.4
+          },
+          {
+            "food_within_m": 50,
+            "tag": "${food_invertebrate}"
+          }
+        ]
+      }
+    },
+    {
+      "from": "idle",
+      "to": "feed_fish",
+      "when": {
+        "all": [
+          {
+            "is_day": true
+          },
+          {
+            "need": "hunger",
+            "gt": 0.4
+          },
+          {
+            "food_within_m": 50,
+            "tag": "${food_fish}"
+          }
+        ]
+      }
+    },
+    {
+      "from": "feed_plants",
+      "to": "idle",
+      "when": {
+        "need": "hunger",
+        "lt": 0.2
+      }
+    },
+    {
+      "from": "feed_invertebrates",
+      "to": "idle",
+      "when": {
+        "need": "hunger",
+        "lt": 0.2
+      }
+    },
+    {
+      "from": "feed_fish",
+      "to": "idle",
+      "when": {
+        "need": "hunger",
+        "lt": 0.2
+      }
+    },
+    {
+      "from": "idle",
+      "to": "shore_walk",
+      "when": {
+        "all": [
+          {
+            "is_day": true
+          },
+          {
+            "chance": 0.2
+          }
+        ]
+      }
+    },
+    {
+      "from": "shore_walk",
+      "to": "idle",
+      "when": {
+        "chance": 0.2
+      }
+    }
+  ]
+}
