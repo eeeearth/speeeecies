@@ -1,0 +1,542 @@
+{
+  "$schema": "https://eeeearth.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Certhia familiaris",
+  "slug": "certhia-familiaris",
+  "common_names": {
+    "en": "Eurasian treecreeper"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Passeriformes",
+    "family": "Certhiidae",
+    "genus": "Certhia",
+    "authority": "Linnaeus, 1758",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2487603,
+    "inat_taxon_id": 7450,
+    "wikidata": "Q193593"
+  },
+  "range": {
+    "native": [
+      "GB",
+      "IE"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Climb",
+      "Fly"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Cavity",
+    "perching": false,
+    "size_class": "Tiny",
+    "mass_kg": 0.009,
+    "mass_range_kg": [
+      0.007,
+      0.0129
+    ],
+    "length_m": 0.125,
+    "lifespan_y": 2,
+    "diet": {
+      "invertebrate": 0.6,
+      "seed": 0.4
+    },
+    "social": {
+      "structure": "Solitary",
+      "group_size": [
+        1,
+        1
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.3
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.4,
+      "arboreal": 0.6
+    },
+    "shelter_tag": "cavity",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.6
+      },
+      {
+        "tag": "seed",
+        "kind": "Herbivory",
+        "weight": 0.4
+      },
+      {
+        "tag": "cavity",
+        "kind": "Nesting",
+        "weight": 1.0
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": false,
+      "light_max": 0.5,
+      "notes": "Authored. Wikipedia says crevices in buildings or walls are sometimes used for nesting; no source gives a garden or light tolerance."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "03-01",
+        "end": "06-30",
+        "note": "Typical European clutch laid March to June (Wikipedia). Not GB-specific."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg"
+      },
+      {
+        "stage": "Juvenile"
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "GB",
+        "monthly": [
+          0.89,
+          1.0,
+          0.92,
+          0.65,
+          0.57,
+          0.56,
+          0.62,
+          0.52,
+          0.52,
+          0.51,
+          0.7,
+          0.81
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 171371,
+        "sources": [
+          "inat-activity-gb",
+          "gbif-activity-gb"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 6857,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=7450&place_id=6857&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=6857&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "total": 1466,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "country",
+              "GB"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2487603&country=GB&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&country=GB&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 169905,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "bt-treecreeper-trunk-v1"
+  },
+  "vocalizations": [
+    {
+      "call_id": "song",
+      "context": "Song",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day",
+        "Dusk"
+      ],
+      "cooldown_s": 30,
+      "loudness": "Quiet",
+      "description": "Male song: srrih notes, then twittering, a descending ripple and a falling-then-rising whistle (Wikipedia)."
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.8,
+      "leg_length_ratio": 0.3,
+      "head_scale": 0.75,
+      "neck_angle_deg": 20,
+      "tail_ratio": 0.6,
+      "wing_aspect": 3.0,
+      "beak_ratio": 0.6,
+      "girth_ratio": 0.9
+    },
+    "palette": {
+      "body": "#6b5a43",
+      "belly": "#ece8df",
+      "markings": "#c9b89a",
+      "accent": "#8a7a6a",
+      "eye": "#111111"
+    },
+    "part_colors": {
+      "breast": "belly",
+      "beak": "accent"
+    },
+    "poses": {
+      "idle": {},
+      "fly": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2487603",
+      "title": "GBIF Backbone Taxonomy: Certhia familiaris",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-11-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q193593",
+      "title": "Wikidata: Eurasian Treecreeper (Q193593)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-11-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "note": "P846 GBIF 2487603, P3151 iNaturalist 7450, read 2026-11-01."
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Eurasian_treecreeper",
+      "title": "Wikipedia: Eurasian treecreeper",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-11-01",
+      "attribution": "Wikipedia contributors, \"Eurasian treecreeper\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "note": "Revision 1358318920 read via the MediaWiki extracts API on 2026-11-01."
+    },
+    {
+      "id": "eltontraits",
+      "url": "https://doi.org/10.6084/m9.figshare.3559887.v1",
+      "title": "EltonTraits 1.0: species-level foraging attributes of the world's birds and mammals (BirdFuncDat)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-11-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "note": "BirdFuncDat.txt row for Certhia familiaris: Diet-Inv 60, Diet-Seed 40, ForStrat-ground 40, understory 30, midhigh 30, canopy 0, BodyMass-Value 9 g (Dunning08)."
+    },
+    {
+      "id": "inat-activity-gb",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=7450&place_id=6857&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Certhia familiaris in GB",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-11-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-gb",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2487603&country=GB&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Certhia familiaris in GB",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-11-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-11-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High",
+      "note": "Genus Certhia, family Certhiidae, ACCEPTED at species rank in GBIF 2487603 (checked 2026-11-01)."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "GBIF 2487603 checked at GBIF species endpoint (ACCEPTED, SPECIES). iNaturalist 7450 (active, species) via Wikidata P3151, cross-checked against iNaturalist taxa API on 2026-11-01."
+    },
+    "common_names": {
+      "sources": [
+        "wikipedia",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "Article title; Wikidata English label 'Eurasian Treecreeper'."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Partial list. Wikipedia says the species breeds in temperate woodland across the Palearctic from Ireland to Japan, and names the British Isles. Other countries are NOT yet supported by a permissive source; the list is a known gap."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "12.5 cm (Description)."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "7.0-12.9 g (Description)."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "eltontraits"
+      ],
+      "confidence": "Medium",
+      "note": "BodyMass-Value 9 g, Dunning08, species-level. Wikipedia gives only the range."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "'The typical lifespan is two years' (Breeding). Maximum 8 years 10 months is NOT used. The ADW average life expectancy of 2 years matches but is CC BY-NC-SA and is not cited."
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Creeps and hops up trunks (Habits); flight by migrants and fleeing (Distribution, Habits). Poor-flier wording is from ADW (NC) and is not cited."
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Nests in tree crevices or behind bark flakes (Breeding)."
+    },
+    "traits.perching": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored: no source says it perches on branches; it creeps on trunks. Set false."
+    },
+    "traits.diet": {
+      "sources": [
+        "eltontraits",
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "EltonTraits Diet-Inv 60, Diet-Seed 40. Wikipedia describes invertebrates as the primary diet and conifer seeds only as a colder-months addition, so the seed share is in tension with the text. Reviewer decision needed."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Solitary in winter (Habits). Breeding pair structure not stated."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "eltontraits",
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "EltonTraits Nocturnal 0. Foraging described on trunks in daylight (Feeding)."
+    },
+    "traits.defense": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored judgement."
+    },
+    "traits.wariness": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored judgement: small cryptic woodland bird, easily overlooked (Habits)."
+    },
+    "habitat.use": {
+      "sources": [
+        "eltontraits"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "ForStrat-ground 40; understory 30 plus midhigh 30 mapped to arboreal 60."
+    },
+    "habitat.resources": {
+      "sources": [
+        "eltontraits",
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Invertebrates from trunks (Feeding); seed weight from EltonTraits Diet-Seed."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Roosts in a sheltered crevice in cold weather (Habits); tag choice authored."
+    },
+    "habitat.human_tolerance": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored. Wikipedia says buildings or walls are sometimes used for nesting."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Scoped to GB. Wikipedia: non-migratory in the milder west and south of the breeding range, while northern birds move south in winter. A species-wide PartialMigration needs a winter_fraction that no source gives, so GB is recorded as ActiveYearRound. Known simplification; reviewer decision needed."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Typical clutch March to June in Europe (Breeding). Not GB-specific."
+    },
+    "vocalizations.song": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Song description (Song section)."
+    },
+    "activity.GB": {
+      "sources": [
+        "inat-activity-gb",
+        "gbif-activity-gb"
+      ],
+      "confidence": "Medium",
+      "note": "Filled by tools/fetch_activity.py. See the activity section below."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Eggs and breeding from age one year (Breeding). Juvenile stage listed without a duration, which no source gives."
+    },
+    "behavior": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Species-local program bt-treecreeper-trunk-v1 (behavior.json). Climb gait for foraging on trunks (Feeding, Habits), flight for fleeing, March to June nest window (Breeding). Derived from the shared bt-perching-songbird-v1 with the food gait changed from hop to climb. Climb has no built-in pose, so trunk creeping renders with the idle pose."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Brown upperparts, whitish underparts, curved bill, long stiff tail (Description). Palette and proportions authored."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Bird class facts; the article describes a feathered, flying passerine."
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.size_class": {
+      "sources": [
+        "eltontraits"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg (Tiny below 0.05 kg)."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies maintainers",
+      "agent": "claude-code"
+    }
+  ]
+}

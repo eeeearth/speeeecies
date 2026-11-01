@@ -1,0 +1,242 @@
+{
+  "schema_version": 1,
+  "format": "speeeecies/behavior",
+  "id": "bt-treecreeper-trunk-v1",
+  "kind": "bt",
+  "description": "Eurasian treecreeper (species-local): creeps up tree trunks feeding on bark invertebrates with the climb gait, roosts in crevices at night, sings at dawn and dusk from a trunk perch in March to June, nests in crevices, and flees by flying. Derived from bt-perching-songbird-v1 with food gait changed from hop to climb and nest months fixed to 3 to 6.",
+  "params": {
+    "flee_m": 4,
+    "food_tag": "invertebrate",
+    "song": "song",
+    "alarm": "alarm",
+    "song_cooldown_s": 8,
+    "nest_m1": 3,
+    "nest_m2": 6
+  },
+  "root": {
+    "selector": [
+      {
+        "sequence": [
+          {
+            "cond": {
+              "threat_within_m": "${flee_m}"
+            }
+          },
+          {
+            "act": {
+              "do": "alarm",
+              "call": "${alarm}"
+            }
+          },
+          {
+            "act": {
+              "do": "take_off"
+            }
+          },
+          {
+            "act": {
+              "do": "fly_to_nearest",
+              "tag": "perch"
+            }
+          },
+          {
+            "act": {
+              "do": "perch_nearest"
+            }
+          }
+        ]
+      },
+      {
+        "sequence": [
+          {
+            "cond": {
+              "player_touch": true
+            }
+          },
+          {
+            "act": {
+              "do": "tolerate_touch"
+            }
+          }
+        ]
+      },
+      {
+        "sequence": [
+          {
+            "cond": {
+              "need": "fear",
+              "gt": 0.2
+            }
+          },
+          {
+            "act": {
+              "do": "take_off"
+            }
+          },
+          {
+            "act": {
+              "do": "flee",
+              "gait": "fly"
+            }
+          }
+        ]
+      },
+      {
+        "sequence": [
+          {
+            "cond": {
+              "player_offer": "food"
+            }
+          },
+          {
+            "cond": {
+              "need": "fear",
+              "lt": 0.2
+            }
+          },
+          {
+            "act": {
+              "do": "land"
+            }
+          },
+          {
+            "act": {
+              "do": "accept_offer"
+            }
+          }
+        ]
+      },
+      {
+        "sequence": [
+          {
+            "cond": {
+              "is_day": false
+            }
+          },
+          {
+            "act": {
+              "do": "perch_nearest",
+              "tag": "shelter"
+            }
+          },
+          {
+            "act": {
+              "do": "rest"
+            }
+          }
+        ]
+      },
+      {
+        "sequence": [
+          {
+            "cond": {
+              "sun_elevation_between_deg": [
+                -6,
+                12
+              ]
+            }
+          },
+          {
+            "cond": {
+              "perch_within_m": 30
+            }
+          },
+          {
+            "act": {
+              "do": "perch_nearest"
+            }
+          },
+          {
+            "cooldown_s": "${song_cooldown_s}",
+            "child": {
+              "act": {
+                "do": "sing",
+                "call": "${song}"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "sequence": [
+          {
+            "cond": {
+              "need": "nest",
+              "gt": 0.5
+            }
+          },
+          {
+            "cond": {
+              "month_in": [
+                "${nest_m1}",
+                4,
+                5,
+                "${nest_m2}"
+              ]
+            }
+          },
+          {
+            "cond": {
+              "nest_site_within_m": 40
+            }
+          },
+          {
+            "act": {
+              "do": "build_nest"
+            }
+          }
+        ]
+      },
+      {
+        "sequence": [
+          {
+            "cond": {
+              "need": "hunger",
+              "gt": 0.4
+            }
+          },
+          {
+            "act": {
+              "do": "land"
+            }
+          },
+          {
+            "act": {
+              "do": "eat_nearest",
+              "tag": "${food_tag}",
+              "gait": "climb"
+            }
+          }
+        ]
+      },
+      {
+        "cooldown_s": 6,
+        "child": {
+          "sequence": [
+            {
+              "act": {
+                "do": "take_off"
+              }
+            },
+            {
+              "act": {
+                "do": "fly_to_nearest",
+                "tag": "perch"
+              }
+            },
+            {
+              "act": {
+                "do": "perch_nearest"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "act": {
+          "do": "idle"
+        }
+      }
+    ]
+  }
+}
