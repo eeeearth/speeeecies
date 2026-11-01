@@ -1,0 +1,574 @@
+{
+  "$schema": "https://eeeearth.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Pecari tajacu",
+  "slug": "pecari-tajacu",
+  "common_names": {
+    "en": "collared peccary",
+    "es": "pecarí de collar"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Mammalia",
+    "order": "Artiodactyla",
+    "family": "Tayassuidae",
+    "genus": "Pecari",
+    "authority": "(Linnaeus, 1758)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2440995,
+    "inat_taxon_id": 42113
+  },
+  "range": {
+    "native": [
+      "US",
+      "MX",
+      "BZ",
+      "GT",
+      "HN",
+      "SV",
+      "NI",
+      "CR",
+      "PA",
+      "CO",
+      "VE",
+      "GY",
+      "SR",
+      "GF",
+      "BR",
+      "EC",
+      "PE",
+      "BO",
+      "PY",
+      "AR",
+      "TT"
+    ],
+    "introduced": [
+      "UY"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk",
+      "Trot"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Fur",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "None",
+    "perching": false,
+    "size_class": "Medium",
+    "mass_kg": 21.13,
+    "mass_range_kg": [
+      16.0,
+      27.0
+    ],
+    "length_m": 1.25,
+    "lifespan_y": 7,
+    "diet": {
+      "browse": 0.65,
+      "fruit": 0.25,
+      "invertebrate": 0.1
+    },
+    "social": {
+      "structure": "Group",
+      "group_size": [
+        5,
+        20
+      ]
+    },
+    "activity_pattern": "Cathemeral",
+    "defense": "Flee",
+    "wariness": 0.55
+  },
+  "habitat": {
+    "use": {
+      "ground": 1.0
+    },
+    "shelter_tag": "burrow",
+    "resources": [
+      {
+        "tag": "browse",
+        "kind": "Herbivory",
+        "weight": 0.55
+      },
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.3
+      },
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.1
+      },
+      {
+        "tag": "water",
+        "kind": "Water",
+        "weight": 1.0
+      },
+      {
+        "tag": "burrow",
+        "kind": "Shelter",
+        "weight": 1.0
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "notes": "Some range populations use urban areas and consume garden plants; this does not establish use rates for the Brazilian Dry Chaco study site."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "01-01",
+        "end": "12-31",
+        "note": "Breeding occurs year-round, with regional peaks; no seasonal peak is encoded for Brazil."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Juvenile",
+        "duration_days": 270,
+        "scale": 0.65
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "BR",
+        "monthly": [
+          0.39,
+          0.55,
+          0.59,
+          1.0,
+          0.4,
+          0.71,
+          0.3,
+          0.45,
+          0.5,
+          0.55,
+          0.31,
+          0.52
+        ],
+        "method": "gbif_share",
+        "observations": 1552,
+        "sources": [
+          "gbif-activity-br"
+        ],
+        "query": {
+          "min_obs": 500,
+          "inat": {
+            "tier": "C",
+            "place_id": 6878,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=42113&place_id=6878&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=6878&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 439,
+            "usable": false
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "country",
+              "BR"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2440995&country=BR&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&country=BR&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 1552,
+            "usable": true
+          },
+          "used": [
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-pecari-tajacu-forager-v1"
+  },
+  "vocalizations": [
+    {
+      "call_id": "alarm_bark",
+      "context": "Bark",
+      "season_months": [],
+      "time_windows": [],
+      "cooldown_s": 30,
+      "description": "Sharp bark when alarmed."
+    }
+  ],
+  "look": {
+    "body_plan": "quadruped",
+    "proportions": {
+      "torso_aspect": 2.1,
+      "leg_length_ratio": 0.46,
+      "head_scale": 0.8,
+      "neck_angle_deg": 5,
+      "tail_ratio": 0.14,
+      "ear_ratio": 0.42,
+      "girth_ratio": 0.95
+    },
+    "palette": {
+      "body": "#514c45",
+      "belly": "#3d3935",
+      "markings": "#d0c5ac",
+      "accent": "#453f38",
+      "eye": "#241f1b"
+    },
+    "part_colors": {
+      "neck": "markings",
+      "leg_*": "accent",
+      "ear_*": "accent",
+      "tail": "accent"
+    },
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "trot": {}
+    },
+    "extra_parts": [
+      {
+        "name": "shoulder_collar",
+        "parent": "body",
+        "offset": [
+          0.3,
+          0.12,
+          0
+        ],
+        "size": [
+          0.16,
+          0.9,
+          1.05
+        ],
+        "color": "markings"
+      }
+    ]
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2440995",
+      "title": "GBIF Backbone Taxonomy: Pecari tajacu",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-11-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "inat-taxon",
+      "url": "https://api.inaturalist.org/v1/taxa/42113",
+      "title": "iNaturalist taxon: Pecari tajacu",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-11-01",
+      "attribution": "iNaturalist taxon data, accessed via the iNaturalist API",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "adw",
+      "url": "https://animaldiversity.org/accounts/Pecari_tajacu/",
+      "title": "Animal Diversity Web: Pecari tajacu",
+      "license": "CC-BY-NC-SA-3.0",
+      "kind": "webpage",
+      "accessed": "2026-11-01",
+      "attribution": "Ingmarsson, L. Animal Diversity Web, University of Michigan Museum of Zoology, Pecari tajacu, CC BY-NC-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/3.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Collared_peccary",
+      "title": "Wikipedia: Collared peccary",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-11-01",
+      "attribution": "Wikipedia contributors, \"Collared peccary\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "pantheria",
+      "url": "https://esapubs.org/archive/ecol/E090/184/PanTHERIA_1-0_WR05_Aug2008.txt",
+      "title": "PanTHERIA 1.0: species-level life history, ecology and geography of extant mammals",
+      "license": "CC-BY-4.0",
+      "kind": "dataset",
+      "accessed": "2026-11-01",
+      "attribution": "Jones, K. E. et al. (2009). PanTHERIA: a species-level database of life history, ecology, and geography of extant and recently extinct mammals. Ecology 90:2648-2648. https://doi.org/10.1890/08-1494.1",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "dry-chaco-study",
+      "url": "https://doi.org/10.18004/rcfacen.2022.13.1.20",
+      "title": "Zaldivar et al. (2022), Use of habitat and activity patterns of white-lipped and collared peccaries in cattle ranching environments of the Dry Chaco, Paraguay",
+      "license": "CC-BY-4.0",
+      "kind": "literature",
+      "accessed": "2026-11-01",
+      "attribution": "Zaldivar, B. et al. (2022). Reportes Científicos de la FACEN 13(1):20-27. https://doi.org/10.18004/rcfacen.2022.13.1.20",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "gbif-activity-br",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2440995&country=BR&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Pecari tajacu in BR",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-11-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-11-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "inat-taxon"
+      ],
+      "confidence": "High",
+      "note": "GBIF match API returned accepted species Pecari tajacu (usage key 2440995), species rank. iNaturalist returned active species Pecari tajacu (taxon 42113). Checked 2026-11-01. The current GBIF and iNaturalist identifiers resolve Pecari tajacu. The ASM Mammal Diversity Database and Wikipedia follow Dicotyles tajacu after the 2020 nomenclatural work; this record follows the requested and provider-resolved Pecari usage and flags that authority disagreement."
+    },
+    "common_names": {
+      "sources": [
+        "wikipedia",
+        "dry-chaco-study"
+      ],
+      "confidence": "Medium"
+    },
+    "range": {
+      "sources": [
+        "wikipedia",
+        "dry-chaco-study"
+      ],
+      "confidence": "Medium",
+      "note": "Native tropical/subtropical American range from southwestern United States to northern Argentina; the study directly records P. tajacu in Boquerón, Paraguay. Uruguay reintroduced in 2017, so kept separate as introduced."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Simulation gait mapping for the documented terrestrial quadruped: walk while foraging and trot while fleeing."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Judgement: the live-bearing mammal does not use a constructed nest; natural burrows are represented as shelter."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.size_class": {
+      "sources": [
+        "pantheria"
+      ],
+      "confidence": "High"
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "pantheria"
+      ],
+      "confidence": "High",
+      "note": "PanTHERIA AdultBodyMass_g value 21133.69 converted to kilograms (divide by 1000), rounded to 0.01 kg."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Reported adult range 16-27 kg; no NC source is needed for this field."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Midpoint of Wikipedia's reported adult body-length interval 1.0-1.5 m, recorded as an authored typical-length estimate: (1.0+1.5)/2 = 1.25 m."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "adw"
+      ],
+      "confidence": "Medium",
+      "note": "ADW Lifespan/Longevity explicitly reports average lifespan Status: wild = 7 years, citing AnAge. ADW separately lists a 15-year wild high and 31-year captive high; neither maximum is used. The ADW account links CC BY-NC-SA 3.0, retained as last resort because checked alternatives either report maxima/captive longevity or lack a sourced wild-typical statistic."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored simulation allocation for broad plant-dominated omnivory. The source describes cactus/agaves, mesquite, fruits, seeds, roots and occasional invertebrates; percentages are a model judgement, not measured diet proportions."
+    },
+    "traits.social": {
+      "sources": [
+        "dry-chaco-study",
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Study introduction reports groups of 5-20; record uses that reported interval."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "dry-chaco-study"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Cathemeral represents the Dry Chaco camera-trap result: activity starts after sunset, includes morning peaks, and rests through the hottest midday hours. The pattern is local, not asserted for the entire range."
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium"
+    },
+    "traits.wariness": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: 0.55 reflects usually fleeing to cover, while allowing occasional habituation described for some populations."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Ground-only placement is a simulation judgement for a terrestrial ungulate."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Uses burrows for sleeping and refuge."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia",
+        "dry-chaco-study"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Resource weights model reported plant foods and invertebrate consumption; weights are authored. Burrow is the reported refuge and water is a landscape resource."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia",
+        "dry-chaco-study"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Adapter and garden use represent populations documented in urban/agricultural settings in the wider range. They are not estimates for the Brazilian Dry Chaco study site."
+    },
+    "seasonal.strategy": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: the Brazil record does not model dormancy or migration. This simulation default is not evidence that either pattern is absent throughout the range."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "adw"
+      ],
+      "confidence": "Medium",
+      "note": "ADW reports year-round breeding with location-dependent peaks. The full-year phase records only that broad statement; it does not encode the Amazon peak as a Brazil-wide calendar."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Only Adult is represented; juvenile timing is not needed by the simulation model."
+    },
+    "behavior": {
+      "sources": [
+        "dry-chaco-study",
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Species-local FSM makes browse, fruit and invertebrate feeding actions reachable, uses walking for foraging and trotting to flee, and rests during the 55-90 degree sun-elevation interval observed as the hottest part of the Dry Chaco day. The local program does not encode seasonal day/night reversals reported for Arizona populations."
+    },
+    "vocalizations.alarm_bark": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium"
+    },
+    "look": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Block model proportions, palette and poses are authored simulation judgements based on the stocky quadruped form and pale shoulder collar."
+    }
+  }
+}
