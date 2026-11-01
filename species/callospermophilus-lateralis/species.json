@@ -217,16 +217,13 @@
     ]
   },
   "behavior": {
-    "program": "fsm-ground-forager-v1",
+    "program": "fsm-golden-mantled-forager-v1",
     "params": {
       "flee_m": 12,
       "calm_m": 25,
-      "food_tag": "mast",
       "food_m": 40,
       "flee_gait": "gallop",
-      "forage_gait": "walk",
-      "rest_sun_lo_deg": -90,
-      "rest_sun_hi_deg": -6
+      "forage_gait": "walk"
     }
   },
   "vocalizations": [
@@ -270,19 +267,51 @@
     },
     "extra_parts": [
       {
-        "name": "back_stripes",
+        "name": "stripe_upper_dark",
         "parent": "body",
         "offset": [
           -0.05,
-          0.36,
-          0
+          0.28,
+          0.5
         ],
         "size": [
           0.9,
-          0.14,
-          1.03
+          0.06,
+          0.04
+        ],
+        "color": "eye",
+        "mirror": true
+      },
+      {
+        "name": "stripe_white",
+        "parent": "body",
+        "offset": [
+          -0.05,
+          0.21,
+          0.5
+        ],
+        "size": [
+          0.9,
+          0.07,
+          0.04
         ],
         "color": "markings",
+        "mirror": true
+      },
+      {
+        "name": "stripe_lower_dark",
+        "parent": "body",
+        "offset": [
+          -0.05,
+          0.14,
+          0.5
+        ],
+        "size": [
+          0.9,
+          0.06,
+          0.04
+        ],
+        "color": "eye",
         "mirror": true
       }
     ],
@@ -594,10 +623,13 @@
       "note": "Judgement: juveniles are smaller than adults. ADW says juveniles resemble adults by 40 days of age, which is not used here."
     },
     "behavior": {
-      "sources": [],
+      "sources": [
+        "wikipedia",
+        "adw"
+      ],
       "confidence": "Medium",
       "derived": true,
-      "note": "Shared program fsm-ground-forager-v1 fits a diurnal ground forager that rests in its burrow at night. Parameters are judgement. The sun window (-90 to -6 degrees) is the diurnal setting used by the chipmunk record. The program forages on one food tag, so mast is the reachable food; insects are not separately reachable."
+      "note": "Species-local FSM expresses the documented omnivorous food list with distinct mast and invertebrate feeding actions. Invertebrate feeding uses April through July and a 0.35 choice in August and September when insects are near; mast feeding uses August through November, matching the recorded resource calendars and allowing both foods in the overlap. Winter shelter rest uses the existing 10-01 through 04-30 dormancy approximation (October through April); daytime surface actions are gated by is_day and night forces shelter rest. These are broad US-calendar modelling choices because hibernation varies by elevation; the FSM has no regional or temperature-persistence memory."
     },
     "vocalizations.alarm_squeak": {
       "sources": [

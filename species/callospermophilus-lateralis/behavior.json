@@ -1,0 +1,406 @@
+{
+  "schema_version": 1,
+  "format": "speeeecies/behavior",
+  "id": "fsm-golden-mantled-forager-v1",
+  "kind": "fsm",
+  "description": "Diurnal ground squirrel: forages on invertebrates in spring and summer and mast in late summer and fall, rests in its shelter at night, and remains in winter shelter during the broad October through April hibernation window. Threat escape can interrupt either rest state.",
+  "params": {
+    "flee_m": 12,
+    "calm_m": 25,
+    "food_m": 40,
+    "flee_gait": "gallop",
+    "forage_gait": "walk"
+  },
+  "initial": "idle",
+  "states": {
+    "idle": {
+      "action": {
+        "do": "idle"
+      },
+      "min_dwell_s": 2
+    },
+    "wander": {
+      "action": {
+        "do": "wander",
+        "gait": "${forage_gait}"
+      }
+    },
+    "drink": {
+      "action": {
+        "do": "drink_nearest",
+        "gait": "${forage_gait}"
+      }
+    },
+    "flee": {
+      "action": {
+        "do": "flee",
+        "gait": "${flee_gait}"
+      },
+      "min_dwell_s": 3
+    },
+    "rest": {
+      "action": {
+        "do": "rest",
+        "at": "shelter"
+      },
+      "min_dwell_s": 30
+    },
+    "touched": {
+      "action": {
+        "do": "tolerate_touch"
+      }
+    },
+    "accept": {
+      "action": {
+        "do": "accept_offer"
+      }
+    },
+    "forage_mast": {
+      "action": {
+        "do": "eat_nearest",
+        "tag": "mast",
+        "gait": "${forage_gait}"
+      }
+    },
+    "forage_invertebrate": {
+      "action": {
+        "do": "eat_nearest",
+        "tag": "invertebrate",
+        "gait": "${forage_gait}"
+      }
+    },
+    "dormant": {
+      "action": {
+        "do": "rest",
+        "at": "shelter"
+      },
+      "min_dwell_s": 30
+    }
+  },
+  "transitions": [
+    {
+      "from": "*",
+      "to": "flee",
+      "when": {
+        "threat_within_m": "${flee_m}"
+      },
+      "priority": 100
+    },
+    {
+      "from": "*",
+      "to": "flee",
+      "when": {
+        "need": "fear",
+        "gt": 0.2
+      },
+      "priority": 90
+    },
+    {
+      "from": "*",
+      "to": "touched",
+      "when": {
+        "all": [
+          {
+            "player_touch": true
+          },
+          {
+            "need": "fear",
+            "lt": 0.2
+          },
+          {
+            "not": {
+              "threat_within_m": "${flee_m}"
+            }
+          }
+        ]
+      },
+      "priority": 60
+    },
+    {
+      "from": "*",
+      "to": "accept",
+      "when": {
+        "all": [
+          {
+            "player_offer": "food"
+          },
+          {
+            "need": "fear",
+            "lt": 0.2
+          },
+          {
+            "not": {
+              "threat_within_m": "${flee_m}"
+            }
+          }
+        ]
+      },
+      "priority": 40
+    },
+    {
+      "from": "touched",
+      "to": "idle",
+      "when": {
+        "player_touch": false
+      }
+    },
+    {
+      "from": "accept",
+      "to": "idle",
+      "when": {
+        "not": {
+          "player_offer": "food"
+        }
+      }
+    },
+    {
+      "from": "flee",
+      "to": "idle",
+      "when": {
+        "not": {
+          "threat_within_m": "${calm_m}"
+        }
+      }
+    },
+    {
+      "from": "wander",
+      "to": "idle",
+      "when": {
+        "chance": 0.15
+      }
+    },
+    {
+      "from": "drink",
+      "to": "idle",
+      "when": {
+        "need": "thirst",
+        "lt": 0.1
+      }
+    },
+    {
+      "from": "*",
+      "to": "dormant",
+      "when": {
+        "month_in": [
+          10,
+          11,
+          12,
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "priority": 90
+    },
+    {
+      "from": "*",
+      "to": "rest",
+      "when": {
+        "is_day": false
+      },
+      "priority": 80
+    },
+    {
+      "from": "dormant",
+      "to": "idle",
+      "when": {
+        "not": {
+          "month_in": [
+            10,
+            11,
+            12,
+            1,
+            2,
+            3,
+            4
+          ]
+        }
+      },
+      "priority": 70
+    },
+    {
+      "from": "rest",
+      "to": "idle",
+      "when": {
+        "is_day": true
+      },
+      "priority": 70
+    },
+    {
+      "from": "idle",
+      "to": "forage_invertebrate",
+      "when": {
+        "all": [
+          {
+            "is_day": true
+          },
+          {
+            "month_in": [
+              4,
+              5,
+              6,
+              7
+            ]
+          },
+          {
+            "need": "hunger",
+            "gt": 0.5
+          },
+          {
+            "food_within_m": "${food_m}",
+            "tag": "invertebrate"
+          }
+        ]
+      }
+    },
+    {
+      "from": "idle",
+      "to": "forage_invertebrate",
+      "when": {
+        "all": [
+          {
+            "is_day": true
+          },
+          {
+            "month_in": [
+              8,
+              9
+            ]
+          },
+          {
+            "need": "hunger",
+            "gt": 0.5
+          },
+          {
+            "food_within_m": "${food_m}",
+            "tag": "invertebrate"
+          },
+          {
+            "chance": 0.35
+          }
+        ]
+      }
+    },
+    {
+      "from": "idle",
+      "to": "forage_mast",
+      "when": {
+        "all": [
+          {
+            "is_day": true
+          },
+          {
+            "month_in": [
+              8,
+              9,
+              10,
+              11
+            ]
+          },
+          {
+            "need": "hunger",
+            "gt": 0.5
+          },
+          {
+            "food_within_m": "${food_m}",
+            "tag": "mast"
+          }
+        ]
+      }
+    },
+    {
+      "from": "idle",
+      "to": "drink",
+      "when": {
+        "all": [
+          {
+            "is_day": true
+          },
+          {
+            "need": "thirst",
+            "gt": 0.6
+          },
+          {
+            "water_within_m": 60
+          }
+        ]
+      }
+    },
+    {
+      "from": "idle",
+      "to": "wander",
+      "when": {
+        "all": [
+          {
+            "is_day": true
+          },
+          {
+            "chance": 0.25
+          }
+        ]
+      }
+    },
+    {
+      "from": "wander",
+      "to": "idle",
+      "when": {
+        "chance": 0.15
+      }
+    },
+    {
+      "from": "forage_mast",
+      "to": "idle",
+      "when": {
+        "any": [
+          {
+            "need": "hunger",
+            "lt": 0.2
+          },
+          {
+            "not": {
+              "month_in": [
+                8,
+                9,
+                10,
+                11
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "from": "forage_invertebrate",
+      "to": "idle",
+      "when": {
+        "any": [
+          {
+            "need": "hunger",
+            "lt": 0.2
+          },
+          {
+            "not": {
+              "month_in": [
+                4,
+                5,
+                6,
+                7,
+                8,
+                9
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "from": "drink",
+      "to": "idle",
+      "when": {
+        "need": "thirst",
+        "lt": 0.1
+      }
+    }
+  ]
+}
