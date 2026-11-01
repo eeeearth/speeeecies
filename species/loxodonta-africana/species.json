@@ -1,0 +1,587 @@
+{
+  "$schema": "https://eeeearth.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Loxodonta africana",
+  "slug": "loxodonta-africana",
+  "common_names": {
+    "en": "African savanna elephant"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Mammalia",
+    "order": "Proboscidea",
+    "family": "Elephantidae",
+    "genus": "Loxodonta",
+    "authority": "(Blumenbach, 1797)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2435350,
+    "inat_taxon_id": 43694
+  },
+  "range": {
+    "native": [
+      "AO",
+      "BW",
+      "KE",
+      "MW",
+      "ML",
+      "MZ",
+      "NA",
+      "RW",
+      "ZA",
+      "TZ",
+      "UG",
+      "ZM",
+      "ZW"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk",
+      "Swim"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Fur",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "None",
+    "perching": false,
+    "size_class": "Large",
+    "mass_kg": 4500,
+    "mass_range_kg": [
+      2600,
+      6900
+    ],
+    "shoulder_height_m": 2.92,
+    "lifespan_y": 20.33,
+    "diet": {
+      "browse": 0.5,
+      "graze": 0.5
+    },
+    "social": {
+      "structure": "Group",
+      "group_size": [
+        2,
+        20
+      ]
+    },
+    "activity_pattern": "Cathemeral",
+    "defense": "Flee",
+    "wariness": 0.9
+  },
+  "habitat": {
+    "use": {
+      "ground": 1.0
+    },
+    "shelter_tag": "shelter",
+    "resources": [
+      {
+        "tag": "browse",
+        "kind": "Herbivory",
+        "weight": 0.5
+      },
+      {
+        "tag": "graze",
+        "kind": "Herbivory",
+        "weight": 0.5
+      },
+      {
+        "tag": "water",
+        "kind": "Water",
+        "weight": 0.8
+      },
+      {
+        "tag": "shelter",
+        "kind": "Shelter",
+        "weight": 0.3
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Avoider",
+      "uses_gardens": false,
+      "notes": "Avoids settled areas and people where possible; crop-raiding and human-elephant conflict occur at range edges."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "01-01",
+        "end": "12-31",
+        "note": "Breeding can occur year-round; the phase does not encode regional wet/dry shifts in forage preference."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "UG",
+        "monthly": [
+          0.03,
+          0.22,
+          0.08,
+          0.01,
+          0.01,
+          0.03,
+          0.06,
+          0.12,
+          1.0,
+          0.1,
+          0.06,
+          0.17
+        ],
+        "method": "gbif_share",
+        "observations": 606,
+        "sources": [
+          "gbif-activity-ug"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 6968,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=43694&place_id=6968&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=6968&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 749,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "country",
+              "UG"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2435350&country=UG&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&country=UG&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 606,
+            "usable": true
+          },
+          "used": [
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-loxodonta-forager-v1",
+    "params": {}
+  },
+  "vocalizations": [],
+  "look": {
+    "body_plan": "quadruped",
+    "proportions": {
+      "torso_aspect": 1.5,
+      "leg_length_ratio": 0.3,
+      "head_scale": 1.05,
+      "neck_angle_deg": 0,
+      "tail_ratio": 0.3,
+      "ear_ratio": 0.12,
+      "girth_ratio": 1.15
+    },
+    "palette": {
+      "body": "#77766d",
+      "belly": "#77766d",
+      "markings": "#5c5a52",
+      "accent": "#d8cbb5",
+      "eye": "#332a20"
+    },
+    "part_colors": {
+      "ear_*": "markings",
+      "snout": "body"
+    },
+    "extra_parts": [
+      {
+        "name": "ear_paddle",
+        "parent": "head",
+        "offset": [
+          -0.12,
+          0.7,
+          0.75
+        ],
+        "size": [
+          0.28,
+          1.35,
+          1.15
+        ],
+        "color": "markings",
+        "mirror": true
+      },
+      {
+        "name": "trunk",
+        "parent": "snout",
+        "offset": [
+          1.0,
+          -0.4,
+          0
+        ],
+        "size": [
+          1.8,
+          0.35,
+          0.4
+        ],
+        "color": "body"
+      },
+      {
+        "name": "trunk_tip",
+        "parent": "trunk",
+        "offset": [
+          0.45,
+          -1.0,
+          0
+        ],
+        "size": [
+          0.5,
+          2.0,
+          0.7
+        ],
+        "color": "body"
+      },
+      {
+        "name": "tusk",
+        "parent": "head",
+        "offset": [
+          0.65,
+          -0.2,
+          0.48
+        ],
+        "size": [
+          0.65,
+          0.12,
+          0.12
+        ],
+        "color": "accent",
+        "mirror": true
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "swim": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "wittemyer-demography",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3547063/",
+      "title": "Comparative Demography of an At-Risk African Elephant Population",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "kind": "literature",
+      "accessed": "2026-11-01",
+      "attribution": "Wittemyer, G., Daballen, D. & Douglas-Hamilton, I. (2013), PLOS ONE 8(1): e53726."
+    },
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2435350",
+      "title": "GBIF Backbone Taxonomy: Loxodonta africana",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "kind": "database",
+      "accessed": "2026-11-01",
+      "attribution": "GBIF Secretariat (2026), GBIF Backbone Taxonomy."
+    },
+    {
+      "id": "inat-taxon",
+      "url": "https://www.inaturalist.org/taxa/43694-Loxodonta-africana",
+      "title": "iNaturalist taxon: Loxodonta africana",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "kind": "database",
+      "accessed": "2026-11-01",
+      "attribution": "iNaturalist contributors, Loxodonta africana taxon record."
+    },
+    {
+      "id": "african-bush-elephant",
+      "url": "https://en.wikipedia.org/wiki/African_bush_elephant",
+      "title": "African bush elephant",
+      "license": "CC-BY-SA-4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "kind": "webpage",
+      "accessed": "2026-11-01",
+      "attribution": "Wikipedia contributors, ‘African bush elephant’, CC BY-SA 4.0."
+    },
+    {
+      "id": "peerj-feeding",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6361008/",
+      "title": "African savanna elephants as an example of a herbivore making movement choices based on nutritional needs",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "kind": "literature",
+      "accessed": "2026-11-01",
+      "attribution": "Shannon et al. (2019), PeerJ 7:e6260."
+    },
+    {
+      "id": "gbif-activity-ug",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2435350&country=UG&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Loxodonta africana in UG",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-11-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-11-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High",
+      "note": "GBIF exact accepted species match, usage key 2435350; queried 2026-11-01."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "inat-taxon"
+      ],
+      "confidence": "High",
+      "note": "GBIF species rank and accepted status verified independently; iNaturalist taxon 43694 is active and rank species."
+    },
+    "common_names": {
+      "sources": [
+        "african-bush-elephant"
+      ],
+      "confidence": "High"
+    },
+    "range": {
+      "sources": [
+        "african-bush-elephant"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Country-level subset of the species distribution explicitly named in the cited article (13 listed countries); not a complete sub-Saharan range inventory."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "african-bush-elephant"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "african-bush-elephant"
+      ],
+      "confidence": "Medium",
+      "note": "Walking and swimming are documented. The species record represents the documented ordinary gait as Walk; unsupported faster gait labels are omitted."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "african-bush-elephant"
+      ],
+      "confidence": "High"
+    },
+    "traits.skin": {
+      "sources": [
+        "african-bush-elephant"
+      ],
+      "confidence": "High",
+      "note": "Sparse hair-bearing skin is represented with the schema's Fur category."
+    },
+    "traits.flight": {
+      "sources": [
+        "african-bush-elephant"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "african-bush-elephant"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "african-bush-elephant"
+      ],
+      "confidence": "High"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "african-bush-elephant"
+      ],
+      "confidence": "High",
+      "note": "No nest; schema requires a categorical value."
+    },
+    "traits.perching": {
+      "sources": [
+        "african-bush-elephant"
+      ],
+      "confidence": "High"
+    },
+    "traits.size_class": {
+      "sources": [
+        "african-bush-elephant"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Large follows the adult mass estimate."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "african-bush-elephant"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Authored representative adult mass, arithmetic mean of the cited average adult female 3.0 t and male 6.0 t values; the species is strongly sexually dimorphic."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "african-bush-elephant"
+      ],
+      "confidence": "Medium"
+    },
+    "traits.shoulder_height_m": {
+      "sources": [
+        "african-bush-elephant"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Midpoint of the cited average adult female 2.60 m and male 3.20 m shoulder heights."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "wittemyer-demography"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Arithmetic mean of Samburu wild life expectancy at birth: female 21.81 y and male 18.85 y (Results, paragraph beginning ‘As calculated by standard life table approaches’), (21.81 + 18.85)/2 = 20.33 y. Sexes weighted equally because the schema has one species-level value; this is a population-specific, human-impacted estimate including exceptional drought mortality in 2009–2011, used as a low-confidence proxy rather than a species-wide constant."
+    },
+    "traits.diet": {
+      "sources": [
+        "peerj-feeding",
+        "african-bush-elephant"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Authored equal browse/graze allocation as a coarse species-level midpoint; published diets vary markedly by habitat and season. PeerJ reports Uganda wet-season 67% grazing/8% browsing and dry-season 23%/60%; the two schema categories are normalized and omit other foods."
+    },
+    "traits.social": {
+      "sources": [
+        "african-bush-elephant"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Female-led family groups; broad illustrative group-size range, not a population census estimate."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "peerj-feeding"
+      ],
+      "confidence": "Medium",
+      "note": "Forages across day and night with feeding reduced and resting increased around midday; represented as cathemeral."
+    },
+    "traits.defense": {
+      "sources": [
+        "african-bush-elephant"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Flee is a coarse simulation response; elephants can also charge when threatened."
+    },
+    "traits.wariness": {
+      "sources": [
+        "african-bush-elephant"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Authored high wariness for a large wild animal with documented human conflict."
+    },
+    "habitat.use": {
+      "sources": [
+        "african-bush-elephant"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Ground-only placement; arboreal use is negligible."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "peerj-feeding"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Generic shade resource for midday rest; elephants do not use a fixed den."
+    },
+    "habitat.resources": {
+      "sources": [
+        "peerj-feeding",
+        "african-bush-elephant"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Food resources reflect seasonal grass and woody browse; water and shade are authored habitat links."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "african-bush-elephant"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Avoider is a placement judgement reflecting large home ranges and human-elephant conflict at range edges."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "peerj-feeding"
+      ],
+      "confidence": "Medium",
+      "note": "Active year-round; diet changes seasonally but no single continental breeding calendar is encoded."
+    },
+    "behavior": {
+      "sources": [
+        "peerj-feeding",
+        "african-bush-elephant"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Species-local FSM represents both browse and graze as reachable foods. It retains flee, drink, wander, and rest actions from the shared ground-forager model. Resource choice is simplified and does not model regional seasonal preference. Daytime rest is sun-triggered; nighttime rest can arise from the energy need."
+    },
+    "look": {
+      "sources": [
+        "african-bush-elephant"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Rendering colors and proportions are authored; the mesh is a stylized elephant."
+    },
+    "activity.UG": {
+      "sources": [
+        "gbif-activity-ug"
+      ],
+      "confidence": "Medium",
+      "note": "Effort-corrected GBIF Tier A (CC0/CC BY) Uganda curve, 606 records total with 551 month-bearing; iNaturalist had 749 Tier C observations but was excluded because its selected mixed-licence tier includes NC despite usable GBIF data."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "african-bush-elephant"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Year-round breeding is stated in the African bush elephant species summary; the phase does not encode regional wet/dry shifts in forage preference."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "african-bush-elephant"
+      ],
+      "confidence": "Low",
+      "note": "Only the Adult stage is represented; juvenile scale progression is omitted."
+    }
+  }
+}
