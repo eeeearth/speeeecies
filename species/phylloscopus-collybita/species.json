@@ -1,0 +1,627 @@
+{
+  "$schema": "https://eeeearth.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Phylloscopus collybita",
+  "slug": "phylloscopus-collybita",
+  "common_names": {
+    "en": "Common chiffchaff",
+    "fr": "pouillot véloce"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Passeriformes",
+    "family": "Phylloscopidae",
+    "genus": "Phylloscopus",
+    "authority": "(Vieillot, 1817)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2493091,
+    "inat_taxon_id": 117016
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "FR",
+      "GB",
+      "IE",
+      "BE",
+      "NL",
+      "DE",
+      "DK",
+      "NO",
+      "SE",
+      "FI",
+      "ES",
+      "PT",
+      "IT",
+      "CH",
+      "AT",
+      "CZ",
+      "PL",
+      "GR",
+      "TR",
+      "UA",
+      "RU",
+      "MA",
+      "DZ"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Hop",
+      "Fly"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Ground",
+    "perching": true,
+    "size_class": "Tiny",
+    "mass_kg": 0.007,
+    "mass_range_kg": [
+      0.006,
+      0.008
+    ],
+    "length_m": 0.11,
+    "lifespan_y": 1.45,
+    "diet": {
+      "invertebrate": 1.0
+    },
+    "social": {
+      "structure": "Pair",
+      "group_size": [
+        1,
+        2
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.3
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.2,
+      "arboreal": 0.8
+    },
+    "shelter_tag": "shrub_thicket",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 1.0
+      },
+      {
+        "tag": "nest_ground",
+        "kind": "Nesting",
+        "weight": 1.0
+      },
+      {
+        "tag": "shrub_thicket",
+        "kind": "Shelter",
+        "weight": 0.8
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.6
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Avoider",
+      "notes": "Breeds in open woodland with taller trees and low cover (English Wikipedia, Distribution and habitat); overwinters in mild urban microclimates such as London, so winter urban use is possible. Classification is a judgement drawn from these sentences."
+    }
+  },
+  "seasonal": {
+    "strategy": "Migration",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "04-25",
+        "end": "07-31",
+        "region": "FR",
+        "note": "French Wikipedia (Reproduction): nesting starts from late April in the southern range and one to one and a half months later further north; a second brood is common in June-July in central and southern areas (English Wikipedia, Breeding). A single start date cannot represent the north-south lag across France."
+      },
+      {
+        "name": "absent",
+        "start": "11-01",
+        "end": "02-28",
+        "region": "FR",
+        "note": "DERIVED, LOW CONFIDENCE, NOT A MEASURED WINDOW. English Wikipedia says the species is among the last to leave in late autumn and one of the first to return in spring; French Wikipedia says the same. No licensed French migration-date source was found, and the French wintering minority that the range map shows is not modelled (no winter fraction is sourced)."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg"
+      },
+      {
+        "stage": "Juvenile"
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "FR",
+        "monthly": [
+          0.39,
+          0.41,
+          1.0,
+          0.92,
+          0.63,
+          0.61,
+          0.42,
+          0.46,
+          0.62,
+          0.9,
+          0.49,
+          0.49
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 857607,
+        "sources": [
+          "inat-activity-fr",
+          "gbif-activity-fr"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 6753,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=117016&place_id=6753&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=6753&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "total": 603,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "country",
+              "FR"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2493091&country=FR&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&country=FR&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 857004,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "bt-chiffchaff-v1",
+    "params": {
+      "flee_m": 6,
+      "food_tag": "invertebrate",
+      "song": "song",
+      "alarm": "call",
+      "song_cooldown_s": 8
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "song",
+      "context": "Song",
+      "season_months": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "time_windows": [
+        "DawnChorus",
+        "Day",
+        "Dusk"
+      ],
+      "cooldown_s": 30,
+      "loudness": "Moderate",
+      "description": "Repetitive 'chiff-chaff' song from a prominent perch, one of the first signs of spring (English and French Wikipedia). Months are a judgement: spring and breeding-season singing, with territorial singing ending after breeding."
+    },
+    {
+      "call_id": "call",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day",
+        "Dusk"
+      ],
+      "cooldown_s": 5,
+      "loudness": "Moderate",
+      "description": "Call described as a 'hweet' in English Wikipedia (Description). Used as the alarm-call id by the local behaviour program; no recording is attached."
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.6,
+      "leg_length_ratio": 0.35,
+      "head_scale": 0.8,
+      "neck_angle_deg": 15,
+      "tail_ratio": 0.5,
+      "wing_aspect": 2.6,
+      "beak_ratio": 0.35,
+      "girth_ratio": 1.0
+    },
+    "palette": {
+      "body": "#7d7f4e",
+      "belly": "#ece8c6",
+      "markings": "#d6c35e",
+      "accent": "#5e5a3f",
+      "eye": "#111111"
+    },
+    "part_colors": {
+      "breast": "markings",
+      "beak": "eye"
+    },
+    "poses": {
+      "idle": {},
+      "hop": {},
+      "fly": {},
+      "perched": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2493091",
+      "title": "GBIF Backbone Taxonomy: Phylloscopus collybita",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "kind": "database",
+      "accessed": "2026-11-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Common_chiffchaff",
+      "title": "Wikipedia: Common chiffchaff",
+      "license": "CC-BY-SA-4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "kind": "webpage",
+      "accessed": "2026-11-01",
+      "attribution": "Wikipedia contributors, \"Common chiffchaff\", English Wikipedia, CC BY-SA 4.0",
+      "note": "Reached via the redirect from https://en.wikipedia.org/wiki/Phylloscopus_collybita. Source of the body length, male and female mass, the IUCN LC status in the infobox, the ground nest, the feeding and breeding statements, and the song description."
+    },
+    {
+      "id": "wikipedia-fr",
+      "url": "https://fr.wikipedia.org/wiki/Pouillot_v%C3%A9loce",
+      "title": "Wikipédia: Pouillot véloce",
+      "license": "CC-BY-SA-4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "kind": "webpage",
+      "accessed": "2026-11-01",
+      "attribution": "Contributeurs de Wikipédia, « Pouillot véloce », Wikipédia en français, CC BY-SA 4.0",
+      "note": "Source of the French common name and the late-April nesting-start statement in the Reproduction section. The page's lifespan statement cites a gardening website and is not used."
+    },
+    {
+      "id": "scholer-2020-dryad",
+      "url": "https://zenodo.org/records/3986104",
+      "title": "Data from: A meta-analysis of global avian survival across species and latitude (Scholer et al. 2020; Dryad doi:10.5061/dryad.qv9s4mwbs), file ELEscholer2020_data.csv",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "kind": "dataset",
+      "accessed": "2026-11-01",
+      "note": "Row X=112: species Phylloscopus collybita, ref Clark et al. (2011), survival 0.31, se 0.02, study_type mark-recapture, country United Kingdom, duration 26, migration migrant. The survival column is the value used for the lifespan proxy; the row is an apparent annual adult survival estimate that may be biased low where emigration occurs."
+    },
+    {
+      "id": "inat-activity-fr",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=117016&place_id=6753&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Phylloscopus collybita in FR",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-11-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-fr",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2493091&country=FR&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Phylloscopus collybita in FR",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-11-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-11-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High",
+      "note": "GBIF match for 'Phylloscopus collybita' returned usageKey 2493091, rank SPECIES, status ACCEPTED, family Phylloscopidae, checked 2026-11-01. Wikipedia gives the authority (Vieillot, 1817)."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High",
+      "note": "iNaturalist taxon 117016 (Phylloscopus collybita, species rank, active) confirmed against the iNaturalist taxa API on 2026-11-01. The iNaturalist identifier is a factual key only."
+    },
+    "common_names": {
+      "sources": [
+        "wikipedia",
+        "wikipedia-fr"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Speciesbox status LC, IUCN 3.1 (BirdLife International 2024), as quoted by Wikipedia."
+    },
+    "range": {
+      "sources": [
+        "wikipedia",
+        "wikipedia-fr"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Country list derived from English Wikipedia 'Distribution and habitat' (breeds across Europe and Asia; isolated populations in north-west Africa) and the French Wikipedia range map. Not a gazetteer check; native status for these countries is judged from the breeding-range text."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Bird: feathers, endotherm and powered flight from the Description and Behaviour sections."
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Two legs; wings are not counted as limbs by the schema convention."
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Fly from migration and territory sentences; hop from the Feeding section ('moving restlessly through foliage or briefly hovering'). Hover is not reachable from the local program, so it is not declared."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Endotherm: a bird. The article describes its daily feeding requirement (about a third of body weight in insects per day); the endotherm class itself is standard for birds and not stated in the article."
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Feathers: plumage, moult and feather description in the Description section."
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Powered flight: migration and courtship flights described in the English Wikipedia article."
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Lungs: standard for birds; not stated in the article."
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "None: direct development from egg to young bird; standard for birds, not stated in the article."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia",
+        "wikipedia-fr"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Invertebrate food from the Feeding section; nest on or near the ground from Breeding; shrub and perch shelter from the breeding-habitat description and the foliage-foraging description. Resource weights are judgement."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: breeds in brambles, nettles and dense low vegetation (Breeding), so shrub cover is the modelled roost."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Egg, juvenile and adult stages from the Breeding and Predators sections; no stage durations or scales are sourced, so they are omitted."
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "'The female's nest is built on or near the ground in a concealed site'; domed nest (English Wikipedia, Breeding)."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Perches in foliage and sings from a prominent vantage point (English Wikipedia, Territory and Feeding)."
+    },
+    "traits.size_class": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Derived from mass_kg with the Tiny threshold (< 0.05 kg)."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Midpoint of the combined sexual range: male 7-8 g and female 6-7 g (English Wikipedia, Description; citing Clement 1995 p.59). Value 7.0 g from the 6-8 g span; not a sex-weighted mean."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "6-8 g from the male 7-8 g and female 6-7 g ranges."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of 'long 10-12 cm' (English Wikipedia, Description)."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "scholer-2020-dryad"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Proxy from row X=112 of ELEscholer2020_data.csv: S = 0.31 apparent annual adult survival (Clark et al. 2011, mark-recapture, UK, 26 years). Under constant annual survival S, expected age at death counted from hatching is 1/(1-S) = 1/0.69 = 1.45 years. Assumptions: constant survival at every age, which overstates life expectancy where juveniles survive less well than adults; apparent survival, which understates true survival where emigration occurs. The two biases run in opposite directions, so the value is a low-confidence typical-lifespan proxy. Maxima quoted in sources (adults of 3-4 years, a record of seven years) are not used."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Authored allocation: the Feeding section states the species is insectivorous, taking insects and other invertebrates. Modelled as 100% invertebrate; no fruit or seed share is sourced."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Males defend a territory and pairs stay together during the breeding season; birds may join small mixed flocks before migration. Structure Pair with 1-2 birds is a judgement from these statements."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: singing, foraging and territory activity are described as daytime behaviour; no explicit activity sentence in the source."
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement. Wikipedia describes males attacking predators near the nest, but the local program models flight to a perch on alarm, so 'Flee' is the main response the program simulates."
+    },
+    "traits.wariness": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored judgement, not sourced."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement from 'moving restlessly through foliage' (Feeding) and 'built on or near the ground' (Breeding)."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement from the breeding habitat description and the note on winter use of urban microclimates."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia",
+        "wikipedia-fr"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Migration: 'It is a migratory passerine which winters in southern and western Europe' (English Wikipedia lead); French Wikipedia says the species winters in the south and west of Europe. A small fraction overwinters in France (French range map), which the migration strategy does not express; no winter fraction is sourced."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia",
+        "wikipedia-fr"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Breeding window in France from the French Wikipedia nesting-start and English Wikipedia second-brood statements. The end of July is a judgement that covers the second brood."
+    },
+    "vocalizations.song": {
+      "sources": [
+        "wikipedia",
+        "wikipedia-fr"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Song described in both articles. Month set March to August is a judgement from the spring-return statement and territorial singing that ends after breeding."
+    },
+    "vocalizations.call": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "note": "Call 'hweet' described in English Wikipedia; no recording attached."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored parameters for the species-local program bt-chiffchaff-v1 (see species/phylloscopus-collybita/behavior.json)."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored from 'greenish-brown above and off-white below' (English Wikipedia lead) and 'yellowish on the flanks' (Description). Colours and proportions are judgement."
+    }
+  }
+}

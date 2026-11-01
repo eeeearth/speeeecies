@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "format": "speeeecies/behavior",
+  "id": "bt-chiffchaff-v1",
+  "kind": "bt",
+  "description": "Common chiffchaff (small migratory leaf warbler): alarm and flee to a perch, roost in shrub cover at night, sing from a song perch at dawn and dusk only in March to August, build a ground nest in April to July, forage by hops and short hovers through foliage (modelled as hops), re-perch after threat. Derived from the shared perching-songbird program, with the song and nest months made explicit because that program has no month limit on singing and its nest months are fixed in the program body.",
+  "params": {
+    "flee_m": 6,
+    "food_tag": "invertebrate",
+    "song": "song",
+    "alarm": "call",
+    "song_cooldown_s": 8
+  },
+  "root": {
+    "selector": [
+      {
+        "sequence": [
+          {
+            "cond": {
+              "threat_within_m": "${flee_m}"
+            }
+          },
+          {
+            "act": {
+              "do": "alarm",
+              "call": "${alarm}"
+            }
+          },
+          {
+            "act": {
+              "do": "take_off"
+            }
+          },
+          {
+            "act": {
+              "do": "fly_to_nearest",
+              "tag": "perch"
+            }
+          },
+          {
+            "act": {
+              "do": "perch_nearest"
+            }
+          }
+        ]
+      },
+      {
+        "sequence": [
+          {
+            "cond": {
+              "player_touch": true
+            }
+          },
+          {
+            "act": {
+              "do": "tolerate_touch"
+            }
+          }
+        ]
+      },
+      {
+        "sequence": [
+          {
+            "cond": {
+              "need": "fear",
+              "gt": 0.2
+            }
+          },
+          {
+            "act": {
+              "do": "take_off"
+            }
+          },
+          {
+            "act": {
+              "do": "flee",
+              "gait": "fly"
+            }
+          }
+        ]
+      },
+      {
+        "sequence": [
+          {
+            "cond": {
+              "player_offer": "food"
+            }
+          },
+          {
+            "cond": {
+              "need": "fear",
+              "lt": 0.2
+            }
+          },
+          {
+            "act": {
+              "do": "land"
+            }
+          },
+          {
+            "act": {
+              "do": "accept_offer"
+            }
+          }
+        ]
+      },
+      {
+        "sequence": [
+          {
+            "cond": {
+              "is_day": false
+            }
+          },
+          {
+            "act": {
+              "do": "perch_nearest",
+              "tag": "shelter"
+            }
+          },
+          {
+            "act": {
+              "do": "rest"
+            }
+          }
+        ]
+      },
+      {
+        "sequence": [
+          {
+            "cond": {
+              "month_in": [3, 4, 5, 6, 7, 8]
+            }
+          },
+          {
+            "cond": {
+              "sun_elevation_between_deg": [-6, 12]
+            }
+          },
+          {
+            "cond": {
+              "perch_within_m": 30
+            }
+          },
+          {
+            "act": {
+              "do": "perch_nearest"
+            }
+          },
+          {
+            "cooldown_s": "${song_cooldown_s}",
+            "child": {
+              "act": {
+                "do": "sing",
+                "call": "${song}"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "sequence": [
+          {
+            "cond": {
+              "need": "nest",
+              "gt": 0.5
+            }
+          },
+          {
+            "cond": {
+              "month_in": [4, 5, 6, 7]
+            }
+          },
+          {
+            "cond": {
+              "nest_site_within_m": 40
+            }
+          },
+          {
+            "act": {
+              "do": "build_nest"
+            }
+          }
+        ]
+      },
+      {
+        "sequence": [
+          {
+            "cond": {
+              "need": "hunger",
+              "gt": 0.4
+            }
+          },
+          {
+            "act": {
+              "do": "land"
+            }
+          },
+          {
+            "act": {
+              "do": "eat_nearest",
+              "tag": "${food_tag}",
+              "gait": "hop"
+            }
+          }
+        ]
+      },
+      {
+        "cooldown_s": 6,
+        "child": {
+          "sequence": [
+            {
+              "act": {
+                "do": "take_off"
+              }
+            },
+            {
+              "act": {
+                "do": "fly_to_nearest",
+                "tag": "perch"
+              }
+            },
+            {
+              "act": {
+                "do": "perch_nearest"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "act": {
+          "do": "idle"
+        }
+      }
+    ]
+  }
+}
