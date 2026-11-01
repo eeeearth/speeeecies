@@ -160,20 +160,80 @@
     },
     "extra_parts": [
       {
-        "name": "horn_left",
+        "name": "horn_base",
         "parent": "head",
         "offset": [
-          0.15,
+          0.05,
           0.9,
-          0.35
+          0.38
         ],
         "size": [
-          0.16,
-          1.1,
-          0.16
+          0.28,
+          0.55,
+          0.28
         ],
         "color": "accent",
         "mirror": true
+      },
+      {
+        "name": "horn_mid_right",
+        "parent": "horn_base_right",
+        "offset": [
+          -1.3,
+          0.65,
+          0
+        ],
+        "size": [
+          0.78,
+          0.78,
+          0.78
+        ],
+        "color": "accent"
+      },
+      {
+        "name": "horn_mid_left",
+        "parent": "horn_base_left",
+        "offset": [
+          -1.3,
+          0.65,
+          0
+        ],
+        "size": [
+          0.78,
+          0.78,
+          0.78
+        ],
+        "color": "accent"
+      },
+      {
+        "name": "horn_tip_right",
+        "parent": "horn_mid_right",
+        "offset": [
+          -1.1,
+          0.4,
+          0
+        ],
+        "size": [
+          0.55,
+          0.72,
+          0.55
+        ],
+        "color": "accent"
+      },
+      {
+        "name": "horn_tip_left",
+        "parent": "horn_mid_left",
+        "offset": [
+          -1.1,
+          0.4,
+          0
+        ],
+        "size": [
+          0.55,
+          0.72,
+          0.55
+        ],
+        "color": "accent"
       },
       {
         "name": "beard",
@@ -307,10 +367,12 @@
       "note": "Seasonal record has no population-absence phase. Mating/young timing is broadly interpreted for Northern Hemisphere populations from the linked breeding data."
     },
     "behavior": {
-      "sources": [],
+      "sources": [
+        "adw"
+      ],
       "confidence": "Medium",
       "derived": true,
-      "note": "Species-local program authored from ADW Behavior and Food Habits; climbing gait for travel, walking gait for grazing, daytime rest/night movement transitions."
+      "note": "Species-local program authored from the ADW Habitat, Behavior and Food Habits sections. Walk gaits are used for grazing and browsing; climbing is used for cliff travel and fleeing. The simple FSM approximates daytime rest and night feeding, but does not model the afternoon/evening onset, sex-specific daytime habitat, or seasonal elevation shifts."
     },
     "vocalizations": {
       "sources": [],
