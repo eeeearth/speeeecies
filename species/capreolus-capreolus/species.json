@@ -42,7 +42,8 @@
       "PT",
       "UA",
       "RU",
-      "IR"
+      "IR",
+      "GB"
     ],
     "introduced": [
       "IL"
@@ -180,10 +181,7 @@
     ]
   },
   "behavior": {
-    "program": "fsm-ground-forager-v1",
-    "params": {
-      "food_tag": "graze"
-    }
+    "program": "fsm-capreolus-forager-v1"
   },
   "vocalizations": [
     {
@@ -356,7 +354,7 @@
       ],
       "confidence": "Low",
       "derived": true,
-      "note": "Country list derived from Wikipedia's 'found in most areas of Europe, except northernmost Scandinavia, Iceland, Ireland and the Mediterranean islands' and its named localities (Germany, France, Poland, Italy, Spain, Portugal, Netherlands, Belgium, Czech Republic, Hungary, Ukraine, Russia, Iran, Caucasus). Great Britain omitted: native in Scotland, but Norfolk was an 1884 introduction and England/Wales are mixed. Israel introduced (Carmel, 1991). Incomplete; not a full distribution."
+      "note": "Partial country-level range from Wikipedia's distribution section, which describes mainland Britain, noting the historical 1884 German introduction in Thetford alongside separate British range expansions. GB represents species-level native range, while the country-level schema cannot distinguish native Scottish populations from historical introductions and subsequent spread in parts of England. Israel remains listed as introduced from the documented 1991 introduction. This is not a complete distribution."
     },
     "traits.body_plan": {
       "sources": [
@@ -529,7 +527,7 @@
       "sources": [],
       "confidence": "Low",
       "derived": true,
-      "note": "Shared program fsm-ground-forager-v1, food_tag=graze. Only the graze tag is reachable by the forage action; browse is declared as a resource but not reached by the program. Rest uses the shelter tag shrub_thicket during the default daytime sun window."
+      "note": "Species-local fsm-capreolus-forager-v1 has reachable browse and graze states, each requiring its matching resource tag. Both use walking; threat responses use gallop. Any non-flee state yields to shrub_thicket rest when solar elevation is 10 to 90 degrees; rest exits when energy need is below 0.2 and the sun leaves that window. Wikipedia's Habitat section says roe deer retreat to dense woodland or bramble scrub to rest. Outside the daytime window the program permits activity at any time, consistent with crepuscular rather than strictly nocturnal activity."
     },
     "look": {
       "sources": [
