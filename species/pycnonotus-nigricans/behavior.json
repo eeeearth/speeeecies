@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "format": "speeeecies/behavior",
+  "id": "bt-bulbul-nigricans-v1",
+  "kind": "bt",
+  "description": "Species-local perching bulbul (African red-eyed bulbul, Namibia): alarm and flee to a perch, roost in shrub at night, dawn and dusk song from a song perch, cup nest building only in the southern-summer months, hop-feeding on fruit first and invertebrates as fallback, re-perching. Derived from the shared bt-perching-songbird-v1 structure because that program hard-codes April and May nesting (wrong for a southern-hemisphere breeder) and offers only one food tag.",
+  "params": {
+    "flee_m": 6,
+    "fruit_tag": "fruit",
+    "food_tag": "invertebrate",
+    "song": "song",
+    "alarm": "alarm",
+    "song_cooldown_s": 8,
+    "nest_site_m": 40
+  },
+  "root": {
+    "selector": [
+      {
+        "sequence": [
+          {"cond": {"threat_within_m": "${flee_m}"}},
+          {"act": {"do": "alarm", "call": "${alarm}"}},
+          {"act": {"do": "take_off"}},
+          {"act": {"do": "fly_to_nearest", "tag": "perch"}},
+          {"act": {"do": "perch_nearest"}}
+        ]
+      },
+      {
+        "sequence": [
+          {"cond": {"player_touch": true}},
+          {"act": {"do": "tolerate_touch"}}
+        ]
+      },
+      {
+        "sequence": [
+          {"cond": {"need": "fear", "gt": 0.2}},
+          {"act": {"do": "take_off"}},
+          {"act": {"do": "flee", "gait": "fly"}}
+        ]
+      },
+      {
+        "sequence": [
+          {"cond": {"player_offer": "food"}},
+          {"cond": {"need": "fear", "lt": 0.2}},
+          {"act": {"do": "land"}},
+          {"act": {"do": "accept_offer"}}
+        ]
+      },
+      {
+        "sequence": [
+          {"cond": {"is_day": false}},
+          {"act": {"do": "perch_nearest", "tag": "shelter"}},
+          {"act": {"do": "rest"}}
+        ]
+      },
+      {
+        "sequence": [
+          {"cond": {"sun_elevation_between_deg": [-6, 12]}},
+          {"cond": {"perch_within_m": 30}},
+          {"act": {"do": "perch_nearest"}},
+          {
+            "cooldown_s": "${song_cooldown_s}",
+            "child": {"act": {"do": "sing", "call": "${song}"}}
+          }
+        ]
+      },
+      {
+        "sequence": [
+          {"cond": {"need": "nest", "gt": 0.5}},
+          {"cond": {"month_in": [11, 12, 1, 2]}},
+          {"cond": {"nest_site_within_m": "${nest_site_m}"}},
+          {"act": {"do": "build_nest"}}
+        ]
+      },
+      {
+        "sequence": [
+          {"cond": {"need": "hunger", "gt": 0.4}},
+          {"act": {"do": "land"}},
+          {"act": {"do": "eat_nearest", "tag": "${fruit_tag}", "gait": "hop"}}
+        ]
+      },
+      {
+        "sequence": [
+          {"cond": {"need": "hunger", "gt": 0.4}},
+          {"act": {"do": "land"}},
+          {"act": {"do": "eat_nearest", "tag": "${food_tag}", "gait": "hop"}}
+        ]
+      },
+      {
+        "cooldown_s": 6,
+        "child": {
+          "sequence": [
+            {"act": {"do": "take_off"}},
+            {"act": {"do": "fly_to_nearest", "tag": "perch"}},
+            {"act": {"do": "perch_nearest"}}
+          ]
+        }
+      },
+      {"act": {"do": "idle"}}
+    ]
+  }
+}
