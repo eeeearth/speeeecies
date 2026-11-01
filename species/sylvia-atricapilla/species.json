@@ -74,7 +74,7 @@
       0.025
     ],
     "length_m": 0.13,
-    "lifespan_y": 2.0,
+    "lifespan_y": 2.1,
     "diet": {
       "invertebrate": 0.8,
       "fruit": 0.2
@@ -146,7 +146,6 @@
   },
   "seasonal": {
     "strategy": "PartialMigration",
-    "winter_fraction": 0.2,
     "phases": [
       {
         "name": "breeding",
@@ -312,6 +311,16 @@
   },
   "sources": [
     {
+      "id": "dryad-scholer-2020",
+      "url": "https://doi.org/10.5061/dryad.qv9s4mwbs",
+      "title": "Data from: A meta-analysis of global avian survival across species and latitude (Scholer et al. 2020, Dryad, ELEscholer2020_data.csv)",
+      "license": "CC0-1.0",
+      "license_url": "https://spdx.org/licenses/CC0-1.0.html",
+      "accessed": "2026-10-31",
+      "kind": "dataset",
+      "note": "Row X=845: Siriwardena et al. (1998); Sylvia atricapilla; Blackcap; United Kingdom; survival 0.402 (se 0.038); study_type dead recovery; duration 33. Original study: Siriwardena, Baillie & Wilson (1998), Bird Study 45: 276-292, not checked in full text."
+    },
+    {
       "id": "gbif-backbone",
       "url": "https://api.gbif.org/v1/species/2492956",
       "title": "GBIF Backbone Taxonomy: Sylvia atricapilla",
@@ -414,10 +423,12 @@
     },
     "traits.lifespan_y": {
       "sources": [
+        "dryad-scholer-2020",
         "wikipedia"
       ],
       "confidence": "Low",
-      "note": "Wikipedia: 'The typical life expectancy is two years'. The Wikipedia summary does not say whether the figure counts from hatching or from breeding age, and the underlying ringing study was not checked. The Dryad survival lead (0.402) was not used because its data file could not be read."
+      "derived": true,
+      "note": "ex = Ba + (-1/ln(phi)), the BTO-described formula for expected total age given breeding age. Ba = 1 year from Wikipedia (Behaviour > Breeding): 'Blackcaps first breed when they are one year old'. phi = 0.402 from Dryad ELEscholer2020_data.csv row X=845 (Siriwardena et al. 1998; Sylvia atricapilla; United Kingdom; dead recovery; duration 33 years; adult survival per the dataset's usage notes). Result 1 + 1.098 = 2.10 years. Using Wikipedia's adult annual survival of 43% instead gives 2.18. Wikipedia also says 'The typical life expectancy is two years'. Caveat: the formula is conditional on reaching breeding age, so it is not an average over hatchlings, and phi comes from one study."
     },
     "traits.diet": {
       "sources": [
@@ -454,7 +465,7 @@
       ],
       "confidence": "Low",
       "derived": true,
-      "note": "Strategy PartialMigration from Wikipedia: 'birds from the colder areas of its range winter in scrub or trees in northwestern Europe' while some populations migrate. winter_fraction 0.2 is an AUTHORED estimate, a required-field gap: a bounded search found no France-specific wintering proportion, and Wikipedia gives none. The French breeding window is authored and unsourced."
+      "note": "Strategy PartialMigration from Wikipedia: 'birds from the colder areas of its range winter in scrub or trees in northwestern Europe' while some populations migrate. winter_fraction is NOT set: the validator requires it for PartialMigration and no defensible licensed or France-specific value was found, so the record fails validation (MissingWinterFraction) until a sourced value is supplied. The French breeding window is authored and unsourced."
     },
     "vocalizations": {
       "sources": [
