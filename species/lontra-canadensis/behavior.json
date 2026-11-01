@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "format": "speeeecies/behavior",
+  "id": "fsm-lontra-canadensis-v1",
+  "kind": "fsm",
+  "description": "North American river otter: searches and feeds on aquatic prey while swimming, walks on land, rests when its energy need is high, and escapes threats. The program allows activity by day and night.",
+  "params": {
+    "flee_m": 12,
+    "calm_m": 30,
+    "prey_m": 40,
+    "twilight_min_deg": -6,
+    "twilight_max_deg": 6,
+    "twilight_hunger": 0.4,
+    "anytime_hunger": 0.8,
+    "small_vertebrate_tag": "small_vertebrate",
+    "invertebrate_tag": "invertebrate"
+  },
+  "initial": "idle",
+  "states": {
+    "idle": {
+      "action": {
+        "do": "idle"
+      },
+      "min_dwell_s": 2
+    },
+    "rest": {
+      "action": {
+        "do": "rest",
+        "at": "shelter"
+      },
+      "min_dwell_s": 30
+    },
+    "swim_search": {
+      "action": {
+        "do": "wander",
+        "gait": "swim"
+      }
+    },
+    "walk": {
+      "action": {
+        "do": "wander",
+        "gait": "walk"
+      }
+    },
+    "flee": {
+      "action": {
+        "do": "flee",
+        "gait": "walk"
+      },
+      "min_dwell_s": 3
+    },
+    "small_vertebrate": {
+      "action": {
+        "do": "eat_nearest",
+        "tag": "${small_vertebrate_tag}",
+        "gait": "swim"
+      }
+    },
+    "invertebrate": {
+      "action": {
+        "do": "eat_nearest",
+        "tag": "${invertebrate_tag}",
+        "gait": "swim"
+      }
+    }
+  },
+  "transitions": [
+    {
+      "from": "*",
+      "to": "flee",
+      "when": {
+        "threat_within_m": "${flee_m}"
+      },
+      "priority": 100
+    },
+    {
+      "from": "*",
+      "to": "flee",
+      "when": {
+        "need": "fear",
+        "gt": 0.25
+      },
+      "priority": 90
+    },
+    {
+      "from": "*",
+      "to": "rest",
+      "when": {
+        "need": "energy",
+        "gt": 0.8
+      },
+      "priority": 50
+    },
+    {
+      "from": "flee",
+      "to": "idle",
+      "when": {
+        "not": {
+          "threat_within_m": "${calm_m}"
+        }
+      }
+    },
+    {
+      "from": "idle",
+      "to": "swim_search",
+      "when": {
+        "chance": 0.2
+      }
+    },
+    {
+      "from": "idle",
+      "to": "walk",
+      "when": {
+        "chance": 0.1
+      }
+    },
+    {
+      "from": "swim_search",
+      "to": "idle",
+      "when": {
+        "chance": 0.15
+      }
+    },
+    {
+      "from": "walk",
+      "to": "idle",
+      "when": {
+        "chance": 0.2
+      }
+    },
+    {
+      "from": "rest",
+      "to": "idle",
+      "when": {
+        "need": "energy",
+        "lt": 0.2
+      }
+    },
+    {
+      "from": "idle",
+      "to": "small_vertebrate",
+      "when": {
+        "all": [
+          {
+            "food_within_m": "${prey_m}",
+            "tag": "${small_vertebrate_tag}"
+          },
+          {
+            "any": [
+              {
+                "all": [
+                  {
+                    "need": "hunger",
+                    "gt": "${twilight_hunger}"
+                  },
+                  {
+                    "sun_elevation_between_deg": [
+                      "${twilight_min_deg}",
+                      "${twilight_max_deg}"
+                    ]
+                  }
+                ]
+              },
+              {
+                "need": "hunger",
+                "gt": "${anytime_hunger}"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "from": "small_vertebrate",
+      "to": "idle",
+      "when": {
+        "need": "hunger",
+        "lt": 0.15
+      }
+    },
+    {
+      "from": "idle",
+      "to": "invertebrate",
+      "when": {
+        "all": [
+          {
+            "food_within_m": "${prey_m}",
+            "tag": "${invertebrate_tag}"
+          },
+          {
+            "any": [
+              {
+                "all": [
+                  {
+                    "need": "hunger",
+                    "gt": "${twilight_hunger}"
+                  },
+                  {
+                    "sun_elevation_between_deg": [
+                      "${twilight_min_deg}",
+                      "${twilight_max_deg}"
+                    ]
+                  }
+                ]
+              },
+              {
+                "need": "hunger",
+                "gt": "${anytime_hunger}"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "from": "invertebrate",
+      "to": "idle",
+      "when": {
+        "need": "hunger",
+        "lt": 0.15
+      }
+    }
+  ]
+}
