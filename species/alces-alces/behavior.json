@@ -1,0 +1,182 @@
+{
+  "schema_version": 1,
+  "format": "speeeecies/behavior",
+  "id": "fsm-moose-forager-v1",
+  "kind": "fsm",
+  "description": "Species-local moose behaviour: browse on foot, wade along shallow water margins, swim while feeding on graze-tagged plants near water in northern summer, drink, flee and rest during high-sun daytime. The v0.1 resource vocabulary has no aquatic-plant tag or water-bound food selector, so aquatic feeding uses the generic graze tag while water is nearby; this cannot guarantee the selected graze resource itself is aquatic.",
+  "params": {
+    "flee_m": 40,
+    "calm_m": 60,
+    "browse_m": 80,
+    "graze_m": 10,
+    "water_m": 12,
+    "shore_water_m": 25
+  },
+  "initial": "idle",
+  "states": {
+    "idle": {
+      "action": { "do": "idle" },
+      "min_dwell_s": 2
+    },
+    "wander": {
+      "action": { "do": "wander", "gait": "walk" }
+    },
+    "browse": {
+      "action": { "do": "eat_nearest", "tag": "browse", "gait": "walk" }
+    },
+    "wade_feed": {
+      "action": { "do": "eat_nearest", "tag": "graze", "gait": "walk" }
+    },
+    "swim_feed": {
+      "action": { "do": "eat_nearest", "tag": "graze", "gait": "swim" }
+    },
+    "drink": {
+      "action": { "do": "drink_nearest", "gait": "walk" }
+    },
+    "flee": {
+      "action": { "do": "flee", "gait": "gallop" },
+      "min_dwell_s": 3
+    },
+    "rest": {
+      "action": { "do": "rest", "at": "shelter" },
+      "min_dwell_s": 30
+    }
+  },
+  "transitions": [
+    {
+      "from": "*",
+      "to": "flee",
+      "when": { "threat_within_m": "${flee_m}" },
+      "priority": 100
+    },
+    {
+      "from": "flee",
+      "to": "idle",
+      "when": { "not": { "threat_within_m": "${calm_m}" } }
+    },
+    {
+      "from": "*",
+      "to": "rest",
+      "when": {
+        "all": [
+          { "sun_elevation_between_deg": [10, 90] },
+          { "need": "energy", "gt": 0.7 }
+        ]
+      },
+      "priority": 50
+    },
+    {
+      "from": "rest",
+      "to": "idle",
+      "when": {
+        "any": [
+          { "need": "energy", "lt": 0.2 },
+          { "not": { "sun_elevation_between_deg": [10, 90] } }
+        ]
+      }
+    },
+    {
+      "from": "idle",
+      "to": "drink",
+      "when": {
+        "all": [
+          { "need": "thirst", "gt": 0.6 },
+          { "water_within_m": 60 }
+        ]
+      }
+    },
+    {
+      "from": "idle",
+      "to": "swim_feed",
+      "when": {
+        "all": [
+          { "need": "hunger", "gt": 0.4 },
+          { "month_in": [6, 7, 8] },
+          { "water_within_m": "${water_m}" },
+          { "food_within_m": "${graze_m}", "tag": "graze" }
+        ]
+      },
+      "priority": 35
+    },
+    {
+      "from": "idle",
+      "to": "wade_feed",
+      "when": {
+        "all": [
+          { "need": "hunger", "gt": 0.4 },
+          { "month_in": [6, 7, 8] },
+          { "water_within_m": "${shore_water_m}" },
+          { "food_within_m": "${graze_m}", "tag": "graze" }
+        ]
+      },
+      "priority": 30
+    },
+    {
+      "from": "idle",
+      "to": "browse",
+      "when": {
+        "all": [
+          { "need": "hunger", "gt": 0.4 },
+          { "food_within_m": "${browse_m}", "tag": "browse" }
+        ]
+      },
+      "priority": 20
+    },
+    {
+      "from": "idle",
+      "to": "rest",
+      "when": {
+        "sun_elevation_between_deg": [10, 90]
+      }
+    },
+    {
+      "from": "idle",
+      "to": "wander",
+      "when": { "chance": 0.25 }
+    },
+    {
+      "from": "wander",
+      "to": "idle",
+      "when": { "chance": 0.15 }
+    },
+    {
+      "from": "browse",
+      "to": "idle",
+      "when": {
+        "any": [
+          { "need": "hunger", "lt": 0.2 },
+          { "not": { "food_within_m": "${browse_m}", "tag": "browse" } }
+        ]
+      }
+    },
+    {
+      "from": "wade_feed",
+      "to": "idle",
+      "when": {
+        "any": [
+          { "need": "hunger", "lt": 0.2 },
+          { "not": { "month_in": [6, 7, 8] } },
+          { "not": { "water_within_m": "${shore_water_m}" } },
+          { "not": { "food_within_m": "${graze_m}", "tag": "graze" } }
+        ]
+      }
+    },
+    {
+      "from": "swim_feed",
+      "to": "idle",
+      "when": {
+        "any": [
+          { "need": "hunger", "lt": 0.2 },
+          { "not": { "month_in": [6, 7, 8] } },
+          { "not": { "water_within_m": "${water_m}" } },
+          { "not": { "food_within_m": "${graze_m}", "tag": "graze" } }
+        ]
+      }
+    },
+    {
+      "from": "drink",
+      "to": "idle",
+      "when": { "need": "thirst", "lt": 0.1 }
+    }
+  ]
+}

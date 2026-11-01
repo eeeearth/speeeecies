@@ -55,7 +55,8 @@
     "locomotion_modes": [
       "Walk",
       "Trot",
-      "Gallop"
+      "Gallop",
+      "Swim"
     ],
     "thermoregulation": "Endotherm",
     "skin": "Fur",
@@ -201,15 +202,8 @@
     ]
   },
   "behavior": {
-    "program": "fsm-ground-forager-v1",
-    "params": {
-      "food_tag": "browse",
-      "flee_m": 40,
-      "calm_m": 60,
-      "food_m": 80,
-      "flee_gait": "gallop",
-      "forage_gait": "walk"
-    }
+    "program": "fsm-moose-forager-v1",
+    "params": {}
   },
   "vocalizations": [
     {
@@ -286,6 +280,7 @@
       "walk": {},
       "trot": {},
       "gallop": {},
+      "swim": {},
       "rest": {}
     }
   },
@@ -346,12 +341,12 @@
       "id": "adw",
       "url": "https://animaldiversity.org/accounts/Alces_alces/",
       "title": "Animal Diversity Web: Alces alces",
-      "license": "CC-BY-NC-SA-4.0",
+      "license": "CC-BY-NC-SA-3.0",
       "kind": "webpage",
       "accessed": "2026-11-01",
-      "attribution": "Animal Diversity Web (Dewey, T., ed.), University of Michigan Museum of Zoology, https://animaldiversity.org/accounts/Alces_alces/",
-      "note": "NON-COMMERCIAL last resort for traits.lifespan_y only. Page line 'Typical lifespan Status: wild 8 to 15 years' (Lifespan/Longevity section). Also 'Range lifespan Status: wild 22 (high) years' (maximum, not used). The ADW terms page fetched on 2026-11-01 did not state the licence in text we could read; licence taken from the project's AGENTS.md list of ADW as CC BY-NC-SA. Verify before merge.",
-      "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+      "attribution": "De Bord, D. (author), Tanya Dewey (editor), Animal Diversity Web, University of Michigan Museum of Zoology, Alces alces, https://animaldiversity.org/accounts/Alces_alces/, CC BY-NC-SA 3.0",
+      "note": "NON-COMMERCIAL last resort for traits.lifespan_y only. The Lifespan/Longevity section distinguishes 'Typical lifespan Status: wild 8 to 15 years' from 'Range lifespan Status: wild 22 (high) years'; only the typical wild range is used. Animal Diversity Web Conditions of Use (https://animaldiversity.org/about/use_conditions/) states its text is available under CC BY-NC-SA 3.0; images have separate licences and are not used.",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/3.0/"
     },
     {
       "id": "gbif-activity-us",
@@ -430,7 +425,7 @@
         "wikipedia"
       ],
       "confidence": "Medium",
-      "note": "Walk, trot and gallop declared to match the shared fsm-ground-forager-v1 program. Swimming and wading (Wikipedia: excellent swimmers, wade to feed on aquatic plants) are real behaviour but no swim action exists in the program; see notes."
+      "note": "Walk, trot, gallop and swim follow the Wikipedia description of moose as strong swimmers and their recorded running speed. The species-local program also represents shore wading with a walking gait; the schema has no dedicated wade gait."
     },
     "traits.thermoregulation": {
       "sources": [
@@ -475,7 +470,7 @@
       ],
       "confidence": "Low",
       "derived": true,
-      "note": "Typical wild lifespan 8-15 years per the ADW 'Typical lifespan Status: wild 8 to 15 years' line. Recorded as the midpoint of that stated range, 11.5 years. NON-COMMERCIAL source used as a last resort (see sources). The same ADW text says few moose live past 15 years in the wild, that adult females have an average survival of 95%, and that many calves (as much as 50% or more) die before six weeks. The ADW range is a typical value, not a maximum (22 years) or a captive figure. Wikipedia's 'lifespan of an average moose is about 15-25 years' is uncited and not stated as wild, so it is not used. PanTHERIA MaxLongevity (324 months) is a maximum and not used."
+      "note": "Typical wild lifespan 8-15 years per the ADW Lifespan/Longevity section, 'Typical lifespan Status: wild 8 to 15 years'. Recorded as the midpoint of the stated range, 11.5 years. ADW separately reports that few moose live past 15 years in the wild and gives adult female survival as 95%; those statements describe survival, not typical lifespan. The 22-year range lifespan is a maximum and is not used. ADW text is CC BY-NC-SA 3.0, accepted by project policy as a last resort; attribution is retained."
     },
     "traits.diet": {
       "sources": [
@@ -549,7 +544,7 @@
       "sources": [],
       "confidence": "Low",
       "derived": true,
-      "note": "Authored program choice: shared fsm-ground-forager-v1 with food_tag browse. Walk forage, gallop flight. flee_m 40 and calm_m 60 are judgement. food_m 80 is judgement. Rest uses the program default (daytime rest between 10 and 90 degrees of sun elevation), which suits a crepuscular animal. Actions executed: idle, wander/forage with walk, flee with gallop, drink, rest in shelter."
+      "note": "Authored species-local fsm-moose-forager-v1: walk browse, gallop flee, drink and shelter rest; a walk-gait wade_feed state and a swim-gait swim_feed state are reachable in June-August (months [6, 7, 8]) when graze-tagged food and water are nearby. ADW says aquatic vegetation is consumed during summer; June-August is the authored northern-summer mapping for the US activity region. High sun (10-90 degrees) gates daytime rest, while feeding and movement can continue at dawn, dusk or night. The schema's food tags have generic graze but no aquatic-plant tag or water-bound food selector, so the swim state cannot guarantee the selected graze item is aquatic; see program description. Gait thresholds and distances are judgement."
     },
     "look": {
       "sources": [],
