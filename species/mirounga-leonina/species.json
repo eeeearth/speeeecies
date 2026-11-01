@@ -1,0 +1,500 @@
+{
+  "$schema": "https://eeeearth.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Mirounga leonina",
+  "slug": "mirounga-leonina",
+  "common_names": {
+    "en": "southern elephant seal"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Mammalia",
+    "order": "Carnivora",
+    "family": "Phocidae",
+    "genus": "Mirounga",
+    "authority": "(Linnaeus, 1758)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2434814,
+    "inat_taxon_id": 41729,
+    "wikidata": "Q215343"
+  },
+  "range": {
+    "native": [
+      "NZ"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk",
+      "Swim"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Fur",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "None",
+    "perching": false,
+    "size_class": "Large",
+    "mass_kg": 2250,
+    "mass_range_kg": [
+      900,
+      3600
+    ],
+    "length_m": 3.5,
+    "lifespan_y": 9.5,
+    "diet": {
+      "fish": 0.7,
+      "invertebrate": 0.3
+    },
+    "social": {
+      "structure": "Colony",
+      "group_size": [
+        1,
+        100
+      ]
+    },
+    "activity_pattern": "Cathemeral",
+    "defense": "Flee",
+    "wariness": 0.5
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.2,
+      "aquatic": 0.8
+    },
+    "shelter_tag": "shelter",
+    "resources": [
+      {
+        "tag": "small_vertebrate",
+        "kind": "Predation",
+        "weight": 0.7
+      },
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.3
+      },
+      {
+        "tag": "shelter",
+        "kind": "Shelter",
+        "weight": 1.0
+      },
+      {
+        "tag": "water",
+        "kind": "Water",
+        "weight": 1.0
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Avoider",
+      "uses_gardens": false,
+      "notes": "DOC reports rare mainland visits, while the New Zealand population resides on subantarctic islands; people are instructed to leave hauled-out seals undisturbed."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "09-01",
+        "end": "10-31",
+        "region": "NZ",
+        "note": "DOC gives New Zealand subantarctic breeding as September to October."
+      },
+      {
+        "name": "mating",
+        "start": "10-01",
+        "end": "11-30",
+        "region": "NZ",
+        "note": "DOC says mating follows about three weeks after pups are born; pups are born in September or October. This month window is an inclusive derived bound."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "NZ",
+        "monthly": [
+          0.01,
+          0.0,
+          0.17,
+          0.54,
+          0.69,
+          0.33,
+          0.82,
+          1.0,
+          0.82,
+          0.12,
+          0.07,
+          0.03
+        ],
+        "method": "gbif_share",
+        "observations": 5115,
+        "sources": [
+          "gbif-activity-nz"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 6803,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=41729&place_id=6803&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=6803&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 190,
+            "usable": false
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "country",
+              "NZ"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2434814&country=NZ&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&country=NZ&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 5115,
+            "usable": true
+          },
+          "used": [
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-mirounga-leonina-v1",
+    "params": {}
+  },
+  "vocalizations": [],
+  "look": {
+    "body_plan": "quadruped",
+    "proportions": {
+      "torso_aspect": 2.5,
+      "leg_length_ratio": 0.1,
+      "head_scale": 0.5,
+      "neck_angle_deg": 0,
+      "tail_ratio": 0.05,
+      "ear_ratio": 0,
+      "beak_ratio": 0.18,
+      "girth_ratio": 1.3
+    },
+    "palette": {
+      "body": "#706d68",
+      "belly": "#958a81",
+      "markings": "#504a45",
+      "accent": "#403a35",
+      "eye": "#171513"
+    },
+    "part_colors": {
+      "leg_*": "markings"
+    },
+    "extra_parts": [
+      {
+        "name": "shoulder",
+        "parent": "body",
+        "offset": [
+          0.63,
+          0.0,
+          0.0
+        ],
+        "size": [
+          0.55,
+          1.0,
+          1.02
+        ],
+        "color": "body"
+      },
+      {
+        "name": "proboscis",
+        "parent": "head",
+        "offset": [
+          0.55,
+          -0.05,
+          0
+        ],
+        "size": [
+          0.55,
+          0.2,
+          0.2
+        ],
+        "color": "accent"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "swim": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "doc-nz-elephant-seal",
+      "url": "https://www.doc.govt.nz/nature/native-animals/marine-mammals/seals/elephant-seal/",
+      "title": "Elephant seal: New Zealand marine mammals",
+      "license": "CC-BY-4.0",
+      "license_url": "https://www.doc.govt.nz/footer-links/copyright",
+      "attribution": "Department of Conservation (NZ)",
+      "accessed": "2026-11-01",
+      "kind": "webpage"
+    },
+    {
+      "id": "adw-mirounga-leonina",
+      "url": "https://animaldiversity.org/accounts/Mirounga_leonina/",
+      "title": "Mirounga leonina (southern elephant seal)",
+      "license": "CC-BY-NC-SA-3.0",
+      "license_url": "https://animaldiversity.org/about/use_conditions/",
+      "attribution": "Animal Diversity Web, University of Michigan Museum of Zoology",
+      "accessed": "2026-11-01",
+      "kind": "webpage",
+      "note": "Used only for the required typical wild lifespan field after checking alternative sources; the page's lifespan section separately gives sex-specific ages and an average."
+    },
+    {
+      "id": "frontiers-diving-2020",
+      "url": "https://www.frontiersin.org/journals/marine-science/articles/10.3389/fmars.2020.00595/full",
+      "title": "Diving Behavior of Mirounga leonina: A Functional Data Analysis Approach",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "attribution": "Godard, Manté, Guinet, Picard and Nerini (2020), Frontiers in Marine Science 7:595",
+      "accessed": "2026-11-01",
+      "kind": "literature"
+    },
+    {
+      "id": "gbif-species-2434814",
+      "url": "https://api.gbif.org/v1/species/2434814",
+      "title": "GBIF Backbone Taxonomy record 2434814",
+      "license": "CC-BY-4.0",
+      "license_url": "https://www.gbif.org/terms",
+      "attribution": "GBIF Secretariat",
+      "accessed": "2026-11-01",
+      "kind": "api",
+      "note": "Accepted species-rank record; canonical name Mirounga leonina. The GBIF synonym endpoint includes Macrorhinus leonina and Phoca leonina records linked to accepted key 2434814."
+    },
+    {
+      "id": "gbif-activity-nz",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2434814&country=NZ&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Mirounga leonina in NZ",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-11-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-11-01",
+      "kind": "api"
+    },
+    {
+      "id": "doc-nz-subantarctic-animals",
+      "url": "https://www.doc.govt.nz/nature/habitats/offshore-islands/new-zealands-subantarctic-islands/animals/",
+      "title": "Animals of New Zealand's subantarctic islands",
+      "license": "CC-BY-4.0",
+      "license_url": "https://www.doc.govt.nz/footer-links/copyright",
+      "attribution": "Department of Conservation (NZ)",
+      "accessed": "2026-11-01",
+      "kind": "webpage"
+    },
+    {
+      "id": "wikidata-mirounga-leonina",
+      "url": "https://www.wikidata.org/wiki/Q215343",
+      "title": "Southern elephant seal (Wikidata Q215343)",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "accessed": "2026-11-01",
+      "kind": "database",
+      "note": "Property P3151 records iNaturalist taxon ID 41729; item scientific name is Mirounga leonina."
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-species-2434814",
+        "wikidata-mirounga-leonina"
+      ],
+      "confidence": "High",
+      "note": "GBIF API resolves Mirounga leonina as accepted species rank. iNaturalist API independently returned active species-rank taxon 41729; Wikidata CC0 item Q215343 links the exact scientific name to iNaturalist taxon ID 41729."
+    },
+    "external.gbif_usage_key": {
+      "sources": [
+        "gbif-species-2434814"
+      ],
+      "confidence": "High"
+    },
+    "external.inat_taxon_id": {
+      "sources": [
+        "wikidata-mirounga-leonina"
+      ],
+      "confidence": "High",
+      "note": "Wikidata Q215343 property P3151 identifies iNaturalist taxon 41729; iNaturalist API independently confirms the current taxon is active at species rank."
+    },
+    "range.native": {
+      "sources": [
+        "doc-nz-elephant-seal"
+      ],
+      "confidence": "High",
+      "note": "DOC calls the NZ subantarctic-island population resident; the national NZ code is used for the requested activity geography."
+    },
+    "traits": {
+      "sources": [
+        "doc-nz-elephant-seal"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Anatomical/physiological labels are mapped from the seal description. Adult size, bulk and forelimb features are described by DOC; the four-limb count follows the schema convention for four flippers."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "doc-nz-elephant-seal"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "DOC states adult males 3,600 kg and females 900 kg. 2,250 kg is their midpoint, an authored typical adult proxy, not a reported mean."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "doc-nz-elephant-seal"
+      ],
+      "confidence": "High",
+      "note": "Adult female 900 kg and adult male 3,600 kg, DOC Elephant seal page, Facts."
+    },
+    "traits.length_m": {
+      "sources": [
+        "doc-nz-elephant-seal"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Midpoint of the sex-specific range midpoints: female (2-3 m, midpoint 2.5 m) and male (4-5 m, midpoint 4.5 m), yielding 3.5 m. This is an authored representative adult value, not a reported species mean."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "adw-mirounga-leonina"
+      ],
+      "confidence": "Medium",
+      "note": "ADW Lifespan/Longevity prose states: 'On average, southern elephant seals live about 9.5 years.' This is the wild average, distinct from the prior sentence's male 14-year and female 20-year ages. The page's structured field ambiguously lists 14-20 as typical lifespan; the prose average is the value selected because the schema requires a typical wild lifespan. CC BY-NC-SA 3.0 used as last resort; more permissive sources checked did not support this same statistic."
+    },
+    "traits.diet": {
+      "sources": [
+        "doc-nz-elephant-seal"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "DOC says elephant seals feed on squid, cuttlefish and large fish. Fish/invertebrate shares are authored (0.7/0.3) because the source gives prey categories but not proportions."
+    },
+    "traits.social": {
+      "sources": [
+        "doc-nz-elephant-seal"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Colony reflects the documented breeding colonies on subantarctic islands; group size [1,100] is an authored simulation bracket, not a measured group-size range."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "frontiers-diving-2020"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Cathemeral is an authored classification: the study describes quasi-continuous long dives during multi-month offshore periods, without a day-only or night-only activity pattern."
+    },
+    "traits.defense": {
+      "sources": [
+        "doc-nz-elephant-seal"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Flee is a broad simulation choice: DOC says seals use teeth in fights and asks people to leave resting animals undisturbed; no species-wide threat response statistic is supplied."
+    },
+    "traits.wariness": {
+      "sources": [
+        "doc-nz-elephant-seal"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored judgement (0.5); DOC's guidance to avoid disturbing hauled-out seals supports cautious treatment, but gives no distance-response measure."
+    },
+    "habitat.use": {
+      "sources": [
+        "doc-nz-elephant-seal"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "DOC says the species spends most of its time in the sea and comes ashore to rest, moult or breed; 0.8 aquatic / 0.2 ground is an authored annual allocation, not a measured time budget."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "doc-nz-elephant-seal"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Generic shelter represents the sand or gravel beach haul-out; the schema has no dedicated beach resource tag."
+    },
+    "habitat.resources": {
+      "sources": [
+        "doc-nz-elephant-seal"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Small vertebrate represents the schema's available prey tag for fish; invertebrate represents squid and cuttlefish. The resource taxonomy has no fish or marine-cephalopod tag. Shelter and water represent beach haul-outs and marine habitat."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "doc-nz-elephant-seal"
+      ],
+      "confidence": "Medium",
+      "note": "DOC describes occasional mainland visits and directs people to leave seals undisturbed; Avoider and no garden use are conservative authored categories."
+    },
+    "seasonal": {
+      "sources": [
+        "doc-nz-elephant-seal",
+        "doc-nz-subantarctic-animals"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "DOC says breeding takes place in New Zealand from September to October. Mating is described as about three weeks after pups are born, with pups arriving in September or October, so October-November is an inclusive derived window. No moulting months are set because DOC gives only broad season wording for age/sex groups."
+    },
+    "look": {
+      "sources": [
+        "doc-nz-elephant-seal"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored block model: large bulky body, low flippers and adult male proboscis are based on DOC's description; proportions, colours and added part dimensions are visual judgement, not measured anatomy."
+    },
+    "behavior": {
+      "sources": [
+        "doc-nz-elephant-seal",
+        "frontiers-diving-2020"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Species-local surface-foraging approximation. Uses swim-gait feeding on coarse prey tags and resting as a shore haul-out proxy. It contains no dive/depth action, seasonal schedule or day/night claim. Generic shelter and food tags remain coarse host-world representations."
+    },
+    "external": {
+      "sources": [
+        "gbif-species-2434814",
+        "wikidata-mirounga-leonina"
+      ],
+      "confidence": "High",
+      "note": "GBIF key resolved directly at GBIF. Wikidata P3151 maps iNaturalist ID 41729; provider API was independently checked for active species-rank status on 2026-11-01."
+    },
+    "range": {
+      "sources": [
+        "doc-nz-elephant-seal"
+      ],
+      "confidence": "High",
+      "note": "DOC identifies the New Zealand population as concentrated on the Antipodes and Campbell Islands; range country code follows the requested NZ region."
+    },
+    "external.wikidata": {
+      "sources": [
+        "wikidata-mirounga-leonina"
+      ],
+      "confidence": "High"
+    }
+  }
+}

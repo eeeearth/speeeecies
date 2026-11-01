@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "format": "speeeecies/behavior",
+  "id": "fsm-mirounga-leonina-v1",
+  "kind": "fsm",
+  "description": "Southern elephant seal surface-foraging approximation: rests at a shore haul-out and swims to feed when matching prey resources are available. Feeding uses swim-gait actions and coarse prey tags; the program does not represent dives, depth, or a day/night schedule.",
+  "params": {
+    "food_m": 200,
+    "flee_m": 15,
+    "calm_m": 40
+  },
+  "initial": "haul_out",
+  "states": {
+    "haul_out": {"action": {"do": "rest"}, "min_dwell_s": 300},
+    "feed_fish": {"action": {"do": "eat_nearest", "tag": "small_vertebrate", "gait": "swim"}},
+    "feed_invertebrates": {"action": {"do": "eat_nearest", "tag": "invertebrate", "gait": "swim"}},
+    "flee": {"action": {"do": "flee", "gait": "walk"}, "min_dwell_s": 3}
+  },
+  "transitions": [
+    {"from": "*", "to": "flee", "when": {"threat_within_m": "${flee_m}"}, "priority": 100},
+    {"from": "flee", "to": "haul_out", "when": {"not": {"threat_within_m": "${calm_m}"}}},
+    {"from": "haul_out", "to": "feed_fish", "when": {"all": [{"need": "hunger", "gt": 0.4}, {"food_within_m": "${food_m}", "tag": "small_vertebrate"}]}},
+    {"from": "haul_out", "to": "feed_invertebrates", "when": {"all": [{"need": "hunger", "gt": 0.4}, {"food_within_m": "${food_m}", "tag": "invertebrate"}]}},
+    {"from": "feed_fish", "to": "haul_out", "when": {"any": [{"need": "hunger", "lt": 0.15}, {"not": {"food_within_m": "${food_m}", "tag": "small_vertebrate"}}]}},
+    {"from": "feed_invertebrates", "to": "haul_out", "when": {"any": [{"need": "hunger", "lt": 0.15}, {"not": {"food_within_m": "${food_m}", "tag": "invertebrate"}}]}}
+  ]
+}
