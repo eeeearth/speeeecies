@@ -108,28 +108,21 @@
     }
   },
   "seasonal": {
-    "strategy": "Migration",
+    "strategy": "ActiveYearRound",
     "phases": [
       {
         "name": "breeding",
         "start": "03-01",
         "end": "05-15",
         "region": "CA",
-        "note": "Breeds from late winter to early April; females lay late April to mid-May (ADW). Start date is an approximation of 'late winter'."
+        "note": "Pair formation and laying per ADW's species account: breeds from late winter to early April; females lay late April to mid-May. Start date approximates 'late winter'. Chick rearing and fledging (50-55 days, Wikipedia) continue later and are not dated here."
       },
       {
         "name": "breeding",
         "start": "03-01",
         "end": "05-15",
         "region": "US-AK",
-        "note": "Breeds in Alaska and Canada (Wikipedia); same approximate timing as the Canadian breeding phase."
-      },
-      {
-        "name": "absent",
-        "start": "06-01",
-        "end": "09-30",
-        "region": "US",
-        "note": "Derived: US observation curve (fetch_activity, inat-activity-us and gbif-activity-us) is below 0.05 from June to September, while the species breeds in Alaska and Canada (Wikipedia; ADW breeding timing). Monthly observation frequency is a proxy, not proof of absence; October arrivals begin around 0.11 and November is 0.85."
+        "note": "Breeds in central Alaska (ADW range; Wikipedia). The timing is borrowed from the species-wide ADW account; no Alaska-specific date was checked."
       }
     ],
     "life_stages": [
@@ -162,7 +155,7 @@
           0.85,
           0.93
         ],
-        "method": "mean(inat_share, gbif_share)",
+        "method": "mean(inat_share, gbif_share) of US occurrence records. This is an observation-frequency proxy, not activity: it is weighted to winter (Nov-Mar) and to the Pacific and Atlantic coasts, the breeding populations in Alaska and Canada are largely unrecorded in June-September, so low values there are not evidence of absence. The iNaturalist histogram total is 10000, which matches the API's result limit, so its monthly shares come from a capped set; GBIF supplies 99.9% of the records.",
         "observations": 3752545,
         "sources": [
           "inat-activity-us",
@@ -244,9 +237,67 @@
     ],
     "poses": {
       "idle": {},
-      "swim": {},
-      "fly": {},
-      "rest": {}
+      "swim": {
+        "keyframes": [
+          {
+            "t": 0,
+            "parts": {
+              "leg_left": {
+                "rot_deg": [
+                  25,
+                  0,
+                  0
+                ]
+              },
+              "leg_right": {
+                "rot_deg": [
+                  -25,
+                  0,
+                  0
+                ]
+              }
+            }
+          },
+          {
+            "t": 0.5,
+            "parts": {
+              "leg_left": {
+                "rot_deg": [
+                  -25,
+                  0,
+                  0
+                ]
+              },
+              "leg_right": {
+                "rot_deg": [
+                  25,
+                  0,
+                  0
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "fly": {
+        "amplitude": 1.3
+      },
+      "rest": {
+        "keyframes": [
+          {
+            "t": 0,
+            "parts": {
+              "head": {
+                "rot_deg": [
+                  22,
+                  0,
+                  0
+                ]
+              }
+            }
+          }
+        ]
+      }
     }
   },
   "sources": [
@@ -299,9 +350,9 @@
       "license": "CC-BY-NC-SA-3.0",
       "kind": "webpage",
       "accessed": "2026-11-01",
-      "attribution": "Animal Diversity Web, Bucephala albeola (Bufflehead) account, University of Michigan Museum of Zoology, CC BY-NC-SA 3.0",
+      "attribution": "Huth, J. 2012. \"Bucephala albeola\" (On-line), Animal Diversity Web, University of Michigan Museum of Zoology, https://animaldiversity.org/accounts/Bucephala_albeola/ (page last updated 2012-10-04; generated 2026-03-29); licensed CC BY-NC-SA 3.0 per ADW use conditions",
       "license_url": "https://creativecommons.org/licenses/by-nc-sa/3.0/",
-      "note": "NON-COMMERCIAL last resort. Used for: estimated wild lifespans (Lifespan/Longevity: 2.5 male, 2.3 female); social flock size; principal daytime foraging; winter night foraging; breeding timing; seldom walks on land. ADW use conditions: https://animaldiversity.org/about/use_conditions/ (CC BY-NC-SA 3.0). No permissive source with a typical wild lifespan was found (Wikidata, Wikipedia, AnAge, USGS BBL, EOL checked)."
+      "note": "NON-COMMERCIAL last resort. Re-checked 2026-11-01 against the page text and ADW use conditions (CC BY-NC-SA 3.0). Figures used: wild lifespan 2.5 years male and 2.3 female (Lifespan/Longevity; survivorship from 1969-1973 New York banding, 56-159 birds per sex, accuracy unknown); flock size 5-10, rarely over 50; principal daytime foraging about 60% of time; winter birds forage through the night; seldom walk on land; breeding timing (late winter to early April; laying late April to mid-May). ADW's range text also reports isolated northern US breeding populations, which the Wikipedia-based native range does not contradict. No permissive source with a typical wild lifespan was found in an earlier check (Wikidata, Wikipedia, AnAge, USGS BBL, EOL); those were not re-checked today."
     },
     {
       "id": "inat-activity-us",
@@ -351,7 +402,7 @@
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "Breeds in Alaska and Canada; winters on east and west coasts and inland waters of the United States. Mexico is not listed in the consulted text and is not included."
+      "note": "Native to North America (Wikipedia): breeds in Alaska and Canada; winters on the east and west coasts and southern United States, and the Great Lakes. Mexico is not listed in the consulted text and is not included. ADW (NC source, not used here) also records isolated northern US breeding populations, which the US native status already covers."
     },
     "traits.body_plan": {
       "sources": [
@@ -566,20 +617,18 @@
       "sources": [
         "wikipedia"
       ],
-      "confidence": "Medium",
+      "confidence": "Low",
       "derived": true,
-      "note": "Wikipedia: breeds in Alaska and Canada and migrates in winter to southern North America. Migration strategy."
+      "note": "The species migrates (Wikipedia: breeds in Alaska and Canada, migrates in winter; ADW: migratory). The schema requires a region-scoped 'absent' phase for Migration, and none of the consulted licensed sources gives a defensible absence window for CA or US-AK, so ActiveYearRound is used as a placeholder. The migration is NOT modelled. Blocker: needs a licensed source for seasonal absence of the breeding populations (see PR)."
     },
     "seasonal.phases": {
       "sources": [
         "adw-bufflehead",
-        "wikipedia",
-        "inat-activity-us",
-        "gbif-activity-us"
+        "wikipedia"
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "Breeding phase: ADW breeding timing (late winter to early April; clutches late April to mid-May), Wikipedia breeding range. Absent phase: derived from the US observation curve June to September (see phase note). Start 03-01 approximates 'late winter'."
+      "note": "Breeding phases only, for CA and US-AK. ADW gives species-wide breeding timing; Wikipedia gives the breeding range. No absent phase: the US-wide absence used in an earlier revision was contradicted by ADW, which reports isolated breeding populations throughout the northern United States and winter populations on the Pacific and Atlantic coasts, and it was not a sourced window."
     },
     "seasonal.life_stages": {
       "sources": [
