@@ -184,15 +184,8 @@
     ]
   },
   "behavior": {
-    "program": "fsm-ground-forager-v1",
-    "params": {
-      "food_tag": "fruit",
-      "flee_m": 5,
-      "calm_m": 12,
-      "food_m": 20,
-      "flee_gait": "trot",
-      "forage_gait": "walk"
-    }
+    "program": "fsm-black-rat-v1",
+    "params": {}
   },
   "vocalizations": [],
   "look": {
@@ -260,17 +253,6 @@
       "note": "Sources used: 'typically live for about one year in the wild and up to four years in captivity'; 'weighs 75 to 230 g ... depending on the subspecies'; head-body 12.75 to 18.25 cm; tail 15 to 22 cm, 'typically longer than the rat's head and body combined'; 'originated in India and Southeast Asia'; 'great climbers'; 'tends to forage after sunset'; 'omnivore'."
     },
     {
-      "id": "kopij-2025-afrotropical-aliens",
-      "url": "https://doi.org/10.3390/d17040286",
-      "title": "Kopij G. (2025) Alien Mammals in the Afrotropical Region and Their Impact on Vertebrate Biodiversity: A Review. Diversity 17(4):286",
-      "license": "CC-BY-4.0",
-      "license_url": "https://creativecommons.org/licenses/by/4.0/",
-      "attribution": "Kopij G. (2025) Alien Mammals in the Afrotropical Region and Their Impact on Vertebrate Biodiversity: A Review. Diversity 17(4):286, CC BY 4.0",
-      "accessed": "2026-11-01",
-      "kind": "literature",
-      "note": "Abstract states Rattus rattus was introduced to sub-Saharan Africa before 1400 and is invasive in the region. The Tanzania-specific passages were not read (full text unavailable here); TZ introduction is derived from this regional statement."
-    },
-    {
       "id": "gbif-activity-tz",
       "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2439270&country=TZ&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
       "title": "GBIF occurrence search for Rattus rattus in TZ",
@@ -278,6 +260,17 @@
       "attribution": "GBIF.org (2026-11-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
       "accessed": "2026-11-01",
       "kind": "api"
+    },
+    {
+      "id": "prendergast-2017-eastern-africa",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5560628/",
+      "title": "Prendergast et al. (2017), Reconstructing Asian faunal introductions to eastern Africa from multi-proxy biomolecular and archaeological datasets",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "attribution": "Prendergast et al. (2017), Proceedings of the National Academy of Sciences 114(30):8030-8035, CC BY 4.0",
+      "accessed": "2026-11-01",
+      "kind": "literature",
+      "note": "The study confirms Rattus rattus in archaeological contexts at Songo Mnara, Unguja Ukuu and Fukuchani (Zanzibar), and Makangale Cave (Pemba). It concludes these commensal Asian taxa were introduced to eastern African islands by the mid-first millennium CE; the earliest direct Zanzibar date is discussed with a reservoir-effect caveat."
     }
   ],
   "provenance": {
@@ -316,11 +309,11 @@
     },
     "range.introduced": {
       "sources": [
-        "kopij-2025-afrotropical-aliens"
+        "prendergast-2017-eastern-africa"
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "Regional statement: introduced to sub-Saharan Africa before 1400 (abstract). Tanzania is in sub-Saharan Africa; no Tanzania-specific passage was read."
+      "note": "The CC BY 4.0 archaeological study confirms introduced Asian black rats at Songo Mnara, Unguja Ukuu and Fukuchani (Zanzibar), and Pemba. It supports introduction in Tanzania; the exact mainland distribution and introduction date are not resolved by this evidence."
     },
     "traits.body_plan": {
       "sources": [],
@@ -451,9 +444,9 @@
     },
     "behavior": {
       "sources": [],
-      "confidence": "Low",
+      "confidence": "Medium",
       "derived": true,
-      "note": "Shared program fsm-ground-forager-v1 with parameter overrides. Single food tag (fruit) and no climb action; see PR notes."
+      "note": "Species-local FSM keeps ground walking and climbing distinct: fruit and seed feeding uses the legal climb gait, while invertebrate and carrion feeding uses walk; flee uses trot and shelter rest is enabled during daylight. Each recorded food tag has a reachable action. This simplifies flexible omnivorous foraging into one action per recorded resource category."
     },
     "look": {
       "sources": [],
@@ -464,11 +457,11 @@
     "range": {
       "sources": [
         "wikipedia-black-rat",
-        "kopij-2025-afrotropical-aliens"
+        "prendergast-2017-eastern-africa"
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "Native origin from Wikipedia; introduction from the Kopij regional statement. Tanzania-specific wording was not read."
+      "note": "Native Asian origin is from the cited black rat account. Tanzania introduction is directly supported for Songo Mnara and Zanzibar by the CC BY study of archaeological remains; the study does not establish a precise introduction date for all mainland locations."
     },
     "traits.flight": {
       "sources": [],
