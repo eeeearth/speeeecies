@@ -155,36 +155,26 @@
       {
         "region": "FR",
         "monthly": [
+          0.76,
+          0.88,
           1.0,
-          0.9,
-          0.96,
-          0.72,
-          0.58,
-          0.69,
-          0.42,
-          0.36,
           0.53,
-          0.66,
-          0.87,
-          0.89
+          0.32,
+          0.35,
+          0.22,
+          0.2,
+          0.24,
+          0.41,
+          0.93,
+          0.92
         ],
-        "method": "mean(inat_share, gbif_share)",
-        "observations": 50192,
+        "method": "share(gbif_cc0_cc_by)",
+        "observations": 49443,
         "sources": [
-          "inat-activity-fr",
           "gbif-activity-fr"
         ],
         "query": {
           "min_obs": 300,
-          "inat": {
-            "tier": "C",
-            "place_id": 6753,
-            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=41800&place_id=6753&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
-            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=6753&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
-            "total": 749,
-            "usable": true,
-            "note": "Permissive tier A (cc0, cc-by) total for this place is 100, below min_obs 300, so the tool widened to tier C (adds cc-by-sa, cc-by-nc, cc-by-nc-sa). The NC iNaturalist data contributes 749 of 50192 records and is therefore a non-commercial input to the FR curve. A GBIF-only permissive curve is kept in query.gbif_only_fixed_monthly."
-          },
           "gbif": {
             "tier": "A",
             "area": [
@@ -198,10 +188,10 @@
             "total_excluding_placeholder_dataset": 49443,
             "excluded_datasetKey": "675193f9-39e4-4ea1-ab88-d626da2d7a99",
             "excluded_dataset_title": "Répartition de différentes espèces de petits et méso carnivores en France (ONCFS et coll.)",
-            "excluded_dataset_reason": "All 9,271 of its records in this query carry placeholder event dates on 1 January (2015, 2016 and 2017 in a 300-record sample); 3,861 of them fall in January, which produced a spurious January peak in the tool's raw GBIF curve. Removed from both the species and mammal-class monthly counts."
+            "excluded_dataset_reason": "All 9,271 of its records in this query carry placeholder event dates on 1 January (2015, 2016 and 2017 in a 300-record sample); 3,861 of them fall in January, which produced a spurious January peak in the tool's raw GBIF curve. Removed from both the species and mammal-class monthly counts.",
+            "used_for_monthly": true
           },
           "used": [
-            "inat",
             "gbif"
           ],
           "exclusions_applied_by": "Recomputed from the fetch_activity.py functions (share_curve, mean_curves, finalize_curve) with the excluded dataset subtracted; the raw tool output is kept below for audit.",
@@ -234,21 +224,16 @@
             0.93,
             0.92
           ],
-          "inat_permissive_total": 100
+          "inat_permissive_total": 100,
+          "note": "Permissive GBIF-only curve (CC0 and CC BY occurrences, placeholder-dated ONCFS dataset excluded). The earlier iNaturalist-mixed curve (tier C, 749 NC records) is no longer used, so non-commercial data is confined to traits.lifespan_y. Raw curves retained for audit: raw_tool_monthly is the earlier mixed mean and is not used.",
+          "total": 58714,
+          "usable": true
         }
       }
     ]
   },
   "behavior": {
-    "program": "fsm-ground-forager-v1",
-    "params": {
-      "food_tag": "small_vertebrate",
-      "forage_gait": "walk",
-      "flee_gait": "gallop",
-      "flee_m": 25,
-      "calm_m": 50,
-      "food_m": 60
-    }
+    "program": "fsm-scansorial-mustelid-v1"
   },
   "vocalizations": [],
   "look": {
@@ -372,16 +357,6 @@
       "attribution": "Animal Diversity Web, Martes foina account, University of Michigan Museum of Zoology, CC BY-NC-SA 3.0",
       "license_url": "https://creativecommons.org/licenses/by-nc-sa/3.0/",
       "note": "Non-commercial last resort, used only for traits.lifespan_y. ADW's text is licensed CC BY-NC-SA 3.0 per its use-conditions statement (https://animaldiversity.org/about/use_conditions/, checked 2026-11-01). The 3-year figure is labelled 'Average longevity of M. foina in its natural habitat' in the Lifespan/Longevity section and has no cited source on the page. Its 10-year wild maximum and 18-year captive figure are not used."
-    },
-    {
-      "id": "inat-activity-fr",
-      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=41800&place_id=6753&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
-      "title": "iNaturalist observations histogram for Martes foina in FR",
-      "license": "CC-BY-NC-4.0",
-      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
-      "accessed": "2026-11-01",
-      "kind": "api",
-      "note": "Tier C (includes non-commercial licences) because the permissive iNaturalist query for FR returned only 100 records, below the 300 threshold. Non-commercial input; see activity.regions[FR].query.inat."
     },
     {
       "id": "gbif-activity-fr",
@@ -643,16 +618,15 @@
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "Shared program fsm-ground-forager-v1 fits a ground-hunting mustelid that forages on foot and rests in shelter by day. Limits: the program cannot climb or swim; the animal's arboreal and aquatic skills are not executed. Food tag small_vertebrate reflects the ground-hunting description; fruit and invertebrates are represented as resources only."
+      "note": "Species-local program fsm-scansorial-mustelid-v1 (behavior.json). Sourced facts used: 'a skilled climber in heavily forested areas' (climb gait for canopy fruit foraging and climbing), 'a skilled swimmer' (swim gait for crossing water), 'typically hunts on the ground' (walk gait for small-vertebrate foraging), 'mainly a crepuscular and nocturnal animal' (daytime rest in shelter via sun-elevation rule), and 'may live in tree holes' (cavity shelter). Authored judgement, not sourced: the cross_chance rate (0.05), the 30 m canopy search and 60 m water distances, the flee distances, and the hunger/thirst/energy thresholds. The program does not execute an arboreal flight to a tree refuge and does not model month-specific behaviour; seasonality comes only from the activity curve."
     },
     "activity": {
       "sources": [
-        "inat-activity-fr",
         "gbif-activity-fr"
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "Observation-based curve for FR: mean of iNaturalist share (tier C, incl. NC; 749 records) and GBIF share (tier A, CC0/CC BY, 49,443 records after excluding the placeholder-dated ONCFS dataset). Raw tool curve retained in query.raw_tool_monthly. Observation frequency is only a proxy for activity: the curve is high in winter and low in summer, which may reflect observer effort, winter dens in buildings and road or house contacts, not solely activity."
+      "note": "Observation-based curve for FR from GBIF only (CC0/CC BY): occurrence shares by month after excluding the placeholder-dated ONCFS dataset (49,443 records); the monthly values are in activity.regions[FR].monthly and are the gbif_only_fixed_monthly audit values. The iNaturalist tier C input (NC, 749 records) was dropped because the permissive GBIF curve already exceeds min_obs. Observation frequency is only a proxy for activity: the curve is high in winter and low in summer, which may reflect observer effort, winter dens in buildings and road or house contacts, not solely activity."
     }
   }
 }
