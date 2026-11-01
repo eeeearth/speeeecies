@@ -1,0 +1,475 @@
+{
+  "$schema": "https://eeeearth.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Castor canadensis",
+  "slug": "castor-canadensis",
+  "common_names": {
+    "en": "American beaver"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Mammalia",
+    "order": "Rodentia",
+    "family": "Castoridae",
+    "genus": "Castor",
+    "authority": "Kuhl, 1820",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2439838,
+    "inat_taxon_id": 43794
+  },
+  "range": {
+    "native": [
+      "CA",
+      "US",
+      "MX"
+    ],
+    "introduced": [
+      "CL"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk",
+      "Swim"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Fur",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "size_class": "Medium",
+    "mass_kg": 22.5,
+    "mass_range_kg": [
+      13,
+      32
+    ],
+    "length_m": 1.035,
+    "lifespan_y": 10,
+    "diet": {
+      "browse": 0.75,
+      "graze": 0.25
+    },
+    "social": {
+      "structure": "Colony",
+      "group_size": [
+        2,
+        8
+      ]
+    },
+    "activity_pattern": "Nocturnal",
+    "defense": "Flee",
+    "wariness": 0.7
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.4,
+      "aquatic": 0.6
+    },
+    "shelter_tag": "pond",
+    "resources": [
+      {
+        "tag": "browse",
+        "kind": "Herbivory",
+        "weight": 0.75
+      },
+      {
+        "tag": "graze",
+        "kind": "Herbivory",
+        "weight": 0.25
+      },
+      {
+        "tag": "pond",
+        "kind": "Shelter",
+        "weight": 1.0
+      },
+      {
+        "tag": "water",
+        "kind": "Water",
+        "weight": 1.0
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Avoider",
+      "uses_gardens": false,
+      "notes": "A semi-aquatic rodent associated with ponds, lakes, and slow streams; this record does not model urban beavers."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "territorial",
+        "start": "01-01",
+        "end": "12-31",
+        "note": "ADW describes family colonies as territorial. No seasonal change is established, so the year-round phase encodes no seasonal shift."
+      }
+    ],
+    "life_stages": [
+      {"stage": "Adult"}
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "CL",
+        "monthly": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "method": "authored_neutral_fallback",
+        "observations": 33335,
+        "sources": [
+          "gbif-activity-cl"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 7182,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=43794&place_id=7182&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=7182&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 68,
+            "usable": false
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "country",
+              "CL"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2439838&country=CL&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&country=CL&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 33335,
+            "usable": true
+          },
+          "used": [
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-castor-canadensis-v1",
+    "params": {}
+  },
+  "vocalizations": [],
+  "look": {
+    "body_plan": "quadruped",
+    "proportions": {
+      "torso_aspect": 1.65,
+      "leg_length_ratio": 0.28,
+      "head_scale": 0.85,
+      "tail_ratio": 0.72,
+      "ear_ratio": 0.18,
+      "girth_ratio": 1.15
+    },
+    "palette": {
+      "body": "#684331",
+      "belly": "#8a6247",
+      "accent": "#252525",
+      "eye": "#17120f"
+    },
+    "part_colors": {
+      "tail": "accent",
+      "leg_*": "accent"
+    },
+    "extra_parts": [
+      {
+        "name": "flat_tail",
+        "parent": "body",
+        "offset": [
+          -0.82,
+          -0.12,
+          0
+        ],
+        "size": [
+          0.58,
+          0.12,
+          0.72
+        ],
+        "color": "accent"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {
+        "cycle_s": 1.1,
+        "amplitude": 0.65
+      },
+      "swim": {
+        "cycle_s": 1.4,
+        "amplitude": 0.7
+      }
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2439838",
+      "title": "GBIF Backbone Taxonomy: Castor canadensis",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy",
+      "accessed": "2026-11-01",
+      "kind": "database",
+      "note": "Canonical name, species rank, accepted status, and classification."
+    },
+    {
+      "id": "inat-taxonomy",
+      "url": "https://api.inaturalist.org/v1/taxa/43794",
+      "title": "iNaturalist taxon 43794: Castor canadensis",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "attribution": "iNaturalist taxon data accessed via the iNaturalist API",
+      "accessed": "2026-11-01",
+      "kind": "api",
+      "note": "Active, non-extinct species taxon; used only to verify the required provider identifier."
+    },
+    {
+      "id": "adw-castor",
+      "url": "https://animaldiversity.org/accounts/Castor_canadensis/",
+      "title": "Animal Diversity Web: Castor canadensis",
+      "license": "CC-BY-NC-SA-3.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/3.0/",
+      "attribution": "Rebecca Anderson, Animal Diversity Web, University of Michigan, Castor canadensis (2002), CC BY-NC-SA 3.0",
+      "accessed": "2026-11-01",
+      "kind": "webpage",
+      "note": "Last-resort NC-SA source for adult morphology, wild lifespan, food habits and behavior. ADW states average wild lifespan 10–20 years; this record uses the low endpoint (10) as a conservative estimate, not a midpoint. Newfoundland and Labrador's official 5–7 year average (https://www.gov.nl.ca/fal/wildlife/snp/programs/education/animal-facts/mammals/beaver/) describes its native population and is not transferred to Chile. The US Forest Service figure checked was an 'up to' maximum, and the Pennsylvania estimate had no reuse licence statement, so neither replaced ADW for the required typical-wild statistic."
+    },
+    {
+      "id": "magallanes-beaver-range",
+      "url": "https://www.scielo.cl/scielo.php?lng=en&nrm=iso&pid=S0718-686X2018000300007&script=sci_arttext&tlng=es",
+      "title": "Molina, Soto & Tapia (2018), Current state of distribution of the beaver in Magallanes, Chile",
+      "license": "CC-BY-NC-4.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+      "attribution": "Molina, R., Soto, N. & Tapia, A. (2018). Anales del Instituto de la Patagonia 46(3), CC BY-NC 4.0.",
+      "accessed": "2026-11-01",
+      "kind": "literature",
+      "note": "Last-resort NC source for the Chile introduced-range claim. Chile Ministry of Environment SIMBIO (https://simbio.mma.gob.cl/Especies/Details/4570) also marks the taxon as exotic for Chile but provides no reuse licence statement; this peer-reviewed article has a declared CC BY-NC 4.0 licence."
+    },
+    {
+      "id": "gbif-activity-cl",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2439838&country=CL&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Castor canadensis in CL",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-11-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-11-01",
+      "kind": "api",
+      "note": "Raw monthly facets: Jan 570, Feb 98, Mar 31631, Apr 41, May 24, Jun 12, Jul 1, Aug 21, Sep 18, Oct 55, Nov 87, Dec 37. March is 94.9% of the 33335 total; the batch-like spike means this monthly shape is not treated as credible activity evidence."
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High",
+      "note": "GBIF accepts Castor canadensis Kuhl, 1820 at species rank."
+    },
+    "external": {
+      "sources": ["gbif-backbone", "inat-taxonomy"],
+      "confidence": "High",
+      "note": "Each key was checked at its own provider. Both resolve to Castor canadensis at species rank; iNaturalist is active and non-extinct."
+    },
+    "external.gbif_usage_key": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High"
+    },
+    "external.inat_taxon_id": {
+      "sources": [
+        "inat-taxonomy"
+      ],
+      "confidence": "High",
+      "note": "The provider record is active, non-extinct and rank species."
+    },
+    "range": {
+      "sources": [
+        "adw-castor",
+        "magallanes-beaver-range"
+      ],
+      "confidence": "High",
+      "note": "ADW identifies North America as native range. The Magallanes paper identifies the South American populations as introduced; only the requested country CL is represented here."
+    },
+    "activity.CL": {
+      "sources": ["gbif-activity-cl", "adw-castor"],
+      "confidence": "Low",
+      "derived": true,
+      "note": "The fetched CL curve was gbif_share, but 31631 of 33335 GBIF dated records fall in March and the next-highest month has 570; iNaturalist returned only 68 records and is unusable. Use an authored neutral 1.0 fallback for all months rather than treating the batch-like spike and low-count zeros as seasonal absence. Query URLs, counts, tiers and original usable flags are retained. The fallback is not an empirical monthly estimate."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "adw-castor"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "adw-castor"
+      ],
+      "confidence": "Medium",
+      "note": "Four walking limbs, following the schema's limb-count convention."
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "adw-castor"
+      ],
+      "confidence": "High",
+      "note": "ADW describes the species as primarily aquatic and documents swimming; walking is supported by its hindquarters and terrestrial foraging description."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "adw-castor"
+      ],
+      "confidence": "High"
+    },
+    "traits.skin": {
+      "sources": [
+        "adw-castor"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "adw-castor"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "adw-castor"
+      ],
+      "confidence": "Medium",
+      "note": "Mammalian lung breathing; source describes underwater adaptations but does not detail respiration."
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "adw-castor"
+      ],
+      "confidence": "High"
+    },
+    "traits.size_class": {
+      "sources": [
+        "adw-castor"
+      ],
+      "confidence": "High"
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "adw-castor"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Midpoint of ADW's adult mass range: (13 + 32) / 2 = 22.5 kg. This is a representative value derived from the published range, not a measured mean."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "adw-castor"
+      ],
+      "confidence": "High",
+      "note": "ADW adult mass range, 13–32 kg."
+    },
+    "traits.length_m": {
+      "sources": [
+        "adw-castor"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Midpoint of ADW's reported 0.900–1.170 m length range: (0.900 + 1.170) / 2 = 1.035 m."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "adw-castor"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Conservative endpoint of ADW's stated 10–20 year average wild-lifespan interval. The Newfoundland and Labrador source gives a distinct 5–7 year average for its native population, not a species-wide or Chilean-population estimate; the discrepancy is retained rather than averaged across populations."
+    },
+    "traits.diet": {
+      "sources": [
+        "adw-castor"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "ADW identifies bark/cambium, buds, roots and aquatic vegetation. The 0.75 browse / 0.25 graze split is an authored simulation allocation because the source gives no percentages."
+    },
+    "traits.social": {
+      "sources": [
+        "adw-castor"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "ADW describes family colonies of up to eight; minimum group size 2 is a simulation judgement for a family unit."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "adw-castor"
+      ],
+      "confidence": "High",
+      "note": "ADW describes beavers as primarily nocturnal and occasionally active around dusk."
+    },
+    "traits.defense": {
+      "sources": [
+        "adw-castor"
+      ],
+      "confidence": "Medium",
+      "note": "The species-local behavior sends a beaver into a swim flee when nearby water is available, and uses a walking flee on land."
+    },
+    "traits.wariness": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: 0.7, reflecting a wild mammal that retreats to water when disturbed; the scale is an authored simulation parameter."
+    },
+    "habitat": {
+      "sources": [
+        "adw-castor"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "ADW describes freshwater lodges, aquatic and terrestrial habitat, wood and aquatic-plant foods. The habitat shares, resource weights, tags and tolerance settings are simulation judgements; the model does not distinguish individual plant taxa or construct dams."
+    },
+    "seasonal": {
+      "sources": [
+        "adw-castor"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The source describes activity and food caching through winter. No region-specific breeding calendar or territorial seasonality is established for introduced Chilean populations; the year-round territorial phase records the absence of an evidenced seasonal window."
+    },
+    "behavior": {
+      "sources": [
+        "adw-castor"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Species-local FSM approximates nocturnal rest, terrestrial and aquatic foraging, swimming and threat response. No exact seasonal months are encoded. Swimming uses a supported gait but does not model dam building, lodge entry or webbed-foot propulsion."
+    },
+    "look": {
+      "sources": [
+        "adw-castor"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Judgement based on the source's description of a stocky brown mammal with a broad, flat, scaly tail. The box model cannot represent waterproof underfur, orange incisors, transparent eye membranes or webbed feet accurately; the extra tail is a flat dark box."
+    }
+  }
+}

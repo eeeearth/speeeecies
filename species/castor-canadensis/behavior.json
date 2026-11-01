@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "format": "speeeecies/behavior",
+  "id": "fsm-castor-canadensis-v1",
+  "kind": "fsm",
+  "description": "American beaver: rest during daylight, browse on land or graze near water at night, swim between nearby aquatic resources, and flee threats. It omits dam-building and lodge construction.",
+  "params": {},
+  "initial": "idle",
+  "states": {
+    "idle": {"action": {"do": "idle"}, "min_dwell_s": 2},
+    "wander": {"action": {"do": "wander", "gait": "walk"}},
+    "swim": {"action": {"do": "wander", "gait": "swim"}},
+    "browse": {"action": {"do": "eat_nearest", "tag": "browse", "gait": "walk"}},
+    "graze": {"action": {"do": "eat_nearest", "tag": "graze", "gait": "swim"}},
+    "drink": {"action": {"do": "drink_nearest", "gait": "walk"}},
+    "flee_swim": {"action": {"do": "flee", "gait": "swim"}, "min_dwell_s": 3},
+    "flee_land": {"action": {"do": "flee", "gait": "walk"}, "min_dwell_s": 3},
+    "rest": {"action": {"do": "rest", "at": "shelter"}, "min_dwell_s": 30}
+  },
+  "transitions": [
+    {"from": "*", "to": "flee_swim", "when": {"all": [{"threat_within_m": 12}, {"water_within_m": 10}]}, "priority": 101},
+    {"from": "*", "to": "flee_land", "when": {"all": [{"threat_within_m": 12}, {"not": {"water_within_m": 10}}]}, "priority": 100},
+    {"from": "*", "to": "rest", "when": {"sun_elevation_between_deg": [-6, 90]}, "priority": 80},
+    {"from": "flee_swim", "to": "idle", "when": {"not": {"threat_within_m": 30}}},
+    {"from": "flee_land", "to": "idle", "when": {"not": {"threat_within_m": 30}}},
+    {"from": "rest", "to": "idle", "when": {"sun_elevation_between_deg": [-90, -6]}},
+    {"from": "idle", "to": "browse", "when": {"all": [{"need": "hunger", "gt": 0.5}, {"food_within_m": 40, "tag": "browse"}]}},
+    {"from": "idle", "to": "graze", "when": {"all": [{"need": "hunger", "gt": 0.5}, {"food_within_m": 20, "tag": "graze"}, {"water_within_m": 10}]}},
+    {"from": "idle", "to": "drink", "when": {"all": [{"need": "thirst", "gt": 0.6}, {"water_within_m": 20}]}},
+    {"from": "idle", "to": "swim", "when": {"all": [{"water_within_m": 10}, {"chance": 0.2}]}},
+    {"from": "idle", "to": "wander", "when": {"chance": 0.2}},
+    {"from": "browse", "to": "idle", "when": {"need": "hunger", "lt": 0.2}},
+    {"from": "graze", "to": "idle", "when": {"need": "hunger", "lt": 0.2}},
+    {"from": "drink", "to": "idle", "when": {"need": "thirst", "lt": 0.1}},
+    {"from": "swim", "to": "idle", "when": {"chance": 0.2}},
+    {"from": "wander", "to": "idle", "when": {"chance": 0.15}}
+  ]
+}
