@@ -52,8 +52,27 @@
       "TR",
       "IR",
       "MA",
-      "DZ",
-      "TN"
+      "ES",
+      "PT",
+      "IT",
+      "GR",
+      "CY",
+      "IL",
+      "PS",
+      "AE",
+      "BG",
+      "RO",
+      "RS",
+      "HU",
+      "SK",
+      "HR",
+      "SI",
+      "LT",
+      "LV",
+      "EE",
+      "BY",
+      "LU",
+      "GE"
     ],
     "introduced": [
       "NZ",
@@ -82,7 +101,7 @@
     ],
     "length_m": 0.2175,
     "wingspan_m": 0.36,
-    "lifespan_y": 2.4,
+    "lifespan_y": 2.78,
     "diet": {
       "invertebrate": 0.4,
       "fruit": 0.3,
@@ -321,7 +340,8 @@
       "eye": "#171310"
     },
     "part_colors": {
-      "beak": "accent"
+      "beak": "accent",
+      "leg_*": "body"
     },
     "poses": {
       "idle": {},
@@ -393,12 +413,22 @@
     {
       "id": "scholer-survival",
       "url": "https://doi.org/10.5061/dryad.qv9s4mwbs",
-      "title": "Scholer, Strimas-Mackey & Jankowski (2020) Data from: A meta-analysis of global avian survival across species and latitude; ELEscholer2020_data.csv row 111 (Clark et al. 2011, Turdus philomelos)",
+      "title": "Scholer, Strimas-Mackey & Jankowski (2020) Data from: A meta-analysis of global avian survival across species and latitude; ELEscholer2020_data.csv physical line 885 (X=944; Tomson et al. 1997, Turdus philomelos, UK, dead recovery, survival 0.571 SE 0.087)",
       "license": "CC0-1.0",
       "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
       "kind": "dataset",
       "accessed": "2026-10-31",
-      "note": "Dryad DOI 10.5061/dryad.qv9s4mwbs; mirrored at https://zenodo.org/records/3986104 (CC0). Used only as a cross-check of adult survival, not as a lifespan value."
+      "note": "Dryad DOI 10.5061/dryad.qv9s4mwbs; the Dryad API download requires a token, so the CSV was checked from the Zenodo mirror https://zenodo.org/records/3986104 (record licence cc-zero). Used for the adult survival input to traits.lifespan_y (row 885). Row 111 (Clark et al. 2011, survival 0.46, UK) also lists the same mass 67.74 g and is a cross-check only."
+    },
+    {
+      "id": "gbif-country-facet",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=7901064&facet=country&facetLimit=80&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Turdus philomelos, country facet (all countries, PRESENT, CC0 and CC BY records)",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "attribution": "GBIF.org (2026-10-31) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-10-31",
+      "kind": "api"
     },
     {
       "id": "inat-activity-fr",
@@ -454,11 +484,12 @@
     "range": {
       "sources": [
         "wikipedia-en",
-        "wikipedia-fr"
+        "wikipedia-fr",
+        "gbif-country-facet"
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "Native list derived from Wikipedia EN ('breeds in most of Europe ... across Ukraine and Russia almost to Lake Baikal'; winter in North Africa and the Middle East; French and British populations named) and FR ('nord de l'Anatolie, Caucase, nord de l'Iran'). Countries are listed where a named sentence covers them; Iceland, Faroes and southern Europe omitted as unverified. Introduced: New Zealand and Australia (both articles)."
+      "note": "Native list = countries with at least 1,000 CC0/CC BY GBIF occurrence records (gbif-country-facet, checked 2026-10-31, all records with occurrenceStatus PRESENT), restricted to the species' Palearctic range described by Wikipedia EN ('breeds in most of Europe ... across Ukraine and Russia almost to Lake Baikal'; winters around the Mediterranean, North Africa and the Middle East) and FR ('nord de l'Anatolie, Caucase, nord de l'Iran'). Excluded: NZ and AU (introduced, listed separately); AX and IM (dependencies within FI and GB); North American vagrants (below threshold); DZ (639) and TN (148), which were listed in an earlier draft and fall below the threshold, so they are not listed here; IS, FO, LB, LY, EG, and other 100-999 countries are not listed. GBIF counts are occurrence evidence of presence, not proof of breeding status. Introduced: New Zealand and Australia (both articles, and GBIF records)."
     },
     "traits.body_plan": {
       "sources": [
@@ -569,7 +600,7 @@
       ],
       "confidence": "Low",
       "derived": true,
-      "note": "Derived expected lifespan from constant-rate survival, not a stated typical value. Inputs: British first-year survival 0.546 and adult annual survival 0.622 (Wikipedia EN, Breeding and survival section). E[L] = 1 + 0.546 / (1 - 0.622) = 2.44 y; recorded as 2.4. Cross-check: Scholer row 111 adult survival 0.46 (Clark et al. 2011, mark-recapture, UK) gives a lower 1/(1-0.46) = 1.85 y if all years share that rate. Wikipedia's 'typical lifespan is three years' is NOT used: it is inconsistent with the survival rates in the same section. Expected value is a proxy for 'typical'; low confidence."
+      "note": "Derived with the BTO typical-lifespan method, ex = Ba + (-1/ln(phi)): the expected total age of a bird that reaches breeding age (BTO BirdFacts Biology page, method text only; the page's licence was not confirmed, so it is not listed as a data source). Inputs: phi = 0.571 (SE 0.087), a UK dead-recovery estimate for Turdus philomelos from Tomson et al. (1997), read from ELEscholer2020_data.csv physical line 885 (X=944), source scholer-survival. Ba = 1 y is an AUTHORED assumption (first breeding in the first year). ex = 1 + 1/(-ln 0.571) = 1 + 1.784 = 2.785, recorded as 2.78 y. Limitations: the Dryad row does not state its age class, so phi is assumed to be an adult annual survival rate; a 30-year dead-recovery series; it is not a maximum or captive value. BTO's species page reports a typical life expectancy of 3 years (adult survival 0.563) and Wikipedia EN repeats 'three years'; both are cross-checks, not inputs. Expected value is a proxy for 'typical'; low confidence."
     },
     "traits.diet": {
       "sources": [
