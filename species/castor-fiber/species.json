@@ -1,0 +1,585 @@
+{
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Castor fiber",
+  "slug": "castor-fiber",
+  "common_names": {
+    "en": "Eurasian beaver",
+    "fr": "Castor d'Europe"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Mammalia",
+    "order": "Rodentia",
+    "family": "Castoridae",
+    "genus": "Castor",
+    "authority": "Linnaeus, 1758",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 4409131,
+    "inat_taxon_id": 43793,
+    "wikidata": "Q181191"
+  },
+  "range": {
+    "native": [
+      "FR"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk",
+      "Swim"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Fur",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Burrow",
+    "perching": false,
+    "size_class": "Medium",
+    "mass_kg": 22.17,
+    "mass_range_kg": [
+      11,
+      30
+    ],
+    "length_m": 1.275,
+    "lifespan_y": 7.5,
+    "diet": {
+      "browse": 0.8,
+      "graze": 0.2
+    },
+    "social": {
+      "structure": "Colony",
+      "group_size": [
+        2,
+        12
+      ]
+    },
+    "activity_pattern": "Nocturnal",
+    "defense": "Flee",
+    "wariness": 0.7
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.2,
+      "aquatic": 0.8
+    },
+    "shelter_tag": "burrow",
+    "resources": [
+      {
+        "tag": "browse",
+        "kind": "Herbivory",
+        "weight": 0.8
+      },
+      {
+        "tag": "graze",
+        "kind": "Herbivory",
+        "weight": 0.2
+      },
+      {
+        "tag": "water",
+        "kind": "Water",
+        "weight": 1.0
+      },
+      {
+        "tag": "burrow",
+        "kind": "Shelter",
+        "weight": 1.0
+      },
+      {
+        "tag": "pond",
+        "kind": "Shelter",
+        "weight": 0.8
+      }
+    ],
+    "requires": [
+      {
+        "resource_within_m": 60,
+        "tag": "water"
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Avoider",
+      "uses_gardens": false,
+      "notes": "Semi-aquatic; requires permanent access to freshwater and riparian food plants."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "caching",
+        "start": "09-01",
+        "end": "11-30",
+        "region": "FR",
+        "note": "Autumn branch cutting and food-cache building is described for Eurasian beavers."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Juvenile"
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "FR",
+        "monthly": [
+          0.47,
+          0.69,
+          1.0,
+          0.3,
+          0.09,
+          0.09,
+          0.06,
+          0.05,
+          0.06,
+          0.14,
+          0.36,
+          0.37
+        ],
+        "method": "gbif_share",
+        "observations": 39710,
+        "sources": [
+          "gbif-activity-fr"
+        ],
+        "query": {
+          "min_obs": 1000,
+          "inat": {
+            "tier": "C",
+            "place_id": 6753,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=43793&place_id=6753&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=6753&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 924,
+            "usable": false
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "country",
+              "FR"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=4409131&country=FR&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&country=FR&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 39710,
+            "usable": true
+          },
+          "used": [
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-beaver-swim-browse-v1",
+    "params": {
+      "flee_m": 30,
+      "calm_m": 60,
+      "food_tag": "browse",
+      "food_m": 35,
+      "flee_gait": "swim",
+      "forage_gait": "walk",
+      "rest_sun_lo_deg": 10,
+      "rest_sun_hi_deg": 90
+    }
+  },
+  "vocalizations": [],
+  "look": {
+    "body_plan": "quadruped",
+    "proportions": {
+      "torso_aspect": 2.2,
+      "leg_length_ratio": 0.32,
+      "head_scale": 0.85,
+      "neck_angle_deg": 5,
+      "tail_ratio": 0.62,
+      "girth_ratio": 1.35
+    },
+    "palette": {
+      "body": "#76513a",
+      "belly": "#4d382b",
+      "accent": "#302a25",
+      "eye": "#111111"
+    },
+    "extra_parts": [
+      {
+        "name": "paddle_tail",
+        "parent": "tail",
+        "offset": [
+          -0.58,
+          0.12,
+          0
+        ],
+        "size": [
+          0.38,
+          0.12,
+          0.64
+        ],
+        "color": "accent"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "swim": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/4409131",
+      "title": "GBIF Backbone Taxonomy: Castor fiber",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "attribution": "GBIF Secretariat: GBIF Backbone Taxonomy, accessed 2026-11-01",
+      "accessed": "2026-11-01",
+      "kind": "database",
+      "note": "Accepted species rank; canonical name Castor fiber, order Rodentia, family Castoridae."
+    },
+    {
+      "id": "wikidata-castor-fiber",
+      "url": "https://www.wikidata.org/wiki/Q181191",
+      "title": "Wikidata: Castor fiber (Q181191)",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "attribution": "Wikidata contributors, Castor fiber (Q181191), accessed 2026-11-01",
+      "accessed": "2026-11-01",
+      "kind": "database",
+      "note": "NC last resort used for the explicitly labelled typical wild lifespan interval, its year-round activity/autumn food-cache statements and colony group upper bound; the checked CC BY paper reports an age-at-death statistic for one population, not the species-wide typical lifespan. Captive longevity and maximum wild ages are excluded."
+    },
+    {
+      "id": "adw-castor-fiber",
+      "url": "https://animaldiversity.org/accounts/Castor_fiber/",
+      "title": "Castor fiber (Eurasian beaver), Animal Diversity Web",
+      "license": "CC-BY-NC-SA-3.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/3.0/",
+      "attribution": "Animal Diversity Web, University of Michigan Museum of Zoology, Castor fiber account, accessed 2026-11-01",
+      "accessed": "2026-11-01",
+      "kind": "webpage",
+      "note": "NC last resort used for ADW’s explicitly labelled typical wild lifespan interval and its year-round activity/autumn food-cache statements; the checked CC BY paper reports an age-at-death statistic for one population, not the species-wide typical lifespan. Captive longevity and maximum wild ages are excluded."
+    },
+    {
+      "id": "wikipedia-eurasian-beaver",
+      "url": "https://en.wikipedia.org/wiki/Eurasian_beaver",
+      "title": "Eurasian beaver, Wikipedia",
+      "license": "CC-BY-SA-4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "attribution": "Wikipedia contributors, Eurasian beaver, accessed 2026-11-01",
+      "accessed": "2026-11-01",
+      "kind": "webpage",
+      "note": "Used for body mass and length ranges, diet description, family group behavior, nocturnality and geographic history of the French population; verified against the cited article sections."
+    },
+    {
+      "id": "plos-beaver-behavior",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4552556/",
+      "title": "The use of acceleration to code for animal behaviours; a case study in free-ranging Eurasian beavers Castor fiber",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "attribution": "Graf et al. (2015), PLOS ONE 10(8): e0136751, https://doi.org/10.1371/journal.pone.0136751",
+      "accessed": "2026-11-01",
+      "kind": "literature",
+      "note": "The open article reports field-captured adult males (n=8, mean mass 21.7 kg) and females (n=4, mean mass 23.1 kg), and identifies walking, swimming, feeding and diving among recorded behaviors. The sexes-weighted mean is derived as (8*21.7 + 4*23.1)/12 = 22.17 kg."
+    },
+    {
+      "id": "plos-beaver-lifespan-context",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5716577/",
+      "title": "Age-related changes in somatic condition and reproduction in the Eurasian beaver: Resource history influences onset of reproductive senescence",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "attribution": "Campbell et al. (2017), PLOS ONE 12(11): e0188451, https://doi.org/10.1371/journal.pone.0188451",
+      "accessed": "2026-11-01",
+      "kind": "literature",
+      "note": "Introduction states wild longevity up to 20 years and mean age at death of dominant adults about 7 years in the studied Norwegian population. This population statistic is corroborative context only and is not treated as a species-wide typical lifespan."
+    },
+    {
+      "id": "gbif-activity-fr",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=4409131&country=FR&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Castor fiber in FR",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-11-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-11-01",
+      "kind": "api",
+      "note": "France-wide GBIF country query restricted to present records without geospatial issues and CC0/CC BY licences. Tier A, usable at min_obs=1000; total 39,710 includes records lacking a month. Month-bearing bins sum to 30,197 (Jan-Dec: 3338, 3919, 6421, 3799, 1680, 2158, 1696, 1419, 1360, 1358, 1459, 1530)."
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High",
+      "note": "GBIF returned accepted species-rank Castor fiber Linnaeus, 1758; independently checked against iNaturalist taxon 43793, active at species rank."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata-castor-fiber"
+      ],
+      "confidence": "High",
+      "note": "GBIF usage key 4409131 and iNaturalist taxon 43793 resolve at their own providers to accepted/active species-rank Castor fiber; Wikidata item Q181191 also carries these identifiers."
+    },
+    "common_names": {
+      "sources": [
+        "wikidata-castor-fiber"
+      ],
+      "confidence": "High"
+    },
+    "range": {
+      "sources": [
+        "wikipedia-eurasian-beaver"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "France retains the historical Rhône remnant and the species recolonized other basins after protection and 26 reintroduction operations; country-level native status reflects the indigenous remnant, while populations are not all naturally sourced."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High",
+      "note": "Vertebrate mammal."
+    },
+    "traits.limb_count": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High",
+      "note": "Four walking limbs, schema convention."
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "plos-beaver-behavior"
+      ],
+      "confidence": "High",
+      "note": "Study identifies walking and swimming in free-ranging Eurasian beavers."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High",
+      "note": "Endotherm is the standard mammalian condition."
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia-eurasian-beaver"
+      ],
+      "confidence": "Medium",
+      "note": "Fur description."
+    },
+    "traits.flight": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High",
+      "note": "No flight in this mammal."
+    },
+    "traits.respiration": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High",
+      "note": "Lungs, standard mammalian respiration."
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High",
+      "note": "Mammals do not undergo metamorphosis."
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia-eurasian-beaver"
+      ],
+      "confidence": "High",
+      "note": "Uses bank burrows and stick-and-mud lodges."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia-eurasian-beaver"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Perching is not applicable to this quadrupedal mammal."
+    },
+    "traits.size_class": {
+      "sources": [
+        "plos-beaver-behavior"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "22.17 kg is below the schema's 50 kg Medium/Large boundary."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "plos-beaver-behavior"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Weighted mean of adult males and females captured in one Norwegian population; sample-specific, not a global adult mean."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia-eurasian-beaver"
+      ],
+      "confidence": "Medium",
+      "note": "Article gives a broad weight range of 11-30 kg."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia-eurasian-beaver"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Midpoint total length from head-body 0.80-1.00 m plus tail 0.25-0.50 m: (1.05+1.50)/2 = 1.275 m."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "adw-castor-fiber",
+        "plos-beaver-lifespan-context"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Midpoint (7.5 y) of ADW's explicit Typical lifespan, Status: wild, 7 to 8 years. The PLOS study reports mean age at death c. 7 y among dominant adults in one Norway population, not a species-wide average. Its up-to-20-years statement is a maximum and is excluded. ADW is the only source found that directly labels a typical wild interval; CC BY PLOS is used as context, not as a substitute statistic."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia-eurasian-beaver",
+        "plos-beaver-behavior"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Both sources describe herbivory on woody browse and herbaceous/aquatic plants. The 0.8/0.2 browse/graze split is an authored simulation allocation, not a measured diet percentage."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia-eurasian-beaver",
+        "adw-castor-fiber"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Wikipedia identifies monogamous pairs; ADW reports colonies up to 12. The represented group range 2-12 is a bounded synthesis of those statements."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia-eurasian-beaver",
+        "plos-beaver-behavior"
+      ],
+      "confidence": "High",
+      "note": "PLOS study describes beavers as nocturnal; Wikipedia account also identifies nocturnal activity."
+    },
+    "traits.defense": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Flee is an authored simulation choice; sources describe territorial behavior, not a single primary defense mode."
+    },
+    "traits.wariness": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: 0.7 for a wary, nocturnal mammal often hidden in water or its lodge."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia-eurasian-beaver"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Semi-aquatic freshwater species; ground/aquatic shares (0.2/0.8) are authored."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia-eurasian-beaver"
+      ],
+      "confidence": "High",
+      "note": "Bank burrows and lodges."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia-eurasian-beaver",
+        "plos-beaver-behavior"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Woody browse and aquatic/herbaceous plants are documented foods. Resource weights reflect the authored 0.8/0.2 simulation allocation; water, burrow and pond are placements for freshwater access and shelter."
+    },
+    "habitat.requires": {
+      "sources": [
+        "wikipedia-eurasian-beaver"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Freshwater habitat is required; 60 m placement radius is authored."
+    },
+    "habitat.human_tolerance": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Conservative authored settings for a large semi-aquatic mammal; these are not measured."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "adw-castor-fiber"
+      ],
+      "confidence": "Medium",
+      "note": "ADW says active throughout the year; ActiveYearRound."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "adw-castor-fiber"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "ADW describes autumn food-cache building; Sep-Nov is an authored display window for FR."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia-eurasian-beaver"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Juvenile and adult are broad authored stages; no stage-specific durations asserted."
+    },
+    "behavior": {
+      "sources": [
+        "plos-beaver-behavior",
+        "wikipedia-eurasian-beaver"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Species-local behavior is authored from documented swimming and herbivory. Swimming uses wander with the swim gait; feeding uses a separate browse eat_nearest action on land."
+    },
+    "vocalizations": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "No vocalization data included."
+    },
+    "look": {
+      "sources": [
+        "wikipedia-eurasian-beaver"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Block-model judgement based on brown fur, stout body, short legs and flattened broad tail; colors and proportions are authored."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies maintainers",
+      "agent": "codex"
+    }
+  ]
+}
