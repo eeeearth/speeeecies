@@ -1,0 +1,293 @@
+{
+  "schema_version": 1,
+  "format": "speeeecies/behavior",
+  "id": "fsm-american-wigeon-v1",
+  "kind": "fsm",
+  "description": "A mostly diurnal dabbling duck that swims and feeds in wetlands, grazes nearby vegetation, rests at night, and can feed at night when hunger is high.",
+  "params": {
+    "flee_m": 12,
+    "water_food": "browse",
+    "land_food": "graze",
+    "animal_food": "invertebrate"
+  },
+  "initial": "day_swim",
+  "states": {
+    "day_swim": {
+      "action": {
+        "do": "wander",
+        "gait": "swim"
+      }
+    },
+    "feed_water": {
+      "action": {
+        "do": "eat_nearest",
+        "tag": "${water_food}",
+        "gait": "swim"
+      }
+    },
+    "feed_land": {
+      "action": {
+        "do": "eat_nearest",
+        "tag": "${land_food}",
+        "gait": "walk"
+      }
+    },
+    "feed_animals": {
+      "action": {
+        "do": "eat_nearest",
+        "tag": "${animal_food}",
+        "gait": "walk"
+      }
+    },
+    "flee": {
+      "action": {
+        "do": "flee",
+        "gait": "fly"
+      },
+      "min_dwell_s": 3
+    },
+    "rest_night": {
+      "action": {
+        "do": "rest",
+        "at": "shelter"
+      },
+      "min_dwell_s": 30
+    },
+    "feed_night": {
+      "action": {
+        "do": "eat_nearest",
+        "tag": "${land_food}",
+        "gait": "walk"
+      }
+    }
+  },
+  "transitions": [
+    {
+      "from": "*",
+      "to": "flee",
+      "when": {
+        "threat_within_m": "${flee_m}"
+      },
+      "priority": 100
+    },
+    {
+      "from": "day_swim",
+      "to": "rest_night",
+      "when": {
+        "sun_elevation_between_deg": [
+          -90,
+          -6
+        ]
+      },
+      "priority": 90
+    },
+    {
+      "from": "feed_water",
+      "to": "rest_night",
+      "when": {
+        "sun_elevation_between_deg": [
+          -90,
+          -6
+        ]
+      },
+      "priority": 90
+    },
+    {
+      "from": "feed_land",
+      "to": "rest_night",
+      "when": {
+        "sun_elevation_between_deg": [
+          -90,
+          -6
+        ]
+      },
+      "priority": 90
+    },
+    {
+      "from": "feed_animals",
+      "to": "rest_night",
+      "when": {
+        "sun_elevation_between_deg": [
+          -90,
+          -6
+        ]
+      },
+      "priority": 90
+    },
+    {
+      "from": "flee",
+      "to": "rest_night",
+      "when": {
+        "sun_elevation_between_deg": [
+          -90,
+          -6
+        ]
+      },
+      "priority": 90
+    },
+    {
+      "from": "rest_night",
+      "to": "feed_night",
+      "when": {
+        "all": [
+          {
+            "need": "hunger",
+            "gt": 0.7
+          },
+          {
+            "food_within_m": 30,
+            "tag": "${land_food}"
+          },
+          {
+            "sun_elevation_between_deg": [
+              -90,
+              -6
+            ]
+          }
+        ]
+      },
+      "priority": 85
+    },
+    {
+      "from": "rest_night",
+      "to": "day_swim",
+      "when": {
+        "sun_elevation_between_deg": [
+          -6,
+          90
+        ]
+      },
+      "priority": 80
+    },
+    {
+      "from": "flee",
+      "to": "day_swim",
+      "when": {
+        "all": [
+          {
+            "sun_elevation_between_deg": [
+              -6,
+              90
+            ]
+          },
+          {
+            "not": {
+              "threat_within_m": "${flee_m}"
+            }
+          }
+        ]
+      },
+      "priority": 80
+    },
+    {
+      "from": "day_swim",
+      "to": "feed_water",
+      "when": {
+        "all": [
+          {
+            "need": "hunger",
+            "gt": 0.45
+          },
+          {
+            "food_within_m": 30,
+            "tag": "${water_food}"
+          }
+        ]
+      }
+    },
+    {
+      "from": "day_swim",
+      "to": "feed_land",
+      "when": {
+        "all": [
+          {
+            "need": "hunger",
+            "gt": 0.45
+          },
+          {
+            "food_within_m": 30,
+            "tag": "${land_food}"
+          }
+        ]
+      }
+    },
+    {
+      "from": "day_swim",
+      "to": "feed_animals",
+      "when": {
+        "all": [
+          {
+            "need": "hunger",
+            "gt": 0.45
+          },
+          {
+            "food_within_m": 30,
+            "tag": "${animal_food}"
+          }
+        ]
+      }
+    },
+    {
+      "from": "feed_water",
+      "to": "day_swim",
+      "when": {
+        "need": "hunger",
+        "lt": 0.2
+      }
+    },
+    {
+      "from": "feed_land",
+      "to": "day_swim",
+      "when": {
+        "need": "hunger",
+        "lt": 0.2
+      }
+    },
+    {
+      "from": "feed_animals",
+      "to": "day_swim",
+      "when": {
+        "need": "hunger",
+        "lt": 0.2
+      }
+    },
+    {
+      "from": "feed_night",
+      "to": "rest_night",
+      "when": {
+        "any": [
+          {
+            "need": "hunger",
+            "lt": 0.2
+          },
+          {
+            "not": {
+              "food_within_m": 30,
+              "tag": "${land_food}"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "from": "feed_night",
+      "to": "day_swim",
+      "when": {
+        "all": [
+          {
+            "sun_elevation_between_deg": [
+              -6,
+              90
+            ]
+          },
+          {
+            "not": {
+              "threat_within_m": "${flee_m}"
+            }
+          }
+        ]
+      },
+      "priority": 80
+    }
+  ]
+}
