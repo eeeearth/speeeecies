@@ -1,0 +1,551 @@
+{
+  "$schema": "https://eeeearth.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Falco sparverius",
+  "slug": "falco-sparverius",
+  "common_names": {
+    "en": "American kestrel"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Falconiformes",
+    "family": "Falconidae",
+    "genus": "Falco",
+    "authority": "Linnaeus, 1758",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 9685907,
+    "inat_taxon_id": 4665,
+    "wikidata": "Q651545"
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "US",
+      "CA",
+      "MX"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Walk",
+      "Fly",
+      "Hover"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Cavity",
+    "perching": true,
+    "size_class": "Small",
+    "mass_kg": 0.12,
+    "mass_range_kg": [
+      0.08,
+      0.165
+    ],
+    "length_m": 0.265,
+    "wingspan_m": 0.56,
+    "lifespan_y": 1.25,
+    "diet": {
+      "invertebrate": 0.65,
+      "vertebrate": 0.35
+    },
+    "social": {
+      "structure": "Pair",
+      "group_size": [
+        1,
+        2
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.5
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.5,
+      "arboreal": 0.3,
+      "aerial": 0.2
+    },
+    "shelter_tag": "cavity",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.65
+      },
+      {
+        "tag": "small_vertebrate",
+        "kind": "Predation",
+        "weight": 0.35
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 1.0
+      },
+      {
+        "tag": "cavity",
+        "kind": "Nesting",
+        "weight": 1.0
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter"
+    }
+  },
+  "seasonal": {
+    "strategy": "PartialMigration",
+    "winter_fraction": 0.5,
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "04-15",
+        "end": "06-15",
+        "region": "US",
+        "note": "North American breeding season, mid-April to mid-June (ADW, CC BY-NC-SA; see provenance)."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg"
+      },
+      {
+        "stage": "Juvenile"
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US",
+        "monthly": [
+          0.94,
+          0.75,
+          0.59,
+          0.38,
+          0.23,
+          0.33,
+          0.36,
+          0.43,
+          0.65,
+          0.78,
+          0.93,
+          1.0
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 4335371,
+        "sources": [
+          "inat-activity-us",
+          "gbif-activity-us"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 1,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=4665&place_id=1&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=1&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "total": 11253,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "country",
+              "US"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=9685907&country=US&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&country=US&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 4324118,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-perch-hover-hunter-v1"
+  },
+  "vocalizations": [
+    {
+      "call_id": "klee",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "Day"
+      ],
+      "cooldown_s": 20,
+      "description": "The 'klee' or 'killy' call, given as a rapid series when the kestrel is upset or excited."
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 2.0,
+      "leg_length_ratio": 0.4,
+      "head_scale": 0.72,
+      "neck_angle_deg": 12,
+      "tail_ratio": 0.8,
+      "wing_aspect": 2.6,
+      "beak_ratio": 0.36,
+      "girth_ratio": 0.9
+    },
+    "palette": {
+      "body": "#b8643a",
+      "belly": "#e9c9a0",
+      "markings": "#2f4f7a",
+      "accent": "#1d1d1d",
+      "eye": "#2a1c0c"
+    },
+    "part_colors": {
+      "head": "body",
+      "breast": "belly",
+      "beak": "accent",
+      "tail": "markings"
+    },
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "fly": {},
+      "perched": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/9685907",
+      "title": "GBIF Backbone Taxonomy: Falco sparverius",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-11-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q651545",
+      "title": "Wikidata: American kestrel (Q651545)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-11-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/American_kestrel",
+      "title": "Wikipedia: American kestrel",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-11-01",
+      "attribution": "Wikipedia contributors, \"American kestrel\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "adw-falco-sparverius",
+      "url": "https://animaldiversity.org/accounts/Falco_sparverius/",
+      "title": "Animal Diversity Web: Falco sparverius (Townes 2014)",
+      "license": "CC-BY-NC-SA-3.0",
+      "kind": "webpage",
+      "accessed": "2026-11-01",
+      "attribution": "Townes, S. 2014. \"Falco sparverius\" (On-line), Animal Diversity Web. Accessed 2026-11-01 at https://animaldiversity.org/accounts/Falco_sparverius/. Used under CC BY-NC-SA 3.0.",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/3.0/",
+      "note": "Non-commercial last resort. Used only for the mean wild life expectancy, the North American breeding season and the diurnal hunting statement; no permissively licensed source gave these values."
+    },
+    {
+      "id": "inat-activity-us",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=4665&place_id=1&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Falco sparverius in US",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-11-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-us",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=9685907&country=US&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Falco sparverius in US",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-11-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-11-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High",
+      "note": "GBIF match and species record 9685907: Falco sparverius Linnaeus, 1758, rank SPECIES, status ACCEPTED, order Falconiformes, family Falconidae. iNaturalist taxon 4665 (rank species, active) checked 2026-11-01."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "gbif_usage_key 9685907 and inat_taxon_id 4665 checked at their providers. Wikidata Q651545 is the item for American kestrel."
+    },
+    "common_names": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Wikipedia: 'classed as least concern on the IUCN Red List'."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Only US, CA and MX are listed. Wikipedia names northern Canada, Alaska and the US as breeding range and describes Central and South American populations without a country list. Central and South American countries are omitted until a country-level source is checked."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "A bird (class Aves, per GBIF) with two legs and wings. Wikipedia covers the species' hunting and flight behaviour, which fits this body plan."
+    },
+    "traits.limb_count": {
+      "sources": [],
+      "confidence": "High",
+      "derived": true,
+      "note": "Two legs; follows from the bird body plan and the schema's limb-count convention for birds."
+    },
+    "traits.skin": {
+      "sources": [],
+      "confidence": "High",
+      "derived": true,
+      "note": "Feathers: inherent to class Aves, not separately sourced."
+    },
+    "traits.thermoregulation": {
+      "sources": [],
+      "confidence": "High",
+      "derived": true,
+      "note": "Endotherm: inherent to class Aves, not separately sourced."
+    },
+    "traits.respiration": {
+      "sources": [],
+      "confidence": "High",
+      "derived": true,
+      "note": "Lungs: inherent to class Aves, not separately sourced."
+    },
+    "traits.metamorphosis": {
+      "sources": [],
+      "confidence": "High",
+      "derived": true,
+      "note": "None: birds develop without metamorphosis, not separately sourced."
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Powered: Wikipedia describes hovering with rapid wing beats and kiting, which require powered flight."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Wikipedia: 'The American kestrel's primary mode of hunting is by perching and waiting for prey to come near.'"
+    },
+    "traits.size_class": {
+      "sources": [],
+      "confidence": "High",
+      "derived": true,
+      "note": "Small: computed from mass_kg 0.12 against the schema bound of 1 kg (Small < 1 kg, Tiny < 0.05 kg)."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Wikipedia: 'Most birds breeding in Canada and the northern United States migrate south in the winter ... Birds that breed south of about 35° north latitude are usually year-round residents.'"
+    },
+    "seasonal.winter_fraction": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: 0.5 is a placeholder for the share of the population that stays as winter residents. Wikipedia gives the 35 degree north residency rule but no population fraction. Not a measured figure."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Wikipedia Reproduction: 'Incubation usually lasts 30 days ... After 28–31 days, their wings have developed and they are able to leave the nest.' No juvenile duration is given as a number here."
+    },
+    "behavior": {
+      "sources": [
+        "wikipedia",
+        "adw-falco-sparverius"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Authored program fsm-perch-hover-hunter-v1 (species/falco-sparverius/behavior.json). Hunting modes: Wikipedia 'perching and waiting' and 'kiting, hovering'; ADW 'hovering, perch-hunting, and in-flight insect catching'. Month sets and transitions are judgement; see the program description."
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Wikipedia: hunts by 'kiting, hovering in the air with rapid wing beats and scanning the ground for prey' and by perching. Walk is judgement for ground movement."
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Wikipedia: 'American kestrels are cavity nesters ... also commonly utilize nesting boxes.'"
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Rounded midpoint of Wikipedia sex-specific ranges (male 80-143 g, female 86-165 g). Wikipedia gives no single typical mass."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Minimum 80 g (male) and maximum 165 g (female), from Wikipedia Description."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Midpoint of Wikipedia 22 to 31 cm."
+    },
+    "traits.wingspan_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Midpoint of Wikipedia 51 to 61 cm."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "adw-falco-sparverius"
+      ],
+      "confidence": "Low",
+      "note": "ADW (non-commercial, last resort): 'In the wild, their life expectancy is an average of 1 year and 3 months.' This is a mean life expectancy, not a typical adult lifespan. ADW's 'oldest recorded bird in the wild was 11 years' is a maximum and is not used. Wikipedia gives only '<5 years for wild birds'. No permissively licensed numeric value was found."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia",
+        "adw-falco-sparverius"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored allocation, not a measured diet. Wikipedia: 'grasshoppers and other insects, lizards, mice, and small birds'. ADW's single urban study gave 78% insects and 14% mammals, with winter diet shifting to small prey. Invertebrate 0.65 and vertebrate 0.35 are judgement, covering a summer insect-heavy diet and a winter small-vertebrate diet."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: pairs in the breeding season and solitary or loosely paired otherwise. Wikipedia describes seasonal sex differences in habitat use."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "adw-falco-sparverius"
+      ],
+      "confidence": "Medium",
+      "note": "ADW (non-commercial, last resort): 'American kestrels are diurnal hunters'. Wikipedia describes perch-and-wait hunting but does not state the diurnal pattern."
+    },
+    "traits.defense": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: flees to a new perch. The kestrel calls and mobs rarely; not sourced."
+    },
+    "traits.wariness": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: a midpoint value. Wikipedia describes urban and open-habitat use, which points away from high wariness."
+    },
+    "habitat": {
+      "sources": [
+        "wikipedia",
+        "adw-falco-sparverius"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Stratum shares and resource weights are judgement. Wikipedia: cavity nester, uses nesting boxes; ADW: open habitats and urban environments, tall perching sites for hunting."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "adw-falco-sparverius"
+      ],
+      "confidence": "Medium",
+      "note": "ADW (non-commercial, last resort): 'In North America, the breeding season ranges from mid-April to mid-June.' Wikipedia gives incubation and fledging durations but no calendar months."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Wikipedia: 'Most birds breeding in Canada and the northern United States migrate south in the winter ... Birds that breed south of about 35° north latitude are usually year-round residents.' Partial migration applies across the range."
+    },
+    "vocalizations": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Wikipedia: the 'klee' is usually delivered as a rapid series when the kestrel is upset or excited. The cooldown is judgement."
+    },
+    "look": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: small falcon proportions (long pointed wings, short legs) and rufous-and-blue-grey palette, to be checked in the previewer."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies contributor (Orca species worker)",
+      "agent": "claude-code"
+    }
+  ]
+}

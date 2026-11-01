@@ -1,0 +1,310 @@
+{
+  "format": "speeeecies/behavior",
+  "schema_version": 1,
+  "id": "fsm-perch-hover-hunter-v1",
+  "kind": "fsm",
+  "description": "A small perch-hunting falcon (American kestrel): perches on wires, poles and snags, hovers over open ground and drops onto insects, stoops from a perch onto small vertebrates, calls from the perch when upset, nests in cavities and nest boxes in the spring, and roosts in a cavity at night. Written for Falco sparverius: the shared perching-songbird program forages by hopping and sings, and the buteo raptor program stoops onto larger prey and does not hover. Month sets and day-night exits are written out per state below.",
+  "params": {
+    "flee_m": 40,
+    "calm_m": 100,
+    "food_tag": "invertebrate",
+    "vert_tag": "small_vertebrate",
+    "food_m": 60,
+    "perch_m": 60,
+    "nest_m": 40,
+    "call": "klee"
+  },
+  "initial": "perch",
+  "states": {
+    "perch": {
+      "action": {
+        "do": "perch_nearest"
+      },
+      "min_dwell_s": 20
+    },
+    "scan": {
+      "action": {
+        "do": "idle",
+        "kind": "scan"
+      },
+      "min_dwell_s": 15
+    },
+    "hover_hunt": {
+      "action": {
+        "do": "eat_nearest",
+        "tag": "${food_tag}",
+        "gait": "hover"
+      },
+      "min_dwell_s": 15
+    },
+    "stoop": {
+      "action": {
+        "do": "fly_to_nearest",
+        "tag": "${vert_tag}",
+        "gait": "fly"
+      }
+    },
+    "seize": {
+      "action": {
+        "do": "eat_nearest",
+        "tag": "${vert_tag}",
+        "gait": "fly"
+      },
+      "min_dwell_s": 20
+    },
+    "soar": {
+      "action": {
+        "do": "wander",
+        "gait": "fly"
+      },
+      "min_dwell_s": 25
+    },
+    "call_from_perch": {
+      "action": {
+        "do": "alarm",
+        "call": "${call}"
+      },
+      "min_dwell_s": 4
+    },
+    "incubate": {
+      "action": {
+        "do": "incubate"
+      },
+      "min_dwell_s": 30
+    },
+    "roost": {
+      "action": {
+        "do": "rest",
+        "at": "shelter"
+      },
+      "min_dwell_s": 120
+    },
+    "flee": {
+      "action": {
+        "do": "flee",
+        "gait": "fly"
+      },
+      "min_dwell_s": 3
+    }
+  },
+  "transitions": [
+    {
+      "from": "*",
+      "to": "flee",
+      "when": {
+        "threat_within_m": "${flee_m}"
+      },
+      "priority": 100
+    },
+    {
+      "from": "flee",
+      "to": "perch",
+      "when": {
+        "not": {
+          "threat_within_m": "${calm_m}"
+        }
+      }
+    },
+    {
+      "from": "*",
+      "to": "call_from_perch",
+      "when": {
+        "all": [
+          {
+            "need": "fear",
+            "gt": 0.4
+          },
+          {
+            "perch_within_m": "${perch_m}"
+          }
+        ]
+      },
+      "priority": 80
+    },
+    {
+      "from": "call_from_perch",
+      "to": "perch",
+      "when": {
+        "chance": 0.3
+      }
+    },
+    {
+      "from": "perch",
+      "to": "hover_hunt",
+      "when": {
+        "all": [
+          {
+            "need": "hunger",
+            "gt": 0.5
+          },
+          {
+            "food_within_m": "${food_m}",
+            "tag": "${food_tag}"
+          },
+          {
+            "sun_elevation_between_deg": [
+              5,
+              60
+            ]
+          }
+        ]
+      },
+      "priority": 70
+    },
+    {
+      "from": "perch",
+      "to": "stoop",
+      "when": {
+        "all": [
+          {
+            "need": "hunger",
+            "gt": 0.5
+          },
+          {
+            "food_within_m": "${food_m}",
+            "tag": "${vert_tag}"
+          },
+          {
+            "sun_elevation_between_deg": [
+              5,
+              60
+            ]
+          }
+        ]
+      },
+      "priority": 65
+    },
+    {
+      "from": "hover_hunt",
+      "to": "perch",
+      "when": {
+        "need": "hunger",
+        "lt": 0.3
+      }
+    },
+    {
+      "from": "stoop",
+      "to": "seize",
+      "when": {
+        "chance": 0.5
+      }
+    },
+    {
+      "from": "stoop",
+      "to": "perch",
+      "when": {
+        "chance": 0.5
+      }
+    },
+    {
+      "from": "seize",
+      "to": "perch",
+      "when": {
+        "need": "hunger",
+        "lt": 0.3
+      }
+    },
+    {
+      "from": "perch",
+      "to": "scan",
+      "when": {
+        "need": "hunger",
+        "lt": 0.5
+      },
+      "priority": 50
+    },
+    {
+      "from": "scan",
+      "to": "perch",
+      "when": {
+        "chance": 0.4
+      },
+      "priority": 50
+    },
+    {
+      "from": "*",
+      "to": "incubate",
+      "when": {
+        "all": [
+          {
+            "month_in": [
+              4,
+              5,
+              6,
+              7
+            ]
+          },
+          {
+            "nest_site_within_m": "${nest_m}"
+          }
+        ]
+      },
+      "priority": 60
+    },
+    {
+      "from": "incubate",
+      "to": "perch",
+      "when": {
+        "not": {
+          "month_in": [
+            4,
+            5,
+            6,
+            7
+          ]
+        }
+      }
+    },
+    {
+      "from": "*",
+      "to": "roost",
+      "when": {
+        "sun_elevation_between_deg": [
+          -18,
+          -6
+        ]
+      },
+      "priority": 40
+    },
+    {
+      "from": "roost",
+      "to": "perch",
+      "when": {
+        "sun_elevation_between_deg": [
+          0,
+          90
+        ]
+      },
+      "priority": 40
+    },
+    {
+      "from": "*",
+      "to": "soar",
+      "when": {
+        "all": [
+          {
+            "chance": 0.15
+          },
+          {
+            "sun_elevation_between_deg": [
+              10,
+              70
+            ]
+          },
+          {
+            "need": "energy",
+            "lt": 0.4
+          }
+        ]
+      },
+      "priority": 20
+    },
+    {
+      "from": "soar",
+      "to": "perch",
+      "when": {
+        "chance": 0.4
+      }
+    }
+  ]
+}
