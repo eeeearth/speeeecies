@@ -1,0 +1,611 @@
+{
+  "$schema": "https://eeeearth.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Mareca americana",
+  "slug": "mareca-americana",
+  "common_names": {
+    "en": "American wigeon"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Anseriformes",
+    "family": "Anatidae",
+    "genus": "Mareca",
+    "authority": "(J. F. Gmelin, 1789)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2498155,
+    "inat_taxon_id": 485176
+  },
+  "range": {
+    "native": [
+      "CA",
+      "MX",
+      "US"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Walk",
+      "Swim",
+      "Fly"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Ground",
+    "perching": false,
+    "size_class": "Small",
+    "mass_kg": 0.9975,
+    "mass_range_kg": [
+      0.665,
+      1.33
+    ],
+    "length_m": 0.515,
+    "wingspan_m": 0.84,
+    "lifespan_y": 2.0,
+    "diet": {
+      "browse": 0.75,
+      "invertebrate": 0.25
+    },
+    "social": {
+      "structure": "Flock",
+      "group_size": [
+        2,
+        100
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.7
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.35,
+      "aquatic": 0.65
+    },
+    "shelter_tag": "pond",
+    "resources": [
+      {
+        "tag": "browse",
+        "kind": "Herbivory",
+        "weight": 0.75
+      },
+      {
+        "tag": "graze",
+        "kind": "Herbivory",
+        "weight": 0.2
+      },
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.05
+      },
+      {
+        "tag": "pond",
+        "kind": "Shelter",
+        "weight": 1.0
+      },
+      {
+        "tag": "water",
+        "kind": "Water",
+        "weight": 1.0
+      }
+    ],
+    "requires": [
+      {
+        "resource_within_m": 100,
+        "tag": "pond"
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "notes": "Can graze urban turf grass, but this record still requires nearby pond habitat."
+    }
+  },
+  "seasonal": {
+    "strategy": "Migration",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "05-01",
+        "end": "08-31",
+        "region": "CA",
+        "note": "Broad northern breeding window, simplified for simulation."
+      },
+      {
+        "name": "absent",
+        "start": "05-01",
+        "end": "08-31",
+        "region": "MX",
+        "note": "Most of the migratory population shifts north to its breeding range; this broad seasonal absence window is a simulation simplification."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg"
+      },
+      {
+        "stage": "Juvenile"
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US",
+        "monthly": [
+          1.0,
+          0.84,
+          0.78,
+          0.3,
+          0.11,
+          0.08,
+          0.04,
+          0.06,
+          0.21,
+          0.63,
+          0.99,
+          0.94
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 2570981,
+        "sources": [
+          "inat-activity-us",
+          "gbif-activity-us"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 1,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=485176&place_id=1&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=1&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "total": 8396,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "country",
+              "US"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2498155&country=US&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&country=US&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 2562585,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-american-wigeon-v1"
+  },
+  "vocalizations": [],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 2.0,
+      "leg_length_ratio": 0.24,
+      "head_scale": 0.5,
+      "neck_angle_deg": 15,
+      "tail_ratio": 0.35,
+      "wing_aspect": 3.2,
+      "beak_ratio": 0.65
+    },
+    "palette": {
+      "body": "#8b7664",
+      "belly": "#d4cdbd",
+      "markings": "#315b4d",
+      "accent": "#e2ddc9",
+      "eye": "#141412"
+    },
+    "part_colors": {
+      "breast": "belly",
+      "wing_*": "markings",
+      "wing_*_outer": "accent",
+      "beak": "accent"
+    },
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "swim": {
+        "cycle_s": 2.2,
+        "amplitude": 0.2
+      },
+      "fly": {},
+      "rest": {}
+    },
+    "extra_parts": [
+      {
+        "name": "green_eye_patch",
+        "parent": "head",
+        "offset": [
+          0.1,
+          0,
+          0.48
+        ],
+        "size": [
+          0.5,
+          0.22,
+          0.35
+        ],
+        "color": "markings",
+        "mirror": true
+      },
+      {
+        "name": "white_cap",
+        "parent": "head",
+        "offset": [
+          0.08,
+          0.24,
+          0
+        ],
+        "size": [
+          0.68,
+          0.16,
+          0.7
+        ],
+        "color": "accent"
+      }
+    ]
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2498155",
+      "title": "GBIF Backbone Taxonomy: Mareca americana",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "accessed": "2026-11-01",
+      "kind": "database",
+      "note": "Accepted species; Anas americana resolves as its synonym."
+    },
+    {
+      "id": "inat-taxon",
+      "url": "https://api.inaturalist.org/v1/taxa/485176",
+      "title": "iNaturalist taxon: Mareca americana",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "attribution": "iNaturalist taxonomic data, accessed via the iNaturalist API",
+      "accessed": "2026-11-01",
+      "kind": "api",
+      "note": "Species rank and accepted name checked at the provider."
+    },
+    {
+      "id": "adw-american-wigeon",
+      "url": "https://animaldiversity.org/accounts/Anas_americana/",
+      "title": "American wigeon (Anas americana), Animal Diversity Web",
+      "license": "CC-BY-NC-SA-3.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/3.0/",
+      "attribution": "Taylor, S. 2002. Anas americana. Animal Diversity Web, University of Michigan. Account text under CC BY-NC-SA 3.0.",
+      "accessed": "2026-11-01",
+      "kind": "webpage",
+      "note": "NC last resort for typical wild lifespan and mass range. ADW sections 'Physical Description' and 'Lifespan/Longevity'; it cites Mowbray (1999), Birds of North America. Checked permissive alternatives: USFWS page supplies length and wingspan but no mass or typical-lifespan statistic; USDA Forest Service account has no lifespan statistic. Smithsonian reports a rounded 2-3 year wild lifespan, but its terms reserve page content unless marked CC0, and the species page is not marked CC0. No checked permissive source gives the sex-specific average wild lifespan or the mass range."
+    },
+    {
+      "id": "usfs-waterfowl",
+      "url": "https://www.fs.usda.gov/nrs/pubs/gtr/gtr_ne108.pdf",
+      "title": "American Wigeon, USDA Forest Service General Technical Report NE-108",
+      "license": "US-Gov-PD",
+      "accessed": "2026-11-01",
+      "kind": "literature",
+      "note": "Federal report; species account describes dabbling/grazing and shallow-water foods."
+    },
+    {
+      "id": "gbif-activity-us",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2498155&country=US&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Mareca americana in US",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-11-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-11-01",
+      "kind": "api"
+    },
+    {
+      "id": "usfws-wigeon",
+      "url": "https://www.fws.gov/species/american-wigeon-mareca-americana",
+      "title": "American Wigeon (Mareca americana), U.S. Fish & Wildlife Service",
+      "license": "US-Gov-PD",
+      "accessed": "2026-11-01",
+      "kind": "webpage",
+      "note": "Federal species page: physical description and measurements, wetland and feeding behaviour, wary flight response, Canadian breeding range and late-August/early-September southward migration."
+    },
+    {
+      "id": "inat-activity-us",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=485176&place_id=1&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Mareca americana in US",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-11-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High",
+      "note": "GBIF accepts Mareca americana at species rank; Anas americana key 2498154 is synonym to 2498155."
+    },
+    "external.gbif_usage_key": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High"
+    },
+    "external.inat_taxon_id": {
+      "sources": [
+        "inat-taxon"
+      ],
+      "confidence": "High",
+      "note": "Provider returns Mareca americana, species rank, id 485176."
+    },
+    "range.native": {
+      "sources": [
+        "usfws-wigeon"
+      ],
+      "confidence": "Medium",
+      "note": "Species account in USDA Forest Service report; the categorical mapping is authored from its North American distribution, body plan, shallow-water dabbling/grazing, and wetland habitat description."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "adw-american-wigeon"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "The ADW account directly reports typical wild lifespan 20.68-27.98 months and sex-specific means 1.7 y (female) and 2.3 y (male). Use their equal-weight arithmetic mean, 2.0 y, as a derived species value. The 21 y maximum is separate and was not used. NC-SA last resort; exact statistic is unavailable from checked permissive sources."
+    },
+    "traits.diet": {
+      "sources": [
+        "usfs-waterfowl"
+      ],
+      "confidence": "Medium",
+      "note": "Species account in USDA Forest Service report; the categorical mapping is authored from its North American distribution, body plan, shallow-water dabbling/grazing, and wetland habitat description."
+    },
+    "traits.social": {
+      "sources": [
+        "usfs-waterfowl"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Flock structure and simulated group-size bounds are authored approximations from the report’s migratory waterfowl account."
+    },
+    "traits.wariness": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored judgement for wild migratory waterfowl."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "adw-american-wigeon"
+      ],
+      "confidence": "High",
+      "note": "ADW behavior section says most activity occurs during the day."
+    },
+    "behavior": {
+      "sources": [
+        "adw-american-wigeon",
+        "usfs-waterfowl"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "USFWS supports feeding on submerged aquatic vegetation and land grazing, flushing when wary, and seasonal nocturnal feeding during hunting seasons. ADW supports the general pattern of daytime swimming/feeding. The program simplifies this to daylight activity/night rest, with no hunting-season state because the schema has no hunting-context trigger."
+    },
+    "look": {
+      "sources": [
+        "usfws-wigeon"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: stylized plumage palette and block proportions based on adult male/female physical descriptions."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "inat-taxon"
+      ],
+      "confidence": "High",
+      "note": "Provider identifiers checked on 2026-11-01."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "adw-american-wigeon"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Midpoint of ADW adult mass range 665-1330 g, converted to kg: (0.665+1.330)/2 = 0.9975 kg. This is an authored typical-mass proxy, not a reported mean. Public USFWS page gives no mass value."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "adw-american-wigeon"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "ADW range 665-1330 g converted to kg; the USFWS page does not provide mass."
+    },
+    "traits.length_m": {
+      "sources": [
+        "usfws-wigeon"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of USFWS-reported 42-59 cm length range, converted to metres: 0.505 m."
+    },
+    "traits.wingspan_m": {
+      "sources": [
+        "usfws-wigeon"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "USFWS-reported wingspan 84 cm converted to metres."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "usfws-wigeon"
+      ],
+      "confidence": "Medium",
+      "note": "Species account in USDA Forest Service report; the categorical mapping is authored from its North American distribution, body plan, shallow-water dabbling/grazing, and wetland habitat description."
+    },
+    "traits.limb_count": {
+      "sources": [
+        "usfws-wigeon"
+      ],
+      "confidence": "Medium",
+      "note": "Species account in USDA Forest Service report; the categorical mapping is authored from its North American distribution, body plan, shallow-water dabbling/grazing, and wetland habitat description."
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "usfws-wigeon"
+      ],
+      "confidence": "Medium",
+      "note": "Species account in USDA Forest Service report; the categorical mapping is authored from its North American distribution, body plan, shallow-water dabbling/grazing, and wetland habitat description."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "usfws-wigeon"
+      ],
+      "confidence": "Medium",
+      "note": "Species account in USDA Forest Service report; the categorical mapping is authored from its North American distribution, body plan, shallow-water dabbling/grazing, and wetland habitat description."
+    },
+    "traits.skin": {
+      "sources": [
+        "usfws-wigeon"
+      ],
+      "confidence": "Medium",
+      "note": "Species account in USDA Forest Service report; the categorical mapping is authored from its North American distribution, body plan, shallow-water dabbling/grazing, and wetland habitat description."
+    },
+    "traits.flight": {
+      "sources": [
+        "usfws-wigeon"
+      ],
+      "confidence": "Medium",
+      "note": "Species account in USDA Forest Service report; the categorical mapping is authored from its North American distribution, body plan, shallow-water dabbling/grazing, and wetland habitat description."
+    },
+    "traits.respiration": {
+      "sources": [
+        "usfws-wigeon"
+      ],
+      "confidence": "Medium",
+      "note": "Species account in USDA Forest Service report; the categorical mapping is authored from its North American distribution, body plan, shallow-water dabbling/grazing, and wetland habitat description."
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "usfws-wigeon"
+      ],
+      "confidence": "Medium",
+      "note": "Species account in USDA Forest Service report; the categorical mapping is authored from its North American distribution, body plan, shallow-water dabbling/grazing, and wetland habitat description."
+    },
+    "traits.nest_type": {
+      "sources": [
+        "usfws-wigeon"
+      ],
+      "confidence": "Medium",
+      "note": "Species account in USDA Forest Service report; the categorical mapping is authored from its North American distribution, body plan, shallow-water dabbling/grazing, and wetland habitat description."
+    },
+    "traits.perching": {
+      "sources": [
+        "usfws-wigeon"
+      ],
+      "confidence": "Medium",
+      "note": "Species account in USDA Forest Service report; the categorical mapping is authored from its North American distribution, body plan, shallow-water dabbling/grazing, and wetland habitat description."
+    },
+    "traits.size_class": {
+      "sources": [
+        "usfws-wigeon"
+      ],
+      "confidence": "Medium",
+      "note": "Species account in USDA Forest Service report; the categorical mapping is authored from its North American distribution, body plan, shallow-water dabbling/grazing, and wetland habitat description."
+    },
+    "habitat.use": {
+      "sources": [
+        "usfws-wigeon"
+      ],
+      "confidence": "Medium",
+      "note": "Species account in USDA Forest Service report; the categorical mapping is authored from its North American distribution, body plan, shallow-water dabbling/grazing, and wetland habitat description."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "usfws-wigeon"
+      ],
+      "confidence": "Medium",
+      "note": "Species account in USDA Forest Service report; the categorical mapping is authored from its North American distribution, body plan, shallow-water dabbling/grazing, and wetland habitat description."
+    },
+    "habitat.resources": {
+      "sources": [
+        "usfws-wigeon"
+      ],
+      "confidence": "Medium",
+      "note": "Species account in USDA Forest Service report; the categorical mapping is authored from its North American distribution, body plan, shallow-water dabbling/grazing, and wetland habitat description."
+    },
+    "habitat.requires": {
+      "sources": [
+        "usfws-wigeon"
+      ],
+      "confidence": "Medium",
+      "note": "Species account in USDA Forest Service report; the categorical mapping is authored from its North American distribution, body plan, shallow-water dabbling/grazing, and wetland habitat description."
+    },
+    "traits.defense": {
+      "sources": [
+        "usfws-wigeon"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored simulation choice: flee by flight for wary wild waterfowl."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "usfws-wigeon"
+      ],
+      "confidence": "Medium",
+      "note": "The USDA account gives separate breeding and winter ranges."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "usfws-wigeon"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "USFWS says nesting primarily in Canada and southward migration begins late August to early September, reaching winter grounds in Texas/Mexico and California. The broad absent window in Mexico and breeding window are authored month approximations."
+    },
+    "seasonal.life_stages": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Egg, juvenile and adult are the generic life stages represented; no duration values are asserted."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "usfws-wigeon"
+      ],
+      "confidence": "Medium",
+      "note": "USFWS reports grazing on turf grasses in urban areas; suitability is limited by the separate nearby-pond requirement."
+    },
+    "range": {
+      "sources": [
+        "usfws-wigeon"
+      ],
+      "confidence": "Medium",
+      "note": "Federal account documents the species range across North America."
+    }
+  }
+}
