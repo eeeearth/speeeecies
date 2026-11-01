@@ -1,0 +1,411 @@
+{
+  "$schema": "https://eeeearth.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Crithagra flaviventris",
+  "slug": "crithagra-flaviventris",
+  "common_names": {
+    "en": "Yellow Canary"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Passeriformes",
+    "family": "Fringillidae",
+    "genus": "Crithagra",
+    "authority": "(J.F.Gmelin, 1789)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 6100997,
+    "inat_taxon_id": 527609
+  },
+  "range": {
+    "native": [
+      "AO",
+      "BW",
+      "LS",
+      "NA",
+      "ZA"
+    ],
+    "introduced": [
+      "SH-AC",
+      "SH-HL"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Hop",
+      "Fly"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Cup",
+    "perching": true,
+    "size_class": "Tiny",
+    "mass_kg": 0.0162,
+    "length_m": 0.1,
+    "diet": {
+      "seed": 0.8,
+      "fruit": 0.1,
+      "invertebrate": 0.1
+    },
+    "social": {
+      "structure": "Flock",
+      "group_size": [
+        2,
+        30
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.25
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.6,
+      "arboreal": 0.4
+    },
+    "shelter_tag": "shrub_thicket",
+    "resources": [
+      {
+        "tag": "seed",
+        "kind": "Herbivory",
+        "weight": 0.8
+      },
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.1
+      },
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.1
+      },
+      {
+        "tag": "nest_cup",
+        "kind": "Nesting",
+        "weight": 1.0
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.6
+      },
+      {
+        "tag": "shrub_thicket",
+        "kind": "Shelter",
+        "weight": 0.6
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "uses_gardens": true,
+      "light_max": 0.5,
+      "notes": "Occurs in gardens and forages on the ground and in shrubs."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [],
+    "life_stages": [
+      {
+        "stage": "Egg"
+      },
+      {
+        "stage": "Juvenile"
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "ZA",
+        "monthly": [
+          0.63,
+          0.78,
+          0.84,
+          1.0,
+          0.94,
+          0.71,
+          0.78,
+          0.67,
+          0.84,
+          0.54,
+          0.35,
+          0.46
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 107864,
+        "sources": [
+          "inat-activity-za",
+          "gbif-activity-za"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "B",
+            "place_id": 6986,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=527609&place_id=6986&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=6986&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa",
+            "total": 315,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "country",
+              "ZA"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=6100997&country=ZA&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&country=ZA&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 107549,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "bt-yellow-canary-v1",
+    "params": {
+      "flee_m": 4,
+      "food_tag": "seed",
+      "song": "song",
+      "alarm": "alarm",
+      "song_cooldown_s": 8
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "song",
+      "context": "Song",
+      "season_months": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "time_windows": [
+        "DawnChorus",
+        "Day",
+        "Dusk"
+      ],
+      "cooldown_s": 8,
+      "loudness": "Moderate",
+      "description": "Warbled, twittering song; this is a qualitative call description."
+    },
+    {
+      "call_id": "alarm",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day",
+        "Dusk"
+      ],
+      "cooldown_s": 5,
+      "loudness": "Moderate",
+      "description": "Short sharp call; authored qualitative description."
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.3,
+      "leg_length_ratio": 0.25,
+      "head_scale": 0.9,
+      "neck_angle_deg": 10,
+      "tail_ratio": 0.4,
+      "wing_aspect": 2.2,
+      "beak_ratio": 0.3,
+      "girth_ratio": 1.0
+    },
+    "palette": {
+      "body": "#7a8550",
+      "belly": "#e4d96f",
+      "markings": "#5f6348",
+      "accent": "#d5c942",
+      "eye": "#1a1a1a"
+    },
+    "part_colors": {
+      "head": "accent",
+      "wing_*": "markings",
+      "tail": "markings",
+      "beak": "markings",
+      "leg_*": "markings"
+    },
+    "poses": {
+      "idle": {},
+      "hop": {},
+      "fly": {},
+      "perched": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-taxonomy",
+      "title": "GBIF Backbone Taxonomy: Crithagra flaviventris",
+      "url": "https://api.gbif.org/v1/species/6100997",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF Secretariat (2026). GBIF Backbone Taxonomy.",
+      "accessed": "2026-11-01"
+    },
+    {
+      "id": "inat-taxon",
+      "title": "iNaturalist taxon record 527609: Crithagra flaviventris",
+      "url": "https://api.inaturalist.org/v1/taxa/527609",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist, taxon 527609. Used only to provide the required iNaturalist identifier; no noncommercial observations or descriptive text are incorporated.",
+      "accessed": "2026-11-01"
+    },
+    {
+      "id": "wikipedia-yellow-canary",
+      "title": "Yellow canary",
+      "url": "https://en.wikipedia.org/wiki/Crithagra_flaviventris",
+      "license": "CC-BY-SA-4.0",
+      "attribution": "Wikipedia contributors, “Yellow canary,” accessed 2026-11-01. The description section is marked uncited; use only as provisional morphology and vocalization corroboration.",
+      "accessed": "2026-11-01"
+    },
+    {
+      "id": "avonet",
+      "title": "AVONET: morphological, ecological and geographical data for all birds",
+      "url": "https://doi.org/10.6084/m9.figshare.16586228.v7",
+      "license": "CC-BY-4.0",
+      "attribution": "Tobias et al. (2022), AVONET Supplementary dataset 1, Figshare, CC BY 4.0.",
+      "accessed": "2026-11-01"
+    },
+    {
+      "id": "scholer-survival",
+      "title": "Data from: A meta-analysis of global avian survival across species and latitude",
+      "url": "https://zenodo.org/records/3986104",
+      "license": "CC0-1.0",
+      "accessed": "2026-11-01"
+    },
+    {
+      "id": "inat-activity-za",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=527609&place_id=6986&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa",
+      "title": "iNaturalist observations histogram for Crithagra flaviventris in ZA",
+      "license": "CC-BY-SA-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA, via the iNaturalist API",
+      "accessed": "2026-11-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-za",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=6100997&country=ZA&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Crithagra flaviventris in ZA",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-11-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-11-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-taxonomy"
+      ],
+      "confidence": "High",
+      "note": "GBIF match: accepted species Crithagra flaviventris (J.F.Gmelin, 1789); former combination Serinus flaviventris is a synonym."
+    },
+    "external.gbif_usage_key": {
+      "sources": [
+        "gbif-taxonomy"
+      ],
+      "confidence": "High"
+    },
+    "external.inat_taxon_id": {
+      "sources": [
+        "inat-taxon"
+      ],
+      "confidence": "High",
+      "note": "Verified active iNaturalist species 527609."
+    },
+    "range": {
+      "sources": [
+        "wikipedia-yellow-canary"
+      ],
+      "confidence": "Medium",
+      "note": "Native southern African range includes South Africa, Namibia, Botswana, Lesotho and Angola; introduced on Ascension and Saint Helena. South Africa is the requested activity region."
+    },
+    "traits": {
+      "sources": [
+        "avonet",
+        "scholer-survival",
+        "wikipedia-yellow-canary"
+      ],
+      "confidence": "Medium",
+      "note": "AVONET row for Crithagra flaviventris (n=8 measured individuals) gives 16.2 g mass and 70.4 mm wing chord; the chord is not a wingspan. The required typical wild lifespan is unresolved: Scholer et al. CC0 dataset row X=594 reports site-level apparent annual breeding-adult survival 0.596 (SE 0.04), not lifespan, and permanent emigration may be confounded with mortality. No conversion is used. Length 0.10 m is from Wikipedia Description section, which is explicitly marked uncited; this remains low-confidence. Diet proportions, social group size, and wariness are authored simulation choices based on broad qualitative descriptions."
+    },
+    "habitat": {
+      "sources": [
+        "wikipedia-yellow-canary"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Judgement for ground/arboreal use and resource weights, based on qualitative seedeater and scrub-nesting description; no measured allocation."
+    },
+    "seasonal": {
+      "sources": [
+        "wikipedia-yellow-canary"
+      ],
+      "confidence": "Low",
+      "note": "The species is described as resident in much of its range, with local nomadism possible. No licensed, adequately sourced South African breeding calendar was found, so phases are empty pending evidence; schema requires at least one phase."
+    },
+    "vocalizations": {
+      "sources": [
+        "wikipedia-yellow-canary"
+      ],
+      "confidence": "Low",
+      "note": "Qualitative song and call descriptions; the Wikipedia section is uncited, so phonetic detail is provisional."
+    },
+    "look": {
+      "sources": [
+        "wikipedia-yellow-canary"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Rendering palette/proportions are authored judgement from the page description; geographic plumage variation and sex differences are simplified."
+    },
+    "behavior": {
+      "sources": [
+        "wikipedia-yellow-canary"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Local behavior preserves reachable hop seed-feeding, flight, perching, alarm/flee, rest at night, and cup-nest building without an unsupported fixed month set. This does not solve missing source-supported phenology."
+    },
+    "external": {
+      "sources": [
+        "gbif-taxonomy",
+        "inat-taxon"
+      ],
+      "confidence": "High",
+      "note": "GBIF and iNaturalist identifiers directly checked on 2026-11-01."
+    }
+  }
+}
