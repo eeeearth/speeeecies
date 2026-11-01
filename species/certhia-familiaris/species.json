@@ -191,14 +191,14 @@
   "look": {
     "body_plan": "biped_winged",
     "proportions": {
-      "torso_aspect": 1.8,
-      "leg_length_ratio": 0.3,
+      "torso_aspect": 1.4,
+      "leg_length_ratio": 0.35,
       "head_scale": 0.75,
-      "neck_angle_deg": 20,
+      "neck_angle_deg": 45,
       "tail_ratio": 0.6,
-      "wing_aspect": 3.0,
-      "beak_ratio": 0.6,
-      "girth_ratio": 0.9
+      "wing_aspect": 1.4,
+      "beak_ratio": 0.5,
+      "girth_ratio": 0.8
     },
     "palette": {
       "body": "#6b5a43",
@@ -308,7 +308,7 @@
       ],
       "confidence": "Low",
       "derived": true,
-      "note": "Partial list. Wikipedia says the species breeds in temperate woodland across the Palearctic from Ireland to Japan, and names the British Isles. Other countries are NOT yet supported by a permissive source; the list is a known gap."
+      "note": "Native list covers GB and IE only, the scope of this contribution. Wikipedia says the species breeds across the Palearctic from Ireland to Japan, which is not enumerated here."
     },
     "traits.length_m": {
       "sources": [
@@ -365,7 +365,7 @@
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "EltonTraits Diet-Inv 60, Diet-Seed 40. Wikipedia describes invertebrates as the primary diet and conifer seeds only as a colder-months addition, so the seed share is in tension with the text. Reviewer decision needed."
+      "note": "EltonTraits Diet-Inv 60, Diet-Seed 40 (BirdFuncDat row, CC0). Wikipedia calls invertebrates the primary diet and says conifer seeds are added in colder months, so the 0.4 seed share is the source value but likely high for a whole year. Kept as sourced; flagged for reviewer decision."
     },
     "traits.social": {
       "sources": [
@@ -430,9 +430,9 @@
       "sources": [
         "wikipedia"
       ],
-      "confidence": "Low",
+      "confidence": "Medium",
       "derived": true,
-      "note": "Scoped to GB. Wikipedia: non-migratory in the milder west and south of the breeding range, while northern birds move south in winter. A species-wide PartialMigration needs a winter_fraction that no source gives, so GB is recorded as ActiveYearRound. Known simplification; reviewer decision needed."
+      "note": "Scoped to the GB/IE western resident population only. Wikipedia: non-migratory in the milder west and south of the breeding range; northern birds move south in winter and mountain birds descend. The species-wide strategy is PartialMigration, which this schema would require with a winter_fraction that no source gives. Do not read ActiveYearRound as a species-wide claim."
     },
     "seasonal.phases": {
       "sources": [
@@ -471,7 +471,7 @@
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "Species-local program bt-treecreeper-trunk-v1 (behavior.json). Climb gait for foraging on trunks (Feeding, Habits), flight for fleeing, March to June nest window (Breeding). Derived from the shared bt-perching-songbird-v1 with the food gait changed from hop to climb. Climb has no built-in pose, so trunk creeping renders with the idle pose."
+      "note": "Species-local program bt-treecreeper-trunk-v1 (behavior.json), derived from bt-perching-songbird-v1. Climb gait for foraging on trunks (Feeding, Habits); flight for fleeing; nest actions in March to June (Breeding). Changes from the shared program: food gait hop to climb; the alarm action is removed because no sourced alarm call exists. Rendering limit: Climb has no built-in pose, so trunk creeping shows the idle pose."
     },
     "look": {
       "sources": [
