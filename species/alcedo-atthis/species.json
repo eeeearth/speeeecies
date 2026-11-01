@@ -1,0 +1,629 @@
+{
+  "$schema": "https://eeeearth.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Alcedo atthis",
+  "slug": "alcedo-atthis",
+  "common_names": {
+    "en": "Common kingfisher",
+    "fr": "Martin-pêcheur d'Europe",
+    "de": "Eisvogel",
+    "nl": "ijsvogel"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Coraciiformes",
+    "family": "Alcedinidae",
+    "genus": "Alcedo",
+    "authority": "(Linnaeus, 1758)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2475532,
+    "inat_taxon_id": 2599,
+    "itis_tsn": 554549,
+    "wikidata": "Q79915",
+    "ncbi_taxon_id": 36245,
+    "ebird_code": "comkin1"
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "AF",
+      "AL",
+      "AM",
+      "AT",
+      "AZ",
+      "BA",
+      "BE",
+      "BG",
+      "BY",
+      "CH",
+      "CN",
+      "CY",
+      "CZ",
+      "DE",
+      "DK",
+      "DZ",
+      "EE",
+      "ES",
+      "FR",
+      "GB",
+      "GE",
+      "GR",
+      "HR",
+      "HU",
+      "ID",
+      "IE",
+      "IL",
+      "IN",
+      "IQ",
+      "IT",
+      "JP",
+      "KR",
+      "LK",
+      "LT",
+      "LU",
+      "LV",
+      "MA",
+      "MD",
+      "ME",
+      "MK",
+      "MN",
+      "MY",
+      "NL",
+      "NO",
+      "OM",
+      "PH",
+      "PK",
+      "PL",
+      "PT",
+      "RO",
+      "RS",
+      "RU",
+      "SD",
+      "SE",
+      "SI",
+      "SK",
+      "TN",
+      "TR",
+      "UA",
+      "YE"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Fly"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Burrow",
+    "perching": true,
+    "size_class": "Tiny",
+    "mass_kg": 0.0311,
+    "length_m": 0.16,
+    "wingspan_m": 0.25,
+    "lifespan_y": 1.3,
+    "diet": {
+      "invertebrate": 0.3,
+      "fish": 0.7
+    },
+    "social": {
+      "structure": "Solitary",
+      "group_size": [
+        1,
+        2
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.5
+  },
+  "habitat": {
+    "use": {
+      "arboreal": 0.5,
+      "aerial": 0.5
+    },
+    "shelter_tag": "shrub_thicket",
+    "resources": [
+      {
+        "tag": "small_vertebrate",
+        "kind": "Predation",
+        "weight": 0.7
+      },
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.3
+      },
+      {
+        "tag": "water",
+        "kind": "Water",
+        "weight": 1.0
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.8
+      },
+      {
+        "tag": "burrow",
+        "kind": "Nesting",
+        "weight": 1.0
+      },
+      {
+        "tag": "shrub_thicket",
+        "kind": "Shelter",
+        "weight": 0.6
+      }
+    ],
+    "requires": [
+      {
+        "resource_within_m": 100,
+        "tag": "water"
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Avoider",
+      "light_max": 0.3,
+      "notes": "Wikipedia: tolerates some urbanisation provided the water stays clean. Strict Avoider rating is a judgement."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "moult",
+        "start": "07-01",
+        "end": "11-30",
+        "note": "Wikipedia: feathers are moulted gradually between July and November; main flight feathers take 90-100 days to regrow. Breeding dates for IN are not sourced and no breeding phase is recorded."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg"
+      },
+      {
+        "stage": "Juvenile"
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "IN",
+        "monthly": [
+          1.0,
+          0.65,
+          0.78,
+          0.49,
+          0.64,
+          0.65,
+          0.61,
+          0.66,
+          0.64,
+          0.77,
+          0.92,
+          1.0
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 239598,
+        "sources": [
+          "inat-activity-in",
+          "gbif-activity-in"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 6681,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=2599&place_id=6681&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=6681&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "total": 542,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "country",
+              "IN"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2475532&country=IN&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&country=IN&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 239056,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "bt-perch-sally-kingfisher-v1",
+    "params": {}
+  },
+  "vocalizations": [],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.2,
+      "leg_length_ratio": 0.2,
+      "head_scale": 1.0,
+      "neck_angle_deg": 5,
+      "tail_ratio": 0.35,
+      "wing_aspect": 2.2,
+      "beak_ratio": 0.9,
+      "girth_ratio": 1.0
+    },
+    "palette": {
+      "body": "#1f6fc0",
+      "belly": "#c8642e",
+      "markings": "#f4f4ee",
+      "accent": "#d8352b",
+      "eye": "#111111"
+    },
+    "part_colors": {
+      "breast": "belly",
+      "head": "body",
+      "beak": "eye",
+      "leg_*": "accent",
+      "wing_*": "body",
+      "tail": "body"
+    },
+    "extra_parts": [
+      {
+        "name": "throat",
+        "parent": "head",
+        "offset": [
+          0.3,
+          -0.12,
+          0
+        ],
+        "size": [
+          0.35,
+          0.3,
+          0.6
+        ],
+        "color": "markings"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "fly": {},
+      "perched": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2475532",
+      "title": "GBIF Backbone Taxonomy: Alcedo atthis (usageKey 2475532)",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-11-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=554549",
+      "title": "ITIS: Alcedo atthis, TSN 554549",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-11-01",
+      "note": "US federal government database; public domain in the United States."
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q79915",
+      "title": "Wikidata: Common Kingfisher (Q79915)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-11-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Common_kingfisher",
+      "title": "Wikipedia: Common kingfisher",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-11-01",
+      "attribution": "Wikipedia contributors, \"Common kingfisher\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "eltontraits",
+      "url": "https://doi.org/10.6084/m9.figshare.3559887.v1",
+      "title": "EltonTraits 1.0: species-level foraging attributes of the world's birds and mammals (BirdFuncDat.txt, SpecID 1546)",
+      "license": "CC0-1.0",
+      "kind": "dataset",
+      "accessed": "2026-11-01",
+      "attribution": "Wilman, H. et al. (2014) EltonTraits 1.0. Ecology 95:2027",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "inat-activity-in",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=2599&place_id=6681&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Alcedo atthis in IN",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-11-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-in",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2475532&country=IN&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Alcedo atthis in IN",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-11-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-11-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "itis"
+      ],
+      "confidence": "High",
+      "note": "GBIF usageKey 2475532 and ITIS TSN 554549 both Alcedo atthis (Linnaeus, 1758), accepted. Checked 2026-11-01."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "iNaturalist taxon 2599 (species rank, active), eBird comkin1, NCBI 36245 via Wikidata P3151, P3444, P685."
+    },
+    "common_names": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Wikipedia: evaluated as least concern."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Country list derived from Wikipedia's subspecies range sentences (Ireland, Spain, southern Norway to Romania and western Russia; northwestern Africa; southern Italy; Afghanistan, Kashmir, northern Xinjiang, Siberia; India to Japan, Mongolia, Sri Lanka, Indonesia, Philippines) and filled in across the named band. GBIF country counts (occurrence search, 2026-11-01) used only as a cross-check; they include vagrants and introductions. Not a verified distribution atlas."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Wikipedia describes a feathered bird; vertebrate and two walking limbs are class-level facts."
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Bird: wings not counted; two legs (schema convention)."
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Wikipedia Description: flight is fast, direct and usually low over water. Only Fly is declared; the species-local program makes no walking or hopping action."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Bird class-level endothermy."
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Powered flight: Wikipedia Description."
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Bird class-level lungs."
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "No larval stage."
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Wikipedia Breeding: nest in a burrow excavated in a riverbank, or a quarry or cutting."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Wikipedia Feeding: hunts from a perch 1-2 m above the water."
+    },
+    "traits.size_class": {
+      "sources": [
+        "eltontraits"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg (Tiny < 0.05 kg)."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "eltontraits"
+      ],
+      "confidence": "Medium",
+      "note": "EltonTraits BirdFuncDat.txt, SpecID 1546: BodyMass-Value 31.09 g, source Dunning08 (CRC Handbook of Avian Body Masses). Wikipedia gives 34-46 g for adults; the two differ and the EltonTraits point value is used as the single-source mean."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Wikipedia: about 16 cm long."
+    },
+    "traits.wingspan_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Wikipedia: wingspan of 25 cm."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Not a published mean. Wikipedia Survival: only about a quarter of young survive to breed the following year, and only about a quarter of adults survive from one breeding season to the next. Under a constant annual survival s = 0.25, mean lifespan from birth is 1/(1-s) = 1.33 years, recorded as 1.3. The 21-year oldest record is a maximum and is not used. ADW's 'average lifespan 7 years' was not used: it is from a CC BY-NC-SA 3.0 source and conflicts with the survival figures above."
+    },
+    "traits.diet": {
+      "sources": [
+        "eltontraits"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "EltonTraits Diet-Inv 30 -> invertebrate 0.3; Diet-Vfish 70 -> fish 0.7 (percent divided by 100). Wikipedia: about 60% of food items are fish; 97% of Central European diet was fish, so fish share is likely higher in some populations."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Wikipedia Breeding: solitary for most of the year, pairs form in autumn; group_size 1-2 is a summary."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "eltontraits"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "EltonTraits Nocturnal = 0 (diurnal). Wikipedia describes daytime perch-and-dive feeding."
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "note": "Judgement: flees, flight is the main response (Wikipedia Description and Behaviour)."
+    },
+    "traits.wariness": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "judgement"
+    },
+    "habitat": {
+      "sources": [
+        "wikipedia",
+        "eltontraits"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "EltonTraits ForStrat-watbelowsurf 100 (feeding stratum water below surface); Wikipedia: hunts from a perch 1-2 m above water, roosts alone in heavy cover, territories along rivers and lakes. Resource weights and the water hard requirement (100 m) are authored."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Wikipedia: tolerates some urbanisation provided the water remains clean. Urban affinity and light values are judgement."
+    },
+    "seasonal": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "note": "Wikipedia: resident where winters are mild, but northern populations migrate after breeding. No sourced winter fraction or migration dates, so the record is year-round and migration is not modelled."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Wikipedia Description: moult July to November. No breeding dates for India."
+    },
+    "activity": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Monthly curve from tools/fetch_activity.py; see activity.regions[].sources."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Species-local bt-perch-sally-kingfisher-v1 in behavior.json: perch, fly to fish, eat, roost in cover at night, flee by flight. Adapted from the perch-and-sally program of tyrannus-forficatus. Dive mechanics are not modelled; see behavior.json description and PR limitations. Parameters are judgement."
+    },
+    "vocalizations": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Wikipedia Description: the common kingfisher has no song. Flight call is a short sharp whistle; not wired to a behaviour branch, so the program is silent."
+    },
+    "look": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "judgement: blue upperparts, rufous underparts, white throat and red legs from Wikipedia Description; block proportions are authored."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies maintainers",
+      "agent": "claude-code"
+    }
+  ]
+}

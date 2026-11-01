@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "format": "speeeecies/behavior",
+  "id": "bt-perch-sally-kingfisher-v1",
+  "kind": "bt",
+  "description": "Common kingfisher (Alcedo atthis): perches over water, takes off to fish prey it has seen, eats it on a perch, roosts in cover at night and flees a threat by flight. Written for Alcedo atthis because the shared perching-songbird program adds song, hopping foraging and cup nesting, and the shared seabird program walks to prey. The perch-and-sally structure follows the species-local tyrannus-forficatus program. Representation limit: the plunge dive into water is not modelled; the animal flies to the prey and eats it. No nesting branch is included because a burrow excavation action does not exist, so no nesting months are enabled. No song or call branch is included because the species has no song.",
+  "params": {
+    "flee_m": 15,
+    "food_tag": "small_vertebrate",
+    "food_m": 40,
+    "sally_cooldown_s": 6
+  },
+  "root": {
+    "selector": [
+      {"sequence": [
+        {"cond": {"threat_within_m": "${flee_m}"}},
+        {"act": {"do": "take_off"}},
+        {"act": {"do": "flee", "gait": "fly"}}
+      ]},
+      {"sequence": [
+        {"cond": {"need": "fear", "gt": 0.2}},
+        {"act": {"do": "take_off"}},
+        {"act": {"do": "flee", "gait": "fly"}}
+      ]},
+      {"sequence": [
+        {"cond": {"player_touch": true}},
+        {"act": {"do": "tolerate_touch"}}
+      ]},
+      {"sequence": [
+        {"cond": {"is_day": false}},
+        {"act": {"do": "perch_nearest", "tag": "shelter"}},
+        {"act": {"do": "rest"}}
+      ]},
+      {"sequence": [
+        {"cond": {"need": "hunger", "gt": 0.4}},
+        {"act": {"do": "perch_nearest"}},
+        {"act": {"do": "take_off"}},
+        {"act": {"do": "fly_to_nearest", "tag": "${food_tag}"}},
+        {"act": {"do": "eat_nearest", "tag": "${food_tag}"}}
+      ]},
+      {"act": {"do": "perch_nearest"}},
+      {"cooldown_s": "${sally_cooldown_s}", "child": {"sequence": [
+        {"cond": {"food_within_m": "${food_m}", "tag": "${food_tag}"}},
+        {"act": {"do": "take_off"}},
+        {"act": {"do": "fly_to_nearest", "tag": "${food_tag}"}},
+        {"act": {"do": "eat_nearest", "tag": "${food_tag}"}}
+      ]}},
+      {"act": {"do": "idle"}}
+    ]
+  }
+}
