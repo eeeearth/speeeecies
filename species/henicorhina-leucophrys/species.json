@@ -1,0 +1,562 @@
+{
+  "$schema": "https://eeeearth.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Henicorhina leucophrys",
+  "slug": "henicorhina-leucophrys",
+  "common_names": {
+    "en": "Gray-breasted Wood-Wren"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Passeriformes",
+    "family": "Troglodytidae",
+    "genus": "Henicorhina",
+    "authority": "(Tschudi, 1844)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2493957,
+    "inat_taxon_id": 597354
+  },
+  "range": {
+    "native": [
+      "CO"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Hop",
+      "Fly"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Cavity",
+    "perching": true,
+    "size_class": "Tiny",
+    "mass_kg": 0.01619,
+    "length_m": 0.1075,
+    "diet": {
+      "invertebrate": 1.0
+    },
+    "social": {
+      "structure": "Pair",
+      "group_size": [
+        1,
+        4
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Hide",
+    "wariness": 0.65
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.55,
+      "arboreal": 0.45
+    },
+    "shelter_tag": "shrub_thicket",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 1.0
+      },
+      {
+        "tag": "shrub_thicket",
+        "kind": "Shelter",
+        "weight": 0.8
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.3
+      },
+      {
+        "tag": "nest_cup",
+        "kind": "Nesting",
+        "weight": 0.7
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Avoider",
+      "uses_gardens": false,
+      "light_max": 0.25,
+      "notes": "A skulking bird of humid montane forest and dense low vegetation; use of urban gardens is not supported by the consulted sources."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "04-01",
+        "end": "06-30",
+        "region": "CO",
+        "note": "Main reported Colombian breeding activity; source p. 293."
+      },
+      {
+        "name": "breeding",
+        "start": "12-01",
+        "end": "05-31",
+        "region": "CO-HUI",
+        "note": "Additional records in Huila; source p. 293."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Adult"
+      },
+      {
+        "stage": "Egg",
+        "requires_tag": "nest_cup"
+      },
+      {
+        "stage": "Juvenile",
+        "scale": 0.75
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "CO",
+        "monthly": [
+          0.98,
+          0.94,
+          0.92,
+          0.66,
+          1.0,
+          0.63,
+          0.74,
+          0.71,
+          0.62,
+          0.92,
+          0.89,
+          0.89
+        ],
+        "method": "gbif_share",
+        "observations": 88046,
+        "sources": [
+          "gbif-activity-co"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 7196,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=597354&place_id=7196&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=7196&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 329,
+            "usable": true,
+            "excluded_reason": "Tier C includes CC BY-NC observations; excluded because usable tier A GBIF data were sufficient."
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "country",
+              "CO"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2493957&country=CO&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&country=CO&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 88046,
+            "usable": true
+          },
+          "used": [
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "bt-wood-wren-v1"
+  },
+  "vocalizations": [
+    {
+      "call_id": "song",
+      "context": "Song",
+      "season_months": [],
+      "time_windows": [],
+      "cooldown_s": 8,
+      "description": "Loud, ringing, energetic, repeated musical phrases; reported throughout the year and day."
+    },
+    {
+      "call_id": "alarm",
+      "context": "Alarm",
+      "season_months": [],
+      "time_windows": [],
+      "cooldown_s": 4,
+      "description": "One or more rough, stony churr calls."
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.15,
+      "leg_length_ratio": 0.28,
+      "head_scale": 0.82,
+      "tail_ratio": 0.3,
+      "wing_aspect": 1.8,
+      "beak_ratio": 0.32
+    },
+    "palette": {
+      "body": "#665344",
+      "belly": "#8b8176",
+      "markings": "#342b27",
+      "accent": "#d8d0be",
+      "eye": "#211a15"
+    },
+    "part_colors": {
+      "wing_*": "markings",
+      "tail": "markings",
+      "beak": "eye"
+    },
+    "extra_parts": [
+      {
+        "name": "supercilium",
+        "parent": "head",
+        "offset": [
+          0.14,
+          0.04,
+          0
+        ],
+        "size": [
+          0.65,
+          0.1,
+          1.0
+        ],
+        "color": "accent"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "hop": {},
+      "fly": {},
+      "perched": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif",
+      "url": "https://api.gbif.org/v1/species/2493957",
+      "title": "GBIF Backbone Taxonomy: Henicorhina leucophrys",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei",
+      "accessed": "2026-11-01",
+      "kind": "database"
+    },
+    {
+      "id": "inat",
+      "url": "https://api.inaturalist.org/v1/taxa/597354",
+      "title": "iNaturalist taxon: Henicorhina leucophrys",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "attribution": "iNaturalist contributors, via iNaturalist API",
+      "accessed": "2026-11-01",
+      "kind": "api"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Grey-breasted_wood_wren",
+      "title": "Grey-breasted wood wren",
+      "license": "CC-BY-SA-4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "attribution": "Wikipedia contributors, ‘Grey-breasted wood wren’, English Wikipedia, CC BY-SA 4.0",
+      "accessed": "2026-11-01",
+      "kind": "webpage"
+    },
+    {
+      "id": "gbif-activity-co",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2493957&country=CO&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Henicorhina leucophrys in CO",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-11-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-11-01",
+      "kind": "api"
+    },
+    {
+      "id": "sibundoy-guide",
+      "url": "https://www.corpoamazonia.gov.co/images/Publicaciones/2.%202013_Aves_Sibundoy/Aves%20de%20sibundoy%202014.pdf",
+      "title": "Aves del Valle de Sibundoy, Alto Putumayo, Colombia: Guía de Campo",
+      "license": "CC-BY-NC-4.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+      "attribution": "Gutiérrez Zamora, Mueses-Cisneros, Ramírez-Enríquez, and Perdomo-Castillo, Aves del Valle de Sibundoy, Alto Putumayo, Colombia, p. 293, CC BY-NC 4.0",
+      "accessed": "2026-11-01",
+      "kind": "literature",
+      "note": "Used as a last resort only for Colombia-specific breeding timing, after permissively licensed sources and provider data did not give the requested country-specific calendar."
+    },
+    {
+      "id": "scholer-data",
+      "url": "https://zenodo.org/records/3986104",
+      "title": "Data from: A meta-analysis of global avian survival across species and latitude",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "accessed": "2026-11-01",
+      "kind": "dataset",
+      "note": "ELEscholer2020_data.csv, X=695, Parker et al. (2006), Colonche Hills, Ecuador; row lists apparent survival 0.86, SE 0.10, mark-recapture, duration 6 years. Used for the dataset mass estimate only; it does not support typical lifespan."
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif",
+        "inat"
+      ],
+      "confidence": "High",
+      "note": "Both providers return this exact species at species rank; GBIF usage key 2493957 and iNaturalist taxon 597354 checked 2026-11-01."
+    },
+    "external": {
+      "sources": [
+        "gbif",
+        "inat"
+      ],
+      "confidence": "High"
+    },
+    "common_names": {
+      "sources": [
+        "inat"
+      ],
+      "confidence": "High"
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Scope is limited to requested CO. Wikipedia distribution describes the natural montane range extending through the Andes and to Venezuela and Bolivia; Colombia lies in that range. The record does not claim a complete global country list."
+    },
+    "behavior": {
+      "sources": [
+        "wikipedia",
+        "sibundoy-guide"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Species-local copy of the shared perching-songbird tree. Movement and food fit: hop on ground/low vegetation, eat invertebrates, powered flight, perching, alarm/flee, night shelter. The Colombia breeding gate uses explicit months [12,1,2,3,4,5,6], the union of the main April-June Colombian period and the Huila December-May observations. Night branch exits to sheltered rest. Daytime song is allowed throughout daylight, matching the account that it sings year-round and through the day. No claim is made about nesting outside Colombia because this record only has a CO activity curve."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Authored stylized palette and proportions from the described gray-brown plumage, pale gray breast and long gray-white supercilium; mesh ratios are judgement."
+    },
+    "activity.CO": {
+      "sources": [
+        "gbif-activity-co"
+      ],
+      "confidence": "High",
+      "note": "Country-level GBIF occurrence query for accepted species key 2493957, present human observations, no flagged geospatial issue, month facet and CC0/CC BY only. 88,046 records overall, of which 87,503 have a month (543 do not); all twelve month counts are nonzero (Jan-Dec: 8662, 8308, 8135, 5799, 8837, 5549, 6546, 6272, 5495, 8166, 7844, 7890). iNaturalist tier C (329 records; includes NC licences) was excluded because GBIF tier A alone exceeds threshold."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Resident, year-round singing and activity: Wikipedia Behavior and Vocalization sections state year-round song; no migration evidence identified for the requested country."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "sibundoy-guide"
+      ],
+      "confidence": "Medium",
+      "note": "Aves del Valle de Sibundoy p. 293 reports Colombian breeding primarily April-June and additional Huila records December-May. This species-specific calendar source is CC BY-NC 4.0 and was used as a last resort after Wikipedia (CC BY-SA) and provider records gave no Colombia-specific dates; keep the NC provenance limited to these phase dates."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Adult, egg and juvenile stages are standard bird stages; juvenile scale 0.75 is an authored preview judgement. Nest requirement maps to the globular nest with a chamber and downward-facing entrance."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "The record describes a bird; this is the corresponding basic avian trait."
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "The record describes a bird; this is the corresponding basic avian trait."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "The record describes a bird; this is the corresponding basic avian trait."
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "The record describes a bird; this is the corresponding basic avian trait."
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "The record describes a bird; this is the corresponding basic avian trait."
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "The record describes a bird; this is the corresponding basic avian trait."
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "The record describes a bird; this is the corresponding basic avian trait."
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "The record describes a bird; this is the corresponding basic avian trait."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "The record describes a bird; this is the corresponding basic avian trait."
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Low, ground-level foraging and movement in vegetation; flight between nearby perches."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "scholer-data"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "ELEscholer2020_data.csv row X=695 reports mass 16.19 g; converted to kilograms by dividing by 1000. This meta-analysis row also reports 0.86 apparent annual adult survival, SE 0.10; that survival statistic is not used as lifespan because it confounds death and permanent emigration."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Midpoint of the stated nominate-subspecies range 10 to 11.5 cm, converted to metres: (10+11.5)/2/100 = 0.1075 m."
+    },
+    "traits.size_class": {
+      "sources": [
+        "scholer-data"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Tiny follows the measured mass 0.01619 kg, below the schema threshold of 0.05 kg."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "The source says the diet appears solely invertebrate; 1.0 represents that qualitative statement as an authored model allocation."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Source says birds forage singly or in small groups. Pair and size bound [1,4] are authored simulation abstractions, not measured demographic values."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Daytime activity and singing through the day."
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Skulking low in dense vegetation and difficult to see; mapped to Hide."
+    },
+    "traits.wariness": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored judgement based on the source describing a skulking, often unseen bird."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The source places it in humid montane forest and describes foraging from the ground to low vegetation; 55/45 split is an authored placement estimate."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Dense low vegetation is used as the closest available roost/shelter tag."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Invertebrates are the stated diet. Shelter, perch and nest resource weights are authored placement estimates based on dense vegetation, perching and globular nest description."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Forest species with no garden use stated; Avoider and the numeric light tolerance are authored placement judgments."
+    },
+    "vocalizations.song": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Wikipedia Vocalization section says songs are loud, repeated musical phrases and heard virtually year-round through the day."
+    },
+    "vocalizations.alarm": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Wikipedia Vocalization section describes a rough churr call."
+    }
+  }
+}
