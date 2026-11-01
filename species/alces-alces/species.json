@@ -1,0 +1,647 @@
+{
+  "$schema": "https://eeeearth.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Alces alces",
+  "slug": "alces-alces",
+  "common_names": {
+    "en": "moose",
+    "fr": "élan",
+    "de": "Elch"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Mammalia",
+    "order": "Artiodactyla",
+    "family": "Cervidae",
+    "genus": "Alces",
+    "authority": "(Linnaeus, 1758)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2440940,
+    "inat_taxon_id": 522193,
+    "itis_tsn": 180703,
+    "wikidata": "Q35517",
+    "ncbi_taxon_id": 9852
+  },
+  "conservation": {
+    "iucn": "LC",
+    "notes": "Wikidata P141 gives least concern (Q211005). Wikipedia notes declines in parts of the southern range linked to winter ticks and parasites; the category is the Wikidata value, not a re-assessment."
+  },
+  "range": {
+    "native": [
+      "CA",
+      "US",
+      "NO",
+      "SE",
+      "FI",
+      "EE",
+      "LV",
+      "PL",
+      "BY",
+      "UA",
+      "CZ",
+      "RU",
+      "KZ",
+      "MN",
+      "CN"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk",
+      "Trot",
+      "Gallop"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Fur",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "None",
+    "perching": false,
+    "senses": {
+      "olfaction": "High"
+    },
+    "size_class": "Large",
+    "mass_kg": 357,
+    "mass_range_kg": [
+      200,
+      700
+    ],
+    "length_m": 2.84,
+    "lifespan_y": 11.5,
+    "diet": {
+      "browse": 0.7,
+      "graze": 0.3
+    },
+    "social": {
+      "structure": "Solitary",
+      "group_size": [
+        1,
+        2
+      ]
+    },
+    "activity_pattern": "Crepuscular",
+    "defense": "Flee",
+    "wariness": 0.7
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.9,
+      "aquatic": 0.1
+    },
+    "shelter_tag": "shelter",
+    "resources": [
+      {
+        "tag": "browse",
+        "kind": "Herbivory",
+        "weight": 0.7
+      },
+      {
+        "tag": "graze",
+        "kind": "Herbivory",
+        "weight": 0.3
+      },
+      {
+        "tag": "shrub_thicket",
+        "kind": "Shelter",
+        "weight": 0.5
+      },
+      {
+        "tag": "water",
+        "kind": "Water",
+        "weight": 0.5
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Avoider",
+      "road_mortality": "High",
+      "uses_gardens": false,
+      "notes": "Wikipedia reports collisions with vehicles as frequent in parts of North America and Scandinavia and describes 'urban moose' sightings in some areas. The Avoider rating and the absence of garden use are judgement, not a measured value."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "mating",
+        "start": "09-01",
+        "end": "10-31",
+        "note": "Wikipedia: rutting and mating occurs in September and October; mature bulls stop feeding for about two weeks during the rut."
+      },
+      {
+        "name": "young",
+        "start": "05-01",
+        "end": "06-30",
+        "note": "Wikipedia: cows usually bear one calf (twins if food is plentiful) in May or June after an eight-month gestation."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US",
+        "monthly": [
+          0.36,
+          0.36,
+          0.38,
+          0.43,
+          0.89,
+          1.0,
+          0.76,
+          0.69,
+          0.89,
+          0.56,
+          0.3,
+          0.32
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 9313,
+        "sources": [
+          "inat-activity-us",
+          "gbif-activity-us"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 1,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=522193&place_id=1&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=1&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "total": 4136,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "country",
+              "US"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2440940&country=US&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&country=US&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 5177,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-ground-forager-v1",
+    "params": {
+      "food_tag": "browse",
+      "flee_m": 40,
+      "calm_m": 60,
+      "food_m": 80,
+      "flee_gait": "gallop",
+      "forage_gait": "walk"
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "bull_grunt",
+      "context": "Hoot",
+      "season_months": [
+        9,
+        10
+      ],
+      "time_windows": [],
+      "cooldown_s": 30,
+      "loudness": "Loud",
+      "description": "Heavy grunting from males during the rut, audible up to about 500 metres away (Wikipedia). Cooldown and loudness are judgement."
+    },
+    {
+      "call_id": "cow_wail",
+      "context": "Contact",
+      "season_months": [
+        9,
+        10
+      ],
+      "time_windows": [],
+      "cooldown_s": 30,
+      "loudness": "Moderate",
+      "description": "Wail-like calls from females during the rut, when both sexes call to each other (Wikipedia). Cooldown and loudness are judgement."
+    }
+  ],
+  "look": {
+    "body_plan": "quadruped",
+    "proportions": {
+      "torso_aspect": 1.9,
+      "leg_length_ratio": 1.0,
+      "head_scale": 0.5,
+      "neck_angle_deg": 15,
+      "tail_ratio": 0.05,
+      "ear_ratio": 0.4,
+      "beak_ratio": 0.3,
+      "girth_ratio": 0.75
+    },
+    "palette": {
+      "body": "#5a4636",
+      "belly": "#7d6a55",
+      "markings": "#2e241b",
+      "accent": "#c9b9a2",
+      "eye": "#140d06"
+    },
+    "part_colors": {
+      "snout": "markings",
+      "tail": "body",
+      "ear_*": "body",
+      "leg_*": "markings",
+      "antler_*": "accent"
+    },
+    "extra_parts": [
+      {
+        "name": "antler",
+        "parent": "head",
+        "offset": [
+          0.12,
+          0.6,
+          0.3
+        ],
+        "size": [
+          0.6,
+          0.7,
+          0.12
+        ],
+        "color": "accent",
+        "mirror": true
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "trot": {},
+      "gallop": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Moose",
+      "title": "Wikipedia: Moose",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-11-01",
+      "attribution": "Wikipedia contributors, \"Moose\", English Wikipedia, CC BY-SA 4.0",
+      "note": "Revision 1381896073 (2026-10-25) read on 2026-11-01. Sections used: Description, Diet, Social structure and reproduction, Habitat, range and distribution.",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q35517",
+      "title": "Wikidata: moose (Q35517)",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-11-01",
+      "note": "Identifiers (GBIF 2440940, iNaturalist 522193, ITIS 180703, NCBI 9852) and IUCN category (P141 = Q211005, least concern).",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2440940",
+      "title": "GBIF Backbone Taxonomy: Alces alces (usageKey 2440940)",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-11-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "note": "Species match Alces alces (Linnaeus, 1758), ACCEPTED, rank SPECIES, checked 2026-11-01.",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=180703",
+      "title": "ITIS: Alces alces, TSN 180703",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-11-01",
+      "note": "US federal database, public domain in the United States. Report title confirms Alces alces at TSN 180703."
+    },
+    {
+      "id": "eltontraits",
+      "url": "https://doi.org/10.6084/m9.figshare.3559887.v1",
+      "title": "EltonTraits 1.0: species-level foraging attributes of the world's birds and mammals (MamFuncDat.txt)",
+      "license": "CC0-1.0",
+      "kind": "dataset",
+      "accessed": "2026-11-01",
+      "attribution": "Wilman, H. et al. (2014) EltonTraits 1.0. Ecology 95:2027",
+      "note": "Figshare record 3559887 states CC0. Row 'Alces alces' (MSW3_ID 5282): BodyMass-Value 356998.16 g (Ref_117); Diet-PlantO 100; Activity-Nocturnal 1, Activity-Crepuscular 1, Activity-Diurnal 0 (Ref_1). Diet-Vunk not used.",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "adw",
+      "url": "https://animaldiversity.org/accounts/Alces_alces/",
+      "title": "Animal Diversity Web: Alces alces",
+      "license": "CC-BY-NC-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-11-01",
+      "attribution": "Animal Diversity Web (Dewey, T., ed.), University of Michigan Museum of Zoology, https://animaldiversity.org/accounts/Alces_alces/",
+      "note": "NON-COMMERCIAL last resort for traits.lifespan_y only. Page line 'Typical lifespan Status: wild 8 to 15 years' (Lifespan/Longevity section). Also 'Range lifespan Status: wild 22 (high) years' (maximum, not used). The ADW terms page fetched on 2026-11-01 did not state the licence in text we could read; licence taken from the project's AGENTS.md list of ADW as CC BY-NC-SA. Verify before merge.",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+    },
+    {
+      "id": "gbif-activity-us",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2440940&country=US&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Alces alces in US",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-11-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-11-01",
+      "kind": "api"
+    },
+    {
+      "id": "inat-activity-us",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=522193&place_id=1&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Alces alces in US",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-11-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata",
+        "itis"
+      ],
+      "confidence": "High",
+      "note": "GBIF match Alces alces (Linnaeus, 1758), ACCEPTED, SPECIES, 2026-11-01; ITIS TSN 180703; Wikidata Q35517 carries the same GBIF, ITIS and NCBI (9852) identifiers. Genus Alces, family Cervidae, order Artiodactyla from GBIF. Odocoileus-style subspecies (A. a. gigas, A. a. americana) are not used: the record is the species."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata",
+        "itis"
+      ],
+      "confidence": "High"
+    },
+    "common_names": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "Labels en moose, fr élan, de Elch, es Alces alces from Wikidata Q35517 (es is the scientific name, so it is dropped from common names in review if challenged)."
+    },
+    "conservation": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "Wikidata P141 = Q211005 (least concern)."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Country list read from Wikipedia North America, Europe, and Asia sections: Canada and the US; Norway, Sweden, Finland, Estonia, Latvia, Poland, Belarus, Ukraine, Czech Republic, Russia; Kazakhstan, Mongolia and northeastern China. Wikipedia names the Caucasus region without naming countries, so no Caucasus country is listed. Denmark (extinct, reintroduced 2016-17) and the New Zealand introduction are omitted; the introduced and invasive lists are left empty."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Four legs; the hooves and gait are standard for Cervidae."
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Walk, trot and gallop declared to match the shared fsm-ground-forager-v1 program. Swimming and wading (Wikipedia: excellent swimmers, wade to feed on aquatic plants) are real behaviour but no swim action exists in the program; see notes."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Wikipedia: two-layer coat of hollow guard hairs and a woolly undercoat."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "eltontraits"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "EltonTraits BodyMass-Value 356998.16 g (Alces alces, Ref_117), converted to kg (356.998, rounded to 357). It is a sex-pooled typical adult value."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Wikipedia: males 380-700 kg and females 200-490 kg. The low end is the female minimum (200) and the high end is the male maximum (700)."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Wikipedia: head-and-body length 2.4-3.1 m, tail 5-12 cm. Midpoints used: 2.75 m + 0.085 m = 2.835, rounded to 2.84 m. Nose-to-tail-tip is approximated by head-and-body plus tail."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "adw"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Typical wild lifespan 8-15 years per the ADW 'Typical lifespan Status: wild 8 to 15 years' line. Recorded as the midpoint of that stated range, 11.5 years. NON-COMMERCIAL source used as a last resort (see sources). The same ADW text says few moose live past 15 years in the wild, that adult females have an average survival of 95%, and that many calves (as much as 50% or more) die before six weeks. The ADW range is a typical value, not a maximum (22 years) or a captive figure. Wikipedia's 'lifespan of an average moose is about 15-25 years' is uncited and not stated as wild, so it is not used. PanTHERIA MaxLongevity (324 months) is a maximum and not used."
+    },
+    "traits.diet": {
+      "sources": [
+        "eltontraits",
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "EltonTraits gives Diet-PlantO 100 (plant, other) with no browse/graze split. Wikipedia: 'predominantly a browser', branches, twigs and dead wood form much of the winter diet, and 'as much as half' of the diet can be aquatic plants in other seasons. The 0.7 browse / 0.3 graze split is an authored allocation, not a measured one; aquatic plants are counted as graze because the schema has no aquatic category."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Wikipedia: solitary apart from cows with calves. group_size [1,2] (cow plus one calf) is a judgement from that statement."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "eltontraits",
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "EltonTraits: nocturnal 1 and crepuscular 1 (diurnal 0). Wikipedia (Newfoundland guidance): moose are most active at dusk and dawn. Crepuscular is the nearest enum value. Cathemeral is not used. Regional activity is in activity.regions."
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Flee is the main response to threat. Wikipedia notes cows attack people near calves and bulls fight, so Mob is a secondary response that the record does not encode."
+    },
+    "traits.wariness": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "judgement: 0.7. No source gives a flight distance for moose; a value near deer-like wariness was chosen and labelled as judgement."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored allocation: ground 0.9, aquatic 0.1. Wikipedia says moose wade or swim in lakes and ponds in hot weather and feed on aquatic plants, but gives no time share."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "browse (branches, twigs, deciduous browse), graze (aquatic and forb vegetation), shrub_thicket and shelter (forest cover, Wikipedia habitat section), water (lakes and ponds). Weights are judgement."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Avoider, road_mortality High from Wikipedia vehicle collision statements. uses_gardens false and the rating are judgement."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Rut September-October and calving May-June both come from Wikipedia's reproduction text. Phases are species-wide; no per-region phases are claimed."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored program choice: shared fsm-ground-forager-v1 with food_tag browse. Walk forage, gallop flight. flee_m 40 and calm_m 60 are judgement. food_m 80 is judgement. Rest uses the program default (daytime rest between 10 and 90 degrees of sun elevation), which suits a crepuscular animal. Actions executed: idle, wander/forage with walk, flee with gallop, drink, rest in shelter."
+    },
+    "look": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "judgement: proportions, palette and the palmate antler box are authored for the preview only. Antlers apply to bulls, and cows have none; the record shows the bull form."
+    },
+    "vocalizations.bull_grunt": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Wikipedia: males produce heavy grunting sounds that can be heard from up to 500 metres away, during the rut. cooldown_s and loudness are judgement."
+    },
+    "vocalizations.cow_wail": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Wikipedia: females produce wail-like sounds; both sexes call to each other during the rut. cooldown_s and loudness are judgement."
+    },
+    "habitat.shelter_tag": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "judgement: 'shelter' (forest cover where moose rest); Wikipedia describes moose using forest and cover but gives no resting-site tag."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "ActiveYearRound: Wikipedia describes year-round activity with seasonal movement between habitats and no hibernation or migration as a whole-population strategy."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Only the Adult stage is declared. Calves stay with the cow until the next calving (Wikipedia), but no per-stage durations are sourced."
+    },
+    "traits.flight": {
+      "sources": [],
+      "confidence": "High",
+      "derived": true,
+      "note": "None: a large non-flying cervid, by body plan. Wikipedia describes a terrestrial, wading and swimming animal, with no flight."
+    },
+    "traits.metamorphosis": {
+      "sources": [],
+      "confidence": "High",
+      "derived": true,
+      "note": "None: mammal, no metamorphosis."
+    },
+    "traits.respiration": {
+      "sources": [],
+      "confidence": "High",
+      "derived": true,
+      "note": "Lungs: mammal."
+    },
+    "traits.nest_type": {
+      "sources": [],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "None: moose do not build nests, and no nest tag is used in the habitat block."
+    },
+    "traits.perching": {
+      "sources": [],
+      "confidence": "High",
+      "derived": true,
+      "note": "False: ungulate, does not perch."
+    },
+    "traits.senses": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "olfaction High from Wikipedia: the proboscis and olfactory column adapted for detection of moose urine and cows during the rut, and olfactory fine-tuning. Vision and hearing are not set; no openly licensed source gave a grade."
+    },
+    "traits.size_class": {
+      "sources": [],
+      "confidence": "High",
+      "derived": true,
+      "note": "Large: validator rule, mass_kg 357 is above 50 kg."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies Orca species worker",
+      "agent": "claude-code"
+    }
+  ]
+}
