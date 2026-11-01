@@ -1,0 +1,777 @@
+{
+  "$schema": "https://eeeearth.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Equus grevyi",
+  "slug": "equus-grevyi",
+  "common_names": {
+    "en": "Grévy's zebra"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Mammalia",
+    "order": "Perissodactyla",
+    "family": "Equidae",
+    "genus": "Equus",
+    "authority": "Oustalet, 1882",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2440894,
+    "inat_taxon_id": 43339,
+    "wikidata": "Q219565"
+  },
+  "conservation": {
+    "iucn": "EN"
+  },
+  "range": {
+    "native": [
+      "KE",
+      "ET"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk",
+      "Trot",
+      "Gallop"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Fur",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "None",
+    "perching": false,
+    "size_class": "Large",
+    "mass_kg": 400,
+    "mass_range_kg": [
+      349,
+      451
+    ],
+    "length_m": 2.625,
+    "shoulder_height_m": 1.525,
+    "lifespan_y": 12.5,
+    "diet": {
+      "graze": 0.9,
+      "browse": 0.1
+    },
+    "social": {
+      "structure": "Group",
+      "group_size": [
+        2,
+        6
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.8
+  },
+  "habitat": {
+    "use": {
+      "ground": 1.0
+    },
+    "shelter_tag": "shrub_thicket",
+    "resources": [
+      {
+        "tag": "graze",
+        "kind": "Herbivory",
+        "weight": 0.9
+      },
+      {
+        "tag": "browse",
+        "kind": "Herbivory",
+        "weight": 0.1
+      },
+      {
+        "tag": "water",
+        "kind": "Water",
+        "weight": 1.0
+      },
+      {
+        "tag": "shrub_thicket",
+        "kind": "Shelter",
+        "weight": 0.2
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Avoider",
+      "uses_gardens": false
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "07-01",
+        "end": "10-31",
+        "note": "Breeding occurs year-round, with most mating reported July through October."
+      },
+      {
+        "name": "young",
+        "start": "05-01",
+        "end": "06-30",
+        "note": "Reported birth peak during the long rains."
+      },
+      {
+        "name": "young",
+        "start": "11-01",
+        "end": "12-31",
+        "note": "Reported birth peak during the short rains."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "KE",
+        "monthly": [
+          1.0,
+          0.52,
+          0.38,
+          0.41,
+          0.65,
+          0.73,
+          0.35,
+          0.59,
+          0.7,
+          0.39,
+          0.98,
+          0.44
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 1109,
+        "sources": [
+          "inat-activity-ke",
+          "gbif-activity-ke"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 7042,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=43339&place_id=7042&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=7042&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 597,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "country",
+              "KE"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2440894&country=KE&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&country=KE&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 512,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-ground-forager-v1",
+    "params": {
+      "food_tag": "graze",
+      "flee_gait": "gallop",
+      "forage_gait": "walk",
+      "rest_sun_lo_deg": -90,
+      "rest_sun_hi_deg": -6
+    }
+  },
+  "vocalizations": [],
+  "look": {
+    "body_plan": "quadruped",
+    "proportions": {
+      "torso_aspect": 2.2,
+      "leg_length_ratio": 0.8,
+      "head_scale": 0.7,
+      "neck_angle_deg": 25,
+      "tail_ratio": 1.2,
+      "ear_ratio": 0.45
+    },
+    "palette": {
+      "body": "#f4f1e8",
+      "belly": "#f7f5ed",
+      "markings": "#171719",
+      "accent": "#8a5438",
+      "eye": "#211b18"
+    },
+    "part_colors": {
+      "leg_*": "body",
+      "ear_*": "accent",
+      "snout": "accent"
+    },
+    "extra_parts": [
+      {
+        "name": "side_stripe_front",
+        "parent": "body",
+        "offset": [
+          0.32,
+          0,
+          0.48
+        ],
+        "size": [
+          0.028,
+          0.9,
+          0.06
+        ],
+        "color": "markings",
+        "mirror": true
+      },
+      {
+        "name": "side_stripe_middle",
+        "parent": "body",
+        "offset": [
+          0.08,
+          0,
+          0.48
+        ],
+        "size": [
+          0.028,
+          0.9,
+          0.06
+        ],
+        "color": "markings",
+        "mirror": true
+      },
+      {
+        "name": "side_stripe_rear",
+        "parent": "body",
+        "offset": [
+          -0.16,
+          0,
+          0.48
+        ],
+        "size": [
+          0.028,
+          0.9,
+          0.06
+        ],
+        "color": "markings",
+        "mirror": true
+      },
+      {
+        "name": "side_stripe_hind",
+        "parent": "body",
+        "offset": [
+          -0.38,
+          0,
+          0.48
+        ],
+        "size": [
+          0.028,
+          0.9,
+          0.06
+        ],
+        "color": "markings",
+        "mirror": true
+      },
+      {
+        "name": "side_stripe_hip",
+        "parent": "body",
+        "offset": [
+          -0.52,
+          0,
+          0.48
+        ],
+        "size": [
+          0.028,
+          0.9,
+          0.06
+        ],
+        "color": "markings",
+        "mirror": true
+      },
+      {
+        "name": "upright_mane",
+        "parent": "neck",
+        "offset": [
+          0.05,
+          0.6,
+          0
+        ],
+        "size": [
+          0.9,
+          1.5,
+          0.7
+        ],
+        "color": "markings"
+      },
+      {
+        "name": "leg_front_left_upper_stripe",
+        "parent": "leg_front_left",
+        "offset": [
+          0,
+          0.28,
+          0
+        ],
+        "size": [
+          1.15,
+          0.06,
+          1.15
+        ],
+        "color": "markings"
+      },
+      {
+        "name": "leg_front_left_lower_stripe",
+        "parent": "leg_front_left",
+        "offset": [
+          0,
+          -0.15,
+          0
+        ],
+        "size": [
+          1.15,
+          0.06,
+          1.15
+        ],
+        "color": "markings"
+      },
+      {
+        "name": "leg_front_right_upper_stripe",
+        "parent": "leg_front_right",
+        "offset": [
+          0,
+          0.28,
+          0
+        ],
+        "size": [
+          1.15,
+          0.06,
+          1.15
+        ],
+        "color": "markings"
+      },
+      {
+        "name": "leg_front_right_lower_stripe",
+        "parent": "leg_front_right",
+        "offset": [
+          0,
+          -0.15,
+          0
+        ],
+        "size": [
+          1.15,
+          0.06,
+          1.15
+        ],
+        "color": "markings"
+      },
+      {
+        "name": "leg_rear_left_upper_stripe",
+        "parent": "leg_rear_left",
+        "offset": [
+          0,
+          0.28,
+          0
+        ],
+        "size": [
+          1.15,
+          0.06,
+          1.15
+        ],
+        "color": "markings"
+      },
+      {
+        "name": "leg_rear_left_lower_stripe",
+        "parent": "leg_rear_left",
+        "offset": [
+          0,
+          -0.15,
+          0
+        ],
+        "size": [
+          1.15,
+          0.06,
+          1.15
+        ],
+        "color": "markings"
+      },
+      {
+        "name": "leg_rear_right_upper_stripe",
+        "parent": "leg_rear_right",
+        "offset": [
+          0,
+          0.28,
+          0
+        ],
+        "size": [
+          1.15,
+          0.06,
+          1.15
+        ],
+        "color": "markings"
+      },
+      {
+        "name": "leg_rear_right_lower_stripe",
+        "parent": "leg_rear_right",
+        "offset": [
+          0,
+          -0.15,
+          0
+        ],
+        "size": [
+          1.15,
+          0.06,
+          1.15
+        ],
+        "color": "markings"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "gallop": {},
+      "trot": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2440894",
+      "title": "GBIF Backbone Taxonomy: Equus grevyi",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-11-01) GBIF Backbone Taxonomy",
+      "accessed": "2026-11-01",
+      "kind": "api"
+    },
+    {
+      "id": "inat-taxon",
+      "url": "https://api.inaturalist.org/v1/taxa/43339",
+      "title": "iNaturalist taxon 43339: Equus grevyi",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors, taxon 43339",
+      "accessed": "2026-11-01",
+      "kind": "api"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q219565",
+      "title": "Wikidata: Equus grevyi (Q219565)",
+      "license": "CC0-1.0",
+      "accessed": "2026-11-01",
+      "kind": "database"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Gr%C3%A9vy%27s_zebra",
+      "title": "Grévy's zebra",
+      "license": "CC-BY-SA-4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "attribution": "Wikipedia contributors, ‘Grévy's zebra’, accessed 2026-11-01",
+      "accessed": "2026-11-01",
+      "kind": "webpage",
+      "note": "Used for range, habitat, diet, activity, morphology, seasonal context and body measurements; underlying references differ by claim."
+    },
+    {
+      "id": "adw-grevyi",
+      "url": "https://animaldiversity.org/accounts/Equus_grevyi/",
+      "title": "Equus grevyi, Animal Diversity Web",
+      "license": "CC-BY-NC-SA-3.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/3.0/",
+      "attribution": "Alexis J. Hollingshead, ‘Equus grevyi’, Animal Diversity Web, accessed 2026-11-01",
+      "accessed": "2026-11-01",
+      "kind": "webpage",
+      "note": "Used only for the wild median lifespan estimate; ADW states the estimate is near 12-13 years but does not cite its origin."
+    },
+    {
+      "id": "inat-activity-ke",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=43339&place_id=7042&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+      "title": "iNaturalist observations histogram for Equus grevyi in KE",
+      "license": "CC-BY-NC-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
+      "accessed": "2026-11-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-ke",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2440894&country=KE&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Equus grevyi in KE",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-11-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-11-01",
+      "kind": "api",
+      "note": "Used only for the wild median lifespan estimate; ADW states the estimate is near 12-13 years but gives no citation for its origin. The matching figures found on https://www.awf.org/wildlife-conservation/grevys-zebra and https://www.nationalgeographic.com/animals/mammals/facts/grevy-s-zebra are rights-restricted; Wikipedia gives no typical wild lifespan."
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "inat-taxon"
+      ],
+      "confidence": "High",
+      "note": "Both providers resolve the accepted species Equus grevyi at species rank; checked 2026-11-01."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "inat-taxon",
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "common_names": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "EN status checked against the linked IUCN assessment; current category is also reported in the cited species article."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Current wild range used here is northern Kenya and southern Ethiopia. France is not included; it is outside the current native range."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Quadrupedal walking, trotting and galloping; gallop is used for flight response."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.size_class": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Large reflects adult mass of roughly 349-451 kg."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Midpoint of the reported adult mass range, (349 + 451) / 2 = 400 kg."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Reported adult mass range: 349-451 kg."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Midpoint of the reported head-body length range 2.5-2.75 m; tail is excluded from this measurement."
+    },
+    "traits.shoulder_height_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Midpoint of the reported withers-height range 1.45-1.6 m."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "adw-grevyi"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Midpoint of ADW's approximate wild median range of 12-13 years (12.5). The account gives no underlying citation for this statistic. The reported 18-year-old individual and 22-30 years in captivity describe different statistics. Permissive alternatives checked: Wikipedia had no lifespan value; AWF and National Geographic showed the same figure under rights-restricted terms. Low-confidence last-resort estimate under the explicitly allowed NC-SA tier."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Authored graze/browse weights (0.9/0.1) reflect a grass-dominated diet and occasional browse; not a measured diet proportion."
+    },
+    "traits.social": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Loose social associations represented as Group; group size 2-6 approximates described bachelor groups and remains a simulation abstraction."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium"
+    },
+    "traits.defense": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium"
+    },
+    "traits.wariness": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored judgement for a wary wild ungulate."
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium"
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Shrub cover represents the medium-dense bush described as used by some groups; zebras do not shelter in burrows."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Authored weights represent grass grazing, occasional browse, water dependence and limited bush cover."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Avoider is an authored wild-animal simulation judgement; garden use is false."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium"
+    },
+    "seasonal.phases": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Breeding occurs year-round but most mating is reported July-October; birth peaks occur May-June and November-December. Month-day intervals are an annualised simplification for the Kenya record."
+    },
+    "seasonal.life_stages": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "No age-scaled stages asserted."
+    },
+    "activity": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "KE query uses iNaturalist place 7042 tier C (597 records, month counts sum to 597) and GBIF country KE tier A (512 query records, 466 monthly-faceted records; 46 records had no month). GBIF is heavily November-skewed (263 of its 466 month-bearing records), so the normalized combined observation curve is an imperfect activity proxy and may reflect uneven sampling."
+    },
+    "behavior": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Shared ground-forager program: graze action on graze resources, walk while foraging, gallop to flee, and rest during night (sun elevation -90 to -6 degrees) to match diurnal activity. This simplifies browsing, social structure and water-source movement."
+    },
+    "vocalizations": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "No vocalization entries asserted because no well-described call was selected."
+    },
+    "look": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Judgement based on narrow black-and-white body and leg stripes, white belly, brown muzzle and erect dark mane; stripe layout, head proportions and body details are simplified for the block mesh."
+    }
+  },
+  "contributors": [
+    {
+      "name": "speeeecies maintainers",
+      "agent": "codex"
+    }
+  ]
+}
