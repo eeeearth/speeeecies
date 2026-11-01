@@ -135,34 +135,57 @@
       {
         "region": "KE",
         "monthly": [
+          0.27,
+          0.12,
+          0.09,
+          0.04,
+          0.03,
+          0.06,
+          0.11,
+          0.12,
+          0.23,
+          0.08,
           1.0,
-          0.52,
-          0.38,
-          0.41,
-          0.65,
-          0.73,
-          0.35,
-          0.59,
-          0.7,
-          0.39,
-          0.98,
-          0.44
+          0.07
         ],
-        "method": "mean(inat_share, gbif_share)",
-        "observations": 1109,
+        "method": "gbif_share",
+        "observations": 512,
         "sources": [
-          "inat-activity-ke",
           "gbif-activity-ke"
         ],
         "query": {
           "min_obs": 300,
           "inat": {
-            "tier": "C",
             "place_id": 7042,
-            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=43339&place_id=7042&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
-            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=7042&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
-            "total": 597,
-            "usable": true
+            "attempts": [
+              {
+                "tier": "A",
+                "license": "CC0/CC BY",
+                "total": 112,
+                "usable": false,
+                "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=43339&place_id=7042&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+                "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=7042&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by"
+              },
+              {
+                "tier": "B",
+                "license": "CC0/CC BY/CC BY-SA",
+                "total": 117,
+                "usable": false,
+                "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=43339&place_id=7042&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa",
+                "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=7042&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa"
+              },
+              {
+                "tier": "C",
+                "license": "CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA",
+                "total": 597,
+                "usable": true,
+                "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=43339&place_id=7042&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+                "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=7042&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+                "used": false,
+                "excluded_reason": "GBIF tier A was independently usable, so the NC tier was excluded under docs/data-quality.md."
+              }
+            ],
+            "used": false
           },
           "gbif": {
             "tier": "A",
@@ -173,10 +196,24 @@
             "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2440894&country=KE&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
             "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&country=KE&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
             "total": 512,
+            "monthly_count": 466,
+            "monthly_counts": [
+              35,
+              16,
+              11,
+              5,
+              5,
+              12,
+              28,
+              32,
+              38,
+              14,
+              263,
+              7
+            ],
             "usable": true
           },
           "used": [
-            "inat",
             "gbif"
           ]
         }
@@ -490,15 +527,6 @@
       "note": "Used only for the wild median lifespan estimate; ADW states the estimate is near 12-13 years but does not cite its origin."
     },
     {
-      "id": "inat-activity-ke",
-      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=43339&place_id=7042&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
-      "title": "iNaturalist observations histogram for Equus grevyi in KE",
-      "license": "CC-BY-NC-4.0",
-      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY/CC BY-SA/CC BY-NC/CC BY-NC-SA, via the iNaturalist API",
-      "accessed": "2026-11-01",
-      "kind": "api"
-    },
-    {
       "id": "gbif-activity-ke",
       "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2440894&country=KE&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
       "title": "GBIF occurrence search for Equus grevyi in KE",
@@ -738,10 +766,12 @@
       "note": "No age-scaled stages asserted."
     },
     "activity": {
-      "sources": [],
+      "sources": [
+        "gbif-activity-ke"
+      ],
       "confidence": "Low",
       "derived": true,
-      "note": "The fetcher tried permissive iNaturalist tier A first (112 records) and tier B second (117 records); both fell below the configured 300-record minimum. It selected tier C at 597 records, adding NC-licensed observations as the last available tier. GBIF country KE tier A returned 512 query records, 466 monthly-faceted records, and 46 records without a month. GBIF is heavily November-skewed (263 of its 466 month-bearing records), so the normalized combined observation curve is an imperfect activity proxy and may reflect uneven sampling."
+      "note": "For KE, GBIF tier A alone is usable (512 records; 466 records have month values). iNaturalist returned 112 at tier A and 117 at tier B, both below the 300 minimum; tier C returned 597 but was excluded because it would add NC-licensed records while the permissive GBIF source is usable. Of GBIF month-bearing records, 263 are November, so the normalized effort-corrected curve is an imperfect activity proxy and may reflect uneven sampling."
     },
     "behavior": {
       "sources": [
