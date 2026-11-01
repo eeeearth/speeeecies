@@ -3,10 +3,9 @@
   "format": "speeeecies/behavior",
   "id": "bt-sturnella-magna-v1",
   "kind": "bt",
-  "description": "Eastern meadowlark, species-local: walks and probes the ground for insects and seeds, roosts on the ground in grass, sings from a fence post or perch in spring and summer, builds a ground nest in late spring and summer, and flushes low in flight to a perch when threatened.",
+  "description": "Eastern meadowlark, species-local: walks and probes the ground for insects in spring to autumn and for seeds in winter, roosts on the ground in grass at night, sings from a fence post or perch in spring and summer, builds a ground nest in late spring and summer, and flushes low in flight to a perch when threatened.",
   "params": {
     "flee_m": 6,
-    "food_tag": "invertebrate",
     "song": "song",
     "song_cooldown_s": 20
   },
@@ -169,9 +168,50 @@
             }
           },
           {
+            "cond": {
+              "month_in": [
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10
+              ]
+            }
+          },
+          {
             "act": {
               "do": "eat_nearest",
-              "tag": "${food_tag}",
+              "tag": "invertebrate",
+              "gait": "walk"
+            }
+          }
+        ]
+      },
+      {
+        "sequence": [
+          {
+            "cond": {
+              "need": "hunger",
+              "gt": 0.4
+            }
+          },
+          {
+            "cond": {
+              "month_in": [
+                11,
+                12,
+                1,
+                2
+              ]
+            }
+          },
+          {
+            "act": {
+              "do": "eat_nearest",
+              "tag": "seed",
               "gait": "walk"
             }
           }

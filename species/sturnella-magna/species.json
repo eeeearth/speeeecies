@@ -66,8 +66,7 @@
     "lifespan_y": 5,
     "diet": {
       "invertebrate": 0.75,
-      "seed": 0.2,
-      "fruit": 0.05
+      "seed": 0.25
     },
     "social": {
       "structure": "Pair",
@@ -287,7 +286,7 @@
       ],
       "confidence": "Low",
       "derived": true,
-      "note": "AUTHORED split, derived. Wikipedia: about three-quarters of diet is animal (beetles, grasshoppers, crickets). ADW: spring insects, summer beetles and grasshoppers, winter weed seeds, grain and some fruit. Seed and fruit fractions are a judgement across seasons."
+      "note": "AUTHORED allocation. Wikipedia: about three-quarters of diet is animal (beetles, grasshoppers, crickets) and the rest is grain and seeds, so invertebrate 0.75 and seed 0.25. ADW gives the seasonal pattern used for the months: spring insects (cutworms, grubs, caterpillars), summer beetles and grasshoppers, winter weed seeds and leftover grain. Fruit is mentioned by ADW for winter but not quantified, so it is omitted from the allocation and from the program. Boundary months (Mar, Nov) are not stated in ADW and are assigned by the split."
     },
     "traits.social": {
       "sources": [
@@ -323,7 +322,7 @@
         "adw-sturnella-magna"
       ],
       "confidence": "Medium",
-      "note": "Habitat and resources: ADW breeding and winter habitat text (grasslands, pastures, hay fields, roadsides). Stratum shares and resource weights are authored."
+      "note": "Habitat types from ADW (grasslands, pastures, hay fields, roadsides, airports). Stratum shares and resource weights are authored. Seed months Nov-Feb from ADW winter diet. Invertebrate months Mar-Oct from ADW spring and summer diet. Nesting months May-Aug from ADW."
     },
     "seasonal": {
       "sources": [
@@ -331,7 +330,7 @@
         "wikipedia-eastern-meadowlark"
       ],
       "confidence": "Medium",
-      "note": "ADW: breeding late May to August; territories from March; most eastern meadowlarks do not migrate, only northern birds (leave by late November, return March). The migrant fraction is not sourced and not modelled."
+      "note": "Strategy ActiveYearRound is descriptive of the resident majority (ADW: most do not migrate). Northern birds leave by late November and return in March (absent phase, region CA only). Breeding 05-25..08-31 and territories 03-01..08-31 from ADW. The migrant share is not sourced and not modelled."
     },
     "vocalizations": {
       "sources": [
@@ -424,17 +423,28 @@
       {
         "tag": "invertebrate",
         "kind": "Predation",
-        "weight": 0.75
+        "weight": 0.75,
+        "months": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
       },
       {
         "tag": "seed",
         "kind": "Herbivory",
-        "weight": 0.2
-      },
-      {
-        "tag": "fruit",
-        "kind": "Herbivory",
-        "weight": 0.05
+        "weight": 0.25,
+        "months": [
+          11,
+          12,
+          1,
+          2
+        ]
       },
       {
         "tag": "nest_ground",
@@ -474,6 +484,13 @@
         "start": "05-25",
         "end": "08-31",
         "note": "ADW: breeding occurs from late May to August. Wikipedia: nesting occurs through the summer."
+      },
+      {
+        "name": "absent",
+        "start": "11-30",
+        "end": "03-01",
+        "region": "CA",
+        "note": "ADW: birds in the northernmost part of the range migrate; they leave by late November and return by March. Region scoped to CA. Northern US migrants are not scoped, and the migrant share is not sourced. The strategy stays ActiveYearRound because most birds are resident."
       }
     ],
     "life_stages": [
@@ -514,7 +531,6 @@
     "program": "bt-sturnella-magna-v1",
     "params": {
       "flee_m": 6,
-      "food_tag": "invertebrate",
       "song": "song",
       "song_cooldown_s": 20
     }
@@ -562,7 +578,10 @@
     "poses": {
       "idle": {},
       "walk": {},
-      "fly": {},
+      "fly": {
+        "amplitude": 0.2,
+        "cycle_s": 0.8
+      },
       "perched": {},
       "rest": {}
     }
