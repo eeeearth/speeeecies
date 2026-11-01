@@ -25,7 +25,20 @@
     "native": [
       "US",
       "CA",
-      "MX"
+      "MX",
+      "BZ",
+      "GT",
+      "SV",
+      "HN",
+      "NI",
+      "CR",
+      "PA",
+      "CO",
+      "VE",
+      "GY",
+      "SR",
+      "BR",
+      "CU"
     ]
   },
   "traits": {
@@ -43,18 +56,21 @@
     "nest_type": "Ground",
     "perching": true,
     "size_class": "Small",
+    "mass_kg": 0.12,
     "mass_range_kg": [
-      0.076,
+      0.09,
       0.15
     ],
-    "length_m": 0.235,
+    "length_m": 0.225,
     "wingspan_m": 0.375,
+    "lifespan_y": 5,
     "diet": {
       "invertebrate": 0.75,
-      "seed": 0.25
+      "seed": 0.2,
+      "fruit": 0.05
     },
     "social": {
-      "structure": "Solitary",
+      "structure": "Pair",
       "group_size": [
         1,
         2
@@ -73,7 +89,8 @@
       "kind": "webpage",
       "accessed": "2026-11-01",
       "attribution": "Wikipedia contributors, \"Eastern meadowlark\", English Wikipedia, CC BY-SA 4.0",
-      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "note": "Used for taxonomy note (Chihuahuan meadowlark split, 2022 AOS), range (subspecies list), and song description."
     },
     {
       "id": "gbif-backbone-sturnella-magna",
@@ -111,6 +128,17 @@
       "attribution": "GBIF.org (2026-11-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
       "accessed": "2026-11-01",
       "kind": "api"
+    },
+    {
+      "id": "adw-sturnella-magna",
+      "url": "https://animaldiversity.org/accounts/Sturnella_magna/",
+      "title": "Animal Diversity Web: Sturnella magna (eastern meadowlark) account",
+      "license": "CC-BY-NC-SA-3.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/3.0/",
+      "kind": "webpage",
+      "accessed": "2026-11-01",
+      "attribution": "Animal Diversity Web (University of Michigan Museum of Zoology), Sturnella magna account, https://animaldiversity.org/accounts/Sturnella_magna/, CC BY-NC-SA 3.0 (text)",
+      "note": "Non-commercial last resort, justified in the PR: the only checked source with an explicit typical wild lifespan (5 years). Its lifespan sentence has no cited source, and its own 151-month wild average conflicts with it. Mass, length, wingspan, breeding, diet and behaviour text is also from this account."
     }
   ],
   "provenance": {
@@ -127,50 +155,204 @@
       ],
       "confidence": "High"
     },
-    "traits.length_m": {
+    "common_names": {
+      "sources": [
+        "wikipedia-eastern-meadowlark"
+      ],
+      "confidence": "High"
+    },
+    "range": {
       "sources": [
         "wikipedia-eastern-meadowlark"
       ],
       "confidence": "Medium",
       "derived": true,
-      "note": "Midpoint of Wikipedia range 19-28 cm (adult length); ADW gives 19-26 cm (not used). Draft value; check locator."
+      "note": "Derived from Wikipedia subspecies list (distribution by subspecies), excluding the Chihuahuan meadowlark (S. lilianae/auropectoralis, split 2022). The split taxon's US range (W Texas and south-west) cannot be excluded at country level; US is a coarse proxy."
     },
-    "traits.wingspan_m": {
+    "traits.body_plan": {
       "sources": [
+        "wikipedia-eastern-meadowlark"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia-eastern-meadowlark"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "adw-sturnella-magna",
         "wikipedia-eastern-meadowlark"
       ],
       "confidence": "Medium",
-      "derived": true,
-      "note": "Midpoint of Wikipedia span 35-40 cm; wingspan, not wing chord."
+      "note": "ADW: walks and runs on the ground; flies by beating wings then gliding."
     },
-    "traits.mass_range_kg": {
+    "traits.thermoregulation": {
       "sources": [
         "wikipedia-eastern-meadowlark"
       ],
-      "confidence": "Medium",
-      "note": "Wikipedia: 76-150 g. ADW gives 90-150 g; disagreement unresolved."
+      "confidence": "High"
     },
-    "traits.diet": {
+    "traits.skin": {
       "sources": [
         "wikipedia-eastern-meadowlark"
       ],
-      "confidence": "Low",
-      "derived": true,
-      "note": "AUTHORED split. Wikipedia says about three-quarters animal, mainly beetles, grasshoppers and crickets, plus grain and seeds. Seed fraction is not sourced beyond this text."
+      "confidence": "High"
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia-eastern-meadowlark"
+      ],
+      "confidence": "High"
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia-eastern-meadowlark"
+      ],
+      "confidence": "High"
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia-eastern-meadowlark"
+      ],
+      "confidence": "High"
     },
     "traits.nest_type": {
       "sources": [
+        "adw-sturnella-magna",
         "wikipedia-eastern-meadowlark"
       ],
       "confidence": "High",
-      "note": "Ground nest in depressions, per Wikipedia."
+      "note": "ADW: nest on the ground in a shallow depression. Wikipedia: nests placed on the ground."
     },
     "traits.perching": {
       "sources": [
         "wikipedia-eastern-meadowlark"
       ],
       "confidence": "Low",
-      "note": "Unverified: Wikipedia text does not mention perching; needs a cited source."
+      "derived": true,
+      "note": "Not stated in checked text; judgement from perching on posts for song (Wikipedia: song from perch implied only)."
+    },
+    "traits.size_class": {
+      "sources": [],
+      "confidence": "High",
+      "derived": true,
+      "note": "Derived from traits.mass_kg per schema thresholds."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "adw-sturnella-magna"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Midpoint of ADW 90-150 g adult mass range. Wikipedia gives 76-150 g; the two disagree and ADW was used."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "adw-sturnella-magna"
+      ],
+      "confidence": "Medium",
+      "note": "ADW 90-150 g (Physical Description). Wikipedia 76-150 g disagrees."
+    },
+    "traits.length_m": {
+      "sources": [
+        "adw-sturnella-magna"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Midpoint of ADW 19-26 cm. Wikipedia gives 19-28 cm."
+    },
+    "traits.wingspan_m": {
+      "sources": [
+        "adw-sturnella-magna",
+        "wikipedia-eastern-meadowlark"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Midpoint of 35-40 cm (ADW and Wikipedia both give 35-40 cm). Wingspan, not wing chord."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "adw-sturnella-magna"
+      ],
+      "confidence": "Low",
+      "note": "ADW Lifespan/Longevity states 'an expected lifespan of five years in the wild' with no cited source. The same section gives a 151-month average wild lifespan attributed to the Bird Banding Laboratory, which conflicts (about 12.6 years), and AnAge gives 12.6 years as the wild maximum. Used with low confidence because no permissive typical wild value was found. Longest known wild lifespan 9 years is a maximum and is not used."
+    },
+    "traits.diet": {
+      "sources": [
+        "adw-sturnella-magna",
+        "wikipedia-eastern-meadowlark"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "AUTHORED split, derived. Wikipedia: about three-quarters of diet is animal (beetles, grasshoppers, crickets). ADW: spring insects, summer beetles and grasshoppers, winter weed seeds, grain and some fruit. Seed and fruit fractions are a judgement across seasons."
+    },
+    "traits.social": {
+      "sources": [
+        "adw-sturnella-magna",
+        "wikipedia-eastern-meadowlark"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "ADW: territorial pairs in the breeding season; loose flocks in fall and winter. group_size is judgement."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "adw-sturnella-magna"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement: daytime foraging and singing in sources; no explicit activity-pattern statement."
+    },
+    "traits.defense": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement. Flushes low in flight (ADW describes flight after walking)."
+    },
+    "traits.wariness": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Judgement."
+    },
+    "habitat": {
+      "sources": [
+        "adw-sturnella-magna"
+      ],
+      "confidence": "Medium",
+      "note": "Habitat and resources: ADW breeding and winter habitat text (grasslands, pastures, hay fields, roadsides). Stratum shares and resource weights are authored."
+    },
+    "seasonal": {
+      "sources": [
+        "adw-sturnella-magna",
+        "wikipedia-eastern-meadowlark"
+      ],
+      "confidence": "Medium",
+      "note": "ADW: breeding late May to August; territories from March; most eastern meadowlarks do not migrate, only northern birds (leave by late November, return March). The migrant fraction is not sourced and not modelled."
+    },
+    "vocalizations": {
+      "sources": [
+        "wikipedia-eastern-meadowlark"
+      ],
+      "confidence": "Medium",
+      "note": "Song description from Wikipedia. Season months from ADW territory and breeding timing. Cooldown is judgement."
+    },
+    "behavior": {
+      "sources": [
+        "adw-sturnella-magna",
+        "wikipedia-eastern-meadowlark"
+      ],
+      "confidence": "Medium",
+      "note": "Species-local BT program. Ground walking forage (ADW), ground roost in grass (ADW), song from perch in spring-summer, nesting months 5-8 (ADW late May to August), flush-and-fly to perch (ADW). Parameters are judgement."
+    },
+    "look": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored rendering block. Colours and proportions are judgement, not sourced measurements."
     }
   },
   "contributors": [
@@ -231,5 +413,158 @@
         }
       }
     ]
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.9,
+      "aerial": 0.1
+    },
+    "shelter_tag": "shelter",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.75
+      },
+      {
+        "tag": "seed",
+        "kind": "Herbivory",
+        "weight": 0.2
+      },
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.05
+      },
+      {
+        "tag": "nest_ground",
+        "kind": "Nesting",
+        "weight": 1.0,
+        "months": [
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "tag": "shelter",
+        "kind": "Shelter",
+        "weight": 1.0
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Avoider",
+      "light_max": 0.2,
+      "uses_gardens": false,
+      "notes": "Judgement. Sourced habitat: grasslands, pastures, hay fields, cropland borders, roadsides, airports (ADW). Placed as an avoider of built-up areas; not sourced."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "territorial",
+        "start": "03-01",
+        "end": "08-31",
+        "note": "ADW: males establish territories in March and defend them through the breeding season."
+      },
+      {
+        "name": "breeding",
+        "start": "05-25",
+        "end": "08-31",
+        "note": "ADW: breeding occurs from late May to August. Wikipedia: nesting occurs through the summer."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Egg"
+      },
+      {
+        "stage": "Juvenile"
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "vocalizations": [
+    {
+      "call_id": "song",
+      "context": "Song",
+      "season_months": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "time_windows": [
+        "DawnChorus",
+        "Day",
+        "Dusk"
+      ],
+      "cooldown_s": 20,
+      "loudness": "Moderate",
+      "description": "Pure, melancholy whistles (Wikipedia). Given by males from a perch in the breeding season. Cooldown is judgement."
+    }
+  ],
+  "behavior": {
+    "program": "bt-sturnella-magna-v1",
+    "params": {
+      "flee_m": 6,
+      "food_tag": "invertebrate",
+      "song": "song",
+      "song_cooldown_s": 20
+    }
+  },
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.5,
+      "leg_length_ratio": 0.4,
+      "head_scale": 0.8,
+      "neck_angle_deg": 10,
+      "tail_ratio": 0.5,
+      "wing_aspect": 2.4,
+      "beak_ratio": 0.4,
+      "girth_ratio": 1.0
+    },
+    "palette": {
+      "body": "#6b5a3e",
+      "belly": "#f1d34a",
+      "markings": "#2b2b2b",
+      "accent": "#8c7a57",
+      "eye": "#111111"
+    },
+    "part_colors": {
+      "breast": "belly",
+      "beak": "eye"
+    },
+    "extra_parts": [
+      {
+        "name": "yellow_breast",
+        "parent": "breast",
+        "offset": [
+          0,
+          0,
+          0
+        ],
+        "size": [
+          0.6,
+          0.5,
+          0.9
+        ],
+        "color": "belly"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "fly": {},
+      "perched": {},
+      "rest": {}
+    }
   }
 }
