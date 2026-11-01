@@ -1,0 +1,523 @@
+{
+  "$schema": "https://eeeearth.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Rattus rattus",
+  "slug": "rattus-rattus",
+  "common_names": {
+    "en": "black rat"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Mammalia",
+    "order": "Rodentia",
+    "family": "Muridae",
+    "genus": "Rattus",
+    "authority": "(Linnaeus, 1758)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2439270,
+    "inat_taxon_id": 44575,
+    "wikidata": "Q106133"
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "IN"
+    ],
+    "introduced": [
+      "TZ"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk",
+      "Trot",
+      "Climb"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Fur",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "perching": false,
+    "size_class": "Small",
+    "mass_kg": 0.15,
+    "mass_range_kg": [
+      0.075,
+      0.23
+    ],
+    "length_m": 0.34,
+    "lifespan_y": 1,
+    "diet": {
+      "fruit": 0.4,
+      "seed": 0.3,
+      "invertebrate": 0.2,
+      "carrion": 0.1
+    },
+    "social": {
+      "structure": "Group",
+      "group_size": [
+        2,
+        30
+      ]
+    },
+    "activity_pattern": "Nocturnal",
+    "defense": "Flee",
+    "wariness": 0.6
+  },
+  "habitat": {
+    "use": {
+      "arboreal": 0.5,
+      "ground": 0.4,
+      "fossorial": 0.1
+    },
+    "shelter_tag": "shelter",
+    "resources": [
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.4
+      },
+      {
+        "tag": "seed",
+        "kind": "Herbivory",
+        "weight": 0.3
+      },
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.2
+      },
+      {
+        "tag": "carrion",
+        "kind": "Scavenging",
+        "weight": 0.1
+      },
+      {
+        "tag": "shelter",
+        "kind": "Shelter",
+        "weight": 0.7
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Exploiter",
+      "uses_gardens": true,
+      "notes": "Lives in or near buildings, feeding on stored food and refuse. Source states it is now found worldwide; the Exploiter classification is a judgement."
+    }
+  },
+  "seasonal": {
+    "strategy": "ActiveYearRound",
+    "phases": [
+      {
+        "name": "breeding",
+        "start": "01-01",
+        "end": "12-31",
+        "note": "Breeds year-round where food and shelter allow. The year-round window is a judgement, not a sourced calendar."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Juvenile",
+        "scale": 0.5
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "TZ",
+        "monthly": [
+          0.27,
+          0.53,
+          0.61,
+          0.21,
+          1.0,
+          0.43,
+          0.32,
+          0.22,
+          0.33,
+          0.21,
+          0.67,
+          0.2
+        ],
+        "method": "gbif_share",
+        "observations": 1478,
+        "sources": [
+          "gbif-activity-tz"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 7144,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=44575&place_id=7144&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=7144&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 6,
+            "usable": false
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "country",
+              "TZ"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2439270&country=TZ&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&country=TZ&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 1478,
+            "usable": true
+          },
+          "used": [
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-black-rat-v1",
+    "params": {}
+  },
+  "vocalizations": [],
+  "look": {
+    "body_plan": "quadruped",
+    "proportions": {
+      "torso_aspect": 2.0,
+      "leg_length_ratio": 0.35,
+      "head_scale": 0.55,
+      "neck_angle_deg": 10,
+      "tail_ratio": 1.6,
+      "ear_ratio": 0.5,
+      "beak_ratio": 0.6,
+      "girth_ratio": 0.75
+    },
+    "palette": {
+      "body": "#4a403a",
+      "belly": "#8f8478",
+      "markings": "#363029",
+      "accent": "#b58b7c",
+      "eye": "#121212"
+    },
+    "part_colors": {
+      "snout": "markings",
+      "leg_*": "accent",
+      "tail": "accent",
+      "ear_*": "accent"
+    },
+    "poses": {
+      "idle": {},
+      "walk": {},
+      "trot": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2439270",
+      "title": "GBIF Backbone Taxonomy: Rattus rattus (Linnaeus, 1758)",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "accessed": "2026-11-01",
+      "kind": "database"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q106133",
+      "title": "Wikidata: black rat (Q106133)",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "accessed": "2026-11-01",
+      "kind": "database",
+      "note": "IUCN status P141 'least concern' (citing IUCN Red List 2022.2). Wikidata's P4214 longest-observed lifespan (4.2 years, captivity) is a maximum and is not used for lifespan_y."
+    },
+    {
+      "id": "wikipedia-black-rat",
+      "url": "https://en.wikipedia.org/wiki/Black_rat",
+      "title": "Wikipedia: Black rat",
+      "license": "CC-BY-SA-4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "attribution": "Wikipedia contributors, \"Black rat\", English Wikipedia, CC BY-SA 4.0",
+      "accessed": "2026-11-01",
+      "kind": "webpage",
+      "note": "Sources used: 'typically live for about one year in the wild and up to four years in captivity'; 'weighs 75 to 230 g ... depending on the subspecies'; head-body 12.75 to 18.25 cm; tail 15 to 22 cm, 'typically longer than the rat's head and body combined'; 'originated in India and Southeast Asia'; 'great climbers'; 'tends to forage after sunset'; 'omnivore'."
+    },
+    {
+      "id": "gbif-activity-tz",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2439270&country=TZ&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Rattus rattus in TZ",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-11-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-11-01",
+      "kind": "api"
+    },
+    {
+      "id": "prendergast-2017-eastern-africa",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5560628/",
+      "title": "Prendergast et al. (2017), Reconstructing Asian faunal introductions to eastern Africa from multi-proxy biomolecular and archaeological datasets",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "attribution": "Prendergast et al. (2017), Proceedings of the National Academy of Sciences 114(30):8030-8035, CC BY 4.0",
+      "accessed": "2026-11-01",
+      "kind": "literature",
+      "note": "The study confirms Rattus rattus in archaeological contexts at Songo Mnara, Unguja Ukuu and Fukuchani (Zanzibar), and Makangale Cave (Pemba). It concludes these commensal Asian taxa were introduced to eastern African islands by the mid-first millennium CE; the earliest direct Zanzibar date is discussed with a reservoir-effect caveat."
+    },
+    {
+      "id": "adw-black-rat",
+      "url": "https://animaldiversity.org/accounts/Rattus_rattus/",
+      "title": "Rattus rattus (house rat), Animal Diversity Web",
+      "license": "CC-BY-NC-SA-3.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/3.0/",
+      "attribution": "Gillespie, H. 2004. Rattus rattus (house rat). Animal Diversity Web, University of Michigan.",
+      "accessed": "2026-11-01",
+      "kind": "webpage",
+      "note": "Last-resort non-commercial text source. Lifespan/Longevity states that Rattus rattus tends to live about one year in the wild and up to four years in captivity; the one-year wild value is separately labelled typical wild. The account text licence is linked from ADW Conditions of Use."
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High"
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "common_names": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikidata"
+      ],
+      "confidence": "High"
+    },
+    "range.native": {
+      "sources": [
+        "wikipedia-black-rat"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Source says 'originated in India and Southeast Asia'. Only India (IN) is listed here; the Southeast Asian countries are not itemised by the source, so they are left out pending a country-level source."
+    },
+    "range.introduced": {
+      "sources": [
+        "prendergast-2017-eastern-africa"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The CC BY 4.0 archaeological study confirms introduced Asian black rats at Songo Mnara, Unguja Ukuu and Fukuchani (Zanzibar), and Pemba. It supports introduction in Tanzania; the exact mainland distribution and introduction date are not resolved by this evidence."
+    },
+    "traits.body_plan": {
+      "sources": [],
+      "confidence": "High",
+      "derived": true,
+      "note": "Mammal rodent body plan, a fixed convention for the quadruped model."
+    },
+    "traits.limb_count": {
+      "sources": [],
+      "confidence": "High",
+      "derived": true,
+      "note": "Four walking limbs, per the schema convention."
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia-black-rat"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Walk and Trot are general mammal gaits. Climb is from 'great climbers'. No Swim mode is declared because the source does not mention swimming. Climb has no built-in pose in the previewer, so the climbing action is not animated."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "wikipedia-black-rat"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Midpoint of the 75 to 230 g range given by the source. Not a sourced typical adult mass."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia-black-rat"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Converted from 75 to 230 g in the source."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia-black-rat"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Head-body midpoint 15.5 cm plus tail midpoint 18.5 cm, giving 34 cm from nose to tail tip."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "adw-black-rat",
+        "wikipedia-black-rat"
+      ],
+      "confidence": "Medium",
+      "note": "ADW Lifespan/Longevity says black rats tend to live about one year in the wild, separately labelled typical wild; Wikipedia repeats the value and cites ADW. The captive maximum of four years is excluded. ADW CC BY-NC-SA 3.0 is a flagged last resort because no permitted permissive primary typical-wild estimate was found."
+    },
+    "traits.diet": {
+      "sources": [
+        "wikipedia-black-rat"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored allocation. Source only says 'omnivore and eats a wide range of foods' without proportions. Categories are a judgement."
+    },
+    "traits.social": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored judgement. No source read for social structure."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "wikipedia-black-rat"
+      ],
+      "confidence": "Medium",
+      "note": "'tends to forage after sunset'."
+    },
+    "traits.defense": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored judgement."
+    },
+    "traits.wariness": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "judgement"
+    },
+    "habitat.use": {
+      "sources": [
+        "wikipedia-black-rat"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored split. Source: prefers palms and trees; 'in the absence of palms or trees, they can burrow into the ground'."
+    },
+    "habitat.shelter_tag": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "judgement"
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia-black-rat"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored weights from 'omnivore ... wide range of foods' and the sourced 'great climbers'. No quantitative diet data."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia-black-rat"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Urban classification is a judgement; the source's 'now found worldwide' is the only support."
+    },
+    "seasonal": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Year-round breeding window is a judgement, not a sourced calendar. Life-stage scale is authored."
+    },
+    "activity": {
+      "sources": [
+        "gbif-activity-tz"
+      ],
+      "confidence": "Medium",
+      "note": "GBIF-only curve for TZ (1,478 records in total, 1,438 with a month). The iNaturalist query returned 6 records and is not used (usable=false)."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Species-local FSM keeps ground walking and climbing distinct: fruit and seed feeding uses the legal climb gait, while invertebrate and carrion feeding uses walk; flee uses trot and shelter rest is enabled during daylight. Each recorded food tag has a reachable action. This simplifies flexible omnivorous foraging into one action per recorded resource category."
+    },
+    "look": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "judgement"
+    },
+    "range": {
+      "sources": [
+        "wikipedia-black-rat",
+        "prendergast-2017-eastern-africa"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Native Asian origin is from the cited black rat account. Tanzania introduction is directly supported for Songo Mnara and Zanzibar by the CC BY study of archaeological remains; the study does not establish a precise introduction date for all mainland locations."
+    },
+    "traits.flight": {
+      "sources": [],
+      "confidence": "High",
+      "derived": true,
+      "note": "Mammal convention: a rodent does not fly."
+    },
+    "traits.metamorphosis": {
+      "sources": [],
+      "confidence": "High",
+      "derived": true,
+      "note": "Mammal convention: no metamorphosis."
+    },
+    "traits.respiration": {
+      "sources": [],
+      "confidence": "High",
+      "derived": true,
+      "note": "Mammal convention: lungs."
+    },
+    "traits.skin": {
+      "sources": [],
+      "confidence": "High",
+      "derived": true,
+      "note": "Mammal convention: fur."
+    },
+    "traits.thermoregulation": {
+      "sources": [],
+      "confidence": "High",
+      "derived": true,
+      "note": "Mammal convention: endotherm."
+    },
+    "traits.perching": {
+      "sources": [],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Judgement: set false for a rodent body plan. Source says rats climb and prefer trees, which is not the same as perching birds."
+    },
+    "traits.size_class": {
+      "sources": [
+        "wikipedia-black-rat"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Small: midpoint mass 0.15 kg is below 1 kg."
+    }
+  }
+}
