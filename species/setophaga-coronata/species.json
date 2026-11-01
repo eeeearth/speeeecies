@@ -1,0 +1,645 @@
+{
+  "$schema": "https://eeeearth.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Setophaga coronata",
+  "slug": "setophaga-coronata",
+  "common_names": {
+    "en": "Yellow-rumped warbler"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Passeriformes",
+    "family": "Parulidae",
+    "genus": "Setophaga",
+    "authority": "(Linnaeus, 1766)",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 7341805,
+    "inat_taxon_id": 145245,
+    "itis_tsn": 950046,
+    "ebird_code": "yerwar"
+  },
+  "conservation": {
+    "iucn": "LC"
+  },
+  "range": {
+    "native": [
+      "US",
+      "CA",
+      "MX",
+      "GT",
+      "BZ",
+      "HN",
+      "SV",
+      "NI",
+      "CR",
+      "PA"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 2,
+    "locomotion_modes": [
+      "Hop",
+      "Fly"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Feathers",
+    "flight": "Powered",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "nest_type": "Cup",
+    "perching": true,
+    "size_class": "Tiny",
+    "mass_kg": 0.0119,
+    "mass_range_kg": [
+      0.0099,
+      0.0177
+    ],
+    "length_m": 0.14,
+    "wingspan_m": 0.215,
+    "lifespan_y": 1.32,
+    "diet": {
+      "invertebrate": 0.7,
+      "fruit": 0.1,
+      "nectar": 0.1,
+      "seed": 0.1
+    },
+    "social": {
+      "structure": "Solitary",
+      "group_size": [
+        1,
+        2
+      ]
+    },
+    "activity_pattern": "Diurnal",
+    "defense": "Flee",
+    "wariness": 0.3
+  },
+  "habitat": {
+    "use": {
+      "arboreal": 1.0
+    },
+    "shelter_tag": "shrub_thicket",
+    "resources": [
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.7
+      },
+      {
+        "tag": "berry",
+        "kind": "Herbivory",
+        "weight": 0.1
+      },
+      {
+        "tag": "seed",
+        "kind": "Herbivory",
+        "weight": 0.1
+      },
+      {
+        "tag": "nest_cup",
+        "kind": "Nesting",
+        "weight": 1.0
+      },
+      {
+        "tag": "perch",
+        "kind": "Shelter",
+        "weight": 0.6
+      },
+      {
+        "tag": "shrub_thicket",
+        "kind": "Shelter",
+        "weight": 0.8
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Adapter",
+      "notes": "Winters in open areas with shrubs or scattered trees, including agricultural and residential areas."
+    }
+  },
+  "seasonal": {
+    "strategy": "PartialMigration",
+    "phases": [],
+    "life_stages": [
+      {
+        "stage": "Egg"
+      },
+      {
+        "stage": "Juvenile"
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "MX",
+        "monthly": [
+          0.89,
+          0.81,
+          0.78,
+          0.4,
+          0.1,
+          0.0,
+          0.0,
+          0.0,
+          0.09,
+          0.55,
+          0.78,
+          1.0
+        ],
+        "method": "mean(inat_share, gbif_share)",
+        "observations": 129939,
+        "sources": [
+          "inat-activity-mx",
+          "gbif-activity-mx"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "A",
+            "place_id": 6793,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=145245&place_id=6793&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=3&place_id=6793&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+            "total": 1412,
+            "usable": true
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "country",
+              "MX"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=7341805&country=MX&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=212&country=MX&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 128527,
+            "usable": true
+          },
+          "used": [
+            "inat",
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "bt-yellow-rumped-warbler-v1",
+    "params": {
+      "flee_m": 6,
+      "food_tag": "invertebrate",
+      "song": "song",
+      "alarm": "chip",
+      "song_cooldown_s": 8
+    }
+  },
+  "vocalizations": [
+    {
+      "call_id": "song",
+      "context": "Song",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day",
+        "Dusk"
+      ],
+      "cooldown_s": 8,
+      "loudness": "Moderate",
+      "description": "Trill-like song of 4 to 7 syllables (tyew-tyew-tyew-tyew, tew-tew-tew). Season_months is empty because the sources do not give a monthly song calendar for each region."
+    },
+    {
+      "call_id": "chip",
+      "context": "Contact",
+      "season_months": [],
+      "time_windows": [
+        "DawnChorus",
+        "Day",
+        "Dusk"
+      ],
+      "cooldown_s": 5,
+      "loudness": "Moderate",
+      "description": "Occasional check or chip call note. The behaviour program uses it as the alarm call (authored choice; the source does not describe its alarm function)."
+    }
+  ],
+  "look": {
+    "body_plan": "biped_winged",
+    "proportions": {
+      "torso_aspect": 1.8,
+      "leg_length_ratio": 0.3,
+      "head_scale": 0.75,
+      "neck_angle_deg": 20,
+      "tail_ratio": 0.5,
+      "wing_aspect": 2.6,
+      "beak_ratio": 0.3,
+      "girth_ratio": 1.0
+    },
+    "palette": {
+      "body": "#6b7480",
+      "belly": "#f1f1ec",
+      "markings": "#f2c230",
+      "accent": "#2b2f36",
+      "eye": "#111111"
+    },
+    "part_colors": {
+      "breast": "belly",
+      "tail": "accent",
+      "beak": "eye"
+    },
+    "extra_parts": [
+      {
+        "name": "rump",
+        "parent": "body",
+        "offset": [
+          -0.55,
+          0.15,
+          0
+        ],
+        "size": [
+          0.3,
+          0.35,
+          0.8
+        ],
+        "color": "markings"
+      },
+      {
+        "name": "flank_patch",
+        "parent": "breast",
+        "offset": [
+          0,
+          -0.1,
+          0.45
+        ],
+        "size": [
+          0.6,
+          0.25,
+          0.2
+        ],
+        "color": "markings"
+      }
+    ],
+    "poses": {
+      "idle": {},
+      "hop": {},
+      "fly": {},
+      "perched": {},
+      "rest": {}
+    }
+  },
+  "sources": [
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/7341805",
+      "title": "GBIF Backbone Taxonomy: Setophaga coronata (Linnaeus, 1766)",
+      "license": "CC-BY-4.0",
+      "kind": "database",
+      "accessed": "2026-11-01",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei, accessed via GBIF.org",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "wikidata",
+      "url": "https://www.wikidata.org/wiki/Q18390024",
+      "title": "Wikidata: Q18390024 (species item for Setophaga coronata; label 'Myrtle Warbler')",
+      "license": "CC0-1.0",
+      "kind": "database",
+      "accessed": "2026-11-01",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Setophaga_coronata",
+      "title": "Wikipedia: Yellow-rumped warbler",
+      "license": "CC-BY-SA-4.0",
+      "kind": "webpage",
+      "accessed": "2026-11-01",
+      "attribution": "Wikipedia contributors, \"Yellow-rumped warbler\", English Wikipedia, CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "itis",
+      "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=950046",
+      "title": "ITIS: Setophaga coronata (Linnaeus, 1766), TSN 950046",
+      "license": "public-domain",
+      "kind": "database",
+      "accessed": "2026-11-01",
+      "note": "US federal government database; public domain in the United States. TSN 950046 found by name search and checked as valid, species rank. The Wikidata P685 value (111975) resolves to Agabus seriatus intersectus at ITIS and is not used."
+    },
+    {
+      "id": "eltontraits",
+      "url": "https://doi.org/10.6084/m9.figshare.3559887.v1",
+      "title": "EltonTraits 1.0: BirdFuncDat.txt, row SpecID 12692 (listed as Dendroica coronata)",
+      "license": "CC0-1.0",
+      "kind": "dataset",
+      "accessed": "2026-11-01",
+      "attribution": "Wilman, H. et al. (2014) EltonTraits 1.0. Ecology 95:2027",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "id": "scholer2020-survival",
+      "url": "https://zenodo.org/records/3986104",
+      "title": "Scholer et al. (2020) Data from: A meta-analysis of global avian survival across species and latitude (Dryad doi:10.5061/dryad.qv9s4mwbs; file ELEscholer2020_data.csv, row X=347)",
+      "license": "CC0-1.0",
+      "kind": "dataset",
+      "accessed": "2026-11-01",
+      "note": "Zenodo record licence cc-zero; Dryad dataset licence CC0-1.0. Article DOI 10.1111/ele.13573. Row X=347: Desante et al. (2015), Setophaga coronata, MAPS, United States, survival 0.468 (se 0.017), mark-recapture, migrant."
+    },
+    {
+      "id": "inat-activity-mx",
+      "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=145245&place_id=6793&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by",
+      "title": "iNaturalist observations histogram for Setophaga coronata in MX",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist contributors; observations licensed CC0/CC BY, via the iNaturalist API",
+      "accessed": "2026-11-01",
+      "kind": "api"
+    },
+    {
+      "id": "gbif-activity-mx",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=7341805&country=MX&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Setophaga coronata in MX",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-11-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-11-01",
+      "kind": "api"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone",
+        "itis"
+      ],
+      "confidence": "High",
+      "note": "GBIF usage 7341805 (ACCEPTED, SPECIES, Setophaga coronata (Linnaeus, 1766)) and ITIS TSN 950046 (valid, species) checked 2026-11-01. ITIS lists auduboni, nigrifrons, goldmani and hooveri as subspecies; IOC lists auduboni, goldmani and nigrifrons as separate species (per Wikipedia). See the PR evidence note."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "wikidata"
+      ],
+      "confidence": "High",
+      "note": "iNaturalist 145245 (iNaturalist API, checked 2026-11-01; also Wikidata P3151), eBird yerwar (Wikidata P3444). ITIS 950046 was found by name at ITIS and is not the Wikidata P685 value."
+    },
+    "common_names": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "conservation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Least Concern status shown in the Wikipedia article infobox; it cites BirdLife International 2023."
+    },
+    "range": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Countries are taken from the Wikipedia distribution text: breeding from eastern North America to the Pacific and south into western Mexico; wintering in the southern US, Mexico, Central America (to Panama) and the Caribbean. The Caribbean is omitted because no country is named. Belize, El Salvador and Nicaragua are included as Central American countries (derived)."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.limb_count": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High"
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Hop: ground and branch foraging by hops; Fly: short flycatching sorties from perches ('flit out from their perches in short loops')."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Bird; endothermy is standard for passerines and is not stated in the cited text."
+    },
+    "traits.skin": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Feathered passerine."
+    },
+    "traits.flight": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Powered flight, from the migration and flycatching descriptions."
+    },
+    "traits.respiration": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Lungs (all birds)."
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "None (altricial bird)."
+    },
+    "traits.nest_type": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "The nest is a cup of twigs, pine needles, grasses and rootlets (Breeding section)."
+    },
+    "traits.perching": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Foraging 'flit out from their perches'; nests on conifer branches."
+    },
+    "traits.size_class": {
+      "sources": [
+        "eltontraits"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "From mass_kg: 11.9 g in the 'Tiny' class used by the other passerine records."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "eltontraits",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "EltonTraits BodyMass-Value 11.94 g (source Dunning08, BodyMass-SpecLevel 1). Wikipedia states an average weight of 12.5 g and a range of 11 to 14 g on average; 11.9 g is the value kept, and it sits inside the Wikipedia average range."
+    },
+    "traits.mass_range_kg": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Wikipedia: body mass 9.9 to 17.7 g."
+    },
+    "traits.length_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Wikipedia: average length 14 cm (total length 12 to 15 cm)."
+    },
+    "traits.wingspan_m": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Midpoint of the 19 to 24 cm wingspan range given by Wikipedia (21.5 cm)."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "scholer2020-survival"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Proxy, not a published lifespan. Input: annual adult survival S = 0.468 (se 0.017), dataset row X=347 (Desante et al. 2015; MAPS; United States; mark-recapture; migrant). Equation: 1 / -ln(S) = 1 / 0.7593 = 1.32 years, the mean lifetime under a constant annual hazard. Assumptions and limits: (1) a single MAPS population; (2) apparent survival, which emigration biases low; (3) first-year survival is usually lower than adult survival, which this formula ignores; so the value mixes two biases in opposite directions and is a low-confidence proxy. The value is not a maximum or captive age."
+    },
+    "traits.diet": {
+      "sources": [
+        "eltontraits",
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "EltonTraits BirdFuncDat row 12692 (Diet-Source Ref_15, Diet-Certainty A): Diet-Inv 70, Diet-Fruit 10, Diet-Nect 10, Diet-Seed 10, all other categories 0. Wikipedia confirms insects as the primary food, wax-myrtle and juniper berries in winter, and wild seeds. EltonTraits Diet-Nect is mapped to nectar; Wikipedia's honeydew is not nectar, so this mapping is a judgement (derived)."
+    },
+    "traits.social": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored estimate. The cited sources describe breeding pairs but give no group-size data for winter flocks; the group range is a judgement."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "eltontraits"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "EltonTraits Nocturnal = 0 (row 12692). Wikipedia says the birds tend to migrate at night, which is a separate behaviour and does not change this diurnal pattern."
+    },
+    "traits.defense": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored judgement: flees to a perch when disturbed, matching the shared songbird program."
+    },
+    "traits.wariness": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored judgement (not sourced)."
+    },
+    "habitat.use": {
+      "sources": [
+        "eltontraits"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "EltonTraits ForStrat: ground 0, understory 50, mid-high 50, canopy 0 (row 12692). Mapped to arboreal 1.0. Winter use of open shrub areas is not in this share."
+    },
+    "habitat.shelter_tag": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored: roost site is not described in the sources; shrub_thicket is the closest available shelter tag."
+    },
+    "habitat.resources": {
+      "sources": [
+        "wikipedia",
+        "eltontraits"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Insects as the main predation resource; berries and seeds as herbivory resources; cup nests in conifers; perches for foraging. Weights are authored from the diet split."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Winters in agricultural and residential areas (Habitat in non-breeding range)."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "note": "Wikipedia: myrtle and Audubon's forms migrate; some Central American individuals migrate only limitedly or not at all."
+    },
+    "activity.MX": {
+      "sources": [
+        "inat-activity-mx",
+        "gbif-activity-mx"
+      ],
+      "confidence": "Medium",
+      "note": "Monthly shares from tools/fetch_activity.py, country MX, both providers usable (see the region's query block). Jun to Aug are 0.0 after normalisation: GBIF has 59 to 87 records per summer month and iNaturalist has 0 in Jun to Aug, so the curve says near-absence in summer. It does not separate the Sierra Madre breeders from winter visitors."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Egg, nestling and fledgling stages from the Breeding section (eggs incubated 12 to 13 days; young brooded 10 to 14 days). The source gives no per-stage durations for this population, so none are set."
+    },
+    "behavior": {
+      "sources": [],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Local program bt-yellow-rumped-warbler-v1 (species/setophaga-coronata/behavior.json). See the file's description and the PR for the gait, feeding and calendar checks."
+    },
+    "vocalizations.song": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "High",
+      "note": "Wikipedia: trill-like song of 4 to 7 syllables."
+    },
+    "vocalizations.chip": {
+      "sources": [
+        "wikipedia"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Wikipedia: occasional check or chip call note. Use as the alarm call is authored."
+    },
+    "look": {
+      "sources": [],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored look (judgement): slate-grey back, yellow rump and flank patches, dark tail, from the Wikipedia plumage description. Not measured."
+    }
+  }
+}
