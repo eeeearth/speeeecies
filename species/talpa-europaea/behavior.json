@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "format": "speeeecies/behavior",
+  "id": "fsm-talpa-europaea-v1",
+  "kind": "fsm",
+  "description": "Species-local simplification for a fossorial, polyphasic mole: travel and forage with the Burrow gait, eat invertebrates, and rest by energy need without a day/night gate. The renderer has no Burrow pose or underground scene, and this FSM does not model soil excavation.",
+  "params": {
+    "food_tag": "invertebrate",
+    "food_m": 15,
+    "flee_m": 5,
+    "calm_m": 12
+  },
+  "initial": "idle",
+  "states": {
+    "idle": {"action": {"do": "idle"}, "min_dwell_s": 2},
+    "wander": {"action": {"do": "wander", "gait": "burrow"}},
+    "forage": {"action": {"do": "eat_nearest", "tag": "${food_tag}", "gait": "burrow"}},
+    "rest": {"action": {"do": "rest", "at": "shelter"}, "min_dwell_s": 30},
+    "flee": {"action": {"do": "flee", "gait": "burrow"}, "min_dwell_s": 3}
+  },
+  "transitions": [
+    {"from": "*", "to": "flee", "when": {"threat_within_m": "${flee_m}"}, "priority": 100},
+    {"from": "flee", "to": "idle", "when": {"not": {"threat_within_m": "${calm_m}"}}},
+    {"from": "idle", "to": "forage", "when": {"all": [{"need": "hunger", "gt": 0.5}, {"food_within_m": "${food_m}", "tag": "${food_tag}"}]}},
+    {"from": "idle", "to": "rest", "when": {"need": "energy", "gt": 0.7}},
+    {"from": "idle", "to": "wander", "when": {"chance": 0.25}},
+    {"from": "wander", "to": "idle", "when": {"chance": 0.15}},
+    {"from": "forage", "to": "idle", "when": {"need": "hunger", "lt": 0.2}},
+    {"from": "rest", "to": "idle", "when": {"need": "energy", "lt": 0.2}}
+  ]
+}
