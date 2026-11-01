@@ -1,0 +1,606 @@
+{
+  "$schema": "https://eeeearth.github.io/speeeecies/schema/v0.1/species.schema.json",
+  "format": "speeeecies/species",
+  "format_version": "0.1",
+  "id": "Ursus americanus",
+  "slug": "ursus-americanus",
+  "common_names": {
+    "en": "American black bear"
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Mammalia",
+    "order": "Carnivora",
+    "family": "Ursidae",
+    "genus": "Ursus",
+    "authority": "Pallas, 1780",
+    "status": "Accepted"
+  },
+  "external": {
+    "gbif_usage_key": 2433407,
+    "inat_taxon_id": 41638
+  },
+  "range": {
+    "native": [
+      "CA",
+      "US",
+      "MX"
+    ]
+  },
+  "traits": {
+    "body_plan": "Vertebrate",
+    "limb_count": 4,
+    "locomotion_modes": [
+      "Walk",
+      "Trot",
+      "Gallop",
+      "Climb",
+      "Swim"
+    ],
+    "thermoregulation": "Endotherm",
+    "skin": "Fur",
+    "flight": "None",
+    "respiration": "Lungs",
+    "metamorphosis": "None",
+    "mass_kg": 82.8,
+    "length_m": 1.68,
+    "lifespan_y": 18,
+    "diet": {
+      "browse": 0.5,
+      "mast": 0.2,
+      "fruit": 0.15,
+      "invertebrate": 0.08,
+      "vertebrate": 0.02,
+      "carrion": 0.05
+    },
+    "social": {
+      "structure": "Solitary",
+      "group_size": [
+        1,
+        4
+      ]
+    },
+    "activity_pattern": "Crepuscular",
+    "defense": "Flee",
+    "wariness": 0.8,
+    "shoulder_height_m": 0.91
+  },
+  "habitat": {
+    "use": {
+      "ground": 0.9,
+      "arboreal": 0.1
+    },
+    "shelter_tag": "shelter",
+    "resources": [
+      {
+        "tag": "browse",
+        "kind": "Herbivory",
+        "weight": 0.5
+      },
+      {
+        "tag": "mast",
+        "kind": "Herbivory",
+        "weight": 0.2,
+        "months": [
+          9,
+          10,
+          11
+        ]
+      },
+      {
+        "tag": "fruit",
+        "kind": "Herbivory",
+        "weight": 0.15,
+        "months": [
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ]
+      },
+      {
+        "tag": "invertebrate",
+        "kind": "Predation",
+        "weight": 0.08
+      },
+      {
+        "tag": "small_vertebrate",
+        "kind": "Predation",
+        "weight": 0.02
+      },
+      {
+        "tag": "carrion",
+        "kind": "Scavenging",
+        "weight": 0.05
+      },
+      {
+        "tag": "shelter",
+        "kind": "Shelter",
+        "weight": 1.0
+      }
+    ],
+    "human_tolerance": {
+      "urban_affinity": "Avoider",
+      "road_mortality": "High",
+      "uses_gardens": false,
+      "notes": "Judgement: bears generally avoid people, but food-conditioned individuals may approach campsites and other human food sources."
+    }
+  },
+  "seasonal": {
+    "strategy": "Torpor",
+    "triggers": {
+      "enter": {
+        "temperature_below_c": 5,
+        "days": 3
+      },
+      "exit": {
+        "temperature_above_c": 8,
+        "days": 3
+      }
+    },
+    "phases": [
+      {
+        "name": "mating",
+        "start": "05-01",
+        "end": "08-31",
+        "note": "Northern Hemisphere summer mating; this broad interval follows the NPS regional description."
+      },
+      {
+        "name": "dormancy",
+        "start": "10-15",
+        "end": "03-31",
+        "note": "Broad calendar approximation only. NPS reports den entry and emergence vary by region and weather; the US-wide behavior uses October-March, but warmer populations may stay active and northern populations may den longer."
+      },
+      {
+        "name": "young",
+        "start": "01-15",
+        "end": "04-30",
+        "note": "Cubs are born in winter dens and emerge with mothers in early spring in the cited northern and Appalachian populations."
+      }
+    ],
+    "life_stages": [
+      {
+        "stage": "Juvenile",
+        "duration_days": 548
+      },
+      {
+        "stage": "Adult"
+      }
+    ]
+  },
+  "activity": {
+    "regions": [
+      {
+        "region": "US",
+        "monthly": [
+          0.23,
+          0.17,
+          0.16,
+          0.41,
+          1.0,
+          0.98,
+          0.7,
+          0.69,
+          0.94,
+          0.87,
+          0.79,
+          0.39
+        ],
+        "method": "gbif_share",
+        "observations": 10557,
+        "sources": [
+          "gbif-activity-us"
+        ],
+        "query": {
+          "min_obs": 300,
+          "inat": {
+            "tier": "C",
+            "place_id": 10319,
+            "url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=41638&place_id=10319&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "baseline_url": "https://api.inaturalist.org/v1/observations/histogram?taxon_id=40151&place_id=10319&interval=month_of_year&date_field=observed&verifiable=true&license=cc0,cc-by,cc-by-sa,cc-by-nc,cc-by-nc-sa",
+            "total": 0,
+            "usable": false
+          },
+          "gbif": {
+            "tier": "A",
+            "area": [
+              "country",
+              "US"
+            ],
+            "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2433407&country=US&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "baseline_url": "https://api.gbif.org/v1/occurrence/search?taxonKey=359&country=US&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+            "total": 10557,
+            "usable": true
+          },
+          "used": [
+            "gbif"
+          ]
+        }
+      }
+    ]
+  },
+  "behavior": {
+    "program": "fsm-ursus-americanus-v1",
+    "params": {
+      "food_m": 40,
+      "flee_m": 25,
+      "calm_m": 45,
+      "flee_gait": "gallop",
+      "forage_gait": "walk",
+      "day_sun_lo_deg": 10,
+      "day_sun_hi_deg": 90
+    }
+  },
+  "vocalizations": [],
+  "look": {
+    "body_plan": "quadruped",
+    "proportions": {
+      "torso_aspect": 1.35,
+      "leg_length_ratio": 0.55,
+      "head_scale": 0.72,
+      "tail_ratio": 0.08,
+      "ear_ratio": 0.18,
+      "girth_ratio": 1.25,
+      "neck_angle_deg": 5
+    },
+    "palette": {
+      "body": "#26211e",
+      "belly": "#372f2b",
+      "accent": "#705642",
+      "eye": "#120f0d"
+    },
+    "poses": {
+      "idle": {},
+      "walk": {
+        "cycle_s": 1.4
+      },
+      "trot": {
+        "cycle_s": 0.8
+      },
+      "gallop": {
+        "cycle_s": 0.55
+      },
+      "swim": {
+        "cycle_s": 1.6
+      }
+    }
+  },
+  "sources": [
+    {
+      "id": "nps-black-bears",
+      "url": "https://www.nps.gov/subjects/bears/black-bears.htm",
+      "title": "Black Bears, National Park Service",
+      "license": "public-domain",
+      "accessed": "2026-11-01",
+      "kind": "webpage"
+    },
+    {
+      "id": "nps-glacier-bears",
+      "url": "https://www.nps.gov/glac/learn/nature/bears.htm",
+      "title": "Bears, Glacier National Park, National Park Service",
+      "license": "public-domain",
+      "accessed": "2026-11-01",
+      "kind": "webpage"
+    },
+    {
+      "id": "nps-smokies-black-bears",
+      "url": "https://home.nps.gov/grsm/learn/nature/black-bears.htm",
+      "title": "Black Bears, Great Smoky Mountains National Park, National Park Service",
+      "license": "public-domain",
+      "accessed": "2026-11-01",
+      "kind": "webpage"
+    },
+    {
+      "id": "nps-disclaimer",
+      "url": "https://www.nps.gov/aboutus/disclaimer.htm",
+      "title": "Disclaimer and Copyright, National Park Service",
+      "license": "public-domain",
+      "accessed": "2026-11-01",
+      "kind": "webpage"
+    },
+    {
+      "id": "gbif-backbone",
+      "url": "https://api.gbif.org/v1/species/2433407",
+      "title": "GBIF Backbone Taxonomy: Ursus americanus (usage key 2433407)",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-11-01), GBIF Backbone Taxonomy, CC BY 4.0",
+      "accessed": "2026-11-01",
+      "kind": "api",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "inat-taxon",
+      "url": "https://api.inaturalist.org/v1/taxa/41638",
+      "title": "iNaturalist Taxon: Ursus americanus (taxon 41638)",
+      "license": "CC-BY-4.0",
+      "attribution": "iNaturalist, taxon record 41638, accessed 2026-11-01",
+      "accessed": "2026-11-01",
+      "kind": "api",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "id": "gbif-activity-us",
+      "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2433407&country=US&facet=month&facetLimit=12&limit=0&occurrenceStatus=PRESENT&hasGeospatialIssue=false&license=CC0_1_0&license=CC_BY_4_0",
+      "title": "GBIF occurrence search for Ursus americanus in US",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF.org (2026-11-01) GBIF Occurrence Search, records licensed CC0 1.0 and CC BY 4.0",
+      "accessed": "2026-11-01",
+      "kind": "api"
+    },
+    {
+      "id": "nps-rocky-black-bears",
+      "url": "https://home.nps.gov/romo/learn/nature/black_bears.htm",
+      "title": "Black Bears, Rocky Mountain National Park, National Park Service",
+      "license": "public-domain",
+      "accessed": "2026-11-01",
+      "kind": "webpage"
+    }
+  ],
+  "provenance": {
+    "taxonomy": {
+      "sources": [
+        "gbif-backbone"
+      ],
+      "confidence": "High",
+      "note": "GBIF usage key 2433407 resolves as accepted species Ursus americanus Pallas, 1780. iNaturalist independently resolves active species taxon 41638."
+    },
+    "external": {
+      "sources": [
+        "gbif-backbone",
+        "inat-taxon"
+      ],
+      "confidence": "High"
+    },
+    "common_names": {
+      "sources": [
+        "nps-black-bears"
+      ],
+      "confidence": "High"
+    },
+    "range": {
+      "sources": [
+        "nps-black-bears"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The NPS species page describes American black bears as widely distributed in North America. Country codes are restricted here to their native continental range: Canada, the United States and Mexico."
+    },
+    "traits.body_plan": {
+      "sources": [
+        "nps-black-bears"
+      ],
+      "confidence": "High",
+      "note": "Mammal."
+    },
+    "traits.limb_count": {
+      "sources": [
+        "nps-rocky-black-bears"
+      ],
+      "confidence": "High",
+      "note": "Four-legged mammal."
+    },
+    "traits.locomotion_modes": {
+      "sources": [
+        "nps-smokies-black-bears",
+        "nps-rocky-black-bears"
+      ],
+      "confidence": "High",
+      "note": "Walks, climbs trees, swims efficiently, and runs up to 30 mph. The renderer has no climb pose."
+    },
+    "traits.thermoregulation": {
+      "sources": [
+        "nps-black-bears"
+      ],
+      "confidence": "High",
+      "note": "Mammal."
+    },
+    "traits.skin": {
+      "sources": [
+        "nps-black-bears"
+      ],
+      "confidence": "High",
+      "note": "Thick pelage."
+    },
+    "traits.flight": {
+      "sources": [
+        "nps-black-bears"
+      ],
+      "confidence": "High",
+      "note": "Terrestrial mammal."
+    },
+    "traits.respiration": {
+      "sources": [
+        "nps-black-bears"
+      ],
+      "confidence": "High",
+      "note": "Mammal."
+    },
+    "traits.metamorphosis": {
+      "sources": [
+        "nps-black-bears"
+      ],
+      "confidence": "High",
+      "note": "Mammal."
+    },
+    "traits.mass_kg": {
+      "sources": [
+        "nps-glacier-bears"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Representative adult mass from NPS sex-specific ranges: midpoint of adult male 180-250 lb is 215 lb; midpoint of adult female 120-180 lb is 150 lb; equal-sex midpoint (215+150)/2 = 182.5 lb = 82.8 kg. This is a modelling representative, not a population-weighted mean; body mass varies by sex, season and location."
+    },
+    "traits.length_m": {
+      "sources": [
+        "nps-rocky-black-bears"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Midpoint of the NPS Rocky Mountain 5-6 ft total-length range: 5.5 ft converted to 1.68 m."
+    },
+    "traits.lifespan_y": {
+      "sources": [
+        "nps-glacier-bears",
+        "nps-rocky-black-bears",
+        "nps-smokies-black-bears"
+      ],
+      "confidence": "Medium",
+      "note": "NPS Glacier reports an 18-year average for black bears; NPS Rocky Mountain reports a 20-year average; NPS Great Smoky Mountains says a wild black bear lives about 12-15 years. These are regional differences, so 18 is used as a published wild-population average, not a maximum, captive value or survival proxy."
+    },
+    "traits.diet": {
+      "sources": [
+        "nps-smokies-black-bears",
+        "nps-glacier-bears"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "The NPS Great Smoky Mountains page reports roughly 85% plant material in that population. Browse (0.50) + mast (0.20) + fruit (0.15) preserve that 85% plant share; the remaining 15% is an authored split among insects, rare live prey and carrion. Diet varies by region and season."
+    },
+    "traits.social": {
+      "sources": [
+        "nps-rocky-black-bears"
+      ],
+      "confidence": "High",
+      "derived": true,
+      "note": "Adults are solitary except females with cub families; group-size bounds 1-4 represent the family unit and are authored."
+    },
+    "traits.activity_pattern": {
+      "sources": [
+        "nps-rocky-black-bears"
+      ],
+      "confidence": "High",
+      "note": "Most often active during morning and evening twilight."
+    },
+    "traits.defense": {
+      "sources": [
+        "nps-rocky-black-bears"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Flee is a simulation judgment based on bears avoiding people and slowly backing away; aggressive defense and food-conditioned encounters are outside this simple action model."
+    },
+    "traits.wariness": {
+      "sources": [
+        "nps-black-bears"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Authored judgment. NPS describes food-conditioned bears approaching human food, implying high ordinary wariness with context-dependent habituation."
+    },
+    "habitat.use": {
+      "sources": [
+        "nps-black-bears"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored coarse allocation: primarily ground-living, with occasional tree climbing. The 0.9/0.1 shares are model parameters, not measured time budgets."
+    },
+    "habitat.shelter_tag": {
+      "sources": [
+        "nps-smokies-black-bears"
+      ],
+      "confidence": "High",
+      "note": "Winter dens include hollow stumps, tree cavities and dense brush piles; den is the model's shared shelter tag."
+    },
+    "habitat.resources": {
+      "sources": [
+        "nps-smokies-black-bears",
+        "nps-glacier-bears"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Food classes follow NPS descriptions: plant matter, nuts/acorns, fruit/berries, insects, rare live prey and carrion. Resource weights are simulation parameters. Fish is not a separate resource tag in schema v0.1, so salmon feeding is omitted and recorded as a representation limitation."
+    },
+    "habitat.human_tolerance": {
+      "sources": [
+        "nps-rocky-black-bears",
+        "nps-smokies-black-bears"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Avoider is an authored broad classification; Rocky Mountain bears usually avoid people but can overcome wariness when habituated to human food."
+    },
+    "seasonal.strategy": {
+      "sources": [
+        "nps-smokies-black-bears",
+        "nps-glacier-bears"
+      ],
+      "confidence": "High",
+      "note": "NPS Great Smoky Mountains explicitly describes black bears entering torpor; Glacier describes winter dormancy in dens."
+    },
+    "seasonal.triggers": {
+      "sources": [
+        "nps-smokies-black-bears"
+      ],
+      "confidence": "Low",
+      "derived": true,
+      "note": "Authored weather thresholds (5 C for 3 days to enter, 8 C for 3 days to exit) approximate winter torpor; NPS does not state universal temperature thresholds."
+    },
+    "seasonal.phases": {
+      "sources": [
+        "nps-black-bears",
+        "nps-smokies-black-bears",
+        "nps-glacier-bears"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Mating and denning dates follow northern-hemisphere NPS accounts; the October-March behavior months are a broad US approximation, not a claim of uniform timing. Den entry varies by latitude, weather, sex and reproductive status."
+    },
+    "seasonal.life_stages": {
+      "sources": [
+        "nps-black-bears"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Juvenile duration models the approximately 18-month period cubs stay with their mother; exact duration is authored as 548 days."
+    },
+    "activity.US": {
+      "sources": [
+        "gbif-activity-us"
+      ],
+      "confidence": "Medium",
+      "note": "Monthly licensed observation counts; see query fields for scope and usability."
+    },
+    "behavior": {
+      "sources": [
+        "nps-smokies-black-bears",
+        "nps-glacier-bears"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Species-local FSM uses source-supported ground food classes and climb gait for fruit; the schema has no fish food tag, so fish feeding is not encoded. Seasonal feeding months for mast, fruit and fish were checked from the cited regional evidence. Regional dormancy differs, and climb has no preview pose."
+    },
+    "vocalizations": {
+      "sources": [
+        "nps-black-bears"
+      ],
+      "confidence": "Low",
+      "note": "No calls are modeled."
+    },
+    "look": {
+      "sources": [
+        "nps-black-bears"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "Block-model proportions and palette are authored; NPS describes large bodies, thick pelage and black, cinnamon, blonde, blue-gray and white color phases. Dark black-brown is one representative color morph."
+    },
+    "traits.shoulder_height_m": {
+      "sources": [
+        "nps-black-bears"
+      ],
+      "confidence": "Medium",
+      "derived": true,
+      "note": "NPS reports about 3 ft at the shoulder; converted to 0.91 m."
+    }
+  },
+  "contributors": [
+    {
+      "name": "supervised Orca species wave",
+      "agent": "codex"
+    }
+  ]
+}

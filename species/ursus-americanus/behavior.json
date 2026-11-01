@@ -1,0 +1,397 @@
+{
+  "schema_version": 1,
+  "format": "speeeecies/behavior",
+  "id": "fsm-ursus-americanus-v1",
+  "kind": "fsm",
+  "description": "Species-local American black bear program. Covers terrestrial opportunistic foraging, occasional tree-fruit feeding and an October-March denning approximation. Denning varies by region; warmer U.S. populations may remain active and northern bears may den longer. Fish feeding is omitted because schema v0.1 has no fish resource tag.",
+  "params": {
+    "food_m": 40,
+    "flee_m": 25,
+    "calm_m": 45,
+    "flee_gait": "gallop",
+    "forage_gait": "walk",
+    "day_sun_lo_deg": 10,
+    "day_sun_hi_deg": 90
+  },
+  "initial": "idle",
+  "states": {
+    "idle": {
+      "action": {
+        "do": "idle"
+      },
+      "min_dwell_s": 2
+    },
+    "wander": {
+      "action": {
+        "do": "wander",
+        "gait": "${forage_gait}"
+      }
+    },
+    "browse": {
+      "action": {
+        "do": "eat_nearest",
+        "tag": "browse",
+        "gait": "${forage_gait}"
+      }
+    },
+    "mast": {
+      "action": {
+        "do": "eat_nearest",
+        "tag": "mast",
+        "gait": "${forage_gait}"
+      }
+    },
+    "fruit": {
+      "action": {
+        "do": "eat_nearest",
+        "tag": "fruit",
+        "gait": "climb"
+      }
+    },
+    "invertebrate": {
+      "action": {
+        "do": "eat_nearest",
+        "tag": "invertebrate",
+        "gait": "${forage_gait}"
+      }
+    },
+    "vertebrate": {
+      "action": {
+        "do": "eat_nearest",
+        "tag": "small_vertebrate",
+        "gait": "${forage_gait}"
+      }
+    },
+    "carrion": {
+      "action": {
+        "do": "eat_nearest",
+        "tag": "carrion",
+        "gait": "${forage_gait}"
+      }
+    },
+    "drink": {
+      "action": {
+        "do": "drink_nearest",
+        "gait": "${forage_gait}"
+      }
+    },
+    "rest": {
+      "action": {
+        "do": "rest",
+        "at": "shelter"
+      },
+      "min_dwell_s": 30
+    },
+    "flee": {
+      "action": {
+        "do": "flee",
+        "gait": "${flee_gait}"
+      },
+      "min_dwell_s": 3
+    },
+    "den": {
+      "action": {
+        "do": "rest",
+        "at": "shelter"
+      },
+      "min_dwell_s": 30
+    }
+  },
+  "transitions": [
+    {
+      "from": "*",
+      "to": "flee",
+      "when": {
+        "threat_within_m": "${flee_m}"
+      },
+      "priority": 100
+    },
+    {
+      "from": "*",
+      "to": "flee",
+      "when": {
+        "all": [
+          {
+            "need": "fear",
+            "gt": 0.2
+          },
+          {
+            "not": {
+              "threat_within_m": "${calm_m}"
+            }
+          }
+        ]
+      },
+      "priority": 90
+    },
+    {
+      "from": "*",
+      "to": "den",
+      "when": {
+        "month_in": [
+          1,
+          2,
+          3,
+          10,
+          11,
+          12
+        ]
+      },
+      "priority": 95
+    },
+    {
+      "from": "den",
+      "to": "idle",
+      "when": {
+        "not": {
+          "month_in": [
+            1,
+            2,
+            3,
+            10,
+            11,
+            12
+          ]
+        }
+      },
+      "priority": 85
+    },
+    {
+      "from": "flee",
+      "to": "idle",
+      "when": {
+        "not": {
+          "threat_within_m": "${calm_m}"
+        }
+      },
+      "priority": 80
+    },
+    {
+      "from": "idle",
+      "to": "fruit",
+      "when": {
+        "all": [
+          {
+            "need": "hunger",
+            "gt": 0.5
+          },
+          {
+            "food_within_m": "${food_m}",
+            "tag": "fruit"
+          }
+        ]
+      },
+      "priority": 60
+    },
+    {
+      "from": "idle",
+      "to": "mast",
+      "when": {
+        "all": [
+          {
+            "need": "hunger",
+            "gt": 0.5
+          },
+          {
+            "food_within_m": "${food_m}",
+            "tag": "mast"
+          }
+        ]
+      },
+      "priority": 50
+    },
+    {
+      "from": "idle",
+      "to": "browse",
+      "when": {
+        "all": [
+          {
+            "need": "hunger",
+            "gt": 0.5
+          },
+          {
+            "food_within_m": "${food_m}",
+            "tag": "browse"
+          }
+        ]
+      },
+      "priority": 40
+    },
+    {
+      "from": "idle",
+      "to": "invertebrate",
+      "when": {
+        "all": [
+          {
+            "need": "hunger",
+            "gt": 0.5
+          },
+          {
+            "food_within_m": "${food_m}",
+            "tag": "invertebrate"
+          }
+        ]
+      },
+      "priority": 30
+    },
+    {
+      "from": "idle",
+      "to": "vertebrate",
+      "when": {
+        "all": [
+          {
+            "need": "hunger",
+            "gt": 0.5
+          },
+          {
+            "food_within_m": "${food_m}",
+            "tag": "small_vertebrate"
+          }
+        ]
+      },
+      "priority": 20
+    },
+    {
+      "from": "idle",
+      "to": "carrion",
+      "when": {
+        "all": [
+          {
+            "need": "hunger",
+            "gt": 0.5
+          },
+          {
+            "food_within_m": "${food_m}",
+            "tag": "carrion"
+          }
+        ]
+      },
+      "priority": 10
+    },
+    {
+      "from": "idle",
+      "to": "drink",
+      "when": {
+        "all": [
+          {
+            "need": "thirst",
+            "gt": 0.6
+          },
+          {
+            "water_within_m": 60
+          }
+        ]
+      },
+      "priority": 5
+    },
+    {
+      "from": "idle",
+      "to": "rest",
+      "when": {
+        "any": [
+          {
+            "need": "energy",
+            "gt": 0.7
+          },
+          {
+            "sun_elevation_between_deg": [
+              "${day_sun_lo_deg}",
+              "${day_sun_hi_deg}"
+            ]
+          }
+        ]
+      },
+      "priority": 1
+    },
+    {
+      "from": "idle",
+      "to": "wander",
+      "when": {
+        "chance": 0.25
+      }
+    },
+    {
+      "from": "wander",
+      "to": "idle",
+      "when": {
+        "chance": 0.15
+      }
+    },
+    {
+      "from": "browse",
+      "to": "idle",
+      "when": {
+        "need": "hunger",
+        "lt": 0.2
+      }
+    },
+    {
+      "from": "mast",
+      "to": "idle",
+      "when": {
+        "need": "hunger",
+        "lt": 0.2
+      }
+    },
+    {
+      "from": "fruit",
+      "to": "idle",
+      "when": {
+        "need": "hunger",
+        "lt": 0.2
+      }
+    },
+    {
+      "from": "invertebrate",
+      "to": "idle",
+      "when": {
+        "need": "hunger",
+        "lt": 0.2
+      }
+    },
+    {
+      "from": "vertebrate",
+      "to": "idle",
+      "when": {
+        "need": "hunger",
+        "lt": 0.2
+      }
+    },
+    {
+      "from": "carrion",
+      "to": "idle",
+      "when": {
+        "need": "hunger",
+        "lt": 0.2
+      }
+    },
+    {
+      "from": "drink",
+      "to": "idle",
+      "when": {
+        "need": "thirst",
+        "lt": 0.1
+      }
+    },
+    {
+      "from": "rest",
+      "to": "idle",
+      "when": {
+        "all": [
+          {
+            "need": "energy",
+            "lt": 0.2
+          },
+          {
+            "not": {
+              "sun_elevation_between_deg": [
+                "${day_sun_lo_deg}",
+                "${day_sun_hi_deg}"
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
