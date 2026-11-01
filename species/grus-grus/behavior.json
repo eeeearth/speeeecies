@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "format": "speeeecies/behavior",
+  "id": "bt-crane-wetland-forager-v1",
+  "kind": "bt",
+  "description": "A wetland-roosting, ground-feeding bird that walks on fields and meadows by day, calls at dawn from shallow water, roosts in shallow water at night, flies to water when threatened, and nests on the ground in wetlands. It does not perch in trees.",
+  "params": {
+    "flee_m": 40,
+    "call": "trumpet",
+    "alarm": "alarm_pair",
+    "song_cooldown_s": 20
+  },
+  "root": {
+    "selector": [
+      {
+        "sequence": [
+          {
+            "cond": {
+              "threat_within_m": "${flee_m}"
+            }
+          },
+          {
+            "act": {
+              "do": "alarm",
+              "call": "${alarm}"
+            }
+          },
+          {
+            "act": {
+              "do": "take_off"
+            }
+          },
+          {
+            "act": {
+              "do": "fly_to_nearest",
+              "tag": "water"
+            }
+          },
+          {
+            "act": {
+              "do": "rest",
+              "at": "shelter"
+            }
+          }
+        ]
+      },
+      {
+        "sequence": [
+          {
+            "cond": {
+              "need": "fear",
+              "gt": 0.2
+            }
+          },
+          {
+            "act": {
+              "do": "take_off"
+            }
+          },
+          {
+            "act": {
+              "do": "flee",
+              "gait": "fly"
+            }
+          }
+        ]
+      },
+      {
+        "sequence": [
+          {
+            "cond": {
+              "is_day": false
+            }
+          },
+          {
+            "act": {
+              "do": "fly_to_nearest",
+              "tag": "water"
+            }
+          },
+          {
+            "act": {
+              "do": "rest",
+              "at": "shelter"
+            }
+          }
+        ]
+      },
+      {
+        "sequence": [
+          {
+            "cond": {
+              "sun_elevation_between_deg": [
+                -6,
+                12
+              ]
+            }
+          },
+          {
+            "cond": {
+              "water_within_m": 300
+            }
+          },
+          {
+            "cooldown_s": "${song_cooldown_s}",
+            "child": {
+              "act": {
+                "do": "sing",
+                "call": "${call}"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "sequence": [
+          {
+            "cond": {
+              "need": "nest",
+              "gt": 0.5
+            }
+          },
+          {
+            "cond": {
+              "month_in": [
+                3,
+                4
+              ]
+            }
+          },
+          {
+            "cond": {
+              "nest_site_within_m": 40
+            }
+          },
+          {
+            "act": {
+              "do": "build_nest"
+            }
+          }
+        ]
+      },
+      {
+        "sequence": [
+          {
+            "cond": {
+              "need": "hunger",
+              "gt": 0.4
+            }
+          },
+          {
+            "cond": {
+              "month_in": [
+                2,
+                3,
+                4,
+                8,
+                9,
+                10,
+                11
+              ]
+            }
+          },
+          {
+            "act": {
+              "do": "eat_nearest",
+              "tag": "seed",
+              "gait": "walk"
+            }
+          }
+        ]
+      },
+      {
+        "sequence": [
+          {
+            "cond": {
+              "need": "hunger",
+              "gt": 0.4
+            }
+          },
+          {
+            "act": {
+              "do": "eat_nearest",
+              "tag": "invertebrate",
+              "gait": "walk"
+            }
+          }
+        ]
+      },
+      {
+        "sequence": [
+          {
+            "cond": {
+              "need": "thirst",
+              "gt": 0.6
+            }
+          },
+          {
+            "act": {
+              "do": "drink_nearest",
+              "gait": "walk"
+            }
+          }
+        ]
+      },
+      {
+        "act": {
+          "do": "wander",
+          "gait": "walk"
+        }
+      }
+    ]
+  }
+}
